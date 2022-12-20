@@ -1,0 +1,81 @@
+local berserker = experience_core.perks_save_data["perk_berserker"]["curr_level"]
+local spiked = experience_core.perks_save_data["perk_spiked"]["curr_level"]
+local dodger = experience_core.perks_save_data["perk_dodger"]["curr_level"]
+local anomaly_defense = experience_core.perks_save_data["perk_anomaly_defense"]["curr_level"]
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+local anomaly_list          = {}
+anomaly_list[0]             = true
+anomaly_list[1]             = true
+anomaly_list[2]             = true
+anomaly_list[3]             = true
+anomaly_list[4]             = true
+anomaly_list[9]             = true
+anomaly_list[10]            = true
+anomaly_list[11]            = true
+anomaly_list[12]            = true
+anomaly_list[13]            = true --Тестовые включения
+anomaly_list[14]            = true
+anomaly_list[15]            = true
+anomaly_list[16]            = true
+anomaly_list[17]            = true
+anomaly_list[18]            = true
+anomaly_list[19]            = true
+anomaly_list[20]            = true
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+local phys_list  			= {}
+phys_list[5]                = true
+phys_list[6]                = true
+phys_list[7]                = true
+phys_list[8]                = true
+
+function perk_effects_player_hit(s_hit)
+
+	if s_hit.power <= 0 then return end
+    local base_power = s_hit.power
+    local damage_mult = 1
+    base_power = s_hit.power
+    s_hit.type = s_hit.type or 0
+
+------------------------------------------------------------> Anomaly Defense
+    if anomaly_defense >= 1 and anomaly_list[s_hit.type] then
+		damage_mult = damage_mult - (0.025 * anomaly_defense)
+    end
+
+------------------------------------------------------------> Berserker
+	if s_hit.draftsman and berserker >= 1 then
+		local weaponPlayer = db.actor:active_item()
+		if IsMelee(weaponPlayer) then
+			damage_mult = damage_mult - (0.025 * berserker)
+		end
+	end
+
+------------------------------------------------------------> Spiked
+    if s_hit.draftsman and spiked >= 1 then
+		if phys_list[s_hit.type] then
+			local spike = base_power * (0.05 * spiked)
+			s_hit.power = spike
+			s_hit.draftsman:hit(s_hit)
+			
+			-- Make sure to return hit back to normal values for the true damage reduction
+			s_hit.power = base_power
+			
+		end
+    end
+	
+----Броненосец-6 и выживальщик-4. Уворот -----------------------------> Dodger
+    if dodger >= 1 then
+		local dice = math.random(1000) <= (5 * dodger)	-- 0.5% * Dodger level
+		if dice then
+			damage_mult = 0
+		end
+	end
+	
+	s_hit.power = s_hit.power * damage_mult
+	
+end

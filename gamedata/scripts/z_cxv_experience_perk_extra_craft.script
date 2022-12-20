@@ -1,0 +1,36 @@
+local craft_extra = experience_core.perks_save_data["perk_master_craftsman"]["curr_level"]
+
+base_crafting = ui_workshop.UIWorkshopCraft.Craft
+
+function ui_workshop.UIWorkshopCraft:Craft()
+	base_crafting(self)
+	if (craft_extra > 0) then
+		if math.random(100) <= 10 then
+			if IsItem("ammo",self.craft_item_r[1]) then
+				alife_create_item(self.craft_item_r[1], db.actor, {ammo = self.craft_item_r[2]})
+			else
+				for i = 1, self.craft_item_r[2] do
+					alife_create_item(self.craft_item_r[1], db.actor)
+				end
+			end
+		end
+	end
+end
+----------------------------------------------------------------------------------------------
+--------------------[NEW] Monkeyscript for Survivalist Passive--------------------------------
+
+base_cooking = item_cooking.UICook.OnCook
+GetSelectedMeal = item_cooking.UICook.GetSelectedMeal
+
+function item_cooking.UICook:OnCook()
+	base_cooking(self)
+	if (craft_extra > 0) then
+		if (math.random(100) <= 10) then
+			local meal = self:GetSelectedMeal()
+			if (not meal) then
+				return
+			end
+			alife_create_item(meal.sec, db.actor)
+		end
+	end
+end

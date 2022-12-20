@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+
+
+<!--
+
+			MCM TEXT
+
+-->
+	<string id="ui_mcm_menu_experience_framework">
+		<text>Experience</text>
+	</string>
+	<string id="ui_mcm_experience_framework_title">
+		<text>Experience Framework</text>
+	</string>
+	<string id="ui_mcm_experience_framework_DISPLAY_UI">
+		<text>Skill menu</text>
+	</string>
+	<string id="ui_mcm_experience_framework_LEVEL_UP_NEWS">
+		<text>Level Up Alerts</text>
+	</string>
+	<string id="ui_mcm_experience_framework_XP_GAIN_NEWS">
+		<text>Experience Gain Alerts</text>
+	</string>
+	<string id="ui_mcm_experience_framework_NEWS_SOUND">
+		<text>Enable alert sounds</text>
+	</string>
+	<string id="ui_mcm_experience_framework_GLOBAL_EXPERIENCE_MULT">
+		<text>Global Experience Multiplier</text>
+	</string>
+	<string id="ui_mcm_experience_framework_GLOBAL_EXPERIENCE_MULT_desc">
+		<text>This setting adjusts the multiplier gaining experience from all sources. \n \nATTENTION! \nThis setting affects the global experience gain variable and multiplies the total experience gained, after calculating other in-game multipliers!</text>
+	</string>
+	<string id="ui_mcm_experience_framework_DEBUG_MODE">
+		<text>Debug mode</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_mcm_kb_modifier">
+		<text>With additional key</text>
+	</string>
+	<string id="ui_mcm_experience_framework_mcm_kb_modifier_desc">
+		<text>The skill menu will only open if that key is also held down.</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_none">
+		<text>Without key</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_shift">
+		<text>Shift</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_ctrl">
+		<text>Ctrl</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_alt">
+		<text>Alt</text>
+	</string>
+	<string id="ui_mcm_experience_framework_mcm_kb_mode">
+		<text>Press Mode</text>
+	</string>
+	<string id="ui_mcm_experience_framework_mcm_kb_mode_desc">
+		<text>The skill menu will only open if the given key is pressed in this way.</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mode_press">
+		<text>Single</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mode_dtap">
+		<text>Double</text>
+	</string>
+
+
+<!--
+
+			UI TEXT
+
+-->
+	<string id="ui_st_xp_main_window_cap_text">
+		<text>SKILL MENU</text>
+	</string>
+	<string id="ui_st_xp_perk_list_header_text">
+		<text>SKILLS</text>
+	</string>
+	<string id="ui_st_xp_actor_stats_header_text">
+		<text>INFO</text>
+	</string>
+	<string id="ui_st_xp_skillpoints_left_header_text">
+		<text>POINTS LEFT</text>
+	</string>
+	<string id="ui_st_xp_actor_level_text">
+		<text>Level:</text>
+	</string>
+	<string id="ui_st_xp_actor_experience_text">
+		<text>Experience:</text>
+	</string>
+	<string id="ui_st_xp_actor_next_level_xp_text">
+		<text>Next level in:</text>
+	</string>
+	<string id="ui_st_xp_actor_next_level_xp_max_text">
+		<text>Max. level</text>
+	</string>
+	<string id="ui_st_xp_btn_close_text">
+		<text>Close menu</text>
+	</string>
+	<string id="ui_st_xp_btn_learn_perk_text">
+		<text>Learn</text>
+	</string>
+	<string id="ui_st_xp_btn_debug_text">
+		<text>MAX LEVEL!</text>
+	</string>
+	<string id="ui_st_xp_btn_debug_reset_perks_text">
+		<text>RESET SKILLS!</text>
+	</string>
+	
+	<string id="ui_st_xp_perk_name_lvl">
+		<text>(lvl.%s)</text>
+	</string>
+	<string id="ui_st_xp_perk_name_lvlmax">
+		<text>(Max.)</text>
+	</string>
+	
+	<string id="ui_st_xp_info_text_choise_perk">
+		<text>Choose a skill from the list!</text>
+	</string>
+	<string id="ui_st_xp_info_text_perk_max_level">
+		<text>You have already upgraded this skill to the maximum level!</text>
+	</string>
+	<string id="ui_st_xp_info_text_can_learn_perk">
+		<text>You have enough skill points to learn this skill! Click on the "Learn" button.</text>
+	</string>
+	<string id="ui_st_xp_info_text_warning_not_have_skillpoints">
+		<text>You don't have skill points!</text>
+	</string>
+	<string id="ui_st_xp_info_text_warning_not_req_level">
+		<text>You don't have enough level to learn this skill!</text>
+	</string>
+	<string id="ui_st_xp_info_text_solution_not_have_skillpoints">
+		<text>Increase your level to get skill points.</text>
+	</string>
+	<string id="ui_st_xp_info_text_solution_not_req_level">
+		<text>It takes level %s to learn this skill!</text>
+	</string>
+
+
+<!--
+
+			NEWS MESSAGE TEXT
+
+-->
+	<string id="st_xp_news_next_lvl">
+		<text>Level Up!</text>
+	</string>
+	<string id="st_xp_news_next_lvl_desc">
+		<text>
+		%sYou got the %s level \nReceived skill points: %s</text>
+	</string>
+	<string id="st_xp_news_gain_xp">
+		<text>Experience gained!</text>
+	</string>
+	<string id="st_xp_news_gain_xp_desc">
+		<text>%s+%s XP</text>
+	</string>
+
+
+</string_table>

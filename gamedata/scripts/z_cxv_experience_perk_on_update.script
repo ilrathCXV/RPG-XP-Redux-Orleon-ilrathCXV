@@ -1,0 +1,42 @@
+local cybermedic = experience_core.perks_save_data["perk_cybermedic"]["curr_level"]
+local master_zone = experience_core.perks_save_data["perk_master_zone"]["curr_level"]
+local iron_resolve = experience_core.perks_save_data["perk_iron_resolve"]["curr_level"]
+
+local old_time              = 0
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+function perk_effects_over_time()
+    if time_global() < old_time then return end
+    old_time = time_global() + 200
+	local bleedingCure = 0
+
+-------------------------------------------------------------> Cybermedic
+    if cybermedic >= 1 then
+        bleedingCure = 0.00025 * cybermedic
+		db.actor.bleeding = bleedingCure
+    end
+-------------------------------------------------------------> Master of the Zone
+	if master_zone >= 1 then 
+		local artyBonus = 0.00015 * master_zone
+		db.actor:iterate_belt( function(owner, obj)
+			local condition = obj:condition()
+			local newCondition = condition + artyBonus
+			if newCondition < 0.99 then
+				obj:set_condition(condition + artyBonus)
+			end
+		end)
+	end
+
+------Броненосец-7. Иммунитет к долгоиграющим эффектам -------------------> Refreshness
+    if iron_resolve >= 1 then
+		local dizzyRemoval = -0.0005
+		db.actor.alcohol = dizzyRemoval
+    end
+
+end
+
+function on_game_start()
+    RegisterScriptCallback("actor_on_update",               perk_effects_over_time)
+end

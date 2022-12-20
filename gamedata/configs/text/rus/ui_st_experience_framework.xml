@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+
+
+<!--
+
+			MCM TEXT
+
+-->
+	<string id="ui_mcm_menu_experience_framework">
+		<text>Experience</text>
+	</string>
+	<string id="ui_mcm_experience_framework_title">
+		<text>Experience Framework</text>
+	</string>
+	<string id="ui_mcm_experience_framework_DISPLAY_UI">
+		<text>Меню навыков</text>
+	</string>
+	<string id="ui_mcm_experience_framework_LEVEL_UP_NEWS">
+		<text>Оповещения при повышении уровня</text>
+	</string>
+	<string id="ui_mcm_experience_framework_XP_GAIN_NEWS">
+		<text>Оповещения при получении опыта</text>
+	</string>
+	<string id="ui_mcm_experience_framework_NEWS_SOUND">
+		<text>Включить звуки оповещения</text>
+	</string>
+	<string id="ui_mcm_experience_framework_GLOBAL_EXPERIENCE_MULT">
+		<text>Глобальный множитель опыта</text>
+	</string>
+	<string id="ui_mcm_experience_framework_GLOBAL_EXPERIENCE_MULT_desc">
+		<text>Данная настройка регулирует множитель получения опыта из всех источников. \n \nВНИМАНИЕ! \nДанная настройка влияет на глобальную переменную получения опыта и умножает итоговый полученный опыт, после вычисления других внутриигровых множителей!</text>
+	</string>
+	<string id="ui_mcm_experience_framework_DEBUG_MODE">
+		<text>Debug mode</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_mcm_kb_modifier">
+		<text>С дополнительной клавишей</text>
+	</string>
+	<string id="ui_mcm_experience_framework_mcm_kb_modifier_desc">
+		<text>Меню навыков откроется только в том случае, если данная клавиша также удерживается.</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_none">
+		<text>Без клавиши</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_shift">
+		<text>Shift</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_ctrl">
+		<text>Ctrl</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_alt">
+		<text>Alt</text>
+	</string>
+	<string id="ui_mcm_experience_framework_mcm_kb_mode">
+		<text>Режим нажатия</text>
+	</string>
+	<string id="ui_mcm_experience_framework_mcm_kb_mode_desc">
+		<text>Меню навыков откроется только в том случае, если данная клавиша нажимается таким образом.</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mode_press">
+		<text>Одиночное</text>
+	</string>
+	<string id="ui_mcm_lst_experience_framework_mcm_kb_mode_dtap">
+		<text>Двойное</text>
+	</string>
+
+
+<!--
+
+			UI TEXT
+
+-->
+	<string id="ui_st_xp_main_window_cap_text">
+		<text>МЕНЮ НАВЫКОВ</text>
+	</string>
+	<string id="ui_st_xp_perk_list_header_text">
+		<text>НАВЫКИ</text>
+	</string>
+	<string id="ui_st_xp_actor_stats_header_text">
+		<text>ИНФО</text>
+	</string>
+	<string id="ui_st_xp_skillpoints_left_header_text">
+		<text>ОЧКОВ ОСТАЛОСЬ</text>
+	</string>
+	<string id="ui_st_xp_actor_level_text">
+		<text>Уровень:</text>
+	</string>
+	<string id="ui_st_xp_actor_experience_text">
+		<text>Опыт:</text>
+	</string>
+	<string id="ui_st_xp_actor_next_level_xp_text">
+		<text>След. уровень через:</text>
+	</string>
+	<string id="ui_st_xp_actor_next_level_xp_max_text">
+		<text>Макс. уровень</text>
+	</string>
+	<string id="ui_st_xp_btn_close_text">
+		<text>Закрыть меню</text>
+	</string>
+	<string id="ui_st_xp_btn_learn_perk_text">
+		<text>Изучить</text>
+	</string>
+	<string id="ui_st_xp_btn_debug_text">
+		<text>MAX LEVEL!</text>
+	</string>
+	<string id="ui_st_xp_btn_debug_reset_perks_text">
+		<text>RESET SKILLS!</text>
+	</string>
+	
+	<string id="ui_st_xp_perk_name_lvl">
+		<text>(Ур.%s)</text>
+	</string>
+	<string id="ui_st_xp_perk_name_lvlmax">
+		<text>(Макс.)</text>
+	</string>
+	
+	<string id="ui_st_xp_info_text_choise_perk">
+		<text>Выберите навык из списка!</text>
+	</string>
+	<string id="ui_st_xp_info_text_perk_max_level">
+		<text>Вы уже прокачали данный навык до максимального уровня!</text>
+	</string>
+	<string id="ui_st_xp_info_text_can_learn_perk">
+		<text>У вас достатогно очков навыков для изучения данного навыка! Нажмите на кнопку «Изучить».</text>
+	</string>
+	<string id="ui_st_xp_info_text_warning_not_have_skillpoints">
+		<text>У вас нет очков навыков!</text>
+	</string>
+	<string id="ui_st_xp_info_text_warning_not_req_level">
+		<text>У вас недостаточный уровень для прокачки данного навыка!</text>
+	</string>
+	<string id="ui_st_xp_info_text_solution_not_have_skillpoints">
+		<text>Повысьте свой уровень, чтобы получить очки навыков.</text>
+	</string>
+	<string id="ui_st_xp_info_text_solution_not_req_level">
+		<text>Необходим %s уровень, чтобы изучить этот навык!</text>
+	</string>
+
+
+<!--
+
+			NEWS MESSAGE TEXT
+
+-->
+	<string id="st_xp_news_next_lvl">
+		<text>Новый уровень!</text>
+	</string>
+	<string id="st_xp_news_next_lvl_desc">
+		<text>
+		%sВы получили уровень %s \nПолучено очков навыков: %s</text>
+	</string>
+	<string id="st_xp_news_gain_xp">
+		<text>Получен опыт!</text>
+	</string>
+	<string id="st_xp_news_gain_xp_desc">
+		<text>%s+%s XP</text>
+	</string>
+
+
+</string_table>

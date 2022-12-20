@@ -1,0 +1,50 @@
+community_bonus_self = 0
+community_bonus_other = 0
+local community_bonus = 0
+local skill_price_modifier = 0
+local item_costs = {}
+
+function perk_silver_tongued_cost(kind, obj, profile, calculated_cost, ret)
+	if profile.mode == 1 then -- when selling
+		ret.new_cost = math.floor((ret.new_cost or calculated_cost) * (1 + skill_price_modifier + community_bonus))
+	elseif profile.mode == 2 then -- when buying
+		ret.new_cost = math.ceil((ret.new_cost or calculated_cost) * (1 - skill_price_modifier - community_bonus))
+	end
+	item_costs[obj:id()] = ret.new_cost or calculated_cost
+end
+
+function perk_silver_tongued_start()
+	RegisterScriptCallback("actor_on_item_take", actor_on_item_buy)
+	RegisterScriptCallback("actor_on_item_drop", actor_on_item_sell)
+	trader = mob_trade.GetTalkingNpc()
+	
+	local bartering = experience_core.perks_save_data["perk_silver_tongued"]["curr_level"]
+	
+	if trader and trader:character_community() == db.actor:character_community() then
+		community_bonus = community_bonus_self
+	elseif trader then
+		community_bonus = community_bonus_other
+	end
+	
+	skill_price_modifier = bartering * 0.05
+end
+
+function perk_silver_tongued_end()
+	UnregisterScriptCallback("actor_on_item_take", actor_on_item_buy)
+	UnregisterScriptCallback("actor_on_item_drop", actor_on_item_sell)
+	item_costs = {}
+end
+
+function actor_on_item_buy(obj)
+	cost = item_costs[obj:id()]
+end
+
+function actor_on_item_sell(obj)
+	cost = item_costs[obj:id()]
+end
+
+function on_game_start()
+	RegisterScriptCallback("ActorMenu_on_trade_started", perk_silver_tongued_start)
+	RegisterScriptCallback("ActorMenu_on_trade_closed", perk_silver_tongued_end)
+	RegisterScriptCallback("on_get_item_cost", perk_silver_tongued_cost)
+end

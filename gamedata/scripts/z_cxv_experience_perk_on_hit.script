@@ -1,0 +1,188 @@
+local ghost_ammo = experience_core.perks_save_data["perk_ghost_ammo"]["curr_level"]
+local gunslinger = experience_core.perks_save_data["perk_gunslinger"]["curr_level"]
+local rifleman = experience_core.perks_save_data["perk_rifleman"]["curr_level"]
+local heavy_gunner = experience_core.perks_save_data["perk_heavy_gunner"]["curr_level"]
+local berserker = experience_core.perks_save_data["perk_berserker"]["curr_level"]
+local jamming_shot = experience_core.perks_save_data["perk_jamming_shot"]["curr_level"]
+local disarming_shot = experience_core.perks_save_data["perk_disarming_shot"]["curr_level"]
+local mutant_slayer = experience_core.perks_save_data["perk_mutant_slayer"]["curr_level"]
+
+local isCriticalFlag
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+local wp_table 				= {}
+wp_table.w_explosive        = "explosive"
+wp_table.w_misc           	= "misc"
+wp_table.w_melee          	= "melee"
+wp_table.w_smg          	= "smg"
+wp_table.w_pistol          	= "smg"
+wp_table.w_rifle            = "rifle"
+wp_table.w_sniper           = "heavy"
+wp_table.w_shotgun          = "heavy"
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+bone_table = {}
+bone_table[0]  = {dmg = 2.00, txt = "=>_..._# Over the head"} -- макушка
+bone_table[1]  = {dmg = 2.00, txt = "=>(:::)# Nape shot"} -- затылок
+bone_table[2]  = {dmg = 1.10, txt = "=>(_Y_)# Buckshot"} -- пах
+bone_table[3]  = {dmg = 0.60, txt = "=>___Ib# Legshot"} -- левое бедро
+bone_table[4]  = {dmg = 0.30, txt = "=>___Ib# Legshot"} -- голень
+bone_table[5]  = {dmg = 0.10, txt = "=>___Ib# Heelshot"} -- пятку
+bone_table[6]  = {dmg = 0.05, txt = "=>___Ib# Feetshot"} -- стопа
+bone_table[7]  = {dmg = 0.60, txt = "=>___Ib# Legshot"} -- пр. бедро
+bone_table[8]  = {dmg = 0.30, txt = "=>___Ib# Legshot"} -- голень
+bone_table[9]  = {dmg = 0.10, txt = "=>___Ib# Heelshot"} -- пятку
+bone_table[10] = {dmg = 0.05, txt = "=>___Ib# Feetshot"} -- стопу
+bone_table[11] = {dmg = 1.00, txt = "=>(| |)# Stabshot"} -- живот
+bone_table[12] = {dmg = 1.00, txt = "=>(| |)# Stabshot"} -- грудь
+bone_table[13] = {dmg = 1.00, txt = "=>(| |)# Stabshot"} -- крестец
+bone_table[14] = {dmg = 2.50, txt = "=>II#~~  Neckshot"} -- шея
+bone_table[15] = {dmg = 4.00, txt = "=>(x _ x# Headshot"} -- жбан
+
+bone_table[16] = {dmg = 5.00, txt = "=>#_0 To the eye!"} -- л.глаз
+bone_table[17] = {dmg = 5.00, txt = "=>0_# To the eye!"} -- п.глаз
+bone_table[18] = {dmg = 5.00, txt = "=>(>#< Between the eyes!"} -- переносица
+bone_table[19] = {dmg = 3.00, txt = "=>IuuI# Jawshot"} -- челюсть
+
+bone_table[20] = {dmg = 0.85, txt = "=>8=#=8 Clavicle off"} -- л.ключица
+bone_table[21] = {dmg = 0.60, txt = "=>T'''# Holliwood hit"} -- л.плечо
+bone_table[22] = {dmg = 0.70, txt = "=>d# Left arm hit"} -- предплечье
+bone_table[23] = {dmg = 0.60, txt = "=>q# Armshot"} -- запястье
+bone_table[24] = {dmg = 0.50, txt = "=>;#,,,, Toeshot"} -- большой палец
+bone_table[25] = {dmg = 0.50, txt = "=>;#,,,, Toeshot"} -- большой палец
+bone_table[26] = {dmg = 0.50, txt = "=>;#,,,, Toeshot"} -- большой палец
+bone_table[27] = {dmg = 0.40, txt = "=>,;#,,, Midfinger shot"} -- средний палец
+bone_table[28] = {dmg = 0.40, txt = "=>,;#,,, Midfinger shot"} -- средний палец
+bone_table[29] = {dmg = 0.40, txt = "=>,;#,,, Midfinger shot"} -- средний палец
+bone_table[30] = {dmg = 0.30, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
+bone_table[31] = {dmg = 0.30, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
+bone_table[32] = {dmg = 0.30, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
+
+bone_table[33] = {dmg = 0.85, txt = "=>8=#=8 Clavicle off"} -- п.ключица
+bone_table[34] = {dmg = 0.60, txt = "=>'''T# Holliwood hit"} -- плечо
+bone_table[35] = {dmg = 0.50, txt = "=>b# Right arm hit"} -- предплечье
+bone_table[36] = {dmg = 0.25, txt = "=>p# Armshot"} -- запястье
+bone_table[37] = {dmg = 0.10, txt = "=>(x _ x# Headshot"} -- большой палец
+bone_table[38] = {dmg = 0.10, txt = "=>(x _ x# Headshot"} -- большой палец
+bone_table[39] = {dmg = 0.10, txt = "=>(x _ x# Headshot"} -- большой палец
+bone_table[40] = {dmg = 0.07, txt = "=>(x _ x# Headshot"} -- средний палец
+bone_table[41] = {dmg = 0.07, txt = "=>(x _ x# Headshot"} -- средний палец
+bone_table[42] = {dmg = 0.07, txt = "=>(x _ x# Headshot"} -- средний палец
+bone_table[43] = {dmg = 0.05, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
+bone_table[44] = {dmg = 0.05, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
+bone_table[45] = {dmg = 0.05, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+function sortK_of(weapon)
+    if not weapon then return "empty hands" end
+    local kind = ini_sys:r_string(weapon:section(), "kind") or nil
+	if kind == "w_explosive" then
+		local slot = ini_sys:r_string(weapon:section(), "slot")
+		if slot ~= "3" then
+			local class = ini_sys:r_string(weapon:section(), "weapon_class")
+			if class == "heavy_weapon" then
+				kind = "w_shotgun"
+			end	
+		end
+	end
+    return wp_table[kind]
+end
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+function perk_damage_effects(npc, shit, bone_id, flags)
+	
+	local isCompanion = npc:has_info("npcx_is_companion")
+	if isCompanion then return end
+	
+    if shit.power >= 50 then return end
+    if not (shit.draftsman and shit.draftsman:id() == 0) then return end
+    if shit.draftsman:id() ~= db.actor:id() then return end
+
+    local weapon = db.actor:active_item()
+    if not weapon or not IsWeapon(weapon) or not IsMelee(weapon) then return end
+
+    local weapon_class = sortK_of(weapon)
+	local criticalHit = perk_based_artefacts_bone_mapper.is_critical_bone(npc:clsid(), bone_id)
+    isCriticalFlag = criticalHit
+	
+    local is_stunned = perk_based_artefacts_bone_mapper.is_leg_bone(npc:clsid(), bone_id)
+	local is_breaked = ((bone_id >=20) and (bone_id <= 45))
+    local is_breaked2 = bone_id >=36
+
+    local base_shit = shit.power
+    local dmg_increase = 1.0
+
+------------------------------------------------------------> Mutant Slayer
+    if mutant_slayer >= 1 then
+        if IsMonster(nil,npc:clsid())
+            dmg_increase = dmg_increase + (mutant_slayer * 0.05)
+        end
+    end
+------------------------------------------------------------> Gunslinger
+	if ((gunslinger >= 1) and (weapon_class == "smg"))then
+        dmg_increase = dmg_increase + (gunslinger * 0.05)
+------------------------------------------------------------> Rifleman
+	elseif ((rifleman >= 1) and (weapon_class == "rifle"))then
+        dmg_increase = dmg_increase + (rifleman * 0.05)
+------------------------------------------------------------> Heavy Weapons
+	elseif ((heavy_gunner >= 1) and (weapon_class == "heavy"))then
+        dmg_increase = dmg_increase + (heavy_gunner * 0.05)
+------------------------------------------------------------> Melee
+	elseif ((berserker >= 1) and (weapon_class == "melee"))then
+        dmg_increase = dmg_increase + (berserker * 0.05)
+    end
+
+------------------------------------------------------------> Total up damage modifiers
+    shit.power = (shit.power * dmg_increase)
+		
+-------------------------------------------------------------------------> Jamming Shot (also works with melees)
+	if is_breaked and jamming_shot >= 1 then
+		local weapon2 = npc:active_item() --Багает оружие противника
+		if weapon2 then weapon2:unload_magazine(false) end
+	end
+    
+-------------------------------------------------------------------------> Ghost Ammo v3.0
+	if ((ghost_ammo >= 1) and (weapon_class ~= "melee"))then
+		local ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
+		local ammoCurrent = weapon:get_ammo_type()
+		local ammoSec = ammo_list[ammoCurrent + 1]
+		local ghostChance = ghost_ammo		-- equals to a base chance of 1%
+		-- if (bone_id == 15) then
+		if isCriticalFlag then
+			ghostChance = ghostChance * 2
+		end
+		if ghostChance >= math.random(100) then
+			alife_create_item(ammoSec, db.actor, {ammo = 1})
+		end
+	end
+
+-------------------------------------------------------------------------> Disarming Shot
+    if disarming_shot >= 1 and is_breaked2 then
+		local weapon2 = npc:active_item()
+		local dropChance = math.random(100) <= 15
+		if weapon and weapon2 and dropChance then
+			weapon2:set_condition(0.15)
+			npc:drop_item(weapon2)
+        end
+    end
+end
+
+function isCritical()
+	return isCriticalFlag
+end
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+function on_game_start()
+    RegisterScriptCallback("npc_on_before_hit",             perk_damage_effects)
+    RegisterScriptCallback("monster_on_before_hit",         perk_damage_effects)
+end

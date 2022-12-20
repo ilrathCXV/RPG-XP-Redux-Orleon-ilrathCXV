@@ -1,0 +1,69 @@
+-- Experience Framework
+-- MCM Settings
+
+function on_mcm_load()
+	local op = {
+		id = "experience_framework",
+		sh = true,
+		gr = {
+			{id = "title", type = "slide", link = "ui_main_experience_mod_options_slider", text = "ui_mcm_experience_framework_title", size = {512,50}, spacing = 20},
+			{id = "divider", type = "line"},
+			
+			{id = "DISPLAY_UI", type = "key_bind", val = 2, def = DIK_keys.DIK_J},
+			{id = "KEY_MODIFIER", type = ui_mcm.kb_mod_radio, val = 2, def = 0, hint = "experience_framework_mcm_kb_modifier", content = {{0, "experience_framework_mcm_kb_mod_none"}, {1, "experience_framework_mcm_kb_mod_shift"}, {2, "experience_framework_mcm_kb_mod_ctrl"}, {3, "experience_framework_mcm_kb_mod_alt"}}},
+			{id = "KEY_MODE", type = ui_mcm.kb_mod_radio, val = 2, def = 0, hint = "experience_framework_mcm_kb_mode", content= {{0, "experience_framework_mcm_kb_mode_press"}, {1, "experience_framework_mcm_kb_mode_dtap"}}},
+			{id = "divider", type = "line"},
+			
+			{id = "LEVEL_UP_NEWS", type = "check", val = 1, def = true},
+			{id = "XP_GAIN_NEWS", type = "check", val = 1, def = true},
+			{id = "NEWS_SOUND", type = "check", val = 1, def = true},
+			{id = "divider", type = "line"},
+			
+			{id = "GLOBAL_EXPERIENCE_MULT", type = "track", val = 2, min = 0.1, max = 5, step = 0.1, def = 1},
+			{id = "divider", type = "line"},
+			
+			{id = "DEBUG_MODE", type = "check", val = 1, def = false},
+			{id = "divider", type = "line"},
+		}
+	}
+	
+	return op
+end
+
+local keybind = experience_core.MCM_SETTINGS.DISPLAY_UI
+local modifier = experience_core.MCM_SETTINGS.KEY_MODIFIER
+local mode = experience_core.MCM_SETTINGS.KEY_MODE
+local get_experience_ui = experience_ui.get_experience_ui
+
+local function on_option_change()
+	if (ui_mcm) then
+		keybind = ui_mcm.get("experience_framework/DISPLAY_UI") or keybind
+		modifier = ui_mcm.get("experience_framework/KEY_MODIFIER")
+		mode = ui_mcm.get("experience_framework/KEY_MODE")
+	end
+end
+
+local function on_key_press(key)
+	if (key == keybind) then
+		if (not ui_mcm) then
+			get_experience_ui()
+			return
+		end
+		
+		if (mode == 0) and ui_mcm.get_mod_key(modifier) then
+			ui_mcm.simple_press("experience_framework", key, get_experience_ui)
+			return
+		end
+		
+		if (mode == 1) and  ui_mcm.get_mod_key(modifier) and ui_mcm.double_tap("experience_framework", key) then
+			get_experience_ui()
+			return
+		end
+	end
+end
+
+function on_game_start()
+	RegisterScriptCallback("on_option_change",on_option_change)
+    RegisterScriptCallback("on_key_press",on_key_press)
+	on_option_change()
+end

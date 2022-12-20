@@ -1,0 +1,437 @@
+--[[
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Author: Orleon
+-- Last Edit: 17.12.2022
+-- Experience Framework
+-- Experience/Level/Perks interface
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--]]
+
+
+GUI = nil
+
+local gc = game.translate_string
+local strformat = string.format
+local play_sound = utils_obj.play_sound
+local save_perk_data = experience_core.save_perk_data
+local get_perk_data = experience_core.get_perk_data
+
+local clr_list = {
+	["g"]		= utils_xml.get_color("d_green"),
+	["o"]		= utils_xml.get_color("d_orange"),
+	["c"]		= utils_xml.get_color("d_cyan"),
+}
+
+local snd_list = {
+	["ui_open"]				= "experience_framework\\UIOpen",
+	["ui_close"]			= "experience_framework\\UIClose",
+	["perk_click"]			= "experience_framework\\PerkClicked",
+	["learn_perk_click"]	= "experience_framework\\LearnPerk",
+	["debug_click"]			= "experience_framework\\DebugClicked",
+}
+
+local function SetTip(tip, warning, solution, value, pass, XMLtxt)
+	local str = ""
+	local name = value or ""
+	if tip and pass then
+		local str_tip = gc("ui_st_xp_info_text_" .. tip)
+		str = str .. clr_list["g"] .. strformat(str_tip, name)
+	else
+		if warning then
+			local str_warning = gc("ui_st_xp_info_text_warning_" .. warning)
+			str = str .. clr_list["o"] .. strformat(str_warning, name)
+		end
+		if solution then
+			local str_solution = gc("ui_st_xp_info_text_solution_" .. solution)
+			str = str .. clr_list["c"] .. " \\n" .. strformat(str_solution, name)
+		end
+	end
+	XMLtxt:SetText(str)
+end
+
+function get_experience_ui()
+	if (not GUI) then
+		GUI = UIExperienceMenu()
+	end
+	
+	if (GUI) and (not GUI:IsShown()) then
+		GUI:Reset()
+		GUI:ShowDialog(true)
+		Register_UI("UIExperienceMenu","experience_ui")
+		play_sound(snd_list["ui_open"])
+		actor_effects.use_weapon(0)
+	end
+end
+
+
+--------------------------------------------------------------------------------
+-- Class "UIExperienceMenu"
+--------------------------------------------------------------------------------
+class "UIExperienceMenu" (CUIScriptWnd)
+
+function UIExperienceMenu:__init() super()
+	self.clr = {
+		["red"]		= GetARGB(255,204,0,51),
+		["orange"]	= GetARGB(255,238,153,26),
+		["green"]	= GetARGB(255,51,255,102),
+	}
+	self.perk_selected = {
+		id = nil,
+		curr_level = nil,
+		req_level = nil,
+		max_level = nil
+	}
+	
+	self:InitControls()
+	self:InitCallBacks()
+end
+
+function UIExperienceMenu:__finalize()
+end
+
+function UIExperienceMenu:InitControls()
+	self:SetWndRect(Frect():set(0,0,1024,768))
+	self:SetAutoDelete(true)
+	self:AllowMovement(true)
+	
+	local xml
+	self.xml = CScriptXmlInit()
+	xml = self.xml
+	xml:ParseFile("ui_experience_framework.xml")
+	
+	-- Main Background Window
+	self.dialog								= xml:InitStatic("frame", self)
+	
+	-- Window Backgrounds
+	self.perk_list_b						= xml:InitStatic("perk_list_b", self.dialog)
+	self.perk_description_b					= xml:InitStatic("perk_description_b", self.dialog)
+	self.actor_stats_b						= xml:InitStatic("actor_stats_b", self.dialog)
+	self.skillpoints_left_b					= xml:InitStatic("skillpoints_left_b", self.dialog)
+	
+	-- Static Text
+	self.main_window_cap_text				= xml:InitTextWnd("main_window_cap_text", self.dialog)
+	self.perk_list_header_text				= xml:InitTextWnd("perk_list_header_text", self.dialog)
+	self.actor_stats_header_text			= xml:InitTextWnd("actor_stats_header_text", self.dialog)
+	self.skillpoints_left_header_text		= xml:InitTextWnd("skillpoints_left_header_text", self.dialog)
+	self.actor_level_text					= xml:InitTextWnd("actor_level_text", self.dialog)
+	self.actor_experience_text				= xml:InitTextWnd("actor_experience_text", self.dialog)
+	self.actor_next_level_xp_text			= xml:InitTextWnd("actor_next_level_xp_text", self.dialog)
+	
+	-- Dynamic Text
+	self.perk_description_header_text		= xml:InitTextWnd("perk_description_header_text", self.dialog)	-- Perk Name Header
+	self.skillpoints_left_count				= xml:InitTextWnd("skillpoints_left_count", self.dialog)
+	self.actor_level_count					= xml:InitTextWnd("actor_level_count", self.dialog)
+	self.actor_experience_count				= xml:InitTextWnd("actor_experience_count", self.dialog)
+	self.actor_next_level_xp_count			= xml:InitTextWnd("actor_next_level_xp_count", self.dialog)
+	
+	-- Buttons
+	self.btn_close							= self.xml:Init3tButton("btn_close", self.dialog)
+	self:Register(self.btn_close, "button_close")
+	self.btn_learn_perk						= self.xml:Init3tButton("btn_learn_perk", self.dialog)
+	self:Register(self.btn_learn_perk, "button_learn_perk")
+	self.btn_debug							= self.xml:Init3tButton("btn_debug", self.dialog)
+	self:Register(self.btn_debug, "button_debug")
+	self.btn_debug_reset_perks				= self.xml:Init3tButton("btn_debug_reset_perks", self.dialog)
+	self:Register(self.btn_debug_reset_perks, "button_debug_reset_perks")
+	
+	self.description_scrollbar				= xml:InitScrollView("description_scrollbar", self.dialog)
+	self.info_tip_text						= xml:InitTextWnd("info_tip_text", self.dialog)
+	self.info_tip_icon						= xml:InitStatic("info_tip_icon", self.dialog)
+	
+	-- Building Perks Scrollbar Window --
+	self.perk_scrollbar = xml:InitScrollView("perk_scrollbar", self.dialog)
+	self.perk_scrollbar:Clear()
+	self.perks = {}
+	self.perks_settings = experience_core.PERKS_SETTINGS
+	for id, tbl in spairs(self.perks_settings, function(t,a,b) return a < b end) do
+		local _st = xml:InitStatic("st", nil)
+		self.perks[id] = {}
+		self.perks[id].name = xml:InitTextWnd("perk_name", _st)
+		self.perks[id].description = xml:InitTextWnd("perk_description", nil)
+		self.perks[id].icon = xml:InitStatic("perk_icon", _st)
+		self.perks[id].icon:InitTexture(self.perks_settings[id]["icon"])
+		self.perks[id].btn = xml:InitCheck("perk_btn", _st)
+		self.perks[id].btn:SetCheck(false)
+		
+		self:Register(self.perks[id].btn, "button_" .. id)
+		local _wrapper = function(handler)
+			self:OnButtonPerk(id)
+		end
+		self:AddCallback("button_" .. id, ui_events.BUTTON_CLICKED, _wrapper, self)
+		
+		self.perk_scrollbar:AddWindow(_st, true)
+		_st:SetAutoDelete(true)
+	end
+	-- End Building --
+end
+
+function UIExperienceMenu:InitCallBacks()
+	self:AddCallback("button_close",				ui_events.BUTTON_CLICKED,		self.Close,						self)
+	self:AddCallback("button_learn_perk",			ui_events.BUTTON_CLICKED,		self.OnButtonLearnPerk,			self)
+	self:AddCallback("button_debug",				ui_events.BUTTON_CLICKED,		self.OnButtonDebug,				self)
+	self:AddCallback("button_debug_reset_perks",	ui_events.BUTTON_CLICKED,		self.OnButtonDebugResetPerks,	self)
+end
+
+function UIExperienceMenu:Reset()
+	self.perk_description_b:Show(false)
+	self.perk_description_header_text:Show(false)
+	self.description_scrollbar:Clear()
+	self.description_scrollbar:Show(false)
+	self.btn_learn_perk:Enable(false)
+	self.btn_learn_perk:Show(false)
+	
+	if self.perks[self.perk_selected.id] then
+		self.perks[self.perk_selected.id].btn:SetCheck(false)
+	end
+	self.perk_selected = {
+		id = nil,
+		curr_level = nil,
+		req_level = nil,
+		max_level = nil
+	}
+	self.perks_settings = experience_core.PERKS_SETTINGS
+	
+	self:UpdateActorInfo()
+	self:UpdateSkillPoints()
+	self:UpdatePerkNames()
+	self:CheckDebugMode()
+	SetTip("choise_perk", nil, nil, nil, true, self.info_tip_text)
+end
+
+function UIExperienceMenu:GetPerkLevelName(perk_id)
+	local perk_data = get_perk_data(perk_id)
+	local curr_lvl
+	
+	if (not perk_data) then
+		return gc(self.perks_settings[perk_id]["name"])
+	end
+	
+	local max_lvl = tonumber(self.perks_settings[perk_id]["max_level"])
+	curr_lvl = tonumber(perk_data["curr_level"])
+	
+	if (curr_lvl == 0) then
+		return gc(self.perks_settings[perk_id]["name"])
+	end
+	
+	if (curr_lvl >= max_lvl) then
+		return gc(self.perks_settings[perk_id]["name"]) .. " " .. gc("ui_st_xp_perk_name_lvlmax")
+	end
+	
+	return gc(self.perks_settings[perk_id]["name"]) .. " " .. strformat(gc("ui_st_xp_perk_name_lvl"), curr_lvl)
+end
+
+function UIExperienceMenu:UpdateActorInfo()
+	local XP = experience_core.XP
+	local total_xp = round(XP.actor_experience)
+	
+	self.actor_level_count:SetText(XP.actor_level)
+	
+	if (total_xp >= 1000) then
+		total_xp = total_xp / 1000
+		self.actor_experience_count:SetText(math.floor(total_xp / 0.1) * 0.1 .. "k XP")
+	else
+		self.actor_experience_count:SetText(total_xp .. " XP")
+	end
+	
+	if (XP.actor_level >= experience_core.G_MAX_LEVEL) then
+		self.actor_next_level_xp_count:SetText(gc("ui_st_xp_actor_next_level_xp_max_text"))
+		self.actor_next_level_xp_count:SetTextColor(self.clr["green"])
+	else
+		local xp_left = round(XP.actor_next_level_xp - XP.actor_experience)
+		if (xp_left >= 1000) then
+			xp_left = xp_left / 1000
+			self.actor_next_level_xp_count:SetText(math.floor(xp_left / 0.1) * 0.1 .. "k XP")
+		else
+			self.actor_next_level_xp_count:SetText(xp_left .. " XP")
+		end
+	end
+end
+
+function UIExperienceMenu:UpdateSkillPoints()
+	local skillpoints = experience_core.XP.actor_skillpoints
+	self.skillpoints_left_count:SetText(skillpoints)
+	
+	if (skillpoints > 0) then
+		self.skillpoints_left_count:SetTextColor(self.clr["green"])
+	else
+		self.skillpoints_left_count:SetTextColor(self.clr["red"])
+	end
+end
+
+function UIExperienceMenu:UpdatePerkNames()
+	for id, tbl in pairs(self.perks) do
+		self.perks[id].name:SetText(self:GetPerkLevelName(id))
+	end
+end
+
+function UIExperienceMenu:UpdatePerkDescription()
+	local id = self.perk_selected.id
+	
+	if (not id) then
+		self:Reset()
+		return
+	end
+	
+	local perk_data = get_perk_data(id)
+	
+	if (not perk_data) then
+		self:Reset()
+		return
+	end
+	self.perk_selected.curr_level = tonumber(perk_data["curr_level"])
+	
+	local perk_desc = self.perks_settings[id]["description"]
+	local max_lvl = self.perk_selected.max_level
+	local curr_lvl = self.perk_selected.curr_level
+	
+	if (curr_lvl == 0) then		-- to show the description of the first level perk
+		curr_lvl = 1
+	elseif (curr_lvl >= max_lvl) then
+		curr_lvl = max_lvl
+	end
+	
+	self.perk_description_b:Show(true)
+	self.perk_description_header_text:Show(true)
+	self.perk_description_header_text:SetText(self:GetPerkLevelName(id))
+	self.description_scrollbar:Clear()
+	
+	self.description_scrollbar:AddWindow(self.perks[id].description, true)
+	self.perks[id].description:SetAutoDelete(false)
+	self.perks[id].description:SetText(gc(perk_desc .. "_" .. curr_lvl))
+	self.perks[id].description:AdjustHeightToText()
+	self.description_scrollbar:Show(true)
+	
+	self:CheckToLearnPerk()
+end
+
+function UIExperienceMenu:UpdateAfterLearnPerk()
+	self:UpdateActorInfo()
+	self:UpdateSkillPoints()
+	self:UpdatePerkNames()
+	self:UpdatePerkDescription()
+end
+
+function UIExperienceMenu:OnButtonPerk(perk_id)
+	-- Fix highlight
+	for id, tbl in pairs(self.perks) do
+		if (id ~= perk_id) and (self.perks[id].btn:GetCheck() == true) then
+			self.perks[id].btn:SetCheck(false)
+		elseif (id == perk_id) and (self.perks[id].btn:GetCheck() == false) then
+			self.perks[id].btn:SetCheck(true)
+		end
+	end
+	
+	if (self.perk_selected.id == perk_id) then
+		return
+	end
+	
+	self.perk_selected.id = perk_id
+	self.perk_selected.max_level = tonumber(self.perks_settings[perk_id]["max_level"])
+	self.perk_selected.req_level = tonumber(self.perks_settings[perk_id]["req_level"])
+	
+	play_sound(snd_list["perk_click"])
+	self:UpdatePerkDescription()
+end
+
+function UIExperienceMenu:CheckToLearnPerk()
+	local max_lvl = self.perk_selected.max_level
+	local curr_lvl = self.perk_selected.curr_level
+	local req_lvl = self.perk_selected.req_level
+	local actor_skillpoints = experience_core.XP.actor_skillpoints
+	local actor_level = experience_core.XP.actor_level
+	
+	self.btn_learn_perk:Show(true)
+	self.btn_learn_perk:Enable(false)
+	
+	if (curr_lvl >= max_lvl) then
+		SetTip("perk_max_level", nil, nil, nil, true, self.info_tip_text)
+		return
+	end
+	
+	if (actor_level < req_lvl) then
+		self.btn_learn_perk:Show(false)
+		SetTip(nil, "not_req_level", "not_req_level", req_lvl, nil, self.info_tip_text)
+		return
+	end
+	
+	if (actor_skillpoints > 0) then
+		self.btn_learn_perk:Enable(true)
+		SetTip("can_learn_perk", nil, nil, nil, true, self.info_tip_text)
+	else
+		SetTip(nil, "not_have_skillpoints", "not_have_skillpoints", nil, nil, self.info_tip_text)
+	end
+end
+
+function UIExperienceMenu:OnButtonLearnPerk()
+	-- Start Increase Level Perk --
+	local perk_data = get_perk_data(self.perk_selected.id)
+	perk_data["curr_level"] = perk_data["curr_level"] + 1
+	save_perk_data(self.perk_selected.id, perk_data)	-- save new level perk
+	-- End Increase Level Perk --
+	
+	experience_core.XP.actor_skillpoints = experience_core.XP.actor_skillpoints - 1		-- Remove one skillpoint for perk level up
+	
+	play_sound(snd_list["learn_perk_click"])
+	self:UpdateAfterLearnPerk()
+end
+
+function UIExperienceMenu:CheckDebugMode()
+	self.btn_debug:Show(false)
+	self.btn_debug_reset_perks:Show(false)
+	if (experience_core.MCM_SETTINGS.DEBUG_MODE == true) then
+		self.btn_debug:Show(true)
+		self.btn_debug:Enable(true)
+		self.btn_debug_reset_perks:Show(true)
+		if (experience_core.XP.actor_level >= experience_core.G_MAX_LEVEL) then
+			self.btn_debug:Enable(false)
+		end
+	end
+end
+
+function UIExperienceMenu:OnButtonDebug()
+	experience_core.give_max_level()
+	play_sound(snd_list["debug_click"])
+	self:Reset()
+end
+
+function UIExperienceMenu:OnButtonDebugResetPerks()
+	local new_perks_data = {}
+	local ret_skillpoints = 0
+	
+	-- Get all used perks saved data
+	for id, tbl in pairs(self.perks_settings) do
+		new_perks_data[id] = get_perk_data(id)
+	end
+	
+	-- Get back all use skillpoints and save a new perks saved data
+	for id, tbl in pairs(new_perks_data) do
+		ret_skillpoints = ret_skillpoints + new_perks_data[id]["curr_level"]
+		new_perks_data[id]["curr_level"] = 0
+		save_perk_data(id, tbl)
+	end
+	
+	experience_core.XP.actor_skillpoints = experience_core.XP.actor_skillpoints + ret_skillpoints
+	play_sound(snd_list["debug_click"])
+	self:Reset()
+end
+
+function UIExperienceMenu:Close()
+	self:HideDialog()
+	self:Show(false)
+	Unregister_UI("UIExperienceMenu")
+	play_sound(snd_list["ui_close"])
+	actor_effects.use_weapon(1)
+end
+
+function UIExperienceMenu:OnKeyboard(dik, keyboard_action)
+	local res = CUIScriptWnd.OnKeyboard(self,dik,keyboard_action)
+	if (res == false) then
+		local bind = dik_to_bind(dik)
+		if keyboard_action == ui_events.WINDOW_KEY_PRESSED then
+			if dik == DIK_keys.DIK_ESCAPE then
+				self:Close()
+			end
+		end
+	end
+	return res
+end

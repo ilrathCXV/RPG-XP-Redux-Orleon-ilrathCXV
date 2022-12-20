@@ -1,0 +1,234 @@
+<string_table>
+
+	<string id="st_perk_fast_hands">
+        <text>Fast Hands</text>
+    </string>
+	<string id="st_perk_fast_hands_desc">
+        <text>Increases your stow and ready speed.</text>
+    </string>
+	
+	
+    <string id="st_perk_ghost_ammo">
+        <text>Ghost Ammo</text>
+    </string>
+	<string id="st_perk_ghost_ammo_desc">
+        <text>You have a chance to refund ammo when hitting a target (chance doubles on a critical hit).</text>
+    </string>
+	
+	
+    <string id="st_perk_gunslinger">
+        <text>Gunslinger</text>
+    </string>
+	<string id="st_perk_gunslinger_desc">
+        <text>You now deal increased damage with Pistols and SMGs.</text>
+    </string>
+	
+	
+	<string id="st_perk_rifleman">
+        <text>Rifleman</text>
+    </string>
+	<string id="st_perk_rifleman_desc">
+        <text>You now deal increased damage with Assault Rifles.</text>
+    </string>
+	
+	
+	<string id="st_perk_heavy_gunner">
+        <text>Heavy Gunner</text>
+    </string>
+	<string id="st_perk_heavy_gunner_desc">
+        <text>You now deal increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).</text>
+    </string>
+	
+	
+    <string id="st_perk_berserker">
+        <text>Berserker</text>
+    </string>
+	<string id="st_perk_berserker_desc">
+        <text>You deal increased melee damage and take reduced damage when you have a melee weapon in your hand.</text>
+    </string>
+	
+	
+	<string id="st_perk_jamming_shot">
+        <text>Jamming Shot</text>
+    </string>
+	<string id="st_perk_jamming_shot_desc">
+        <text>You can now jam an enemy's weapon when shooting them in the arm.</text>
+    </string>
+	
+	
+	<string id="st_perk_bloody_mess">
+        <text>Bloody Mess</text>
+    </string>
+	<string id="st_perk_bloody_mess_desc">
+        <text>When killing an enemy, they have a 1% chance to explode, damaging anyone caught in the blast.</text>
+    </string>
+	
+	
+	<string id="st_perk_headhunter">
+        <text>Headhunter</text>
+    </string>
+    <string id="st_perk_headhunter_desc">
+        <text>When killing an enemy with a headshot, you gain a small amount of rank and reputation with friendly factions.</text>
+    </string>
+	
+	
+    <string id="st_perk_disarming_shot">
+        <text>Disarming Shot</text>
+    </string>
+	<string id="st_perk_disarming_shot_desc">
+        <text>Shooting an enemy's weapon has a chance for them to drop it on the ground.</text>
+    </string>
+	
+
+    <string id="st_perk_scavenger">
+        <text>Scavenger</text>
+    </string>
+	<string id="st_perk_scavenger_desc">
+        <text>When looting an enemy, you have a small chance to find salvage and crafting materials.</text>
+    </string>
+	
+	
+    <string id="st_perk_careful_handler">
+        <text>Careful Handler</text>
+    </string>
+	<string id="st_perk_careful_handler_desc">
+        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 15%.</text>
+    </string>
+    
+	
+	<string id="st_perk_master_craftsman">
+        <text>Master Craftsman</text>
+    </string>
+	<string id="st_perk_master_craftsman_desc">
+        <text>When crafting or cooking, you have a small chance to make 2 items for the cost of 1.</text>
+    </string>	
+	
+
+    <string id="st_perk_cybermedic">
+        <text>Cyber-Medic</text>
+    </string>
+	<string id="st_perk_cybermedic_desc">
+        <text>You have become outfitted with an implant tha helps to slowly stop bleeding wounds.</text>
+    </string>
+	
+	
+    <string id="st_perk_dodger">
+        <text>Dodger</text>
+    </string>
+	<string id="st_perk_dodger_desc">
+        <text>You have a small chance to dodge any incoming damage.</text>
+    </string>
+	
+	
+    <string id="st_perk_comfort_food">
+        <text>Comfort Food</text>
+    </string>
+	<string id="st_perk_comfort_food_desc">
+        <text>When eating or drinking, you will receive a health bonus equal to their thirst or hunger restore (whichever restore is highest)</text>
+    </string>
+	
+
+    <string id="st_perk_ammo_finder">
+        <text>Ammo Finder</text>
+    </string>
+	<string id="st_perk_ammo_finder_desc">
+        <text>Increases the amount of ammo found when looting a body.</text>
+    </string>
+	
+	
+	<string id="st_perk_medicine_man">
+        <text>Medicine Man</text>
+    </string>
+	<string id="st_perk_medicine_man_desc">
+        <text>When looting an enemy, you have a chance to find a medical item. Item quality increases with this perk's level.</text>
+    </string>
+	
+	
+	<string id="st_perk_artefinder">
+        <text>Arte-finder</text>
+    </string>
+	<string id="st_perk_artefinder_desc">
+        <text>When looting an enemy, you have a small chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency.</text>
+    </string>
+	
+	
+	<string id="st_perk_midas_touch">
+        <text>Midas' Touch</text>
+    </string>
+	<string id="st_perk_midas_touch_desc">
+        <text>You will receive bonus cash when looting it from dead enemies.</text>
+    </string>
+	
+	
+	<string id="st_perk_master_zone">
+        <text>Master of the Zone</text>
+    </string>
+	<string id="st_perk_master_zone_desc">
+        <text>You have learned the tricks of the Zone and how to tap into the Noosphere. With this power, any artefacts attached to your belt will slowly begin to repair themselves.</text>
+    </string>
+
+    
+	<string id="st_perk_plate_finder">
+        <text>Plate Finder</text>
+    </string>
+	<string id="st_perk_plate_finder_desc">
+        <text>When looting an enemy, you have a small chance to find a damaged Kevlar Plate on them.</text>
+    </string>
+	
+	
+	<string id="st_perk_spiked">
+        <text>Spiked</text>
+    </string>
+	<string id="st_perk_spiked_desc">
+        <text>When taking damage, your enemy is also hurt for a portion of said damage.</text>
+    </string>
+	
+	
+	<string id="st_perk_anomaly_defense">
+        <text>Anomaly Defense</text>
+    </string>
+	<string id="st_perk_anomaly_defense_desc">
+        <text>Anomalies will deal reduced damage to you.</text>
+    </string>
+
+
+	<string id="st_perk_iron_resolve">
+        <text>Iron Resolve</text>
+    </string>
+	<string id="st_perk_iron_resolve_desc">
+        <text>You will now recover faster from any dizziness or drunkeness effects.</text>
+    </string>
+    
+	
+	<string id="st_perk_silver_tongued">
+        <text>Silver-Tongued</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc">
+        <text>When bartering, you receive better prices when buying or selling.</text>
+    </string>
+	
+	
+	<string id="st_perk_mutant_slayer">
+        <text>Mutant Slayer</text>
+    </string>
+	<string id="st_perk_mutant_slayer_desc">
+        <text>You now deal more damage to mutants.</text>
+    </string>
+	
+	
+	<string id="st_perk_vampirism">
+        <text>Vampirism</text>
+    </string>
+	<string id="st_perk_vampirism_desc">
+        <text>Vampirism - When killing an enemy, you are granted 2.5% Health and Stamina.</text>
+    </string>
+	
+	
+	<string id="st_perk_warmonger">
+        <text>Warmonger</text>
+    </string>
+	<string id="st_perk_warmonger_desc">
+        <text>When killing an enemy, you receive a third of your weapon's magazine size as ammo to your backpack (Min. mag size of 3).</text>
+    </string>
+	
+</string_table>

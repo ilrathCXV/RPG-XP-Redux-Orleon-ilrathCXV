@@ -1,0 +1,101 @@
+<w>
+	<frame x="124" y="50" width="775" height="669" stretch="1">
+		<texture>ui_main_experience_mod_background</texture>
+	</frame>
+	
+	<!-- Window Backgrounds -->
+	<perk_list_b x="15" y="115" width="209" height="352" stretch="1">
+		<texture>ui_main_experience_mod_high_window2</texture>
+	</perk_list_b>
+	<perk_description_b x="231" y="115" width="249" height="352" stretch="1">
+		<texture>ui_main_experience_mod_high_window1</texture>
+	</perk_description_b>
+	<actor_stats_b x="502" y="115" width="232" height="79" stretch="1">
+		<texture>ui_main_experience_mod_wide_window1</texture>
+	</actor_stats_b>
+	<skillpoints_left_b x="598" y="314" width="42" height="34" stretch="1">
+		<texture>ui_main_experience_mod_small_window1</texture>
+	</skillpoints_left_b>
+	
+	<!-- Text -->
+	<main_window_cap_text x="347" y="9" width="80" height="31">
+		<text r="51" g="255" b="102" font="graffiti19" align="c" vert_align="c">ui_st_xp_main_window_cap_text</text>
+	</main_window_cap_text>
+	<perk_list_header_text x="79" y="94" width="80" height="31">
+		<text r="200" g="200" b="200" font="letterica18" align="c" vert_align="c">ui_st_xp_perk_list_header_text</text>
+	</perk_list_header_text>
+	<perk_description_header_text x="221" y="94" width="259" height="31">
+		<text complex_mode="1" r="200" g="200" b="200" align="c" font="letterica18"/>
+	</perk_description_header_text>
+	<actor_stats_header_text x="580" y="94" width="80" height="31">
+		<text r="200" g="200" b="200" font="letterica18" align="c" vert_align="c">ui_st_xp_actor_stats_header_text</text>
+	</actor_stats_header_text>
+	<skillpoints_left_header_text x="578" y="287" width="80" height="31">
+		<text r="200" g="200" b="200" font="letterica18" align="c" vert_align="c">ui_st_xp_skillpoints_left_header_text</text>
+	</skillpoints_left_header_text>
+	<actor_level_text x="546" y="122" width="80" height="31">
+		<text r="200" g="200" b="200" font="letterica18" align="r" vert_align="c">ui_st_xp_actor_level_text</text>
+	</actor_level_text>
+	<actor_experience_text x="546" y="142" width="80" height="31">
+		<text r="200" g="200" b="200" font="letterica18" align="r" vert_align="c">ui_st_xp_actor_experience_text</text>
+	</actor_experience_text>
+	<actor_next_level_xp_text x="546" y="162" width="80" height="31">
+		<text r="200" g="200" b="200" font="letterica18" align="r" vert_align="c">ui_st_xp_actor_next_level_xp_text</text>
+	</actor_next_level_xp_text>
+	
+	<skillpoints_left_count x="594" y="318" width="50" height="31">
+		<text complex_mode="1" r="200" g="200" b="200" align="c" font="letterica25"/>
+	</skillpoints_left_count>
+	<actor_level_count x="630" y="127" width="100" height="31">
+		<text complex_mode="1" r="200" g="200" b="200" align="l" font="letterica18"/>
+	</actor_level_count>
+	<actor_experience_count x="630" y="147" width="100" height="31">
+		<text complex_mode="1" r="200" g="200" b="200" align="l" font="letterica18"/>
+	</actor_experience_count>
+	<actor_next_level_xp_count x="630" y="167" width="100" height="31">
+		<text complex_mode="1" r="200" g="200" b="200" align="l" font="letterica18"/>
+	</actor_next_level_xp_count>
+	
+	<!-- Buttons -->
+	<btn_close x="577" y="429" width="83" height="37">
+		<text r="150" g="150" b="150" font="letterica16" align="c">ui_st_xp_btn_close_text</text>
+		<texture>ui_main_experience_mod_button</texture>
+	</btn_close>
+	<btn_learn_perk x="577" y="387" width="83" height="37">
+		<text r="150" g="150" b="150" font="letterica16" align="c">ui_st_xp_btn_learn_perk_text</text>
+		<texture>ui_main_experience_mod_button</texture>
+	</btn_learn_perk>
+	<btn_debug x="650" y="35" width="83" height="37">
+		<text r="150" g="150" b="150" font="letterica16" align="c">ui_st_xp_btn_debug_text</text>
+		<texture>ui_main_experience_mod_button</texture>
+	</btn_debug>
+	<btn_debug_reset_perks x="562" y="35" width="83" height="37">
+		<text r="150" g="150" b="150" font="letterica16" align="c">ui_st_xp_btn_debug_reset_perks_text</text>
+		<texture>ui_main_experience_mod_button</texture>
+	</btn_debug_reset_perks>
+	
+	<!-- Perks and Description Frames -->
+	<st x="0" y="0" width="200" height="35"/>
+	
+	<perk_scrollbar x="24" y="128" width="200" height="331" right_ident="0" left_ident="0" top_indent="0" bottom_indent="0" vert_interval="0" always_show_scroll="0"/>
+	<perk_icon x="1" y="2" width="32" height="32" stretch="1"/>
+	<perk_name x="35" y="2" width="165" height="35" stretch="1">
+		<text r="200" g="200" b="200" font="letterica16" align="1" vert_align="c"/>
+	</perk_name>
+	<perk_btn x="0" y="0" width="195" height="35" stretch="1" >
+		<texture>ui_main_experience_mod_perk_button</texture>
+	</perk_btn>
+	
+	<description_scrollbar x="241" y="125" width="239" height="335" right_ident="0" left_ident="0" top_indent="0" bottom_indent="0" vert_interval="0" always_show_scroll="0"/>
+	<perk_description x="0" y="0" width="227" height="100">
+		<text complex_mode="1" r="200" g="200" b="200" align="l" font="letterica16"/>
+	</perk_description>
+	
+	<!-- Tips Information Frames -->
+	<info_tip_text x="91" y="507" width="444" height="96">
+		<text complex_mode="1" r="150" g="150" b="150" align="l" vert_align="c" font="letterica16"/>
+	</info_tip_text>
+	<info_tip_icon x="59" y="544" width="16" height="20" stretch="1">
+		<texture>ui_main_experience_mod_info_icon</texture>
+	</info_tip_icon>
+</w>

@@ -1,0 +1,29 @@
+local comfort_food = experience_core.perks_save_data["perk_comfort_food"]["curr_level"]
+
+function comfort_food(item,string)
+	if not item then return end
+    local sec = item:section()
+	local itemType = SYS_GetParam(0, sec, "kind")
+	
+	if (comfort_food > 0 and (itemType == "i_food" or itemType == "i_drink") then
+        local drink = ini_sys:r_float_ex(sec, "eat_thirstiness") or 0
+		drink = drink * (-1)
+		local food = ini_sys:r_float_ex(sec, "eat_satiety") or 0
+		local isDrink = drink > 0
+		local isFood = food > 0
+        if isDrink and isFood then
+			if (drink > food) or (drink == food) then
+				db.actor:change_health(drink/100)
+			else db.actor:change_health(food/100)
+			end
+		elseif isDrink then
+			db.actor:change_health(drink/100)
+		elseif isFood then
+			db.actor:change_health(food/100)
+        end
+    end
+end
+
+function on_game_start()
+	RegisterScriptCallback("actor_on_item_use", comfort_food)
+end
