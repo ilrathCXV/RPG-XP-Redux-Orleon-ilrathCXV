@@ -1,10 +1,34 @@
-local ammo_finder = experience_core.perks_save_data["perk_ammo_finder"]["curr_level"]
-local medicine_man = experience_core.perks_save_data["perk_medicine_man"]["curr_level"]
-local plate_finder = experience_core.perks_save_data["perk_plate_finder"]["curr_level"]
-local arte_finder = experience_core.perks_save_data["perk_artefinder"]["curr_level"]
-local scavenger = experience_core.perks_save_data["perk_scavenger"]["curr_level"]
-local careful_handler = experience_core.perks_save_data["perk_careful_handler"]["curr_level"]
-local midas_touch = experience_core.perks_save_data["perk_midas_touch"]["curr_level"]
+local ammo_finder = 0
+local medicine_man = 0
+local plate_finder = 0
+local arte_finder = 0
+local scavenger = 0
+local careful_handler = 0
+local midas_touch = 0
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_ammo_finder") then
+		ammo_finder = data["curr_level"]
+	end
+	if (id == "perk_medicine_man") then
+		medicine_man = data["curr_level"]
+	end
+	if (id == "perk_plate_finder") then
+		plate_finder = data["curr_level"]
+	end
+	if (id == "perk_artefinder") then
+		arte_finder = data["curr_level"]
+	end
+	if (id == "perk_scavenger") then
+		scavenger = data["curr_level"]
+	end
+	if (id == "perk_careful_handler") then
+		careful_handler = data["curr_level"]
+	end
+	if (id == "perk_midas_touch") then
+		midas_touch = data["curr_level"]
+	end
+end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -295,6 +319,8 @@ end
 --------------------------------------------------------------------------------------------------------------
 
 function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+
 	RegisterScriptCallback("actor_on_item_take",             perk_loot_improvement)
 	RegisterScriptCallback("actor_item_to_ruck",             perk_loot_improvement)
 end

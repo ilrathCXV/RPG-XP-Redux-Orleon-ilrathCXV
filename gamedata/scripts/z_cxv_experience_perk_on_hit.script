@@ -1,11 +1,38 @@
-local ghost_ammo = experience_core.perks_save_data["perk_ghost_ammo"]["curr_level"]
-local gunslinger = experience_core.perks_save_data["perk_gunslinger"]["curr_level"]
-local rifleman = experience_core.perks_save_data["perk_rifleman"]["curr_level"]
-local heavy_gunner = experience_core.perks_save_data["perk_heavy_gunner"]["curr_level"]
-local berserker = experience_core.perks_save_data["perk_berserker"]["curr_level"]
-local jamming_shot = experience_core.perks_save_data["perk_jamming_shot"]["curr_level"]
-local disarming_shot = experience_core.perks_save_data["perk_disarming_shot"]["curr_level"]
-local mutant_slayer = experience_core.perks_save_data["perk_mutant_slayer"]["curr_level"]
+local ghost_ammo = 0
+local gunslinger = 0
+local rifleman = 0
+local heavy_gunner = 0
+local berserker = 0
+local jamming_shot = 0
+local disarming_shot = 0
+local mutant_slayer = 0
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_ghost_ammo") then
+		ghost_ammo = data["curr_level"]
+	end
+	if (id == "perk_gunslinger") then
+		gunslinger = data["curr_level"]
+	end
+	if (id == "perk_rifleman") then
+		rifleman = data["curr_level"]
+	end
+	if (id == "perk_heavy_gunner") then
+		heavy_gunner = data["curr_level"]
+	end
+	if (id == "perk_berserker") then
+		berserker = data["curr_level"]
+	end
+	if (id == "perk_jamming_shot") then
+		jamming_shot = data["curr_level"]
+	end
+	if (id == "perk_disarming_shot") then
+		disarming_shot = data["curr_level"]
+	end
+	if (id == "perk_mutant_slayer") then
+		mutant_slayer = data["curr_level"]
+	end
+end
 
 local isCriticalFlag
 
@@ -183,6 +210,8 @@ end
 --------------------------------------------------------------------------------------------------------------
 
 function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+
     RegisterScriptCallback("npc_on_before_hit",             perk_damage_effects)
     RegisterScriptCallback("monster_on_before_hit",         perk_damage_effects)
 end

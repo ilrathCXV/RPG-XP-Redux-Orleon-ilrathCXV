@@ -1,4 +1,10 @@
-local comfort_food = experience_core.perks_save_data["perk_comfort_food"]["curr_level"]
+local comfort_food = 0
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_comfort_food") then
+		comfort_food = data["curr_level"]
+	end
+end
 
 function comfort_food(item,string)
 	if not item then return end
@@ -25,5 +31,7 @@ function comfort_food(item,string)
 end
 
 function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+
 	RegisterScriptCallback("actor_on_item_use", comfort_food)
 end

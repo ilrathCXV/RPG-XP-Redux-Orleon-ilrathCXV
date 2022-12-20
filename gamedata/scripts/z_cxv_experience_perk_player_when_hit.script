@@ -1,7 +1,22 @@
-local berserker = experience_core.perks_save_data["perk_berserker"]["curr_level"]
-local spiked = experience_core.perks_save_data["perk_spiked"]["curr_level"]
-local dodger = experience_core.perks_save_data["perk_dodger"]["curr_level"]
-local anomaly_defense = experience_core.perks_save_data["perk_anomaly_defense"]["curr_level"]
+local berserker = 0
+local spiked = 0
+local dodger = 0
+local anomaly_defense = 0
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_berserker") then
+		berserker = data["curr_level"]
+	end
+	if (id == "perk_spiked") then
+		spiked = data["curr_level"]
+	end
+	if (id == "perk_dodger") then
+		dodger = data["curr_level"]
+	end
+	if (id == "perk_anomaly_defense") then
+		anomaly_defense = data["curr_level"]
+	end
+end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -78,4 +93,10 @@ function perk_effects_player_hit(s_hit)
 	
 	s_hit.power = s_hit.power * damage_mult
 	
+end
+
+function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	
+    RegisterScriptCallback("actor_on_before_hit",               perk_effects_player_hit)
 end

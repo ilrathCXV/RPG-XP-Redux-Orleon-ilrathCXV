@@ -1,6 +1,18 @@
-local cybermedic = experience_core.perks_save_data["perk_cybermedic"]["curr_level"]
-local master_zone = experience_core.perks_save_data["perk_master_zone"]["curr_level"]
-local iron_resolve = experience_core.perks_save_data["perk_iron_resolve"]["curr_level"]
+local cybermedic = 0
+local master_zone = 0
+local iron_resolve = 0
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_cybermedic") then
+		cybermedic = data["curr_level"]
+	end
+	if (id == "perk_master_zone") then
+		master_zone = data["curr_level"]
+	end
+	if (id == "perk_iron_resolve") then
+		iron_resolve = data["curr_level"]
+	end
+end
 
 local old_time              = 0
 
@@ -38,5 +50,7 @@ function perk_effects_over_time()
 end
 
 function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	
     RegisterScriptCallback("actor_on_update",               perk_effects_over_time)
 end

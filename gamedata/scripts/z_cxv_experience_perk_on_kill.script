@@ -1,10 +1,24 @@
-local vampirism = experience_core.perks_save_data["perk_vampirism"]["curr_level"]
-local warmonger = experience_core.perks_save_data["perk_warmonger"]["curr_level"]
-local headhunter = experience_core.perks_save_data["perk_headhunter"]["curr_level"]
-local bloody_mess = experience_core.perks_save_data["perk_bloody_mess"]["curr_level"]
+local vampirism = 0
+local warmonger = 0
+local headhunter = 0
+local bloody_mess = 0
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_vampirism") then
+		vampirism = data["curr_level"]
+	end
+	if (id == "perk_warmonger") then
+		warmonger = data["curr_level"]
+	end
+	if (id == "perk_headhunter") then
+		headhunter = data["curr_level"]
+	end
+	if (id == "perk_bloody_mess") then
+		bloody_mess = data["curr_level"]
+	end
+end
 
 local criticalHit = false
-
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +57,7 @@ function perk_kill_effects(victim, killer)
 
 -------------------------------------------------------------------------> Bloody Mess (SMG)/Bloodbath (Special)
 	if bloody_mess >= 1 and (weapon_class ~= "melee") then
-		local dice = math.random(100) >= 75
+		local dice = math.random(100) <= bloody_mess
 		kaboom(npc, dice)
 	end
 	
@@ -88,6 +102,8 @@ function perk_kill_effects(victim, killer)
 end
 
 function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+
 	RegisterScriptCallback("monster_on_death_callback",     perk_kill_effects)
     RegisterScriptCallback("npc_on_death_callback",         perk_kill_effects)
 end

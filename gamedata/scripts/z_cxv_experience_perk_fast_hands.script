@@ -1,4 +1,10 @@
-local fast_hands = experience_core.perks_save_data["perk_fast_hands"]["curr_level"]
+local fast_hands = 0
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_fast_hands") then
+		fast_hands = data["curr_level"]
+	end
+end
 
 local show_anims = {
 	anm_show = true,
@@ -30,5 +36,7 @@ function fast_hands_speed(anim_table,obj)
 end
 
 function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+
 	RegisterScriptCallback("actor_on_hud_animation_play", fast_hands_speed)
 end

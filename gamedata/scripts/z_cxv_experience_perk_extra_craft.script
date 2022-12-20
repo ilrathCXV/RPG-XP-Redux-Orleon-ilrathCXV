@@ -1,4 +1,10 @@
-local craft_extra = experience_core.perks_save_data["perk_master_craftsman"]["curr_level"]
+local craft_extra = 0
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_master_craftsman") then
+		craft_extra = data["curr_level"]
+	end
+end
 
 base_crafting = ui_workshop.UIWorkshopCraft.Craft
 
@@ -33,4 +39,8 @@ function item_cooking.UICook:OnCook()
 			alife_create_item(meal.sec, db.actor)
 		end
 	end
+end
+
+function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
 end
