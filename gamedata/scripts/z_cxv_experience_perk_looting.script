@@ -57,6 +57,7 @@ end
 
 function try_spawn_meds(box, looter_level)
     if math.random(1,100) <= looter_level then
+		printf("Medicine Man proc!")
 		local medChance = math.floor(looter_level * math.random(1.0,3.0))
         local tbl = {
 			{ 100, meds_tier5},
@@ -69,7 +70,7 @@ function try_spawn_meds(box, looter_level)
     end
 end
 
-local meds_tier1 = {
+meds_tier1 = {
     "bandage",
     "caffeine",
     "drug_sleepingpills",
@@ -78,7 +79,7 @@ local meds_tier1 = {
     "glucose_s",
 }
 
-local meds_tier2 = {
+meds_tier2 = {
     "medkit_army",
     "stimpack",
     "salicidic_acid",
@@ -89,7 +90,7 @@ local meds_tier2 = {
 	"antirad",
 }
 
-local meds_tier3 = {
+meds_tier3 = {
     "medkit_scientic",
     "stimpack_army",
     "drug_radioprotector",
@@ -100,7 +101,7 @@ local meds_tier3 = {
 	"jgut",
 }
 
-local meds_tier4 = {
+meds_tier4 = {
     "stimpack_scientic",
 	"adrenalin",
 	"morphine",
@@ -108,13 +109,14 @@ local meds_tier4 = {
 	"tetanus",
 }
 
-local meds_tier5 = {
+meds_tier5 = {
 	"medkit_ai1",
 }
 
 
 function try_spawn_scav(box, looter_level)
     if math.random(1,100) <= looter_level then
+		printf("Scavenger proc!")
 		local scavChance = math.floor(looter_level * math.random(1.0,3.0))
         local tbl = {
 			{ 100, scav_tier5},
@@ -127,7 +129,7 @@ function try_spawn_scav(box, looter_level)
     end
 end
 
-local scav_tier1 = {
+scav_tier1 = {
 	"prt_i_paper",
 	"prt_i_wood",
 	"prt_i_scrap",
@@ -136,7 +138,7 @@ local scav_tier1 = {
 	
 }
 
-local scav_tier2 = {
+scav_tier2 = {
 	"prt_i_textolite",
 	"prt_i_copper",
 	"prt_i_fasteners",
@@ -145,7 +147,7 @@ local scav_tier2 = {
 	
 }
 
-local scav_tier3 = {
+scav_tier3 = {
 	"prt_i_capacitors",
 	"prt_i_transistors",
 	"prt_i_resistors",
@@ -155,7 +157,7 @@ local scav_tier3 = {
 	"bullet_shotgun",
 }
 
-local scav_tier4 = {
+scav_tier4 = {
 	"broken_detector",
 	"flashlight_broken",
 	"walkie",
@@ -169,7 +171,7 @@ local scav_tier4 = {
 	"bullet_shotgun_ap",
 }
 
-local scav_tier5 = {
+scav_tier5 = {
 	"lead_box",
 	"powder_3",
 	"casing_r7",
@@ -229,7 +231,7 @@ function perk_loot_improvement(item)------------------> actor_on_item_take(item)
 		local condition_baseline = (10 + (careful_handler * 5)) * 0.01
 		if IsWeapon(item) then
             if item:condition() < condition_baseline then
-                item:set_condition(condition_baseline * 0.01)
+                item:set_condition(condition_baseline)
             end
 			if (not IsMelee(item)) then
 				local wpn_parts = item_parts.get_parts_con(item) or 0
@@ -246,7 +248,7 @@ function perk_loot_improvement(item)------------------> actor_on_item_take(item)
 ------Мародёр 3. Качество собираемых броников ---------> Armor/Helmet Loot Improved Condition
 		if IsOutfit(item) or IsHeadgear(item) then
             if item:condition() < condition_baseline then
-                item:set_condition(condition_baseline * 0.01)
+                item:set_condition(condition_baseline)
             end
         end
     end
