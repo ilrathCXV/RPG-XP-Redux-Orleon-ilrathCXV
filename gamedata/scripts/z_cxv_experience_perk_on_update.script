@@ -43,7 +43,7 @@ function perk_effects_over_time()
 
 ------Броненосец-7. Иммунитет к долгоиграющим эффектам -------------------> Refreshness
     if iron_resolve >= 1 then
-		local dizzyRemoval = -0.0005
+		local dizzyRemoval = -0.0005 * iron_resolve
 		db.actor.alcohol = dizzyRemoval
     end
 

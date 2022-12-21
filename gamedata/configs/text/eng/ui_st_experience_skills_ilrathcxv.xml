@@ -4,22 +4,22 @@
         <text>Fast Hands</text>
     </string>
 	<string id="st_perk_fast_hands_desc">
-        <text>Increases your stow and ready speed.</text>
+        <text>Increases your stow and ready speed</text>
     </string>
 	<string id="st_perk_fast_hands_desc_1">
-        <text>Increases your stow and ready speed.</text>
+        <text>Increases your stow and ready speed by a total of 10%.</text>
     </string>
 	<string id="st_perk_fast_hands_desc_2">
-        <text>Increases your stow and ready speed.</text>
+        <text>Increases your stow and ready speed by a total of 20%.</text>
     </string>
 	<string id="st_perk_fast_hands_desc_3">
-        <text>Increases your stow and ready speed.</text>
+        <text>Increases your stow and ready speed by a total of 30%.</text>
     </string>
 	<string id="st_perk_fast_hands_desc_4">
-        <text>Increases your stow and ready speed.</text>
+        <text>Increases your stow and ready speed by a total of 40%.</text>
     </string>
 	<string id="st_perk_fast_hands_desc_5">
-        <text>Increases your stow and ready speed.</text>
+        <text>Increases your stow and ready speed by a total of 50%.</text>
     </string>
 	
 	
@@ -30,19 +30,19 @@
         <text>You have a chance to refund ammo when hitting a target (chance doubles on a critical hit).</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc_1">
-        <text>You have a chance to refund ammo when hitting a target (chance doubles on a critical hit).</text>
+        <text>You have a 1% chance to refund ammo when hitting a target (2% chance on a critical hit).</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc_2">
-        <text>You have a chance to refund ammo when hitting a target (chance doubles on a critical hit).</text>
+        <text>You have a 2% chance to refund ammo when hitting a target (4% chance on a critical hit).</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc_3">
-        <text>You have a chance to refund ammo when hitting a target (chance doubles on a critical hit).</text>
+        <text>You have a 3% chance to refund ammo when hitting a target (6% chance on a critical hit).</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc_4">
-        <text>You have a chance to refund ammo when hitting a target (chance doubles on a critical hit).</text>
+        <text>You have a 4% chance to refund ammo when hitting a target (8% chance on a critical hit).</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc_5">
-        <text>You have a chance to refund ammo when hitting a target (chance doubles on a critical hit).</text>
+        <text>You have a 5% chance to refund ammo when hitting a target (10% chance on a critical hit).</text>
     </string>
 	
 	
@@ -53,13 +53,13 @@
         <text>You now deal increased damage with Pistols and SMGs.</text>
     </string>
 	<string id="st_perk_gunslinger_desc_1">
-        <text>You now deal increased damage with Pistols and SMGs.</text>
+        <text>You now deal 5% increased damage with Pistols and SMGs.</text>
     </string>
 	<string id="st_perk_gunslinger_desc_2">
-        <text>You now deal increased damage with Pistols and SMGs.</text>
+        <text>You now deal 10% increased damage with Pistols and SMGs.</text>
     </string>
 	<string id="st_perk_gunslinger_desc_3">
-        <text>You now deal increased damage with Pistols and SMGs.</text>
+        <text>You now deal 15% increased damage with Pistols and SMGs.</text>
     </string>
 
 	
@@ -70,13 +70,13 @@
         <text>You now deal increased damage with Assault Rifles.</text>
     </string>
 	<string id="st_perk_rifleman_desc_1">
-        <text>You now deal increased damage with Assault Rifles.</text>
+        <text>You now deal 5% increased damage with Assault Rifles.</text>
     </string>
 	<string id="st_perk_rifleman_desc_2">
-        <text>You now deal increased damage with Assault Rifles.</text>
+        <text>You now deal 10% increased damage with Assault Rifles.</text>
     </string>
 	<string id="st_perk_rifleman_desc_3">
-        <text>You now deal increased damage with Assault Rifles.</text>
+        <text>You now deal 15% increased damage with Assault Rifles.</text>
     </string>
 	
 	
@@ -87,13 +87,13 @@
         <text>You now deal increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_1">
-        <text>You now deal increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).</text>
+        <text>You now deal 5% increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_2">
-        <text>You now deal increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).</text>
+        <text>You now deal 10% increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_3">
-        <text>You now deal increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).</text>
+        <text>You now deal 15% increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).</text>
     </string>
 	
 	
@@ -101,16 +101,16 @@
         <text>Berserker</text>
     </string>
 	<string id="st_perk_berserker_desc">
-        <text>You deal increased melee damage and take reduced damage when you have a melee weapon in your hand.</text>
+        <text>You now deal increased melee damage and take reduced damage when you have a melee weapon in your hand.</text>
     </string>
 	<string id="st_perk_berserker_desc_1">
-        <text>You deal increased melee damage and take reduced damage when you have a melee weapon in your hand.</text>
+        <text>You now deal 5% increased melee damage and take 2.5% reduced damage when you have a melee weapon in your hand.</text>
     </string>
 	<string id="st_perk_berserker_desc_2">
-        <text>You deal increased melee damage and take reduced damage when you have a melee weapon in your hand.</text>
+        <text>You now deal 10% increased melee damage and take 5% reduced damage when you have a melee weapon in your hand.</text>
     </string>
 	<string id="st_perk_berserker_desc_3">
-        <text>You deal increased melee damage and take reduced damage when you have a melee weapon in your hand.</text>
+        <text>You now deal 15% increased melee damage and take 7.5% reduced damage when you have a melee weapon in your hand.</text>
     </string>
 	
 	
@@ -135,33 +135,16 @@
         <text>When killing an enemy, they have a 1% chance to explode, damaging anyone caught in the blast (including YOU).</text>
     </string>
 	<string id="st_perk_bloody_mess_desc_2">
-        <text>When killing an enemy, they have a 1% chance to explode, damaging anyone caught in the blast (including YOU).</text>
+        <text>When killing an enemy, they have a 2% chance to explode, damaging anyone caught in the blast (including YOU).</text>
     </string>
 	<string id="st_perk_bloody_mess_desc_3">
-        <text>When killing an enemy, they have a 1% chance to explode, damaging anyone caught in the blast (including YOU).</text>
+        <text>When killing an enemy, they have a 3% chance to explode, damaging anyone caught in the blast (including YOU).</text>
     </string>
 	<string id="st_perk_bloody_mess_desc_4">
-        <text>When killing an enemy, they have a 1% chance to explode, damaging anyone caught in the blast (including YOU).</text>
+        <text>When killing an enemy, they have a 4% chance to explode, damaging anyone caught in the blast (including YOU).</text>
     </string>
 	<string id="st_perk_bloody_mess_desc_5">
-        <text>When killing an enemy, they have a 1% chance to explode, damaging anyone caught in the blast (including YOU).</text>
-    </string>
-	
-	
-	<string id="st_perk_headhunter">
-        <text>Headhunter</text>
-    </string>
-	<string id="st_perk_headhunter_desc">
-        <text>When killing an enemy with a headshot, you gain a small amount of rank and reputation with friendly factions.</text>
-    </string>
-    <string id="st_perk_headhunter_desc_1">
-        <text>When killing an enemy with a headshot, you gain a small amount of rank and reputation with friendly factions.</text>
-    </string>
-	<string id="st_perk_headhunter_desc_2">
-        <text>When killing an enemy with a headshot, you gain a small amount of rank and reputation with friendly factions.</text>
-    </string>
-	<string id="st_perk_headhunter_desc_3">
-        <text>When killing an enemy with a headshot, you gain a small amount of rank and reputation with friendly factions.</text>
+        <text>When killing an enemy, they have a 5% chance to explode, damaging anyone caught in the blast (including YOU).</text>
     </string>
 	
 	
@@ -169,10 +152,10 @@
         <text>Disarming Shot</text>
     </string>
 	<string id="st_perk_disarming_shot_desc">
-        <text>Shooting an enemy's weapon has a chance for them to drop it on the ground.</text>
+        <text>Shooting an enemy's weapon has a 15% chance for them to drop it on the ground.</text>
     </string>
 	<string id="st_perk_disarming_shot_desc_1">
-        <text>Shooting an enemy's weapon has a chance for them to drop it on the ground.</text>
+        <text>Shooting an enemy's weapon has a 15% chance for them to drop it on the ground.</text>
     </string>
 	
 
@@ -183,19 +166,19 @@
         <text>When looting an enemy, you have a small chance to find salvage and crafting materials.</text>
     </string>
 	<string id="st_perk_scavenger_desc_1">
-        <text>When looting an enemy, you have a small chance to find salvage and crafting materials.</text>
+        <text>When looting an enemy, you have a 7% chance to find salvage and crafting materials.</text>
     </string>
 	<string id="st_perk_scavenger_desc_2">
-        <text>When looting an enemy, you have a small chance to find salvage and crafting materials.</text>
+        <text>When looting an enemy, you have a 14% chance to find salvage and crafting materials.</text>
     </string>
 	<string id="st_perk_scavenger_desc_3">
-        <text>When looting an enemy, you have a small chance to find salvage and crafting materials.</text>
+        <text>When looting an enemy, you have a 21% chance to find salvage and crafting materials.</text>
     </string>
 	<string id="st_perk_scavenger_desc_4">
-        <text>When looting an enemy, you have a small chance to find salvage and crafting materials.</text>
+        <text>When looting an enemy, you have a 28% chance to find salvage and crafting materials.</text>
     </string>
 	<string id="st_perk_scavenger_desc_5">
-        <text>When looting an enemy, you have a small chance to find salvage and crafting materials.</text>
+        <text>When looting an enemy, you have a 35% chance to find salvage and crafting materials.</text>
     </string>
 	
 	
@@ -209,16 +192,16 @@
         <text>When looting armor and weapons from an enemy, they will have a minimum condition of 15%.</text>
     </string>
 	<string id="st_perk_careful_handler_desc_2">
-        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 15%.</text>
+        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 20%.</text>
     </string>
 	<string id="st_perk_careful_handler_desc_3">
-        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 15%.</text>
+        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 25%.</text>
     </string>
 	<string id="st_perk_careful_handler_desc_4">
-        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 15%.</text>
+        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 30%.</text>
     </string>
 	<string id="st_perk_careful_handler_desc_5">
-        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 15%.</text>
+        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 35%.</text>
     </string>
     
 	
@@ -226,10 +209,10 @@
         <text>Master Craftsman</text>
     </string>
 	<string id="st_perk_master_craftsman_desc">
-        <text>When crafting or cooking, you have a small chance to make 2 items for the cost of 1.</text>
+        <text>When crafting or cooking, you have a 10% chance to make 2 crafted items for the cost of 1.</text>
     </string>	
 	<string id="st_perk_master_craftsman_desc_1">
-        <text>When crafting or cooking, you have a small chance to make 2 items for the cost of 1.</text>
+        <text>When crafting or cooking, you have a 10% chance to make 2 crafted items for the cost of 1.</text>
     </string>	
 	
 
@@ -237,16 +220,16 @@
         <text>Cyber-Medic</text>
     </string>
 	<string id="st_perk_cybermedic_desc">
-        <text>You have become outfitted with an implant tha helps to slowly stop bleeding wounds.</text>
+        <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.</text>
     </string>
 	<string id="st_perk_cybermedic_desc_1">
-        <text>You have become outfitted with an implant tha helps to slowly stop bleeding wounds.</text>
+        <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds. It won't replace a bandage however.</text>
     </string>
 	<string id="st_perk_cybermedic_desc_2">
-        <text>You have become outfitted with an implant tha helps to slowly stop bleeding wounds.</text>
+        <text>Improvements to the implant now doubles its efficiency at stopping bleeding.</text>
     </string>
 	<string id="st_perk_cybermedic_desc_3">
-        <text>You have become outfitted with an implant tha helps to slowly stop bleeding wounds.</text>
+        <text>This final upgrade causes the implant to passively stop bleeding at triple its original rate. Although roughly 10% effective compared to a bandage, its effects are noticable are won't require any medical items.</text>
     </string>
 	
 	
@@ -258,19 +241,19 @@
         <text>You have a small chance to dodge any incoming damage.</text>
     </string>
 	<string id="st_perk_dodger_desc_1">
-        <text>You have a small chance to dodge any incoming damage.</text>
+        <text>You have a 0.5% chance to dodge any incoming damage.</text>
     </string>
 	<string id="st_perk_dodger_desc_2">
-        <text>You have a small chance to dodge any incoming damage.</text>
+        <text>You have a 1% chance to dodge any incoming damage.</text>
     </string>
 	<string id="st_perk_dodger_desc_3">
-        <text>You have a small chance to dodge any incoming damage.</text>
+        <text>You have a 1.5% chance to dodge any incoming damage.</text>
     </string>
 	<string id="st_perk_dodger_desc_4">
-        <text>You have a small chance to dodge any incoming damage.</text>
+        <text>You have a 2% chance to dodge any incoming damage.</text>
     </string>
 	<string id="st_perk_dodger_desc_5">
-        <text>You have a small chance to dodge any incoming damage.</text>
+        <text>You have a 2.5% chance to dodge any incoming damage.</text>
     </string>
 	
 	
@@ -278,10 +261,10 @@
         <text>Comfort Food</text>
     </string>
 	<string id="st_perk_comfort_food_desc">
-        <text>When eating or drinking, you will receive a health bonus equal to their thirst or hunger restore (whichever restore is highest)</text>
+        <text>When eating or drinking, you will receive a health bonus equal to a portion of their thirst or hunger restore (whichever restore is highest).</text>
     </string>
 	<string id="st_perk_comfort_food_desc_1">
-        <text>When eating or drinking, you will receive a health bonus equal to their thirst or hunger restore (whichever restore is highest)</text>
+        <text>When eating or drinking, you will receive a health bonus equal to a portion of their thirst or hunger restore (whichever restore is highest).</text>
     </string>
 	
 
@@ -292,19 +275,19 @@
         <text>Increases the amount of ammo found when looting a body.</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_1">
-        <text>Increases the amount of ammo found when looting a body.</text>
+        <text>Increases the amount of ammo found when looting a body by 20%.</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_2">
-        <text>Increases the amount of ammo found when looting a body.</text>
+        <text>Increases the amount of ammo found when looting a body by 40%.</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_3">
-        <text>Increases the amount of ammo found when looting a body.</text>
+        <text>Increases the amount of ammo found when looting a body by 60%.</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_4">
-        <text>Increases the amount of ammo found when looting a body.</text>
+        <text>Increases the amount of ammo found when looting a body by 80%.</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_5">
-        <text>Increases the amount of ammo found when looting a body.</text>
+        <text>Increases the amount of ammo found when looting a body by 100%.</text>
     </string>
 	
 	
@@ -315,19 +298,19 @@
         <text>When looting an enemy, you have a chance to find a medical item. Item quality increases with this perk's level.</text>
     </string>
 	<string id="st_perk_medicine_man_desc_1">
-        <text>When looting an enemy, you have a chance to find a medical item. Item quality increases with this perk's level.</text>
+        <text>When looting an enemy, you have a 7% chance to find a medical item. Item quality increases with this perk's level.</text>
     </string>
 	<string id="st_perk_medicine_man_desc_2">
-        <text>When looting an enemy, you have a chance to find a medical item. Item quality increases with this perk's level.</text>
+        <text>When looting an enemy, you have a 14% chance to find a medical item. Item quality increases with this perk's level.</text>
     </string>
 	<string id="st_perk_medicine_man_desc_3">
-        <text>When looting an enemy, you have a chance to find a medical item. Item quality increases with this perk's level.</text>
+        <text>When looting an enemy, you have a 21% chance to find a medical item. Item quality increases with this perk's level.</text>
     </string>
 	<string id="st_perk_medicine_man_desc_4">
-        <text>When looting an enemy, you have a chance to find a medical item. Item quality increases with this perk's level.</text>
+        <text>When looting an enemy, you have a 28% chance to find a medical item. Item quality increases with this perk's level.</text>
     </string>
 	<string id="st_perk_medicine_man_desc_5">
-        <text>When looting an enemy, you have a chance to find a medical item. Item quality increases with this perk's level.</text>
+        <text>When looting an enemy, you have a 35% chance to find a medical item. Item quality increases with this perk's level.</text>
     </string>
 	
 	
@@ -338,19 +321,19 @@
         <text>When looting an enemy, you have a small chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency.</text>
     </string>
 	<string id="st_perk_artefinder_desc_1">
-        <text>When looting an enemy, you have a small chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency.</text>
+        <text>When looting an enemy, you have a 5% chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency (up to 24 - 28% percent).</text>
     </string>
 	<string id="st_perk_artefinder_desc_2">
-        <text>When looting an enemy, you have a small chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency.</text>
+        <text>When looting an enemy, you have a 10% chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency (up to 26 - 30% percent).</text>
     </string>
 	<string id="st_perk_artefinder_desc_3">
-        <text>When looting an enemy, you have a small chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency.</text>
+        <text>When looting an enemy, you have a 15% chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency (up to 28 - 32% percent).</text>
     </string>
 	<string id="st_perk_artefinder_desc_4">
-        <text>When looting an enemy, you have a small chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency.</text>
+        <text>When looting an enemy, you have a 20% chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency (up to 32 - 36% percent).</text>
     </string>
 	<string id="st_perk_artefinder_desc_5">
-        <text>When looting an enemy, you have a small chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency.</text>
+        <text>When looting an enemy, you have a 25% chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency (up to 36 - 40% percent).</text>
     </string>
 	
 	
@@ -361,19 +344,19 @@
         <text>You will receive bonus cash when looting it from dead enemies.</text>
     </string>
 	<string id="st_perk_midas_touch_desc_1">
-        <text>You will receive bonus cash when looting it from dead enemies.</text>
+        <text>You will receive 5% bonus cash when looting it from dead enemies.</text>
     </string>
 	<string id="st_perk_midas_touch_desc_2">
-        <text>You will receive bonus cash when looting it from dead enemies.</text>
+        <text>You will receive 10% bonus cash when looting it from dead enemies.</text>
     </string>
 	<string id="st_perk_midas_touch_desc_3">
-        <text>You will receive bonus cash when looting it from dead enemies.</text>
+        <text>You will receive 15% bonus cash when looting it from dead enemies.</text>
     </string>
 	<string id="st_perk_midas_touch_desc_4">
-        <text>You will receive bonus cash when looting it from dead enemies.</text>
+        <text>You will receive 20% bonus cash when looting it from dead enemies.</text>
     </string>
 	<string id="st_perk_midas_touch_desc_5">
-        <text>You will receive bonus cash when looting it from dead enemies.</text>
+        <text>You will receive 25% bonus cash when looting it from dead enemies.</text>
     </string>
 	
 	<string id="st_perk_master_zone">
@@ -394,19 +377,19 @@
         <text>When looting an enemy, you have a small chance to find a damaged Kevlar Plate on them.</text>
     </string>
 	<string id="st_perk_plate_finder_desc_1">
-        <text>When looting an enemy, you have a small chance to find a damaged Kevlar Plate on them.</text>
+        <text>When looting an enemy, you have a 5% chance to find a damaged Kevlar Plate on them.</text>
     </string>
 	<string id="st_perk_plate_finder_desc_2">
-        <text>When looting an enemy, you have a small chance to find a damaged Kevlar Plate on them.</text>
+        <text>When looting an enemy, you have a 10% chance to find a damaged Kevlar Plate on them.</text>
     </string>
 	<string id="st_perk_plate_finder_desc_3">
-        <text>When looting an enemy, you have a small chance to find a damaged Kevlar Plate on them.</text>
+        <text>When looting an enemy, you have a 15% chance to find a damaged Kevlar Plate on them.</text>
     </string>
 	<string id="st_perk_plate_finder_desc_4">
-        <text>When looting an enemy, you have a small chance to find a damaged Kevlar Plate on them.</text>
+        <text>When looting an enemy, you have a 20% chance to find a damaged Kevlar Plate on them.</text>
     </string>
 	<string id="st_perk_plate_finder_desc_5">
-        <text>When looting an enemy, you have a small chance to find a damaged Kevlar Plate on them.</text>
+        <text>When looting an enemy, you have a 25% chance to find a damaged Kevlar Plate on them.</text>
     </string>
 	
 	<string id="st_perk_spiked">
@@ -416,19 +399,19 @@
         <text>When taking damage, your enemy is also hurt for a portion of said damage.</text>
     </string>
 	<string id="st_perk_spiked_desc_1">
-        <text>When taking damage, your enemy is also hurt for a portion of said damage.</text>
+        <text>When taking damage, your enemy is also hurt for 5% of said damage.</text>
     </string>
 	<string id="st_perk_spiked_desc_2">
-        <text>When taking damage, your enemy is also hurt for a portion of said damage.</text>
+        <text>When taking damage, your enemy is also hurt for 10% of said damage.</text>
     </string>
 	<string id="st_perk_spiked_desc_3">
-        <text>When taking damage, your enemy is also hurt for a portion of said damage.</text>
+        <text>When taking damage, your enemy is also hurt for 15% of said damage.</text>
     </string>
 	<string id="st_perk_spiked_desc_4">
-        <text>When taking damage, your enemy is also hurt for a portion of said damage.</text>
+        <text>When taking damage, your enemy is also hurt for 20% of said damage.</text>
     </string>
 	<string id="st_perk_spiked_desc_5">
-        <text>When taking damage, your enemy is also hurt for a portion of said damage.</text>
+        <text>When taking damage, your enemy is also hurt for 25% of said damage.</text>
     </string>
 	
 	
@@ -439,19 +422,19 @@
         <text>Anomalies will deal reduced damage to you.</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_1">
-        <text>Anomalies will deal reduced damage to you.</text>
+        <text>Anomalies will deal 2.5% reduced damage to you.</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_2">
-        <text>Anomalies will deal reduced damage to you.</text>
+        <text>Anomalies will deal 5% reduced damage to you.</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_3">
-        <text>Anomalies will deal reduced damage to you.</text>
+        <text>Anomalies will deal 7.5% reduced damage to you.</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_4">
-        <text>Anomalies will deal reduced damage to you.</text>
+        <text>Anomalies will deal 10% reduced damage to you.</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_5">
-        <text>Anomalies will deal reduced damage to you.</text>
+        <text>Anomalies will deal 12.5% reduced damage to you.</text>
     </string>
 
 
@@ -462,13 +445,13 @@
         <text>You will now recover faster from any dizziness or drunkeness effects.</text>
     </string>
 	<string id="st_perk_iron_resolve_desc_1">
-        <text>You will now recover faster from any dizziness or drunkeness effects.</text>
+        <text>You will now recover slightly faster from any dizziness or drunkeness effects.</text>
     </string>
 	<string id="st_perk_iron_resolve_desc_2">
-        <text>You will now recover faster from any dizziness or drunkeness effects.</text>
+        <text>You recover much faster from any dizziness or drunkeness effects.</text>
     </string>
 	<string id="st_perk_iron_resolve_desc_3">
-        <text>You will now recover faster from any dizziness or drunkeness effects.</text>
+        <text>You recover even faster from any dizziness or drunkeness effects.</text>
     </string>
     
 	
@@ -479,19 +462,19 @@
         <text>When bartering, you receive better prices when buying or selling.</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_1">
-        <text>When bartering, you receive better prices when buying or selling.</text>
+        <text>When bartering, you receive 5% better prices when buying or selling.</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_2">
-        <text>When bartering, you receive better prices when buying or selling.</text>
+        <text>When bartering, you receive 10% better prices when buying or selling.</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_3">
-        <text>When bartering, you receive better prices when buying or selling.</text>
+        <text>When bartering, you receive 15% better prices when buying or selling.</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_4">
-        <text>When bartering, you receive better prices when buying or selling.</text>
+        <text>When bartering, you receive 20% better prices when buying or selling.</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_5">
-        <text>When bartering, you receive better prices when buying or selling.</text>
+        <text>When bartering, you receive 25% better prices when buying or selling.</text>
     </string>
 	
 	
@@ -502,35 +485,35 @@
         <text>You now deal more damage to mutants.</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_1">
-        <text>You now deal more damage to mutants.</text>
+        <text>You now deal 5% more damage to mutants.</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_2">
-        <text>You now deal more damage to mutants.</text>
+        <text>You now deal 10% more damage to mutants.</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_3">
-        <text>You now deal more damage to mutants.</text>
+        <text>You now deal 15% more damage to mutants.</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_4">
-        <text>You now deal more damage to mutants.</text>
+        <text>You now deal 20% more damage to mutants.</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_5">
-        <text>You now deal more damage to mutants.</text>
+        <text>You now deal 25% more damage to mutants.</text>
     </string>
 	
 	<string id="st_perk_vampirism">
         <text>Vampirism</text>
     </string>
 	<string id="st_perk_vampirism_desc">
-        <text>Vampirism - When killing an enemy, you are granted 2.5% Health and Stamina.</text>
+        <text>Vampirism - When killing an enemy, you are granted a small amount of Health and Stamina.</text>
     </string>
 	<string id="st_perk_vampirism_desc_1">
-        <text>Vampirism - When killing an enemy, you are granted 2.5% Health and Stamina.</text>
+        <text>Vampirism - When killing an enemy, you are granted 0.25% Health and Stamina.</text>
     </string>
 	<string id="st_perk_vampirism_desc_2">
-        <text>Vampirism - When killing an enemy, you are granted 2.5% Health and Stamina.</text>
+        <text>Vampirism - When killing an enemy, you are granted 0.5% Health and Stamina.</text>
     </string>
 	<string id="st_perk_vampirism_desc_3">
-        <text>Vampirism - When killing an enemy, you are granted 2.5% Health and Stamina.</text>
+        <text>Vampirism - When killing an enemy, you are granted 0.75% Health and Stamina.</text>
     </string>
 	
 	

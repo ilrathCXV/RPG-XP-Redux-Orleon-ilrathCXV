@@ -185,15 +185,54 @@ local scav_tier5 = {
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
-
-local function more_ammo(victim, item)
-    if victim:alive() then return end
-	if IsAmmo(item) then
-		local bonus = 0.2 * ammo_finder
-		if (bonus > 0 and ini_sys:section_exist(item:section())) then
-			alife_create_item(item:section(), victim, {ammo = 1 + bonus})
+-------------------------------------------------------------> Ammo Eater
+base_death_ammo = death.manager.try_spawn_ammo
+function death.manager.try_spawn_ammo(npc)
+	local ammo_class,sec,number
+	local function itr(npc,itm)
+		if (IsWeapon(nil,itm:clsid()) and not npc:marked_dropped(itm)) then
+			ammo_class = parse_list(ini_sys,itm:section(),"ammo_class")
+			
+			-- randomly spawn only 1 ammo type per found weapon
+			if (#ammo_class > 0) then
+				sec = ammo_class[math.random(1,#ammo_class)]
+				if (sec) then 
+					if (item_count[sec]) then
+						number = math.random(item_count[sec][1], item_count[sec][2])
+						number = math.floor(number * (1 + (0.2 * ammo_finder)))
+					else 
+						number = 0
+					end
+					if (number > 0 and ini_sys:section_exist(sec)) then
+						alife_create_item(sec, npc, {ammo = number})
+					end
+				end
+			end
+			
+			-- spawn grenade ammo if there is launcher attached
+			if (ini_sys:r_float_ex(itm:section(),"grenade_launcher_status") > 0) then
+				ammo_class = parse_list(ini_sys,itm:section(),"grenade_class")
+				for i=1,#ammo_class do
+					sec = ammo_class[i]
+					if (sec) then
+						if (item_count[sec]) then
+							number = math.random(item_count[sec][1], item_count[sec][2])
+							number = math.floor(number * (1 + (0.2 * ammo_finder)))
+						else 
+							number = math.random(0,2)
+							number = math.floor(number * (1 + (0.2 * ammo_finder)))
+						end
+						if (number > 0 and ini_sys:section_exist(sec)) then 
+							alife_create_item(sec, npc, {ammo = number})
+						end
+					end
+				end
+			end
 		end
 	end
+	npc:iterate_inventory(itr,npc)
+	
+	CreateTimeEvent(npc:id(), "npc_ammo_aggregation", 0, item_weapon.ammo_aggregation_full, npc:id())
 end
 
 --------------------------------------------------------------------------------------------------------------
@@ -202,13 +241,6 @@ end
 local CreateReleaseItem = death_manager.create_release_item
 function death_manager.create_release_item(victim)
 	CreateReleaseItem(victim)
--------------------------------------------------------------> Ammo Eater
-    if ammo_finder >= 1 then
-		victim:iterate_inventory(more_ammo, victim)
-		CreateTimeEvent(victim:id(), "npc_ammo_aggregation", 0, item_weapon.ammo_aggregation_full, victim:id())
-	end
-		
-		
 -------------------------------------------------------------> Plate Finder
 	if plate_finder >= 1 then
 		local plateChance = (plate_finder * 5) >= math.random(100)
@@ -250,7 +282,7 @@ end
 function perk_loot_improvement(item)------------------> actor_on_item_take(item)
 ------Мародёр 2. Качество собираемых пушек	----------> Weapon Loot Improved Condition
 	if careful_handler >= 1 then
-		local condition_baseline = 10 + math.floor((careful_handler) ^ 1.6)
+		local condition_baseline = (10 + (careful_handler * 5)) * 0.01
 		if IsWeapon(item) then
             if item:condition() < condition_baseline then
                 item:set_condition(condition_baseline * 0.01)
@@ -258,6 +290,7 @@ function perk_loot_improvement(item)------------------> actor_on_item_take(item)
 			if (not IsMelee(item)) then
 				local wpn_parts = item_parts.get_parts_con(item) or 0
 				if wpn_parts ~= 0 then
+					local parts_baseline = 10 + (careful_handler * 5)
 					for k,v in pairs(wpn_parts) do
 						if v >= 0 and v < condition_baseline then
 							wpn_parts[k] = condition_baseline
