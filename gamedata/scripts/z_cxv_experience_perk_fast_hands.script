@@ -6,7 +6,7 @@ local function experience_perk_on_update(id, data)
 	end
 end
 
-local show_anims = {
+show_anims = {
 	anm_show = true,
 	anm_show_0 = true,
 	anm_show_1 = true,
@@ -14,7 +14,7 @@ local show_anims = {
 	anm_show_empty = true
 }
 
-local hide_anims = {
+hide_anims = {
 	anm_hide = true,
 	anm_hide_0 = true,
 	anm_hide_1 = true,
@@ -30,8 +30,7 @@ function fast_hands_speed(anim_table,obj)
 	
 	if show_anims[anim_table.anm_name] or hide_anims[anim_table.anm_name] then
 		anim_table.anm_speed = anm_speed * (1 + (fast_hands * 0.1))
-		--printf("Weapon Handling Show/Hide")
-		end		
+		--printf("Weapon Handling Show/Hide")	
 	end
 end
 

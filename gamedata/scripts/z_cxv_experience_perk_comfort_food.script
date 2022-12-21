@@ -11,7 +11,7 @@ function comfort_food(item,string)
     local sec = item:section()
 	local itemType = SYS_GetParam(0, sec, "kind")
 	
-	if (comfort_food > 0 and (itemType == "i_food" or itemType == "i_drink") then
+	if (comfort_food > 0 and (itemType == "i_food" or itemType == "i_drink")) then
         local drink = ini_sys:r_float_ex(sec, "eat_thirstiness") or 0
 		drink = drink * (-1)
 		local food = ini_sys:r_float_ex(sec, "eat_satiety") or 0
@@ -19,13 +19,13 @@ function comfort_food(item,string)
 		local isFood = food > 0
         if isDrink and isFood then
 			if (drink > food) or (drink == food) then
-				db.actor:change_health(drink/100)
-			else db.actor:change_health(food/100)
+				db.actor:change_health(drink * 0.01)
+			else db.actor:change_health(food * 0.01)
 			end
 		elseif isDrink then
-			db.actor:change_health(drink/100)
+			db.actor:change_health(drink * 0.01)
 		elseif isFood then
-			db.actor:change_health(food/100)
+			db.actor:change_health(food * 0.01)
         end
     end
 end

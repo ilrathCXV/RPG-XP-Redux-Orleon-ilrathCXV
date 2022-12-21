@@ -7,7 +7,11 @@ local jamming_shot = 0
 local disarming_shot = 0
 local mutant_slayer = 0
 
-local function experience_perk_on_update(id, data)
+local vampirism = 0
+local warmonger = 0
+local bloody_mess = 0
+
+local function experience_perk_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
 	if (id == "perk_ghost_ammo") then
 		ghost_ammo = data["curr_level"]
 	end
@@ -32,9 +36,18 @@ local function experience_perk_on_update(id, data)
 	if (id == "perk_mutant_slayer") then
 		mutant_slayer = data["curr_level"]
 	end
+	if (id == "perk_vampirism") then
+		vampirism = data["curr_level"]
+	end
+	if (id == "perk_warmonger") then
+		warmonger = data["curr_level"]
+	end
+	if (id == "perk_bloody_mess") then
+		bloody_mess = data["curr_level"]
+	end
 end
 
-local isCriticalFlag
+local sms = actor_menu.set_msg
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -48,60 +61,6 @@ wp_table.w_pistol          	= "smg"
 wp_table.w_rifle            = "rifle"
 wp_table.w_sniper           = "heavy"
 wp_table.w_shotgun          = "heavy"
-
---------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------
-
-bone_table = {}
-bone_table[0]  = {dmg = 2.00, txt = "=>_..._# Over the head"} -- макушка
-bone_table[1]  = {dmg = 2.00, txt = "=>(:::)# Nape shot"} -- затылок
-bone_table[2]  = {dmg = 1.10, txt = "=>(_Y_)# Buckshot"} -- пах
-bone_table[3]  = {dmg = 0.60, txt = "=>___Ib# Legshot"} -- левое бедро
-bone_table[4]  = {dmg = 0.30, txt = "=>___Ib# Legshot"} -- голень
-bone_table[5]  = {dmg = 0.10, txt = "=>___Ib# Heelshot"} -- пятку
-bone_table[6]  = {dmg = 0.05, txt = "=>___Ib# Feetshot"} -- стопа
-bone_table[7]  = {dmg = 0.60, txt = "=>___Ib# Legshot"} -- пр. бедро
-bone_table[8]  = {dmg = 0.30, txt = "=>___Ib# Legshot"} -- голень
-bone_table[9]  = {dmg = 0.10, txt = "=>___Ib# Heelshot"} -- пятку
-bone_table[10] = {dmg = 0.05, txt = "=>___Ib# Feetshot"} -- стопу
-bone_table[11] = {dmg = 1.00, txt = "=>(| |)# Stabshot"} -- живот
-bone_table[12] = {dmg = 1.00, txt = "=>(| |)# Stabshot"} -- грудь
-bone_table[13] = {dmg = 1.00, txt = "=>(| |)# Stabshot"} -- крестец
-bone_table[14] = {dmg = 2.50, txt = "=>II#~~  Neckshot"} -- шея
-bone_table[15] = {dmg = 4.00, txt = "=>(x _ x# Headshot"} -- жбан
-
-bone_table[16] = {dmg = 5.00, txt = "=>#_0 To the eye!"} -- л.глаз
-bone_table[17] = {dmg = 5.00, txt = "=>0_# To the eye!"} -- п.глаз
-bone_table[18] = {dmg = 5.00, txt = "=>(>#< Between the eyes!"} -- переносица
-bone_table[19] = {dmg = 3.00, txt = "=>IuuI# Jawshot"} -- челюсть
-
-bone_table[20] = {dmg = 0.85, txt = "=>8=#=8 Clavicle off"} -- л.ключица
-bone_table[21] = {dmg = 0.60, txt = "=>T'''# Holliwood hit"} -- л.плечо
-bone_table[22] = {dmg = 0.70, txt = "=>d# Left arm hit"} -- предплечье
-bone_table[23] = {dmg = 0.60, txt = "=>q# Armshot"} -- запястье
-bone_table[24] = {dmg = 0.50, txt = "=>;#,,,, Toeshot"} -- большой палец
-bone_table[25] = {dmg = 0.50, txt = "=>;#,,,, Toeshot"} -- большой палец
-bone_table[26] = {dmg = 0.50, txt = "=>;#,,,, Toeshot"} -- большой палец
-bone_table[27] = {dmg = 0.40, txt = "=>,;#,,, Midfinger shot"} -- средний палец
-bone_table[28] = {dmg = 0.40, txt = "=>,;#,,, Midfinger shot"} -- средний палец
-bone_table[29] = {dmg = 0.40, txt = "=>,;#,,, Midfinger shot"} -- средний палец
-bone_table[30] = {dmg = 0.30, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
-bone_table[31] = {dmg = 0.30, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
-bone_table[32] = {dmg = 0.30, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
-
-bone_table[33] = {dmg = 0.85, txt = "=>8=#=8 Clavicle off"} -- п.ключица
-bone_table[34] = {dmg = 0.60, txt = "=>'''T# Holliwood hit"} -- плечо
-bone_table[35] = {dmg = 0.50, txt = "=>b# Right arm hit"} -- предплечье
-bone_table[36] = {dmg = 0.25, txt = "=>p# Armshot"} -- запястье
-bone_table[37] = {dmg = 0.10, txt = "=>(x _ x# Headshot"} -- большой палец
-bone_table[38] = {dmg = 0.10, txt = "=>(x _ x# Headshot"} -- большой палец
-bone_table[39] = {dmg = 0.10, txt = "=>(x _ x# Headshot"} -- большой палец
-bone_table[40] = {dmg = 0.07, txt = "=>(x _ x# Headshot"} -- средний палец
-bone_table[41] = {dmg = 0.07, txt = "=>(x _ x# Headshot"} -- средний палец
-bone_table[42] = {dmg = 0.07, txt = "=>(x _ x# Headshot"} -- средний палец
-bone_table[43] = {dmg = 0.05, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
-bone_table[44] = {dmg = 0.05, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
-bone_table[45] = {dmg = 0.05, txt = "=>,,,,;# Pinky-shot"} -- мизинчик
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -124,6 +83,44 @@ end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
+function kaboom(npc, dice)
+	if not dice then return end
+    local boom = "mine_new_blow"
+    local npc_id = npc:id()
+    local npc_position = npc:position()
+    local npc_level_vertex_id = npc:level_vertex_id()
+    local npc_game_vertex_id = npc:game_vertex_id()
+    if dice then 
+        function explode(explode_id)
+            local explode_obj = get_object_by_id(explode_id)
+            if explode_obj then
+                local sim = alife()
+                sim:release(sim:object(npc_id))
+                explode_obj:explode(0)
+                return true
+            end
+            return false
+        end
+        printf("Dice is %s, let's boom", dice)
+        local explode_obj = alife_create_item(boom, {npc_position, npc_level_vertex_id, npc_game_vertex_id, nil})
+        CreateTimeEvent(explode_obj.id, explode_obj.id, 0, explode, explode_obj.id)
+    else
+        printf("No luck this time, dice is %s", dice)
+    end
+end
+
+local function get_object_by_id(id) -- same as _g.script one but without spamming in console
+    if not id then return end
+    if (id == AC_ID) then return db.actor end
+
+    local obj = db.storage[id] and db.storage[id].object or level_object_by_id(id)
+    if not obj then return end
+    return obj
+end
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
 function perk_damage_effects(npc, shit, bone_id, flags)
 	
 	local isCompanion = npc:has_info("npcx_is_companion")
@@ -134,13 +131,11 @@ function perk_damage_effects(npc, shit, bone_id, flags)
     if shit.draftsman:id() ~= db.actor:id() then return end
 
     local weapon = db.actor:active_item()
-    if not weapon or not IsWeapon(weapon) or not IsMelee(weapon) then return end
+    if not weapon then return end
 
     local weapon_class = sortK_of(weapon)
 	local criticalHit = perk_based_artefacts_bone_mapper.is_critical_bone(npc:clsid(), bone_id)
-    isCriticalFlag = criticalHit
 	
-    local is_stunned = perk_based_artefacts_bone_mapper.is_leg_bone(npc:clsid(), bone_id)
 	local is_breaked = ((bone_id >=20) and (bone_id <= 45))
     local is_breaked2 = bone_id >=36
 
@@ -149,7 +144,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 
 ------------------------------------------------------------> Mutant Slayer
     if mutant_slayer >= 1 then
-        if IsMonster(nil,npc:clsid())
+        if IsMonster(nil,npc:clsid()) then
             dmg_increase = dmg_increase + (mutant_slayer * 0.05)
         end
     end
@@ -169,43 +164,81 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 
 ------------------------------------------------------------> Total up damage modifiers
     shit.power = (shit.power * dmg_increase)
-		
+	
+	if npc.health > 0 then
 -------------------------------------------------------------------------> Jamming Shot (also works with melees)
-	if is_breaked and jamming_shot >= 1 then
-		local weapon2 = npc:active_item() --Багает оружие противника
-		if weapon2 then weapon2:unload_magazine(false) end
-	end
-    
+		if is_breaked and jamming_shot >= 1 then
+			local weapon2 = npc:active_item() --Багает оружие противника
+			if weapon2 then weapon2:unload_magazine(false) end
+		end
+		
 -------------------------------------------------------------------------> Ghost Ammo v3.0
-	if ((ghost_ammo >= 1) and (weapon_class ~= "melee"))then
+		if ((ghost_ammo >= 1) and (weapon_class ~= "melee")) then
+			local ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
+			local ammoCurrent = weapon:get_ammo_type()
+			local ammoSec = ammo_list[ammoCurrent + 1]
+			local ghostChance = ghost_ammo		-- equals to a base chance of 1%
+			-- if (bone_id == 15) then
+			if criticalHit then
+				ghostChance = ghostChance * 2
+			end
+			if ghostChance >= math.random(100) then
+				alife_create_item(ammoSec, db.actor, {ammo = 1})
+			end
+		end
+
+-------------------------------------------------------------------------> Disarming Shot
+		if disarming_shot >= 1 and is_breaked2 then
+			local weapon2 = npc:active_item()
+			local dropChance = math.random(100) <= 15
+			if weapon and weapon2 and dropChance then
+				weapon2:set_condition(0.15)
+				npc:drop_item(weapon2)
+			end
+		end
+	end
+end
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+
+function perk_kill_effects(victim, killer)
+    if not killer then return end
+    if killer:id() ~= db.actor:id() then return end
+
+-------------------------------------------------------------------------> Bloody Mess (SMG)/Bloodbath (Special)
+	if bloody_mess >= 1 and (weapon_class ~= "melee") then
+		local dice = math.random(100) <= bloody_mess
+		kaboom(npc, dice)
+	end
+	
+-------------------------------------------------------------------------> Vampirism
+	if vampirism >= 1 then
+		if killer.health < 1 then
+			killer:change_health(0.0025 * vampirism)
+		end
+		if killer.power < 1 then
+			killer:change_power(0.0025 * vampirism)
+		end
+	end
+	
+-------------------------------------------------------------------------> Warmonger
+    if warmonger >= 1 then
+        local weapon = killer:active_item()
+		if not weapon or not IsWeapon(weapon) then return end
+		
+        local clip = ini_sys:r_float_ex(weapon:section(), "ammo_mag_size") or 0
+		if clip < 3 then return end
 		local ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
 		local ammoCurrent = weapon:get_ammo_type()
 		local ammoSec = ammo_list[ammoCurrent + 1]
-		local ghostChance = ghost_ammo		-- equals to a base chance of 1%
-		-- if (bone_id == 15) then
-		if isCriticalFlag then
-			ghostChance = ghostChance * 2
-		end
-		if ghostChance >= math.random(100) then
-			alife_create_item(ammoSec, db.actor, {ammo = 1})
-		end
+	
+        local regain = math.floor(clip * 0.34)
+		printf("magicin some ammo")
+		alife_create_item(ammoSec, killer, {ammo = regain})
 	end
-
--------------------------------------------------------------------------> Disarming Shot
-    if disarming_shot >= 1 and is_breaked2 then
-		local weapon2 = npc:active_item()
-		local dropChance = math.random(100) <= 15
-		if weapon and weapon2 and dropChance then
-			weapon2:set_condition(0.15)
-			npc:drop_item(weapon2)
-        end
-    end
+	
 end
-
-function isCritical()
-	return isCriticalFlag
-end
-
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -214,4 +247,6 @@ function on_game_start()
 
     RegisterScriptCallback("npc_on_before_hit",             perk_damage_effects)
     RegisterScriptCallback("monster_on_before_hit",         perk_damage_effects)
+	
+    RegisterScriptCallback("npc_on_death_callback",         perk_kill_effects)
 end

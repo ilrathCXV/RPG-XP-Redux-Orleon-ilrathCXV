@@ -42,6 +42,7 @@ local function create_item_random_uses(i, box)
         alife_process_item(i, se_item.id, {uses = (math.random(1, max_uses))})
     elseif utils_item.is_degradable(nil, se_item.id) then
         alife_process_item(i, se_item.id, {cond = (math.random(50,100)/100)})
+    end
 end
 
 local function roll_item_tiered(t, box, looter_level)
@@ -60,7 +61,7 @@ end
 
 function try_spawn_meds(box, looter_level)
     if math.random(1,100) <= looter_level then
-		local medChance = = math.floor(looter_level * math.random(1.0,3.0))
+		local medChance = math.floor(looter_level * math.random(1.0,3.0))
         local tbl = {
 			{ 100, meds_tier5},
             { 90, meds_tier4},
@@ -220,14 +221,12 @@ function death_manager.create_release_item(victim)
 	if medicine_man >= 1 then
 		local medQuality = medicine_man * 7
 		try_spawn_meds(victim, medQuality)
-		end
 	end
 	
 -----------------------------------------------------------> Scavenger
 	if scavenger >= 1 then
 		local scavQuality = scavenger * 7
 		try_spawn_scav(victim, scavQuality)
-		end
 	end
 	
 ------------------------------------------------------------> Arte-finder
