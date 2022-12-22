@@ -557,19 +557,19 @@
         <text>You randomly will deal a critical hit that deals more damage.</text>
     </string>
 	<string id="st_perk_deadeye_desc_1">
-        <text>You have a 0.1% base chance to deal a critical hit. Your critcal hits multiply your damage by 25%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
+        <text>You have a 0.1% base chance to deal a critical hit. Your critical hits multiply your damage by 25%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
     </string>
 	<string id="st_perk_deadeye_desc_2">
-        <text>You have a 0.1% base chance to deal a critical hit. Your critcal hits multiply your damage by 50%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
+        <text>You have a 0.1% base chance to deal a critical hit. Your critical hits multiply your damage by 50%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
     </string>
 	<string id="st_perk_deadeye_desc_3">
-        <text>You have a 0.1% base chance to deal a critical hit. Your critcal hits multiply your damage by 75%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
+        <text>You have a 0.1% base chance to deal a critical hit. Your critical hits multiply your damage by 75%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
     </string>
 	<string id="st_perk_deadeye_desc_4">
-        <text>You have a 0.1% base chance to deal a critical hit. Your critcal hits multiply your damage by 100%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
+        <text>You have a 0.1% base chance to deal a critical hit. Your critical hits multiply your damage by 100%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
     </string>
 	<string id="st_perk_deadeye_desc_5">
-        <text>You have a 0.1% base chance to deal a critical hit. Your critcal hits multiply your damage by 125%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
+        <text>You have a 0.1% base chance to deal a critical hit. Your critical hits multiply your damage by 125%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
     </string>
 	
 	<string id="st_perk_lucky_strike">
