@@ -56,7 +56,7 @@ local function experience_perk_on_update(id, data)	-- messy I know (will look in
 end
 
 local sms = actor_menu.set_msg
-local crticalChance = 0
+local criticalChance = 0
 local criticalMultiplier = 1
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -154,7 +154,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 ------------------------------------------------------------> Lucky Strike and Deadeye
 
 	if (lucky_strike <= 0) and (deadeye >= 1) then	-- if you have DE but don't have LS...
-		crticalChance = 1							-- Crit Chance is 0.1%
+		criticalChance = 1							-- Crit Chance is 0.1%
 	elseif (lucky_strike >= 1) then
 		criticalChance = (lucky_strike ^ 2) * 10	-- Crit Chance is (LS^2)%
 	end
