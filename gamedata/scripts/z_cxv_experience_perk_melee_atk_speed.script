@@ -1,0 +1,33 @@
+--[
+local fighting_stance = 0
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_fighting_stace") then
+		fighting_stance = data["curr_level"]
+	end
+end
+
+melee_anims = {
+	anm_attack = true,
+	anm_attack2 = true,
+	anm_attack2_e = true,
+	anm_attack_e = true,
+}
+
+
+function fighting_stance_speed(anim_table,obj)
+	if (fighting_stance <= 0) then return end
+	
+	local anm_speed = anim_table.anm_speed
+	
+	if melee_anims[anim_table.anm_name] then
+		anim_table.anm_speed = anm_speed * (1 + (fighting_stance * 0.5))
+	end
+end
+
+function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+
+	RegisterScriptCallback("actor_on_hud_animation_play", fighting_stance_speed)
+end
+]--
