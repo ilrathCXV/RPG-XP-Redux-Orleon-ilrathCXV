@@ -160,7 +160,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	end
 	
 	if head_shot then
-		criticalChance = criticalChance * 2
+		criticalChance = criticalChance * 1.5
 	end
 	
 	if (lucky_strike >= 1) and (deadeye <= 0) then	-- if you have LS but don't have DE...
