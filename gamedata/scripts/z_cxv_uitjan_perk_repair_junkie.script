@@ -1,0 +1,156 @@
+local repair_junkie = 0											-- Repair Junkie: Grants a 5% chance to refund a repair item (up to 25% at max rank)
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_repair_junkie") then
+		repair_junkie = data["curr_level"]
+	end	
+end
+
+function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	
+	-- monkey patch for the Tinkering skill
+	local originalOnRepair = item_repair.UIRepair.OnRepair
+	item_repair.UIRepair.OnRepair = function (self)
+		local repairkit = nil
+		local supportitemid = 0
+		local kitremaininguses = 0
+		local waslastuse = false
+		local degrade_factor = item_repair.degrade_factor or 0.2
+		if not zz_item_repair_keep_crafting_window_open then
+			repairkit = self.obj
+		elseif self.isMultiUse and self.multiUseItemsObj[1] then -- Compatibility code for "Keep Crafting Windows Open"
+			local repair_item = nil
+			self:CollectValidItems(self.obj, self.section)
+			for id, amount in pairs(self.multiUseItemsObj[1]) do
+				repair_item = get_object_by_id(id)
+				if (repair_item) then
+					repairkit = repair_item
+				end 
+			end
+		else
+			repairkit = self.obj
+		end
+		
+		if self.CC[2]:GetCell_Selected(true) then
+			supportitemid = self.CC[2]:GetCell_Selected(true):id()
+		end
+						
+		if repairkit then
+			
+			if IsItem("multiuse", repairkit:section()) then
+				kitremaininguses = repairkit:get_remaining_uses()
+				if kitremaininguses == 1 then
+					waslastuse = true
+					local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
+					math.randomseed(seed)
+					
+					local refundbool = math.random() < (repair_junkie * 0.05)
+					
+					if refundbool then
+						TinkerNews()
+					
+						repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
+					end
+				end
+			elseif utils_item.is_degradable(repairkit) and repairkit:condition() <= degrade_factor then
+				waslastuse = true
+				local seed = repairkit:id() + repairkit:condition() + supportitemid + self.con_val[1]
+				math.randomseed(seed)
+				
+				local refundbool = math.random() < ((repair_junkie * 0.05))
+				
+				if refundbool then
+					TinkerNews()
+					repairkit:set_condition(math.min(repairkit:condition() + degrade_factor,1))
+				end
+			end
+		end
+		
+		originalOnRepair(self)
+		
+		if repairkit then
+			if not waslastuse and IsItem("multiuse", repairkit:section()) then
+				local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
+				math.randomseed(seed)
+				local refundbool = math.random() < ((repair_junkie * 0.05))
+				
+				if refundbool then
+					TinkerNews()
+					repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
+				end
+			elseif not waslastuse and utils_item.is_degradable(repairkit) then
+				local seed = repairkit:id() + repairkit:condition() + supportitemid + self.con_val[1]
+				math.randomseed(seed)
+				
+				local refundbool = math.random() < ((repair_junkie * 0.05))
+				
+				if refundbool then
+					TinkerNews()
+					repairkit:set_condition(math.min(repairkit:condition() + degrade_factor,1))
+				end
+			end
+		end
+	end
+	-- monkey patch end
+	
+	-- WPO patch
+	if zzzz_arti_jamming_repairs then
+		local BaseReplacePart = zzzz_arti_jamming_repairs.replace_part
+		function zzzz_arti_jamming_repairs.replace_part(id, part, kit_name, clean)
+			local repairkit = db.actor:object(kit_name)
+			local waslastuse = false
+			local remaining_uses = repairkit:get_remaining_uses()
+			local parts = se_load_var(id, nil, "parts")
+			local part_cond = 0
+			if parts and parts[part] then
+				part_cond = parts[part]
+			end
+			local seed = repairkit:id() + remaining_uses + id + part_cond
+			math.randomseed(seed)
+			local refundbool = math.random() < (repair_junkie * 0.05)
+			
+			if clean and remaining_uses == 1 then
+				waslastuse = true
+				if refundbool then
+					TinkerNews()
+					repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
+				end
+			end
+			
+			BaseReplacePart(id, part, kit_name, clean)
+			
+			if clean and not waslastuse then
+				if refundbool then
+					TinkerNews()
+					repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
+				end
+			end
+		end
+	end
+	-- WPO patch end
+end
+
+local get_safe_sound_object = xr_sound.get_safe_sound_object
+
+local function play_sound_on_actor(snd, volume, frequency)
+	if not snd then
+		trace("snd is nil")
+		return
+	end
+	local actor = db.actor
+	local snd = get_safe_sound_object(snd)
+	if snd then
+		snd:play(actor, 0, sound_object.s2d)
+		snd.volume = volume or 1
+		snd.frequency = frequency or 1
+		return snd
+	end
+end
+
+function TinkerNews()
+	local sms = actor_menu.set_msg
+	local message = "Repair item refunded!"
+	sms(2, message, 5)
+	play_sound_on_actor("decoder", 1, 0.8)
+end

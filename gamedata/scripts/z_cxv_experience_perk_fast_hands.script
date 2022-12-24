@@ -11,7 +11,9 @@ show_anims = {
 	anm_show_0 = true,
 	anm_show_1 = true,
 	anm_show_2 = true,
-	anm_show_empty = true
+	anm_show_empty = true,
+	anm_show_g = true,
+	anm_show_w_gl = true
 }
 
 hide_anims = {
@@ -19,7 +21,9 @@ hide_anims = {
 	anm_hide_0 = true,
 	anm_hide_1 = true,
 	anm_hide_2 = true,
-	anm_hide_empty = true
+	anm_hide_empty = true,
+	anm_hide_g = true,
+	anm_hide_w_gl = true,
 }
 
 function fast_hands_speed(anim_table,obj)

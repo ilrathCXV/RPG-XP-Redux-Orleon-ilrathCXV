@@ -1,0 +1,46 @@
+local calm_mind = 0
+local is_near_campfire = false
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_calm_mind") then
+		calm_mind = data["curr_level"]
+	end	
+end
+
+function get_nearby_lit_campfire(dist)
+	local pos = db.actor:position()
+	for id,binder in pairs(bind_campfire.campfires_all) do
+		if (binder and binder.campfire and binder.campfire:is_on()) then
+			if (pos:distance_to_sqr(binder.object:position()) <= dist) then
+				return true
+			end
+		end 
+	end 
+	return false
+end
+
+function update_insanity() -- happens once per second
+	local psyregenmult = 1
+	if get_nearby_lit_campfire(10.0) then
+        psyregenmult = (1 + (0.2 * calm_mind))							-- Calm Mind: Multiply psy regen by 20% per rank when near a campfire (doubles psy regen at max rank)
+	end
+	local regen_amount = (0.0006 * calm_mind) * psyregenmult			-- Calm Mind: 20% of base psy regen per rank (should double base psy regen at max rank)
+	if arszi_psy.get_psy_health() < (1 - regen_amount) then
+		local newpsyhealth = arszi_psy.get_psy_health() + regen_amount
+		arszi_psy.set_psy_health(newpsyhealth)
+	else
+		arszi_psy.set_psy_health(1)
+	end
+end
+
+local base_arszi_on_before_hit = arszi_psy.actor_on_before_hit
+function arszi_psy.actor_on_before_hit(s_hit)
+    if s_hit.power > 0 and s_hit.type == 4 then
+		s_hit.power = s_hit.power * (1 - (0.03 * calm_mind))			-- Calm Mind: 3% psy resistance (total to 15% when max rank)	
+	end
+	base_arszi_on_before_hit(s_hit)
+end
+
+function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+end

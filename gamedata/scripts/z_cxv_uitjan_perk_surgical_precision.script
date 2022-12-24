@@ -1,0 +1,84 @@
+local surgical_precision = 0							-- Surgical Precision: will grant 6% of rad/HP healing as a boost over time (up to 30% at max rank)
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_surgical_precision") then
+		surgical_precision = data["curr_level"]
+	end
+end
+
+function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+
+    RegisterScriptCallback("actor_on_item_use",         get_healing_boost)
+    RegisterScriptCallback("actor_on_update",             healing_boost)
+end
+
+-- MEDICINE SKILL CODE
+local heal_timeofuse = nil
+local radheal_timeofuse = nil
+local heal_timeoflasttick = nil
+local radheal_timeoflasttick = nil
+local heal_item_boost_time = 0
+local radheal_item_boost_time = 0
+local heal_per_sec = 0
+local radheal_per_sec = 0
+
+medicine_boost_addition = 0
+
+function healing_boost()
+	
+	if surgical_precision > 0 then -- extra checks to catch a reported crash maybe
+		if heal_timeofuse then
+			local healoftick = 0
+			if time_global() <= heal_timeofuse + (heal_item_boost_time * 100) then -- duration = 10% of item boost time
+				if time_global() >= heal_timeoflasttick + 200 then -- Tick restores every 200 ms
+					healoftick = heal_per_sec * 10 * ((surgical_precision * 0.06) + medicine_boost_addition) * ((time_global() - heal_timeoflasttick) / 1000) -- account for time since last tick
+					db.actor:change_health(healoftick)
+					heal_timeoflasttick = time_global()
+				end
+			else
+				healoftick = heal_per_sec * 10 * ((surgical_precision * 0.06) + medicine_boost_addition) * ((time_global() - heal_timeoflasttick) / 1000) -- account for time since last tick
+				db.actor:change_health(healoftick)
+				heal_timeofuse = nil
+			end
+		end
+		
+		if radheal_timeofuse then
+			local radhealoftick = 0
+			if time_global() <= radheal_timeofuse + (radheal_item_boost_time * 100) then -- duration = 10% of item boost time
+				if time_global() >= radheal_timeoflasttick + 200 then -- Tick restores every 200 ms
+					radhealoftick = radheal_per_sec * 10 * ((surgical_precision * 0.06) + medicine_boost_addition) * ((time_global() - radheal_timeoflasttick) / 1000) -- account for time since last tick
+					db.actor:change_radiation(-radhealoftick)
+					radheal_timeoflasttick = time_global()
+				end
+			else
+				radhealoftick = radheal_per_sec * 10 * ((surgical_precision * 0.06) + medicine_boost_addition) * ((time_global() - radheal_timeoflasttick) / 1000) -- account for time since last tick
+				db.actor:change_radiation(-radhealoftick)
+				radheal_timeofuse = nil
+			end
+		end
+	end
+end
+
+function get_healing_boost(obj, string)
+	
+	if surgical_precision > 0 then
+		if SYS_GetParam(0, obj:section(), "kind") == "i_medical" then
+			local cost = obj:cost()
+		
+			if SYS_GetParam(2, obj:section(), "boost_health_restore") and SYS_GetParam(2, obj:section(), "boost_health_restore") > 0 then
+				heal_item_boost_time = SYS_GetParam(2, obj:section(), "boost_time")
+				heal_per_sec = SYS_GetParam(2, obj:section(), "boost_health_restore") * 6
+				heal_timeofuse = time_global()
+				heal_timeoflasttick = heal_timeofuse
+			end
+			if SYS_GetParam(2, obj:section(), "boost_radiation_restore") and SYS_GetParam(2, obj:section(), "boost_radiation_restore") > 0 then
+				radheal_item_boost_time = SYS_GetParam(2, obj:section(), "boost_time")
+				radheal_per_sec = SYS_GetParam(2, obj:section(), "boost_radiation_restore") * 6
+				radheal_timeofuse = time_global()
+				radheal_timeoflasttick = radheal_timeofuse
+			end
+		end
+	end
+end
+-- MEDICINE SKILL CODE END

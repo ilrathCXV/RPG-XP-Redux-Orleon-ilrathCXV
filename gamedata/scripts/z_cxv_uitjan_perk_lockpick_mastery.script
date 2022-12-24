@@ -1,0 +1,34 @@
+local gc = game.translate_string
+add_lockpick_diff_reduc = 0
+
+local lockpick_mastery = 0
+
+local function experience_perk_on_update(id, data)
+	if (not arti_lootboxes) then return end
+	if (id == "perk_lockpick_mastery") then
+		lockpick_mastery = data["curr_level"]
+	end
+end
+
+req_picks = arti_lootboxes.get_difficulty
+function arti_lootboxes.get_difficulty(box, tool)
+    difficulty = req_picks(box, tool)
+    return math.ceil( difficulty * (1 - (lockpick_mastery * 0.15) - add_lockpick_diff_reduc) )	-- 15% per rank
+end
+
+base_build_diff = arti_lootboxes.build_diff
+function arti_lootboxes.build_diff(box_sec)
+    local old_diff = SYS_GetParam(2, box_sec, "difficulty") * 10
+    local difficulty = arti_lootboxes.get_difficulty(box_sec) * 10
+    if old_diff == difficulty then
+        return base_build_diff(box_sec)
+    end
+    local clr = utils_xml.get_color_con(100 - tonumber(difficulty))
+    local gray1 = utils_xml.get_color("ui_gray_1")
+    local gray2 = utils_xml.get_color("ui_gray_2")
+    return clr .. " " .. gc("st_dot").. " " .. gray1 .. gc("st_box_difficulty") .. " " .. clr .. tostring(difficulty) .. "% " .. gray1 .. "(" .. gray2 .. old_diff .. "%" .. gray1 .. ")" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")   
+end
+
+function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+end

@@ -58,7 +58,7 @@ local function update_mcm_settings()
 	end
 end
 
-function print_dbg(text,...)
+function printf(text,...)
 	if (MCM_SETTINGS.DEBUG_MODE) then
 		printf(string.format("/ Experience Framework | " .. text,...))
 	end
@@ -201,7 +201,7 @@ local function level_up()
 	local next_level_xp_req = XP_LEVEL_UP_BASE + XP.actor_level * XP_LEVEL_UP_MULT	-- The formula that calculates the required amount of experience for the next level
 	XP.actor_next_level_xp = XP.actor_next_level_xp + next_level_xp_req
 	send_xp_news("level up")
-	print_dbg("Level up! | Level: [%s] | Skill Points Added: +%s | Total Experience: %s XP | Required XP To Next Level: %s XP", XP.actor_level, G_SKILLPOINT_PER_LEVEL, XP.actor_experience, XP.actor_next_level_xp - XP.actor_experience)
+	printf("Level up! | Level: [%s] | Skill Points Added: +%s | Total Experience: %s XP | Required XP To Next Level: %s XP", XP.actor_level, G_SKILLPOINT_PER_LEVEL, XP.actor_experience, XP.actor_next_level_xp - XP.actor_experience)
 	check_level_state()
 end
 
@@ -250,7 +250,7 @@ end
 -- Called from 'npc_on_death_callback'
 function give_actor_experience_by_npc(npc_faction, npc_rank)
 	if not (EXPERIENCE_SETTINGS["stalker_xp"][npc_faction] or EXPERIENCE_SETTINGS["stalker_xp_mult_by_rank"][npc_rank]) then
-		print_dbg("ERROR!!! | When killing an NPC, the rank or faction corresponding to it was not found in the 'EXPERIENCE_SETTINGS' table | NPC Faction: [%s], NPC Rank: [%s]", npc_faction, npc_rank)
+		printf("ERROR!!! | When killing an NPC, the rank or faction corresponding to it was not found in the 'EXPERIENCE_SETTINGS' table | NPC Faction: [%s], NPC Rank: [%s]", npc_faction, npc_rank)
 		return
 	end
 	
@@ -261,7 +261,7 @@ end
 -- Called from 'monster_on_death_callback'
 function give_actor_experience_by_mutant(mutant_name)
 	if not EXPERIENCE_SETTINGS["mutant_xp"][mutant_name] then
-		print_dbg("ERROR!!! | The killed mutant is not in the 'EXPERIENCE_SETTINGS' table | Mutant Killed: [%s]", mutant_name)
+		printf("ERROR!!! | The killed mutant is not in the 'EXPERIENCE_SETTINGS' table | Mutant Killed: [%s]", mutant_name)
 		return
 	end
 	
@@ -272,7 +272,7 @@ end
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_task(storyline)
 	if not (EXPERIENCE_SETTINGS["task_xp"]["xp"] or EXPERIENCE_SETTINGS["task_xp"]["multiplier"]) then
-		print_dbg("ERROR!!! | No experience value or experience multiplier found in the 'EXPERIENCE_SETTINGS' table!")
+		printf("ERROR!!! | No experience value or experience multiplier found in the 'EXPERIENCE_SETTINGS' table!")
 		return
 	end
 	
@@ -288,7 +288,7 @@ end
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_stash()
 	if not EXPERIENCE_SETTINGS["treasure_xp"]["xp"] then
-		print_dbg("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
 		return
 	end
 	
@@ -299,7 +299,7 @@ end
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_discover_spot()
 	if not EXPERIENCE_SETTINGS["discover_spot_xp"]["xp"] then
-		print_dbg("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
 		return
 	end
 	
@@ -310,7 +310,7 @@ end
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_disassembly_items(obj)
 	if not (EXPERIENCE_SETTINGS["disassembly_xp"]["weapons_xp"] or EXPERIENCE_SETTINGS["disassembly_xp"]["outfits_xp"] or EXPERIENCE_SETTINGS["disassembly_xp"]["items_xp"]) then
-		print_dbg("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
 		return
 	end
 	
@@ -330,7 +330,7 @@ end
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_mutant_loot(loot_count)
 	if not EXPERIENCE_SETTINGS["mutant_loot_xp"]["xp_per_item"] then
-		print_dbg("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
 		return
 	end
 	
@@ -345,7 +345,7 @@ end
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_repair_items()
 	if not EXPERIENCE_SETTINGS["repair_items_xp"]["xp"] then
-		print_dbg("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
 		return
 	end
 	
@@ -356,7 +356,7 @@ end
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_cooking()
 	if not EXPERIENCE_SETTINGS["cooking_xp"]["xp"] then
-		print_dbg("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
 		return
 	end
 	
@@ -367,7 +367,7 @@ end
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_workshop(work_type, count)
 	if not (EXPERIENCE_SETTINGS["workshop_xp"]["xp_by_craft"] or EXPERIENCE_SETTINGS["workshop_xp"]["xp_by_repair"] or EXPERIENCE_SETTINGS["workshop_xp"]["xp_by_upgrade"]) then
-		print_dbg("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
 		return
 	end
 	
