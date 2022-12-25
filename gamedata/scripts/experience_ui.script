@@ -1,11 +1,11 @@
---[[
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Author: Orleon
--- Last Edit: 17.12.2022
+-- Last Edit: 24.12.2022 (ilrathCXV - kept ltx importer for Perks only)
 -- Experience Framework
 -- Experience/Level/Perks interface
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
---]]
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 GUI = nil
@@ -30,7 +30,7 @@ local snd_list = {
 	["debug_click"]			= "experience_framework\\DebugClicked",
 }
 
-local function SetTip(tip, warning, solution, value, pass, XMLtxt)
+function SetTip(tip, warning, solution, value, pass, XMLtxt)
 	local str = ""
 	local name = value or ""
 	if tip and pass then
@@ -79,7 +79,8 @@ function UIExperienceMenu:__init() super()
 		id = nil,
 		curr_level = nil,
 		req_level = nil,
-		max_level = nil
+		max_level = nil,
+		each_level = nil
 	}
 	
 	self:InitControls()
@@ -143,13 +144,14 @@ function UIExperienceMenu:InitControls()
 	self.perk_scrollbar:Clear()
 	self.perks = {}
 	self.perks_settings = experience_core.PERKS_SETTINGS
+	self.x_coeff = (device().height / device().width) / (768 / 1024)	-- so that icons do not stretch on widescreen resolutions
 	for id, tbl in spairs(self.perks_settings, function(t,a,b) return a < b end) do
 		local _st = xml:InitStatic("st", nil)
 		self.perks[id] = {}
 		self.perks[id].name = xml:InitTextWnd("perk_name", _st)
-		self.perks[id].description = xml:InitTextWnd("perk_description", nil)
 		self.perks[id].icon = xml:InitStatic("perk_icon", _st)
 		self.perks[id].icon:InitTexture(self.perks_settings[id]["icon"])
+		self.perks[id].icon:SetWndSize(vector2():set(self.perks[id].icon:GetWidth() * self.x_coeff, self.perks[id].icon:GetHeight()))
 		self.perks[id].btn = xml:InitCheck("perk_btn", _st)
 		self.perks[id].btn:SetCheck(false)
 		
@@ -187,7 +189,8 @@ function UIExperienceMenu:Reset()
 		id = nil,
 		curr_level = nil,
 		req_level = nil,
-		max_level = nil
+		max_level = nil,
+		each_level = nil
 	}
 	self.perks_settings = experience_core.PERKS_SETTINGS
 	
@@ -211,13 +214,11 @@ function UIExperienceMenu:GetPerkLevelName(perk_id)
 	
 	if (curr_lvl == 0) then
 		return gc(self.perks_settings[perk_id]["name"])
-	end
-	
-	if (curr_lvl >= max_lvl) then
+	elseif (curr_lvl >= max_lvl) then
 		return gc(self.perks_settings[perk_id]["name"]) .. " " .. gc("ui_st_xp_perk_name_lvlmax")
+	else
+		return gc(self.perks_settings[perk_id]["name"]) .. " " .. strformat(gc("ui_st_xp_perk_name_lvl"), curr_lvl)
 	end
-	
-	return gc(self.perks_settings[perk_id]["name"]) .. " " .. strformat(gc("ui_st_xp_perk_name_lvl"), curr_lvl)
 end
 
 function UIExperienceMenu:UpdateActorInfo()
@@ -293,14 +294,54 @@ function UIExperienceMenu:UpdatePerkDescription()
 	self.perk_description_b:Show(true)
 	self.perk_description_header_text:Show(true)
 	self.perk_description_header_text:SetText(self:GetPerkLevelName(id))
+	
 	self.description_scrollbar:Clear()
 	
-	self.description_scrollbar:AddWindow(self.perks[id].description, true)
-	self.perks[id].description:SetAutoDelete(false)
-	self.perks[id].description:SetText(gc(perk_desc .. "_" .. curr_lvl))
-	self.perks[id].description:AdjustHeightToText()
-	self.description_scrollbar:Show(true)
+	-- Building Description Window --
+	local xml = self.xml
+	local _st = xml:InitStatic("st", nil)
+	local icon_y_offset = 6
+	local text_y_offset = 15
+	local height_offset = 30
 	
+	-- Description Icon
+	self.perk_description_icon = xml:InitStatic("perk_description_icon", _st)
+	local icon_name = self.perks_settings[id]["icon"]
+	
+	local t_ico = xml:InitStatic("perk_description_icon", nil)
+	t_ico:InitTexture(icon_name)
+	local texture_w = t_ico:GetTextureRect().x2 - t_ico:GetTextureRect().x1
+	local texture_h = t_ico:GetTextureRect().y2 - t_ico:GetTextureRect().y1
+	t_ico = nil
+	
+	local icon_width, icon_height = self.perk_description_icon:GetWidth(), self.perk_description_icon:GetHeight()
+	
+	-- Recommended  minimal original icon size of at least 128x128px by default
+	icon_width = texture_w < icon_width and texture_w or icon_width
+	icon_height = texture_h < icon_height and texture_h or icon_height
+	
+	self.perk_description_icon:InitTexture(icon_name)
+	self.perk_description_icon:SetWndPos(vector2():set(math.ceil((self.description_scrollbar:GetWidth() / 2) - (icon_width / 2)), self.perk_description_icon:GetWndPos().y + icon_y_offset))
+	self.perk_description_icon:SetWndSize(vector2():set(icon_width * self.x_coeff, icon_height))
+	
+	-- Text Description
+	self.perk_description = xml:InitTextWnd("perk_description", _st)
+	self.perk_description:SetWndPos(vector2():set(self.perk_description:GetWndPos().x, self.perk_description_icon:GetWndPos().y + icon_height + text_y_offset))
+	self.perk_description:SetText(gc(perk_desc .. "_" .. curr_lvl))
+	self.perk_description:AdjustHeightToText()
+	
+	local total_width = self.description_scrollbar:GetWidth()
+	local total_height = self.perk_description:GetWndPos().y + self.perk_description:GetHeight() + height_offset
+	
+	-- resize description
+	_st:SetWndSize(vector2():set(total_width, total_height))
+	
+	-- Add Description in Scrollbar Window
+	self.description_scrollbar:AddWindow(_st, true)
+	_st:SetAutoDelete(true)
+	-- End Building --
+	
+	self.description_scrollbar:Show(true)
 	self:CheckToLearnPerk()
 end
 
@@ -328,6 +369,7 @@ function UIExperienceMenu:OnButtonPerk(perk_id)
 	self.perk_selected.id = perk_id
 	self.perk_selected.max_level = tonumber(self.perks_settings[perk_id]["max_level"])
 	self.perk_selected.req_level = tonumber(self.perks_settings[perk_id]["req_level"])
+	self.perk_selected.each_level = tonumber(self.perks_settings[perk_id]["each_level"])
 	
 	play_sound(snd_list["perk_click"])
 	self:UpdatePerkDescription()
@@ -337,25 +379,26 @@ function UIExperienceMenu:CheckToLearnPerk()
 	local max_lvl = self.perk_selected.max_level
 	local curr_lvl = self.perk_selected.curr_level
 	local req_lvl = self.perk_selected.req_level
+	local each_lvl = self.perk_selected.each_level
 	local actor_skillpoints = experience_core.XP.actor_skillpoints
-	local actor_level = experience_core.XP.actor_level
+	local actor_lvl = experience_core.XP.actor_level
+	local G_MAX_LEVEL = experience_core.G_MAX_LEVEL
 	
 	self.btn_learn_perk:Show(true)
 	self.btn_learn_perk:Enable(false)
 	
+	-- calculation of the next required actor level
+	req_lvl = req_lvl + (each_lvl * curr_lvl)
+	req_lvl = (req_lvl > G_MAX_LEVEL and G_MAX_LEVEL) or req_lvl
+	
 	if (curr_lvl >= max_lvl) then
 		SetTip("perk_max_level", nil, nil, nil, true, self.info_tip_text)
 		return
-	end
-	
-	if (actor_level < req_lvl) then
-		self.btn_learn_perk:Show(false)
+	elseif (actor_lvl < req_lvl) then
 		SetTip(nil, "not_req_level", "not_req_level", req_lvl, nil, self.info_tip_text)
 		return
-	end
-	
-	if (actor_skillpoints > 0) then
-		self.btn_learn_perk:Enable(true)
+	elseif (actor_skillpoints > 0) then
+		self.btn_learn_perk:Enable(true)	-- can be learned
 		SetTip("can_learn_perk", nil, nil, nil, true, self.info_tip_text)
 	else
 		SetTip(nil, "not_have_skillpoints", "not_have_skillpoints", nil, nil, self.info_tip_text)

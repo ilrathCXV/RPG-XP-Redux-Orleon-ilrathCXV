@@ -11,60 +11,250 @@
 	<string id="ui_mcm_menu_experience_framework">
 		<text>Experience</text>
 	</string>
-	<string id="ui_mcm_experience_framework_title">
-		<text>Experience Framework</text>
+	<string id="ui_mcm_experience_framework_main_title">
+		<text>Experience Framework - Основные настройки</text>
 	</string>
-	<string id="ui_mcm_experience_framework_DISPLAY_UI">
+	<string id="ui_mcm_experience_framework_xp_option_title">
+		<text>Experience Framework - Настройки опыта</text>
+	</string>
+	<string id="ui_mcm_menu_experience_framework_main">
+		<text>Основные</text>
+	</string>
+	<string id="ui_mcm_menu_experience_framework_xp_option">
+		<text>Опыт</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_main_DISPLAY_UI">
 		<text>Меню навыков</text>
 	</string>
-	<string id="ui_mcm_experience_framework_LEVEL_UP_NEWS">
+	<string id="ui_mcm_experience_framework_experience_framework_main_LEVEL_UP_NEWS">
 		<text>Оповещения при повышении уровня</text>
 	</string>
-	<string id="ui_mcm_experience_framework_XP_GAIN_NEWS">
+	<string id="ui_mcm_experience_framework_experience_framework_main_XP_GAIN_NEWS">
 		<text>Оповещения при получении опыта</text>
 	</string>
-	<string id="ui_mcm_experience_framework_NEWS_SOUND">
+	<string id="ui_mcm_experience_framework_experience_framework_main_NEWS_SOUND">
 		<text>Включить звуки оповещения</text>
 	</string>
-	<string id="ui_mcm_experience_framework_GLOBAL_EXPERIENCE_MULT">
+	<string id="ui_mcm_experience_framework_experience_framework_main_GLOBAL_EXPERIENCE_MULT">
 		<text>Глобальный множитель опыта</text>
 	</string>
-	<string id="ui_mcm_experience_framework_GLOBAL_EXPERIENCE_MULT_desc">
+	<string id="ui_mcm_experience_framework_experience_framework_main_GLOBAL_EXPERIENCE_MULT_desc">
 		<text>Данная настройка регулирует множитель получения опыта из всех источников. \n \nВНИМАНИЕ! \nДанная настройка влияет на глобальную переменную получения опыта и умножает итоговый полученный опыт, после вычисления других внутриигровых множителей!</text>
 	</string>
-	<string id="ui_mcm_experience_framework_DEBUG_MODE">
+	<string id="ui_mcm_experience_framework_experience_framework_main_DEBUG_MODE">
 		<text>Debug mode</text>
 	</string>
 	
-	<string id="ui_mcm_experience_framework_mcm_kb_modifier">
+	<string id="ui_mcm_experience_framework_main_mcm_kb_modifier">
 		<text>С дополнительной клавишей</text>
 	</string>
-	<string id="ui_mcm_experience_framework_mcm_kb_modifier_desc">
+	<string id="ui_mcm_experience_framework_main_mcm_kb_modifier_desc">
 		<text>Меню навыков откроется только в том случае, если данная клавиша также удерживается.</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_none">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mod_none">
 		<text>Без клавиши</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_shift">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mod_shift">
 		<text>Shift</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_ctrl">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mod_ctrl">
 		<text>Ctrl</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_alt">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mod_alt">
 		<text>Alt</text>
 	</string>
-	<string id="ui_mcm_experience_framework_mcm_kb_mode">
+	<string id="ui_mcm_experience_framework_main_mcm_kb_mode">
 		<text>Режим нажатия</text>
 	</string>
-	<string id="ui_mcm_experience_framework_mcm_kb_mode_desc">
+	<string id="ui_mcm_experience_framework_main_mcm_kb_mode_desc">
 		<text>Меню навыков откроется только в том случае, если данная клавиша нажимается таким образом.</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mode_press">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mode_press">
 		<text>Одиночное</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mode_dtap">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mode_dtap">
 		<text>Двойное</text>
+	</string>
+	
+	
+	<string id="ui_mcm_experience_framework_xp_option_stalker_xp_option">
+		<text>Данные настройки отвечают за базовый опыт, который выдается при убийстве сталкеров, в зависимости от их группировки.</text>
+	</string>
+	<string id="ui_mcm_experience_framework_xp_option_stalker_xp_rank_option">
+		<text>Данные настройки умножают базовый опыт за убийства сталкеров, в зависимости от их ранга.</text>
+	</string>
+	<string id="ui_mcm_experience_framework_xp_option_mutant_xp_option">
+		<text>Данные настройки отвечают за базовый опыт, который выдается при убийстве мутантов, в зависимости от их вида.</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_stalker">
+		<text>Одиночка</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_bandit">
+		<text>Бандит</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_csky">
+		<text>Чистое небо</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_army">
+		<text>Военные</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_freedom">
+		<text>Свобода</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_dolg">
+		<text>Долг</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ecolog">
+		<text>Эколог</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_killer">
+		<text>Наёмник</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_monolith">
+		<text>Монолит</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_greh">
+		<text>Грех</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_renegade">
+		<text>Ренегат</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_isg">
+		<text>ИИГ</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_zombied">
+		<text>Зомбированный</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_novice">
+		<text>Новичок</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_trainee">
+		<text>Начинающий</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_experienced">
+		<text>Опытный</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_professional">
+		<text>Профессионал</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_veteran">
+		<text>Ветеран</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_expert">
+		<text>Эксперт</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_master">
+		<text>Мастер</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_legend">
+		<text>Легенда</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_bloodsucker">
+		<text>Кровосос</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_boar">
+		<text>Кабан</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_burer">
+		<text>Бюрер</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_chimera">
+		<text>Химера</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_controller">
+		<text>Контролёр</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_dog">
+		<text>Слепой пёс</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_flesh">
+		<text>Плоть</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_gigant">
+		<text>Псевдогигант</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_poltergeist">
+		<text>Полтергейст</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_psy_dog">
+		<text>Пси-собака</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_pseudodog">
+		<text>Псевдособака</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_snork">
+		<text>Снорк</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_tushkano">
+		<text>Тушкан</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_cat">
+		<text>Кот</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_fracture">
+		<text>Излом</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_zombie">
+		<text>Зомби</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_karlik">
+		<text>Карлик</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_psysucker">
+		<text>Пси-кровосос</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_lurker">
+		<text>Кикимора</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_TREASURE_XP">
+		<text>Опыт за нахождение тайника</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_TASK_XP">
+		<text>Опыт за выполнение задания</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_TASK_XP_MULT">
+		<text>Множитель опыта за сюжетные задания</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_DISCOVER_SPOT_XP">
+		<text>Опыт за обнаружение новой локации</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_DISASSEMBLY_WPN_XP">
+		<text>Опыт за разбор оружия</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_DISASSEMBLY_OUT_XP">
+		<text>Опыт за разбор брони</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_DISASSEMBLY_ITM_XP">
+		<text>Опыт за разбор прочих предметов</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_MUTANT_LOOT_XP">
+		<text>Опыт за разделку мутантов</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_REPAIR_ITM_XP">
+		<text>Опыт за ремонт предметов</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_COOKING_XP">
+		<text>Опыт за готовку еды</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_WORKSHOP_CRAFT_XP">
+		<text>Опыт за создение предметов на верстаке</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_WORKSHOP_REPAIR_XP">
+		<text>Опыт за ремонт предметов на верстаке</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_WORKSHOP_UPGRADE_XP">
+		<text>Опыт за улучшения предметов на верстаке</text>
 	</string>
 
 
@@ -156,7 +346,7 @@
 		<text>Получен опыт!</text>
 	</string>
 	<string id="st_xp_news_gain_xp_desc">
-		<text>%s+%s XP</text>
+		<text>%sПолучено +%s XP</text>
 	</string>
 
 

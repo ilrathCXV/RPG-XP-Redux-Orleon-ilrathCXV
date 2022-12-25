@@ -4,10 +4,10 @@
 	</frame>
 	
 	<!-- Window Backgrounds -->
-	<perk_list_b x="19" y="115" width="261" height="352" stretch="1">
+	<perk_list_b x="19" y="115" width="293" height="352" stretch="1">
 		<texture>ui_main_experience_mod_high_window2</texture>
 	</perk_list_b>
-	<perk_description_b x="289" y="115" width="311" height="352" stretch="1">
+	<perk_description_b x="314" y="115" width="311" height="352" stretch="1">
 		<texture>ui_main_experience_mod_high_window1</texture>
 	</perk_description_b>
 	<actor_stats_b x="628" y="115" width="290" height="79" stretch="1">
@@ -21,10 +21,10 @@
 	<main_window_cap_text x="434" y="9" width="100" height="31">
 		<text r="51" g="255" b="102" font="graffiti19" align="c" vert_align="c">ui_st_xp_main_window_cap_text</text>
 	</main_window_cap_text>
-	<perk_list_header_text x="99" y="94" width="100" height="31">
+	<perk_list_header_text x="99" y="94" width="131" height="31">
 		<text r="200" g="200" b="200" font="letterica18" align="c" vert_align="c">ui_st_xp_perk_list_header_text</text>
 	</perk_list_header_text>
-	<perk_description_header_text x="281" y="94" width="319" height="31">
+	<perk_description_header_text x="301" y="94" width="324" height="31">
 		<text complex_mode="1" r="200" g="200" b="200" align="c" font="letterica18"/>
 	</perk_description_header_text>
 	<actor_stats_header_text x="725" y="94" width="100" height="31">
@@ -75,21 +75,22 @@
 	</btn_debug_reset_perks>
 	
 	<!-- Perks and Description Frames -->
-	<st x="0" y="0" width="250" height="35"/>
+	<st x="0" y="0" width="269" height="35"/>
 	
-	<perk_scrollbar x="30" y="128" width="250" height="331" right_ident="0" left_ident="0" top_indent="0" bottom_indent="0" vert_interval="0" always_show_scroll="0"/>
-	<perk_icon x="1" y="2" width="40" height="32" stretch="1"/>
-	<perk_name x="44" y="2" width="206" height="35" stretch="1">
+	<perk_scrollbar x="30" y="128" width="281" height="331" right_ident="0" left_ident="0" top_indent="0" bottom_indent="0" vert_interval="0" always_show_scroll="0"/>
+	<perk_icon x="6" y="0" width="32" height="32" stretch="1"/>
+	<perk_name x="44" y="2" width="238" height="35" stretch="1">
 		<text r="200" g="200" b="200" font="letterica16" align="1" vert_align="c"/>
 	</perk_name>
-	<perk_btn x="0" y="0" width="244" height="35" stretch="1" >
+	<perk_btn x="0" y="0" width="269" height="35" stretch="1" >
 		<texture>ui_main_experience_mod_perk_button</texture>
 	</perk_btn>
 	
-	<description_scrollbar x="301" y="125" width="299" height="335" right_ident="0" left_ident="0" top_indent="0" bottom_indent="0" vert_interval="0" always_show_scroll="0"/>
-	<perk_description x="0" y="0" width="284" height="100">
+	<description_scrollbar x="326" y="125" width="311" height="335" right_ident="0" left_ident="0" top_indent="0" bottom_indent="0" vert_interval="0" always_show_scroll="0"/>
+	<perk_description x="0" y="0" width="263" height="100">
 		<text complex_mode="1" r="200" g="200" b="200" align="l" font="letterica16"/>
 	</perk_description>
+	<perk_description_icon x="0" y="0" width="128" height="128" stretch="1"/>
 	
 	<!-- Tips Information Frames -->
 	<info_tip_text x="114" y="507" width="555" height="96">

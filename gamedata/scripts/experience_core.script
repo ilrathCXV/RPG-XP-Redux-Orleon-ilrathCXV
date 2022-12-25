@@ -1,25 +1,30 @@
---[[
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ Author: Orleon
 -- Author: Orleon
--- Last Edit: 17.12.2022
+-- Last Edit: 24.12.2022 (ilrathCXV - kept .ltx importing feature for perks ONLY)
 -- Experience Framework for STALKER Anomaly
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
---]]
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MOD_VERSION = 1.1
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
--- Global Level and XP settings
+local strformat = string.format
+
 G_MAX_LEVEL						= 60		-- Level Cap.
 G_SKILLPOINT_PER_LEVEL			= 1			-- Number of skill points given for a new level
-G_STALKER_XP_MULT				= 1.0		-- Experience multiplier for killing stalkers
-G_MUTANT_XP_MULT				= 1.0		-- Experience multiplier for killing mutants
-G_TREASURE_XP_MULT				= 1.0		-- Experience multiplier for finding a stash
-G_TASK_XP_MULT					= 1.0		-- Experience multiplier for completing tasks
-G_DISCOVER_SPOT_XP_MULT			= 1.0		-- Experience multiplier for discovering spots
-G_DISASSEMBLY_XP_MULT			= 1.0		-- Experience multiplier for disassembly items
-G_MUTANT_LOOT_XP_MULT			= 1.0		-- Experience multiplier for mutant looting
-G_REPAIR_ITEMS_XP_MULT			= 1.0		-- Experience multiplier for repair items
-G_COOKING_XP_MULT				= 1.0		-- Experience multiplier for cooking food
-G_WORKSHOP_XP_MULT				= 1.0		-- Experience multiplier for work on a workbench
+
+local G_STALKER_XP_MULT			= 1.0
+local G_MUTANT_XP_MULT			= 1.0
+local G_TREASURE_XP_MULT		= 1.0
+local G_TASK_XP_MULT			= 1.0
+local G_DISCOVER_SPOT_XP_MULT	= 1.0
+local G_DISASSEMBLY_XP_MULT		= 1.0
+local G_MUTANT_LOOT_XP_MULT		= 1.0
+local G_REPAIR_ITEMS_XP_MULT	= 1.0
+local G_COOKING_XP_MULT			= 1.0
+local G_WORKSHOP_XP_MULT		= 1.0
 
 local XP_LEVEL_UP_BASE = 550	-- The base amount of experience required for each level
 local XP_LEVEL_UP_MULT = 150	-- Multiplies the actor's current level
@@ -31,15 +36,14 @@ XP = {
 	actor_level				= 0,
 	actor_experience		= 0,
 	actor_skillpoints		= 0,
-	actor_next_level_xp		= 550,
+	actor_next_level_xp		= 550
 }
 
-ini_experience = ini_file("plugins\\experience_framework\\experience.ltx")
 ini_perks = ini_file("plugins\\experience_framework\\importer_perks.ltx")
-EXPERIENCE_SETTINGS = {}
 PERKS_SETTINGS = {}
 
 MCM_SETTINGS = {
+	-- main settings
 	DISPLAY_UI					= DIK_keys.DIK_J,
 	KEY_MODIFIER				= 0,
 	KEY_MODE					= 0,
@@ -48,39 +52,117 @@ MCM_SETTINGS = {
 	NEWS_SOUND					= true,
 	GLOBAL_EXPERIENCE_MULT		= 1,
 	DEBUG_MODE					= false,
+	
+	-- xp settings
+	STALKER_XP = {
+		stalker					= 22,
+		bandit					= 20,
+		csky					= 22,
+		army					= 28,
+		freedom					= 26,
+		dolg					= 27,
+		ecolog					= 18,
+		killer					= 31,
+		monolith				= 33,
+		greh					= 33,
+		renegade				= 20,
+		isg						= 40,
+		zombied					= 16
+	},
+	STALKER_XP_MULT_BY_RANK = {
+		novice					= 1.0,
+		trainee					= 1.0,
+		experienced				= 2.0,
+		professional			= 4.0,
+		veteran					= 6.0,
+		expert					= 7.0,
+		master					= 8.0,
+		legend					= 8.0
+	},
+	MUTANT_XP = {
+		bloodsucker				= 40,
+		boar					= 25,
+		burer					= 70,
+		chimera					= 150,
+		controller				= 80,
+		dog						= 15,
+		flesh					= 10,
+		gigant					= 150,
+		poltergeist				= 65,
+		psy_dog					= 50,
+		pseudodog				= 30,
+		snork					= 45,
+		tushkano				= 1,
+		cat						= 20,
+		fracture				= 20,
+		zombie					= 10,
+		karlik					= 65,
+		psysucker				= 70,
+		lurker					= 40
+	},
+	TREASURE_XP					= 25,
+	TASK_XP						= 150,
+	TASK_XP_MULT				= 2.00,
+	DISCOVER_SPOT_XP			= 10,
+	DISASSEMBLY_WPN_XP			= 1,
+	DISASSEMBLY_OUT_XP			= 1,
+	DISASSEMBLY_ITM_XP			= 1,
+	MUTANT_LOOT_XP				= 1,
+	REPAIR_ITM_XP				= 5,
+	COOKING_XP					= 5,
+	WORKSHOP_CRAFT_XP			= 5,
+	WORKSHOP_REPAIR_XP			= 5,
+	WORKSHOP_UPGRADE_XP			= 5
+}
+
+local mcm_settings_map = {
+	DISPLAY_UI					= "experience_framework_main/",
+	KEY_MODIFIER				= "experience_framework_main/",
+	KEY_MODE					= "experience_framework_main/",
+	LEVEL_UP_NEWS				= "experience_framework_main/",
+	XP_GAIN_NEWS				= "experience_framework_main/",
+	NEWS_SOUND					= "experience_framework_main/",
+	GLOBAL_EXPERIENCE_MULT		= "experience_framework_main/",
+	DEBUG_MODE					= "experience_framework_main/",
+	STALKER_XP					= "experience_framework_xp_option/",
+	STALKER_XP_MULT_BY_RANK		= "experience_framework_xp_option/",
+	MUTANT_XP					= "experience_framework_xp_option/",
+	TREASURE_XP					= "experience_framework_xp_option/",
+	TASK_XP						= "experience_framework_xp_option/",
+	TASK_XP_MULT				= "experience_framework_xp_option/",
+	DISCOVER_SPOT_XP			= "experience_framework_xp_option/",
+	DISASSEMBLY_WPN_XP			= "experience_framework_xp_option/",
+	DISASSEMBLY_OUT_XP			= "experience_framework_xp_option/",
+	DISASSEMBLY_ITM_XP			= "experience_framework_xp_option/",
+	MUTANT_LOOT_XP				= "experience_framework_xp_option/",
+	REPAIR_ITM_XP				= "experience_framework_xp_option/",
+	COOKING_XP					= "experience_framework_xp_option/",
+	WORKSHOP_CRAFT_XP			= "experience_framework_xp_option/",
+	WORKSHOP_REPAIR_XP			= "experience_framework_xp_option/",
+	WORKSHOP_UPGRADE_XP			= "experience_framework_xp_option/"
 }
 
 local function update_mcm_settings()
 	if (ui_mcm and experience_mcm) then
-		for name,_ in pairs(MCM_SETTINGS) do
-			MCM_SETTINGS[name] = ui_mcm.get("experience_framework/"..name)
+		for name, val in pairs(MCM_SETTINGS) do
+			if (type(val) == "table") then
+				for key,_ in pairs(MCM_SETTINGS[name]) do
+					MCM_SETTINGS[name][key] = ui_mcm.get("experience_framework/"..mcm_settings_map[name]..key)
+				end
+			else
+				MCM_SETTINGS[name] = ui_mcm.get("experience_framework/"..mcm_settings_map[name]..name)
+			end
 		end
 	end
 end
 
-function printf(text,...)
+function print_dbg(text,...)
 	if (MCM_SETTINGS.DEBUG_MODE) then
-		printf(string.format("/ Experience Framework | " .. text,...))
+		printf(strformat("/ Experience Framework | " .. text,...))
 	end
 end
 
 local function init_settings()
-	-- Initialize experience settings
-	ini_experience:section_for_each(function(section)
-		if (not EXPERIENCE_SETTINGS[section]) then
-			EXPERIENCE_SETTINGS[section] = {}
-			local n,result,id,value = 0,"","",""
-			
-			n = ini_experience:line_count(section)
-			for i=0,n-1 do
-				result, id, value = ini_experience:r_line_ex(section,i,"","")
-				if id and value then
-					EXPERIENCE_SETTINGS[section][id] = value
-				end
-			end
-		end
-	end)
-	--utils_data.print_table(EXPERIENCE_SETTINGS)
 	
 	-- Initialize perks settings
 	ini_perks:section_for_each(function(section)
@@ -108,16 +190,15 @@ local snd_list = {
 local function send_xp_news(news_type, gain_xp)
 	local timeout = 750
 	local showtime = 6000
-	local color = utils_xml.get_color("green")
-	local news_caption,news_text,icon,sound_id
+	local color = utils_xml.get_color("d_cyan")
+	local news_caption,news_text,icon
 	
 	if (news_type == "level up") then
 		if (not MCM_SETTINGS.LEVEL_UP_NEWS) then return end
 		
 		news_caption = game.translate_string("st_xp_news_next_lvl")
-		news_text = string.format(game.translate_string("st_xp_news_next_lvl_desc"), color, XP.actor_level, G_SKILLPOINT_PER_LEVEL)
+		news_text = strformat(game.translate_string("st_xp_news_next_lvl_desc"), color, XP.actor_level, G_SKILLPOINT_PER_LEVEL)
 		icon = "ui_experience_mod_icon_news_level_up"
-		sound_id = "level_up_news"
 		
 		if (MCM_SETTINGS.NEWS_SOUND == true) then
 			CreateTimeEvent("send_sound_xp_news_lvlup", "send_sound_level_up_news", timeout / 1000, function()
@@ -132,9 +213,8 @@ local function send_xp_news(news_type, gain_xp)
 		if (not MCM_SETTINGS.XP_GAIN_NEWS) then return end
 		
 		news_caption = game.translate_string("st_xp_news_gain_xp")
-		news_text = string.format(game.translate_string("st_xp_news_gain_xp_desc"), color, round(gain_xp))
+		news_text = strformat(game.translate_string("st_xp_news_gain_xp_desc"), color, round(gain_xp))
 		icon = "ui_experience_mod_icon_news_gain_xp"
-		sound_id = "gain_xp_news"
 		
 		if (MCM_SETTINGS.NEWS_SOUND == true) then
 			CreateTimeEvent("send_sound_xp_news", "send_sound_gain_xp_news", timeout / 1000, function()
@@ -153,7 +233,7 @@ end
 -- The main save data perk table. Use "experience_perk_on_update" callback in your script to update data
 local perks_save_data = {}
 
-axr_main.callback_add("experience_perk_on_update")
+axr_main.callback_add("experience_perk_on_update")		-- Params: (<string>,<table>)
 function save_perk_data(perk_id, perk_data)
 	if perks_save_data[perk_id] then
 		perks_save_data[perk_id] = perk_data
@@ -184,7 +264,7 @@ local function checking_perks_data()
 		if (not PERKS_SETTINGS[id]) then
 			local ret_skillpoints = perks_save_data[id]["curr_level"]
 			XP.actor_skillpoints = XP.actor_skillpoints + ret_skillpoints
-			printf(string.format("~ Perk [%s] no longer exist! | Deleting perk from save data and return %s spent skill points to actor!", id, ret_skillpoints))
+			printf(strformat("~ Perk [%s] no longer exist! | Deleting perk from save data and return %s spent skill points to actor!", id, ret_skillpoints))
 			perks_save_data[id] = nil
 		else
 			SendScriptCallback("experience_perk_on_update", id, tbl)	-- first update callback perk data for existing perks
@@ -195,13 +275,17 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------
 -- Level and Experience Management Functions ------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
+-- The formula for calculating experience for the next level has been added to a separate function at the request of Igigog
+function calc_xp_for_next_level(level)
+	return XP_LEVEL_UP_BASE + level * XP_LEVEL_UP_MULT
+end
+
 local function level_up()
 	XP.actor_level = XP.actor_level + 1
 	XP.actor_skillpoints = XP.actor_skillpoints + G_SKILLPOINT_PER_LEVEL
-	local next_level_xp_req = XP_LEVEL_UP_BASE + XP.actor_level * XP_LEVEL_UP_MULT	-- The formula that calculates the required amount of experience for the next level
-	XP.actor_next_level_xp = XP.actor_next_level_xp + next_level_xp_req
+	XP.actor_next_level_xp = XP.actor_next_level_xp + calc_xp_for_next_level(XP.actor_level)
 	send_xp_news("level up")
-	printf("Level up! | Level: [%s] | Skill Points Added: +%s | Total Experience: %s XP | Required XP To Next Level: %s XP", XP.actor_level, G_SKILLPOINT_PER_LEVEL, XP.actor_experience, XP.actor_next_level_xp - XP.actor_experience)
+	print_dbg("Level up! | Level: [%s] | Skill Points Added: +%s | Total Experience: %s XP | Required XP To Next Level: %s XP", XP.actor_level, G_SKILLPOINT_PER_LEVEL, XP.actor_experience, XP.actor_next_level_xp - XP.actor_experience)
 	check_level_state()
 end
 
@@ -212,11 +296,7 @@ function check_level_state()
 end
 
 function increase_experience(experience, multiplier)
-	if (XP.actor_level >= G_MAX_LEVEL) then
-		return
-	end
-	
-	if (not experience) then
+	if (XP.actor_level >= G_MAX_LEVEL) or (not experience) then
 		return
 	end
 	
@@ -228,6 +308,7 @@ function increase_experience(experience, multiplier)
 	
 	XP.actor_experience = XP.actor_experience + inc_xp
 	send_xp_news("Gain XP", inc_xp)
+	print_dbg("The actor has gained experience! | Experience Gained %s XP | Total Experience: %s XP | Required XP To Next Level: %s XP", inc_xp, XP.actor_experience, XP.actor_next_level_xp - XP.actor_experience)
 	check_level_state()
 end
 
@@ -235,157 +316,214 @@ function give_max_level()
 	local n = G_MAX_LEVEL - XP.actor_level
 	if n < 1 then return end
 	for i=1, n do
-		local val = 0
 		XP.actor_level = XP.actor_level + 1
 		XP.actor_skillpoints = XP.actor_skillpoints + G_SKILLPOINT_PER_LEVEL
-		val = XP_LEVEL_UP_BASE + XP.actor_level * XP_LEVEL_UP_MULT
 		XP.actor_experience = XP.actor_next_level_xp
-		XP.actor_next_level_xp = XP.actor_next_level_xp + val
+		XP.actor_next_level_xp = XP.actor_next_level_xp + calc_xp_for_next_level(XP.actor_level)
 	end
 end
 
+---------------------------------------------------------------------------------------------------------------------------------
+-- Callback: 'experience_multiplier_on_before_multiply' Params: (<string>,<number>,<table>) -------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+axr_main.callback_add("experience_multiplier_on_before_multiply")
+-- Register a 'experience_multiplier_on_before_multiply' callback in your script to increase the experience multiplier before multiplying it with base experience.
+-- This callback will pass the type of action and the value of the multiplier of this action, as well as a table in which to pass the number of your multiplier.
+---------------------------------------------------------------------------------------------------------------------------------
+-- All Action Types: ------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+-- 'kill_npc'			- for killing NPC
+-- 'kill_mutant'		- for killing mutants
+-- 'task'				- for completing tasks
+-- 'treasure'			- for finding a stash
+-- 'discover_spot'		- for discovering spots
+-- 'disassemble'		- for disassembly items
+-- 'mutant_loot'		- for mutant looting
+-- 'repair'				- for repair items
+-- 'cook'				- for cooking food
+-- 'workshop'			- for work on a workbench
+---------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
 -- Experience Gain Functions ----------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
 -- Called from 'npc_on_death_callback'
 function give_actor_experience_by_npc(npc_faction, npc_rank)
-	if not (EXPERIENCE_SETTINGS["stalker_xp"][npc_faction] or EXPERIENCE_SETTINGS["stalker_xp_mult_by_rank"][npc_rank]) then
-		printf("ERROR!!! | When killing an NPC, the rank or faction corresponding to it was not found in the 'EXPERIENCE_SETTINGS' table | NPC Faction: [%s], NPC Rank: [%s]", npc_faction, npc_rank)
+	local stalker_xp = MCM_SETTINGS.STALKER_XP
+	local stalker_xp_mult_by_rank = MCM_SETTINGS.STALKER_XP_MULT_BY_RANK
+	
+	if (not stalker_xp)
+	or (not stalker_xp_mult_by_rank)
+	or (not stalker_xp[npc_faction])
+	or (not stalker_xp_mult_by_rank[npc_rank]) then
+		print_dbg("Failed to give experience to the actor when killing the NPC | NPC Faction: [%s], NPC Rank: [%s]", npc_faction, npc_rank)
 		return
 	end
 	
-	local xp_by_npc = EXPERIENCE_SETTINGS["stalker_xp"][npc_faction] * EXPERIENCE_SETTINGS["stalker_xp_mult_by_rank"][npc_rank]
-	increase_experience(xp_by_npc, G_STALKER_XP_MULT)
+	local xp_by_npc = stalker_xp[npc_faction] * stalker_xp_mult_by_rank[npc_rank]
+	local ret = {}
+	SendScriptCallback("experience_multiplier_on_before_multiply", "kill_npc", G_STALKER_XP_MULT, ret)
+	increase_experience(xp_by_npc, tonumber(ret.new_mult) or G_STALKER_XP_MULT)
 end
 
 -- Called from 'monster_on_death_callback'
 function give_actor_experience_by_mutant(mutant_name)
-	if not EXPERIENCE_SETTINGS["mutant_xp"][mutant_name] then
-		printf("ERROR!!! | The killed mutant is not in the 'EXPERIENCE_SETTINGS' table | Mutant Killed: [%s]", mutant_name)
+	local mutant_xp = MCM_SETTINGS.MUTANT_XP
+	
+	if (not mutant_xp) or (not mutant_xp[mutant_name]) then
+		print_dbg("Failed to give experience to the actor when killing the mutant | Mutant Name: [%s]", mutant_name)
 		return
 	end
 	
-	local xp_by_mutant = EXPERIENCE_SETTINGS["mutant_xp"][mutant_name]
-	increase_experience(xp_by_mutant, G_MUTANT_XP_MULT)
+	local ret = {}
+	SendScriptCallback("experience_multiplier_on_before_multiply", "kill_mutant", G_MUTANT_XP_MULT, ret)
+	increase_experience(mutant_xp[mutant_name], tonumber(ret.new_mult) or G_MUTANT_XP_MULT)
 end
 
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_task(storyline)
-	if not (EXPERIENCE_SETTINGS["task_xp"]["xp"] or EXPERIENCE_SETTINGS["task_xp"]["multiplier"]) then
-		printf("ERROR!!! | No experience value or experience multiplier found in the 'EXPERIENCE_SETTINGS' table!")
+	local task_xp = MCM_SETTINGS.TASK_XP
+	local task_xp_mult = MCM_SETTINGS.TASK_XP_MULT
+	
+	if (not task_xp) or (not task_xp_mult) then
+		print_dbg("Failed to give the actor experience for completing the task")
 		return
 	end
 	
-	local xp_by_task = EXPERIENCE_SETTINGS["task_xp"]["xp"]
-	
 	if storyline then
-		xp_by_task = xp_by_task * EXPERIENCE_SETTINGS["task_xp"]["multiplier"]
+		task_xp = task_xp * task_xp_mult
 	end
 	
-	increase_experience(xp_by_task, G_TASK_XP_MULT)
+	local ret = {}
+	SendScriptCallback("experience_multiplier_on_before_multiply", "task", G_TASK_XP_MULT, ret)
+	increase_experience(task_xp, tonumber(ret.new_mult) or G_TASK_XP_MULT)
 end
 
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_stash()
-	if not EXPERIENCE_SETTINGS["treasure_xp"]["xp"] then
-		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+	local treasure_xp = MCM_SETTINGS.TREASURE_XP
+	
+	if (not treasure_xp) then
+		print_dbg("Failed to give the actor experience for completing the task")
 		return
 	end
 	
-	local cache_xp = EXPERIENCE_SETTINGS["treasure_xp"]["xp"]
-	increase_experience(cache_xp, G_TREASURE_XP_MULT)
+	local ret = {}
+	SendScriptCallback("experience_multiplier_on_before_multiply", "treasure", G_TREASURE_XP_MULT, ret)
+	increase_experience(treasure_xp, tonumber(ret.new_mult) or G_TREASURE_XP_MULT)
 end
 
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_discover_spot()
-	if not EXPERIENCE_SETTINGS["discover_spot_xp"]["xp"] then
-		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+	local discover_spot_xp = MCM_SETTINGS.DISCOVER_SPOT_XP
+	
+	if (not discover_spot_xp) then
+		print_dbg("Failed to give the actor experience for discovering spot")
 		return
 	end
 	
-	local xp_by_spot = EXPERIENCE_SETTINGS["discover_spot_xp"]["xp"]
-	increase_experience(xp_by_spot, G_DISCOVER_SPOT_XP_MULT)
+	local ret = {}
+	SendScriptCallback("experience_multiplier_on_before_multiply", "discover_spot", G_DISCOVER_SPOT_XP_MULT, ret)
+	increase_experience(discover_spot_xp, tonumber(ret.new_mult) or G_DISCOVER_SPOT_XP_MULT)
 end
 
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_disassembly_items(obj)
-	if not (EXPERIENCE_SETTINGS["disassembly_xp"]["weapons_xp"] or EXPERIENCE_SETTINGS["disassembly_xp"]["outfits_xp"] or EXPERIENCE_SETTINGS["disassembly_xp"]["items_xp"]) then
-		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+	local dis_weapons_xp = MCM_SETTINGS.DISASSEMBLY_WPN_XP
+	local dis_outfits_xp = MCM_SETTINGS.DISASSEMBLY_OUT_XP
+	local dis_items_xp = MCM_SETTINGS.DISASSEMBLY_ITM_XP
+	
+	if (not dis_weapons_xp) or (not dis_outfits_xp) or (not dis_items_xp) then
+		print_dbg("Failed to give the actor experience for disassembling items")
 		return
 	end
 	
 	local xp_by_disassemble = 0
 	
 	if IsWeapon(obj) then
-		xp_by_disassemble = EXPERIENCE_SETTINGS["disassembly_xp"]["weapons_xp"]
+		xp_by_disassemble = dis_weapons_xp
 	elseif IsOutfit(obj) or IsHeadgear(obj) then
-		xp_by_disassemble = EXPERIENCE_SETTINGS["disassembly_xp"]["outfits_xp"]
+		xp_by_disassemble = dis_outfits_xp
 	else
-		xp_by_disassemble = EXPERIENCE_SETTINGS["disassembly_xp"]["items_xp"]
+		xp_by_disassemble = dis_items_xp
 	end
 	
-	increase_experience(xp_by_disassemble, G_DISASSEMBLY_XP_MULT)
+	local ret = {}
+	SendScriptCallback("experience_multiplier_on_before_multiply", "disassemble", G_DISASSEMBLY_XP_MULT, ret)
+	increase_experience(xp_by_disassemble, tonumber(ret.new_mult) or G_DISASSEMBLY_XP_MULT)
 end
 
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_mutant_loot(loot_count)
-	if not EXPERIENCE_SETTINGS["mutant_loot_xp"]["xp_per_item"] then
-		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+	local mutant_loot_xp = MCM_SETTINGS.MUTANT_LOOT_XP
+	
+	if (not mutant_loot_xp) or (loot_count == 0) then
+		print_dbg("Failed to give the actor experience for looting mutants")
 		return
 	end
 	
-	if (loot_count == 0) then
-		return
-	end
-	
-	local xp_by_loot = EXPERIENCE_SETTINGS["mutant_loot_xp"]["xp_per_item"] * loot_count
-	increase_experience(xp_by_loot, G_MUTANT_LOOT_XP_MULT)
+	mutant_loot_xp = mutant_loot_xp * loot_count
+	local ret = {}
+	SendScriptCallback("experience_multiplier_on_before_multiply", "mutant_loot", G_MUTANT_LOOT_XP_MULT, ret)
+	increase_experience(mutant_loot_xp, tonumber(ret.new_mult) or G_MUTANT_LOOT_XP_MULT)
 end
 
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_repair_items()
-	if not EXPERIENCE_SETTINGS["repair_items_xp"]["xp"] then
-		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+	local repair_items_xp = MCM_SETTINGS.REPAIR_ITM_XP
+	
+	if (not repair_items_xp) then
+		print_dbg("Failed to give the actor experience for repairing items")
 		return
 	end
 	
-	local xp_by_repair = EXPERIENCE_SETTINGS["repair_items_xp"]["xp"]
-	increase_experience(xp_by_repair, G_REPAIR_ITEMS_XP_MULT)
+	local ret = {}
+	SendScriptCallback("experience_multiplier_on_before_multiply", "repair", G_REPAIR_ITEMS_XP_MULT, ret)
+	increase_experience(repair_items_xp, tonumber(ret.new_mult) or G_REPAIR_ITEMS_XP_MULT)
 end
 
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_cooking()
-	if not EXPERIENCE_SETTINGS["cooking_xp"]["xp"] then
-		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
+	local cooking_xp = MCM_SETTINGS.COOKING_XP
+	
+	if (not cooking_xp) then
+		print_dbg("Failed to give the actor experience for cooking food")
 		return
 	end
 	
-	local xp_by_cooking = EXPERIENCE_SETTINGS["cooking_xp"]["xp"]
-	increase_experience(xp_by_cooking, G_COOKING_XP_MULT)
+	local ret = {}
+	SendScriptCallback("experience_multiplier_on_before_multiply", "cook", G_COOKING_XP_MULT, ret)
+	increase_experience(cooking_xp, tonumber(ret.new_mult) or G_COOKING_XP_MULT)
 end
 
 -- Called from 'zz_experience_monkeys.script'
 function give_actor_experience_by_workshop(work_type, count)
-	if not (EXPERIENCE_SETTINGS["workshop_xp"]["xp_by_craft"] or EXPERIENCE_SETTINGS["workshop_xp"]["xp_by_repair"] or EXPERIENCE_SETTINGS["workshop_xp"]["xp_by_upgrade"]) then
-		printf("ERROR!!! | Experience value not found in the 'EXPERIENCE_SETTINGS' table!")
-		return
-	end
+	local xp_by_craft = MCM_SETTINGS.WORKSHOP_CRAFT_XP
+	local xp_by_repair = MCM_SETTINGS.WORKSHOP_REPAIR_XP
+	local xp_by_upgrade = MCM_SETTINGS.WORKSHOP_UPGRADE_XP
 	
-	if not (work_type or count) then
+	if (not xp_by_craft)
+	or (not xp_by_repair)
+	or (not xp_by_upgrade)
+	or (not work_type)
+	or (not count) then
+		print_dbg("Failed to give the actor experience for working at a workbench")
 		return
 	end
 	
 	local xp_by_work = 0
 	
 	if (work_type == "craft") then
-		xp_by_work = EXPERIENCE_SETTINGS["workshop_xp"]["xp_by_craft"] * count
+		xp_by_work = xp_by_craft
 	elseif (work_type == "repair") then
-		xp_by_work = EXPERIENCE_SETTINGS["workshop_xp"]["xp_by_repair"] * count
+		xp_by_work = xp_by_repair
 	elseif (work_type == "upgrade") then
-		xp_by_work = EXPERIENCE_SETTINGS["workshop_xp"]["xp_by_upgrade"] * count
+		xp_by_work = xp_by_upgrade
 	end
 	
-	increase_experience(xp_by_work, G_WORKSHOP_XP_MULT)
+	xp_by_work = xp_by_work * count
+	local ret = {}
+	SendScriptCallback("experience_multiplier_on_before_multiply", "workshop", G_WORKSHOP_XP_MULT, ret)
+	increase_experience(xp_by_work, tonumber(ret.new_mult) or G_WORKSHOP_XP_MULT)
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -409,7 +547,6 @@ local mutant_clsid_to_section = {
 	[clsid.dog_s]			= "dog",
 	[clsid.flesh_s]			= "flesh",
 	[clsid.gigant_s]		= "gigant",
-	[clsid.poltergeist_s]	= "poltergeist",
 	[clsid.psy_dog_s]		= "psy_dog",
 	[clsid.psy_dog_phantom_s] = "psy_dog",
 	[clsid.pseudodog_s]		= "pseudodog",
@@ -420,9 +557,9 @@ local mutant_clsid_to_section = {
 	[clsid.zombie_s]		= "zombie"
 }
 local mutant_kind_to_section = {
-		["SM_KARLIK"] 	 = "karlik",
-		["SM_PSYSUCKER"] = "psysucker",
-		["SM_LURKER"] 	 = "lurker"
+	["SM_KARLIK"]			= "karlik",
+	["SM_PSYSUCKER"]		= "psysucker",
+	["SM_LURKER"]			= "lurker"
 }
 
 -- Give an actor experience for killing mutants
@@ -430,12 +567,24 @@ local function monster_on_death_callback(monster, who)
 	if (who and who:id() == AC_ID) then
 		local clsid = monster:clsid()
 		local section = monster:section()
-		local kind = section and ini_sys:r_string_ex(section,"kind")
+		local kind = section and ini_sys:r_string_ex(section,"kind") or "unknown"
 		local mutant = mutant_kind_to_section[kind] or mutant_clsid_to_section[clsid]
 		
 		if mutant then
 			give_actor_experience_by_mutant(mutant)
 		end
+	end
+end
+
+local function poltergeist_on_death_callback(type, obj, name)
+	if (type ~= "mutants") then
+		return
+	end
+	
+	if (name == "poltergeist")
+	or (name == "pyrogeist")
+	or (name == "pseudogeist") then
+		give_actor_experience_by_mutant("poltergeist")
 	end
 end
 
@@ -461,6 +610,20 @@ local function load_state(data)
 	perks_save_data = data.experience_manager.perks_save_data or perks_save_data
 end
 
+local function start_experience_framework()
+	local perks_loaded = 0
+	
+	for k,v in pairs(PERKS_SETTINGS) do
+		perks_loaded = perks_loaded + 1
+	end
+	
+	print_dbg("VERSION %s", MOD_VERSION)
+	
+	if (perks_loaded > 0) then
+		print_dbg("%s skills loaded...", perks_loaded)
+	end
+end
+
 function on_game_start()
 	RegisterScriptCallback("save_state",save_state)
 	RegisterScriptCallback("load_state",load_state)
@@ -468,5 +631,7 @@ function on_game_start()
 	RegisterScriptCallback("on_option_change",update_mcm_settings)
 	RegisterScriptCallback("npc_on_death_callback",npc_on_death_callback)
 	RegisterScriptCallback("monster_on_death_callback",monster_on_death_callback)
+	RegisterScriptCallback("actor_on_interaction",poltergeist_on_death_callback)
 	update_mcm_settings()
+	start_experience_framework()
 end

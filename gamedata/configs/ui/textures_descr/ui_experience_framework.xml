@@ -2,7 +2,7 @@
 	<!-- UI Main Elements -->
 	<file name="ui\experience_framework\ui_main_experience">
 		<!-- Use this icon if you don't have your own skill icon!!! -->
-		<texture id="ui_experience_mod_empty_perk_icon" x="1113" y="445" width="32" height="32" />
+		<texture id="ui_experience_mod_empty_perk_icon" x="0" y="0" width="0" height="0" />
 		
 		<!-- Main Window Background -->
 	    <texture id="ui_main_experience_mod_background" x="0" y="0" width="969" height="669" />

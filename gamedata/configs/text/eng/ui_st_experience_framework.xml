@@ -9,62 +9,252 @@
 
 -->
 	<string id="ui_mcm_menu_experience_framework">
-		<text>Experience</text>
+		<text>EXP RPG Redux</text>
 	</string>
-	<string id="ui_mcm_experience_framework_title">
-		<text>Experience Framework</text>
+	<string id="ui_mcm_experience_framework_main_title">
+		<text>Experience RPG Redux - Main settings</text>
 	</string>
-	<string id="ui_mcm_experience_framework_DISPLAY_UI">
+	<string id="ui_mcm_experience_framework_xp_option_title">
+		<text>Experience RPG Redux - Experience settings</text>
+	</string>
+	<string id="ui_mcm_menu_experience_framework_main">
+		<text>Main</text>
+	</string>
+	<string id="ui_mcm_menu_experience_framework_xp_option">
+		<text>XP</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_main_DISPLAY_UI">
 		<text>Skill menu</text>
 	</string>
-	<string id="ui_mcm_experience_framework_LEVEL_UP_NEWS">
+	<string id="ui_mcm_experience_framework_experience_framework_main_LEVEL_UP_NEWS">
 		<text>Level Up Alerts</text>
 	</string>
-	<string id="ui_mcm_experience_framework_XP_GAIN_NEWS">
+	<string id="ui_mcm_experience_framework_experience_framework_main_XP_GAIN_NEWS">
 		<text>Experience Gain Alerts</text>
 	</string>
-	<string id="ui_mcm_experience_framework_NEWS_SOUND">
+	<string id="ui_mcm_experience_framework_experience_framework_main_NEWS_SOUND">
 		<text>Enable alert sounds</text>
 	</string>
-	<string id="ui_mcm_experience_framework_GLOBAL_EXPERIENCE_MULT">
+	<string id="ui_mcm_experience_framework_experience_framework_main_GLOBAL_EXPERIENCE_MULT">
 		<text>Global Experience Multiplier</text>
 	</string>
-	<string id="ui_mcm_experience_framework_GLOBAL_EXPERIENCE_MULT_desc">
+	<string id="ui_mcm_experience_framework_experience_framework_main_GLOBAL_EXPERIENCE_MULT_desc">
 		<text>This setting adjusts the multiplier gaining experience from all sources. \n \nATTENTION! \nThis setting affects the global experience gain variable and multiplies the total experience gained, after calculating other in-game multipliers!</text>
 	</string>
-	<string id="ui_mcm_experience_framework_DEBUG_MODE">
+	<string id="ui_mcm_experience_framework_experience_framework_main_DEBUG_MODE">
 		<text>Debug mode</text>
 	</string>
 	
-	<string id="ui_mcm_experience_framework_mcm_kb_modifier">
+	<string id="ui_mcm_experience_framework_main_mcm_kb_modifier">
 		<text>With additional key</text>
 	</string>
-	<string id="ui_mcm_experience_framework_mcm_kb_modifier_desc">
+	<string id="ui_mcm_experience_framework_main_mcm_kb_modifier_desc">
 		<text>The skill menu will only open if that key is also held down.</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_none">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mod_none">
 		<text>Without key</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_shift">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mod_shift">
 		<text>Shift</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_ctrl">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mod_ctrl">
 		<text>Ctrl</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mod_alt">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mod_alt">
 		<text>Alt</text>
 	</string>
-	<string id="ui_mcm_experience_framework_mcm_kb_mode">
+	<string id="ui_mcm_experience_framework_main_mcm_kb_mode">
 		<text>Press Mode</text>
 	</string>
-	<string id="ui_mcm_experience_framework_mcm_kb_mode_desc">
+	<string id="ui_mcm_experience_framework_main_mcm_kb_mode_desc">
 		<text>The skill menu will only open if the given key is pressed in this way.</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mode_press">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mode_press">
 		<text>Single</text>
 	</string>
-	<string id="ui_mcm_lst_experience_framework_mcm_kb_mode_dtap">
+	<string id="ui_mcm_lst_experience_framework_main_mcm_kb_mode_dtap">
 		<text>Double</text>
+	</string>
+	
+	
+	<string id="ui_mcm_experience_framework_xp_option_stalker_xp_option">
+		<text>These settings are responsible for the base experience that is given when killing stalkers, depending on their community.</text>
+	</string>
+	<string id="ui_mcm_experience_framework_xp_option_stalker_xp_rank_option">
+		<text>These settings multiply the base experience for killing stalkers, depending on their rank.</text>
+	</string>
+	<string id="ui_mcm_experience_framework_xp_option_mutant_xp_option">
+		<text>These settings are responsible for the base experience that is given when killing mutants, depending on their type.</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_stalker">
+		<text>Loner</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_bandit">
+		<text>Bandit</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_csky">
+		<text>Clear Sky</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_army">
+		<text>Military</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_freedom">
+		<text>Freedom</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_dolg">
+		<text>Duty</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ecolog">
+		<text>Ecologist</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_killer">
+		<text>Mercenary</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_monolith">
+		<text>Monolith</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_greh">
+		<text>Sin</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_renegade">
+		<text>Renegade</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_isg">
+		<text>UNISG</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_zombied">
+		<text>Zombified</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_novice">
+		<text>Rookie</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_trainee">
+		<text>Trainee</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_experienced">
+		<text>Experienced</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_professional">
+		<text>Professional</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_veteran">
+		<text>Veteran</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_expert">
+		<text>Expert</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_master">
+		<text>Master</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_legend">
+		<text>Legend</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_bloodsucker">
+		<text>Bloodsucker</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_boar">
+		<text>Boar</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_burer">
+		<text>Burer</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_chimera">
+		<text>Chimera</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_controller">
+		<text>Controller</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_dog">
+		<text>Blind dog</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_flesh">
+		<text>Flesh</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_gigant">
+		<text>Pseudogiant</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_poltergeist">
+		<text>Poltergeist</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_psy_dog">
+		<text>Psy-dog</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_pseudodog">
+		<text>Pseudodog</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_snork">
+		<text>Snork</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_tushkano">
+		<text>Tushkano</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_cat">
+		<text>Cat</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_fracture">
+		<text>Fracture</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_zombie">
+		<text>Zombie</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_karlik">
+		<text>Karlik</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_psysucker">
+		<text>Psysucker</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_lurker">
+		<text>Lurker</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_TREASURE_XP">
+		<text>Experience for discovering stash</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_TASK_XP">
+		<text>Experience for completing task</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_TASK_XP_MULT">
+		<text>Experience multiplier for storyline tasks</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_DISCOVER_SPOT_XP">
+		<text>Experience for discovering new location</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_DISASSEMBLY_WPN_XP">
+		<text>Experience for scrapping weapons</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_DISASSEMBLY_OUT_XP">
+		<text>Experience for scrapping armor</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_DISASSEMBLY_ITM_XP">
+		<text>Experience for scrapping other items</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_MUTANT_LOOT_XP">
+		<text>Experience for skinning mutants</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_REPAIR_ITM_XP">
+		<text>Experience for repairing items</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_COOKING_XP">
+		<text>Experience for cooking</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_WORKSHOP_CRAFT_XP">
+		<text>Experience for crafting items at a workbench</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_WORKSHOP_REPAIR_XP">
+		<text>Experience for repairing items at a workbench</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_WORKSHOP_UPGRADE_XP">
+		<text>Experience for upgrading items at the workbench</text>
 	</string>
 
 
@@ -156,7 +346,7 @@
 		<text>Experience gained!</text>
 	</string>
 	<string id="st_xp_news_gain_xp_desc">
-		<text>%s+%s XP</text>
+		<text>%sGained +%s XP</text>
 	</string>
 
 

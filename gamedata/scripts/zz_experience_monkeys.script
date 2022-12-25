@@ -1,5 +1,13 @@
 -- Monkey patches for some needs Experience Framework
 
+
+-- Required for compatibility
+if zz_item_cooking_keep_crafting_window_open then end
+if zz_item_repair_keep_crafting_window_open then end
+if zz_ui_workshop_keep_crafting_window_open then end
+if zzzz_food_degradation_z_item_cooking then end
+if zzzz_food_degradation_z_ui_mutant_loot then end
+
 ---------------------------------------------------------------------------------------------------------------------------------
 -- bind_stalker_ext.script ------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -264,7 +272,7 @@ function pda.discover_spots()
 			if obj_id and db.storage[obj_id] and db.storage[obj_id].object then
 				local n_dist = ds_distance_tbl[level.name()] or 40
 				if (db.storage[obj_id].object:position():distance_to(actor:position()) <= n_dist) then
-					experience_core.give_actor_experience_by_discover_spot(v.target)
+					experience_core.give_actor_experience_by_discover_spot()
 				end
 			end
 		end
@@ -319,12 +327,6 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------
 -- Give the actor experience for looting a mutant
 UIMutantOnLoot = ui_mutant_loot.UIMutantLoot.Loot
-
--- Compatibility patch for Food Degradation mod
-if zzzz_food_degradation_z_ui_mutant_loot then
-	UIMutantOnLoot = zzzz_food_degradation_z_ui_mutant_loot.ui_mutant_loot.UIMutantLoot.Loot
-end
-
 function ui_mutant_loot.UIMutantLoot:Loot(loot_all)
 	local obj_mutant = level.object_by_id(self.id)
 	if (not obj_mutant) then
@@ -358,15 +360,8 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------
 -- Give the actor experience for repair items
 UIOnRepair = item_repair.UIRepair.OnRepair
-
--- Compatibility patch for Keep Crafting Windows Opened mod
-if zz_item_repair_keep_crafting_window_open then
-	UIOnRepair = zz_item_repair_keep_crafting_window_open.item_repair.UIRepair.OnRepair
-end
-
 function item_repair.UIRepair:OnRepair()
 	local obj_1 = self.CC[1]:GetCell_Selected(true)
-	local obj_2 = self.CC[2]:GetCell_Selected(true)
 	
 	if not (obj_1 and self.con_val[4]) then return end
 	
@@ -379,16 +374,6 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------
 -- Give the actor experience for cooking food
 UIOnCook = item_cooking.UICook.OnCook
-
--- Compatibility patch for Food Degradation mod
-if zzzz_food_degradation_z_item_cooking then
-	UIOnCook = zzzz_food_degradation_z_item_cooking.item_cooking.UICook.OnCook
-	
--- Compatibility patch for Keep Crafting Windows Opened mod
-elseif zz_item_cooking_keep_crafting_window_open then
-	UIOnCook = zz_item_cooking_keep_crafting_window_open.item_cooking.UICook.OnCook
-end
-
 function item_cooking.UICook:OnCook()
 	local meal = self:GetSelectedMeal()
 	if (not meal) then
@@ -406,14 +391,6 @@ end
 UIWorkShopOnCraft		= ui_workshop.UIWorkshopCraft.Craft
 UIWorkShopOnRepair		= ui_workshop.UIWorkshopRepair.Repair
 UIWorkShopOnUpgrade		= ui_workshop.UIWorkshopUpgrade.Upgrade
-
--- Compatibility patch for Keep Crafting Windows Opened mod
-if zz_ui_workshop_keep_crafting_window_open then
-	UIWorkShopOnCraft		= zz_ui_workshop_keep_crafting_window_open.ui_workshop.UIWorkshopCraft.Craft
-	UIWorkShopOnRepair		= zz_ui_workshop_keep_crafting_window_open.ui_workshop.UIWorkshopRepair.Repair
-	UIWorkShopOnUpgrade		= zz_ui_workshop_keep_crafting_window_open.ui_workshop.UIWorkshopUpgrade.Upgrade
-end
-
 function ui_workshop.UIWorkshopCraft:Craft()
 	if (not self.craft_allow_r) then 
 		return 
