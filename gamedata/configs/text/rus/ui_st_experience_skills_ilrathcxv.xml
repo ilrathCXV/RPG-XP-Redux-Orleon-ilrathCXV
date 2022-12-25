@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+
+	<string id="st_perk_fast_hands">
+        <text>Быстрые Руки</text>
+    </string>
+	<string id="st_perk_fast_hands_desc">
+        <text>Увеличивает скорость доставания/убирания оружия</text>
+    </string>
+	<string id="st_perk_fast_hands_desc_1">
+        <text>Увеличивает скорость доставания/убирания оружия на 10%.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_fast_hands_desc_2">
+        <text>Увеличивает скорость доставания/убирания оружия на 20%.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_fast_hands_desc_3">
+        <text>Увеличивает скорость доставания/убирания оружия на 30%.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_fast_hands_desc_4">
+        <text>Увеличивает скорость доставания/убирания оружия на 40%.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_fast_hands_desc_5">
+        <text>Увеличивает скорость доставания/убирания оружия на 50%.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+    <string id="st_perk_ghost_ammo">
+        <text>Призрачные Патроны</text>
+    </string>
+	<string id="st_perk_ghost_ammo_desc">
+        <text>У вас есть шанс вернуть патрон при попадании в цель (шанс удваивается при критическом попадании).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_ghost_ammo_desc_1">
+        <text>У вас есть шанс 1% вернуть патрон при попадании в цель (2% при критическом уроне).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_ghost_ammo_desc_2">
+        <text>У вас есть шанс 2% вернуть патрон при попадании в цель (4% при критическом уроне).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_ghost_ammo_desc_3">
+        <text>У вас есть шанс 3% вернуть патрон при попадании в цель (6% при критическом уроне).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_ghost_ammo_desc_4">
+        <text>У вас есть шанс 4% вернуть патрон при попадании в цель (8% при критическом уроне).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_ghost_ammo_desc_5">
+        <text>У вас есть шанс 5% вернуть патрон при попадании в цель (10% при критическом уроне).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+    <string id="st_perk_gunslinger">
+        <text>Ковбой</text>
+    </string>
+	<string id="st_perk_gunslinger_desc">
+        <text>Теперь вы наносите повышенный урон из пистолетов и пистолетов-пулеметов.</text>
+    </string>
+	<string id="st_perk_gunslinger_desc_1">
+        <text>Ваш урон при использовании пистолетов и пистолетов-пулеметов увеличивается на 5%.\n\n\nМакс. Уровень навыка:3</text>
+    </string>
+	<string id="st_perk_gunslinger_desc_2">
+        <text>Ваш урон при использовании пистолетов и пистолетов-пулеметов увеличивается на 10%.\n\n\nМакс. Уровень навыка:3</text>
+    </string>
+	<string id="st_perk_gunslinger_desc_3">
+        <text>Ваш урон при использовании пистолетов и пистолетов-пулеметов увеличивается на 15%.\n\n\nМакс. Уровень навыка:3</text>
+    </string>
+
+	
+	<string id="st_perk_rifleman">
+        <text>Стрелок</text>
+    </string>
+	<string id="st_perk_rifleman_desc">
+        <text>Теперь вы наносите повышенный урон из штурмовых винтовок.</text>
+    </string>
+	<string id="st_perk_rifleman_desc_1">
+        <text>Ваш урон при использовании штурмовых винтовок увеличивается на 5%.\n\n\nМакс. Уровень навыка:3</text>
+    </string>
+	<string id="st_perk_rifleman_desc_2">
+        <text>Ваш урон при использовании штурмовых винтовок увеличивается на 10%.\n\n\nМакс. Уровень навыка:3</text>
+    </string>
+	<string id="st_perk_rifleman_desc_3">
+        <text>Ваш урон при использовании штурмовых винтовок увеличивается на 15%.\n\n\nМакс. Уровень навыка:3</text>
+    </string>
+	
+	
+	<string id="st_perk_heavy_gunner">
+        <text>Танк</text>
+    </string>
+	<string id="st_perk_heavy_gunner_desc">
+        <text>Теперь вы наносите повышенный урон из дробовиков, снайперских винтовок и гранатомётов.</text>
+    </string>
+	<string id="st_perk_heavy_gunner_desc_1">
+        <text>Ваш урон при использовании дробовиков, снайперских винтовок и гранатомётов увеличивается на 5%.\n\n\nМакс. Уровень навыка:3</text>
+    </string>
+	<string id="st_perk_heavy_gunner_desc_2">
+        <text>Ваш урон при использовании дробовиков, снайперских винтовок и гранатомётов увеличивается на 10%.\n\n\nМакс. Уровень навыка:3</text>
+    </string>
+	<string id="st_perk_heavy_gunner_desc_3">
+        <text>Ваш урон при использовании дробовиков, снайперских винтовок и гранатомётов увеличивается на 15%.\n\n\nМакс. Уровень навыка:3</text>
+    </string>
+	
+	
+    <string id="st_perk_berserker">
+        <text>Берсерк</text>
+    </string>
+	<string id="st_perk_berserker_desc">
+        <text>Вы наносите больше урона и получаете меньше повреждения при использовании оружия ближнего боя.</text>
+    </string>
+	<string id="st_perk_berserker_desc_1">
+        <text>Теперь вы наносите на 5% больше урона в ближнем бою и получаете на 2.5% меньше поврежденийпри использовании оружия ближнего боя.\n\n\nМакс. Уровень умения: 3</text>
+    </string>
+	<string id="st_perk_berserker_desc_2">
+        <text>Теперь вы наносите на 10% больше урона в ближнем бою и получаете на 5% меньше поврежденийпри использовании оружия ближнего боя.\n\n\nМакс. Уровень умения: 3</text>
+    </string>
+	<string id="st_perk_berserker_desc_3">
+        <text>Теперь вы наносите на 15% больше урона в ближнем бою и получаете на 7.5% меньше поврежденийпри использовании оружия ближнего боя.\n\n\nМакс. Уровень умения: 3</text>
+    </string>
+	
+	
+	<string id="st_perk_jamming_shot">
+        <text>Клинящий выстрел</text>
+    </string>
+	<string id="st_perk_jamming_shot_desc">
+        <text>Шанс заклинить оружие противника при попадании ему в руку.</text>
+    </string>
+	<string id="st_perk_jamming_shot_desc_1">
+        <text>У вас появляется шанс заклинить оружие противника при попадании ему в руку.\n\n\nМакс. Уровень умения: 3</text>
+    </string>
+	
+	
+	<string id="st_perk_bloody_mess">
+        <text>Кровавое Месиво</text>
+    </string>
+	<string id="st_perk_bloody_mess_desc">
+        <text>При убийстве врага есть шанс, что цель взорвется, нанеся урон всем вокруг (включая ВАС!).</text>
+    </string>
+	<string id="st_perk_bloody_mess_desc_1">
+        <text>При убийстве врага есть 1% шанс, что цель взорвется, нанеся урон всем вокруг (включая ВАС!).\n\n\nМакс Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_bloody_mess_desc_2">
+        <text>При убийстве врага есть 2% шанс, что цель взорвется, нанеся урон всем вокруг (включая ВАС!).\n\n\nМакс Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_bloody_mess_desc_3">
+        <text>При убийстве врага есть 3% шанс, что цель взорвется, нанеся урон всем вокруг (включая ВАС!).\n\n\nМакс Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_bloody_mess_desc_4">
+        <text>При убийстве врага есть 4% шанс, что цель взорвется, нанеся урон всем вокруг (включая ВАС!).\n\n\nМакс Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_bloody_mess_desc_5">
+        <text>При убийстве врага есть 5% шанс, что цель взорвется, нанеся урон всем вокруг (включая ВАС!).\n\n\nМакс Уровень навыка: 5</text>
+    </string>
+	
+	
+    <string id="st_perk_disarming_shot">
+        <text>Обезоруживающий Выстрел</text>
+    </string>
+	<string id="st_perk_disarming_shot_desc">
+        <text>При попадании по оружию противника есть шанс, что он его выронит.</text>
+    </string>
+	<string id="st_perk_disarming_shot_desc_1">
+        <text>При попадании по оружию противника есть 15% шанс, что он его выронит.\n\n\nМакс. Уровень навыка: 1</text>
+    </string>
+	
+
+    <string id="st_perk_scavenger">
+        <text>Мародёр</text>
+    </string>
+	<string id="st_perk_scavenger_desc">
+        <text>При обыске тела есть небольшой шанс найти разборные предметы и материалы для крафта.</text>
+    </string>
+	<string id="st_perk_scavenger_desc_1">
+        <text>При обыске тела есть 7% шанс найти разборные предметы и материалы для крафта.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_scavenger_desc_2">
+        <text>При обыске тела есть 14% шанс найти разборные предметы и материалы для крафта.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_scavenger_desc_3">
+        <text>При обыске тела есть 21% шанс найти разборные предметы и материалы для крафта.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_scavenger_desc_4">
+        <text>При обыске тела есть 28% шанс найти разборные предметы и материалы для крафта.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_scavenger_desc_5">
+        <text>При обыске тела есть 35% шанс найти разборные предметы и материалы для крафта.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+    <string id="st_perk_careful_handler">
+        <text>Бережливость</text>
+    </string>
+	<string id="st_perk_careful_handler_desc">
+        <text>Броня и оружие, которое можно найти на теле врага, будет в более хорошем состоянии.</text>
+    </string>
+	<string id="st_perk_careful_handler_desc_1">
+        <text>Минимальное состояние брони и оружия, которое можно найти на теле врага, составит 15%.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_careful_handler_desc_2">
+        <text>Минимальное состояние брони и оружия, которое можно найти на теле врага, составит 20%.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_careful_handler_desc_3">
+        <text>Минимальное состояние брони и оружия, которое можно найти на теле врага, составит 25%.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_careful_handler_desc_4">
+        <text>Минимальное состояние брони и оружия, которое можно найти на теле врага, составит 30%.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_careful_handler_desc_5">
+        <text>Минимальное состояние брони и оружия, которое можно найти на теле врага, составит 35%.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+    
+	
+	<string id="st_perk_master_craftsman">
+        <text>Кузнец</text>
+    </string>
+	<string id="st_perk_master_craftsman_desc">
+        <text>При изготовлении предметов или при готовки пищи есть шанс произвести 2 предмета вместо 1.</text>
+    </string>	
+	<string id="st_perk_master_craftsman_desc_1">
+        <text>При изготовлении предметов или при готовки пищи есть 10% шанс произвести 2 предмета вместо 1.\n\n\nМакс. Уровень навыка: 1</text>
+    </string>	
+	
+
+    <string id="st_perk_cybermedic">
+        <text>Кибер-Медик</text>
+    </string>
+	<string id="st_perk_cybermedic_desc">
+        <text>Вам вживили имплантат, который повышает скорость остановки кровотечения.</text>
+    </string>
+	<string id="st_perk_cybermedic_desc_1">
+        <text>Вы получили имплантат, который помогает медленно останавливать кровотечение.\n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	<string id="st_perk_cybermedic_desc_2">
+        <text>Усовершенствование имплантата теперь удваивает его эффективность.\n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	<string id="st_perk_cybermedic_desc_3">
+        <text>Последнее обновление имплантата позволяет пассивно останавливать кровотечение в три раза быстрее по сравнению с базовой версией. \n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	
+	
+	
+    <string id="st_perk_dodger">
+        <text>Ловкач</text>
+    </string>
+	<string id="st_perk_dodger_desc">
+        <text>У вас появляется небольшой шанс полностью избежать урон.</text>
+    </string>
+	<string id="st_perk_dodger_desc_1">
+        <text>У вас 0.5% шанс полностью избежать урон.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_dodger_desc_2">
+        <text>У вас 1% шанс полностью избежать урон.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_dodger_desc_3">
+        <text>У вас 1.5% шанс полностью избежать урон.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_dodger_desc_4">
+        <text>У вас 2% шанс полностью избежать урон.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_dodger_desc_5">
+        <text>У вас 2.5% шанс полностью избежать урон.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+    <string id="st_perk_comfort_food">
+        <text>Гурман</text>
+    </string>
+	<!-- IIITypmaH -->
+	<string id="st_perk_comfort_food_desc">
+        <text>Вы едите более эффективно  .</text>
+    </string>
+	<string id="st_perk_comfort_food_desc_1">
+        <text>Когда вы едите или пьете, вы получаете прибавку к здоровью.\n\n\nМакс. Уровень навыка: 1</text>
+    </string>
+	
+
+    <string id="st_perk_ammo_finder">
+        <text>Нюх на Патроны</text>
+    </string>
+	<string id="st_perk_ammo_finder_desc">
+        <text>При обыске тела вы находите больше патронов.</text>
+    </string>
+	<string id="st_perk_ammo_finder_desc_1">
+        <text>При обыске тела вы находите на 20% больше патронов.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_ammo_finder_desc_2">
+        <text>При обыске тела вы находите на 40% больше патронов.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_ammo_finder_desc_3">
+        <text>При обыске тела вы находите на 60% больше патронов.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_ammo_finder_desc_4">
+        <text>При обыске тела вы находите на 80% больше патронов.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_ammo_finder_desc_5">
+        <text>При обыске тела вы находите на 100% больше патронов.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+	<string id="st_perk_medicine_man">
+        <text>Санитар</text>
+    </string>
+	<string id="st_perk_medicine_man_desc">
+        <text>При обыске тела у вас есть шанс найти дополнительный медицинский предмет. Качество предмета увеличивается при повышении уровня навыка.</text>
+    </string>
+	<string id="st_perk_medicine_man_desc_1">
+        <text>При обыске тела у вас есть 7% шанс найти дополнительный медицинский предмет.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_medicine_man_desc_2">
+        <text>При обыске тела у вас есть 14% шанс найти дополнительный медицинский предмет.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_medicine_man_desc_3">
+        <text>При обыске тела у вас есть 21% шанс найти дополнительный медицинский предмет.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_medicine_man_desc_4">
+        <text>При обыске тела у вас есть 28% шанс найти дополнительный медицинский предмет.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_medicine_man_desc_5">
+        <text>При обыске тела у вас есть 35% шанс найти дополнительный медицинский предмет.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+	<string id="st_perk_artefinder">
+        <text>Нюх На Артефакты</text>
+    </string>
+	<string id="st_perk_artefinder_desc">
+        <text>При ограблении врага у вас есть шанс найти артефакт, который обычно находится в текущей области. Кроме того, любой артефакт, который вы найдете, теперь будет иметь более высокую эффективность.</text>
+    </string>
+	<string id="st_perk_artefinder_desc_1">
+        <text>При ограблении врага у вас есть 5% шанс найти артефакт, который обычно находится в текущей области. Кроме того, любой артефакт, который вы найдете, теперь будет иметь более высокую эффективность (до 24-28%).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_artefinder_desc_2">
+        <text>При ограблении врага у вас есть 10% шанс найти артефакт, который обычно находится в текущей области. Кроме того, любой артефакт, который вы найдете, теперь будет иметь более высокую эффективность (до 26-30%).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_artefinder_desc_3">
+        <text>При ограблении врага у вас есть 15% шанс найти артефакт, который обычно находится в текущей области. Кроме того, любой артефакт, который вы найдете, теперь будет иметь более высокую эффективность (до 28-32%).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_artefinder_desc_4">
+        <text>При ограблении врага у вас есть 20% шанс найти артефакт, который обычно находится в текущей области. Кроме того, любой артефакт, который вы найдете, теперь будет иметь более высокую эффективность (до 32-36%).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_artefinder_desc_5">
+        <text>При ограблении врага у вас есть 25% шанс найти артефакт, который обычно находится в текущей области. Кроме того, любой артефакт, который вы найдете, теперь будет иметь более высокую эффективность (до 36-40%).\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+	<string id="st_perk_midas_touch">
+        <text>Прикосновение Мидаса</text>
+    </string>
+	<string id="st_perk_midas_touch_desc">
+        <text>При обыске тела вы находите больше денег.</text>
+    </string>
+	<string id="st_perk_midas_touch_desc_1">
+        <text>При обыске тела вы находите на 5% больше денег.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_midas_touch_desc_2">
+        <text>При обыске тела вы находите на 10% больше денег.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_midas_touch_desc_3">
+        <text>При обыске тела вы находите на 15% больше денег.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_midas_touch_desc_4">
+        <text>При обыске тела вы находите на 20% больше денег.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_midas_touch_desc_5">
+        <text>При обыске тела вы находите на 25% больше денег.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	<string id="st_perk_master_zone">
+        <text>Легенда Зоны</text>
+    </string>
+	<string id="st_perk_master_zone_desc">
+        <text>Вы смогли выведать ещё одну тайну Зоны и смогли подключиться к ноосфере. Такая связь позволяет медленно восстанавливать состояние артефактов у вас на поясе.</text>
+    </string>
+	<string id="st_perk_master_zone_desc_1">
+        <text>Вы смогли выведать ещё одну тайну Зоны и смогли подключиться к ноосфере. Такая связь позволяет медленно восстанавливать состояние артефактов у вас на поясе.\n\n\nМакс. Уровень навыка: 1</text>
+    </string>
+
+    
+	<string id="st_perk_plate_finder">
+        <text>Поиск Пластин</text>
+    </string>
+	<string id="st_perk_plate_finder_desc">
+        <text>При обыске тела у вас есть небольшой шанс найти поврежденную кевларовую пластину.</text>
+    </string>
+	<string id="st_perk_plate_finder_desc_1">
+        <text>При обыске тела у вас есть 5% шанс найти поврежденную кевларовую пластину.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_plate_finder_desc_2">
+        <text>При обыске тела у вас есть 10% шанс найти поврежденную кевларовую пластину.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_plate_finder_desc_3">
+        <text>При обыске тела у вас есть 15% шанс найти поврежденную кевларовую пластину.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_plate_finder_desc_4">
+        <text>При обыске тела у вас есть 20% шанс найти поврежденную кевларовую пластину.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_plate_finder_desc_5">
+        <text>При обыске тела у вас есть 25% шанс найти поврежденную кевларовую пластину.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	<string id="st_perk_spiked">
+        <text>Ёж</text>
+    </string>
+	<string id="st_perk_spiked_desc">
+        <text>При получении урона ваш враг также получает часть этого урона.</text>
+    </string>
+	<string id="st_perk_spiked_desc_1">
+        <text>При получении урона ваш враг также получает 5% этого урона.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_spiked_desc_2">
+        <text>При получении урона ваш враг также получает 10% этого урона.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_spiked_desc_3">
+        <text>При получении урона ваш враг также получает 15% этого урона.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_spiked_desc_4">
+        <text>При получении урона ваш враг также получает 20% этого урона.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_spiked_desc_5">
+        <text>При получении урона ваш враг также получает 25% этого урона.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+	<string id="st_perk_anomaly_defense">
+        <text>Рождённый в Аномалии</text>
+    </string>
+	<string id="st_perk_anomaly_defense_desc">
+        <text>Аномалии будут наносить меньше урона.</text>
+    </string>
+	<string id="st_perk_anomaly_defense_desc_1">
+        <text>Аномалии будут наносить на 2.5% меньше урона.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_anomaly_defense_desc_2">
+        <text>Аномалии будут наносить на 5% меньше урона.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_anomaly_defense_desc_3">
+        <text>Аномалии будут наносить на 7.5% меньше урона.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_anomaly_defense_desc_4">
+        <text>Аномалии будут наносить на 10% меньше урона.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_anomaly_defense_desc_5">
+        <text>Аномалии будут наносить на 12.5% меньше урона.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+
+
+	<string id="st_perk_iron_resolve">
+        <text>Железная решимость</text>
+    </string>
+	<string id="st_perk_iron_resolve_desc">
+        <text>Теперь вы будете быстрее восстанавливаться после любых эффектов головокружения или опьянения.</text>
+    </string>
+	<string id="st_perk_iron_resolve_desc_1">
+        <text>Вы медленно восстанавливаетесь после любых эффектов головокружения или опьянения.\n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	<string id="st_perk_iron_resolve_desc_2">
+        <text>Вы восстанавливаетесь после любых эффектов головокружения или опьянения немного быстрее.\n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	<string id="st_perk_iron_resolve_desc_3">
+        <text>Вы быстро восстанавливаетесь после любых эффектов головокружения или опьянения.\n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+    
+	
+	<string id="st_perk_silver_tongued">
+        <text>Красноречие</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc">
+        <text>Вы получаете более выгодные цены при покупке или продажи.</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc_1">
+        <text>Вы получаете на 5% более выгодные цены при покупке или продажи.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc_2">
+        <text>Вы получаете на 10% более выгодные цены при покупке или продажи.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc_3">
+        <text>Вы получаете на 15% более выгодные цены при покупке или продажи.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc_4">
+        <text>Вы получаете на 20% более выгодные цены при покупке или продажи.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc_5">
+        <text>Вы получаете на 25% более выгодные цены при покупке или продажи.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+	<string id="st_perk_mutant_slayer">
+        <text>Гроза Мутантов</text>
+    </string>
+	<string id="st_perk_mutant_slayer_desc">
+        <text>Вы наносите больше урона мутантам.</text>
+    </string>
+	<string id="st_perk_mutant_slayer_desc_1">
+        <text>Вы наносите на 5% больше урона мутантам.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_mutant_slayer_desc_2">
+        <text>Вы наносите на 10% больше урона мутантам.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_mutant_slayer_desc_3">
+        <text>Вы наносите на 15% больше урона мутантам.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_mutant_slayer_desc_4">
+        <text>Вы наносите на 20% больше урона мутантам.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_mutant_slayer_desc_5">
+        <text>Вы наносите на 25% больше урона мутантам.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	<string id="st_perk_vampirism">
+        <text>Вампир</text>
+    </string>
+	<string id="st_perk_vampirism_desc">
+        <text>При убийстве врага вы получаете небольшое количество Здоровья и Выносливости.</text>
+    </string>
+	<string id="st_perk_vampirism_desc_1">
+        <text>При убийстве врага вы получаете 0.25% Здоровья и Выносливости. \n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	<string id="st_perk_vampirism_desc_2">
+        <text>При убийстве врага вы получаете 0.5% Здоровья и Выносливости. \n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	<string id="st_perk_vampirism_desc_3">
+        <text>При убийстве врага вы получаете 0.75% Здоровья и Выносливости. \n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	
+	
+	<string id="st_perk_warmonger">
+        <text>Терминатор</text>
+    </string>
+	<string id="st_perk_warmonger_desc">
+        <text>При убийстве врага вы получаете в рюкзак треть размера магазина вашего оружия в виде патронов (мин. объём магазина - 3 патрона).</text>
+    </string>
+	<string id="st_perk_warmonger_desc_1">
+        <text>При убийстве врага вы получаете в рюкзак треть размера магазина вашего оружия в виде патронов (мин. объём магазина - 3 патрона).\n\n\nМакс. Уровень навыка: 1</text>
+    </string>
+	
+	
+	<string id="st_perk_fighting_stance">
+        <text>Боевая Стойка</text>
+    </string>
+	<string id="st_perk_fighting_stance_desc">
+        <text>Вы размахиваете оружием ближнего боя гораздо быстрее.</text>
+    </string>
+	<string id="st_perk_fighting_stance_desc_1">
+        <text>Вы размахиваете оружием ближнего боя на 10% быстрее.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_fighting_stance_desc_2">
+        <text>Вы размахиваете оружием ближнего боя на 20% быстрее.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_fighting_stance_desc_3">
+        <text>Вы размахиваете оружием ближнего боя на 30% быстрее.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_fighting_stance_desc_4">
+        <text>Вы размахиваете оружием ближнего боя на 40% быстрее.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_fighting_stance_desc_5">
+        <text>Вы размахиваете оружием ближнего боя на 50% быстрее.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	<string id="st_perk_deadeye">
+        <text>Меткий Глаз</text>
+    </string>
+	<string id="st_perk_deadeye_desc">
+        <text>У вас есть маленький шанс нанести огромный урон.</text>
+    </string>
+	<string id="st_perk_deadeye_desc_1">
+        <text>У вас есть 0.1% шанс нанести критический урон. Урон увеличивается на 25%.\n\n\nМакс. Уровень навыка: 5\n\n\nОБРАТИ ВНИМАНИЕ! Навык "Меткий Выстрел" повышает шанс критического урона.</text>
+    </string>
+	<string id="st_perk_deadeye_desc_2">
+        <text>У вас есть 0.1% шанс нанести критический урон. Урон увеличивается на 50%.\n\n\nМакс. Уровень навыка: 5\n\n\nОБРАТИ ВНИМАНИЕ! Навык "Меткий Выстрел" повышает шанс критического урона.</text>
+    </string>
+	<string id="st_perk_deadeye_desc_3">
+        <text>У вас есть 0.1% шанс нанести критический урон. Урон увеличивается на 75%.\n\n\nМакс. Уровень навыка: 5\n\n\nОБРАТИ ВНИМАНИЕ! Навык "Меткий Выстрел" повышает шанс критического урона.</text>
+    </string>
+	<string id="st_perk_deadeye_desc_4">
+        <text>У вас есть 0.1% шанс нанести критический урон. Урон увеличивается на 100%.\n\n\nМакс. Уровень навыка: 5\n\n\nОБРАТИ ВНИМАНИЕ! Навык "Меткий Выстрел" дополнительно повышает шанс критического урона.</text>
+    </string>
+	<string id="st_perk_deadeye_desc_5">
+        <text>У вас есть 0.1% шанс нанести критический урон. Урон увеличивается на 125%.\n\n\nМакс. Уровень навыка: 5\n\n\nОБРАТИ ВНИМАНИЕ! Навык "Меткий Выстрел" дополнительно повышает шанс критического урона.</text>
+    </string>
+	
+	<string id="st_perk_lucky_strike">
+        <text>Меткий Выстрел</text>
+    </string>
+	<string id="st_perk_lucky_strike_desc">
+        <text>У вас больше шансов нанести критический урон.</text>
+    </string>
+	<string id="st_perk_lucky_strike_desc_1">
+        <text>У вас есть 1% шанс нанести критический урон в размере 110%. Выстрел в голову увеличивает данный шанс до 1.5%.\n\n\nМакс. Уровень навыка: 5\n\n\nОБРАТИ ВНИМАНИЕ! Навык "Меткий Глаз" дополнительно повысит величину критического урона.</text>
+    </string>
+	<string id="st_perk_lucky_strike_desc_2">
+        <text>У вас есть 4% шанс нанести критический урон в размере 110%. Выстрел в голову увеличивает данный шанс до 6%.\n\n\nМакс. Уровень навыка: 5\n\n\nОБРАТИ ВНИМАНИЕ! Навык "Меткий Глаз" дополнительно повысит величину критического урона.</text>
+    </string>
+	<string id="st_perk_lucky_strike_desc_3">
+        <text>У вас есть 9% шанс нанести критический урон в размере 110%. Выстрел в голову увеличивает данный шанс до 13.5%.\n\n\nМакс. Уровень навыка: 5\n\n\nОБРАТИ ВНИМАНИЕ! Навык "Меткий Глаз" дополнительно повысит величину критического урона.</text>
+    </string>
+	<string id="st_perk_lucky_strike_desc_4">
+        <text>У вас есть 16% шанс нанести критический урон в размере 110%. Выстрел в голову увеличивает данный шанс до 24%.\n\n\nМакс. Уровень навыка: 5\n\n\nОБРАТИ ВНИМАНИЕ! Навык "Меткий Глаз" дополнительно повысит величину критического урона.</text>
+    </string>
+	<string id="st_perk_lucky_strike_desc_5">
+        <text>У вас есть 25% шанс нанести критический урон в размере 110%. Выстрел в голову увеличивает данный шанс до 37.5%.\n\n\nМакс. Уровень навыка: 5\n\n\nОБРАТИ ВНИМАНИЕ! Навык "Меткий Глаз" дополнительно повысит величину критического урона.</text>
+    </string>
+	
+</string_table>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+
+	<string id="st_perk_surgical_precision">
+        <text>Точность Хирурга</text>
+    </string>
+	<string id="st_perk_surgical_precision_desc">
+        <text>При использовании любого медицинского предмета вы дополнительно получаете усиление в виде восстановления здоровья и лечения от радиации.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_surgical_precision_desc_1">
+        <text>При использовании любого медицинского предмета вы дополнительно получаете 6% усиление в виде восстановления здоровья и лечения от радиации.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_surgical_precision_desc_2">
+        <text>При использовании любого медицинского предмета вы дополнительно получаете 12% усиление в виде восстановления здоровья и лечения от радиации.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_surgical_precision_desc_3">
+        <text>При использовании любого медицинского предмета вы дополнительно получаете 18% усиление в виде восстановления здоровья и лечения от радиации.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_surgical_precision_desc_4">
+        <text>При использовании любого медицинского предмета вы дополнительно получаете 24% усиление в виде восстановления здоровья и лечения от радиации.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_surgical_precision_desc_5">
+        <text>При использовании любого медицинского предмета вы дополнительно получаете 30% усиление в виде восстановления здоровья и лечения от радиации.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+    <string id="st_perk_calm_mind">
+        <text>Медитация</text>
+    </string>
+	<string id="st_perk_calm_mind_desc">
+        <text>Благодаря усиленным тренировкам и постоянному пребыванию в Зоне ваш разум стал сильнее сопротивляться ее ужасам. Теперь вы более устойчивы к пси-повреждениям и быстрее восстанавливаете свое пси-здоровье. Регенерация увеличивается у костра.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_calm_mind_desc_1">
+        <text>Теперь вы на 3% более устойчивы к пси-повреждениям и быстрее восстанавливаете свое пси-здоровье. Регенерация увеличивается на 20% у костра.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_calm_mind_desc_2">
+        <text>Теперь вы на 6% более устойчивы к пси-повреждениям и быстрее восстанавливаете свое пси-здоровье. Регенерация увеличивается на 40% у костра.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_calm_mind_desc_3">
+        <text>Теперь вы на 9% более устойчивы к пси-повреждениям и быстрее восстанавливаете свое пси-здоровье. Регенерация увеличивается на 60% у костра.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_calm_mind_desc_4">
+        <text>Теперь вы на 12% более устойчивы к пси-повреждениям и быстрее восстанавливаете свое пси-здоровье. Регенерация увеличивается на 80% у костра.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_calm_mind_desc_5">
+        <text>Теперь вы на 15% более устойчивы к пси-повреждениям и быстрее восстанавливаете свое пси-здоровье. Регенерация удваивается у костра.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+    <string id="st_perk_repair_junkie">
+        <text>Трудоголик</text>
+    </string>
+	<string id="st_perk_repair_junkie_desc">
+        <text>Поддержание снаряжения в хорошем состоянии научило вас более эффективно обращаться с инструментами. Теперь у вас есть шанс сохранить ремкомплект при ремонте или чистке предметов.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_repair_junkie_desc_1">
+        <text>Шанс сохранить ремкомплект повышается до 5%\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_repair_junkie_desc_2">
+        <text>Шанс сохранить ремкомплект повышается до 10%\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_repair_junkie_desc_3">
+        <text>Шанс сохранить ремкомплект повышается до 15%\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_repair_junkie_desc_4">
+        <text>Шанс сохранить ремкомплект повышается до 20%\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_repair_junkie_desc_5">
+        <text>Шанс сохранить ремкомплект повышается до 25%\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+
+	
+	<string id="st_perk_rifleman">
+        <text>Пехотинец</text>
+    </string>
+	<string id="st_perk_rifleman_desc">
+        <text>Увеличивает урон Штурмовыми Винтовками</text>
+    </string>
+	<string id="st_perk_rifleman_desc_1">
+        <text>Вы наносите на 5% больше урона при стрельбе из Штурмовых Винтовок.\n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	<string id="st_perk_rifleman_desc_2">
+        <text>Вы наносите на 10% больше урона при стрельбе из Штурмовых Винтовок.\n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	<string id="st_perk_rifleman_desc_3">
+        <text>Вы наносите на 15% больше урона при стрельбе из Штурмовых Винтовок.\n\n\nМакс. Уровень навыка: 3</text>
+    </string>
+	
+	
+	<string id="st_perk_lockpick_mastery">
+        <text>Взломщик</text>
+    </string>
+	<string id="st_perk_lockpick_mastery_desc">
+        <text>Найдя руководство по слесарному делу, вы теперь более эффективно взламываете замки запертых контейнеров.\n\n\nМакс. Уровень навыка: 5\n\n\n%c[d_red]ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"!!!</text>
+    </string>
+	<string id="st_perk_lockpick_mastery_desc_1">
+        <text>Сложность замков на контейнерах понижается на 15%.\n\n\nМакс. Уровень навыка: 5\n\n\n%c[d_red]ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"!!!</text>
+    </string>
+	<string id="st_perk_lockpick_mastery_desc_2">
+        <text>Сложность замков на контейнерах понижается на 30%.\n\n\nМакс. Уровень навыка: 5\n\n\n%c[d_red]ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"!!!</text>
+    </string>
+	<string id="st_perk_lockpick_mastery_desc_3">
+        <text>Сложность замков на контейнерах понижается на 45%.\n\n\nМакс. Уровень навыка: 5\n\n\n%c[d_red]ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"!!!</text>
+    </string>
+	<string id="st_perk_lockpick_mastery_desc_4">
+        <text>Сложность замков на контейнерах понижается на 60%.\n\n\nМакс. Уровень навыка: 5\n\n\n%c[d_red]ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"!!!</text>
+    </string>
+	<string id="st_perk_lockpick_mastery_desc_5">
+        <text>Сложность замков на контейнерах понижается на 75%.\n\n\nМакс. Уровень навыка: 5\n\n\n%c[d_red]ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"!!!</text>
+    </string>
+	
+	
+	<string id="st_perk_silver_tongued">
+        <text>Красноречие</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc">
+        <text>Вы получаете более выгодные цены при покупке или продажи.</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc_1">
+        <text>Вы получаете на 5% более выгодные цены при покупке или продажи.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc_2">
+        <text>Вы получаете на 10% более выгодные цены при покупке или продажи.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc_3">
+        <text>Вы получаете на 15% более выгодные цены при покупке или продажи.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc_4">
+        <text>Вы получаете на 20% более выгодные цены при покупке или продажи.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_silver_tongued_desc_5">
+        <text>Вы получаете на 25% более выгодные цены при покупке или продажи.\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+	
+	<string id="st_perk_mag_loader">
+        <text>Хранитель Магазинов</text>
+    </string>
+	<string id="st_perk_mag_loader_desc">
+        <text>Загрузка боеприпасов в магазины - это боль. Итак, вы решили стать лучше в этом. Теперь вы загружаете патроны намного быстрее.</text>
+    </string>
+	<string id="st_perk_mag_loader_desc_1">
+        <text>Скорость загрузки магазина увеличина на 20%\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_mag_loader_desc_2">
+        <text>Скорость загрузки магазина увеличина на 40%\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_mag_loader_desc_3">
+        <text>Скорость загрузки магазина увеличина на 60%\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_mag_loader_desc_4">
+        <text>Скорость загрузки магазина увеличина на 80%\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	<string id="st_perk_mag_loader_desc_5">
+        <text>Скорость загрузки магазина увеличина на 100%\n\n\nМакс. Уровень навыка: 5</text>
+    </string>
+	
+</string_table>
