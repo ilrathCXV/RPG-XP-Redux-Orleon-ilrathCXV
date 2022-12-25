@@ -323,6 +323,17 @@ function item_parts.disassembly_item(obj, obj_d)
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------
+-- zzzz_arti_jamming_repairs.script ---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+if zzzz_arti_jamming_repairs then
+	local BaseReplacePart = zzzz_arti_jamming_repairs.replace_part
+	function zzzz_arti_jamming_repairs.replace_part(id, part, kit_name, clean)		
+		BaseReplacePart(id, part, kit_name, clean)
+		experience_core.give_actor_experience_by_repair_items()
+	end
+end
+
+---------------------------------------------------------------------------------------------------------------------------------
 -- ui_mutant_loot.script --------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
 -- Give the actor experience for looting a mutant

@@ -58,6 +58,23 @@ end
 local sms = actor_menu.set_msg
 local criticalChance = 0
 local criticalMultiplier = 1
+
+local get_safe_sound_object = xr_sound.get_safe_sound_object
+
+local function play_sound_on_actor(snd, volume, frequency)
+	if not snd then
+		trace("snd is nil")
+		return
+	end
+	local actor = db.actor
+	local snd = get_safe_sound_object(snd)
+	if snd then
+		snd:play(actor, 0, sound_object.s2d)
+		snd.volume = volume or 1
+		snd.frequency = frequency or 1
+		return snd
+	end
+end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -195,6 +212,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	if (math.random(1000) <= criticalChance) then
 		txt = "Critical hit for " .. criticalMultiplier .. "x damage!"
 		sms(2, txt, 5)
+		play_sound_on_actor("elite", 1, 0.8)
 		shit.power = shit.power * criticalMultiplier
 	end
 	
