@@ -594,4 +594,20 @@
         <text>You have a 25% chance of landing critical hits that deal multiply your damage by 10%. Landing a headshot will increase this chance to 37.5%.\n\n\nMax Perk Level: 5\n\n\nNOTE: Points into Deadeye will override your critical damage multiplier.</text>
     </string>
 	
+	<string id="st_perk_strong_back">
+        <text>Strong Back</text>
+    </string>
+	<string id="st_perk_strong_back_desc">
+        <text>Increase your carry weight with each rank.</text>
+    </string>
+	<string id="st_perk_strong_back_desc_1">
+        <text>Your travels through the Zone have strengthed your body. You now can carry an extra 5kg of weight.\n\n\nMax Perk Level: 3</text>
+    </string>
+	<string id="st_perk_strong_back_desc_2">
+        <text>You now can carry an extra 10kg of weight.\n\n\nMax Perk Level: 3</text>
+    </string>
+	<string id="st_perk_strong_back_desc_3">
+        <text>You now can carry an extra 15kg of weight. Additionally, you can now fast travel when overweight (other fast travel rules still apply).\n\n\nMax Perk Level: 3</text>
+    </string>
+	
 </string_table>

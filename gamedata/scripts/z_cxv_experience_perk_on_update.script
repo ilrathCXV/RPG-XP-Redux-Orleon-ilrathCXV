@@ -22,11 +22,11 @@ local old_time              = 0
 function perk_effects_over_time()
     if time_global() < old_time then return end
     old_time = time_global() + 200
-	local bleedingCure = 0
 
 -------------------------------------------------------------> Cybermedic
     if cybermedic >= 1 then
-        bleedingCure = 0.00025 * cybermedic
+		local bleedingCure = 0
+        bleedingCure = 0.00075 * cybermedic
 		db.actor.bleeding = bleedingCure
     end
 -------------------------------------------------------------> Master of the Zone
