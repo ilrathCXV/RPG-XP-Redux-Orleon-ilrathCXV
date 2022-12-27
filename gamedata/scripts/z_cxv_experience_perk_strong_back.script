@@ -16,7 +16,7 @@ function haru_skills.update_strength()
 		local strong_back_addition = strong_back * 5
 		weight.add_weight("cxv_strong_back", strong_back_addition, true)
 	end
-	if (strong_back <= 0)
+	if (strong_back <= 0) then
 		weight.remove_weight("cxv_strong_back")
 	end
 end

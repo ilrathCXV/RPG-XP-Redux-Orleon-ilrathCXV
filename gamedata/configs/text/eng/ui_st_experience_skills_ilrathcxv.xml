@@ -479,7 +479,7 @@
 	
 	
 	<string id="st_perk_mutant_slayer">
-        <text>Mutant Slayer</text>
+        <text>Hunter</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc">
         <text>You now deal more damage to mutants.</text>
@@ -601,13 +601,41 @@
         <text>Increase your carry weight with each rank.</text>
     </string>
 	<string id="st_perk_strong_back_desc_1">
-        <text>Your travels through the Zone have strengthed your body. You now can carry an extra 5kg of weight.\n\n\nMax Perk Level: 3</text>
+        <text>Your travels through the Zone have strengthed your body. You now can carry an extra 5kg of weight.\n\n\nMax Perk Level: 5</text>
     </string>
 	<string id="st_perk_strong_back_desc_2">
-        <text>You now can carry an extra 10kg of weight.\n\n\nMax Perk Level: 3</text>
+        <text>You now can carry an extra 10kg of weight.\n\n\nMax Perk Level: 5</text>
     </string>
 	<string id="st_perk_strong_back_desc_3">
-        <text>You now can carry an extra 15kg of weight. Additionally, you can now fast travel when overweight (other fast travel rules still apply).\n\n\nMax Perk Level: 3</text>
+        <text>You now can carry an extra 15kg of weight. Additionally, you can now fast travel when overweight (other fast travel rules still apply).\n\n\nMax Perk Level: 5</text>
+    </string>
+	<string id="st_perk_strong_back_desc_4">
+        <text>You now can carry an extra 20kg of weight. Additionally, you can now fast travel when overweight (other fast travel rules still apply).\n\n\nMax Perk Level: 5</text>
+    </string>
+	<string id="st_perk_strong_back_desc_5">
+        <text>You now can carry an extra 25kg of weight. Additionally, you can now fast travel when overweight (other fast travel rules still apply).\n\n\nMax Perk Level: 5</text>
+    </string>
+	
+	<string id="st_perk_slow_metabolism">
+        <text>Slow Metabolism</text>
+    </string>
+	<string id="st_perk_slow_metabolism_desc">
+        <text>Reduce the amount of satiety you lose from consuming items.</text>
+    </string>
+	<string id="st_perk_slow_metabolism_desc_1">
+        <text>Your body has adapted to your medication and drug use. You now lose 10% less satiety when consuming any item that drains it.\n\n\nMax Perk Level: 5</text>
+    </string>
+	<string id="st_perk_slow_metabolism_desc_2">
+        <text>You now lose 20% less satiety when consuming any item that drains it.\n\n\nMax Perk Level: 5</text>
+    </string>
+	<string id="st_perk_slow_metabolism_desc_3">
+        <text>You now lose 30% less satiety when consuming any item that drains it.\n\n\nMax Perk Level: 5</text>
+    </string>
+	<string id="st_perk_slow_metabolism_desc_4">
+        <text>You now lose 40% less satiety when consuming any item that drains it.\n\n\nMax Perk Level: 5</text>
+    </string>
+	<string id="st_perk_slow_metabolism_desc_5">
+        <text>You now lose 50% less satiety when consuming any item that drains it. Additionally, any item you consume that restores your satiety will also give you half of its satiety as an additional boost over 1 minute.\n\n\nMax Perk Level: 5</text>
     </string>
 	
 </string_table>

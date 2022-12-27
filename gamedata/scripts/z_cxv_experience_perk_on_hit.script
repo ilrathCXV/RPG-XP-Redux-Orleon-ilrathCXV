@@ -149,6 +149,10 @@ end
 
 function perk_damage_effects(npc, shit, bone_id, flags)
 	
+	if shit.draftsman:id() ~= db.actor:id() then
+		return
+	end
+	
 	local isCompanion = npc:has_info("npcx_is_companion")
 	if isCompanion then return end
 	
@@ -212,7 +216,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	if (math.random(1000) <= criticalChance) then
 		txt = "Critical hit for " .. criticalMultiplier .. "x damage!"
 		sms(2, txt, 5)
-		play_sound_on_actor("elite", 1, 0.8)
+		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, random_float(0.8, 1.0))
 		shit.power = shit.power * criticalMultiplier
 	end
 	
