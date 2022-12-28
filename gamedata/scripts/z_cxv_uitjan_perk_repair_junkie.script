@@ -84,7 +84,7 @@ function on_game_start()
 					local seed = supportremaininguses + supportitemid + self.con_val[1]
 					math.randomseed(seed)
 					
-					local refundbool = math.random() < ((zone_gunsmith - 2) * 0.3)
+					local refundbool = math.random() < ((zone_gunsmith - 2) * 0.1)
 					
 					if refundbool then
 						BonusNews()
@@ -97,7 +97,7 @@ function on_game_start()
 				local seed = supportitem:condition() + supportitemid + self.con_val[1]
 				math.randomseed(seed)
 				
-				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.3)
+				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.1)
 				
 				if refundbool then
 					BonusNews()
@@ -107,7 +107,7 @@ function on_game_start()
 				local seed = supportitemid + self.con_val[1]
 				math.randomseed(seed)
 				
-				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.3)
+				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.1)
 				
 				if refundbool then
 					BonusNews()
@@ -147,7 +147,7 @@ function on_game_start()
 			if not support_waslastuse and IsItem("multiuse", supportitem:section()) then
 				local seed = supportremaininguses + supportitemid + self.con_val[1]
 				math.randomseed(seed)
-				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.3)
+				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.1)
 				
 				if refundbool then
 					BonusNews()
@@ -157,7 +157,7 @@ function on_game_start()
 				local seed = supportitem:condition() + supportitemid + self.con_val[1]
 				math.randomseed(seed)
 				
-				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.3)
+				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.1)
 				
 				if refundbool then
 					BonusNews()
