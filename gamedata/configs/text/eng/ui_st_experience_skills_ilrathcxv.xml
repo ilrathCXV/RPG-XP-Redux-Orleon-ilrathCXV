@@ -638,4 +638,26 @@
         <text>You now lose 50% less satiety when consuming any item that drains it. Additionally, any item you consume that restores your satiety will also give you half of its satiety as an additional boost over 1 minute.\n\n\nMax Perk Level: 5</text>
     </string>
 	
+	<string id="st_perk_zone_gunsmith">
+        <text>Jury Rigging</text>
+    </string>
+	<string id="st_perk_zone_gunsmith_desc">
+        <text>You can now use Metallic Scraps to repair any item (excluding artefacts).</text>
+    </string>
+	<string id="st_perk_zone_gunsmith_desc_1">
+        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material. You can now use Metallic Scraps as a bonus item when repairing (excluding artefacts). They will have a +3% Bonus.\n\n\nMax Perk Level: 5</text>
+    </string>
+	<string id="st_perk_zone_gunsmith_desc_2">
+        <text>Metallic Scraps now have a Bonus of +4% during repairs (excluding artefacts).\n\n\nMax Perk Level: 5</text>
+    </string>
+	<string id="st_perk_zone_gunsmith_desc_3">
+        <text>Metallic Scraps now have a Bonus of +5% during repairs (excluding artefacts). Additionally, you have a 10% to not consume a bonus repair item.\n\n\nMax Perk Level: 5</text>
+    </string>
+	<string id="st_perk_zone_gunsmith_desc_4">
+        <text>Metallic Scraps now have a Bonus of +6% during repairs (excluding artefacts). Additionally, you have a 20% to not consume a bonus repair item.\n\n\nMax Perk Level: 5</text>
+    </string>
+	<string id="st_perk_zone_gunsmith_desc_5">
+        <text>Metallic Scraps now have a Bonus of +7% during repairs (excluding artefacts). Additionally, you have a 30% to not consume a bonus repair item.\n\n\nMax Perk Level: 5</text>
+    </string>
+	
 </string_table>

@@ -1,8 +1,12 @@
 local repair_junkie = 0											-- Repair Junkie: Grants a 5% chance to refund a repair item (up to 25% at max rank)
+local zone_gunsmith = 0
 
 local function experience_perk_on_update(id, data)
 	if (id == "perk_repair_junkie") then
 		repair_junkie = data["curr_level"]
+	end
+	if (id == "perk_zone_gunsmith") then
+		zone_gunsmith = data["curr_level"]
 	end	
 end
 
@@ -13,9 +17,12 @@ function on_game_start()
 	local originalOnRepair = item_repair.UIRepair.OnRepair
 	item_repair.UIRepair.OnRepair = function (self)
 		local repairkit = nil
+		local supportitem = nil
 		local supportitemid = 0
 		local kitremaininguses = 0
+		local supportremaininguses = 0
 		local waslastuse = false
+		local support_waslastuse = false
 		local degrade_factor = item_repair.degrade_factor or 0.2
 		if not zz_item_repair_keep_crafting_window_open then
 			repairkit = self.obj
@@ -33,6 +40,7 @@ function on_game_start()
 		end
 		
 		if self.CC[2]:GetCell_Selected(true) then
+			supportitem = self.CC[2]:GetCell_Selected(true)
 			supportitemid = self.CC[2]:GetCell_Selected(true):id()
 		end
 						
@@ -67,7 +75,49 @@ function on_game_start()
 			end
 		end
 		
+		if supportitem then
+			
+			if IsItem("multiuse", supportitem:section()) then
+				supportremaininguses = supportitem:get_remaining_uses()
+				if supportremaininguses == 1 then
+					support_waslastuse = true
+					local seed = supportremaininguses + supportitemid + self.con_val[1]
+					math.randomseed(seed)
+					
+					local refundbool = math.random() < ((zone_gunsmith - 2) * 0.3)
+					
+					if refundbool then
+						BonusNews()
+					
+						supportitem:set_remaining_uses(supportitem:get_remaining_uses() + 1)
+					end
+				end
+			elseif utils_item.is_degradable(supportitem) and supportitem:condition() <= degrade_factor then
+				support_waslastuse = true
+				local seed = supportitem:condition() + supportitemid + self.con_val[1]
+				math.randomseed(seed)
+				
+				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.3)
+				
+				if refundbool then
+					BonusNews()
+					supportitem:set_condition(math.min(supportitem:condition() + degrade_factor,1))
+				end
+			else
+				local seed = supportitemid + self.con_val[1]
+				math.randomseed(seed)
+				
+				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.3)
+				
+				if refundbool then
+					BonusNews()
+					alife_create_item(supportitem:section(), db.actor)
+				end
+			end
+		end
+		
 		originalOnRepair(self)
+		
 		
 		if repairkit then
 			if not waslastuse and IsItem("multiuse", repairkit:section()) then
@@ -88,6 +138,30 @@ function on_game_start()
 				if refundbool then
 					TinkerNews()
 					repairkit:set_condition(math.min(repairkit:condition() + degrade_factor,1))
+				end
+			end
+		end
+		
+
+		if supportitem then
+			if not support_waslastuse and IsItem("multiuse", supportitem:section()) then
+				local seed = supportremaininguses + supportitemid + self.con_val[1]
+				math.randomseed(seed)
+				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.3)
+				
+				if refundbool then
+					BonusNews()
+					supportitem:set_remaining_uses(supportitem:get_remaining_uses() + 1)
+				end
+			elseif not support_waslastuse and utils_item.is_degradable(supportitem) then
+				local seed = supportitem:condition() + supportitemid + self.con_val[1]
+				math.randomseed(seed)
+				
+				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.3)
+				
+				if refundbool then
+					BonusNews()
+					supportitem:set_condition(math.min(supportitem:condition() + degrade_factor,1))
 				end
 			end
 		end
@@ -152,5 +226,12 @@ function TinkerNews()
 	local sms = actor_menu.set_msg
 	local message = "Repair item refunded!"
 	sms(2, message, 5)
-	play_sound_on_actor("decoder", 1, 0.8)
+	play_sound_on_actor("decoder", 0.75, 0.8)
+end
+
+function BonusNews()
+	local sms = actor_menu.set_msg
+	local message = "Bonus item refunded!"
+	sms(2, message, 5)
+	play_sound_on_actor("decoder", 0.75, 0.8)
 end
