@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Author: Orleon
--- Last Edit: 24.12.2022 (ilrathCXV - kept ltx importer for Perks only)
+-- Last Edit: 28.12.2022 (ilrathCXV - kept ltx importer for Perks only)
 -- Experience Framework
 -- Experience/Level/Perks interface
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ local get_perk_data = experience_core.get_perk_data
 local clr_list = {
 	["g"]		= utils_xml.get_color("d_green"),
 	["o"]		= utils_xml.get_color("d_orange"),
-	["c"]		= utils_xml.get_color("d_cyan"),
+	["c"]		= utils_xml.get_color("d_cyan")
 }
 
 local snd_list = {
@@ -71,9 +71,12 @@ class "UIExperienceMenu" (CUIScriptWnd)
 
 function UIExperienceMenu:__init() super()
 	self.clr = {
-		["red"]		= GetARGB(255,204,0,51),
+		["def"]		= GetARGB(255,200,200,200),
+		["red"]		= GetARGB(255,183,17,17),
 		["orange"]	= GetARGB(255,238,153,26),
-		["green"]	= GetARGB(255,51,255,102),
+		["yellow"]	= GetARGB(255,236,223,80),
+		["green"]	= GetARGB(255,35,200,76),
+		["cyan"]	= GetARGB(255,153,255,255)
 	}
 	self.perk_selected = {
 		id = nil,
@@ -82,6 +85,7 @@ function UIExperienceMenu:__init() super()
 		max_level = nil,
 		each_level = nil
 	}
+	self.see_level = nil
 	
 	self:InitControls()
 	self:InitCallBacks()
@@ -108,6 +112,7 @@ function UIExperienceMenu:InitControls()
 	self.perk_description_b					= xml:InitStatic("perk_description_b", self.dialog)
 	self.actor_stats_b						= xml:InitStatic("actor_stats_b", self.dialog)
 	self.skillpoints_left_b					= xml:InitStatic("skillpoints_left_b", self.dialog)
+	self.level_viewer_b						= xml:InitStatic("level_viewer_b", self.dialog)
 	
 	-- Static Text
 	self.main_window_cap_text				= xml:InitTextWnd("main_window_cap_text", self.dialog)
@@ -124,16 +129,22 @@ function UIExperienceMenu:InitControls()
 	self.actor_level_count					= xml:InitTextWnd("actor_level_count", self.dialog)
 	self.actor_experience_count				= xml:InitTextWnd("actor_experience_count", self.dialog)
 	self.actor_next_level_xp_count			= xml:InitTextWnd("actor_next_level_xp_count", self.dialog)
+	self.level_viewer_count_text			= xml:InitTextWnd("level_viewer_count_text", self.dialog)
+	self.level_viewer_desc_text				= xml:InitTextWnd("level_viewer_desc_text", self.dialog)
 	
 	-- Buttons
-	self.btn_close							= self.xml:Init3tButton("btn_close", self.dialog)
+	self.btn_close							= xml:Init3tButton("btn_close", self.dialog)
 	self:Register(self.btn_close, "button_close")
-	self.btn_learn_perk						= self.xml:Init3tButton("btn_learn_perk", self.dialog)
+	self.btn_learn_perk						= xml:Init3tButton("btn_learn_perk", self.dialog)
 	self:Register(self.btn_learn_perk, "button_learn_perk")
-	self.btn_debug							= self.xml:Init3tButton("btn_debug", self.dialog)
+	self.btn_debug							= xml:Init3tButton("btn_debug", self.dialog)
 	self:Register(self.btn_debug, "button_debug")
-	self.btn_debug_reset_perks				= self.xml:Init3tButton("btn_debug_reset_perks", self.dialog)
+	self.btn_debug_reset_perks				= xml:Init3tButton("btn_debug_reset_perks", self.dialog)
 	self:Register(self.btn_debug_reset_perks, "button_debug_reset_perks")
+	self.btn_see_prev_level					= xml:Init3tButton("btn_see_prev_level", self.dialog)
+	self:Register(self.btn_see_prev_level, "button_see_prev_level")
+	self.btn_see_next_level					= xml:Init3tButton("btn_see_next_level", self.dialog)
+	self:Register(self.btn_see_next_level, "button_see_next_level")
 	
 	self.description_scrollbar				= xml:InitScrollView("description_scrollbar", self.dialog)
 	self.info_tip_text						= xml:InitTextWnd("info_tip_text", self.dialog)
@@ -172,6 +183,8 @@ function UIExperienceMenu:InitCallBacks()
 	self:AddCallback("button_learn_perk",			ui_events.BUTTON_CLICKED,		self.OnButtonLearnPerk,			self)
 	self:AddCallback("button_debug",				ui_events.BUTTON_CLICKED,		self.OnButtonDebug,				self)
 	self:AddCallback("button_debug_reset_perks",	ui_events.BUTTON_CLICKED,		self.OnButtonDebugResetPerks,	self)
+	self:AddCallback("button_see_prev_level",		ui_events.BUTTON_CLICKED,		self.OnButtonSeePrevLevel,		self)
+	self:AddCallback("button_see_next_level",		ui_events.BUTTON_CLICKED,		self.OnButtonSeeNextLevel,		self)
 end
 
 function UIExperienceMenu:Reset()
@@ -181,6 +194,12 @@ function UIExperienceMenu:Reset()
 	self.description_scrollbar:Show(false)
 	self.btn_learn_perk:Enable(false)
 	self.btn_learn_perk:Show(false)
+	self.level_viewer_b:Show(false)
+	self.level_viewer_count_text:Show(false)
+	self.level_viewer_desc_text:Show(false)
+	self.btn_see_prev_level:Show(false)
+	self.btn_see_next_level:Show(false)
+	self.see_level = nil
 	
 	if self.perks[self.perk_selected.id] then
 		self.perks[self.perk_selected.id].btn:SetCheck(false)
@@ -260,12 +279,44 @@ function UIExperienceMenu:UpdateSkillPoints()
 end
 
 function UIExperienceMenu:UpdatePerkNames()
+	local PERK_COLOR_NAMES = experience_core.MCM_SETTINGS.PERK_COLOR_NAMES or false
+	local actor_level = experience_core.XP.actor_level
+	local G_MAX_LEVEL = experience_core.G_MAX_LEVEL
+	local actor_skillpoints = experience_core.XP.actor_skillpoints
+	
 	for id, tbl in pairs(self.perks) do
 		self.perks[id].name:SetText(self:GetPerkLevelName(id))
+		
+		if (PERK_COLOR_NAMES) then
+			local max_level = tonumber(self.perks_settings[id]["max_level"])
+			local req_level = tonumber(self.perks_settings[id]["req_level"])
+			local each_level = tonumber(self.perks_settings[id]["each_level"])
+			local curr_level = get_perk_data(id)
+			
+			curr_level = curr_level["curr_level"]
+			req_level = req_level + (each_level * curr_level)
+			req_level = (req_level > G_MAX_LEVEL and G_MAX_LEVEL) or req_level
+			
+			if (curr_level >= max_level) then
+				self.perks[id].name:SetTextColor(self.clr["cyan"])
+			elseif (actor_level < req_level) then
+				if (curr_level == 0) then
+					self.perks[id].name:SetTextColor(self.clr["red"])
+				else
+					self.perks[id].name:SetTextColor(self.clr["yellow"])
+				end
+			elseif (actor_skillpoints > 0) then
+				self.perks[id].name:SetTextColor(self.clr["green"])
+			else
+				self.perks[id].name:SetTextColor(self.clr["orange"])
+			end
+		else
+			self.perks[id].name:SetTextColor(self.clr["def"])
+		end
 	end
 end
 
-function UIExperienceMenu:UpdatePerkDescription()
+function UIExperienceMenu:UpdatePerkInfo()
 	local id = self.perk_selected.id
 	
 	if (not id) then
@@ -281,19 +332,86 @@ function UIExperienceMenu:UpdatePerkDescription()
 	end
 	self.perk_selected.curr_level = tonumber(perk_data["curr_level"])
 	
-	local perk_desc = self.perks_settings[id]["description"]
+														 
 	local max_lvl = self.perk_selected.max_level
 	local curr_lvl = self.perk_selected.curr_level
 	
 	if (curr_lvl == 0) then		-- to show the description of the first level perk
-		curr_lvl = 1
+		self.see_level = 1
 	elseif (curr_lvl >= max_lvl) then
-		curr_lvl = max_lvl
+		self.see_level = max_lvl
+	else
+		self.see_level = curr_lvl
 	end
 	
 	self.perk_description_b:Show(true)
 	self.perk_description_header_text:Show(true)
-	self.perk_description_header_text:SetText(self:GetPerkLevelName(id))
+	self.perk_description_header_text:SetText(gc(self.perks_settings[id]["name"]))
+	
+	self:CheckToLearnPerk()
+	self:UpdateLevelViewer()
+end
+
+function UIExperienceMenu:UpdateLevelViewer()
+	self.level_viewer_b:Show(true)
+	self.btn_see_prev_level:Show(true)
+	self.btn_see_next_level:Show(true)
+	self.btn_see_prev_level:Enable(true)
+	self.btn_see_next_level:Enable(true)
+	self.level_viewer_count_text:Show(true)
+	self.level_viewer_count_text:SetText(strformat(gc("ui_st_xp_see_level_count_text"), self.see_level))
+	self.level_viewer_desc_text:Show(true)
+	self:BuildDescription(self.see_level)
+	
+	local max_level = self.perk_selected.max_level
+	local curr_level = self.perk_selected.curr_level
+	
+	if (self.see_level == 1) then
+		self.btn_see_prev_level:Enable(false)
+	end
+	
+	if (self.see_level == max_level) then
+		self.btn_see_next_level:Enable(false)
+	end
+	
+	if (self.see_level == curr_level) then
+		self.level_viewer_desc_text:SetText(gc("ui_st_xp_see_curr_level_desc_text"))
+	elseif (self.see_level > curr_level) then
+		local req_lvl = self.perk_selected.req_level
+		local each_lvl = self.perk_selected.each_level
+		local G_MAX_LEVEL = experience_core.G_MAX_LEVEL
+		
+		req_lvl = req_lvl + (each_lvl * (self.see_level - 1))	-- minus one to display for current viewing level
+		req_lvl = (req_lvl > G_MAX_LEVEL and G_MAX_LEVEL) or req_lvl
+		
+		self.level_viewer_desc_text:SetText(strformat(gc("ui_st_xp_see_next_level_desc_text"), req_lvl))
+	else
+		self.level_viewer_desc_text:SetText(gc("ui_st_xp_see_prev_level_desc_text"))
+	end
+end
+
+function UIExperienceMenu:OnButtonSeePrevLevel()
+	self.see_level = self.see_level - 1
+	self:UpdateLevelViewer()
+	play_sound(snd_list["perk_click"])
+end
+
+function UIExperienceMenu:OnButtonSeeNextLevel()
+	self.see_level = self.see_level + 1
+	self:UpdateLevelViewer()
+	play_sound(snd_list["perk_click"])
+end
+
+function UIExperienceMenu:UpdateAfterLearnPerk()
+	self:UpdateActorInfo()
+	self:UpdateSkillPoints()
+	self:UpdatePerkNames()
+	self:UpdatePerkInfo()
+end
+
+function UIExperienceMenu:BuildDescription(show_level)
+	local id = self.perk_selected.id
+	local perk_desc = self.perks_settings[id]["description"]
 	
 	self.description_scrollbar:Clear()
 	
@@ -327,7 +445,7 @@ function UIExperienceMenu:UpdatePerkDescription()
 	-- Text Description
 	self.perk_description = xml:InitTextWnd("perk_description", _st)
 	self.perk_description:SetWndPos(vector2():set(self.perk_description:GetWndPos().x, self.perk_description_icon:GetWndPos().y + icon_height + text_y_offset))
-	self.perk_description:SetText(gc(perk_desc .. "_" .. curr_lvl))
+	self.perk_description:SetText(gc(perk_desc .. "_" .. show_level))
 	self.perk_description:AdjustHeightToText()
 	
 	local total_width = self.description_scrollbar:GetWidth()
@@ -342,14 +460,6 @@ function UIExperienceMenu:UpdatePerkDescription()
 	-- End Building --
 	
 	self.description_scrollbar:Show(true)
-	self:CheckToLearnPerk()
-end
-
-function UIExperienceMenu:UpdateAfterLearnPerk()
-	self:UpdateActorInfo()
-	self:UpdateSkillPoints()
-	self:UpdatePerkNames()
-	self:UpdatePerkDescription()
 end
 
 function UIExperienceMenu:OnButtonPerk(perk_id)
@@ -372,7 +482,7 @@ function UIExperienceMenu:OnButtonPerk(perk_id)
 	self.perk_selected.each_level = tonumber(self.perks_settings[perk_id]["each_level"])
 	
 	play_sound(snd_list["perk_click"])
-	self:UpdatePerkDescription()
+	self:UpdatePerkInfo()
 end
 
 function UIExperienceMenu:CheckToLearnPerk()
@@ -392,6 +502,7 @@ function UIExperienceMenu:CheckToLearnPerk()
 	req_lvl = (req_lvl > G_MAX_LEVEL and G_MAX_LEVEL) or req_lvl
 	
 	if (curr_lvl >= max_lvl) then
+		self.btn_learn_perk:Show(false)
 		SetTip("perk_max_level", nil, nil, nil, true, self.info_tip_text)
 		return
 	elseif (actor_lvl < req_lvl) then

@@ -35,6 +35,9 @@
 	<string id="ui_mcm_experience_framework_experience_framework_main_NEWS_SOUND">
 		<text>Включить звуки оповещения</text>
 	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_main_PERK_COLOR_NAMES">
+		<text>Включить цветные названия навыков</text>
+	</string>
 	<string id="ui_mcm_experience_framework_experience_framework_main_GLOBAL_EXPERIENCE_MULT">
 		<text>Глобальный множитель опыта</text>
 	</string>
@@ -85,6 +88,22 @@
 	</string>
 	<string id="ui_mcm_experience_framework_xp_option_mutant_xp_option">
 		<text>Данные настройки отвечают за базовый опыт, который выдается при убийстве мутантов, в зависимости от их вида.</text>
+	</string>
+	<string id="ui_mcm_experience_framework_xp_option_mutant_xp_rank_option">
+		<text>Данные настройки умножают базовый опыт за убийства мутантов, в зависимости от их ранга.</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_base_xp_presets">
+		<text>Пресеты настроек базового опыта</text>
+	</string>
+	<string id="ui_mcm_lst_exp_xp_option_easy">
+		<text>Больше опыта</text>
+	</string>
+	<string id="ui_mcm_lst_exp_xp_option_normal">
+		<text>Стандартный опыт</text>
+	</string>
+	<string id="ui_mcm_lst_exp_xp_option_hard">
+		<text>Меньше опыта</text>
 	</string>
 	
 	<string id="ui_mcm_experience_framework_experience_framework_xp_option_stalker">
@@ -210,6 +229,16 @@
 		<text>Кикимора</text>
 	</string>
 	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_weak">
+		<text>Слабый</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_normal">
+		<text>Нормальный</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_strong">
+		<text>Сильный</text>
+	</string>
+	
 	<string id="ui_mcm_experience_framework_experience_framework_xp_option_TREASURE_XP">
 		<text>Опыт за нахождение тайника</text>
 	</string>
@@ -255,6 +284,22 @@
 	</string>
 	<string id="ui_mcm_experience_framework_experience_framework_xp_option_WORKSHOP_UPGRADE_XP">
 		<text>Опыт за улучшения предметов на верстаке</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ART_XP">
+		<text>Опыт за нахождение артефакта в аномалиях</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ART_XP_MULT_RANK_0">
+		<text>Множитель за 0 ранг артефакта (мусорные)</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ART_XP_MULT_RANK_1">
+		<text>Множитель за 1 ранг артефакта</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ART_XP_MULT_RANK_2">
+		<text>Множитель за 2 ранг артефакта</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ART_XP_MULT_RANK_3">
+		<text>Множитель за 3 ранг артефакта</text>
 	</string>
 
 
@@ -314,19 +359,38 @@
 		<text>Вы уже прокачали данный навык до максимального уровня!</text>
 	</string>
 	<string id="ui_st_xp_info_text_can_learn_perk">
-		<text>У вас достатогно очков навыков для изучения данного навыка! Нажмите на кнопку «Изучить».</text>
+		<text>У вас достатогно очков для изучения этого навыка. Нажмите на кнопку «Изучить».</text>
 	</string>
 	<string id="ui_st_xp_info_text_warning_not_have_skillpoints">
 		<text>У вас нет очков навыков!</text>
 	</string>
 	<string id="ui_st_xp_info_text_warning_not_req_level">
-		<text>У вас недостаточный уровень для прокачки данного навыка!</text>
+		<text>Недостаточный уровень персонажа для изучения этого навыка!</text>
 	</string>
 	<string id="ui_st_xp_info_text_solution_not_have_skillpoints">
 		<text>Повысьте свой уровень, чтобы получить очки навыков.</text>
 	</string>
 	<string id="ui_st_xp_info_text_solution_not_req_level">
-		<text>Необходим %s уровень, чтобы изучить этот навык!</text>
+		<text>Чтобы повысить уровень этого навыка - необходим %s уровень персонажа.</text>
+	</string>
+	
+	<string id="ui_st_xp_btn_see_prev_level_text">
+		<text>Пред.</text>
+	</string>
+	<string id="ui_st_xp_btn_see_next_level_text">
+		<text>След.</text>
+	</string>
+	<string id="ui_st_xp_see_level_count_text">
+		<text>Уровень %s</text>
+	</string>
+	<string id="ui_st_xp_see_prev_level_desc_text">
+		<text>(Уже изучено)</text>
+	</string>
+	<string id="ui_st_xp_see_curr_level_desc_text">
+		<text>(Текущий уровень)</text>
+	</string>
+	<string id="ui_st_xp_see_next_level_desc_text">
+		<text>(Требуется %s уровень)</text>
 	</string>
 
 

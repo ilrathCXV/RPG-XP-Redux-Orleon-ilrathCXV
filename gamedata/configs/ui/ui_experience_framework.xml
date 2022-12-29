@@ -24,7 +24,7 @@
 	<perk_list_header_text x="99" y="94" width="131" height="31">
 		<text r="200" g="200" b="200" font="letterica18" align="c" vert_align="c">ui_st_xp_perk_list_header_text</text>
 	</perk_list_header_text>
-	<perk_description_header_text x="301" y="94" width="324" height="31">
+	<perk_description_header_text x="305" y="94" width="324" height="31">
 		<text complex_mode="1" r="200" g="200" b="200" align="c" font="letterica18"/>
 	</perk_description_header_text>
 	<actor_stats_header_text x="725" y="94" width="100" height="31">
@@ -33,26 +33,26 @@
 	<skillpoints_left_header_text x="723" y="287" width="100" height="31">
 		<text r="200" g="200" b="200" font="letterica18" align="c" vert_align="c">ui_st_xp_skillpoints_left_header_text</text>
 	</skillpoints_left_header_text>
-	<actor_level_text x="683" y="122" width="100" height="31">
+	<actor_level_text x="689" y="122" width="100" height="31">
 		<text r="200" g="200" b="200" font="letterica18" align="r" vert_align="c">ui_st_xp_actor_level_text</text>
 	</actor_level_text>
-	<actor_experience_text x="683" y="142" width="100" height="31">
+	<actor_experience_text x="689" y="142" width="100" height="31">
 		<text r="200" g="200" b="200" font="letterica18" align="r" vert_align="c">ui_st_xp_actor_experience_text</text>
 	</actor_experience_text>
-	<actor_next_level_xp_text x="683" y="162" width="100" height="31">
+	<actor_next_level_xp_text x="689" y="162" width="100" height="31">
 		<text r="200" g="200" b="200" font="letterica18" align="r" vert_align="c">ui_st_xp_actor_next_level_xp_text</text>
 	</actor_next_level_xp_text>
 	
 	<skillpoints_left_count x="743" y="318" width="63" height="31">
 		<text complex_mode="1" r="200" g="200" b="200" align="c" font="letterica25"/>
 	</skillpoints_left_count>
-	<actor_level_count x="788" y="127" width="125" height="31">
+	<actor_level_count x="794" y="127" width="125" height="31">
 		<text complex_mode="1" r="200" g="200" b="200" align="l" font="letterica18"/>
 	</actor_level_count>
-	<actor_experience_count x="788" y="147" width="125" height="31">
+	<actor_experience_count x="794" y="147" width="125" height="31">
 		<text complex_mode="1" r="200" g="200" b="200" align="l" font="letterica18"/>
 	</actor_experience_count>
-	<actor_next_level_xp_count x="788" y="167" width="125" height="31">
+	<actor_next_level_xp_count x="794" y="167" width="125" height="31">
 		<text complex_mode="1" r="200" g="200" b="200" align="l" font="letterica18"/>
 	</actor_next_level_xp_count>
 	
@@ -80,7 +80,7 @@
 	<perk_scrollbar x="30" y="128" width="281" height="331" right_ident="0" left_ident="0" top_indent="0" bottom_indent="0" vert_interval="0" always_show_scroll="0"/>
 	<perk_icon x="6" y="0" width="32" height="32" stretch="1"/>
 	<perk_name x="44" y="2" width="238" height="35" stretch="1">
-		<text r="200" g="200" b="200" font="letterica16" align="1" vert_align="c"/>
+		<text r="200" g="200" b="200" font="letterica16" align="l" vert_align="c"/>
 	</perk_name>
 	<perk_btn x="0" y="0" width="269" height="35" stretch="1" >
 		<texture>ui_main_experience_mod_perk_button</texture>
@@ -93,10 +93,29 @@
 	<perk_description_icon x="0" y="0" width="128" height="128" stretch="1"/>
 	
 	<!-- Tips Information Frames -->
-	<info_tip_text x="114" y="507" width="555" height="96">
+	<info_tip_text x="114" y="547" width="555" height="96">
 		<text complex_mode="1" r="150" g="150" b="150" align="l" vert_align="c" font="letterica16"/>
 	</info_tip_text>
-	<info_tip_icon x="74" y="544" width="20" height="20" stretch="1">
+	<info_tip_icon x="74" y="584" width="16" height="20" stretch="1">
 		<texture>ui_main_experience_mod_info_icon</texture>
 	</info_tip_icon>
+	
+	<!-- Level Viewer Frames -->
+	<level_viewer_b x="341" y="469" width="253" height="80" stretch="1">
+		<texture>ui_main_experience_mod_high_window1</texture>
+	</level_viewer_b>
+	<level_viewer_count_text x="414" y="488" width="100" height="31">
+		<text complex_mode="1" r="200" g="200" b="200" align="c" font="letterica18"/>
+	</level_viewer_count_text>
+	<level_viewer_desc_text x="341" y="521" width="253" height="31">
+		<text complex_mode="1" r="200" g="200" b="200" align="c" font="letterica16"/>
+	</level_viewer_desc_text>
+	<btn_see_prev_level x="359" y="482" width="58" height="31">
+		<text r="150" g="150" b="150" font="letterica18" align="c">ui_st_xp_btn_see_prev_level_text</text>
+		<texture>ui_main_experience_mod_button</texture>
+	</btn_see_prev_level>
+	<btn_see_next_level x="518" y="482" width="58" height="31">
+		<text r="150" g="150" b="150" font="letterica18" align="c">ui_st_xp_btn_see_next_level_text</text>
+		<texture>ui_main_experience_mod_button</texture>
+	</btn_see_next_level>
 </w>

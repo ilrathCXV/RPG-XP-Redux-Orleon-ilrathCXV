@@ -24,7 +24,7 @@
 	<perk_list_header_text x="79" y="94" width="105" height="31">
 		<text r="200" g="200" b="200" font="letterica18" align="c" vert_align="c">ui_st_xp_perk_list_header_text</text>
 	</perk_list_header_text>
-	<perk_description_header_text x="241" y="94" width="259" height="31">
+	<perk_description_header_text x="244" y="94" width="259" height="31">
 		<text complex_mode="1" r="200" g="200" b="200" align="c" font="letterica18"/>
 	</perk_description_header_text>
 	<actor_stats_header_text x="580" y="94" width="80" height="31">
@@ -93,10 +93,29 @@
 	<perk_description_icon x="0" y="0" width="128" height="128" stretch="1"/>
 	
 	<!-- Tips Information Frames -->
-	<info_tip_text x="91" y="507" width="444" height="96">
+	<info_tip_text x="91" y="547" width="444" height="96">
 		<text complex_mode="1" r="150" g="150" b="150" align="l" vert_align="c" font="letterica16"/>
 	</info_tip_text>
-	<info_tip_icon x="59" y="544" width="16" height="20" stretch="1">
+	<info_tip_icon x="59" y="584" width="16" height="20" stretch="1">
 		<texture>ui_main_experience_mod_info_icon</texture>
 	</info_tip_icon>
+	
+	<!-- Level Viewer Frames -->
+	<level_viewer_b x="273" y="469" width="202" height="80" stretch="1">
+		<texture>ui_main_experience_mod_high_window1</texture>
+	</level_viewer_b>
+	<level_viewer_count_text x="331" y="488" width="80" height="31">
+		<text complex_mode="1" r="200" g="200" b="200" align="c" font="letterica18"/>
+	</level_viewer_count_text>
+	<level_viewer_desc_text x="273" y="521" width="202" height="31">
+		<text complex_mode="1" r="200" g="200" b="200" align="c" font="letterica16"/>
+	</level_viewer_desc_text>
+	<btn_see_prev_level x="287" y="482" width="46" height="31">
+		<text r="150" g="150" b="150" font="letterica18" align="c">ui_st_xp_btn_see_prev_level_text</text>
+		<texture>ui_main_experience_mod_button</texture>
+	</btn_see_prev_level>
+	<btn_see_next_level x="414" y="482" width="46" height="31">
+		<text r="150" g="150" b="150" font="letterica18" align="c">ui_st_xp_btn_see_next_level_text</text>
+		<texture>ui_main_experience_mod_button</texture>
+	</btn_see_next_level>
 </w>

@@ -12,10 +12,10 @@
 		<text>EXP RPG Redux</text>
 	</string>
 	<string id="ui_mcm_experience_framework_main_title">
-		<text>Experience RPG Redux - Main settings</text>
+		<text>RPG Redux - Main settings</text>
 	</string>
 	<string id="ui_mcm_experience_framework_xp_option_title">
-		<text>Experience RPG Redux - Experience settings</text>
+		<text>RPG Redux - Experience settings</text>
 	</string>
 	<string id="ui_mcm_menu_experience_framework_main">
 		<text>Main</text>
@@ -33,7 +33,10 @@
 		<text>Experience Gain Alerts</text>
 	</string>
 	<string id="ui_mcm_experience_framework_experience_framework_main_NEWS_SOUND">
-		<text>Enable alert sounds</text>
+		<text>Enable Alert Sounds</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_main_PERK_COLOR_NAMES">
+		<text>Enable colored skill names</text>
 	</string>
 	<string id="ui_mcm_experience_framework_experience_framework_main_GLOBAL_EXPERIENCE_MULT">
 		<text>Global Experience Multiplier</text>
@@ -85,6 +88,22 @@
 	</string>
 	<string id="ui_mcm_experience_framework_xp_option_mutant_xp_option">
 		<text>These settings are responsible for the base experience that is given when killing mutants, depending on their type.</text>
+	</string>
+	<string id="ui_mcm_experience_framework_xp_option_mutant_xp_rank_option">
+		<text>These settings multiply the base experience for killing mutants, depending on their rank.</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_base_xp_presets">
+		<text>Base Experience Presets</text>
+	</string>
+	<string id="ui_mcm_lst_exp_xp_option_easy">
+		<text>More Experience</text>
+	</string>
+	<string id="ui_mcm_lst_exp_xp_option_normal">
+		<text>Standard Experience</text>
+	</string>
+	<string id="ui_mcm_lst_exp_xp_option_hard">
+		<text>Less Experience</text>
 	</string>
 	
 	<string id="ui_mcm_experience_framework_experience_framework_xp_option_stalker">
@@ -210,6 +229,16 @@
 		<text>Lurker</text>
 	</string>
 	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_weak">
+		<text>Weak</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_normal">
+		<text>Normal</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_strong">
+		<text>Strong</text>
+	</string>
+	
 	<string id="ui_mcm_experience_framework_experience_framework_xp_option_TREASURE_XP">
 		<text>Experience for discovering stash</text>
 	</string>
@@ -255,6 +284,22 @@
 	</string>
 	<string id="ui_mcm_experience_framework_experience_framework_xp_option_WORKSHOP_UPGRADE_XP">
 		<text>Experience for upgrading items at the workbench</text>
+	</string>
+	
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ART_XP">
+		<text>Experience for finding an artefact in anomalies</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ART_XP_MULT_RANK_0">
+		<text>Artefact Rank 0 Multiplier (junk)</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ART_XP_MULT_RANK_1">
+		<text>Artefact Rank 1 Multiplier</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ART_XP_MULT_RANK_2">
+		<text>Artefact Rank 2 Multiplier</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_xp_option_ART_XP_MULT_RANK_3">
+		<text>Artefact Rank 3 Multiplier</text>
 	</string>
 
 
@@ -327,6 +372,25 @@
 	</string>
 	<string id="ui_st_xp_info_text_solution_not_req_level">
 		<text>It takes level %s to learn this skill!</text>
+	</string>
+	
+	<string id="ui_st_xp_btn_see_prev_level_text">
+		<text>Back</text>
+	</string>
+	<string id="ui_st_xp_btn_see_next_level_text">
+		<text>Next</text>
+	</string>
+	<string id="ui_st_xp_see_level_count_text">
+		<text>Level %s</text>
+	</string>
+	<string id="ui_st_xp_see_prev_level_desc_text">
+		<text>(Already learned)</text>
+	</string>
+	<string id="ui_st_xp_see_curr_level_desc_text">
+		<text>(Current level)</text>
+	</string>
+	<string id="ui_st_xp_see_next_level_desc_text">
+		<text>(Requires %s level)</text>
 	</string>
 
 
