@@ -1,18 +1,17 @@
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- Author: Orleon
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Author: Orleon
--- Last Edit: 28.12.2022 (ilrathCXV - kept .ltx importing feature for perks ONLY)
+-- Last Edit: 30.12.2022 (ilrathCXV - kept .ltx importing feature for perks ONLY + added ability to configure Max Level)
 -- Experience Framework for STALKER Anomaly
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-MOD_VERSION = "1.1.2"
+MOD_VERSION = "1.1.2a"
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 local strformat = string.format
 
-G_MAX_LEVEL						= 60		-- Level Cap.
 G_SKILLPOINT_PER_LEVEL			= 1			-- Number of skill points given for a new level
 
 local G_STALKER_XP_MULT			= 1.0
@@ -52,6 +51,7 @@ MCM_SETTINGS = {
 	XP_GAIN_NEWS				= true,
 	NEWS_SOUND					= true,
 	PERK_COLOR_NAMES			= true,
+	G_MAX_LEVEL					= 60,
 	GLOBAL_EXPERIENCE_MULT		= 1,
 	DEBUG_MODE					= false,
 	
@@ -121,10 +121,12 @@ MCM_SETTINGS = {
 	WORKSHOP_REPAIR_XP			= 5,
 	WORKSHOP_UPGRADE_XP			= 5,
 	ART_XP						= 70,
-	ART_XP_MULT_RANK_0			= 0.5,
-	ART_XP_MULT_RANK_1			= 1.0,
-	ART_XP_MULT_RANK_2			= 1.3,
-	ART_XP_MULT_RANK_3			= 1.6
+	ART_XP_MULT = {
+		ART_XP_MULT_RANK_0		= 0.5,
+		ART_XP_MULT_RANK_1		= 1.0,
+		ART_XP_MULT_RANK_2		= 1.3,
+		ART_XP_MULT_RANK_3		= 1.6
+	}
 }
 
 local mcm_settings_map = {
@@ -135,6 +137,7 @@ local mcm_settings_map = {
 	XP_GAIN_NEWS				= "experience_framework_main/",
 	NEWS_SOUND					= "experience_framework_main/",
 	PERK_COLOR_NAMES			= "experience_framework_main/",
+	G_MAX_LEVEL					= "experience_framework_main/",
 	GLOBAL_EXPERIENCE_MULT		= "experience_framework_main/",
 	DEBUG_MODE					= "experience_framework_main/",
 	STALKER_XP					= "experience_framework_xp_option/",
@@ -155,11 +158,10 @@ local mcm_settings_map = {
 	WORKSHOP_REPAIR_XP			= "experience_framework_xp_option/",
 	WORKSHOP_UPGRADE_XP			= "experience_framework_xp_option/",
 	ART_XP						= "experience_framework_xp_option/",
-	ART_XP_MULT_RANK_0			= "experience_framework_xp_option/",
-	ART_XP_MULT_RANK_1			= "experience_framework_xp_option/",
-	ART_XP_MULT_RANK_2			= "experience_framework_xp_option/",
-	ART_XP_MULT_RANK_3			= "experience_framework_xp_option/"
+	ART_XP_MULT					= "experience_framework_xp_option/"
 }
+
+G_MAX_LEVEL						= 60		-- Level Cap (Edited to allow MCM customization - ilrathCXV)
 
 local function update_mcm_settings()
 	if (ui_mcm and experience_mcm) then
@@ -171,6 +173,7 @@ local function update_mcm_settings()
 			else
 				MCM_SETTINGS[name] = ui_mcm.get("experience_framework/"..mcm_settings_map[name]..name)
 			end
+			G_MAX_LEVEL						= MCM_SETTINGS.G_MAX_LEVEL or 60		-- Level Cap (Edited to allow MCM customization - ilrathCXV)
 		end
 	end
 end
@@ -554,32 +557,15 @@ end
 -- Called from 'actor_on_item_before_pickup'
 function give_actor_experience_by_artefact(af_rank)
 	local base_xp = MCM_SETTINGS.ART_XP
-	local mult_rank_0 = MCM_SETTINGS.ART_XP_MULT_RANK_0
-	local mult_rank_1 = MCM_SETTINGS.ART_XP_MULT_RANK_1
-	local mult_rank_2 = MCM_SETTINGS.ART_XP_MULT_RANK_2
-	local mult_rank_3 = MCM_SETTINGS.ART_XP_MULT_RANK_3
 	
-	if (not base_xp)
-	or (not mult_rank_0)
-	or (not mult_rank_1)
-	or (not mult_rank_2)
-	or (not mult_rank_3)
-	or (not af_rank) then
+	if (not base_xp) then  
 		print_dbg("Failed to give the actor experience for searching a artefact")
 		return
 	end
 	
-	local xp_by_art = 0
-	
-	if (af_rank == 0) then
-		xp_by_art = base_xp * mult_rank_0
-	elseif (af_rank == 1) then
-		xp_by_art = base_xp * mult_rank_1
-	elseif (af_rank == 2) then
-		xp_by_art = base_xp * mult_rank_2
-	elseif (af_rank == 3) then
-		xp_by_art = base_xp * mult_rank_3
-	end
+	local af_rank = af_rank or 1
+	local rank_mult = MCM_SETTINGS.ART_XP_MULT["ART_XP_MULT_RANK_" .. af_rank]
+	local xp_by_art = base_xp * rank_mult
 	
 	local ret = {}
 	SendScriptCallback("experience_multiplier_on_before_multiply", "artefact", G_ART_XP_MULT, ret)
@@ -589,12 +575,37 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------
 -- Callbacks --------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
+-- Hit registration of the last draftsman. Needed for compatibility with some mods.
+local enemy_last_hit = {}
+
+function clean_enemy_last_hit()
+	if is_empty(enemy_last_hit) then
+		return
+	end
+	
+	for id, who in pairs(enemy_last_hit) do
+		local enemy = level.object_by_id(id)
+		if (not enemy) then
+			enemy_last_hit[id] = nil
+		end
+	end
+end
+
+local function enemy_hit_registrator(enemy, amount, local_direction, who, bone_index)
+	if (who) and (who:id() ~= enemy:id()) and (amount > 0) then
+		enemy_last_hit[enemy:id()] = who:id()
+	end
+end
+
 -- Give an actor experience for killing NPC's
 local function npc_on_death_callback(npc, who)
-	if (who and who:id() == AC_ID) then
-		local npc_comm = character_community(npc)
-		local npc_rank = ranks.get_obj_rank_name(npc)
-		give_actor_experience_by_npc(npc_comm, npc_rank)
+	if enemy_last_hit[npc:id()] then
+		if (enemy_last_hit[npc:id()] == AC_ID) then
+			local npc_comm = character_community(npc)
+			local npc_rank = ranks.get_obj_rank_name(npc)
+			give_actor_experience_by_npc(npc_comm, npc_rank)
+		end
+		enemy_last_hit[npc:id()] = nil
 	end
 end
 
@@ -624,16 +635,19 @@ local mutant_kind_to_section = {
 
 -- Give an actor experience for killing mutants
 local function monster_on_death_callback(monster, who)
-	if (who and who:id() == AC_ID) then
-		local clsid = monster:clsid()
-		local section = monster:section()
-		local kind = SYS_GetParam(0, section, "kind", "unknown")
-		local mutant = mutant_kind_to_section[kind] or mutant_clsid_to_section[clsid]
-		local rank = SYS_GetParam(0, section, "spec_rank", "normal")
-		
-		if mutant then
-			give_actor_experience_by_mutant(mutant, rank)
+	if enemy_last_hit[monster:id()] then
+		if (enemy_last_hit[monster:id()] == AC_ID) then
+			local clsid = monster:clsid()
+			local section = monster:section()
+			local kind = SYS_GetParam(0, section, "kind", "unknown")
+			local mutant = mutant_kind_to_section[kind] or mutant_clsid_to_section[clsid]
+			local rank = SYS_GetParam(0, section, "spec_rank", "normal")
+			
+			if mutant then
+				give_actor_experience_by_mutant(mutant, rank)
+			end
 		end
+		enemy_last_hit[monster:id()] = nil
 	end
 end
 
@@ -656,6 +670,7 @@ local function actor_on_item_before_pickup(obj, flags)
 		give_actor_experience_by_artefact(af_rank)
 	end
 end
+
 local function on_game_load()
 	checking_perks_data()
 end
@@ -667,6 +682,7 @@ local function save_state(data)
 	
 	data.experience_manager.XP = XP
 	data.experience_manager.perks_save_data = perks_save_data
+	data.experience_manager.enemy_last_hit = enemy_last_hit
 end
 
 local function load_state(data)
@@ -676,6 +692,23 @@ local function load_state(data)
 	
 	XP = data.experience_manager.XP or XP
 	perks_save_data = data.experience_manager.perks_save_data or perks_save_data
+	enemy_last_hit = data.experience_manager.enemy_last_hit or enemy_last_hit
+end
+
+local timer_on_update = 0
+local timer_on_update_interval = 2
+local function actor_on_update()
+	local tg = math.floor(time_global() * 0.01)
+	if tg < timer_on_update then return end
+	timer_on_update = tg + timer_on_update_interval
+	
+	clean_enemy_last_hit()
+end
+
+local function server_entity_on_unregister(se_obj, typ)
+	if (enemy_last_hit[se_obj.id]) then
+		enemy_last_hit[se_obj.id] = nil
+	end
 end
 
 local function start_experience_framework()
@@ -701,6 +734,10 @@ function on_game_start()
 	RegisterScriptCallback("monster_on_death_callback",monster_on_death_callback)
 	RegisterScriptCallback("actor_on_interaction",poltergeist_on_death_callback)
 	RegisterScriptCallback("actor_on_item_before_pickup",actor_on_item_before_pickup)
+	RegisterScriptCallback("npc_on_hit_callback",enemy_hit_registrator)
+	RegisterScriptCallback("monster_on_hit_callback",enemy_hit_registrator)
+	RegisterScriptCallback("actor_on_update",actor_on_update)
+	RegisterScriptCallback("server_entity_on_unregister",server_entity_on_unregister)
 	update_mcm_settings()
 	start_experience_framework()
 end
