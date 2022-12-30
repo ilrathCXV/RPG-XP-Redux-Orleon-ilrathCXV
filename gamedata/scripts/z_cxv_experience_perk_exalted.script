@@ -1,0 +1,166 @@
+local the_exalted = 0
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_the_exalted") then
+		the_exalted = data["curr_level"]
+	end
+end
+
+local goodwill_trust_limit = 999
+
+local function is_actor_ally(first_speaker, second_speaker)
+	local npc = dialogs.who_is_npc(first_speaker, second_speaker)
+	local sec = npc:section()
+	
+	local comm = sim_offline_combat.story_id_communities[sec] or character_community(npc)
+	if (comm == "trader") then comm = "stalker" end
+	
+	local goodwill = relation_registry.community_goodwill(comm, AC_ID)
+	return goodwill > goodwill_trust_limit
+end
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+base_stalker_faction = dialogs.actor_stalker
+function dialogs.actor_stalker(first_speaker, second_speaker)
+	local is_stalker = character_community(db.actor) == "actor_stalker"
+	if the_exalted <= 0 then
+		return is_stalker
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_stalker or is_ally)
+	end
+end
+
+base_bandit_faction = dialogs.actor_bandit
+function dialogs.actor_bandit(first_speaker, second_speaker)
+	local is_bandit = character_community(db.actor) == "actor_bandit"
+	if the_exalted <= 0 then
+		return is_bandit
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_bandit or is_ally)
+	end
+end
+
+base_freedom_faction = dialogs.actor_freedom
+function dialogs.actor_freedom(first_speaker, second_speaker)
+	local is_freedom = character_community(db.actor) == "actor_freedom"
+	if the_exalted <= 0 then
+		return is_freedom
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_freedom or is_ally)
+	end
+end
+
+
+base_dolg_faction = dialogs.actor_dolg
+function dialogs.actor_dolg(first_speaker, second_speaker)
+	local is_dolg = character_community(db.actor) == "actor_dolg"
+	if the_exalted <= 0 then
+		return is_dolg
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_dolg or is_ally)
+	end
+end
+
+
+base_killer_faction = dialogs.actor_killer
+function dialogs.actor_killer(first_speaker, second_speaker)
+	local is_killer = character_community(db.actor) == "actor_killer"
+	if the_exalted <= 0 then
+		return is_killer
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_killer or is_ally)
+	end
+end
+
+
+base_army_faction = dialogs.actor_army
+function dialogs.actor_army(first_speaker, second_speaker)
+	local is_army = character_community(db.actor) == "actor_army"
+	if the_exalted <= 0 then
+		return is_army
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_army or is_ally)
+	end
+end
+
+
+base_ecolog_faction = dialogs.actor_ecolog
+function dialogs.actor_ecolog(first_speaker, second_speaker)
+	local is_ecolog = character_community(db.actor) == "actor_ecolog"
+	if the_exalted <= 0 then
+		return is_ecolog
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_ecolog or is_ally)
+	end
+end
+
+
+base_csky_faction = dialogs.actor_csky
+function dialogs.actor_csky(first_speaker, second_speaker)
+	local is_csky = character_community(db.actor) == "actor_csky"
+	if the_exalted <= 0 then
+		return is_csky
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_csky or is_ally)
+	end
+end
+
+base_monolith_faction = dialogs.actor_monolith
+function dialogs.actor_monolith(first_speaker, second_speaker)
+	local is_monolith = character_community(db.actor) == "actor_monolith"
+	if the_exalted <= 0 then
+		return is_monolith
+	elseif the_exalted >= 1 then
+		return (is_monolith or is_ally)
+	end
+end
+
+
+base_renegade_faction = dialogs.actor_renegade
+function dialogs.actor_renegade(first_speaker, second_speaker)
+	local is_renegade = character_community(db.actor) == "actor_renegade"
+	if the_exalted <= 0 then
+		return is_renegade
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_renegade or is_ally)
+	end
+end
+
+
+base_greh_faction = dialogs.actor_greh
+function dialogs.actor_greh(first_speaker, second_speaker)
+	local is_greh = character_community(db.actor) == "actor_greh"
+	if the_exalted <= 0 then
+		return is_greh
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_greh or is_ally)
+	end
+end
+
+
+base_isg_faction = dialogs.actor_isg
+function dialogs.actor_isg(first_speaker, second_speaker)
+	local is_isg = character_community(db.actor) == "actor_isg"
+	if the_exalted <= 0 then
+		return is_isg
+	elseif the_exalted >= 1 then
+		local is_ally = is_actor_ally(first_speaker, second_speaker)
+		return (is_isg or is_ally)
+	end
+end
+
+function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+end
