@@ -664,10 +664,10 @@
         <text>The Exalted</text>
     </string>
 	<string id="st_perk_the_exalted_desc">
-        <text>Your influence among friendly factions comes with new benefits. Any faction that you don't belong to and have at least 1000 Goodwill with will now offer you the option to exchange other armors for similar armors belonging to their faction.</text>
+        <text>Your influence among friendly factions comes with new benefits. Any faction that you don't belong to and have at least 1000 Goodwill with will now offer you the option to exchange other armors for similar armors belonging to their faction. Additionally, any faction-locked dialogue options and quests may be available to you.</text>
     </string>
 	<string id="st_perk_the_exalted_desc_1">
-        <text>Your influence among friendly factions comes with new benefits. Any faction that you don't belong to and have at least 1000 Goodwill with will now offer you the option to exchange other armors for similar armors belonging to their faction.</text>
+        <text>Your influence among friendly factions comes with new benefits. Any faction that you don't belong to and have at least 1000 Goodwill with will now offer you the option to exchange other armors for similar armors belonging to their faction. Additionally, any faction-locked dialogue options and quests from said factions may be available to you.</text>
     </string>
 	
 </string_table>
