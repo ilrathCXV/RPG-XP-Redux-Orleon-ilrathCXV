@@ -157,15 +157,16 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 		return
 	end
 	
-	if shit.power >= 50 then
-		return
-	end
+	if shit.power >= 50 then return end
 	
 	local isCompanion = npc:has_info("npcx_is_companion")
 	if isCompanion then return end
+	
+    if not (shit.draftsman and shit.draftsman:id() == 0) then return end
+    if shit.draftsman:id() ~= db.actor:id() then return end
 
-    local weapon = level.object_by_id(shit.weapon_id)
-    if weapon == nil then return end
+    local weapon = db.actor:active_item()
+    if not weapon then return end
 
     local weapon_class = sortK_of(weapon)
 	local head_shot = perk_based_artefacts_bone_mapper.is_critical_bone(npc:clsid(), bone_id)
