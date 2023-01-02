@@ -7,19 +7,34 @@
         <text>You are a professional with a scalpel. When using any medical item, you are granted a portion of its radiation and HP healing as an additional boost over time.\n \n \nMax Perk Level: 5</text>
     </string>
 	<string id="st_perk_surgical_precision_desc_1">
-        <text>You are a professional with a scalpel. When using any medical item, you are granted 6% of its radiation and HP healing as an additional boost over time.\n \n \nMax Perk Level: 5</text>
+        <text>You are a professional with a scalpel.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]6% of its radiation and HP healing %c[ui_gray_2]as an additional boost over time
+		</text>
     </string>
 	<string id="st_perk_surgical_precision_desc_2">
-        <text>When using any medical item, you are granted 12% of its radiation and HP healing as an additional boost over time.\n \n \nMax Perk Level: 5</text>
+        <text>You are a professional with a scalpel.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]12% of its radiation and HP healing %c[ui_gray_2]as an additional boost over time
+		</text>
     </string>
 	<string id="st_perk_surgical_precision_desc_3">
-        <text>When using any medical item, you are granted 18% of its radiation and HP healing as an additional boost over time.\n \n \nMax Perk Level: 5</text>
+        <text>You are a professional with a scalpel.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]18% of its radiation and HP healing %c[ui_gray_2]as an additional boost over time
+		</text>
     </string>
 	<string id="st_perk_surgical_precision_desc_4">
-        <text>When using any medical item, you are granted 24% of its radiation and HP healing as an additional boost over time.\n \n \nMax Perk Level: 5</text>
+        <text>You are a professional with a scalpel.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]24% of its radiation and HP healing %c[ui_gray_2]as an additional boost over time
+		</text>
     </string>
 	<string id="st_perk_surgical_precision_desc_5">
-        <text>When using any medical item, you are granted 30% of its radiation and HP healing as an additional boost over time.\n \n \nMax Perk Level: 5</text>
+        <text>You are a professional with a scalpel.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]30% of its radiation and HP healing %c[ui_gray_2]as an additional boost over time
+		</text>
     </string>
 	
 	
@@ -30,19 +45,44 @@
         <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors. You are now more resistant to psy damage, and regenerate psy health faster. Regeneration is multiplied when near a campfire.\n \n \nMax Perk Level: 5</text>
     </string>
 	<string id="st_perk_calm_mind_desc_1">
-        <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors. You are now 3% more resistant to psy damage, and regenerate psy health 20% faster. Regeneration is multiplied by 20% when near a campfire.\n \n \nMax Perk Level: 5</text>
+        <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]3%\n
+		%c[d_blue] - %c[ui_gray_2] Regenerate psy health %c[d_green]20% faster\n
+		%c[d_blue] - %c[ui_gray_2] Regeneration is multiplied by %c[d_green]20% %c[ui_gray_2]when near a campfire
+		</text>
     </string>
 	<string id="st_perk_calm_mind_desc_2">
-        <text>You are now 6% more resistant to psy damage, and regenerate psy health 40% faster. Regeneration is multiplied by 40% when near a campfire.\n \n \nMax Perk Level: 5</text>
+        <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]6%\n
+		%c[d_blue] - %c[ui_gray_2] Regenerate psy health %c[d_green]40% faster\n
+		%c[d_blue] - %c[ui_gray_2] Regeneration is multiplied by %c[d_green]40% %c[ui_gray_2]when near a campfire
+		</text>
     </string>
 	<string id="st_perk_calm_mind_desc_3">
-        <text>You are now 9% more resistant to psy damage, and regenerate psy health 60% faster. Regeneration is multiplied by 60% when near a campfire.\n \n \nMax Perk Level: 5</text>
+        <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]9%\n
+		%c[d_blue] - %c[ui_gray_2] Regenerate psy health %c[d_green]60% faster\n
+		%c[d_blue] - %c[ui_gray_2] Regeneration is multiplied by %c[d_green]60% %c[ui_gray_2]when near a campfire
+		</text>
     </string>
 	<string id="st_perk_calm_mind_desc_4">
-        <text>You are now 12% more resistant to psy damage, and regenerate psy health 80% faster. Regeneration is multiplied by 80% when near a campfire.\n \n \nMax Perk Level: 5</text>
+        <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]12%\n
+		%c[d_blue] - %c[ui_gray_2] Regenerate psy health %c[d_green]80% faster\n
+		%c[d_blue] - %c[ui_gray_2] Regeneration is multiplied by %c[d_green]80% %c[ui_gray_2]when near a campfire
+		</text>
     </string>
 	<string id="st_perk_calm_mind_desc_5">
-        <text>You are now 15% more resistant to psy damage, and regenerate psy health twice as fast. Regeneration is doubled when near a campfire.\n \n \nMax Perk Level: 5</text>
+        <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]15%\n
+		%c[d_blue] - %c[ui_gray_2] Regenerate psy health %c[d_green]100% faster\n
+		%c[d_blue] - %c[ui_gray_2] Regeneration is multiplied by %c[d_green]100% %c[ui_gray_2]when near a campfire
+		</text>
     </string>
 	
 	
@@ -53,36 +93,34 @@
         <text>Keeping your gear in good condition has taught you to be more efficent with your tools. You now have a chance to not consume a repair item when repairing or cleaning any item.\n \n \nMax Perk Level: 5</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_1">
-        <text>Keeping your gear in good condition has taught you to be more efficent with your tools. You now have a 5% chance to not consume a repair item when repairing or cleaning any item.\n \n \nMax Perk Level: 5</text>
+        <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]5% %c[ui_gray_2]chance to not consume the used repair item
+		</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_2">
-        <text>You now have a 10% chance to not consume a repair item when repairing or cleaning any item.\n \n \nMax Perk Level: 5</text>
+        <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]10% %c[ui_gray_2]chance to not consume the used repair item
+		</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_3">
-        <text>You now have a 15% chance to not consume a repair item when repairing or cleaning any item.\n \n \nMax Perk Level: 5</text>
+        <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]15% %c[ui_gray_2]chance to not consume the used repair item
+		</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_4">
-        <text>You now have a 20% chance to not consume a repair item when repairing or cleaning any item.\n \n \nMax Perk Level: 5</text>
+        <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]20% %c[ui_gray_2]chance to not consume the used repair item
+		</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_5">
-        <text>You now have a 25% chance to not consume a repair item when repairing or cleaning any item.\n \n \nMax Perk Level: 5</text>
-    </string>
-
-	
-	<string id="st_perk_rifleman">
-        <text>Rifleman</text>
-    </string>
-	<string id="st_perk_rifleman_desc">
-        <text>You now deal increased damage with Assault Rifles.</text>
-    </string>
-	<string id="st_perk_rifleman_desc_1">
-        <text>You now deal 5% increased damage with Assault Rifles.\n \n \nMax Perk Level: 3</text>
-    </string>
-	<string id="st_perk_rifleman_desc_2">
-        <text>You now deal 10% increased damage with Assault Rifles.\n \n \nMax Perk Level: 3</text>
-    </string>
-	<string id="st_perk_rifleman_desc_3">
-        <text>You now deal 15% increased damage with Assault Rifles.\n \n \nMax Perk Level: 3</text>
+        <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]25% %c[ui_gray_2]chance to not consume the used repair item
+		</text>
     </string>
 	
 	
@@ -93,19 +131,39 @@
         <text>After finding a locksmithing guide, you are now more careful when picking the locks of locked containers. Locked containers are now easier to open.\n \n \nMax Perk Level: 5\n \n \n%c[d_red]REQUIRES ANOMALY LOOTBOXES MOD IN ORDER TO HAVE ANY EFFECT!!!</text>
     </string>
 	<string id="st_perk_lockpick_mastery_desc_1">
-        <text>After finding a locksmithing guide, you are now more careful when picking the locks of locked containers. Locked containers are now 15% easier to open.\n \n \nMax Perk Level: 5\n \n \n%c[d_red]REQUIRES ANOMALY LOOTBOXES MOD IN ORDER TO HAVE ANY EFFECT!!!</text>
+        <text>After finding a locksmithing guide, you are now more careful when picking the locks of locked containers.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Locked containers have %c[d_green]15% %c[ui_gray_2]of their base difficulty reduced\n 
+		%c[d_red] - REQUIRES ANOMALY LOOTBOXES OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
+		</text>
     </string>
 	<string id="st_perk_lockpick_mastery_desc_2">
-        <text>Locked containers are now 30% easier to open.\n \n \nMax Perk Level: 5</text>
+        <text>After finding a locksmithing guide, you are now more careful when picking the locks of locked containers.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Locked containers have %c[d_green]30% %c[ui_gray_2]of their base difficulty reduced\n 
+		%c[d_red] - REQUIRES ANOMALY LOOTBOXES OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
+		</text>
     </string>
 	<string id="st_perk_lockpick_mastery_desc_3">
-        <text>Locked containers are now 45% easier to open.\n \n \nMax Perk Level: 5</text>
+        <text>After finding a locksmithing guide, you are now more careful when picking the locks of locked containers.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Locked containers have %c[d_green]45% %c[ui_gray_2]of their base difficulty reduced\n 
+		%c[d_red] - REQUIRES ANOMALY LOOTBOXES OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
+		</text>
     </string>
 	<string id="st_perk_lockpick_mastery_desc_4">
-        <text>Locked containers are now 60% easier to open.\n \n \nMax Perk Level: 5</text>
+        <text>After finding a locksmithing guide, you are now more careful when picking the locks of locked containers.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Locked containers have %c[d_green]60% %c[ui_gray_2]of their base difficulty reduced\n 
+		%c[d_red] - REQUIRES ANOMALY LOOTBOXES OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
+		</text>
     </string>
 	<string id="st_perk_lockpick_mastery_desc_5">
-        <text>Locked containers are now 75% easier to open.\n \n \nMax Perk Level: 5</text>
+        <text>After finding a locksmithing guide, you are now more careful when picking the locks of locked containers.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Locked containers have %c[d_green]75% %c[ui_gray_2]of their base difficulty reduced\n 
+		%c[d_red] - REQUIRES ANOMALY LOOTBOXES OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
+		</text>
     </string>
 	
 	
@@ -116,21 +174,41 @@
         <text>When bartering, you receive better prices when buying or selling.</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_1">
-        <text>When bartering, you receive 5% better prices when buying or selling.\n \n \nMax Perk Level: 5</text>
+        <text>Your charisma and charm is unmatched within the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] > %c[ui_gray_2] Receive %c[d_green]5% %c[ui_gray_2]better prices when buying or selling
+		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_2">
-        <text>When bartering, you receive 10% better prices when buying or selling.\n \n \nMax Perk Level: 5</text>
+        <text>Your charisma and charm is unmatched within the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% %c[ui_gray_2]better prices when buying or selling
+		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_3">
-        <text>When bartering, you receive 15% better prices when buying or selling.\n \n \nMax Perk Level: 5</text>
+        <text>Your charisma and charm is unmatched within the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]15% %c[ui_gray_2]better prices when buying or selling
+		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_4">
-        <text>When bartering, you receive 20% better prices when buying or selling.\n \n \nMax Perk Level: 5</text>
+        <text>Your charisma and charm is unmatched within the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% %c[ui_gray_2]better prices when buying or selling
+		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_5">
-        <text>When bartering, you receive 25% better prices when buying or selling.\n \n \nMax Perk Level: 5</text>
+        <text>Your charisma and charm is unmatched within the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% c%c[ui_gray_2]better prices when buying or selling
+		</text>
     </string>
 	
+<!--
+	
+	.................Unused for now.................
+	
+-->
 	
 	<string id="st_perk_mag_loader">
         <text>Mag Loader</text>

@@ -184,6 +184,49 @@ function print_dbg(text,...)
 	end
 end
 
+---------------------------------------------------------------------------------------------------------------------------------
+-- Perk Injector ----------------------------------------------------------------------------------------------------------------
+-- Call this function from your script to load your perk settings ---------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+function inject_perk(perk_id, perk_settings)
+	if PERKS_SETTINGS[perk_id] then
+		printf(strformat("! Experience Framework | Error loading '%s' skill! | This skill already exists!", perk_id))
+		return
+	end
+	
+	PERKS_SETTINGS[perk_id] = {}
+	local t = {
+		["name"]			= true,
+		["description"]		= true,
+		["icon"]			= true,
+		["req_level"]		= true,
+		["max_level"]		= true,
+		["each_level"]		= true
+	}
+	
+	for k,_ in pairs(t) do
+		if (perk_settings[k]) then
+			t[k] = perk_settings[k]
+		else
+			printf(strformat("! Experience Framework | Error loading '%s' skill! | The '%s' field was not found in its settings table!", perk_id, k))
+			PERKS_SETTINGS[perk_id] = nil
+			return
+		end
+	end
+	
+	PERKS_SETTINGS[perk_id] = t
+	--printf(strformat("Experience Framework | Skill: '%s' - Successfully Loaded!", perk_id))
+end
+---------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+
+function get_perks_settings()
+	return PERKS_SETTINGS
+end
+
+---------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+
 local function init_settings()
 	
 	-- Initialize perks settings

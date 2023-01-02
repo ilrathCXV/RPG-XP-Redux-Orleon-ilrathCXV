@@ -60,7 +60,7 @@ function perk_effects_player_hit(shit)
 
 ------------------------------------------------------------> Anomaly Defense
     if anomaly_defense >= 1 and anomaly_list[shit.type] then
-		damage_mult = damage_mult - (0.025 * anomaly_defense)
+		damage_mult = damage_mult - (0.05 * anomaly_defense)
     end
 
 ------------------------------------------------------------> Berserker

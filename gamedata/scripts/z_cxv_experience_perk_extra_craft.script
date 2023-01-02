@@ -11,7 +11,7 @@ base_crafting = ui_workshop.UIWorkshopCraft.Craft
 function ui_workshop.UIWorkshopCraft:Craft()
 	base_crafting(self)
 	if (craft_extra > 0) then
-		if math.random(100) <= 10 then
+		if math.random(100) <= 20 then
 			if IsItem("ammo",self.craft_item_r[1]) then
 				alife_create_item(self.craft_item_r[1], db.actor, {ammo = self.craft_item_r[2]})
 			else
@@ -31,7 +31,7 @@ GetSelectedMeal = item_cooking.UICook.GetSelectedMeal
 function item_cooking.UICook:OnCook()
 	base_cooking(self)
 	if (craft_extra > 0) then
-		if (math.random(100) <= 10) then
+		if (math.random(100) <= 20) then
 			local meal = self:GetSelectedMeal()
 			if (not meal) then
 				return

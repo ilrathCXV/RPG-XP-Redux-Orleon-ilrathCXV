@@ -275,10 +275,10 @@ function perk_kill_effects(victim, killer)
 -------------------------------------------------------------------------> Vampirism
 	if vampirism >= 1 then
 		if killer.health < 1 then
-			killer:change_health(0.0025 * vampirism)
+			killer:change_health(0.025 * vampirism)
 		end
 		if killer.power < 1 then
-			killer:change_power(0.0025 * vampirism)
+			killer:change_power(0.025 * vampirism)
 		end
 	end
 	

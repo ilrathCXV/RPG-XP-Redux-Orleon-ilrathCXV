@@ -1,25 +1,42 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
 <string_table>
 
 	<string id="st_perk_fast_hands">
         <text>Fast Hands</text>
     </string>
 	<string id="st_perk_fast_hands_desc">
-        <text>Increases your stow and ready speed</text>
+        <text>You have learned to handle your weapons more effectively.</text>
     </string>
 	<string id="st_perk_fast_hands_desc_1">
-        <text>Increases your stow and ready speed by a total of 10%.\n \n \nMax Perk Level: 5</text>
+        <text>You have learned to handle your items more effectively. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]10%
+		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_2">
-        <text>Increases your stow and ready speed by a total of 20%.\n \n \nMax Perk Level: 5</text>
+        <text>You have learned to handle your items more effectively. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]20%
+		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_3">
-        <text>Increases your stow and ready speed by a total of 30%.\n \n \nMax Perk Level: 5</text>
+        <text>You have learned to handle your items more effectively. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]30%
+		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_4">
-        <text>Increases your stow and ready speed by a total of 40%.\n \n \nMax Perk Level: 5</text>
+        <text>You have learned to handle your items more effectively. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]40%
+		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_5">
-        <text>Increases your stow and ready speed by a total of 50%.\n \n \nMax Perk Level: 5</text>
+        <text>You have learned to handle your items more effectively. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]50%
+		</text>
     </string>
 	
 	
@@ -27,22 +44,42 @@
         <text>Ghost Ammo</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc">
-        <text>You have a chance to refund ammo when hitting a target (chance doubles on a critical hit).\n \n \nMax Perk Level: 5</text>
+        <text>The Zone appreciates your marksmanship, and will She will reward you for it.</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc_1">
-        <text>You have a 1% chance to refund ammo when hitting a target (2% chance on a critical hit).\n \n \nMax Perk Level: 5</text>
+        <text>The Zone appreciates your marksmanship, and will She will reward you for it. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]1% %c[ui_gray_2]chance to refund a shot when hitting a target\n
+		%c[d_red] - %c[ui_gray_2] Refund chance increases to %c[d_red]3% %c[ui_gray_2] when landing a headshot
+		</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc_2">
-        <text>You have a 2% chance to refund ammo when hitting a target (4% chance on a critical hit).\n \n \nMax Perk Level: 5</text>
+        <text>The Zone appreciates your marksmanship, and will She will reward you for it. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2% %c[ui_gray_2]chance to refund a shot when hitting a target\n
+		%c[d_red] - %c[ui_gray_2] Refund chance increases to %c[d_red]9% %c[ui_gray_2] when landing a headshot
+		</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc_3">
-        <text>You have a 3% chance to refund ammo when hitting a target (6% chance on a critical hit).\n \n \nMax Perk Level: 5</text>
+        <text>The Zone appreciates your marksmanship, and will She will reward you for it. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]3% %c[ui_gray_2]chance to refund a shot when hitting a target\n
+		%c[d_red] - %c[ui_gray_2] Refund chance increases to %c[d_red]17% %c[ui_gray_2] when landing a headshot
+		</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc_4">
-        <text>You have a 4% chance to refund ammo when hitting a target (8% chance on a critical hit).\n \n \nMax Perk Level: 5</text>
+        <text>The Zone appreciates your marksmanship, and will She will reward you for it. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]4% %c[ui_gray_2]chance to refund a shot when hitting a target\n
+		%c[d_red] - %c[ui_gray_2] Refund chance increases to %c[d_red]27% %c[ui_gray_2] when landing a headshot
+		</text>
     </string>
 	<string id="st_perk_ghost_ammo_desc_5">
-        <text>You have a 5% chance to refund ammo when hitting a target (10% chance on a critical hit).\n \n \nMax Perk Level: 5</text>
+        <text>The Zone appreciates your marksmanship, and will She will reward you for it. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]5% %c[ui_gray_2]chance to refund a shot when hitting a target\n
+		%c[d_red] - %c[ui_gray_2] Refund chance increases to %c[d_red]39% %c[ui_gray_2] when landing a headshot
+		</text>
     </string>
 	
 	
@@ -50,16 +87,25 @@
         <text>Gunslinger</text>
     </string>
 	<string id="st_perk_gunslinger_desc">
-        <text>You now deal increased damage with Pistols and SMGs.</text>
+        <text>You have mastered your skills with using small arms.</text>
     </string>
 	<string id="st_perk_gunslinger_desc_1">
-        <text>You now deal 5% increased damage with Pistols and SMGs.\n \n \nMax Perk Level: 3</text>
+        <text>You have mastered your skills with using small arms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_2">
-        <text>You now deal 10% increased damage with Pistols and SMGs.\n \n \nMax Perk Level: 3</text>
+        <text>You have mastered your skills with using small arms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_3">
-        <text>You now deal 15% increased damage with Pistols and SMGs.\n \n \nMax Perk Level: 3</text>
+        <text>You have mastered your skills with using small arms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		</text>
     </string>
 
 	
@@ -67,16 +113,25 @@
         <text>Rifleman</text>
     </string>
 	<string id="st_perk_rifleman_desc">
-        <text>You now deal increased damage with Assault Rifles.</text>
+        <text>You have become an expert with rifle-styled platforms.</text>
     </string>
 	<string id="st_perk_rifleman_desc_1">
-        <text>You now deal 5% increased damage with Assault Rifles.\n \n \nMax Perk Level: 3</text>
+        <text>You have become an expert with rifle-styled platforms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		</text>
     </string>
 	<string id="st_perk_rifleman_desc_2">
-        <text>You now deal 10% increased damage with Assault Rifles.\n \n \nMax Perk Level: 3</text>
+        <text>You have become an expert with rifle-styled platforms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		</text>
     </string>
 	<string id="st_perk_rifleman_desc_3">
-        <text>You now deal 15% increased damage with Assault Rifles.\n \n \nMax Perk Level: 3</text>
+        <text>You have become an expert with rifle-styled platforms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		</text>
     </string>
 	
 	
@@ -87,13 +142,25 @@
         <text>You now deal increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_1">
-        <text>You now deal 5% increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).\n \n \nMax Perk Level: 3</text>
+        <text>You have taken to the more specialized weapons in the Zone. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_red] - %c[ui_gray_2] Does not affect grenade damage
+		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_2">
-        <text>You now deal 10% increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).\n \n \nMax Perk Level: 3</text>
+        <text>You have taken to the more specialized weapons in the Zone. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
+		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_3">
-        <text>You now deal 15% increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).\n \n \nMax Perk Level: 3</text>
+        <text>You have taken to the more specialized weapons in the Zone. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
+		</text>
     </string>
 	
 	
@@ -104,13 +171,25 @@
         <text>You now deal increased melee damage and take reduced damage when you have a melee weapon in your hand.</text>
     </string>
 	<string id="st_perk_berserker_desc_1">
-        <text>You now deal 5% increased melee damage and take 2.5% reduced damage when you have a melee weapon in your hand.\n \n \nMax Perk Level: 3</text>
+        <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
+		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]2.5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		</text>
     </string>
 	<string id="st_perk_berserker_desc_2">
-        <text>You now deal 10% increased melee damage and take 5% reduced damage when you have a melee weapon in your hand.\n \n \nMax Perk Level: 3</text>
+        <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
+		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		</text>
     </string>
 	<string id="st_perk_berserker_desc_3">
-        <text>You now deal 15% increased melee damage and take 7.5% reduced damage when you have a melee weapon in your hand.\n \n \nMax Perk Level: 3</text>
+        <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
+		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]7.5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		</text>
     </string>
 	
 	
@@ -121,7 +200,10 @@
         <text>You can now jam an enemy's weapon when shooting them in the arm.</text>
     </string>
 	<string id="st_perk_jamming_shot_desc_1">
-        <text>You can now jam an enemy's weapon when shooting them in the arm.\n \n \nMax Perk Level: 1</text>
+        <text>You a nuisance to any Stalker that comes in your path.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Can %c[d_green]jam enemy weapons %c[ui_gray_2]by shooting them %c[yellow]in the arms
+		</text>
     </string>
 	
 	
@@ -132,19 +214,44 @@
         <text>When killing an enemy, they have a 1% chance to explode, damaging anyone caught in the blast (including YOU).</text>
     </string>
 	<string id="st_perk_bloody_mess_desc_1">
-        <text>When killing an enemy, they have a 1% chance to explode, damaging anyone caught in the blast (including YOU).\n \n \nMax Perk Level: 5</text>
+        <text>You have added fragments of a Dragon's Eye to your weapon's barrel. Bullets fired can have an explosive reaction when coming into contact with tissue.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Killing an enemy has a %c[d_green]1% %c[ui_gray_2]chance to cause them to explode\n
+		%c[d_blue] - %c[ui_gray_2] Explosion damages anyone caught in the blast %c[d_red]including YOU\n
+		%c[d_red] - %c[ui_gray_2] Does not trigger from melee kills to avoid damaging yourself
+		</text>
     </string>
 	<string id="st_perk_bloody_mess_desc_2">
-        <text>When killing an enemy, they have a 2% chance to explode, damaging anyone caught in the blast (including YOU).\n \n \nMax Perk Level: 5</text>
+        <text>You have added fragments of a Dragon's Eye to your weapon's barrel. Bullets fired can have an explosive reaction when coming into contact with tissue.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Killing an enemy has a %c[d_green]2% %c[ui_gray_2]chance to cause them to explode\n
+		%c[d_blue] - %c[ui_gray_2] Explosion damages anyone caught in the blast %c[d_red]including YOU\n
+		%c[d_red] - %c[ui_gray_2] Does not trigger from melee kills to avoid damaging yourself
+		</text>
     </string>
 	<string id="st_perk_bloody_mess_desc_3">
-        <text>When killing an enemy, they have a 3% chance to explode, damaging anyone caught in the blast (including YOU).\n \n \nMax Perk Level: 5</text>
+        <text>You have added fragments of a Dragon's Eye to your weapon's barrel. Bullets fired can have an explosive reaction when coming into contact with tissue.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Killing an enemy has a %c[d_green]3% %c[ui_gray_2]chance to cause them to explode\n
+		%c[d_blue] - %c[ui_gray_2] Explosion damages anyone caught in the blast %c[d_red]including YOU\n
+		%c[d_red] - %c[ui_gray_2] Does not trigger from melee kills to avoid damaging yourself
+		</text>
     </string>
 	<string id="st_perk_bloody_mess_desc_4">
-        <text>When killing an enemy, they have a 4% chance to explode, damaging anyone caught in the blast (including YOU).\n \n \nMax Perk Level: 5</text>
+        <text>You have added fragments of a Dragon's Eye to your weapon's barrel. Bullets fired can have an explosive reaction when coming into contact with tissue.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Killing an enemy has a %c[d_green]4% %c[ui_gray_2]chance to cause them to explode\n
+		%c[d_blue] - %c[ui_gray_2] Explosion damages anyone caught in the blast %c[d_red]including YOU\n
+		%c[d_red] - %c[ui_gray_2] Does not trigger from melee kills to avoid damaging yourself
+		</text>
     </string>
 	<string id="st_perk_bloody_mess_desc_5">
-        <text>When killing an enemy, they have a 5% chance to explode, damaging anyone caught in the blast (including YOU).\n \n \nMax Perk Level: 5</text>
+        <text>You have added fragments of a Dragon's Eye to your weapon's barrel. Bullets fired can have an explosive reaction when coming into contact with tissue.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Killing an enemy has a %c[d_green]5% %c[ui_gray_2]chance to cause them to explode\n
+		%c[d_blue] - %c[ui_gray_2] Explosion damages anyone caught in the blast %c[d_red]including YOU\n
+		%c[d_red] - %c[ui_gray_2] Does not trigger from melee kills to avoid damaging yourself
+		</text>
     </string>
 	
 	
@@ -155,7 +262,10 @@
         <text>Shooting an enemy's weapon has a 15% chance for them to drop it on the ground.</text>
     </string>
 	<string id="st_perk_disarming_shot_desc_1">
-        <text>Shooting an enemy's weapon has a 15% chance for them to drop it on the ground.\n \n \nMax Perk Level: 1</text>
+        <text>You've learned a neat trick to disable enemies: shooting their shooter.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Shooting an enemy's weapon has a %c[d_green]15% %c[ui_gray_2]chance for them to drop it on the ground
+		</text>
     </string>
 	
 
@@ -163,22 +273,37 @@
         <text>Scavenger</text>
     </string>
 	<string id="st_perk_scavenger_desc">
-        <text>When looting an enemy, you have a small chance to find salvage and crafting materials.</text>
+        <text>When looting an enemy, you have a small chance of finding salvage and crafting materials.</text>
     </string>
 	<string id="st_perk_scavenger_desc_1">
-        <text>When looting an enemy, you have a 7% chance to find salvage and crafting materials.\n \n \nMax Perk Level: 5</text>
+        <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]7% %c[ui_gray_2]chance of finding %c[d_red]salvage and crafting materials
+		</text>
     </string>
 	<string id="st_perk_scavenger_desc_2">
-        <text>When looting an enemy, you have a 14% chance to find salvage and crafting materials.\n \n \nMax Perk Level: 5</text>
-    </string>
+		<text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]14% %c[ui_gray_2]chance of finding %c[d_orange]slightly better salvage and crafting materials
+		</text>   
+	</string>
 	<string id="st_perk_scavenger_desc_3">
-        <text>When looting an enemy, you have a 21% chance to find salvage and crafting materials.\n \n \nMax Perk Level: 5</text>
-    </string>
+		<text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]21% %c[ui_gray_2]chance of finding %c[yellow]better salvage and crafting materials
+		</text>
+	</string>
 	<string id="st_perk_scavenger_desc_4">
-        <text>When looting an enemy, you have a 28% chance to find salvage and crafting materials.\n \n \nMax Perk Level: 5</text>
+        <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]28% %c[ui_gray_2]chance of finding %c[d_green]much better salvage and crafting materials
+		</text>
     </string>
 	<string id="st_perk_scavenger_desc_5">
-        <text>When looting an enemy, you have a 35% chance to find salvage and crafting materials.\n \n \nMax Perk Level: 5</text>
+        <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]35% %c[ui_gray_2]chance of finding %c[d_green]better and high-quality salvage and crafting materials
+		</text>
     </string>
 	
 	
@@ -189,19 +314,34 @@
         <text>When looting armor and weapons from an enemy, they will have a minimum condition of 15%.</text>
     </string>
 	<string id="st_perk_careful_handler_desc_1">
-        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 15%.\n \n \nMax Perk Level: 5</text>
+        <text>As they always say: one man's trash is another man's treasure.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]15%
+		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_2">
-        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 20%.\n \n \nMax Perk Level: 5</text>
+        <text>As they always say: one man's trash is another man's treasure.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]20%
+		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_3">
-        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 25%.\n \n \nMax Perk Level: 5</text>
+        <text>As they always say: one man's trash is another man's treasure.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]25%
+		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_4">
-        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 30%.\n \n \nMax Perk Level: 5</text>
+        <text>As they always say: one man's trash is another man's treasure.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]30%
+		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_5">
-        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 35%.\n \n \nMax Perk Level: 5</text>
+        <text>As they always say: one man's trash is another man's treasure.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]35%
+		</text>
     </string>
     
 	
@@ -212,7 +352,11 @@
         <text>When crafting or cooking, you have a 10% chance to make 2 crafted items for the cost of 1.</text>
     </string>	
 	<string id="st_perk_master_craftsman_desc_1">
-        <text>When crafting or cooking, you have a 10% chance to make 2 crafted items for the cost of 1.\n \n \nMax Perk Level: 1</text>
+        <text>Your tools have become an extension of yorself.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Crafting an item has a %c[d_green]20% chance %c[ui_gray_2]to grant a duplicate of said crafted item\n
+		%c[d_blue] - %c[ui_gray_2] Cooking has a %c[d_green]20% chance %c[ui_gray_2]to grant a duplicate of whatever item you cooked
+		</text>
     </string>	
 	
 
@@ -223,13 +367,25 @@
         <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.</text>
     </string>
 	<string id="st_perk_cybermedic_desc_1">
-        <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds. It won't replace a bandage however.\n \n \nMax Perk Level: 3</text>
+        <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Heal bleeding wounds over time at a %c[d_orange]slow rate\n
+		%c[d_blue] - %c[ui_gray_2] Every 30 seconds heals at the same magnitude as a %c[d_green]bandage
+		</text>
     </string>
 	<string id="st_perk_cybermedic_desc_2">
-        <text>Improvements to the implant now doubles its efficiency at stopping bleeding.\n \n \nMax Perk Level: 3</text>
+        <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Heal bleeding wounds over time at a %c[yellow]faster rate\n
+		%c[d_blue] - %c[ui_gray_2] Every 20 seconds heals at the same magnitude as a %c[d_green]bandage
+		</text>
     </string>
 	<string id="st_perk_cybermedic_desc_3">
-        <text>This final upgrade causes the implant to passively stop bleeding at triple its original rate. Although roughly 10% effective compared to a bandage, its effects are noticable are won't require any medical items.\n \n \nMax Perk Level: 3</text>
+        <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Heal bleeding wounds over time at a %c[d_green]faster rate\n
+		%c[d_blue] - %c[ui_gray_2] Every 10 seconds heals at the same magnitude as a %c[d_green]bandage
+		</text>
     </string>
 	
 	
@@ -241,19 +397,34 @@
         <text>You have a small chance to dodge any incoming damage.</text>
     </string>
 	<string id="st_perk_dodger_desc_1">
-        <text>You have a 0.5% chance to dodge any incoming damage.\n \n \nMax Perk Level: 5</text>
+        <text>Your reaction time has been strengthed while in the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]0.5% %c[ui_gray_2]chance to dodge any incoming damage
+		</text>
     </string>
 	<string id="st_perk_dodger_desc_2">
-        <text>You have a 1% chance to dodge any incoming damage.\n \n \nMax Perk Level: 5</text>
+        <text>Your reaction time has been strengthed while in the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]1% %c[ui_gray_2]chance to dodge any incoming damage
+		</text>
     </string>
 	<string id="st_perk_dodger_desc_3">
-        <text>You have a 1.5% chance to dodge any incoming damage.\n \n \nMax Perk Level: 5</text>
+        <text>Your reaction time has been strengthed while in the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]1.5% %c[ui_gray_2]chance to dodge any incoming damage
+		</text>
     </string>
 	<string id="st_perk_dodger_desc_4">
-        <text>You have a 2% chance to dodge any incoming damage.\n \n \nMax Perk Level: 5</text>
+        <text>Your reaction time has been strengthed while in the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2% %c[ui_gray_2]chance to dodge any incoming damage
+		</text>
     </string>
 	<string id="st_perk_dodger_desc_5">
-        <text>You have a 2.5% chance to dodge any incoming damage.\n \n \nMax Perk Level: 5</text>
+        <text>Your reaction time has been strengthed while in the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2.5% %c[ui_gray_2]chance to dodge any incoming damage
+		</text>
     </string>
 	
 	
@@ -264,7 +435,11 @@
         <text>When eating or drinking, you will receive a health bonus equal to a portion of their thirst or hunger restore (whichever restore is highest).</text>
     </string>
 	<string id="st_perk_comfort_food_desc_1">
-        <text>When eating or drinking, you will receive a health bonus equal to a portion of their thirst or hunger restore (whichever restore is highest).\n \n \nMax Perk Level: 1</text>
+        <text>Your body has learned to survive on the "bread" of the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] When eating or drinking, you will receive health equal to a portion of their thirst or hunger restore\n
+		%c[d_blue] - %c[ui_gray_2] Health restore will be based on which of the two have a higher magnitude
+		</text>
     </string>
 	
 
@@ -275,19 +450,34 @@
         <text>Increases the amount of ammo found when looting a body.</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_1">
-        <text>Increases the amount of ammo found when looting a body by 20%.\n \n \nMax Perk Level: 5</text>
+        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers that carry ammo will carry %c[d_green]20% more
+		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_2">
-        <text>Increases the amount of ammo found when looting a body by 40%.\n \n \nMax Perk Level: 5</text>
+        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers that carry ammo will carry %c[d_green]40% more
+		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_3">
-        <text>Increases the amount of ammo found when looting a body by 60%.\n \n \nMax Perk Level: 5</text>
-    </string>
+        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers that carry ammo will carry %c[d_green]60% more
+		</text>
+	</string>
 	<string id="st_perk_ammo_finder_desc_4">
-        <text>Increases the amount of ammo found when looting a body by 80%.\n \n \nMax Perk Level: 5</text>
+        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers that carry ammo will carry %c[d_green]80% more
+		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_5">
-        <text>Increases the amount of ammo found when looting a body by 100%.\n \n \nMax Perk Level: 5</text>
+        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers that carry ammo will carry %c[d_green]100% more
+		</text>
     </string>
 	
 	
@@ -295,22 +485,37 @@
         <text>Medicine Man</text>
     </string>
 	<string id="st_perk_medicine_man_desc">
-        <text>When looting an enemy, you have a chance to find a medical item. Item quality increases with this perk's level.</text>
+        <text>When looting an enemy, you have a chance of finding a medical item. Item quality increases with this perk's level.</text>
     </string>
 	<string id="st_perk_medicine_man_desc_1">
-        <text>When looting an enemy, you have a 7% chance to find a medical item. Item quality increases with this perk's level.\n \n \nMax Perk Level: 5</text>
+        <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]7% %c[ui_gray_2]chance of finding %c[d_red] a medical item
+		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_2">
-        <text>When looting an enemy, you have a 14% chance to find a medical item. Item quality increases with this perk's level.\n \n \nMax Perk Level: 5</text>
+        <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]14% %c[ui_gray_2]chance of finding %c[d_orange] a slightly better quality medical item
+		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_3">
-        <text>When looting an enemy, you have a 21% chance to find a medical item. Item quality increases with this perk's level.\n \n \nMax Perk Level: 5</text>
+        <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]21% %c[ui_gray_2]chance of finding %c[yellow] a better quality medical item
+		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_4">
-        <text>When looting an enemy, you have a 28% chance to find a medical item. Item quality increases with this perk's level.\n \n \nMax Perk Level: 5</text>
+        <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]28% %c[ui_gray_2]chance of finding %c[d_green] a much better quality medical item
+		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_5">
-        <text>When looting an enemy, you have a 35% chance to find a medical item. Item quality increases with this perk's level.\n \n \nMax Perk Level: 5</text>
+        <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]35% %c[ui_gray_2]chance of finding %c[d_green] a better and high-quality medical item
+		</text>
     </string>
 	
 	
@@ -318,22 +523,42 @@
         <text>Arte-finder</text>
     </string>
 	<string id="st_perk_artefinder_desc">
-        <text>When looting an enemy, you have a small chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency.</text>
+        <text>When looting an enemy, you have a small chance of finding an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency.</text>
     </string>
 	<string id="st_perk_artefinder_desc_1">
-        <text>When looting an enemy, you have a 5% chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency (up to 24 - 28% percent).\n \n \nMax Perk Level: 5</text>
+        <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 24 - 28% percent%c[ui_gray_2])
+		</text>
     </string>
 	<string id="st_perk_artefinder_desc_2">
-        <text>When looting an enemy, you have a 10% chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency (up to 26 - 30% percent).\n \n \nMax Perk Level: 5</text>
+        <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]10% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 26 - 30% percent%c[ui_gray_2])
+		</text>
     </string>
 	<string id="st_perk_artefinder_desc_3">
-        <text>When looting an enemy, you have a 15% chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency (up to 28 - 32% percent).\n \n \nMax Perk Level: 5</text>
+        <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]15% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 28 - 32% percent%c[ui_gray_2])
+		</text>
     </string>
 	<string id="st_perk_artefinder_desc_4">
-        <text>When looting an enemy, you have a 20% chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency (up to 32 - 36% percent).\n \n \nMax Perk Level: 5</text>
+        <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]20% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 32 - 36% percent%c[ui_gray_2])
+		</text>
     </string>
 	<string id="st_perk_artefinder_desc_5">
-        <text>When looting an enemy, you have a 25% chance to find an artefact native to your current location. Additionaly, any artefact you find will now have higher-than-normal efficiency (up to 36 - 40% percent).\n \n \nMax Perk Level: 5</text>
+        <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]25% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 36 - 40% percent%c[ui_gray_2])
+		</text>
     </string>
 	
 	
@@ -344,19 +569,34 @@
         <text>You will receive bonus cash when looting it from dead enemies.</text>
     </string>
 	<string id="st_perk_midas_touch_desc_1">
-        <text>You will receive 5% bonus cash when looting it from dead enemies.\n \n \nMax Perk Level: 5</text>
+        <text>The dangers of the Zone has granted you a strange mutation. Any money you find seems to multiply in your hands!\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]5% bonus cash %c[ui_gray_2]when looting it from dead enemies
+		</text>
     </string>
 	<string id="st_perk_midas_touch_desc_2">
-        <text>You will receive 10% bonus cash when looting it from dead enemies.\n \n \nMax Perk Level: 5</text>
+        <text>The dangers of the Zone has granted you a strange mutation. Any money you find seems to multiply in your hands!\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% bonus cash %c[ui_gray_2]when looting it from dead enemies
+		</text>
     </string>
 	<string id="st_perk_midas_touch_desc_3">
-        <text>You will receive 15% bonus cash when looting it from dead enemies.\n \n \nMax Perk Level: 5</text>
+        <text>The dangers of the Zone has granted you a strange mutation. Any money you find seems to multiply in your hands!\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]15% bonus cash %c[ui_gray_2]when looting it from dead enemies
+		</text>
     </string>
 	<string id="st_perk_midas_touch_desc_4">
-        <text>You will receive 20% bonus cash when looting it from dead enemies.\n \n \nMax Perk Level: 5</text>
+        <text>The dangers of the Zone has granted you a strange mutation. Any money you find seems to multiply in your hands!\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% bonus cash %c[ui_gray_2]when looting it from dead enemies
+		</text>
     </string>
 	<string id="st_perk_midas_touch_desc_5">
-        <text>You will receive 25% bonus cash when looting it from dead enemies.\n \n \nMax Perk Level: 5</text>
+        <text>The dangers of the Zone has granted you a strange mutation. Any money you find seems to multiply in your hands!\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% bonus cash %c[ui_gray_2]when looting it from dead enemies
+		</text>
     </string>
 	
 	<string id="st_perk_master_zone">
@@ -366,7 +606,10 @@
         <text>You have learned the tricks of the Zone and how to tap into the Noosphere. With this power, any artefacts attached to your belt will slowly begin to repair themselves.</text>
     </string>
 	<string id="st_perk_master_zone_desc_1">
-        <text>You have learned the tricks of the Zone and how to tap into the Noosphere. With this power, any artefacts attached to your belt will slowly begin to repair themselves.\n \n \nMax Perk Level: 1</text>
+        <text>You have become one with the Zone. The Noosphere is now an ever-present force for your anomalous equipment.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Any artefacts or attachments equipped to your belt will %c[d_green]slowly repair themselves c%c[ui_gray_2]over time
+		</text>
     </string>
 
     
@@ -374,22 +617,37 @@
         <text>Plate Finder</text>
     </string>
 	<string id="st_perk_plate_finder_desc">
-        <text>When looting an enemy, you have a small chance to find a damaged Kevlar Plate on them.</text>
+        <text>When looting an enemy, you have a small chance of finding a damaged Kevlar Plate on them.</text>
     </string>
 	<string id="st_perk_plate_finder_desc_1">
-        <text>When looting an enemy, you have a 5% chance to find a damaged Kevlar Plate on them.\n \n \nMax Perk Level: 5</text>
+        <text>Stalkers have been using kevlar plates much more recently.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]5% %c[ui_gray_2]chance of finding a damaged Kevlar Plate
+		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_2">
-        <text>When looting an enemy, you have a 10% chance to find a damaged Kevlar Plate on them.\n \n \nMax Perk Level: 5</text>
+        <text>Stalkers have been using kevlar plates much more recently.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]10% %c[ui_gray_2]chance of finding a damaged Kevlar Plate
+		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_3">
-        <text>When looting an enemy, you have a 15% chance to find a damaged Kevlar Plate on them.\n \n \nMax Perk Level: 5</text>
+        <text>Stalkers have been using kevlar plates much more recently.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]15% %c[ui_gray_2]chance of finding a damaged Kevlar Plate
+		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_4">
-        <text>When looting an enemy, you have a 20% chance to find a damaged Kevlar Plate on them.\n \n \nMax Perk Level: 5</text>
+        <text>Stalkers have been using kevlar plates much more recently.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]20% %c[ui_gray_2]chance of finding a damaged Kevlar Plate
+		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_5">
-        <text>When looting an enemy, you have a 25% chance to find a damaged Kevlar Plate on them.\n \n \nMax Perk Level: 5</text>
+        <text>Stalkers have been using kevlar plates much more recently.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]25% %c[ui_gray_2]chance of finding a damaged Kevlar Plate
+		</text>
     </string>
 	
 	<string id="st_perk_spiked">
@@ -399,19 +657,39 @@
         <text>When taking damage, your enemy is also hurt for a portion of said damage.</text>
     </string>
 	<string id="st_perk_spiked_desc_1">
-        <text>When taking damage, your enemy is also hurt for 5% of said damage.\n \n \nMax Perk Level: 5</text>
+        <text>Wtih every action comes with it an opposite reaction. However, this reaction is not equal.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Any incoming damage has %c[d_green]5% %c[ui_gray_2]of it reflected back at your attacker\n
+		%c[d_red] - %c[ui_gray_2] Does not reduce incoming damage
+		</text>
     </string>
 	<string id="st_perk_spiked_desc_2">
-        <text>When taking damage, your enemy is also hurt for 10% of said damage.\n \n \nMax Perk Level: 5</text>
+        <text>Wtih every action comes with it an opposite reaction. However, this reaction is not equal.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Any incoming damage has %c[d_green]10% %c[ui_gray_2]of it reflected back at your attacker\n
+		%c[d_red] - %c[ui_gray_2] Does not reduce incoming damage
+		</text>
     </string>
 	<string id="st_perk_spiked_desc_3">
-        <text>When taking damage, your enemy is also hurt for 15% of said damage.\n \n \nMax Perk Level: 5</text>
+        <text>Wtih every action comes with it an opposite reaction. However, this reaction is not equal.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Any incoming damage has %c[d_green]15% %c[ui_gray_2]of it reflected back at your attacker\n
+		%c[d_red] - %c[ui_gray_2] Does not reduce incoming damage
+		</text>
     </string>
 	<string id="st_perk_spiked_desc_4">
-        <text>When taking damage, your enemy is also hurt for 20% of said damage.\n \n \nMax Perk Level: 5</text>
+        <text>Wtih every action comes with it an opposite reaction. However, this reaction is not equal.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Any incoming damage has %c[d_green]20% %c[ui_gray_2]of it reflected back at your attacker\n
+		%c[d_red] - %c[ui_gray_2] Does not reduce incoming damage
+		</text>
     </string>
 	<string id="st_perk_spiked_desc_5">
-        <text>When taking damage, your enemy is also hurt for 25% of said damage.\n \n \nMax Perk Level: 5</text>
+        <text>Wtih every action comes with it an opposite reaction. However, this reaction is not equal.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Any incoming damage has %c[d_green]25% %c[ui_gray_2]of it reflected back at your attacker\n
+		%c[d_red] - %c[ui_gray_2] Does not reduce incoming damage
+		</text>
     </string>
 	
 	
@@ -422,19 +700,34 @@
         <text>Anomalies will deal reduced damage to you.</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_1">
-        <text>Anomalies will deal 2.5% reduced damage to you.\n \n \nMax Perk Level: 5</text>
+        <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]5% %c[ui_gray_2]less damage
+		</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_2">
-        <text>Anomalies will deal 5% reduced damage to you.\n \n \nMax Perk Level: 5</text>
+        <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]10% %c[ui_gray_2]less damage
+		</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_3">
-        <text>Anomalies will deal 7.5% reduced damage to you.\n \n \nMax Perk Level: 5</text>
+        <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]15% %c[ui_gray_2]less damage
+		</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_4">
-        <text>Anomalies will deal 10% reduced damage to you.\n \n \nMax Perk Level: 5</text>
+        <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]20% %c[ui_gray_2]less damage
+		</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_5">
-        <text>Anomalies will deal 12.5% reduced damage to you.\n \n \nMax Perk Level: 5</text>
+        <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]25% %c[ui_gray_2]less damage
+		</text>
     </string>
 
 
@@ -445,13 +738,22 @@
         <text>You will now recover faster from any dizziness or drunkeness effects.</text>
     </string>
 	<string id="st_perk_iron_resolve_desc_1">
-        <text>You will now recover slightly faster from any dizziness or drunkeness effects.\n \n \nMax Perk Level: 3</text>
+        <text>Due to your sheer will, you are less affected by any incapacitating effects.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Recover slightly faster from any %c[d_orange]dizziness or drunkeness effects c%c[ui_gray_2]over time
+		</text>
     </string>
 	<string id="st_perk_iron_resolve_desc_2">
-        <text>You recover much faster from any dizziness or drunkeness effects.\n \n \nMax Perk Level: 3</text>
+        <text>Due to your sheer will, you are less affected by any incapacitating effects.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Recover faster from any %c[yellow]dizziness or drunkeness effects c%c[ui_gray_2]over time
+		</text>
     </string>
 	<string id="st_perk_iron_resolve_desc_3">
-        <text>You recover even faster from any dizziness or drunkeness effects.\n \n \nMax Perk Level: 3</text>
+        <text>Due to your sheer will, you are less affected by any incapacitating effects.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Recover much faster from any %c[d_green]dizziness or drunkeness effects c%c[ui_gray_2]over time
+		</text>
     </string>
     
 	
@@ -462,19 +764,34 @@
         <text>When bartering, you receive better prices when buying or selling.</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_1">
-        <text>When bartering, you receive 5% better prices when buying or selling.\n \n \nMax Perk Level: 5</text>
+        <text>Your charisma and charm is unmatched within the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] > %c[ui_gray_2] Receive %c[d_green]5% %c[ui_gray_2]better prices when buying or selling
+		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_2">
-        <text>When bartering, you receive 10% better prices when buying or selling.\n \n \nMax Perk Level: 5</text>
+        <text>Your charisma and charm is unmatched within the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% %c[ui_gray_2]better prices when buying or selling
+		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_3">
-        <text>When bartering, you receive 15% better prices when buying or selling.\n \n \nMax Perk Level: 5</text>
+        <text>Your charisma and charm is unmatched within the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]15% %c[ui_gray_2]better prices when buying or selling
+		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_4">
-        <text>When bartering, you receive 20% better prices when buying or selling.\n \n \nMax Perk Level: 5</text>
+        <text>Your charisma and charm is unmatched within the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% %c[ui_gray_2]better prices when buying or selling
+		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_5">
-        <text>When bartering, you receive 25% better prices when buying or selling.\n \n \nMax Perk Level: 5</text>
+        <text>Your charisma and charm is unmatched within the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% c%c[ui_gray_2]better prices when buying or selling
+		</text>
     </string>
 	
 	
@@ -485,35 +802,59 @@
         <text>You now deal more damage to mutants.</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_1">
-        <text>You now deal 5% more damage to mutants.\n \n \nMax Perk Level: 5</text>
+        <text>At least you have one thing in common with Duty: your hate of mutants.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]5% %c[ui_gray_2]more damage to %c[yellow]mutants
+		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_2">
-        <text>You now deal 10% more damage to mutants.\n \n \nMax Perk Level: 5</text>
+        <text>At least you have one thing in common with Duty: your hate of mutants.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]10% %c[ui_gray_2]more damage to %c[yellow]mutants
+		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_3">
-        <text>You now deal 15% more damage to mutants.\n \n \nMax Perk Level: 5</text>
+        <text>At least you have one thing in common with Duty: your hate of mutants.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]15% %c[ui_gray_2]more damage to %c[yellow]mutants
+		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_4">
-        <text>You now deal 20% more damage to mutants.\n \n \nMax Perk Level: 5</text>
+        <text>At least you have one thing in common with Duty: your hate of mutants.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]20% %c[ui_gray_2]more damage to %c[yellow]mutants
+		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_5">
-        <text>You now deal 25% more damage to mutants.\n \n \nMax Perk Level: 5</text>
+        <text>At least you have one thing in common with Duty: your hate of mutants.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]25% %c[ui_gray_2]more damage to %c[yellow]mutants
+		</text>
     </string>
 	
 	<string id="st_perk_vampirism">
-        <text>Vampirism</text>
+        <text>Life-Steal</text>
     </string>
 	<string id="st_perk_vampirism_desc">
         <text>Vampirism - When killing an enemy, you are granted a small amount of Health and Stamina.</text>
     </string>
 	<string id="st_perk_vampirism_desc_1">
-        <text>Vampirism - When killing an enemy, you are granted 0.25% Health and Stamina.\n \n \nMax Perk Level: 3</text>
+        <text>Exposure to bloodsuckers have gien you a surprisingly useful mutation.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]2.5% %c[ui_gray_2]Health and Stamina when killing an enemy
+		</text>
     </string>
 	<string id="st_perk_vampirism_desc_2">
-        <text>Vampirism - When killing an enemy, you are granted 0.5% Health and Stamina.\n \n \nMax Perk Level: 3</text>
+        <text>Exposure to bloodsuckers have gien you a surprisingly useful mutation.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]5% %c[ui_gray_2]Health and Stamina when killing an enemy
+		</text>
     </string>
 	<string id="st_perk_vampirism_desc_3">
-        <text>Vampirism - When killing an enemy, you are granted 0.75% Health and Stamina.\n \n \nMax Perk Level: 3</text>
+        <text>Exposure to bloodsuckers have gien you a surprisingly useful mutation.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]7.5% %c[ui_gray_2]Health and Stamina when killing an enemy
+		</text>
     </string>
 	
 	
@@ -524,31 +865,13 @@
         <text>When killing an enemy, you receive a third of your weapon's magazine size as ammo to your backpack (Min. mag size of 3).</text>
     </string>
 	<string id="st_perk_warmonger_desc_1">
-        <text>When killing an enemy, you receive a third of your weapon's magazine size as ammo to your backpack (Min. mag size of 3).\n \n \nMax Perk Level: 1</text>
+        <text>The Zone has chosen to assist you in battles against your foes.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Receive a  %c[d_green]third of your weapon's magazine size %c[ui_gray_2]as ammo to your backpack\n
+		%c[d_red] - %c[ui_gray_2] Requires a mag size of at least 3
+		</text>
     </string>
-	
-	
-	<string id="st_perk_fighting_stance">
-        <text>Fighting Stance</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc">
-        <text>You swing melee weapons much faster.</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc_1">
-        <text>You now swing melee weapons 10% faster.\n \n \nMax Perk Level: 5</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc_2">
-        <text>You now swing melee weapons 20% faster.\n \n \nMax Perk Level: 5</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc_3">
-        <text>You now swing melee weapons 30% faster.\n \n \nMax Perk Level: 5</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc_4">
-        <text>You now swing melee weapons 40% faster.\n \n \nMax Perk Level: 5</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc_5">
-        <text>You now swing melee weapons 50% faster.\n \n \nMax Perk Level: 5</text>
-    </string>
+
 	
 	<string id="st_perk_deadeye">
         <text>Deadeye</text>
@@ -557,19 +880,44 @@
         <text>You randomly will deal a critical hit that deals more damage.</text>
     </string>
 	<string id="st_perk_deadeye_desc_1">
-        <text>You have a 0.1% base chance to deal a critical hit. Your critical hits multiply your damage by 25%.\n \n \nMax Perk Level: 5\n \n \nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
+        <text>You have learned the weak points of various armors in the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_orange] - %c[ui_gray_2] You have a %c[d_orange]0.1% base chance %c[ui_gray_2]to deal a critical hit\n
+		%c[d_blue] - %c[ui_gray_2] Critical hits multiply your damage by %c[d_green]25%\n
+		%c[d_red] - %c[ui_gray_2] Points into Lucky Strike will override this perk's critical hit chance
+		</text>
     </string>
 	<string id="st_perk_deadeye_desc_2">
-        <text>You have a 0.1% base chance to deal a critical hit. Your critical hits multiply your damage by 50%.\n \n \nMax Perk Level: 5\n \n \nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
+        <text>You have learned the weak points of various armors in the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_orange] - %c[ui_gray_2] You have a %c[d_orange]0.1% base chance %c[ui_gray_2]to deal a critical hit\n
+		%c[d_blue] - %c[ui_gray_2] Critical hits multiply your damage by %c[d_green]50%\n
+		%c[d_red] - %c[ui_gray_2] Points into Lucky Strike will override this perk's critical hit chance
+		</text>
     </string>
 	<string id="st_perk_deadeye_desc_3">
-        <text>You have a 0.1% base chance to deal a critical hit. Your critical hits multiply your damage by 75%.\n \n \nMax Perk Level: 5\n \n \nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
+        <text>You have learned the weak points of various armors in the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_orange] - %c[ui_gray_2] You have a %c[d_orange]0.1% base chance %c[ui_gray_2]to deal a critical hit\n
+		%c[d_blue] - %c[ui_gray_2] Critical hits multiply your damage by %c[d_green]75%\n
+		%c[d_red] - %c[ui_gray_2] Points into Lucky Strike will override this perk's critical hit chance
+		</text>
     </string>
 	<string id="st_perk_deadeye_desc_4">
-        <text>You have a 0.1% base chance to deal a critical hit. Your critical hits multiply your damage by 100%.\n \n \nMax Perk Level: 5\n \n \nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
+        <text>You have learned the weak points of various armors in the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_orange] - %c[ui_gray_2] You have a %c[d_orange]0.1% base chance %c[ui_gray_2]to deal a critical hit\n
+		%c[d_blue] - %c[ui_gray_2] Critical hits multiply your damage by %c[d_green]100%\n
+		%c[d_red] - %c[ui_gray_2] Points into Lucky Strike will override this perk's critical hit chance
+		</text>
     </string>
 	<string id="st_perk_deadeye_desc_5">
-        <text>You have a 0.1% base chance to deal a critical hit. Your critical hits multiply your damage by 125%.\n \n \nMax Perk Level: 5\n \n \nNOTE: Points into Lucky Strike will override your critical hit chance.</text>
+        <text>You have learned the weak points of various armors in the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_orange] - %c[ui_gray_2] You have a %c[d_orange]0.1% base chance %c[ui_gray_2]to deal a critical hit\n
+		%c[d_blue] - %c[ui_gray_2] Critical hits multiply your damage by %c[d_green]125%\n
+		%c[d_red] - %c[ui_gray_2] Points into Lucky Strike will override this perk's critical hit chance
+		</text>
     </string>
 	
 	<string id="st_perk_lucky_strike">
@@ -579,19 +927,49 @@
         <text>You have a higher chance of landing critical hits.</text>
     </string>
 	<string id="st_perk_lucky_strike_desc_1">
-        <text>You have a 1% chance of landing critical hits that multiply your damage by 10%. Landing a headshot will increase this chance to 1.5%.\n \n \nMax Perk Level: 5\n \n \nNOTE: Points into Deadeye will override your critical damage multiplier.</text>
+        <text>Sometimes, a lucky shot is all you need.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]1% base chance %c[ui_gray_2]to deal a critical hit\n
+		%c[d_blue] - %c[ui_gray_2] Critical hit chance increases to %c[d_green]1.5% when landing a headshot\n
+		%c[d_orange] - %c[ui_gray_2] Critical hits multiply your damage by %c[d_orange]10%\n
+		%c[d_red] - %c[ui_gray_2] Points into Deadeye will override this perk's critical hit damage multiplier
+		</text>
     </string>
 	<string id="st_perk_lucky_strike_desc_2">
-        <text>You have a 4% chance of landing critical hits that deal multiply your damage by 10%. Landing a headshot will increase this chance to 6%.\n \n \nMax Perk Level: 5\n \n \nNOTE: Points into Deadeye will override your critical damage multiplier.</text>
+		<text>Sometimes, a lucky shot is all you need.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]4% base chance %c[ui_gray_2]to deal a critical hit\n
+		%c[d_blue] - %c[ui_gray_2] Critical hit chance increases to %c[d_green]6% when landing a headshot\n
+		%c[d_orange] - %c[ui_gray_2] Critical hits multiply your damage by %c[d_orange]10%\n
+		%c[d_red] - %c[ui_gray_2] Points into Deadeye will override this perk's critical hit damage multiplier
+		</text>
     </string>
 	<string id="st_perk_lucky_strike_desc_3">
-        <text>You have a 9% chance of landing critical hits that deal multiply your damage by 10%. Landing a headshot will increase this chance to 13.5%.\n \n \nMax Perk Level: 5\n \n \nNOTE: Points into Deadeye will override your critical damage multiplier.</text>
+		<text>Sometimes, a lucky shot is all you need.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]9% base chance %c[ui_gray_2]to deal a critical hit\n
+		%c[d_blue] - %c[ui_gray_2] Critical hit chance increases to %c[d_green]13.5% when landing a headshot\n
+		%c[d_orange] - %c[ui_gray_2] Critical hits multiply your damage by %c[d_orange]10%\n
+		%c[d_red] - %c[ui_gray_2] Points into Deadeye will override this perk's critical hit damage multiplier
+		</text>
     </string>
 	<string id="st_perk_lucky_strike_desc_4">
-        <text>You have a 16% chance of landing critical hits that deal multiply your damage by 10%. Landing a headshot will increase this chance to 24%.\n \n \nMax Perk Level: 5\n \n \nNOTE: Points into Deadeye will override your critical damage multiplier.</text>
+		<text>Sometimes, a lucky shot is all you need.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]16% base chance %c[ui_gray_2]to deal a critical hit\n
+		%c[d_blue] - %c[ui_gray_2] Critical hit chance increases to %c[d_green]24% when landing a headshot\n
+		%c[d_orange] - %c[ui_gray_2] Critical hits multiply your damage by %c[d_orange]10%\n
+		%c[d_red] - %c[ui_gray_2] Points into Deadeye will override this perk's critical hit damage multiplier
+		</text>
     </string>
 	<string id="st_perk_lucky_strike_desc_5">
-        <text>You have a 25% chance of landing critical hits that deal multiply your damage by 10%. Landing a headshot will increase this chance to 37.5%.\n \n \nMax Perk Level: 5\n \n \nNOTE: Points into Deadeye will override your critical damage multiplier.</text>
+		<text>Sometimes, a lucky shot is all you need.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]25% base chance %c[ui_gray_2]to deal a critical hit\n
+		%c[d_blue] - %c[ui_gray_2] Critical hit chance increases to %c[d_green]37.5% when landing a headshot\n
+		%c[d_orange] - %c[ui_gray_2] Critical hits multiply your damage by %c[d_orange]10%\n
+		%c[d_red] - %c[ui_gray_2] Points into Deadeye will override this perk's critical hit damage multiplier
+		</text>
     </string>
 	
 	<string id="st_perk_strong_back">
@@ -601,19 +979,40 @@
         <text>Increase your carry weight with each rank.</text>
     </string>
 	<string id="st_perk_strong_back_desc_1">
-        <text>Your travels through the Zone have strengthed your body. You now can carry an extra 5kg of weight.\n \n \nMax Perk Level: 5</text>
+        <text>Your travels through the Zone have strengthed your body.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]5kg
+		</text>
     </string>
 	<string id="st_perk_strong_back_desc_2">
-        <text>You now can carry an extra 10kg of weight.\n \n \nMax Perk Level: 5</text>
+        <text>Your travels through the Zone have strengthed your body.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]10kg
+		</text>
     </string>
 	<string id="st_perk_strong_back_desc_3">
-        <text>You now can carry an extra 15kg of weight. Additionally, you can now fast travel when overweight (other fast travel rules still apply).\n \n \nMax Perk Level: 5</text>
+        <text>Your travels through the Zone have strengthed your body.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]15kg
+		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
+		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
+		</text>
     </string>
 	<string id="st_perk_strong_back_desc_4">
-        <text>You now can carry an extra 20kg of weight. Additionally, you can now fast travel when overweight (other fast travel rules still apply).\n \n \nMax Perk Level: 5</text>
+        <text>Your travels through the Zone have strengthed your body.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]20kg
+		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
+		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
+		</text>
     </string>
 	<string id="st_perk_strong_back_desc_5">
-        <text>You now can carry an extra 25kg of weight. Additionally, you can now fast travel when overweight (other fast travel rules still apply).\n \n \nMax Perk Level: 5</text>
+        <text>Your travels through the Zone have strengthed your body.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]25kg
+		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
+		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
+		</text>
     </string>
 	
 	<string id="st_perk_slow_metabolism">
@@ -623,19 +1022,35 @@
         <text>Reduce the amount of satiety you lose from consuming items.</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_1">
-        <text>Your body has adapted to your medication and drug use. You now lose 10% less satiety when consuming any item that drains it.\n \n \nMax Perk Level: 5</text>
+        <text>Your body has adapted to your medication and drug use.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]10% less satiety %c[ui_gray_2]when consuming any item that drains it
+		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_2">
-        <text>You now lose 20% less satiety when consuming any item that drains it.\n \n \nMax Perk Level: 5</text>
+        <text>Your body has adapted to your medication and drug use.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]20% less satiety %c[ui_gray_2]when consuming any item that drains it
+		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_3">
-        <text>You now lose 30% less satiety when consuming any item that drains it.\n \n \nMax Perk Level: 5</text>
+        <text>Your body has adapted to your medication and drug use.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]30% less satiety %c[ui_gray_2]when consuming any item that drains it
+		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_4">
-        <text>You now lose 40% less satiety when consuming any item that drains it.\n \n \nMax Perk Level: 5</text>
+        <text>Your body has adapted to your medication and drug use.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]40% less satiety %c[ui_gray_2]when consuming any item that drains it
+		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_5">
-        <text>You now lose 50% less satiety when consuming any item that drains it. Additionally, any item you consume that restores your satiety will also give you half of its satiety as an additional boost over 1 minute.\n \n \nMax Perk Level: 5</text>
+		<text>Your body has adapted to your medication and drug use.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]50% less satiety %c[ui_gray_2]when consuming any item that drains it
+        %c[d_blue] - %c[ui_gray_2] Consumables that restore satiety give %c[d_green]half of its satiety %c[ui_gray_2]as an additional boost over %c[yellow]1 minute
+		</text>
     </string>
 	
 	<string id="st_perk_zone_gunsmith">
@@ -645,29 +1060,62 @@
         <text>You can now use Metallic Scraps to repair any item (excluding artefacts).</text>
     </string>
 	<string id="st_perk_zone_gunsmith_desc_1">
-        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material. You can now use Metallic Scraps as a bonus item when repairing (excluding artefacts). They will have a +3% Bonus.\n \n \nMax Perk Level: 5</text>
+        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+3% %c[ui_gray_2]repair bonus\n
+		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
+		</text>
     </string>
 	<string id="st_perk_zone_gunsmith_desc_2">
-        <text>Metallic Scraps now have a Bonus of +4% during repairs (excluding artefacts).\n \n \nMax Perk Level: 5</text>
+        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+4% %c[ui_gray_2]repair bonus\n
+		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
+		</text>
     </string>
 	<string id="st_perk_zone_gunsmith_desc_3">
-        <text>Metallic Scraps now have a Bonus of +5% during repairs (excluding artefacts). Additionally, you have a 10% to not consume a bonus repair item.\n \n \nMax Perk Level: 5</text>
+		<text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+5% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]10% %c[ui_gray_2]chance to not be consumed\n
+		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
+		</text>
     </string>
 	<string id="st_perk_zone_gunsmith_desc_4">
-        <text>Metallic Scraps now have a Bonus of +6% during repairs (excluding artefacts). Additionally, you have a 20% to not consume a bonus repair item.\n \n \nMax Perk Level: 5</text>
+        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+6% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]20% %c[ui_gray_2]chance to not be consumed\n
+		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
+		</text>
     </string>
 	<string id="st_perk_zone_gunsmith_desc_5">
-        <text>Metallic Scraps now have a Bonus of +7% during repairs (excluding artefacts). Additionally, you have a 30% to not consume a bonus repair item.\n \n \nMax Perk Level: 5</text>
+        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+7% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]30% %c[ui_gray_2]chance to not be consumed\n
+		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
+		</text>
     </string>
 	
 	<string id="st_perk_the_exalted">
         <text>The Exalted</text>
     </string>
 	<string id="st_perk_the_exalted_desc">
-        <text>Your influence among friendly factions comes with new benefits. Any faction that you don't belong to and have at least 1000 Goodwill with will now offer you the option to exchange other armors for similar armors belonging to their faction. Additionally, any faction-locked dialogue options and quests may be available to you.</text>
+        <text>Your influence among friendly factions comes with new benefits. Any faction that you don't belong to and have at least 1000 Goodwill with will now offer you the option to exchange other armors for similar armors belonging to their faction. Additionally, any faction-locked dialogue options and quests from said factions may be available to you.</text>
     </string>
 	<string id="st_perk_the_exalted_desc_1">
-        <text>Your influence among friendly factions comes with new benefits. Any faction that you don't belong to and have at least 1000 Goodwill with will now offer you the option to exchange other armors for similar armors belonging to their faction. Additionally, any faction-locked dialogue options and quests from said factions may be available to you.</text>
+		<text>Your influence among friendly factions comes with new benefits.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Can also exchange armor at %c[d_green]any friendly faction\n
+		%c[d_blue] - %c[ui_gray_2] Most faction-locked tasks and dialogue options not tied to your own faction are available to you from %c[d_green]any friendly faction\n
+		%c[d_red] - %c[ui_gray_2] Friendly faction = having at least %c[d_green]1000 Goodwill %c[ui_gray_2]with a faction
+		</text>
     </string>
 	
 </string_table>
