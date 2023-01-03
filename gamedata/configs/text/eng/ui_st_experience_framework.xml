@@ -422,5 +422,16 @@
 	<string id="ui_mcm_experience_framework_experience_framework_main_G_MAX_LEVEL_desc">
 		<text>This setting adjusts the max level the player can reach in this mod.\n \nATTENTION! \nWhen changing this setting, be aware that if you go below your current level, or you use the DEBUG option to give yourself max level then change this to lower than that, you will be stuck at the current level.</text>
 	</string>
+<!--
+
+		Pr1nkos additions
+
+-->
+	<string id="ui_mcm_experience_framework_experience_framework_main_G_SKILLPOINT_PER_LEVEL">
+		<text>Perk-per-level</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_main_G_SKILLPOINT_PER_LEVEL_desc">
+		<text>This setting allows you to adjust the amount of points you get with each level.</text>
+	</string>
 
 </string_table>
