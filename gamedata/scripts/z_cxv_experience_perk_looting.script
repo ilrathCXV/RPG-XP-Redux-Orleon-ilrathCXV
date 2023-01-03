@@ -290,19 +290,20 @@ function perk_loot_improvement(item)------------------> actor_on_item_take(item)
 			end
 			local mult = 1
             mult = 1 + (0.05 * midas_touch)
-        end
-        local money_amount = IsItem("money", item:section())
-        if money_amount and money_amount[1] then
-            if money_amount[2] then
-                local min_amt = math.floor(tonumber(money_amount[1])) * mult or 10
-                local max_amt = math.floor(tonumber(money_amount[2])) * mult or 30
-                db.actor:give_money(math.random(min_amt, max_amt))
-            else
-                local amount = math.floor(tonumber(money_amount[1])) * mult or 10
-                db.actor:give_money(amount)
-            end
-        end
-        db.actor:drop_item(item)
+
+			local money_amount = IsItem("money", item:section())
+			if money_amount and money_amount[1] then
+				if money_amount[2] then
+					local min_amt = math.floor(tonumber(money_amount[1])) * mult or 10
+					local max_amt = math.floor(tonumber(money_amount[2])) * mult or 30
+					db.actor:give_money(math.random(min_amt, max_amt))
+				else
+					local amount = math.floor(tonumber(money_amount[1])) * mult or 10
+					db.actor:give_money(amount)
+				end
+			end
+			db.actor:drop_item(item)
+		end
     end
 end
 

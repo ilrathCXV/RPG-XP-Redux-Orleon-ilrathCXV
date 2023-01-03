@@ -269,7 +269,7 @@ function perk_kill_effects(victim, killer)
 -------------------------------------------------------------------------> Bloody Mess (SMG)/Bloodbath (Special)
 	if bloody_mess >= 1 and (weapon_class ~= "melee") then
 		local dice = math.random(100) <= bloody_mess
-		kaboom(npc, dice)
+		kaboom(victim, dice)
 	end
 	
 -------------------------------------------------------------------------> Vampirism
