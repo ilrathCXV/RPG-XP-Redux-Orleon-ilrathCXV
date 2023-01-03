@@ -412,6 +412,28 @@
 	<string id="st_xp_news_gain_xp_desc">
 		<text>%sПолучено +%s XP</text>
 	</string>
+<!--
+
+		ilrathCXV additions
+
+-->
+	<string id="ui_mcm_experience_framework_experience_framework_main_G_MAX_LEVEL">
+		<text>Макс. Уровень.</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_main_G_MAX_LEVEL_desc">
+		<text>Данная настройка позволяет настроить максимальный уровень.\n \nВнимание! \nПри изменении этого параметра имейте в виду, что если вы опускаетесь ниже своего текущего уровня или используете параметр DEBUG, чтобы дать себе максимальный уровень, а затем измените его на более низкий, вы застрянете на текущем уровне.</text>
+	</string>
+<!--
+
+		Pr1nkos additions
+
+-->
+	<string id="ui_mcm_experience_framework_experience_framework_main_G_SKILLPOINT_PER_LEVEL">
+		<text>Очки за уровень.</text>
+	</string>
+	<string id="ui_mcm_experience_framework_experience_framework_main_G_SKILLPOINT_PER_LEVEL_desc">
+		<text>Данная настройка позволяет настроить количество очков, которые вы получаете с каждым уровнем.</text>
+	</string>
 
 
 </string_table>
