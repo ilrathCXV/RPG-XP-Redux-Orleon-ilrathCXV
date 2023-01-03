@@ -12,7 +12,7 @@ MOD_VERSION = "1.1.2a"
 
 local strformat = string.format
 
-G_SKILLPOINT_PER_LEVEL			= 1			-- Number of skill points given for a new level
+G_SKILLPOINT_PER_LEVEL			= 2			-- Number of skill points given for a new level
 
 local G_STALKER_XP_MULT			= 1.0
 local G_MUTANT_XP_MULT			= 1.0
@@ -52,6 +52,7 @@ MCM_SETTINGS = {
 	NEWS_SOUND					= true,
 	PERK_COLOR_NAMES			= true,
 	G_MAX_LEVEL					= 60,
+	G_SKILLPOINT_PER_LEVEL		= 1,
 	GLOBAL_EXPERIENCE_MULT		= 1,
 	DEBUG_MODE					= false,
 	
@@ -138,6 +139,7 @@ local mcm_settings_map = {
 	NEWS_SOUND					= "experience_framework_main/",
 	PERK_COLOR_NAMES			= "experience_framework_main/",
 	G_MAX_LEVEL					= "experience_framework_main/",
+	G_SKILLPOINT_PER_LEVEL		= "experience_framework_main/",
 	GLOBAL_EXPERIENCE_MULT		= "experience_framework_main/",
 	DEBUG_MODE					= "experience_framework_main/",
 	STALKER_XP					= "experience_framework_xp_option/",
@@ -174,6 +176,7 @@ local function update_mcm_settings()
 				MCM_SETTINGS[name] = ui_mcm.get("experience_framework/"..mcm_settings_map[name]..name)
 			end
 			G_MAX_LEVEL						= MCM_SETTINGS.G_MAX_LEVEL or 60		-- Level Cap (Edited to allow MCM customization - ilrathCXV)
+			G_SKILLPOINT_PER_LEVEL = MCM_SETTINGS.G_SKILLPOINT_PER_LEVEL or 1
 		end
 	end
 end

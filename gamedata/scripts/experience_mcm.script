@@ -22,6 +22,7 @@ function on_mcm_load()
 					{id = "divider", type = "line"},
 					
 					{id = "G_MAX_LEVEL", type = "track", val = 2, min = 1, max = 100, step = 1, def = 60},
+					{id = "G_SKILLPOINT_PER_LEVEL", type = "track", val = 2, min = 1, max = 10, step = 1, def = 1},
 					{id = "GLOBAL_EXPERIENCE_MULT", type = "track", val = 2, min = 0.01, max = 5, step = 0.01, def = 1.0},
 					{id = "divider", type = "line"},
 					
