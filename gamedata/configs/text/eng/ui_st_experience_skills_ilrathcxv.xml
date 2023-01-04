@@ -98,7 +98,7 @@
 	<string id="st_perk_gunslinger_desc_2">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]1% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_3">
