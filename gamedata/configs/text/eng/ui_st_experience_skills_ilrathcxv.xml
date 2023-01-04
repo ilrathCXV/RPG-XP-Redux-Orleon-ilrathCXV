@@ -98,13 +98,25 @@
 	<string id="st_perk_gunslinger_desc_2">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]1% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_3">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		</text>
+    </string>
+	<string id="st_perk_gunslinger_desc_4">
+        <text>You have mastered your skills with using small arms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		</text>
+    </string>
+	<string id="st_perk_gunslinger_desc_5">
+        <text>You have mastered your skills with using small arms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 
@@ -131,6 +143,18 @@
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		</text>
+    </string>
+	<string id="st_perk_rifleman_desc_4">
+        <text>You have become an expert with rifle-styled platforms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		</text>
+    </string>
+	<string id="st_perk_rifleman_desc_5">
+        <text>You have become an expert with rifle-styled platforms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	
@@ -162,6 +186,21 @@
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
+	<string id="st_perk_heavy_gunner_desc_4">
+        <text>You have taken to the more specialized weapons in the Zone. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
+		</text>
+    </string>
+	<string id="st_perk_heavy_gunner_desc_5">
+        <text>You have taken to the more specialized weapons in the Zone. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
+		</text>
+    </string>
+	
 	
 	
     <string id="st_perk_berserker">
@@ -189,6 +228,20 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
 		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]7.5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		</text>
+    </string>
+	<string id="st_perk_berserker_desc_4">
+        <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
+		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]10% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		</text>
+    </string>
+	<string id="st_perk_berserker_desc_5">
+        <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
+		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]12.5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	
