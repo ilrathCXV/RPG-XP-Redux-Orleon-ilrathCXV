@@ -104,7 +104,19 @@
 	<string id="st_perk_gunslinger_desc_3">
         <text>Вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]15% %c[ui_gray_2]при стрельбе из \n%c[yellow]Пистолетов и пистолет-пулемётов
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]15% %c[ui_gray_2]при стрельбе из \n%c[yellow]Пистолетов и пистолет-пулемётов																								  
+		</text>
+    </string>
+	<string id="st_perk_gunslinger_desc_4">
+        <text>Вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]20% %c[ui_gray_2]при стрельбе из \n%c[yellow]Пистолетов и пистолет-пулемётов																								  
+		</text>
+    </string>
+	<string id="st_perk_gunslinger_desc_5">
+        <text>Вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]25% %c[ui_gray_2]при стрельбе из \n%c[yellow]Пистолетов и пистолет-пулемётов																								  
 		</text>
     </string>
 
@@ -130,9 +142,21 @@
 	<string id="st_perk_rifleman_desc_3">
         <text>Ваш урон из штурмовых винтовок увеличен. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ::\n
-		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]15% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]15% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов																											  
 		</text>
     </string>
+	<string id="st_perk_rifleman_desc_4">
+        <text>Ваш урон из штурмовых винтовок увеличен. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ::\n
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]20% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов																											  
+		</text>
+    </string>
+	<string id="st_perk_rifleman_desc_5">
+        <text>Ваш урон из штурмовых винтовок увеличен. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ::\n
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]25% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов																											  
+		</text>
+    </string>					  
 	
 	
 	<string id="st_perk_heavy_gunner">
@@ -162,7 +186,20 @@
 		%c[d_red] - %c[ui_gray_2] Не влияет на урон от гранат.
 		</text>
     </string>
-	
+	<string id="st_perk_heavy_gunner_desc_4">
+        <text>Вы стали чаще использовать более специализированные оружия в Зоне. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]20% %c[ui_gray_2]при стрельбе из \n%c[yellow]дробовиков, снайперских винтовок и гранатомётов\n
+		%c[d_red] - %c[ui_gray_2] Не влияет на урон от гранат.
+		</text>
+    </string>
+	<string id="st_perk_heavy_gunner_desc_5">
+        <text>Вы стали чаще использовать более специализированные оружия в Зоне. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]25% %c[ui_gray_2]при стрельбе из \n%c[yellow]дробовиков, снайперских винтовок и гранатомётов\n
+		%c[d_red] - %c[ui_gray_2] Не влияет на урон от гранат.
+		</text>
+    </string>								  
 	
     <string id="st_perk_berserker">
         <text>Берсерк</text>
@@ -191,8 +228,20 @@
 		%c[d_blue] - %c[ui_gray_2] Вы получаете на  %c[d_green]7.5% %c[ui_gray_2]меньше повреждений при использовании оружия ближнего боя.
 		</text>
     </string>
-	
-	
+	<string id="st_perk_berserker_desc_4">
+        <text>Пока другие оттачивали свою меткость, вы упражнялись в рукопашном бое. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]20% %c[ui_gray_2]при использовании \n%c[yellow]оружия ближнего боя\n
+		%c[d_blue] - %c[ui_gray_2] Вы получаете на  %c[d_green]10% %c[ui_gray_2]меньше повреждений при использовании оружия ближнего боя.
+		</text>
+    </string>
+	<string id="st_perk_berserker_desc_5">
+        <text>Пока другие оттачивали свою меткость, вы упражнялись в рукопашном бое. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]25% %c[ui_gray_2]при использовании \n%c[yellow]оружия ближнего боя\n
+		%c[d_blue] - %c[ui_gray_2] Вы получаете на  %c[d_green]12.5% %c[ui_gray_2]меньше повреждений при использовании оружия ближнего боя.
+		</text>
+    </string>							   
 	<string id="st_perk_jamming_shot">
         <text>Клинящий выстрел</text>
     </string>
