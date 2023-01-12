@@ -1,0 +1,29 @@
+local options = {
+	id = "xp_addon_arpg_redux", sh = true, gr = {
+	
+		{id = "title", type = "slide", link = "ui_main_experience_mod_options_slider", text = "ui_mcm_xp_addon_arpg_redux_title", size = {512,50}, spacing = 20},
+		{id = "divider", type = "line"},
+		
+		{id = "G_MAX_LEVEL", type = "track", val = 2, min = 1, max = 100, step = 1, def = 60},
+		{id = "G_SKILLPOINT_PER_LEVEL", type = "track", val = 2, min = 1, max = 10, step = 1, def = 1},
+		{id = "divider", type = "line"},
+	}
+}
+
+local options_loaded = false
+function on_mcm_load()
+	if not options_loaded then
+		options_loaded = true
+		return options, "experience_framework"
+	end
+end
+
+function on_option_change()
+	experience_core.G_MAX_LEVEL					= ui_mcm.get("experience_framework/xp_addon_arpg_redux/G_MAX_LEVEL")
+	experience_core.G_SKILLPOINT_PER_LEVEL		= ui_mcm.get("experience_framework/xp_addon_arpg_redux/G_SKILLPOINT_PER_LEVEL")
+end
+
+function on_game_start()
+	RegisterScriptCallback("on_option_change", on_option_change)
+	on_option_change()
+end

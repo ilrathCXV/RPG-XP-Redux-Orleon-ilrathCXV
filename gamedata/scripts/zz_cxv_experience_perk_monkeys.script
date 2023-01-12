@@ -1,0 +1,39 @@
+---------------------------------------------------------------------------------------------------------------------------------
+-- experience_core.script -------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+ActorOnItemBeforePickupArtefact = experience_core.actor_on_item_before_pickup
+function experience_core.actor_on_item_before_pickup(obj, flags)
+	if not IsArtefact(obj) then return end
+	
+	-- Hack to prevent player from exploting Artefacts Containers (gaining rank by recieving artefacts)
+	if _G.ARTY_FROM_CONT then
+		_G.ARTY_FROM_CONT = nil
+		return
+	end
+	
+	local artefact = obj:get_artefact()
+	local anomaly = bind_anomaly_zone.parent_zones_by_artefact_id[obj:id()]		-- ???
+	-- Artefacts found counter incrementation.
+	-- Checks to make sure artefact id hasn't already been logged.
+	if (artefact) then
+		artefact:FollowByPath("NULL", 0, vector():set(500,500,500))
+		if not (game_statistics.actor_artefacts[obj:id()]) then
+			game_statistics.actor_artefacts[obj:id()] = true
+			local af_rank = SYS_GetParam(2, obj:section(), "af_rank") or 0
+			give_actor_experience_by_artefact(af_rank)
+		else
+			return
+		end
+	end
+end
+
+---------------------------------------------------------------------------------------------------------------------------------
+-- zzzz_arti_jamming_repairs.script ---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+if zzzz_arti_jamming_repairs then
+	local BaseReplacePart = zzzz_arti_jamming_repairs.replace_part
+	function zzzz_arti_jamming_repairs.replace_part(id, part, kit_name, clean)		
+		BaseReplacePart(id, part, kit_name, clean)
+		experience_core.give_actor_experience_by_repair_items()
+	end
+end

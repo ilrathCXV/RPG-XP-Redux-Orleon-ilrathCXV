@@ -265,11 +265,14 @@ end
 function perk_kill_effects(victim, killer)
     if not killer then return end
     if killer:id() ~= db.actor:id() then return end
-
+	
 -------------------------------------------------------------------------> Bloody Mess (SMG)/Bloodbath (Special)
-	if bloody_mess >= 1 and (weapon_class ~= "melee") then
-		local dice = math.random(100) <= bloody_mess
-		kaboom(victim, dice)
+	if bloody_mess >= 1 then
+		local weapon = db.actor:active_item()
+		if weapon and (sortK_of(weapon) ~= "melee") then
+			local dice = math.random(100) <= bloody_mess
+			kaboom(victim, dice)
+		end
 	end
 	
 -------------------------------------------------------------------------> Vampirism

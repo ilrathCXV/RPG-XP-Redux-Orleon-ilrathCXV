@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+
+
+	<string id="ui_mcm_menu_xp_addon_arpg_redux">
+		<text>ARPG Redux</text>
+	</string>
+	<string id="ui_mcm_xp_addon_arpg_redux_title">
+		<text>Anomaly RPG Redux</text>
+	</string>
+
+<!--
+
+		ilrathCXV additions
+
+-->
+	<string id="ui_mcm_experience_framework_xp_addon_arpg_redux_G_MAX_LEVEL">
+		<text>Макс. Уровень.</text>
+	</string>
+	<string id="ui_mcm_experience_framework_xp_addon_arpg_redux_G_MAX_LEVEL_desc">
+		<text>Данная настройка позволяет настроить максимальный уровень.\n \nВнимание! \nПри изменении этого параметра имейте в виду, что если вы опускаетесь ниже своего текущего уровня или используете параметр DEBUG, чтобы дать себе максимальный уровень, а затем измените его на более низкий, вы застрянете на текущем уровне.</text>
+	</string>
+<!--
+
+		Pr1nkos additions
+
+-->
+	<string id="ui_mcm_experience_framework_xp_addon_arpg_redux_G_SKILLPOINT_PER_LEVEL">
+		<text>Очки за уровень.</text>
+	</string>
+	<string id="ui_mcm_experience_framework_xp_addon_arpg_redux_G_SKILLPOINT_PER_LEVEL_desc">
+		<text>Данная настройка позволяет настроить количество очков, которые вы получаете с каждым уровнем.</text>
+	</string>
+
+
+</string_table>

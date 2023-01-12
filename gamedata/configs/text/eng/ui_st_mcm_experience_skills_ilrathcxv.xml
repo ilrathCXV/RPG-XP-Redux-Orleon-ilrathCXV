@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+
+
+	<string id="ui_mcm_menu_xp_addon_arpg_redux">
+		<text>ARPG Redux</text>
+	</string>
+	<string id="ui_mcm_xp_addon_arpg_redux_title">
+		<text>Anomaly RPG Redux</text>
+	</string>
+
+<!--
+			ilrathCXV additions
+-->
+	<string id="ui_mcm_experience_framework_xp_addon_arpg_redux_G_MAX_LEVEL">
+		<text>Max Level</text>
+	</string>
+	<string id="ui_mcm_experience_framework_xp_addon_arpg_redux_G_MAX_LEVEL_desc">
+		<text>This setting adjusts the max level the player can reach in this mod.\n \nATTENTION! \nWhen changing this setting, be aware that if you go below your current level, or you use the DEBUG option to give yourself max level then change this to lower than that, you will be stuck at the current level.</text>
+	</string>
+<!--
+
+		Pr1nkos additions
+
+-->
+	<string id="ui_mcm_experience_framework_xp_addon_arpg_redux_G_SKILLPOINT_PER_LEVEL">
+		<text>Perk-per-level</text>
+	</string>
+	<string id="ui_mcm_experience_framework_xp_addon_arpg_redux_G_SKILLPOINT_PER_LEVEL_desc">
+		<text>This setting allows you to adjust the amount of points you get with each level.</text>
+	</string>
+
+
+</string_table>

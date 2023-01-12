@@ -1,0 +1,346 @@
+local cxv_perks_settings = {
+	-- Imported from 'perk_arpg_ilrathcxv.ltx'
+	[1] = {
+		perk_fast_hands = {
+			name 				= "st_perk_fast_hands",
+			description 		= "st_perk_fast_hands_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 1,
+			max_level 			= 5,
+			each_level 			= 2
+		},
+		perk_ghost_ammo = {
+			name 				= "st_perk_ghost_ammo",
+			description 		= "st_perk_ghost_ammo_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 5,
+			max_level 			= 5,
+			each_level 			= 2
+		},
+		perk_gunslinger = {
+			name 				= "st_perk_gunslinger",
+			description 		= "st_perk_gunslinger_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 5,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_rifleman = {
+			name 				= "st_perk_rifleman",
+			description 		= "st_perk_rifleman_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 5,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_heavy_gunner = {
+			name 				= "st_perk_heavy_gunner",
+			description 		= "st_perk_heavy_gunner_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 5,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_berserker = {
+			name 				= "st_perk_berserker",
+			description 		= "st_perk_berserker_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 5,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_jamming_shot = {
+			name 				= "st_perk_jamming_shot",
+			description 		= "st_perk_jamming_shot_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 25,
+			max_level 			= 1,
+			each_level 			= 0
+		},
+		perk_bloody_mess = {
+			name 				= "st_perk_bloody_mess",
+			description 		= "st_perk_bloody_mess_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 20,
+			max_level 			= 5,
+			each_level 			= 2
+		},
+		perk_disarming_shot = {
+			name 				= "st_perk_disarming_shot",
+			description 		= "st_perk_disarming_shot_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 50,
+			max_level 			= 1,
+			each_level 			= 0
+		},
+		perk_careful_handler = {
+			name 				= "st_perk_careful_handler",
+			description 		= "st_perk_careful_handler_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 5,
+			max_level 			= 5,
+			each_level 			= 5
+		},
+		perk_cybermedic = {
+			name 				= "st_perk_cybermedic",
+			description 		= "st_perk_cybermedic_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 25,
+			max_level 			= 3,
+			each_level 			= 3
+		},
+		perk_dodger = {
+			name 				= "st_perk_dodger",
+			description 		= "st_perk_dodger_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 30,
+			max_level 			= 5,
+			each_level 			= 5
+		},
+		perk_ammo_finder = {
+			name 				= "st_perk_ammo_finder",
+			description 		= "st_perk_ammo_finder_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 5,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_artefinder = {
+			name 				= "st_perk_artefinder",
+			description 		= "st_perk_artefinder_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 15,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_midas_touch = {
+			name 				= "st_perk_midas_touch",
+			description 		= "st_perk_midas_touch_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 15,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_spiked = {
+			name 				= "st_perk_spiked",
+			description 		= "st_perk_spiked_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 25,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_anomaly_defense = {
+			name 				= "st_perk_anomaly_defense",
+			description 		= "st_perk_anomaly_defense_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 30,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_iron_resolve = {
+			name 				= "st_perk_iron_resolve",
+			description 		= "st_perk_iron_resolve_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 20,
+			max_level 			= 3,
+			each_level 			= 3
+		},
+		perk_vampirism = {
+			name 				= "st_perk_vampirism",
+			description 		= "st_perk_vampirism_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 40,
+			max_level 			= 3,
+			each_level 			= 5
+		},
+		perk_warmonger = {
+			name 				= "st_perk_warmonger",
+			description 		= "st_perk_warmonger_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 50,
+			max_level 			= 1,
+			each_level 			= 0
+		}
+	},
+	
+	-- Imported from 'perk_new_ilrathcxv.ltx'
+	[2] = {
+		perk_scavenger = {
+			name 				= "st_perk_scavenger",
+			description 		= "st_perk_scavenger_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 1,
+			max_level 			= 5,
+			each_level 			= 5
+		},
+		perk_plate_finder = {
+			name 				= "st_perk_plate_finder",
+			description 		= "st_perk_plate_finder_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 5,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_medicine_man = {
+			name 				= "st_perk_medicine_man",
+			description 		= "st_perk_medicine_man_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 10,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_mutant_slayer = {
+			name 				= "st_perk_mutant_slayer",
+			description 		= "st_perk_mutant_slayer_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 15,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_deadeye = {
+			name 				= "st_perk_deadeye",
+			description 		= "st_perk_deadeye_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 20,
+			max_level 			= 5,
+			each_level 			= 5
+		},
+		perk_lucky_strike = {
+			name 				= "st_perk_lucky_strike",
+			description 		= "st_perk_lucky_strike_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 20,
+			max_level 			= 5,
+			each_level 			= 5
+		},
+		perk_master_craftsman = {
+			name 				= "st_perk_master_craftsman",
+			description 		= "st_perk_master_craftsman_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 50,
+			max_level 			= 1,
+			each_level 			= 0
+		},
+		perk_comfort_food = {
+			name 				= "st_perk_comfort_food",
+			description 		= "st_perk_comfort_food_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 50,
+			max_level 			= 1,
+			each_level 			= 0
+		},
+		perk_master_zone = {
+			name 				= "st_perk_master_zone",
+			description 		= "st_perk_master_zone_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 50,
+			max_level 			= 1,
+			each_level 			= 0
+		},
+		perk_strong_back = {
+			name 				= "st_perk_strong_back",
+			description 		= "st_perk_strong_back_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 5,
+			max_level 			= 5,
+			each_level 			= 5
+		},
+		perk_slow_metabolism = {
+			name 				= "st_perk_slow_metabolism",
+			description 		= "st_perk_slow_metabolism_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 5,
+			max_level 			= 5,
+			each_level 			= 5
+		},
+		perk_zone_gunsmith = {
+			name 				= "st_perk_zone_gunsmith",
+			description 		= "st_perk_zone_gunsmith_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 20,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_the_exalted = {
+			name 				= "st_perk_the_exalted",
+			description 		= "st_perk_the_exalted_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 20,
+			max_level 			= 1,
+			each_level 			= 0
+		},
+	--[[	-- UNUSED
+		perk_fighting_stance = {
+			name 				= "st_perk_fighting_stance",
+			description 		= "st_perk_fighting_stance_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 10,
+			max_level 			= 5,
+			each_level 			= 3
+		}
+	--]]
+	},
+	
+	-- Imported from 'perk_skill_expansion_port_ilrathcxv.ltx'
+	[3] = {
+		perk_surgical_precision = {
+			name 				= "st_perk_surgical_precision",
+			description 		= "st_perk_surgical_precision_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 30,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_calm_mind = {
+			name 				= "st_perk_calm_mind",
+			description 		= "st_perk_calm_mind_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 25,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_repair_junkie = {
+			name 				= "st_perk_repair_junkie",
+			description 		= "st_perk_repair_junkie_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 30,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_silver_tongued = {
+			name 				= "st_perk_silver_tongued",
+			description 		= "st_perk_silver_tongued_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 30,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+		perk_lockpick_mastery = {
+			name 				= "st_perk_lockpick_mastery",
+			description 		= "st_perk_lockpick_mastery_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 20,
+			max_level 			= 5,
+			each_level 			= 3
+		},
+	--[[	-- WAITING TO BE IMPLEMENTED / UNUSED
+		perk_mag_loader = {
+			name 				= "st_perk_mag_loader",
+			description 		= "st_perk_mag_loader_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 10,
+			max_level 			= 5,
+			each_level 			= 1
+		}
+	--]]
+	}
+}
+
+local function init_perks()
+	for i=1, #cxv_perks_settings do
+		for id, settings in pairs(cxv_perks_settings[i]) do
+			experience_core.inject_perk(id, settings)
+		end
+	end
+end
+init_perks()
