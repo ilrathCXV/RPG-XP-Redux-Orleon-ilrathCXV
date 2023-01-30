@@ -11,31 +11,31 @@
 	<string id="st_perk_fast_hands_desc_1">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]10%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]30%
 		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_2">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]20%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]60%
 		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_3">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]30%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]90%
 		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_4">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]40%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]120%
 		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_5">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]50%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]150%
 		</text>
     </string>
 	
@@ -92,31 +92,36 @@
 	<string id="st_perk_gunslinger_desc_1">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]5% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_2">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]1% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_3">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_4">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]20% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_5">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
 		</text>
     </string>
 
@@ -131,30 +136,35 @@
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]5% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_2">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_3">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_4">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]20% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_5">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	
@@ -168,6 +178,7 @@
 	<string id="st_perk_heavy_gunner_desc_1">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]5% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect grenade damage
 		</text>
@@ -175,6 +186,7 @@
 	<string id="st_perk_heavy_gunner_desc_2">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
@@ -182,6 +194,7 @@
 	<string id="st_perk_heavy_gunner_desc_3">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
@@ -189,6 +202,7 @@
 	<string id="st_perk_heavy_gunner_desc_4">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]20% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
@@ -196,6 +210,7 @@
 	<string id="st_perk_heavy_gunner_desc_5">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
@@ -892,19 +907,19 @@
         <text>Vampirism - When killing an enemy, you are granted a small amount of Health and Stamina.</text>
     </string>
 	<string id="st_perk_vampirism_desc_1">
-        <text>Exposure to bloodsuckers have gien you a surprisingly useful mutation.\n \n
+        <text>Exposure to bloodsuckers has given you a surprisingly useful mutation.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]2.5% %c[ui_gray_2]Health and Stamina when killing an enemy
 		</text>
     </string>
 	<string id="st_perk_vampirism_desc_2">
-        <text>Exposure to bloodsuckers have gien you a surprisingly useful mutation.\n \n
+        <text>Exposure to bloodsuckers has given you a surprisingly useful mutation.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]5% %c[ui_gray_2]Health and Stamina when killing an enemy
 		</text>
     </string>
 	<string id="st_perk_vampirism_desc_3">
-        <text>Exposure to bloodsuckers have gien you a surprisingly useful mutation.\n \n
+        <text>Exposure to bloodsuckers has given you a surprisingly useful mutation.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]7.5% %c[ui_gray_2]Health and Stamina when killing an enemy
 		</text>
@@ -1069,39 +1084,44 @@
     </string>
 	
 	<string id="st_perk_slow_metabolism">
-        <text>Slow Metabolism</text>
+        <text>Lead Belly</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc">
-        <text>Reduce the amount of satiety you lose from consuming items.</text>
+        <text>Reduce the amount of satiety you lose and radiation taken from consuming items.</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_1">
-        <text>Your body has adapted to your medication and drug use.\n \n
+        <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]10% less satiety %c[ui_gray_2]when consuming any item that drains it
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]20% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_2">
-        <text>Your body has adapted to your medication and drug use.\n \n
+        <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]20% less satiety %c[ui_gray_2]when consuming any item that drains it
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]40% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]24% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_3">
-        <text>Your body has adapted to your medication and drug use.\n \n
+        <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]30% less satiety %c[ui_gray_2]when consuming any item that drains it
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]60% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]60% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_4">
-        <text>Your body has adapted to your medication and drug use.\n \n
+        <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]40% less satiety %c[ui_gray_2]when consuming any item that drains it
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]80% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]80% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_5">
 		<text>Your body has adapted to your medication and drug use.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]50% less satiety %c[ui_gray_2]when consuming any item that drains it
+		%c[d_blue] - %c[ui_gray_2] Ignore any %c[d_green]satiety drain %c[ui_gray_2] from consuming items\n
+		%c[d_blue] - %c[ui_gray_2] Ignore any %c[d_green]raditation %c[ui_gray_2] from consumed items\n
         %c[d_blue] - %c[ui_gray_2] Consumables that restore satiety give %c[d_green]half of its satiety %c[ui_gray_2]as an additional boost over %c[yellow]1 minute
 		</text>
     </string>

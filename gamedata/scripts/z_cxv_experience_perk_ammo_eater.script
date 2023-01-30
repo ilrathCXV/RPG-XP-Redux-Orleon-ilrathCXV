@@ -6,7 +6,27 @@ local function experience_perk_on_update(id, data)
 	end
 end
 
--------------------------------------------------------------> Ammo Eater
+-------------------------------------------------------------> Ammo Eater (1) Increase ammo found in inventory + (2) Guarantee ammo for weapons inside body's inventory
+local item_count = {}
+local diff_multi,cnt_multi_1,cnt_multi_2 = 1,1,1
+
+local function set_item_count_table()
+	local death_ini = itms_manager.ini_death or nil
+	-- Collect items count
+	local n = death_ini:line_count("item_count")
+	local id, value = "", ""
+	for i=0,n-1 do
+		local result, id, value	= death_ini:r_line_ex("item_count",i,"","")
+		local p = str_explode(value,",")
+		if (p) then
+			p[1] = tonumber(p[1]) or 0
+			p[2] = tonumber(p[2]) or p[1]
+			item_count[id] = {math.ceil(p[1] * cnt_multi_1),math.ceil(p[2] * cnt_multi_2)}
+			--printf("item count  min%s:max%s  item_count[id] min%s:max%s",cnt_multi_1,cnt_multi_2,item_count[id][1],item_count[id][2])
+		end
+	end
+end
+
 
 local function more_ammo(victim, item)
     if IsAmmo(item) then
@@ -16,6 +36,31 @@ local function more_ammo(victim, item)
             alife_create_item(item:section(), victim, {ammo = bonus})
         end
     end
+	
+	local ammo_class,sec,number
+	if (IsWeapon(nil,item:clsid()) and not victim:marked_dropped(item)) then
+		ammo_class = parse_list(ini_sys,item:section(),"ammo_class")
+			
+		-- randomly spawn only 1 ammo type per found weapon
+		if (#ammo_class > 0) then
+			sec = ammo_class[math.random(1,#ammo_class)]
+
+			if (sec) then
+				set_item_count_table()
+				if (item_count[sec]) then
+					number = math.random(item_count[sec][1], item_count[sec][2])
+				else 
+					number = 0
+				end			
+				local bonus = math.floor((number * (ammo_finder * 0.2)) + 0.5)
+				if (bonus > 0 and ini_sys:section_exist(sec)) then
+					printf("Ammo Finder Added Ammo: %s", bonus)
+					alife_create_item(sec, victim, {ammo = bonus})
+				end
+			end
+		end
+	end
+	
 end
 
 

@@ -202,16 +202,19 @@ function perk_damage_effects(npc, shit, bone_id, flags)
         end
     end
 ------------------------------------------------------------> Gunslinger
-	if ((gunslinger >= 1) and (weapon_class == "smg"))then
+	if ((gunslinger >= 1) and (weapon_class == "smg")) then
         dmg_increase = dmg_increase + (gunslinger * 0.05)
+	end
 ------------------------------------------------------------> Rifleman
-	elseif ((rifleman >= 1) and (weapon_class == "rifle"))then
+	if ((rifleman >= 1) and (weapon_class == "rifle")) then
         dmg_increase = dmg_increase + (rifleman * 0.05)
+	end
 ------------------------------------------------------------> Heavy Weapons
-	elseif ((heavy_gunner >= 1) and (weapon_class == "heavy"))then
+	if ((heavy_gunner >= 1) and (weapon_class == "heavy")) then
         dmg_increase = dmg_increase + (heavy_gunner * 0.05)
+	end
 ------------------------------------------------------------> Melee
-	elseif ((berserker >= 1) and (weapon_class == "melee"))then
+	if ((berserker >= 1) and (weapon_class == "melee")) then
         dmg_increase = dmg_increase + (berserker * 0.05)
     end
 
@@ -305,6 +308,46 @@ end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
+reload_anims = {
+	anm_reload = true,
+	anm_reload_1 = true,
+	anm_reload_2 = true,
+	anm_reload_empty = true,
+	anm_add_cartridge = true,
+	anm_close = true,
+	anm_open = true,
+	anm_reload_g = true,
+	anm_reload_w_gl = true,
+}
+
+function reloading_weapons(anim_table,obj)
+	if not IsWeapon(obj) then return end
+	
+	local weapon_class = sortK_of(obj)
+	local anm_speed = anim_table.anm_speed
+	local anm_bonus = 1
+------------------------------------------------------------> Gunslinger
+	if ((gunslinger >= 1) and (weapon_class == "smg")) then
+        anm_bonus = 1 + (gunslinger * 0.05)
+		printf("SMG Reload")
+	end
+------------------------------------------------------------> Rifleman
+	if ((rifleman >= 1) and (weapon_class == "rifle")) then
+        anm_bonus = 1 + (rifleman * 0.05)
+		printf("Rifle Reload")
+	end
+------------------------------------------------------------> Heavy Weapons
+	if ((heavy_gunner >= 1) and (weapon_class == "heavy")) then
+        anm_bonus = 1 + (heavy_gunner * 0.05)
+		printf("Heavy Reload")
+	end
+	
+	if reload_anims[anim_table.anm_name] then
+		anim_table.anm_speed = anm_speed * anm_bonus
+	end
+end
+
+
 function on_game_start()
 	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
 
@@ -312,4 +355,7 @@ function on_game_start()
     RegisterScriptCallback("monster_on_before_hit",         perk_damage_effects)
 	
     RegisterScriptCallback("npc_on_death_callback",         perk_kill_effects)
+	
+	--[NEW] Reload Speed
+	RegisterScriptCallback("actor_on_hud_animation_play", reloading_weapons)
 end
