@@ -12,13 +12,12 @@ function experience_core.actor_on_item_before_pickup(obj, flags)
 	end
 	
 	local artefact = obj:get_artefact()
-	local anomaly = bind_anomaly_zone.parent_zones_by_artefact_id[obj:id()]		-- ???
 	-- Artefacts found counter incrementation.
 	-- Checks to make sure artefact id hasn't already been logged.
 	if (artefact) then
 		artefact:FollowByPath("NULL", 0, vector():set(500,500,500))
 		if not (game_statistics.actor_artefacts[obj:id()]) then
-			game_statistics.actor_artefacts[obj:id()] = true
+			-- game_statistics.actor_artefacts[obj:id()] = true
 			local af_rank = SYS_GetParam(2, obj:section(), "af_rank") or 0
 			experience_core.give_actor_experience_by_artefact(af_rank)
 		else
