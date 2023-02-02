@@ -12,91 +12,91 @@ local options = {
 
 local ilrath_preset = {
 	-- stalkers base xp
-	stalker					= 22,
-	bandit					= 20,
-	csky					= 22,
-	army					= 28,
-	freedom					= 26,
-	dolg					= 27,
+	stalker					= 30,
+	bandit					= 24,
+	csky					= 30,
+	army					= 36,
+	freedom					= 36,
+	dolg					= 36,
 	ecolog					= 18,
-	killer					= 31,
-	monolith				= 32,
-	greh					= 24,
-	renegade				= 20,
-	isg						= 33,
-	zombied					= 16,
+	killer					= 48,
+	monolith				= 48,
+	greh					= 72,
+	renegade				= 24,
+	isg						= 100,
+	zombied					= 18,
 	
 	-- stalkers base xp multiplier by rank
 	novice					= 1.0,
-	trainee					= 1.3,
-	experienced				= 1.6,
-	professional			= 1.9,
-	veteran					= 2.2,
-	expert					= 2.5,
-	master					= 2.8,
-	legend					= 3.25,
+	trainee					= 1.5,
+	experienced				= 3.0,
+	professional			= 4.0,
+	veteran					= 6.0,
+	expert					= 7.0,
+	master					= 8.0,
+	legend					= 8.0,
 	
 	-- mutants base xp
-	bloodsucker				= 54,
-	boar					= 22,
-	burer					= 69,
-	chimera					= 118,
-	controller				= 76,
-	dog						= 17,
-	flesh					= 16,
-	gigant					= 98,
-	poltergeist				= 73,
-	psy_dog					= 59,
-	pseudodog				= 31,
-	snork					= 45,
-	tushkano				= 6,
-	cat						= 18,
-	fracture				= 23,
-	zombie					= 13,
-	karlik					= 65,
-	psysucker				= 63,
-	lurker					= 42,
+	bloodsucker				= 72,
+	boar					= 30,
+	burer					= 108,
+	chimera					= 180,
+	controller				= 96,
+	dog						= 18,
+	flesh					= 12,
+	gigant					= 180,
+	poltergeist				= 60,
+	psy_dog					= 76,
+	pseudodog				= 36,
+	snork					= 52,
+	tushkano				= 3,
+	cat						= 24,
+	fracture				= 24,
+	zombie					= 12,
+	karlik					= 76,
+	psysucker				= 84,
+	lurker					= 40,
 	
 	-- mutants base xp multiplier by rank
-	weak					= 0.8,
-	normal					= 1.0,
-	strong					= 1.2,
+	weak					= 1.0,
+	normal					= 1.5,
+	strong					= 2.5,
 	
 	-- base xp for finding treasure
-	TREASURE_XP				= 20,
+	TREASURE_XP				= 25,
 	
 	-- tasks base xp and storyline tasks multiplier
-	TASK_XP					= 130,
-	TASK_XP_MULT			= 1.65,
+	TASK_XP					= 150,
+	TASK_XP_MULT			= 2.75,
 	
 	-- base xp by discovering spot
-	DISCOVER_SPOT_XP		= 23,
+	DISCOVER_SPOT_XP		= 15,
 	
 	-- base xp by disassembling items
-	DISASSEMBLY_WPN_XP		= 4,	-- by weapons
-	DISASSEMBLY_OUT_XP		= 3,	-- by outfits
-	DISASSEMBLY_ITM_XP		= 2,	-- by other items
+	DISASSEMBLY_WPN_XP		= 5,	-- by weapons
+	DISASSEMBLY_OUT_XP		= 4,	-- by outfits
+	DISASSEMBLY_ITM_XP		= 3,	-- by other items
 	
 	-- base xp for mutant looting
-	MUTANT_LOOT_XP			= 2,
+	MUTANT_LOOT_XP			= 3,
 	
 	-- base xp for repairing items
 	REPAIR_ITM_XP			= 5,
 	
 	-- base xp for cooking
-	COOKING_XP				= 5,
+	COOKING_XP				= 10,
 	
 	-- base xp by work on a workbench
-	WORKSHOP_CRAFT_XP		= 5,
-	WORKSHOP_REPAIR_XP		= 4,
-	WORKSHOP_UPGRADE_XP		= 4,
+	WORKSHOP_CRAFT_XP		= 10,
+	WORKSHOP_REPAIR_XP		= 10,
+	WORKSHOP_UPGRADE_XP		= 10,
 	
 	-- base xp for finding artefact in anomalies and multipliers by rank
-	ART_XP					= 58,
-	ART_XP_MULT_RANK_0		= 0.5,
-	ART_XP_MULT_RANK_1		= 1.0,
-	ART_XP_MULT_RANK_2		= 1.3,
-	ART_XP_MULT_RANK_3		= 1.6
+	ART_XP					= 70,
+	ART_XP_MULT_RANK_0		= 1.0,
+	ART_XP_MULT_RANK_1		= 1.3,
+	ART_XP_MULT_RANK_2		= 1.6,
+	ART_XP_MULT_RANK_3		= 2.0
 }
 
 if experience_mcm then
