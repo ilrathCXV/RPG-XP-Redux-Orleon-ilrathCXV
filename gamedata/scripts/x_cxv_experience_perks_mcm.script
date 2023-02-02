@@ -10,20 +10,6 @@ local options = {
 	}
 }
 
-local options_loaded = false
-function on_mcm_load()
-	if not options_loaded then
-		options_loaded = true
-		return options, "experience_framework"
-	end
-end
-
-function on_option_change()
-	experience_core.G_MAX_LEVEL					= ui_mcm.get("experience_framework/xp_addon_arpg_redux/G_MAX_LEVEL")
-	experience_core.G_SKILLPOINT_PER_LEVEL		= ui_mcm.get("experience_framework/xp_addon_arpg_redux/G_SKILLPOINT_PER_LEVEL")
-end
-
-function on_game_start()
-	RegisterScriptCallback("on_option_change", on_option_change)
-	on_option_change()
-end
+--if experience_mcm and experience_mcm.add_option then
+	--experience_mcm.add_option(options)
+--end
