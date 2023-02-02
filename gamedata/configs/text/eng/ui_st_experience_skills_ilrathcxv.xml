@@ -1092,36 +1092,36 @@
 	<string id="st_perk_slow_metabolism_desc_1">
         <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]20% less satiety %c[ui_gray_2]when consuming any item that drains it\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% less radiation %c[ui_gray_2] from consumed items
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]18% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]18% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_2">
         <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]40% less satiety %c[ui_gray_2]when consuming any item that drains it\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]24% less radiation %c[ui_gray_2] from consumed items
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]36% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]36% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_3">
         <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]60% less satiety %c[ui_gray_2]when consuming any item that drains it\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]60% less radiation %c[ui_gray_2] from consumed items
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]54% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]54% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_4">
         <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]80% less satiety %c[ui_gray_2]when consuming any item that drains it\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]80% less radiation %c[ui_gray_2] from consumed items
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]72% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]72% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
 	<string id="st_perk_slow_metabolism_desc_5">
 		<text>Your body has adapted to your medication and drug use.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Ignore any %c[d_green]satiety drain %c[ui_gray_2] from consuming items\n
-		%c[d_blue] - %c[ui_gray_2] Ignore any %c[d_green]raditation %c[ui_gray_2] from consumed items\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]90% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]90% less radiation %c[ui_gray_2] from consumed items\n
         %c[d_blue] - %c[ui_gray_2] Consumables that restore satiety give %c[d_green]half of its satiety %c[ui_gray_2]as an additional boost over %c[yellow]1 minute
 		</text>
     </string>
