@@ -99,7 +99,7 @@
 	<string id="st_perk_gunslinger_desc_2">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]1% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
 		</text>
     </string>
@@ -135,35 +135,35 @@
 	<string id="st_perk_rifleman_desc_1">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs\n
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]5% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_2">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs\n
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_3">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs\n
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_4">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs\n
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]20% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_5">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs\n
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
@@ -685,7 +685,7 @@
         <text>Plate Finder</text>
     </string>
 	<string id="st_perk_plate_finder_desc">
-        <text>When looting an enemy, you have a small chance of finding a damaged Kevlar Plate on them.</text>
+        <text>When looting an enemy, you have a small chance of finding a damaged armor plate on them.</text>
     </string>
 	<string id="st_perk_plate_finder_desc_1">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
@@ -702,19 +702,19 @@
 	<string id="st_perk_plate_finder_desc_3">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]15% %c[ui_gray_2]chance of finding a damaged Kevlar Plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]15% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_4">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]20% %c[ui_gray_2]chance of finding a damaged Kevlar Plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]20% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_5">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]25% %c[ui_gray_2]chance of finding a damaged Kevlar Plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]25% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	
@@ -1061,7 +1061,7 @@
 	<string id="st_perk_strong_back_desc_3">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]15kg
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]15kg\n
 		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
 		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
 		</text>
@@ -1069,7 +1069,7 @@
 	<string id="st_perk_strong_back_desc_4">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]20kg
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]20kg\n
 		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
 		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
 		</text>
@@ -1077,7 +1077,7 @@
 	<string id="st_perk_strong_back_desc_5">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]25kg
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]25kg\n
 		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
 		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
 		</text>

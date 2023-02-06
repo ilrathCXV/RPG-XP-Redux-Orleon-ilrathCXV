@@ -34,6 +34,7 @@ local function create_item_random_uses(i, box)
     --smr_debug.get_log().info("loot/general", "Creating item with random uses: %s", i)
     local max_uses = ini_sys:r_float_ex(i, "max_uses")
 	local box_size = ini_sys:r_float_ex(i, "box_size")
+	local isPlate = (ini_sys:r_float_ex(i, "kind") == "i_attach")
     local se_item = alife_create_item(i, box)
     if max_uses then
 		printf("Max uses: %s", max_uses)
@@ -42,7 +43,9 @@ local function create_item_random_uses(i, box)
 		printf("Box size: %s", box_size)
 		alife_process_item(i, se_item.id, {ammo = (math.random(1, box_size))})
     elseif utils_item.is_degradable(nil, se_item.id) then
-        alife_process_item(i, se_item.id, {cond = (math.random(50,100)/100)})
+		alife_process_item(i, se_item.id, {cond = (math.random(50,100) * 0.01)})
+	elseif isPlate then
+		alife_process_item(i, se_item.id, {cond = (math.random(15,50) * 0.01)})
 	else
 		local how_many = math.floor(3 * math.random())
 		if how_many <= 1 then alife_create_item(i, box)
@@ -194,6 +197,55 @@ scav_tier5 = {
 	"bullet_r7_ap",
 }
 
+
+plate_tier1 = {
+	"af_kevlar",
+}
+
+plate_tier2 = {
+	"af_kevlar",
+	"af_kevlar_up",
+}
+
+plate_tier3 = {
+	"af_kevlar",
+	"af_kevlar_up",
+	"af_plates",
+}
+
+plate_tier4 = {
+	"af_kevlar_up",
+	"af_plates",
+	"af_plates_up",
+}
+
+plate_tier5 = {
+	"af_plates",
+	"af_plates_up",
+}
+
+if new_plates and new_plates.new_plates then
+	plate_tier5 = {
+	"af_plates",
+	"af_plates_up",
+	"af_polymer",
+	}
+end
+
+function try_spawn_plate(box, looter_level)
+    if math.random(1,100) <= looter_level then
+		printf("Plate proc!")
+		local plateChance = math.floor((plate_finder * 7) * math.random(1.0,3.0))
+        local tbl = {
+			{ 100, plate_tier5},
+            { 90, plate_tier4},
+            { 70, plate_tier3},
+            { 40, plate_tier2},
+            { 0, plate_tier1},
+        }
+        roll_item_tiered(tbl, box, plateChance)
+    end
+end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -202,10 +254,8 @@ function death_manager.create_release_item(victim)
 	CreateReleaseItem(victim)
 -------------------------------------------------------------> Plate Finder
 	if plate_finder >= 1 then
-		local plateChance = (plate_finder * 5) >= math.random(100)
-		if plateChance then
-			alife_create_item("af_kevlar", victim, {cond = (math.random(1,15) * 0.01)})
-		end
+		local plateQuality = plate_finder * 5
+		try_spawn_plate(victim,plateQuality)
 	end
 		
 -----------------------------------------------------------> Medicine Man
