@@ -135,35 +135,35 @@
 	<string id="st_perk_rifleman_desc_1">
         <text>Ваш урон из штурмовых винтовок увеличен. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ::\n
-		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]5% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]5% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов\n	
 		\n\n%c[d_blue] - %c[ui_gray_2] Скорость перезарядки %c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов %c[ui_gray_2] повышается на %c[d_green]5%\n																								   
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_2">
         <text>Ваш урон из штурмовых винтовок увеличен. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ::\n
-		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]10% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]10% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов\n	
 		\n\n%c[d_blue] - %c[ui_gray_2] Скорость перезарядки %c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов %c[ui_gray_2] повышается на %c[d_green]10%\n																								   
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_3">
         <text>Ваш урон из штурмовых винтовок увеличен. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ::\n
-		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]15% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов																											  
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]15% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов\n																											  
 		\n\n%c[d_blue] - %c[ui_gray_2] Скорость перезарядки %c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов %c[ui_gray_2] повышается на %c[d_green]15%\n																								   
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_4">
         <text>Ваш урон из штурмовых винтовок увеличен. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ::\n
-		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]20% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов																											  
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]20% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов\n																												  
 		\n\n%c[d_blue] - %c[ui_gray_2] Скорость перезарядки %c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов %c[ui_gray_2] повышается на %c[d_green]20%\n																								   
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_5">
         <text>Ваш урон из штурмовых винтовок увеличен. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ::\n
-		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]25% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов																											  
+		%c[d_blue] - %c[ui_gray_2] Урон увеличен на %c[d_green]25% %c[ui_gray_2]при стрельбе из \n%c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов\n																												  
 		\n\n%c[d_blue] - %c[ui_gray_2] Скорость перезарядки %c[yellow]Штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов %c[ui_gray_2] повышается на %c[d_green]25%\n																								   
 		</text>
     </string>					  
@@ -694,36 +694,36 @@
         <text>Поиск Пластин</text>
     </string>
 	<string id="st_perk_plate_finder_desc">
-        <text>При обыске тела у вас есть небольшой шанс найти поврежденную кевларовую пластину.</text>
+        <text>При обыске тела у вас есть небольшой шанс найти поврежденную бронепластину.</text>
     </string>
 	<string id="st_perk_plate_finder_desc_1">
         <text>Сталкеры стали использовать кевларовые пластины гораздо чаще.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]5% %c[ui_gray_2]шанс найти поврежденную кевларовую пластину.
+		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]5% %c[ui_gray_2]шанс найти поврежденную бронепластину.
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_2">
         <text>Сталкеры стали использовать кевларовые пластины гораздо чаще.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]10% %c[ui_gray_2]шанс найти поврежденную кевларовую пластину.
+		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]10% %c[ui_gray_2]шанс найти поврежденную бронепластину.
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_3">
         <text>Сталкеры стали использовать кевларовые пластины гораздо чаще.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]15% %c[ui_gray_2]шанс найти поврежденную кевларовую пластину.
+		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]15% %c[ui_gray_2]шанс найти поврежденную бронепластину.
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_4">
         <text>Сталкеры стали использовать кевларовые пластины гораздо чаще.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]20% %c[ui_gray_2]шанс найти поврежденную кевларовую пластину.
+		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]20% %c[ui_gray_2]шанс найти поврежденную бронепластину.
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_5">
         <text>Сталкеры стали использовать кевларовые пластины гораздо чаще.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]25% %c[ui_gray_2]шанс найти поврежденную кевларовую пластину.
+		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]25% %c[ui_gray_2]шанс найти поврежденную бронепластину.
 		</text>
     </string>
 	
