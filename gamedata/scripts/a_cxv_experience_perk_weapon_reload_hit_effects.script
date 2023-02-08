@@ -214,8 +214,11 @@ function perk_damage_effects(npc, shit, bone_id, flags)
         dmg_increase = dmg_increase + (heavy_gunner * 0.05)
 	end
 ------------------------------------------------------------> Melee
-	if ((berserker >= 1) and (weapon_class == "melee")) then
-        dmg_increase = dmg_increase + (berserker * 0.05)
+	--if ((berserker >= 1) and (weapon_class == "melee")) then
+	if (berserker >= 1) then
+		if (string.match(weapon:section(), "knife")) or (string.match(weapon:section(), "axe")) then
+			dmg_increase = dmg_increase + (berserker * 0.05)
+		end
     end
 
 ------------------------------------------------------------> Total up damage modifiers
@@ -259,6 +262,18 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 				npc:drop_item(weapon2)
 			end
 		end
+	end
+	
+	local damage_bonus = shit.power - base_shit
+	local damage_bonus_news = tonumber(string.format("%.3f", damage_bonus))
+	if damage_bonus_news >= 0.0001 then
+		printf("///////////   RPG System: Damage increase in progress  //////////////////")
+		printf('RPG Damage increase - Extra damage to the enemy: %s', damage_bonus)
+	end
+	
+	if damage_bonus > 0 then
+		local life_remove = npc.health - (damage_bonus)
+		printf('Enemy Health after hit: %s', npc.health)
 	end
 end
 

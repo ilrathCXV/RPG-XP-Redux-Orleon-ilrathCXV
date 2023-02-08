@@ -11,31 +11,31 @@
 	<string id="st_perk_fast_hands_desc_1">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]30%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]15%
 		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_2">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]60%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]30%
 		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_3">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]90%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]45%
 		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_4">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]120%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]60%
 		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_5">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]150%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]75%
 		</text>
     </string>
 	
@@ -382,33 +382,53 @@
         <text>When looting armor and weapons from an enemy, they will have a minimum condition of 15%.</text>
     </string>
 	<string id="st_perk_careful_handler_desc_1">
-        <text>As they always say: one man's trash is another man's treasure.\n \n
+        <!--<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]15%
+		</text>!-->
+		<text>As they always say: one man's trash is another man's treasure.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted armors and weapons will have their condition improved by %c[d_green]3%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_2">
-        <text>As they always say: one man's trash is another man's treasure.\n \n
+        <!--<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]20%
+		</text>!-->
+		<text>As they always say: one man's trash is another man's treasure.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted armors and weapons will have their condition improved by %c[d_green]6%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_3">
-        <text>As they always say: one man's trash is another man's treasure.\n \n
+        <!--<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]25%
+		</text>!-->
+		<text>As they always say: one man's trash is another man's treasure.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted armors and weapons will have their condition improved by %c[d_green]9%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_4">
-        <text>As they always say: one man's trash is another man's treasure.\n \n
+        <!--<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]30%
+		</text>!-->
+		<text>As they always say: one man's trash is another man's treasure.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted armors and weapons will have their condition improved by %c[d_green]12%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_5">
-        <text>As they always say: one man's trash is another man's treasure.\n \n
+        <!--<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]35%
+		</text>!-->
+		<text>As they always say: one man's trash is another man's treasure.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted armors and weapons will have their condition improved by %c[d_green]15%
 		</text>
     </string>
     
@@ -520,31 +540,31 @@
 	<string id="st_perk_ammo_finder_desc_1">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers that carry ammo will carry %c[d_green]20% more
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers can drop %c[d_green]20% more %c[ui_gray_2]ammo
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_2">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers that carry ammo will carry %c[d_green]40% more
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers can drop %c[d_green]40% more %c[ui_gray_2]ammo
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_3">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers that carry ammo will carry %c[d_green]60% more
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers can drop %c[d_green]60% more %c[ui_gray_2]ammo
 		</text>
 	</string>
 	<string id="st_perk_ammo_finder_desc_4">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers that carry ammo will carry %c[d_green]80% more
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers can drop %c[d_green]80% more %c[ui_gray_2]ammo
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_5">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers that carry ammo will carry %c[d_green]100% more
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers can drop %c[d_green]100% more %c[ui_gray_2]ammo
 		</text>
     </string>
 	
@@ -596,35 +616,35 @@
 	<string id="st_perk_artefinder_desc_1">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]1.5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 24 - 28% percent%c[ui_gray_2])
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_2">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]10% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]3% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 26 - 30% percent%c[ui_gray_2])
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_3">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]15% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]4.5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 28 - 32% percent%c[ui_gray_2])
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_4">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]20% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]6% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 32 - 36% percent%c[ui_gray_2])
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_5">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]25% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]7.5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 36 - 40% percent%c[ui_gray_2])
 		</text>
     </string>
@@ -690,31 +710,31 @@
 	<string id="st_perk_plate_finder_desc_1">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]5% %c[ui_gray_2]chance of finding a damaged Kevlar Plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]1.5% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_2">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]10% %c[ui_gray_2]chance of finding a damaged Kevlar Plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]3% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_3">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]15% %c[ui_gray_2]chance of finding a random damaged armor plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]4.5% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_4">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]20% %c[ui_gray_2]chance of finding a random damaged armor plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]6% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_5">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]25% %c[ui_gray_2]chance of finding a random damaged armor plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]7.5% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	
