@@ -161,7 +161,7 @@
 	<string id="st_perk_lockpick_mastery_desc_5">
         <text>After finding a locksmithing guide, you are now more careful when picking the locks of locked containers.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Locked containers have %c[d_green]75% %c[ui_gray_2]of their base difficulty reduced\n 
+		%c[d_blue] - %c[ui_gray_2] Locked containers have %c[d_green]90% %c[ui_gray_2]of their base difficulty reduced\n 
 		%c[d_red] - REQUIRES ANOMALY LOOTBOXES OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
 		</text>
     </string>

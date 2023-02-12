@@ -346,31 +346,31 @@
 	<string id="st_perk_scavenger_desc_1">
         <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]7% %c[ui_gray_2]chance of finding %c[d_red]salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]1.5% %c[ui_gray_2]chance of finding %c[d_red]salvage and crafting materials
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_2">
 		<text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]14% %c[ui_gray_2]chance of finding %c[d_orange]slightly better salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]3% %c[ui_gray_2]chance of finding %c[d_orange]slightly better salvage and crafting materials
 		</text>   
 	</string>
 	<string id="st_perk_scavenger_desc_3">
 		<text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]21% %c[ui_gray_2]chance of finding %c[yellow]better salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]4.5% %c[ui_gray_2]chance of finding %c[yellow]better salvage and crafting materials
 		</text>
 	</string>
 	<string id="st_perk_scavenger_desc_4">
         <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]28% %c[ui_gray_2]chance of finding %c[d_green]much better salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]6% %c[ui_gray_2]chance of finding %c[d_green]much better salvage and crafting materials
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_5">
         <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]35% %c[ui_gray_2]chance of finding %c[d_green]better and high-quality salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]7.5% %c[ui_gray_2]chance of finding %c[d_green]better and high-quality salvage and crafting materials
 		</text>
     </string>
 	
@@ -578,31 +578,31 @@
 	<string id="st_perk_medicine_man_desc_1">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]7% %c[ui_gray_2]chance of finding %c[d_red] a medical item
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]1.5% %c[ui_gray_2]chance of finding %c[d_red] a medical item
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_2">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]14% %c[ui_gray_2]chance of finding %c[d_orange] a slightly better quality medical item
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]3% %c[ui_gray_2]chance of finding %c[d_orange] a slightly better quality medical item
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_3">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]21% %c[ui_gray_2]chance of finding %c[yellow] a better quality medical item
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]4.5% %c[ui_gray_2]chance of finding %c[yellow] a better quality medical item
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_4">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]28% %c[ui_gray_2]chance of finding %c[d_green] a much better quality medical item
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]6% %c[ui_gray_2]chance of finding %c[d_green] a much better quality medical item
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_5">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]35% %c[ui_gray_2]chance of finding %c[d_green] a better and high-quality medical item
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]7.5% %c[ui_gray_2]chance of finding %c[d_green] a better and high-quality medical item
 		</text>
     </string>
 	

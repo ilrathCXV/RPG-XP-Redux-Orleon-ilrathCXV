@@ -48,17 +48,19 @@ local function create_item_random_uses(i, box)
     --smr_debug.get_log().info("loot/general", "Creating item with random uses: %s", i)
     local max_uses = ini_sys:r_float_ex(i, "max_uses")
 	local box_size = ini_sys:r_float_ex(i, "box_size")
-	local isPlate = (ini_sys:r_string_ex(i, "kind") == "i_attach")
     local se_item = alife_create_item(i, box)
-    if max_uses then
-		-- printf("Max uses: %s", max_uses)
+	if i == "af_kevlar" or i == "af_kevlar_up" or i == "af_plates" or i == "af_plates_up" or i == "af_polymer" or i == "af_polymer_up" or i == "af_ceramic" or i == "af_ceramic_up" then
+		printf('Plate Dropped: %s', i)
+		local upper_threshold = math.random(16,50)
+		alife_process_item(i, se_item.id, {cond = (math.random(15,upper_threshold) * 0.01)})
+    elseif max_uses then
+		printf('Max uses: %s', max_uses)
         alife_process_item(i, se_item.id, {uses = (math.random(1, max_uses))})
-	elseif isPlate then
-		alife_process_item(i, se_item.id, {cond = (math.random(15,50) * 0.01)})
 	elseif box_size then
-		-- printf("Box size: %s", box_size)
+		printf('Box size: %s', box_size)
 		alife_process_item(i, se_item.id, {ammo = (math.random(1, box_size))})
     elseif utils_item.is_degradable(nil, se_item.id) then
+		printf('Degradable')
 		alife_process_item(i, se_item.id, {cond = (math.random(50,100) * 0.01)})
 	else
 		alife_create_item(i, box)
@@ -80,9 +82,9 @@ local function roll_item_tiered(t, box, looter_level)
 end
 
 function try_spawn_meds(box, looter_level)
-    if math.random(1,100) <= looter_level then
+    if math.random(1,1000) <= looter_level then
 		printf("Medicine Man proc!")
-		local medChance = math.floor(looter_level * math.random(1.0,3.0))
+		local medChance = math.floor((medicine_man * 7) * math.random(1.0,3.0))
         local tbl = {
 			{ 100, meds_tier5},
             { 90, meds_tier4},
@@ -139,9 +141,9 @@ meds_tier5 = {
 
 
 function try_spawn_scav(box, looter_level)
-    if math.random(1,100) <= looter_level then
+    if math.random(1,1000) <= looter_level then
 		printf("Scavenger proc!")
-		local scavChance = math.floor(looter_level * math.random(1.0,3.0))
+		local scavChance = math.floor((scavenger * 7) * math.random(1.0,3.0))
         local tbl = {
 			{ 100, scav_tier5},
             { 90, scav_tier4},
@@ -278,13 +280,13 @@ function looting_enemy(victim)
 		
 -----------------------------------------------------------> Medicine Man
 	if medicine_man >= 1 then
-		local medQuality = medicine_man * 7
+		local medQuality = medicine_man * 15
 		try_spawn_meds(victim, medQuality)
 	end
 	
 -----------------------------------------------------------> Scavenger
 	if scavenger >= 1 then
-		local scavQuality = scavenger * 7
+		local scavQuality = scavenger * 15
 		try_spawn_scav(victim, scavQuality)
 	end
 	
