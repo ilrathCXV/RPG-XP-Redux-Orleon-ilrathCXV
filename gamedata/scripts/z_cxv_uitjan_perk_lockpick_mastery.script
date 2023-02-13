@@ -13,7 +13,7 @@ end
 req_picks = arti_lootboxes.get_difficulty
 function arti_lootboxes.get_difficulty(box, tool)
     difficulty = req_picks(box, tool)
-	if lockpick_mastery == 5 then lockpick_mastery = 6 end
+	if lockpick_mastery == 5 then return math.ceil( difficulty * (0.1 - add_lockpick_diff_reduc) ) end
     return math.ceil( difficulty * (1 - (lockpick_mastery * 0.15) - add_lockpick_diff_reduc) )	-- 15% per rank
 end
 
