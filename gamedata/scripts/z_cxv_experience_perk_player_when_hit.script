@@ -1,7 +1,7 @@
 local berserker = 0
 local spiked = 0
-local dodger = 0
 local anomaly_defense = 0
+local mutant_slayer = 0
 
 local function experience_perk_on_update(id, data)
 	if (id == "perk_berserker") then
@@ -10,45 +10,16 @@ local function experience_perk_on_update(id, data)
 	if (id == "perk_spiked") then
 		spiked = data["curr_level"]
 	end
-	if (id == "perk_dodger") then
-		dodger = data["curr_level"]
-	end
 	if (id == "perk_anomaly_defense") then
 		anomaly_defense = data["curr_level"]
+	end
+	if (id == "perk_mutant_slayer") then
+		mutant_slayer = data["curr_level"]
 	end
 end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
--- checking if anomaly/non-weapon damage
-local anomaly_list          = {}
-anomaly_list[0]             = true
-anomaly_list[1]             = true
-anomaly_list[2]             = true
-anomaly_list[3]             = true
-anomaly_list[4]             = true
-anomaly_list[9]             = true
-anomaly_list[10]            = true
-anomaly_list[11]            = true
-anomaly_list[12]            = true
-anomaly_list[13]            = true --Тестовые включения
-anomaly_list[14]            = true
-anomaly_list[15]            = true
-anomaly_list[16]            = true
-anomaly_list[17]            = true
-anomaly_list[18]            = true
-anomaly_list[19]            = true
-anomaly_list[20]            = true
-
---------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------
--- checking if weapon/explosive damage
-local phys_list  			= {}
-phys_list[5]                = true
-phys_list[6]                = true
-phys_list[7]                = true
-phys_list[8]                = true
-
 function perk_effects_player_hit(shit)
 
 	if shit.power <= 0 then return end
@@ -59,20 +30,20 @@ function perk_effects_player_hit(shit)
 	local radiation = shit.type == hit.radiation
 
 ------------------------------------------------------------> Anomaly Defense
-    if anomaly_defense >= 1 and anomaly_list[shit.type] then
+    if anomaly_defense >= 1 and ((shit.type ~= hit.fire_wound) or (shit.type ~= hit.wound) or (shit.type ~= hit.wound_2)) then
 		damage_mult = damage_mult - (0.05 * anomaly_defense)
     end
 
 ------------------------------------------------------------> Berserker
-	if shit.draftsman and (berserker >= 1) and phys_list[shit.type] then
+	if shit.draftsman and (berserker >= 1) and ((shit.type == hit.fire_wound) or (shit.type == hit.wound) or (shit.type == hit.wound_2) or (shit.type == hit.explosion)) then
 		local weaponPlayer = db.actor:active_item()
 		if IsMelee(weaponPlayer) then
-			damage_mult = damage_mult - (0.025 * berserker)
+			damage_mult = damage_mult - (0.05 * berserker)
 		end
 	end
 
 ------------------------------------------------------------> Spiked
-    if shit.draftsman and (spiked >= 1) and phys_list[shit.type] then
+    if shit.draftsman and (spiked >= 1) and ((shit.type == hit.fire_wound) or (shit.type == hit.wound) or (shit.type == hit.wound_2) or (shit.type == hit.explosion)) then
 		if phys_list[shit.type] then
 			local spike = base_power * (0.05 * spiked)
 			shit.power = spike
@@ -84,13 +55,9 @@ function perk_effects_player_hit(shit)
 		end
     end
 	
-----Броненосец-6 и выживальщик-4. Уворот -----------------------------> Dodger
-    if (dodger >= 1) and phys_list[shit.type] then
-		local dice = math.random(1000) <= (5 * dodger)	-- 0.5% * Dodger level
-		if dice then
-			damage_mult = 0
-		end
-	end
+	if shit.draftsman and mutant_slayer >= 1 and ((shit.type == hit.wound) or (shit.type == hit.wound_2) or (shit.type == hit.strike) or (shit.type == hit.telepatic)) then
+		damage_mult = damage_mult - (0.05 * mutant_slayer)
+    end
 	
 	shit.power = shit.power * damage_mult
 	

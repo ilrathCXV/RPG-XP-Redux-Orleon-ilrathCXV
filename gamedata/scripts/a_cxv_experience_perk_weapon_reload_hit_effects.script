@@ -175,7 +175,6 @@ function perk_damage_effects(npc, shit, bone_id, flags)
     local is_breaked2 = bone_id >=36
 
     local base_shit = shit.power
-    local dmg_increase = 1.0
 
 ------------------------------------------------------------> Lucky Strike and Deadeye
 
@@ -194,35 +193,6 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	elseif (deadeye >= 1) then
 		criticalMultiplier = 1 + (0.25 * deadeye)	-- Crit Multiplier is (25  * DE)%
 	end
-	
-------------------------------------------------------------> Mutant Slayer
-    if mutant_slayer >= 1 then
-        if IsMonster(nil,npc:clsid()) then
-            dmg_increase = dmg_increase + (mutant_slayer * 0.05)
-        end
-    end
-------------------------------------------------------------> Gunslinger
-	if ((gunslinger >= 1) and (weapon_class == "smg")) then
-        dmg_increase = dmg_increase + (gunslinger * 0.05)
-	end
-------------------------------------------------------------> Rifleman
-	if ((rifleman >= 1) and (weapon_class == "rifle")) then
-        dmg_increase = dmg_increase + (rifleman * 0.05)
-	end
-------------------------------------------------------------> Heavy Weapons
-	if ((heavy_gunner >= 1) and (weapon_class == "heavy")) then
-        dmg_increase = dmg_increase + (heavy_gunner * 0.05)
-	end
-------------------------------------------------------------> Melee
-	--if ((berserker >= 1) and (weapon_class == "melee")) then
-	if (berserker >= 1) then
-		if (string.match(weapon:section(), "knife")) or (string.match(weapon:section(), "axe")) then
-			dmg_increase = dmg_increase + (berserker * 0.05)
-		end
-    end
-
-------------------------------------------------------------> Total up damage modifiers
-    shit.power = (shit.power * dmg_increase)
 	
 	if (math.random(1000) <= criticalChance) then
 		txt = "Critical hit for " .. criticalMultiplier .. "x damage!"
@@ -315,7 +285,7 @@ function perk_kill_effects(victim, killer)
 		local ammoSec = ammo_list[ammoCurrent + 1]
 	
         local regain = math.floor(clip * 0.34)
-		printf("magicin some ammo")
+		-- printf("magicin some ammo")
 		alife_create_item(ammoSec, killer, {ammo = regain})
 	end
 	
@@ -343,18 +313,18 @@ function reloading_weapons(anim_table,obj)
 	local anm_bonus = 1
 ------------------------------------------------------------> Gunslinger
 	if ((gunslinger >= 1) and (weapon_class == "smg")) then
-        anm_bonus = 1 + (gunslinger * 0.05)
-		printf("SMG Reload")
+        anm_bonus = 1 + (math.floor(5^(1.5 + (0.25 * gunslinger))) * 0.01)		-- 11 | 16 | 25 | 37 | 55
+		--printf("SMG Reload")
 	end
 ------------------------------------------------------------> Rifleman
 	if ((rifleman >= 1) and (weapon_class == "rifle")) then
-        anm_bonus = 1 + (rifleman * 0.05)
-		printf("Rifle Reload")
+        anm_bonus = 1 + (math.floor(5^(1.5 + (0.25 * rifleman))) * 0.01)		-- 11 | 16 | 25 | 37 | 55
+		--printf("Rifle Reload")
 	end
 ------------------------------------------------------------> Heavy Weapons
 	if ((heavy_gunner >= 1) and (weapon_class == "heavy")) then
-        anm_bonus = 1 + (heavy_gunner * 0.05)
-		printf("Heavy Reload")
+        anm_bonus = 1 + (math.floor(5^(1.5 + (0.25 * heavy_gunner))) * 0.01)	-- 11 | 16 | 25 | 37 | 55
+		--printf("Heavy Reload")
 	end
 	
 	if reload_anims[anim_table.anm_name] then

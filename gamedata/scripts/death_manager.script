@@ -587,12 +587,8 @@ function try_spawn_ammo(npc)
 					if (sec) then
 						if (item_count[sec]) then
 							number = math.random(item_count[sec][1], item_count[sec][2])
-							number = number + math.floor(number * ammo_finder_bonus)
 						else 
 							number = math.random(0,2)
-						end
-						if (number <= 0 and ini_sys:section_exist(sec) and ammo_finder > 0) then
-							number = math.floor(1 * ammo_finder_bonus)
 						end
 						if (number > 0 and ini_sys:section_exist(sec)) then 
 							-- DPH_LOOT_COND
@@ -858,7 +854,8 @@ function get_condition_by_rank(rank,coef)
 -- Get suitable condition
 	local min_con = outfit_drop_condition[rank] and outfit_drop_condition[rank][1] or 10
 	local max_con = outfit_drop_condition[rank] and outfit_drop_condition[rank][2] or 30
-	local con = (utils_data.mean_random(min_con, max_con, coef, 7) + careful_handler_bonus)/100
+	local con = (utils_data.mean_random(min_con, max_con, coef, 7) + careful_handler_bonus)
+	con = clamp(con,5,100) * 0.01
 	return con
 end
 
@@ -936,14 +933,16 @@ function spawn_cosmetics(npc, npc_id, npc_comm, npc_rank, visual, rand_condition
 	-- Spawn outfit
 	local outfit_id
 	if outfit_section and ini_sys:section_exist(outfit_section) and  validate_drop(outfit_section) then
-		local condition = (math.random(min_cond, max_cond) + careful_handler_bonus) / 100
+		local condition = (math.random(min_cond, max_cond) + careful_handler_bonus)
+		condition = clamp(condition,5,100) * 0.01
 		outfit_id = spawn_with_condition(npc, outfit_section, condition)
 	end
 	
 	-- Spawn helmet
 	local helmet_id
 	if helmet_section and ini_sys:section_exist(helmet_section) and  validate_drop(helmet_section) then
-		local condition = (math.random(min_cond, max_cond) + careful_handler_bonus) / 100
+		local condition = (math.random(min_cond, max_cond) + careful_handler_bonus)
+		condition = clamp(condition,5,100) * 0.01
 		helmet_id = spawn_with_condition(npc, helmet_section, condition)
 	end
 

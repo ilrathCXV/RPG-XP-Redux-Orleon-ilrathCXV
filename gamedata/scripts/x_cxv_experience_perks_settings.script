@@ -21,25 +21,25 @@ local cxv_perks_settings = {
 			name 				= "st_perk_gunslinger",
 			description 		= "st_perk_gunslinger_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 5,
+			req_level 			= 1,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5
 		},
 		perk_rifleman = {
 			name 				= "st_perk_rifleman",
 			description 		= "st_perk_rifleman_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 5,
+			req_level 			= 1,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5
 		},
 		perk_heavy_gunner = {
 			name 				= "st_perk_heavy_gunner",
 			description 		= "st_perk_heavy_gunner_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 5,
+			req_level 			= 1,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5
 		},
 		perk_berserker = {
 			name 				= "st_perk_berserker",
@@ -47,7 +47,7 @@ local cxv_perks_settings = {
 			icon 				= "ui_experience_mod_empty_perk_icon",
 			req_level 			= 5,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5
 		},
 		perk_jamming_shot = {
 			name 				= "st_perk_jamming_shot",
@@ -89,14 +89,6 @@ local cxv_perks_settings = {
 			max_level 			= 3,
 			each_level 			= 3
 		},
-		perk_dodger = {
-			name 				= "st_perk_dodger",
-			description 		= "st_perk_dodger_desc",
-			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 30,
-			max_level 			= 5,
-			each_level 			= 5
-		},
 		perk_ammo_finder = {
 			name 				= "st_perk_ammo_finder",
 			description 		= "st_perk_ammo_finder_desc",
@@ -111,7 +103,7 @@ local cxv_perks_settings = {
 			icon 				= "ui_experience_mod_empty_perk_icon",
 			req_level 			= 15,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5
 		},
 		perk_midas_touch = {
 			name 				= "st_perk_midas_touch",
@@ -171,13 +163,13 @@ local cxv_perks_settings = {
 			icon 				= "ui_experience_mod_empty_perk_icon",
 			req_level 			= 1,
 			max_level 			= 5,
-			each_level 			= 5
+			each_level 			= 3
 		},
 		perk_plate_finder = {
 			name 				= "st_perk_plate_finder",
 			description 		= "st_perk_plate_finder_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 5,
+			req_level 			= 10,
 			max_level 			= 5,
 			each_level 			= 3
 		},
@@ -193,7 +185,7 @@ local cxv_perks_settings = {
 			name 				= "st_perk_mutant_slayer",
 			description 		= "st_perk_mutant_slayer_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 15,
+			req_level 			= 10,
 			max_level 			= 5,
 			each_level 			= 3
 		},
@@ -249,7 +241,7 @@ local cxv_perks_settings = {
 			name 				= "st_perk_slow_metabolism",
 			description 		= "st_perk_slow_metabolism_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 5,
+			req_level 			= 10,
 			max_level 			= 5,
 			each_level 			= 5
 		},
@@ -295,7 +287,7 @@ local cxv_perks_settings = {
 			name 				= "st_perk_calm_mind",
 			description 		= "st_perk_calm_mind_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 25,
+			req_level 			= 15,
 			max_level 			= 5,
 			each_level 			= 3
 		},
@@ -319,7 +311,7 @@ local cxv_perks_settings = {
 			name 				= "st_perk_lockpick_mastery",
 			description 		= "st_perk_lockpick_mastery_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 20,
+			req_level 			= 5,
 			max_level 			= 5,
 			each_level 			= 3
 		},
