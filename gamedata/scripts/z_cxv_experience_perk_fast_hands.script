@@ -33,7 +33,7 @@ function fast_hands_speed(anim_table,obj)
 	local anm_speed = anim_table.anm_speed
 	
 	if show_anims[anim_table.anm_name] or hide_anims[anim_table.anm_name] then
-		anim_table.anm_speed = anm_speed * (1 + (fast_hands * 0.3))
+		anim_table.anm_speed = anm_speed * (1 + (fast_hands * 0.15))
 		--printf("Weapon Handling Show/Hide")	
 	end
 end
