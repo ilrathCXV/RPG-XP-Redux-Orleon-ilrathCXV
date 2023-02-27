@@ -92,36 +92,31 @@
 	<string id="st_perk_gunslinger_desc_1">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]5% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]11% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_2">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]16% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_3">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_4">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]20% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]37% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_5">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Pistols and SMGs\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 
@@ -135,36 +130,31 @@
 	<string id="st_perk_rifleman_desc_1">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]5% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]11% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_2">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]16% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_3">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_4">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]20% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]37% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_5">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Assault Rifles and most LMGs\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	
@@ -178,40 +168,35 @@
 	<string id="st_perk_heavy_gunner_desc_1">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]5% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]11% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect grenade damage
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_2">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]16% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_3">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_4">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]20% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]37% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_5">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
@@ -227,36 +212,31 @@
 	<string id="st_perk_berserker_desc_1">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]5% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
-		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]2.5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_2">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]10% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
-		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]10% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_3">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]15% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
-		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]7.5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]15% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_4">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]20% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
-		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]10% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]20% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_5">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Deal %c[d_green]25% %c[ui_gray_2]increased damage with %c[yellow]melee weapons\n
-		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]12.5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]25% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	
@@ -477,45 +457,6 @@
     </string>
 	
 	
-	
-    <string id="st_perk_dodger">
-        <text>Dodger</text>
-    </string>
-	<string id="st_perk_dodger_desc">
-        <text>You have a small chance to dodge any incoming damage.</text>
-    </string>
-	<string id="st_perk_dodger_desc_1">
-        <text>Your reaction time has been strengthed while in the Zone.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]0.5% %c[ui_gray_2]chance to dodge any incoming damage
-		</text>
-    </string>
-	<string id="st_perk_dodger_desc_2">
-        <text>Your reaction time has been strengthed while in the Zone.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]1% %c[ui_gray_2]chance to dodge any incoming damage
-		</text>
-    </string>
-	<string id="st_perk_dodger_desc_3">
-        <text>Your reaction time has been strengthed while in the Zone.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]1.5% %c[ui_gray_2]chance to dodge any incoming damage
-		</text>
-    </string>
-	<string id="st_perk_dodger_desc_4">
-        <text>Your reaction time has been strengthed while in the Zone.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2% %c[ui_gray_2]chance to dodge any incoming damage
-		</text>
-    </string>
-	<string id="st_perk_dodger_desc_5">
-        <text>Your reaction time has been strengthed while in the Zone.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2.5% %c[ui_gray_2]chance to dodge any incoming damage
-		</text>
-    </string>
-	
-	
     <string id="st_perk_comfort_food">
         <text>Comfort Food</text>
     </string>
@@ -616,36 +557,41 @@
 	<string id="st_perk_artefinder_desc_1">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]1.5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 24 - 28% percent%c[ui_gray_2])
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]3%\n
+		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 11 - 24% percent%c[ui_gray_2])
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_2">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]3% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 26 - 30% percent%c[ui_gray_2])
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]2% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]6%\n
+		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 13 - 26% percent%c[ui_gray_2])
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_3">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]4.5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 28 - 32% percent%c[ui_gray_2])
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]3% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]9%\n
+		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 17 - 30% percent%c[ui_gray_2])
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_4">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]6% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 32 - 36% percent%c[ui_gray_2])
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]4% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]12%\n
+		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 22 - 35% percent%c[ui_gray_2])
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_5">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]7.5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 36 - 40% percent%c[ui_gray_2])
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]15%\n
+		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 28 - 41% percent%c[ui_gray_2])
 		</text>
     </string>
 	
@@ -882,39 +828,39 @@
 		</text>
     </string>
 	
-	
+	<!-- Now named Thick Skin: damage resistance from mutant attacks !-->
 	<string id="st_perk_mutant_slayer">
-        <text>Hunter</text>
+        <text>Thick Skin</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc">
-        <text>You now deal more damage to mutants.</text>
+        <text>You now take less damage from mutants.</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_1">
-        <text>At least you have one thing in common with Duty: your hate of mutants.\n \n
+        <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]5% %c[ui_gray_2]more damage to %c[yellow]mutants
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_2">
-        <text>At least you have one thing in common with Duty: your hate of mutants.\n \n
+        <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]10% %c[ui_gray_2]more damage to %c[yellow]mutants
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_3">
-        <text>At least you have one thing in common with Duty: your hate of mutants.\n \n
+        <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]15% %c[ui_gray_2]more damage to %c[yellow]mutants
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_4">
-        <text>At least you have one thing in common with Duty: your hate of mutants.\n \n
+        <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]20% %c[ui_gray_2]more damage to %c[yellow]mutants
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_5">
-        <text>At least you have one thing in common with Duty: your hate of mutants.\n \n
+        <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]25% %c[ui_gray_2]more damage to %c[yellow]mutants
 		</text>
