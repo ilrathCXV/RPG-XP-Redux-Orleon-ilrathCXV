@@ -838,31 +838,31 @@
 	<string id="st_perk_mutant_slayer_desc_1">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]5% %c[ui_gray_2]more damage to %c[yellow]mutants
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]5% %c[ui_gray_2]less damage from %c[yellow]mutants
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_2">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]10% %c[ui_gray_2]more damage to %c[yellow]mutants
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]10% %c[ui_gray_2]less damage from %c[yellow]mutants
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_3">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]15% %c[ui_gray_2]more damage to %c[yellow]mutants
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]15% %c[ui_gray_2]less damage from %c[yellow]mutants
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_4">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]20% %c[ui_gray_2]more damage to %c[yellow]mutants
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]20% %c[ui_gray_2]less damage from %c[yellow]mutants
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_5">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now deal %c[d_green]25% %c[ui_gray_2]more damage to %c[yellow]mutants
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]25% %c[ui_gray_2]less damage from %c[yellow]mutants
 		</text>
     </string>
 	
