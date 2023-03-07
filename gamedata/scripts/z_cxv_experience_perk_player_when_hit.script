@@ -44,15 +44,13 @@ function perk_effects_player_hit(shit)
 
 ------------------------------------------------------------> Spiked
     if shit.draftsman and (spiked >= 1) and ((shit.type == hit.fire_wound) or (shit.type == hit.wound) or (shit.type == hit.wound_2) or (shit.type == hit.explosion)) then
-		if phys_list[shit.type] then
-			local spike = base_power * (0.05 * spiked)
-			shit.power = spike
-			shit.draftsman:hit(shit)
+		local spike = base_power * (0.05 * spiked)
+		shit.power = spike
+		shit.draftsman:hit(shit)
 			
-			-- Make sure to return hit back to normal values for the true damage reduction
-			shit.power = base_power
-			
-		end
+		-- Make sure to return hit back to normal values for the true damage reduction
+		shit.power = base_power
+		
     end
 	
 	if shit.draftsman and mutant_slayer >= 1 and ((shit.type == hit.wound) or (shit.type == hit.wound_2) or (shit.type == hit.strike) or (shit.type == hit.telepatic)) then
