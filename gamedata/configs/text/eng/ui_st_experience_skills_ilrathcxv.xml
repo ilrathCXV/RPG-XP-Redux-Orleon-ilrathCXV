@@ -1157,4 +1157,78 @@
 		</text>
     </string>
 	
+	<string id="st_perk_zone_slayer">
+        <text>The Zone Slayer</text>
+    </string>
+	<string id="st_perk_zone_slayer_desc">
+        <text>Your affinity for double-barreled shotguns has awakened a hidden power within you...</text>
+    </string>
+	<string id="st_perk_zone_slayer_desc_1">
+		<text>Your affinity for double-barreled shotguns has awakened a hidden power within you...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2] with %c[yellow]double-barreled shotguns\n
+		%c[d_green] - Stacks with other shotgun reload speed increases\n		
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers will now drop %c[d_green]2 random shotgun shells %c[ui_gray_2] for any of your %c[yellow]currently-equipped double-barrel shotguns
+		</text>
+    </string>
+	
+	<string id="st_perk_battle_runner">
+        <text>Battle Runner</text>
+    </string>
+	<string id="st_perk_battle_runner_desc">
+        <text>You enjoy the thrill of the kill...</text>
+    </string>
+	<string id="st_perk_battle_runner_desc_1">
+        <text>You enjoy the thrill of the kill...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]10% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Kills while Battle Runner is active %c[d_green]resets the timer
+		</text>
+    </string>
+	<string id="st_perk_battle_runner_desc_2">
+        <text>You enjoy the thrill of the kill...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]20% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Kills while Battle Runner is active %c[d_green]resets the timer
+		</text>
+    </string>
+	<string id="st_perk_battle_runner_desc_3">
+        <text>You enjoy the thrill of the kill...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]30% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Kills while Battle Runner is active %c[d_green]resets the timer
+		</text>
+    </string>
+	
+	<string id="st_perk_fourth_times">
+        <text>Fourth Time's the Charm</text>
+    </string>
+	<string id="st_perk_fourth_times_desc">
+        <text>You know what they say...</text>
+    </string>
+	<string id="st_perk_fourth_times_desc_1">
+        <text>You know what they say...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Landing 4 critical hits in a short time %c[d_green]refunds 1 ammo to your backpack\n
+		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count and allow up to 4 pellets to land a non-critical hit before restting your counter\n
+		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 5 seconds will reset the hit counter
+		</text>
+    </string>
+	<string id="st_perk_fourth_times_desc_2">
+        <text>You know what they say...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Landing 4 critical hits in a short time %c[d_green]refunds 2 ammo to your backpack\n
+		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count and allow up to 4 pellets to land a non-critical hit before restting your counter\n
+		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 5 seconds will reset the hit counter
+		</text>
+    </string>
+	<string id="st_perk_fourth_times_desc_3">
+        <text>You know what they say...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Landing 4 critical hits in a short time %c[d_green]refunds 3 ammo to your backpack\n
+		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count and allow up to 4 pellets to land a non-critical hit before restting your counter\n
+		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 5 seconds will reset the hit counter
+		</text>
+    </string>
+	
 </string_table>

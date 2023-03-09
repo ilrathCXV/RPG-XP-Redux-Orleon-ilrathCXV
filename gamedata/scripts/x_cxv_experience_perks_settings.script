@@ -9,6 +9,7 @@ local cxv_perks_settings = {
 			max_level 			= 5,
 			each_level 			= 2
 		},
+		--[[
 		perk_ghost_ammo = {
 			name 				= "st_perk_ghost_ammo",
 			description 		= "st_perk_ghost_ammo_desc",
@@ -17,6 +18,7 @@ local cxv_perks_settings = {
 			max_level 			= 5,
 			each_level 			= 2
 		},
+		--]]
 		perk_gunslinger = {
 			name 				= "st_perk_gunslinger",
 			description 		= "st_perk_gunslinger_desc",
@@ -145,6 +147,7 @@ local cxv_perks_settings = {
 			max_level 			= 3,
 			each_level 			= 5
 		},
+		--[[ OLD
 		perk_warmonger = {
 			name 				= "st_perk_warmonger",
 			description 		= "st_perk_warmonger_desc",
@@ -153,6 +156,15 @@ local cxv_perks_settings = {
 			max_level 			= 1,
 			each_level 			= 0
 		}
+		--]]
+		perk_fourth_times = {
+			name 				= "st_perk_fourth_times",
+			description 		= "st_perk_fourth_times_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 30,
+			max_level 			= 3,
+			each_level 			= 5
+		},
 	},
 	
 	-- Imported from 'perk_new_ilrathcxv.ltx'
@@ -260,6 +272,22 @@ local cxv_perks_settings = {
 			req_level 			= 20,
 			max_level 			= 1,
 			each_level 			= 0
+		},
+		perk_zone_slayer = {
+			name 				= "st_perk_zone_slayer",
+			description 		= "st_perk_zone_slayer_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 20,
+			max_level 			= 1,
+			each_level 			= 0
+		},
+		perk_battle_runner = {
+			name 				= "st_perk_battle_runner",
+			description 		= "st_perk_battle_runner_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 20,
+			max_level 			= 3,
+			each_level 			= 5
 		},
 	--[[	-- UNUSED
 		perk_fighting_stance = {

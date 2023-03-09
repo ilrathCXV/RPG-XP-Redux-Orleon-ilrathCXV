@@ -1,4 +1,4 @@
-local ghost_ammo = 0
+-- local ghost_ammo = 0
 local gunslinger = 0
 local rifleman = 0
 local heavy_gunner = 0
@@ -10,13 +10,18 @@ local deadeye = 0
 local lucky_strike = 0
 
 local vampirism = 0
-local warmonger = 0
+-- local warmonger = 0
 local bloody_mess = 0
 
+local zone_slayer = 0
+local fourth_times = 0
+
 local function experience_perk_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
+	--[[
 	if (id == "perk_ghost_ammo") then
 		ghost_ammo = data["curr_level"]
 	end
+	--]]
 	if (id == "perk_gunslinger") then
 		gunslinger = data["curr_level"]
 	end
@@ -41,9 +46,11 @@ local function experience_perk_on_update(id, data)	-- messy I know (will look in
 	if (id == "perk_vampirism") then
 		vampirism = data["curr_level"]
 	end
+	--[[
 	if (id == "perk_warmonger") then
 		warmonger = data["curr_level"]
 	end
+	--]]
 	if (id == "perk_bloody_mess") then
 		bloody_mess = data["curr_level"]
 	end
@@ -53,11 +60,20 @@ local function experience_perk_on_update(id, data)	-- messy I know (will look in
 	if (id == "perk_lucky_strike") then
 		lucky_strike = data["curr_level"]
 	end
+	
+	if (id == "perk_zone_slayer") then
+		zone_slayer = data["curr_level"]
+	end
+	if (id == "perk_fourth_times") then
+		fourth_times = data["curr_level"]
+	end
 end
 
 local sms = actor_menu.set_msg
 local criticalChance = 0
 local criticalMultiplier = 1
+local fourth_times_counter = 0
+local fourth_times_grace = 0
 
 local get_safe_sound_object = xr_sound.get_safe_sound_object
 
@@ -144,6 +160,26 @@ local function get_object_by_id(id) -- same as _g.script one but without spammin
     return obj
 end
 
+
+local time_g
+local update_1000ms_timer = 0
+local update_1000ms_timer_interval = 10	-- update every 1 second
+local fourth_timer = 0
+
+local math_floor = math.floor
+
+function actor_on_update()
+	time_g = math_floor(time_global() * 0.01)
+	
+	if (time_g > update_1000ms_timer) then
+		if (fourth_times >= 1) and (time_g > fourth_timer) and (fourth_times_counter > 0) and (fourth_timer > 0) then
+			fourth_times_counter = 0
+			fourth_timer = 0
+			play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.5, random_float(0.5, 1.0))
+		end
+		update_1000ms_timer = time_g + update_1000ms_timer_interval
+	end
+end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -175,7 +211,19 @@ function perk_damage_effects(npc, shit, bone_id, flags)
     local is_breaked2 = bone_id >=36
 
     local base_shit = shit.power
-
+	
+	
+	local ammo_type_number
+	local ammo_list
+	local ammo_section
+	local pellet_count
+	
+	if (fourth_times > 0) then
+		ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
+		ammo_type_number = weapon:get_ammo_type()
+		ammo_section = ammo_list[ammo_type_number+1]
+		pellet_count = SYS_GetParam(2, ammo_section, "buck_shot") or 1
+	end
 ------------------------------------------------------------> Lucky Strike and Deadeye
 
 	if (lucky_strike <= 0) and (deadeye >= 1) then	-- if you have DE but don't have LS...
@@ -186,7 +234,43 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	
 	if head_shot then
 		criticalChance = criticalChance * 1.5
+		if (fourth_times > 0) and (ammo_type_number) and (ammo_list) and (ammo_section) then
+			if (weapon_class == "heavy") then
+				
+				if (pellet_count == 1) then
+					fourth_times_counter = fourth_times_counter + 1
+					fourth_timer = time_g + 50				-- 5 seconds
+				end
+				if (pellet_count > 1) then
+					fourth_times_counter = fourth_times_counter + (1 / pellet_count)
+					fourth_timer = time_g + 50				-- 5 seconds
+				end
+			elseif (weapon_class ~= "melee") then
+				fourth_times_counter = fourth_times_counter + 1
+				fourth_timer = time_g + 50				-- 5 seconds
+			end
+		end
 	end
+	
+	if (fourth_times_counter >= 4) then
+		alife_create_item(ammo_section, db.actor, {ammo = fourth_times})
+		play_sound_on_actor("interface\\item_usage\\pickup", 0.75, random_float(0.5, 1.0))
+		fourth_times_counter = 0
+		fourth_timer = 0
+	end
+	
+	if not (head_shot) then
+		if (pellet_count > 1) then
+			fourth_times_grace = fourth_times_grace + 1
+		end
+		if (pellet_count <= 1) or (fourth_times_grace > 4) then
+			play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.5, random_float(0.5, 1.0))
+			fourth_times_counter = 0
+			fourth_times_grace = 0
+			fourth_timer = 0
+		end
+	end
+	
 	
 	if (lucky_strike >= 1) and (deadeye <= 0) then	-- if you have LS but don't have DE...
 		criticalMultiplier = 1.1					-- Crit Multiplier is 10%
@@ -197,7 +281,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	if (math.random(1000) <= criticalChance) then
 		txt = "Critical hit for " .. criticalMultiplier .. "x damage!"
 		sms(2, txt, 5)
-		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, random_float(0.8, 1.0))
+		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, criticalMultiplier)
 		shit.power = shit.power * criticalMultiplier
 	end
 	
@@ -209,6 +293,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 		end
 		
 -------------------------------------------------------------------------> Ghost Ammo v3.0
+--[[
 		if ((ghost_ammo >= 1) and (weapon_class ~= "melee")) then
 			local ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
 			local ammoCurrent = weapon:get_ammo_type()
@@ -222,7 +307,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 				alife_create_item(ammoSec, db.actor, {ammo = 1})
 			end
 		end
-
+--]]
 -------------------------------------------------------------------------> Disarming Shot
 		if disarming_shot >= 1 and is_breaked2 then
 			local weapon2 = npc:active_item()
@@ -241,9 +326,16 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 		printf('RPG Damage increase - Extra damage to the enemy: %s', damage_bonus)
 	end
 	
+	--if damage_bonus > 0 then
+	--	shit.power = damage_bonus
+	--	npc:hit(shit)
+	--	shit.power = base_shit
+	--end
+	
 	if damage_bonus > 0 then
-		local life_remove = npc.health - (damage_bonus)
+		local life_removed = npc.health - (damage_bonus)
 		printf('Enemy Health after hit: %s', npc.health)
+		npc:set_health_ex(life_removed)
 	end
 end
 
@@ -274,21 +366,23 @@ function perk_kill_effects(victim, killer)
 	end
 	
 -------------------------------------------------------------------------> Warmonger
+--[[
     if warmonger >= 1 then
         local weapon = killer:active_item()
 		if not weapon or not IsWeapon(weapon) then return end
 		
-        local clip = ini_sys:r_float_ex(weapon:section(), "ammo_mag_size") or 0
+        local clip = ini_sys:r_float_ex(weapon:section(), "ammo_mag_size") or 1
 		if clip < 3 then return end
 		local ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
 		local ammoCurrent = weapon:get_ammo_type()
 		local ammoSec = ammo_list[ammoCurrent + 1]
-	
-        local regain = math.floor(clip * 0.34)
-		-- printf("magicin some ammo")
+		
+		local war_bonus = math.floor(clip * 0.34)
+        local regain = math.random(1, war_bonus) or 1
+		printf('RPG System - Warmonger Refund: %s', regain)
 		alife_create_item(ammoSec, killer, {ammo = regain})
 	end
-	
+--]]	
 end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -303,9 +397,20 @@ reload_anims = {
 	anm_open = true,
 	anm_reload_g = true,
 	anm_reload_w_gl = true,
+	anm_hide = false
 }
 
-function reloading_weapons(anim_table,obj)
+hide_anims = {
+	anm_hide = true,
+	anm_hide_0 = true,
+	anm_hide_1 = true,
+	anm_hide_2 = true,
+	anm_hide_empty = true,
+	anm_hide_g = true,
+	anm_hide_w_gl = true,
+}
+
+function animation_weapons(anim_table,obj)
 	if not IsWeapon(obj) then return end
 	
 	local weapon_class = sortK_of(obj)
@@ -327,8 +432,21 @@ function reloading_weapons(anim_table,obj)
 		--printf("Heavy Reload")
 	end
 	
+	if (zone_slayer >= 1) then
+		local clip = ini_sys:r_float_ex(obj:section(), "ammo_mag_size") or 3
+		if clip <= 2 then
+			anm_bonus = anm_bonus + 0.15
+		end
+	end
+	
 	if reload_anims[anim_table.anm_name] then
 		anim_table.anm_speed = anm_speed * anm_bonus
+	end
+	
+	if hide_anims[anim_table.anm_name] and (fourth_times_counter > 0) then
+		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.5, random_float(0.5, 1.0))
+		fourth_times_counter = 0
+		fourth_timer = 0
 	end
 end
 
@@ -340,7 +458,8 @@ function on_game_start()
     RegisterScriptCallback("monster_on_before_hit",         perk_damage_effects)
 	
     RegisterScriptCallback("npc_on_death_callback",         perk_kill_effects)
+    RegisterScriptCallback("actor_on_update",         		actor_on_update)
 	
 	--[NEW] Reload Speed
-	RegisterScriptCallback("actor_on_hud_animation_play", reloading_weapons)
+	RegisterScriptCallback("actor_on_hud_animation_play", animation_weapons)
 end

@@ -5,6 +5,8 @@ local scavenger = 0
 local careful_handler = 0
 local midas_touch = 0
 
+local zone_slayer = 0
+
 local careful_handler_bonus = 0
 
 local function experience_perk_on_update(id, data)
@@ -27,11 +29,19 @@ local function experience_perk_on_update(id, data)
 	if (id == "perk_midas_touch") then
 		midas_touch = data["curr_level"]
 	end
+	if (id == "perk_zone_slayer") then
+		zone_slayer = data["curr_level"]
+		if zone_slayer >= 1 then
+			build_shotgun_list()
+		end
+	end
 end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 local looted_npc = {}
+local shotgun_list = {}
+local rand = math.random
 
 function save_state(m_data)
     m_data.looted_npc = looted_npc
@@ -51,17 +61,17 @@ local function create_item_random_uses(i, box)
     local se_item = alife_create_item(i, box)
 	if i == "af_kevlar" or i == "af_kevlar_up" or i == "af_plates" or i == "af_plates_up" or i == "af_polymer" or i == "af_polymer_up" or i == "af_ceramic" or i == "af_ceramic_up" then
 		printf('Plate Dropped: %s', i)
-		local upper_threshold = math.random((16 + (5 * plate_finder) + (careful_handler_bonus)),(50 + (5 * plate_finder) + (careful_handler_bonus)))
-		alife_process_item(i, se_item.id, {cond = (math.random(15,upper_threshold) * 0.01)})
+		local upper_threshold = rand((16 + (5 * plate_finder) + (careful_handler_bonus)),(50 + (5 * plate_finder) + (careful_handler_bonus)))
+		alife_process_item(i, se_item.id, {cond = (rand(15,upper_threshold) * 0.01)})
     elseif max_uses then
 		printf('Max uses: %s', max_uses)
-        alife_process_item(i, se_item.id, {uses = (math.random(1, max_uses))})
+        alife_process_item(i, se_item.id, {uses = (rand(1, max_uses))})
 	elseif box_size then
 		printf('Box size: %s', box_size)
-		alife_process_item(i, se_item.id, {ammo = (math.random(1, box_size))})
+		alife_process_item(i, se_item.id, {ammo = (rand(1, box_size))})
     elseif utils_item.is_degradable(nil, se_item.id) then
 		printf('Degradable')
-		alife_process_item(i, se_item.id, {cond = (math.random(50 + (careful_handler_bonus),100) * 0.01)})
+		alife_process_item(i, se_item.id, {cond = (rand(50 + (careful_handler_bonus),100) * 0.01)})
 	else
 		alife_create_item(i, box)
     end
@@ -72,7 +82,7 @@ local function roll_item_tiered(t, box, looter_level)
     table.sort(t, function(a, b) return a[1] > b[1] end)
     for i, n in ipairs(t) do
         if (r >= n[1]) then
-            local itm = n[2][math.random(#n[2])]
+            local itm = n[2][rand(#n[2])]
             --smr_debug.get_log().info("loot/rolls", "Rolled succesfully for %s (%s >= %s)", itm, r, n[1])
             create_item_random_uses(itm, box)
             return true
@@ -82,9 +92,9 @@ local function roll_item_tiered(t, box, looter_level)
 end
 
 function try_spawn_meds(box, looter_level)
-    if math.random(1,1000) <= looter_level then
+    if rand(1,1000) <= looter_level then
 		printf("Medicine Man proc!")
-		local medChance = math.floor((medicine_man * 7) * math.random(1.0,3.0))
+		local medChance = math.floor((medicine_man * 7) * rand(1.0,3.0))
         local tbl = {
 			{ 100, meds_tier5},
             { 90, meds_tier4},
@@ -141,9 +151,9 @@ meds_tier5 = {
 
 
 function try_spawn_scav(box, looter_level)
-    if math.random(1,1000) <= looter_level then
+    if rand(1,1000) <= looter_level then
 		printf("Scavenger proc!")
-		local scavChance = math.floor((scavenger * 7) * math.random(1.0,3.0))
+		local scavChance = math.floor((scavenger * 7) * rand(1.0,3.0))
         local tbl = {
 			{ 100, scav_tier5},
             { 90, scav_tier4},
@@ -243,9 +253,9 @@ if new_plates and new_plates.new_plates then
 end
 
 function try_spawn_plate(box, looter_level)
-    if math.random(1,1000) <= looter_level then
+    if rand(1,1000) <= looter_level then
 		printf("Plate proc!")
-		local plateQuality = math.floor((plate_finder * 7) * math.random(1.0,3.0))
+		local plateQuality = math.floor((plate_finder * 7) * rand(1.0,3.0))
         local tbl = {
 			{ 100, plate_tier5},
             { 90, plate_tier4},
@@ -300,15 +310,34 @@ function looting_enemy(victim)
 	end
 	
 ------------------------------------------------------------> Arte-finder
-	local artyDrop = (math.random(100) <= arte_finder)
+	local artyDrop = (rand(100) <= arte_finder)
 	if artyDrop then
 		local allowed_artefacts = drx_da_main_artefacts.allowed_artefacts
 		local minArte = minCondition + math.floor((arte_finder) ^ 1.8)	-- 1 | 3 | 7 | 12 | 18 (10 -> 11, 13, 17, 22, 28)
 		local maxArte = maxCondition + math.floor((arte_finder) ^ 1.8) -- 1 | 3 | 7 | 12 | 18 (23 -> 24, 26, 30, 35, 41)
-		local conditionArty = math.random(minArte, maxArte)
-		alife_create_item(allowed_artefacts[math.random(#allowed_artefacts)], victim, {cond = (conditionArty * 0.01)})
+		local conditionArty = rand(minArte, maxArte)
+		alife_create_item(allowed_artefacts[rand(#allowed_artefacts)], victim, {cond = (conditionArty * 0.01)})
 	end
-	
+		
+	if (#shotgun_list > 0) then
+		find_zone_slayer_ammo(shotgun_list[rand(1,#shotgun_list)], victim)
+	end
+end
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+------[NEW] Zone Slayer ammo selecion and creation
+
+function find_zone_slayer_ammo(weapon,npc)
+	local ammo_table = parse_list(ini_sys,weapon:section(),"ammo_class")
+	local shells = ammo_table[rand(1,#ammo_table)]
+	if (shells) then
+		if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok
+			shells = arti_ammo_utils.downgrade_ammo(shells)
+		end
+		alife_create_item(shells, npc, {ammo = 2})
+		printf('Zone Slayer ammo for %s: %s', weapon:section(), shells)
+	end
 end
 
 --------------------------------------------------------------------------------------------------------------
@@ -322,7 +351,7 @@ function grok_artefacts_random_condition.grok_arti_random_efficiency(obj)
 	if (obj:condition() == 1.0 and kind == "i_arty" or kind == "i_arty_cont" and obj:condition() == 1.0) then
 		local minArte = minCondition + math.floor((arte_finder) ^ 1.8)	-- 1 | 3 | 7 | 12 | 18  (10 -> 11, 13, 17, 22, 28)
 		local maxArte = maxCondition + math.floor((arte_finder) ^ 1.8) -- 1 | 3 | 7 | 12 | 18   (23 -> 24, 26, 30, 35, 41)
-		cond = (math.random(minArte, maxArte) * 0.01)
+		cond = (rand(minArte, maxArte) * 0.01)
 		if obj:section() == "af_ah_f1" then
 			cond = 0.98
 		end
@@ -346,7 +375,7 @@ function perk_loot_improvement(item)------------------> actor_on_item_take(item)
 			if money_amount[2] then
 				local min_amt = math.floor(tonumber(money_amount[1])) * mult or 10
 				local max_amt = math.floor(tonumber(money_amount[2])) * mult or 30
-				db.actor:give_money(math.random(min_amt, max_amt))
+				db.actor:give_money(rand(min_amt, max_amt))
 			else
 				local amount = math.floor(tonumber(money_amount[1])) * mult or 10
 				db.actor:give_money(amount)
@@ -358,6 +387,51 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+function build_shotgun_list()
+	if (zone_slayer >= 1) then
+		shotgun_list = {}
+		local w1, w2, w3, w4 = db.actor:item_in_slot(3), db.actor:item_in_slot(2), db.actor:item_in_slot(1), db.actor:item_in_slot(5)
+		
+		if w1 then
+			local clip = ini_sys:r_float_ex(w1:section(), "ammo_mag_size") or 3
+			if clip <= 2 then
+				local ammo_table = parse_list(ini_sys,w1:section(),"ammo_class")
+				if (ammo_table) and (ammo_table[1]) and (ammo_table[1] == "ammo_12x70_buck" or ammo_table[1] == "ammo_23x75_shrapnel" or ammo_table[1] == "ammo_23_eco" or ammo_table[1] == "ammo_20x70_buck") then
+					shotgun_list[#shotgun_list + 1] = w1
+				end
+			end
+		end
+		if w2 then
+			local clip = ini_sys:r_float_ex(w2:section(), "ammo_mag_size") or 3
+			if clip <= 2 then
+				local ammo_table = parse_list(ini_sys,w2:section(),"ammo_class")
+				if (ammo_table) and (ammo_table[1]) and (ammo_table[1] == "ammo_12x70_buck" or ammo_table[1] == "ammo_23x75_shrapnel" or ammo_table[1] == "ammo_23_eco" or ammo_table[1] == "ammo_20x70_buck") then
+					shotgun_list[#shotgun_list + 1] = w2
+				end
+			end
+		end
+		if w3 then
+			local clip = ini_sys:r_float_ex(w3:section(), "ammo_mag_size") or 3
+			if clip <= 2 then
+				local ammo_table = parse_list(ini_sys,w3:section(),"ammo_class")
+				if (ammo_table) and (ammo_table[1]) and (ammo_table[1] == "ammo_12x70_buck" or ammo_table[1] == "ammo_23x75_shrapnel" or ammo_table[1] == "ammo_23_eco" or ammo_table[1] == "ammo_20x70_buck") then
+					shotgun_list[#shotgun_list + 1] = w3
+				end
+			end
+		end
+		if w4 then
+			local clip = ini_sys:r_float_ex(w4:section(), "ammo_mag_size") or 3
+			if clip <= 2 then
+				local ammo_table = parse_list(ini_sys,w4:section(),"ammo_class")
+				if (ammo_table) and (ammo_table[1]) and (ammo_table[1] == "ammo_12x70_buck" or ammo_table[1] == "ammo_23x75_shrapnel" or ammo_table[1] == "ammo_23_eco" or ammo_table[1] == "ammo_20x70_buck") then
+					shotgun_list[#shotgun_list + 1] = w4
+				end
+			end
+		end
+	end
+end
+--
+--
 
 function on_game_start()
 	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
@@ -367,6 +441,9 @@ function on_game_start()
 	RegisterScriptCallback("npc_on_use",                     looting_enemy)
 	RegisterScriptCallback("actor_on_item_take",             perk_loot_improvement)
 	RegisterScriptCallback("actor_item_to_ruck",             perk_loot_improvement)
+	RegisterScriptCallback("actor_on_first_update",          build_shotgun_list)
+	RegisterScriptCallback("actor_item_to_ruck",             build_shotgun_list)
+	RegisterScriptCallback("actor_item_to_slot",             build_shotgun_list)
 end
 
 -- Weapon Parts Monkey Patching
@@ -390,11 +467,11 @@ function zzzz_arti_jamming_repairs.weapon_eval_parts(wpn)
 		
 		if wpn:condition() > 0.9 then
 			arti_jamming.print_dbg("Short circuiting")
-			parts_data[part] = math.random(90, 99)
-		elseif math.random(100) < final_chance then
-			parts_data[part] = math.random(good_breakpoint + careful_handler_bonus, 99)
+			parts_data[part] = rand(90, 99)
+		elseif rand(100) < final_chance then
+			parts_data[part] = rand(good_breakpoint + careful_handler_bonus, 99)
 		else
-			parts_data[part] = math.random(1, good_breakpoint - 1) + careful_handler_bonus
+			parts_data[part] = rand(1, good_breakpoint - 1) + careful_handler_bonus
 		end
     end
 	se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
