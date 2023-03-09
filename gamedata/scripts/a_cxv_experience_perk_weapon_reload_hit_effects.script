@@ -260,10 +260,10 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	end
 	
 	if not (head_shot) then
-		if (pellet_count > 1) then
+		if (fourth_times > 0) and (pellet_count > 1) then
 			fourth_times_grace = fourth_times_grace + 1
 		end
-		if (pellet_count <= 1) or (fourth_times_grace > 4) then
+		if (fourth_times > 0) and ((pellet_count <= 1) or (fourth_times_grace > 4)) then
 			play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.5, random_float(0.5, 1.0))
 			fourth_times_counter = 0
 			fourth_times_grace = 0
