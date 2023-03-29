@@ -175,6 +175,7 @@ function actor_on_update()
 		if (fourth_times >= 1) and (time_g > fourth_timer) and (fourth_times_counter > 0) and (fourth_timer > 0) then
 			fourth_times_counter = 0
 			fourth_timer = 0
+			fourth_times_grace = 0
 			play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.5, random_float(0.5, 1.0))
 		end
 		update_1000ms_timer = time_g + update_1000ms_timer_interval
@@ -223,6 +224,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 		ammo_type_number = weapon:get_ammo_type()
 		ammo_section = ammo_list[ammo_type_number+1]
 		pellet_count = SYS_GetParam(2, ammo_section, "buck_shot") or 1
+		fourth_times_grace = 0
 	end
 ------------------------------------------------------------> Lucky Strike and Deadeye
 
@@ -239,21 +241,63 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 				
 				if (pellet_count == 1) then
 					fourth_times_counter = fourth_times_counter + 1
-					fourth_timer = time_g + 50				-- 5 seconds
+					fourth_timer = time_g + 60				-- 6 seconds
 				end
 				if (pellet_count > 1) then
 					fourth_times_counter = fourth_times_counter + (1 / pellet_count)
-					fourth_timer = time_g + 50				-- 5 seconds
+					fourth_timer = time_g + 60				-- 6 seconds
 				end
 			elseif (weapon_class ~= "melee") then
 				fourth_times_counter = fourth_times_counter + 1
-				fourth_timer = time_g + 50				-- 5 seconds
+				fourth_timer = time_g + 60				-- 6 seconds
 			end
 		end
 	end
 	
 	if (fourth_times_counter >= 4) then
-		alife_create_item(ammo_section, db.actor, {ammo = fourth_times})
+		-- alife_create_item(ammo_section, db.actor, {ammo = fourth_times})
+		
+		local ammo_to_load = 0
+		local ammo_counter = fourth_times
+		-- Mags Patch
+		if magazine_binder then
+			local mag_data = magazine_binder.get_data(weapon:id())
+			if (mag_data) then
+				local ammo_cap = SYS_GetParam(2, mag_data["section"], "max_mag_size")
+						
+				for i=1, ammo_cap do
+					if (mag_data["loaded"][i] == ammo_section) then
+						ammo_to_load = ammo_to_load + 1
+					end
+					if (mag_data["loaded"][i] ~= ammo_section) and (ammo_counter > 0) then 
+						mag_data["loaded"][i] = ammo_section
+						ammo_to_load = ammo_to_load + 1
+						ammo_counter = ammo_counter - 1
+					end
+				end
+				
+				if (ammo_counter > 0) then
+					alife_create_item(ammo_section, db.actor, { ammo = ammo_counter })
+				end		
+				
+				magazine_binder.set_data(weapon:id(), mag_data)
+			end
+			weapon:set_ammo_elapsed(ammo_to_load)
+		end
+		-- End Patch --
+		
+		if not magazine_binder then
+			local ammo_total = weapon:get_ammo_in_magazine()
+			local mag_size = ini_sys:r_u32(weapon:section(), "ammo_mag_size")
+			ammo_total = ammo_total + fourth_times
+			if (ammo_total > mag_size) then
+				ammo_counter = ammo_total - mag_size
+				alife_create_item(ammo_section, db.actor, { ammo = ammo_counter })
+				ammo_total = mag_size
+			end
+			weapon:set_ammo_elapsed(ammo_total)
+		end
+		
 		play_sound_on_actor("interface\\item_usage\\pickup", 0.75, random_float(0.5, 1.0))
 		fourth_times_counter = 0
 		fourth_timer = 0

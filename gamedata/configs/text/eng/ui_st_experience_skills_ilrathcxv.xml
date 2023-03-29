@@ -1211,7 +1211,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 4 critical hits in a short time %c[d_green]refunds 1 ammo to your backpack\n
 		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count and allow up to 4 pellets to land a non-critical hit before restting your counter\n
-		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 5 seconds will reset the hit counter
+		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 6 seconds will reset the hit counter
 		</text>
     </string>
 	<string id="st_perk_fourth_times_desc_2">
@@ -1219,7 +1219,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 4 critical hits in a short time %c[d_green]refunds 2 ammo to your backpack\n
 		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count and allow up to 4 pellets to land a non-critical hit before restting your counter\n
-		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 5 seconds will reset the hit counter
+		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 6 seconds will reset the hit counter
 		</text>
     </string>
 	<string id="st_perk_fourth_times_desc_3">
@@ -1227,7 +1227,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 4 critical hits in a short time %c[d_green]refunds 3 ammo to your backpack\n
 		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count and allow up to 4 pellets to land a non-critical hit before restting your counter\n
-		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 5 seconds will reset the hit counter
+		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 6 seconds will reset the hit counter
 		</text>
     </string>
 	

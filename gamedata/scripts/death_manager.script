@@ -23,7 +23,7 @@ local ammo_finder_bonus = 0
 local function experience_perk_on_update(id, data)
 	if (id == "perk_ammo_finder") then
 		ammo_finder = data["curr_level"]
-		ammo_finder_bonus = (ammo_finder * 0.2) + 0.5
+		ammo_finder_bonus = (ammo_finder * 0.2)
 	end
 	if (id == "perk_careful_handler") then
 		careful_handler = data["curr_level"]
@@ -565,12 +565,12 @@ function try_spawn_ammo(npc)
 					
 					if (item_count[sec]) then
 						number = math.random(item_count[sec][1], item_count[sec][2])
-						number = number + math.floor(number * ammo_finder_bonus)
+						number = number + math.floor((number * ammo_finder_bonus) + 0.5)
 					else 
 						number = 0
 					end
 					if (number <= 0 and ini_sys:section_exist(sec) and ammo_finder > 0) then
-						number = math.floor(1 * ammo_finder_bonus)
+						number = math.floor(ammo_finder_bonus + 0.5)
 					end
 					if (number > 0 and ini_sys:section_exist(sec)) then
 						alife_create_item(sec, npc, {ammo = number})
@@ -771,9 +771,9 @@ function set_weapon_drop_condition(npc,itm)
 			sec = ammo_class[math.random(1,#ammo_class)]
 			if (sec and item_count[sec]) then 
 				number = math.random(item_count[sec][1], item_count[sec][2])
-				number = number + math.floor(number * ammo_finder_bonus)
+				number = number + math.floor((number * ammo_finder_bonus) + 0.5)
 				if (number <= 0 and ini_sys:section_exist(sec) and ammo_finder > 0) then
-					number = math.floor(1 * ammo_finder_bonus)
+					number = math.floor(ammo_finder_bonus + 0.5)
 				end
 				if (number > 0 and ini_sys:section_exist(sec)) then
 					-- DPH_LOOT_COND
@@ -792,9 +792,9 @@ function set_weapon_drop_condition(npc,itm)
 				sec = ammo_class[i]
 				if (sec and item_count[sec]) then 
 					number = math.random(item_count[sec][1], item_count[sec][2])
-					number = number + math.floor(number * ammo_finder_bonus)
+					number = number + math.floor((number * ammo_finder_bonus) + 0.5)
 					if (number <= 0 and ini_sys:section_exist(sec) and ammo_finder > 0) then
-						number = math.floor(1 * ammo_finder_bonus)
+						number = math.floor(ammo_finder_bonus + 0.5)
 					end
 					if (number > 0 and ini_sys:section_exist(sec)) then 
 						chance = math.random(0,100)

@@ -9,7 +9,7 @@ local cxv_perks_settings = {
 			max_level 			= 5,
 			each_level 			= 2
 		},
-		--[[
+		--[[ OLD
 		perk_ghost_ammo = {
 			name 				= "st_perk_ghost_ammo",
 			description 		= "st_perk_ghost_ammo_desc",
@@ -79,9 +79,9 @@ local cxv_perks_settings = {
 			name 				= "st_perk_careful_handler",
 			description 		= "st_perk_careful_handler_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 5,
+			req_level 			= 20,		--5,
 			max_level 			= 5,
-			each_level 			= 5
+			each_level 			= 3			--5
 		},
 		perk_cybermedic = {
 			name 				= "st_perk_cybermedic",
@@ -261,9 +261,9 @@ local cxv_perks_settings = {
 			name 				= "st_perk_zone_gunsmith",
 			description 		= "st_perk_zone_gunsmith_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 20,
+			req_level 			= 5,	--20,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5		--3
 		},
 		perk_the_exalted = {
 			name 				= "st_perk_the_exalted",

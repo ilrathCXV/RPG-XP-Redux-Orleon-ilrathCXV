@@ -49,7 +49,7 @@ function actor_on_kill(victim, killer)
 			battle_runner_timer = battle_runner_timer + time_limit
 			time_limit = time_limit * 0.1
 			battle_runner_orig = battle_runner_timer
-			printf(`[RPG] Battle Runner refreshed by %s second(s)`, time_limit)
+			printf('[RPG] Battle Runner refreshed by %s second(s)', time_limit)
 		end
 		if (battle_runner_orig == 0) and not (battle_runner_active) then	-- BR not active; grant 10 seconds of speed
 			time_g_orig = math_floor(time_global() * 0.01)
