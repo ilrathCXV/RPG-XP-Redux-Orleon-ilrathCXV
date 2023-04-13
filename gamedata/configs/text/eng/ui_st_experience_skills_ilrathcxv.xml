@@ -1128,7 +1128,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
 		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+6% %c[ui_gray_2]repair bonus\n
-		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]20% %c[ui_gray_2]chance to not be consumed\n
+		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]30% %c[ui_gray_2]chance to not be consumed\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
     </string>
@@ -1137,7 +1137,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
 		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+7% %c[ui_gray_2]repair bonus\n
-		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]30% %c[ui_gray_2]chance to not be consumed\n
+		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]60% %c[ui_gray_2]chance to not be consumed\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
     </string>
@@ -1168,7 +1168,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2] with %c[yellow]double-barreled shotguns\n
 		%c[d_green] - Stacks with other shotgun reload speed increases\n		
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers will now drop %c[d_green]2 random shotgun shells %c[ui_gray_2] for any of your %c[yellow]currently-equipped double-barrel shotguns
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers have a %c[d_green]30% chance%c[ui_gray_2] to drop 2 random shotgun shells for any of your %c[yellow]currently-equipped double-barrel shotguns
 		</text>
     </string>
 	
@@ -1228,6 +1228,34 @@
 		%c[d_blue] - %c[ui_gray_2] Landing 4 critical hits in a short time %c[d_green]refunds 3 ammo to your backpack\n
 		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count and allow up to 4 pellets to land a non-critical hit before restting your counter\n
 		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 6 seconds will reset the hit counter
+		</text>
+    </string>
+	
+	<string id="st_perk_glass_cannon">
+        <text>Glass Cannon</text>
+    </string>
+	<string id="st_perk_glass_cannon_desc">
+        <text>No pain, no gain.</text>
+    </string>
+	<string id="st_perk_glass_cannon_desc_1">
+        <text>No pain, no gain.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] While %c[d_red]under 65% total health%c[ui_gray_2], you gain an exponential damage boost the lower your health is\n
+		%c[d_blue] - %c[ui_gray_2] Grants up to %c[d_green]32% bonus damage %c[ui_gray_2] at 1% HP 
+		</text>
+    </string>
+	<string id="st_perk_glass_cannon_desc_2">
+        <text>No pain, no gain.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] While %c[d_red]under 65% total health%c[ui_gray_2], you gain an exponential damage boost the lower your health is\n
+		%c[d_blue] - %c[ui_gray_2] Grants up to %c[d_green]60% bonus damage %c[ui_gray_2] at 1% HP 
+		</text>
+    </string>
+	<string id="st_perk_glass_cannon_desc_3">
+        <text>No pain, no gain.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] While %c[d_red]under 65% total health%c[ui_gray_2], you gain an exponential damage boost the lower your health is\n
+		%c[d_blue] - %c[ui_gray_2] Grants up to %c[d_green]94% bonus damage %c[ui_gray_2] at 1% HP 
 		</text>
     </string>
 	

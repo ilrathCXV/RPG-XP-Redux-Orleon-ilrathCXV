@@ -165,6 +165,14 @@ local cxv_perks_settings = {
 			max_level 			= 3,
 			each_level 			= 5
 		},
+		perk_glass_cannon = {
+			name 				= "st_perk_glass_cannon",
+			description 		= "st_perk_glass_cannon_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 35,
+			max_level 			= 3,
+			each_level 			= 5
+		},
 	},
 	
 	-- Imported from 'perk_new_ilrathcxv.ltx'

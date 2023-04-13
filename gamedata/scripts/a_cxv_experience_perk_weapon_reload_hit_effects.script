@@ -16,6 +16,9 @@ local bloody_mess = 0
 local zone_slayer = 0
 local fourth_times = 0
 
+local glass_cannon = 0
+local glass_cannon_exp = { [1] = 0.5, [2] = 0.85, [3] = 1.2 } -- At 0 HP (lol): 32.3% | 60.91% | 95.7%
+
 local function experience_perk_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
 	--[[
 	if (id == "perk_ghost_ammo") then
@@ -67,7 +70,14 @@ local function experience_perk_on_update(id, data)	-- messy I know (will look in
 	if (id == "perk_fourth_times") then
 		fourth_times = data["curr_level"]
 	end
+
+	if (id == "perk_glass_cannon") then
+		glass_cannon = data["curr_level"]
+	end
 end
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
 
 local sms = actor_menu.set_msg
 local criticalChance = 0
@@ -91,6 +101,14 @@ local function play_sound_on_actor(snd, volume, frequency)
 		return snd
 	end
 end
+
+local difficulty_multiplier = {
+	[1]  = 1.3,
+	[2]  = 1.05,
+	[3]  = 0.90,		--[3]  = 1.0,
+	[4]  = 0.80,		--[4]  = 1.0,
+}
+
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -160,6 +178,8 @@ local function get_object_by_id(id) -- same as _g.script one but without spammin
     return obj
 end
 
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
 
 local time_g
 local update_1000ms_timer = 0
@@ -218,6 +238,16 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	local ammo_list
 	local ammo_section
 	local pellet_count
+	
+	-- Need to account for Game Difficulty
+	local gameplay = alife_storage_manager.get_state().diff_game
+	if not (type(gameplay) == "table") then -- for old saves
+		alife_storage_manager.get_state().diff_game = {}
+		alife_storage_manager.get_state().diff_game["type"] = game_num
+		gameplay = alife_storage_manager.get_state().diff_game
+	end
+
+	local game_num = gameplay["type"] or game_num
 	
 	if (fourth_times > 0) then
 		ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
@@ -315,22 +345,31 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 		end
 	end
 	
-	
-	if (lucky_strike >= 1) and (deadeye <= 0) then	-- if you have LS but don't have DE...
-		criticalMultiplier = 1.1					-- Crit Multiplier is 10%
-	elseif (deadeye >= 1) then
-		criticalMultiplier = 1 + (0.25 * deadeye)	-- Crit Multiplier is (25  * DE)%
-	end
-	
-	if (math.random(1000) <= criticalChance) then
-		txt = "Critical hit for " .. criticalMultiplier .. "x damage!"
-		sms(2, txt, 5)
-		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, criticalMultiplier)
-		shit.power = shit.power * criticalMultiplier
-	end
-	
 	if npc.health > 0 then
+-------------------------------------------------------------------------> Glass Cannon
+
+		if (db.actor.health < 0.65) and (glass_cannon > 0) then
+			shit.power = shit.power * (2 - db.actor.health)^(glass_cannon_exp[glass_cannon])
+		end
+		
+-------------------------------------------------------------------------> Lucky Strike + Deadeye	
+
+		if (math.random(1000) <= criticalChance) then
+		
+			if (lucky_strike >= 1) and (deadeye <= 0) then	-- if you have LS but don't have DE...
+				criticalMultiplier = 1.1					-- Crit Multiplier is 10%
+			elseif (deadeye >= 1) then
+				criticalMultiplier = 1 + (0.25 * deadeye)	-- Crit Multiplier is (25  * DE)%
+			end
+		
+			txt = "Critical hit for " .. criticalMultiplier .. "x damage!"
+			sms(2, txt, 5)
+			play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, criticalMultiplier)
+			shit.power = shit.power * criticalMultiplier
+		end
+	
 -------------------------------------------------------------------------> Jamming Shot (also works with melees)
+
 		if is_breaked and jamming_shot >= 1 then
 			local weapon2 = npc:active_item() --Багает оружие противника
 			if weapon2 then weapon2:unload_magazine(false) end
@@ -353,6 +392,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 		end
 --]]
 -------------------------------------------------------------------------> Disarming Shot
+
 		if disarming_shot >= 1 and is_breaked2 then
 			local weapon2 = npc:active_item()
 			local dropChance = math.random(100) <= 15
@@ -377,7 +417,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	--end
 	
 	if damage_bonus > 0 then
-		local life_removed = npc.health - (damage_bonus)
+		local life_removed = npc.health - (damage_bonus * difficulty_multiplier[game_num])	-- account for difficulty to avoid getting around it
 		printf('Enemy Health after hit: %s', npc.health)
 		npc:set_health_ex(life_removed)
 	end

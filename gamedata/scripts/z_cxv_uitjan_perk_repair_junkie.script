@@ -1,5 +1,6 @@
 local repair_junkie = 0											-- Repair Junkie: Grants a 5% chance to refund a repair item (up to 25% at max rank)
 local zone_gunsmith = 0
+local zone_gunsmith_bonus = { [1] = 0, [2] = 0, [3] = 0.1 , [4] = 0.3, [5] = 0.6}	- Jury Rigging: Starting Rank 3, grants bonus repair item refund chance
 
 local function experience_perk_on_update(id, data)
 	if (id == "perk_repair_junkie") then
@@ -84,7 +85,7 @@ function on_game_start()
 					local seed = supportremaininguses + supportitemid + self.con_val[1]
 					math.randomseed(seed)
 					
-					local refundbool = math.random() < ((zone_gunsmith - 2) * 0.1)
+					local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
 					
 					if refundbool then
 						BonusNews()
@@ -97,7 +98,7 @@ function on_game_start()
 				local seed = supportitem:condition() + supportitemid + self.con_val[1]
 				math.randomseed(seed)
 				
-				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.1)
+				local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
 				
 				if refundbool then
 					BonusNews()
@@ -107,7 +108,7 @@ function on_game_start()
 				local seed = supportitemid + self.con_val[1]
 				math.randomseed(seed)
 				
-				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.1)
+				local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
 				
 				if refundbool then
 					BonusNews()
@@ -147,7 +148,7 @@ function on_game_start()
 			if not support_waslastuse and IsItem("multiuse", supportitem:section()) then
 				local seed = supportremaininguses + supportitemid + self.con_val[1]
 				math.randomseed(seed)
-				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.1)
+				local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
 				
 				if refundbool then
 					BonusNews()
@@ -157,7 +158,7 @@ function on_game_start()
 				local seed = supportitem:condition() + supportitemid + self.con_val[1]
 				math.randomseed(seed)
 				
-				local refundbool = math.random() < ((zone_gunsmith - 2) * 0.1)
+				local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
 				
 				if refundbool then
 					BonusNews()
