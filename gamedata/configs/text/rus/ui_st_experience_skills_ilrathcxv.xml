@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="windows-1251"?>
 
 <string_table>
-
 	<string id="st_perk_fast_hands">
         <text>Быстрые Руки</text>
     </string>
@@ -38,8 +37,7 @@
 		%c[d_blue] - %c[ui_gray_2] Увеличивает скорость доставания/убирания оружия на %c[d_green]75%
 		</text>
     </string>
-	
-	
+
     <string id="st_perk_ghost_ammo">
         <text>Призрачные Патроны</text>
     </string>
@@ -82,7 +80,6 @@
 		</text>
     </string>
 	
-	
     <string id="st_perk_gunslinger">
         <text>Ковбой</text>
     </string>
@@ -120,7 +117,6 @@
 		</text>
     </string>
 
-	
 	<string id="st_perk_rifleman">
         <text>Стрелок</text>
     </string>
@@ -157,7 +153,6 @@
 		%c[d_blue] - %c[ui_gray_2] Скорость перезарядки увеличена на %c[d_green]55% %c[ui_gray_2]для %c[yellow]штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов																										  
 		</text>
     </string>					  
-	
 	
 	<string id="st_perk_heavy_gunner">
         <text>Танк</text>
@@ -250,7 +245,6 @@
 		</text>
     </string>
 	
-	
 	<string id="st_perk_bloody_mess">
         <text>Кровавое Месиво</text>
     </string>
@@ -298,7 +292,6 @@
 		</text>
     </string>
 	
-	
     <string id="st_perk_disarming_shot">
         <text>Обезоруживающий Выстрел</text>
     </string>
@@ -310,10 +303,8 @@
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При попадании по оружию противника есть %c[d_green]15% %c[ui_gray_2]шанс, что он его выронит
 		</text>
- <text>При попадании по оружию противника есть 15% шанс, что он его выронит.\n\n\nМакс. Уровень навыка: 1</text>
     </string>
 	
-
     <string id="st_perk_scavenger">
         <text>Мародёр</text>
     </string>
@@ -330,31 +321,26 @@
         <text>От вашего зоркого взгляда не "ускользнёт" даже самый спрятанный предмет на теле врага.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При обыске тела есть %c[d_green]14% %c[ui_gray_2]шанс найти \n%c[d_red]разборные предметы и материалы для крафта\n
-		%c[d_blue] - %c[ui_gray_2] Качество находимых предметов становится лучше
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_3">
         <text>От вашего зоркого взгляда не "ускользнёт" даже самый спрятанный предмет на теле врага.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При обыске тела есть %c[d_green]21% %c[ui_gray_2]шанс найти \n%c[d_red]разборные предметы и материалы для крафта\n
-		%c[d_blue] - %c[ui_gray_2] Качество находимых предметов становится ещё лучше
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_4">
         <text>От вашего зоркого взгляда не "ускользнёт" даже самый спрятанный предмет на теле врага.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При обыске тела есть %c[d_green]28% %c[ui_gray_2]шанс найти \n%c[d_red]разборные предметы и материалы для крафта\n
-		%c[d_blue] - %c[ui_gray_2] Качество находимых предметов становится намного лучше
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_5">
         <text>От вашего зоркого взгляда не "ускользнёт" даже самый спрятанный предмет на теле врага.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При обыске тела есть %c[d_green]35% %c[ui_gray_2]шанс найти \n%c[d_red]разборные предметы и материалы для крафта\n
-		%c[d_blue] - %c[ui_gray_2] Предметы выпадают очень высокого качества
 		</text>
     </string>
-	
 	
     <string id="st_perk_careful_handler">
         <text>Бережливость</text>
@@ -393,7 +379,6 @@
 		</text>
     </string>
     
-	
 	<string id="st_perk_master_craftsman">
         <text>Кузнец</text>
     </string>
@@ -407,7 +392,6 @@
 		%c[d_blue] - %c[ui_gray_2] При готовке пищи есть  %c[d_green]20% %c[ui_gray_2]шанс приготовить вторую порцию
 		</text>
     </string>	
-	
 
     <string id="st_perk_cybermedic">
         <text>Кибер-Медик</text>
@@ -422,7 +406,6 @@
 		%c[d_blue] - %c[ui_gray_2] Каждые 30 секунд 
 		%c[d_blue] - %c[ui_gray_2] Сила действия равна %c[d_green]бинту
 		</text>
-
     </string>
 	<string id="st_perk_cybermedic_desc_2">
         <text>Вам вживили имплантат, который помогает медленно останавливать кровотечение.\n \n
@@ -456,7 +439,6 @@
 		</text>
     </string>
 	
-
     <string id="st_perk_ammo_finder">
         <text>Нюх на Патроны</text>
     </string>
@@ -493,7 +475,6 @@
 		%c[d_blue] - %c[ui_gray_2] При обыске тела вы находите на %c[d_green]100% \n%c[ui_gray_2]больше патронов
 		</text>
     </string>
-	
 	
 	<string id="st_perk_medicine_man">
         <text>Санитар</text>
@@ -534,7 +515,6 @@
 		%c[d_blue] - %c[ui_gray_2] Качество находимого сильно увеличено
 		</text>
     </string>
-	
 	
 	<string id="st_perk_artefinder">
         <text>Нюх На Артефакты</text>
@@ -583,7 +563,6 @@
 		</text>
     </string>
 	
-	
 	<string id="st_perk_midas_touch">
         <text>Прикосновение Мидаса</text>
     </string>
@@ -628,13 +607,12 @@
         <text>Вы смогли выведать ещё одну тайну Зоны и смогли подключиться к ноосфере. Такая связь позволяет медленно восстанавливать состояние артефактов у вас на поясе.</text>
     </string>
 	<string id="st_perk_master_zone_desc_1">
-        <text>вы стали единым целым с Зоной. Ноосфера теперь является вездесущей силой для вашего аномального снаряжения.\n \n
+        <text>Вы стали единым целым с Зоной. Ноосфера теперь является вездесущей силой для вашего аномального снаряжения.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] Любые артефакты или приспособления, прикрепленные к вашему ремню, будут \n%c[d_green]медленно чинить себя %c[ui_gray_2]с течением времени
 		</text>
     </string>
 
-    
 	<string id="st_perk_plate_finder">
         <text>Поиск Пластин</text>
     </string>
@@ -751,7 +729,6 @@
 		</text>
     </string>
 
-
 	<string id="st_perk_iron_resolve">
         <text>Железная решимость</text>
     </string>
@@ -777,7 +754,6 @@
 		</text>
     </string>
     
-	
 	<string id="st_perk_silver_tongued">
         <text>Красноречие</text>
     </string>
@@ -814,7 +790,6 @@
 		%c[d_blue] - %c[ui_gray_2] Вы получаете на %c[d_green]25% %c[ui_gray_2]более выгодные цены при покупке или продажи
 		</text>
     </string>
-	
 	
 	<string id="st_perk_mutant_slayer">
         <text>Толстая кожа</text>
@@ -878,7 +853,6 @@
 		</text>
     </string>
 	
-	
 	<string id="st_perk_warmonger">
         <text>Терминатор</text>
     </string>
@@ -892,30 +866,7 @@
 		%c[d_red] - %c[ui_gray_2] В магазине должно оставаться минимум 3 патрона
 		</text>
     </string>
-	
-	
-	<!--string id="st_perk_fighting_stance">
-        <text>Боевая Стойка</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc">
-        <text>Вы размахиваете оружием ближнего боя гораздо быстрее.</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc_1">
-        <text>Вы размахиваете оружием ближнего боя на 10% быстрее.\n\n\nМакс. Уровень навыка: 5</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc_2">
-        <text>Вы размахиваете оружием ближнего боя на 20% быстрее.\n\n\nМакс. Уровень навыка: 5</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc_3">
-        <text>Вы размахиваете оружием ближнего боя на 30% быстрее.\n\n\nМакс. Уровень навыка: 5</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc_4">
-        <text>Вы размахиваете оружием ближнего боя на 40% быстрее.\n\n\nМакс. Уровень навыка: 5</text>
-    </string>
-	<string id="st_perk_fighting_stance_desc_5">
-        <text>Вы размахиваете оружием ближнего боя на 50% быстрее.\n\n\nМакс. Уровень навыка: 5</text>
-    </string-->
-	
+
 	<string id="st_perk_deadeye">
         <text>Меткий Глаз</text>
     </string>
@@ -1237,7 +1188,34 @@
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При нанесении 4 критических ударов за короткий промежуток времени %c[d_green]возвращает 3 патрон в рюкзак\n
 		%c[d_blue] - %c[ui_gray_2] Попадания из дробовика считаются по количеству дробинок. Если 4 дробинки нанесли некритический удар, тогда счётчик сбрасывается\n
-		%c[d_red] - %c[ui_gray_2] Нанесение некритического удара, смена оружия или отсутствие попадания в течение 5 секунд приведет к сбросу счетчика попаданий.
+		%c[d_red] - %c[ui_gray_2] Нанесение некритического удара, смена оружия или отсутствие попадания в течение 5 секунд приведет к сбросу счетчика попаданий.																					 
+		</text>
+    </string>
+	<string id="st_perk_glass_cannon">
+        <text>Стеклобой</text>
+    </string>
+	<string id="st_perk_glass_cannon_desc">
+        <text>Нет боли - нет выгоды.</text>
+    </string>
+	<string id="st_perk_glass_cannon_desc_1">
+        <text>Нет боли - нет выгоды.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2]Пока общее здоровье %c[d_red]ниже 65% %c[ui_gray_2], вы получаете увеличение урона по мере уменьшения здоровья.\n
+		%c[d_blue] - %c[ui_gray_2] Даёт до %c[d_green]32% бонусного урона %c[ui_gray_2] при 1% HP 
+		</text>
+    </string>
+	<string id="st_perk_glass_cannon_desc_2">
+        <text>Нет боли - нет выгоды.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2]Пока общее здоровье %c[d_red]ниже 65% %c[ui_gray_2], вы получаете увеличение урона по мере уменьшения здоровья.\n
+		%c[d_blue] - %c[ui_gray_2] Даёт до %c[d_green]60% бонусного урона %c[ui_gray_2] при 1% HP 
+		</text>
+    </string>
+	<string id="st_perk_glass_cannon_desc_3">
+        <text>Нет боли - нет выгоды.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2]Пока общее здоровье %c[d_red]ниже 65% %c[ui_gray_2], вы получаете увеличение урона по мере уменьшения здоровья.\n
+		%c[d_blue] - %c[ui_gray_2] Даёт до %c[d_green]94% бонусного урона %c[ui_gray_2] при 1% HP 
 		</text>
     </string>
 </string_table>
