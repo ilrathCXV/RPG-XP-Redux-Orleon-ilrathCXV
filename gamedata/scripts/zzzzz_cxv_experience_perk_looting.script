@@ -327,7 +327,7 @@ end
 ------[NEW] Zone Slayer ammo selecion and creation
 
 function find_zone_slayer_ammo(weapon,npc)
-	if (rand(100) =< 30) then return end
+	if (rand(100) <= 30) then return end
 	local ammo_table = parse_list(ini_sys,weapon:section(),"ammo_class")
 	local shells = ammo_table[rand(1,#ammo_table)]
 	if (shells) then

@@ -1,6 +1,6 @@
 local repair_junkie = 0											-- Repair Junkie: Grants a 5% chance to refund a repair item (up to 25% at max rank)
 local zone_gunsmith = 0
-local zone_gunsmith_bonus = { [1] = 0, [2] = 0, [3] = 0.1 , [4] = 0.3, [5] = 0.6}	- Jury Rigging: Starting Rank 3, grants bonus repair item refund chance
+local zone_gunsmith_bonus = { [1] = 0, [2] = 0, [3] = 0.1 , [4] = 0.3, [5] = 0.6}	-- Jury Rigging: Starting Rank 3, grants bonus repair item refund chance
 
 local function experience_perk_on_update(id, data)
 	if (id == "perk_repair_junkie") then

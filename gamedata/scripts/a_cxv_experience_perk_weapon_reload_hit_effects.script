@@ -481,7 +481,7 @@ reload_anims = {
 	anm_open = true,
 	anm_reload_g = true,
 	anm_reload_w_gl = true,
-	anm_hide = false
+	anm_reload_empty_w_gl = true,
 }
 
 hide_anims = {
@@ -492,6 +492,13 @@ hide_anims = {
 	anm_hide_empty = true,
 	anm_hide_g = true,
 	anm_hide_w_gl = true,
+	anm_show = true,
+	anm_show_0 = true,
+	anm_show_1 = true,
+	anm_show_2 = true,
+	anm_show_empty = true,
+	anm_show_g = true,
+	anm_show_w_gl = true,
 }
 
 function animation_weapons(anim_table,obj)
