@@ -7,7 +7,7 @@ local midas_touch = 0
 
 local zone_slayer = 0
 
-local careful_handler_bonus = 0
+local careful_handler_bonus = { [0] = 0, [1] = 5, [2] = 10, [3] = 15, [4] = 20, [5] = 25 }
 
 local function experience_perk_on_update(id, data)
 	if (id == "perk_medicine_man") then
@@ -24,7 +24,6 @@ local function experience_perk_on_update(id, data)
 	end
 	if (id == "perk_careful_handler") then
 		careful_handler = data["curr_level"]
-		careful_handler_bonus = careful_handler * 3
 	end
 	if (id == "perk_midas_touch") then
 		midas_touch = data["curr_level"]
@@ -61,7 +60,7 @@ local function create_item_random_uses(i, box)
     local se_item = alife_create_item(i, box)
 	if i == "af_kevlar" or i == "af_kevlar_up" or i == "af_plates" or i == "af_plates_up" or i == "af_polymer" or i == "af_polymer_up" or i == "af_ceramic" or i == "af_ceramic_up" then
 		printf('Plate Dropped: %s', i)
-		local upper_threshold = rand((16 + (5 * plate_finder) + (careful_handler_bonus)),(50 + (5 * plate_finder) + (careful_handler_bonus)))
+		local upper_threshold = rand((16 + (5 * plate_finder) + (careful_handler_bonus[careful_handler])),(50 + (5 * plate_finder) + (careful_handler_bonus[careful_handler])))
 		alife_process_item(i, se_item.id, {cond = (rand(15,upper_threshold) * 0.01)})
     elseif max_uses then
 		printf('Max uses: %s', max_uses)
@@ -71,7 +70,7 @@ local function create_item_random_uses(i, box)
 		alife_process_item(i, se_item.id, {ammo = (rand(1, box_size))})
     elseif utils_item.is_degradable(nil, se_item.id) then
 		printf('Degradable')
-		alife_process_item(i, se_item.id, {cond = (rand(50 + (careful_handler_bonus),100) * 0.01)})
+		alife_process_item(i, se_item.id, {cond = (rand(50 + (careful_handler_bonus[careful_handler]),100) * 0.01)})
 	else
 		alife_create_item(i, box)
     end
@@ -468,9 +467,9 @@ function zzzz_arti_jamming_repairs.weapon_eval_parts(wpn)
 			arti_jamming.print_dbg("Short circuiting")
 			parts_data[part] = rand(90, 99)
 		elseif rand(100) < final_chance then
-			parts_data[part] = rand(good_breakpoint + careful_handler_bonus, 99)
+			parts_data[part] = rand(good_breakpoint + careful_handler_bonus[careful_handler], 99)
 		else
-			parts_data[part] = rand(1, good_breakpoint - 1) + careful_handler_bonus
+			parts_data[part] = rand(1, good_breakpoint - 1) + careful_handler_bonus[careful_handler]
 		end
     end
 	se_save_var( wpn:id(), wpn:name(), "parts", parts_data )

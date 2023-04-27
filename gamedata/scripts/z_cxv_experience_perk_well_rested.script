@@ -1,0 +1,129 @@
+local well_rested = 0
+local well_rested_speed = { [0] = 1, [1] = 1.025, [2] = 1.05, [3] = 1.08}
+local well_rested_weight = { [0] = 1, [1] = 1.10, [2] = 1.25, [3] = 1.40}
+local well_rested_threshold = { [0] = 9000, [1] = 1800, [2] = 2250, [3] = 2700}	-- 0 = 0% / 1 = 80% / 2 = 75% / 3 = 70%
+
+local time_g
+local update_5s_timer = 0
+local update_5s_timer_interval = 50	-- update every 5 seconds
+local has_slept = false
+local given_message = false
+
+
+local add_speed = speed.add_speed
+local remove_speed = speed.remove_speed
+local m_weight = weight.multiply_weight
+local remove_weight = weight.remove_weight
+local sms = actor_menu.set_msg
+local get_last_sleep = actor_status_sleep.get_last_sleep
+local math_floor = math.floor
+
+local get_safe_sound_object = xr_sound.get_safe_sound_object
+
+local function play_sound_on_actor(snd, volume, frequency)
+	if not snd then
+		trace("snd is nil")
+		return
+	end
+	local actor = db.actor
+	local snd = get_safe_sound_object(snd)
+	if snd then
+		snd:play(actor, 0, sound_object.s2d)
+		snd.volume = volume or 1
+		snd.frequency = frequency or 1
+		return snd
+	end
+end
+
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_well_rested") then
+		well_rested = data["curr_level"]
+	end
+	
+	if well_rested == 0 then 
+		remove_speed("perk_well_rested")
+		remove_weight("perk_well_rested")
+		has_slept = false
+	end
+end
+
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+base_sleep = actor_status_sleep.actor_on_sleep
+
+function actor_status_sleep.actor_on_sleep(hours)
+	base_sleep(hours)
+	has_slept = true
+	given_message = false
+end
+
+
+function actor_on_update()
+	if well_rested == 0 then return end
+	
+	time_g = math_floor(time_global() * 0.01)	
+	
+	if (time_g > update_5s_timer) then
+		printf("Sleep level: %s | Has slept? - %s", get_last_sleep(), has_slept)
+		-- has_slept = get_last_sleep() < 200 or false
+		if has_slept then
+			if get_last_sleep() < well_rested_threshold[well_rested] then
+				m_weight("perk_well_rested", well_rested_weight[well_rested], true)
+				add_speed("perk_well_rested", well_rested_speed[well_rested], false, true)
+				if not given_message then
+					WellRestedNews()
+				end
+			else
+				remove_speed("perk_well_rested")
+				remove_weight("perk_well_rested")
+				WellRestedGoneNews()
+				has_slept = false
+			end
+		end
+		update_5s_timer = time_g + update_5s_timer_interval
+	end
+end
+
+function WellRestedNews()
+	local message = "You are now Well-Rested"
+	sms(2, message, 5)
+	play_sound_on_actor("decoder", 0.75, 0.8)
+	given_message = true
+end
+
+function WellRestedGoneNews()
+	local message = "You are no longer Well-Rested"
+	sms(2, message, 5)
+	play_sound_on_actor("decoder", 0.75, 0.8)
+end
+
+-------------------------------------------------------------------
+-- Callbacks
+-------------------------------------------------------------------
+function save_state(m_data)
+	if well_rested > 0 then
+		local well_rested_data = {}
+		well_rested_data.has_slept = has_slept
+		well_rested_data.given_message = given_message
+		
+		m_data.well_rested_data = well_rested_data
+	end
+end
+
+function load_state(m_data)
+	local well_rested_data = m_data.well_rested_data
+	if well_rested_data then
+		has_slept = well_rested_data.has_slept or false
+		given_message = well_rested_data.given_message or false
+	end
+end
+
+function on_game_start()
+	RegisterScriptCallback("load_state",load_state)
+	RegisterScriptCallback("save_state",save_state)
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	RegisterScriptCallback("actor_on_update", 		actor_on_update)
+end

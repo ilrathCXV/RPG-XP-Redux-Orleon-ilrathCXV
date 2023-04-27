@@ -297,6 +297,14 @@ local cxv_perks_settings = {
 			max_level 			= 3,
 			each_level 			= 5
 		},
+		perk_well_rested = {
+			name 				= "st_perk_well_rested",
+			description 		= "st_perk_well_rested_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 1,
+			max_level 			= 3,
+			each_level 			= 3
+		},
 	--[[	-- UNUSED
 		perk_fighting_stance = {
 			name 				= "st_perk_fighting_stance",

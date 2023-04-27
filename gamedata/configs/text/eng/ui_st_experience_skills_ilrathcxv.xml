@@ -1259,4 +1259,32 @@
 		</text>
     </string>
 	
+	<string id="st_perk_well_rested">
+        <text>Well-Rested</text>
+    </string>
+	<string id="st_perk_well_rested_desc">
+        <text>You learn to appreciate a good-night's sleep.</text>
+    </string>
+	<string id="st_perk_well_rested_desc_1">
+        <text>You learn to appreciate a good-night's sleep.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] After a full sleep, you will be "Well-Rested", gaining %c[d_green]2.5% movement speed %c[ui_gray_2] and %c[d_green]10% bonus carry weight\n
+		%c[d_blue] - %c[ui_gray_2] Effect goes away when your sleep meter goes below %c[d_orange]80%
+		</text>
+    </string>
+	<string id="st_perk_well_rested_desc_2">
+       <text>You learn to appreciate a good-night's sleep.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] After a full sleep, you will be "Well-Rested", gaining %c[d_green]5% movement speed %c[ui_gray_2] and %c[d_green]25% bonus carry weight\n
+		%c[d_blue] - %c[ui_gray_2] Effect goes away when your sleep meter goes below %c[yellow]75%
+		</text>
+    </string>
+	<string id="st_perk_well_rested_desc_3">
+        <text>You learn to appreciate a good-night's sleep.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] After a full sleep, you will be "Well-Rested", gaining %c[d_green]8% movement speed %c[ui_gray_2] and %c[d_green]40% bonus carry weight\n
+		%c[d_blue] - %c[ui_gray_2] Effect goes away when your sleep meter goes below %c[d_green]70%
+		</text>
+    </string>
+	
 </string_table>
