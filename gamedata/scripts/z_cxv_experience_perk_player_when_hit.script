@@ -18,24 +18,81 @@ local function experience_perk_on_update(id, data)
 	end
 end
 
+local difficulty_multiplier_enemy = {
+	[1]  = 0.65,
+	[2]  = 0.8,
+	[3]  = 1.0,
+	[4]  = 1.2,
+}
+
+local mutant_list = {
+	[14] = true,
+    [108] = true,
+    [15] = true,
+    [109] = true,
+    [16] = true,
+    [110] = true,
+    [17] = true,
+    [111] = true,
+    [29] = true,
+    [112] = true,
+    [18] = true,
+    [113] = true,
+	[20] = true,
+    [23] = true,
+    [116] = true,
+	[24] = true,
+    [25] = true,
+    [117] = true,
+    [26] = true,
+    [119] = true,
+	[27] = true,
+    [121] = true,
+    [22] = true,
+    [115] = true,
+    [33] = true,
+    [122] = true,
+	[37] = true,
+    [123] = true,
+	[38] = true,
+    [124] = true
+}
+
+local allowed_hit_types = {
+    [5] = true,
+    [6] = true,
+    [7] = true,
+    [8] = true
+}
+
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 function perk_effects_player_hit(shit)
 
-	if shit.power <= 0 then return end
+	if shit.type == hit.telepatic then return end
     local base_power = shit.power
     local damage_mult = 1
     base_power = shit.power
-    shit.type = shit.type or 0
-	local radiation = shit.type == hit.radiation
+    shit_type = shit.type
+	if not shit_type then return end
+	
+	-- Need to account for Game Difficulty
+	local gameplay = alife_storage_manager.get_state().diff_game
+	if not (type(gameplay) == "table") then -- for old saves
+		alife_storage_manager.get_state().diff_game = {}
+		alife_storage_manager.get_state().diff_game["type"] = game_num
+		gameplay = alife_storage_manager.get_state().diff_game
+	end
 
+	local game_num = gameplay["type"] or game_num
+	
 ------------------------------------------------------------> Anomaly Defense
-    if anomaly_defense >= 1 and ((shit.type ~= hit.fire_wound) or (shit.type ~= hit.wound) or (shit.type ~= hit.wound_2)) then
+    if anomaly_defense >= 1 and ((shit_type ~= hit.fire_wound) or (shit_type ~= hit.wound) or (shit_type ~= hit.wound_2)) then
 		damage_mult = damage_mult - (0.05 * anomaly_defense)
     end
 
 ------------------------------------------------------------> Berserker
-	if shit.draftsman and (berserker >= 1) and ((shit.type == hit.fire_wound) or (shit.type == hit.wound) or (shit.type == hit.wound_2) or (shit.type == hit.explosion)) then
+	if shit.draftsman and (berserker >= 1) and ((shit_type == hit.fire_wound) or (shit_type == hit.wound) or (shit_type == hit.wound_2) or (shit_type == hit.explosion)) then
 		local weaponPlayer = db.actor:active_item()
 		if IsMelee(weaponPlayer) then
 			damage_mult = damage_mult - (0.05 * berserker)
@@ -43,8 +100,8 @@ function perk_effects_player_hit(shit)
 	end
 
 ------------------------------------------------------------> Spiked
-    if shit.draftsman and (spiked >= 1) and ((shit.type == hit.fire_wound) or (shit.type == hit.wound) or (shit.type == hit.wound_2) or (shit.type == hit.explosion)) then
-		local spike = base_power * (0.05 * spiked)
+    if shit.draftsman and (shit.draftsman:id() ~= db.actor:id()) and (spiked >= 1) and ((shit_type == hit.fire_wound) or (shit_type == hit.wound) or (shit_type == hit.wound_2) or (shit_type == hit.explosion)) then
+		local spike = base_power * (0.05 * spiked) * difficulty_multiplier_enemy[game_num]
 		shit.power = spike
 		shit.draftsman:hit(shit)
 			
@@ -53,12 +110,15 @@ function perk_effects_player_hit(shit)
 		
     end
 	
-	if shit.draftsman and mutant_slayer >= 1 and ((shit.type == hit.wound) or (shit.type == hit.wound_2) or (shit.type == hit.strike) or (shit.type == hit.telepatic)) then
-		damage_mult = damage_mult - (0.05 * mutant_slayer)
+	if shit.draftsman and mutant_slayer >= 1 then
+		if mutant_list[shit.draftsman:clsid()] and allowed_hit_types[shit_type] then
+			damage_mult = damage_mult - (0.05 * mutant_slayer)
+		end
     end
 	
+	--printf("Original Damage: %s of type %s", shit.power, shit_type)
 	shit.power = shit.power * damage_mult
-	
+	--printf("New Damage: %s", shit.power)
 end
 
 function on_game_start()

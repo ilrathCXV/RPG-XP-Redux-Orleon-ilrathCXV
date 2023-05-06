@@ -1,4 +1,5 @@
-local repair_junkie = 0											-- Repair Junkie: Grants a 5% chance to refund a repair item (up to 25% at max rank)
+local repair_junkie = 0											
+local repair_junkie_bonus = { [0] = 0, [1] = 0.05, [2] = 0.10, [3] = 0.20 , [4] = 0.40, [5] = 0.750 }	-- Repair Junkie: Grants a chance to refund a repair item
 local zone_gunsmith = 0
 local zone_gunsmith_bonus = { [0] = 0, [1] = 0, [2] = 0, [3] = 0.1 , [4] = 0.3, [5] = 0.6}	-- Jury Rigging: Starting Rank 3, grants bonus repair item refund chance
 
@@ -54,7 +55,7 @@ function on_game_start()
 					local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
 					math.randomseed(seed)
 					
-					local refundbool = math.random() < (repair_junkie * 0.05)
+					local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
 					
 					if refundbool then
 						TinkerNews()
@@ -67,7 +68,7 @@ function on_game_start()
 				local seed = repairkit:id() + repairkit:condition() + supportitemid + self.con_val[1]
 				math.randomseed(seed)
 				
-				local refundbool = math.random() < ((repair_junkie * 0.05))
+				local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
 				
 				if refundbool then
 					TinkerNews()
@@ -124,7 +125,7 @@ function on_game_start()
 			if not waslastuse and IsItem("multiuse", repairkit:section()) then
 				local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
 				math.randomseed(seed)
-				local refundbool = math.random() < ((repair_junkie * 0.05))
+				local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
 				
 				if refundbool then
 					TinkerNews()
@@ -134,7 +135,7 @@ function on_game_start()
 				local seed = repairkit:id() + repairkit:condition() + supportitemid + self.con_val[1]
 				math.randomseed(seed)
 				
-				local refundbool = math.random() < ((repair_junkie * 0.05))
+				local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
 				
 				if refundbool then
 					TinkerNews()

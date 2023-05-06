@@ -6,8 +6,8 @@ local well_rested_threshold = { [0] = 9000, [1] = 1800, [2] = 2250, [3] = 2700}	
 local time_g
 local update_5s_timer = 0
 local update_5s_timer_interval = 50	-- update every 5 seconds
-local has_slept = false
-local given_message = false
+local has_slept
+local given_message
 
 
 local add_speed = speed.add_speed
@@ -103,14 +103,13 @@ end
 -------------------------------------------------------------------
 -- Callbacks
 -------------------------------------------------------------------
+
 function save_state(m_data)
-	if well_rested > 0 then
-		local well_rested_data = {}
-		well_rested_data.has_slept = has_slept
-		well_rested_data.given_message = given_message
+	local well_rested_data = {}
+	well_rested_data.has_slept = has_slept
+	well_rested_data.given_message = given_message
 		
-		m_data.well_rested_data = well_rested_data
-	end
+	m_data.well_rested_data = well_rested_data
 end
 
 function load_state(m_data)
@@ -120,6 +119,7 @@ function load_state(m_data)
 		given_message = well_rested_data.given_message or false
 	end
 end
+
 
 function on_game_start()
 	RegisterScriptCallback("load_state",load_state)

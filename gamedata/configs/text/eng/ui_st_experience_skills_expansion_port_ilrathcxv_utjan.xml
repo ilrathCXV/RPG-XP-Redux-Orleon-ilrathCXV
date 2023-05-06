@@ -107,19 +107,19 @@
 	<string id="st_perk_repair_junkie_desc_3">
         <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]15% %c[ui_gray_2]chance to not consume the used repair item
+		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]20% %c[ui_gray_2]chance to not consume the used repair item
 		</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_4">
         <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]20% %c[ui_gray_2]chance to not consume the used repair item
+		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]40% %c[ui_gray_2]chance to not consume the used repair item
 		</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_5">
         <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]25% %c[ui_gray_2]chance to not consume the used repair item
+		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]75% %c[ui_gray_2]chance to not consume the used repair item
 		</text>
     </string>
 	

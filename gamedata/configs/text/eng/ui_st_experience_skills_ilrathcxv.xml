@@ -656,31 +656,31 @@
 	<string id="st_perk_plate_finder_desc_1">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]1.5% %c[ui_gray_2]chance of finding a random damaged armor plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]2% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_2">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]3% %c[ui_gray_2]chance of finding a random damaged armor plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]5% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_3">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]4.5% %c[ui_gray_2]chance of finding a random damaged armor plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]10% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_4">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]6% %c[ui_gray_2]chance of finding a random damaged armor plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]15% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	<string id="st_perk_plate_finder_desc_5">
         <text>Stalkers have been using kevlar plates much more recently.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]7.5% %c[ui_gray_2]chance of finding a random damaged armor plate
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]20% %c[ui_gray_2]chance of finding a random damaged armor plate
 		</text>
     </string>
 	
@@ -1015,19 +1015,19 @@
 	<string id="st_perk_strong_back_desc_1">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]5kg
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]5kg
 		</text>
     </string>
 	<string id="st_perk_strong_back_desc_2">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]10kg
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]10kg
 		</text>
     </string>
 	<string id="st_perk_strong_back_desc_3">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]15kg\n
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]15kg\n
 		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
 		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
 		</text>
@@ -1035,7 +1035,7 @@
 	<string id="st_perk_strong_back_desc_4">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]20kg\n
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]20kg\n
 		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
 		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
 		</text>
@@ -1043,7 +1043,7 @@
 	<string id="st_perk_strong_back_desc_5">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by %c[d_green]25kg\n
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]25kg\n
 		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
 		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
 		</text>
@@ -1201,33 +1201,36 @@
     </string>
 	
 	<string id="st_perk_fourth_times">
-        <text>Fourth Time's the Charm</text>
+        <text>On Your Mark</text>
     </string>
 	<string id="st_perk_fourth_times_desc">
-        <text>You know what they say...</text>
+        <text>The Zone will now reward you for your exceptional marksmanship.</text>
     </string>
 	<string id="st_perk_fourth_times_desc_1">
         <text>You know what they say...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Landing 4 critical hits in a short time %c[d_green]refunds 1 ammo to your backpack\n
-		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count and allow up to 4 pellets to land a non-critical hit before restting your counter\n
-		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 6 seconds will reset the hit counter
+		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 1 ammo to your weapon or backpack\n
+		%c[d_blue] - %c[ui_gray_2] Landing a headshot will count as %c[d_green]2 hits\n
+		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
+		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 6 seconds will reset the hit counter
 		</text>
     </string>
 	<string id="st_perk_fourth_times_desc_2">
         <text>You know what they say...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Landing 4 critical hits in a short time %c[d_green]refunds 2 ammo to your backpack\n
-		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count and allow up to 4 pellets to land a non-critical hit before restting your counter\n
-		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 6 seconds will reset the hit counter
+		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 2 ammo to your weapon or backpack\n
+		%c[d_blue] - %c[ui_gray_2] Landing a headshot will count as %c[d_green]2 hits\n
+		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
+		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 6 seconds will reset the hit counter
 		</text>
     </string>
 	<string id="st_perk_fourth_times_desc_3">
         <text>You know what they say...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Landing 4 critical hits in a short time %c[d_green]refunds 3 ammo to your backpack\n
-		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count and allow up to 4 pellets to land a non-critical hit before restting your counter\n
-		%c[d_red] - %c[ui_gray_2] Landing a non-critical hit, swapping weapons, or not landing a hit within 6 seconds will reset the hit counter
+		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 3 ammo to your weapon or backpack\n
+		%c[d_blue] - %c[ui_gray_2] Landing a headshot will count as %c[d_green]2 hits\n
+		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
+		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 6 seconds will reset the hit counter
 		</text>
     </string>
 	

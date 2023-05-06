@@ -31,8 +31,15 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------
 if zzzz_arti_jamming_repairs then
 	local BaseReplacePart = zzzz_arti_jamming_repairs.replace_part
-	function zzzz_arti_jamming_repairs.replace_part(id, part, kit_name, clean)		
+	function zzzz_arti_jamming_repairs.replace_part(id, part, kit_name, clean)	
+		local add_cond
+		local parts = se_load_var(id, nil, "parts")
+		if parts and parts[part] then
+			add_cond = 99 - parts[part]
+		end
 		BaseReplacePart(id, part, kit_name, clean)
-		experience_core.give_actor_experience_by_repair_items()
+		
+			
+		experience_core.give_actor_experience_by_repair_items(add_cond)
 	end
 end
