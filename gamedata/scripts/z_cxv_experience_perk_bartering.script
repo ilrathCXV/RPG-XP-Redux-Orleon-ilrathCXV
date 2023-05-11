@@ -10,6 +10,7 @@ community_bonus_self = 0
 community_bonus_other = 0
 local community_bonus = 0
 local skill_price_modifier = 0
+local totalamounttraded = 0
 local item_costs = {}
 
 function perk_silver_tongued_cost(kind, obj, profile, calculated_cost, ret)
@@ -38,15 +39,26 @@ end
 function perk_silver_tongued_end()
 	UnregisterScriptCallback("actor_on_item_take", actor_on_item_buy)
 	UnregisterScriptCallback("actor_on_item_drop", actor_on_item_sell)
+	--haru_skills.increase_skill("bartering", totalamounttraded/20)
+	experience_core.give_actor_experience_by_repair_items(totalamounttraded/75)
+	totalamounttraded = 0
 	item_costs = {}
 end
 
 function actor_on_item_buy(obj)
 	cost = item_costs[obj:id()]
+
+	if type(cost) == "number" then
+		totalamounttraded = totalamounttraded + (cost * 0.8)
+	end
 end
 
 function actor_on_item_sell(obj)
 	cost = item_costs[obj:id()]
+	
+	if type(cost) == "number" then -- When donating the cost can be a boolean, which crashes the game if this isn't checked...
+		totalamounttraded = totalamounttraded + (cost * 1.2)
+	end
 end
 
 function on_game_start()
@@ -55,4 +67,21 @@ function on_game_start()
 	RegisterScriptCallback("ActorMenu_on_trade_started", perk_silver_tongued_start)
 	RegisterScriptCallback("ActorMenu_on_trade_closed", perk_silver_tongued_end)
 	RegisterScriptCallback("on_get_item_cost", perk_silver_tongued_cost)
+end
+
+
+function actor_on_item_buy(obj)
+	cost = item_costs[obj:id()]
+
+	if type(cost) == "number" then
+		totalamounttraded = totalamounttraded + (cost * 0.8)
+	end
+end
+
+function actor_on_item_sell(obj)
+	cost = item_costs[obj:id()]
+	
+	if type(cost) == "number" then -- When donating the cost can be a boolean, which crashes the game if this isn't checked...
+		totalamounttraded = totalamounttraded + (cost * 1.2)
+	end
 end

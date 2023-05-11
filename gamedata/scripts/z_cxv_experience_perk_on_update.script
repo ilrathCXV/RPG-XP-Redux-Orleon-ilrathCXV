@@ -1,6 +1,10 @@
+if perk_based_artefacts then end
+
 local cybermedic = 0
 local master_zone = 0
 local iron_resolve = 0
+
+local af_lucifer_data = perk_based_artefacts.artefact_props.af_lucifer
 
 local function experience_perk_on_update(id, data)
 	if (id == "perk_cybermedic") then
@@ -15,6 +19,8 @@ local function experience_perk_on_update(id, data)
 end
 
 local old_time              = 0
+local lucifer_time			= 0
+local heal_lucifer			= false
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -22,6 +28,11 @@ local old_time              = 0
 function perk_effects_over_time()
     if time_global() < old_time then return end
     old_time = time_global() + 200
+	
+	if time_global() >= lucifer_time then
+		lucifer_time = time_global() + 3000
+		heal_lucifer = true
+	end
 
 -------------------------------------------------------------> Cybermedic
     if cybermedic >= 1 then
@@ -31,14 +42,22 @@ function perk_effects_over_time()
     end
 -------------------------------------------------------------> Master of the Zone
 	if master_zone >= 1 then 
-		local artyBonus = 0.00015 * master_zone
+		-- local artyBonus = 0.00015
+		local has_lucifer_belt = false
 		db.actor:iterate_belt( function(owner, obj)
 			local condition = obj:condition()
-			local newCondition = condition + artyBonus
-			if newCondition < 0.99 then
-				obj:set_condition(condition + artyBonus)
+			local newCondition = condition + 0.00015
+			obj:set_condition(clamp(newCondition, 0, 0.99))
+			if obj:section() == af_lucifer and heal_lucifer then
+				af_lucifer_data.condition = clamp((af_lucifer_data.condition + 0.00015), 0, 1.0)
+				has_lucifer_belt = true
+				heal_lucifer = false
 			end
 		end)
+		--if af_lucifer_data and (not has_lucifer_belt) and heal_lucifer then
+		--	af_lucifer_data.condition = af_lucifer_data.condition + 0.000025
+		--	heal_lucifer = false
+		--end
 	end
 
 ------Броненосец-7. Иммунитет к долгоиграющим эффектам -------------------> Refreshness

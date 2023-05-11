@@ -112,7 +112,16 @@ function perk_effects_player_hit(shit)
 	
 	if shit.draftsman and mutant_slayer >= 1 then
 		if mutant_list[shit.draftsman:clsid()] and allowed_hit_types[shit_type] then
-			damage_mult = damage_mult - (0.05 * mutant_slayer)
+		
+			local night_mult = 1.0
+			if mutant_slayer >= 3 then
+				local hours = get_time_hours()
+				if hours >= 21 or hours <= 5 then
+					night_mult = 1.50
+				end
+			end
+			
+			damage_mult = damage_mult - ((0.05 * mutant_slayer) * night_mult)
 		end
     end
 	

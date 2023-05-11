@@ -850,19 +850,22 @@
 	<string id="st_perk_mutant_slayer_desc_3">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]15% %c[ui_gray_2]less damage from %c[yellow]mutants
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]15% %c[ui_gray_2]less damage from %c[yellow]mutants\n
+		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]22.5% %c[ui_gray_2]at night
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_4">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]20% %c[ui_gray_2]less damage from %c[yellow]mutants
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]20% %c[ui_gray_2]less damage from %c[yellow]mutants\n
+		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]30% %c[ui_gray_2]at night
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_5">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]25% %c[ui_gray_2]less damage from %c[yellow]mutants
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]25% %c[ui_gray_2]less damage from %c[yellow]mutants\n
+		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]37.5% %c[ui_gray_2]at night
 		</text>
     </string>
 	
@@ -1207,7 +1210,7 @@
         <text>The Zone will now reward you for your exceptional marksmanship.</text>
     </string>
 	<string id="st_perk_fourth_times_desc_1">
-        <text>You know what they say...\n \n
+        <text>The Zone will now reward you for your exceptional marksmanship.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 1 ammo to your weapon or backpack\n
 		%c[d_blue] - %c[ui_gray_2] Landing a headshot will count as %c[d_green]2 hits\n
@@ -1216,21 +1219,21 @@
 		</text>
     </string>
 	<string id="st_perk_fourth_times_desc_2">
-        <text>You know what they say...\n \n
+        <text>The Zone will now reward you for your exceptional marksmanship.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 2 ammo to your weapon or backpack\n
 		%c[d_blue] - %c[ui_gray_2] Landing a headshot will count as %c[d_green]2 hits\n
 		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
-		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 6 seconds will reset the hit counter
+		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 6.5 seconds will reset the hit counter
 		</text>
     </string>
 	<string id="st_perk_fourth_times_desc_3">
-        <text>You know what they say...\n \n
+        <text>The Zone will now reward you for your exceptional marksmanship.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 3 ammo to your weapon or backpack\n
 		%c[d_blue] - %c[ui_gray_2] Landing a headshot will count as %c[d_green]2 hits\n
 		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
-		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 6 seconds will reset the hit counter
+		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 7 seconds will reset the hit counter
 		</text>
     </string>
 	

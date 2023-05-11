@@ -1,3 +1,7 @@
+if z_monkeypatch_item_cooking 					then end
+if zz_ui_workshop_keep_crafting_window_open 	then end
+if zz_item_cooking_keep_crafting_window_open 	then end
+
 local craft_extra = 0
 
 local function experience_perk_on_update(id, data)
@@ -6,12 +10,78 @@ local function experience_perk_on_update(id, data)
 	end
 end
 
+local get_safe_sound_object = xr_sound.get_safe_sound_object
+
+local function play_sound_on_actor(snd, volume, frequency)
+	if not snd then
+		trace("snd is nil")
+		return
+	end
+	local actor = db.actor
+	local snd = get_safe_sound_object(snd)
+	if snd then
+		snd:play(actor, 0, sound_object.s2d)
+		snd.volume = volume or 1
+		snd.frequency = frequency or 1
+		return snd
+	end
+end
+
+function ExtraItemNews()
+	local sms = actor_menu.set_msg
+	local message = "Extra item crafted!"
+	sms(2, message, 5)
+	play_sound_on_actor("grok\\actor_10", 0.75, random_float(0.85, 1.05))
+end
+
 base_crafting = ui_workshop.UIWorkshopCraft.Craft
 
-function ui_workshop.UIWorkshopCraft:Craft()
+ui_workshop.UIWorkshopCraft.Craft = function(self)
+	printf("M. Craftsman Level: %s", craft_extra)
 	base_crafting(self)
-	if (craft_extra > 0) then
-		if math.random(100) <= 20 then
+	local chance = math.random(100) * craft_extra
+	if chance >= 80 then
+		ExtraItemNews()
+		if IsItem("ammo",self.craft_item_r[1]) then
+			alife_create_item(self.craft_item_r[1], db.actor, {ammo = self.craft_item_r[2]})
+		else
+			for i = 1, self.craft_item_r[2] do
+				alife_create_item(self.craft_item_r[1], db.actor)
+			end
+		end
+	end
+end
+----------------------------------------------------------------------------------------------
+--------------------[NEW] Monkeyscript for Survivalist Passive--------------------------------
+
+base_cooking = item_cooking.UICook.OnCook
+
+item_cooking.UICook.OnCook = function(self)
+	printf("M. Craftsman Level: %s", craft_extra)
+	base_cooking(self)
+	local chance = math.random(100) * craft_extra
+	if chance >= 80 then
+		ExtraItemNews()
+		local meal = self:GetSelectedMeal()
+		if (not meal) then
+			return
+		end
+		alife_create_item(meal.sec, db.actor)
+	end
+end
+
+
+
+function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+
+	--[[	
+	local base_crafting = ui_workshop.UIWorkshopCraft.Craft
+	ui_workshop.UIWorkshopCraft.Craft = function (self)
+		base_crafting(self)
+		local chance = math.random(100) * craft_extra
+		if chance >= 80 then
+			ExtraItemNews()
 			if IsItem("ammo",self.craft_item_r[1]) then
 				alife_create_item(self.craft_item_r[1], db.actor, {ammo = self.craft_item_r[2]})
 			else
@@ -21,17 +91,14 @@ function ui_workshop.UIWorkshopCraft:Craft()
 			end
 		end
 	end
-end
-----------------------------------------------------------------------------------------------
---------------------[NEW] Monkeyscript for Survivalist Passive--------------------------------
-
-base_cooking = item_cooking.UICook.OnCook
-GetSelectedMeal = item_cooking.UICook.GetSelectedMeal
-
-function item_cooking.UICook:OnCook()
-	base_cooking(self)
-	if (craft_extra > 0) then
-		if (math.random(100) <= 20) then
+		
+	local base_cooking = item_cooking.UICook.OnCook
+	--local GetSelectedMeal = item_cooking.UICook.GetSelectedMeal
+	item_cooking.UICook.OnCook = function (self)
+		base_cooking(self)
+		local chance = rand(100) * craft_extra
+		if chance >= 80 then
+			ExtraItemNews()
 			local meal = self:GetSelectedMeal()
 			if (not meal) then
 				return
@@ -39,8 +106,6 @@ function item_cooking.UICook:OnCook()
 			alife_create_item(meal.sec, db.actor)
 		end
 	end
-end
-
-function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	--]]
+	
 end

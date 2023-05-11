@@ -97,7 +97,7 @@ local cxv_perks_settings = {
 			icon 				= "ui_experience_mod_empty_perk_icon",
 			req_level 			= 5,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5			--3
 		},
 		perk_artefinder = {
 			name 				= "st_perk_artefinder",
@@ -121,15 +121,15 @@ local cxv_perks_settings = {
 			icon 				= "ui_experience_mod_empty_perk_icon",
 			req_level 			= 25,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5			--3
 		},
 		perk_anomaly_defense = {
 			name 				= "st_perk_anomaly_defense",
 			description 		= "st_perk_anomaly_defense_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 30,
+			req_level 			= 25,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 4			--3
 		},
 		perk_iron_resolve = {
 			name 				= "st_perk_iron_resolve",
@@ -197,9 +197,9 @@ local cxv_perks_settings = {
 			name 				= "st_perk_medicine_man",
 			description 		= "st_perk_medicine_man_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 10,
+			req_level 			= 15,				--10,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5					--3
 		},
 		perk_mutant_slayer = {
 			name 				= "st_perk_mutant_slayer",
@@ -347,9 +347,9 @@ local cxv_perks_settings = {
 			name 				= "st_perk_silver_tongued",
 			description 		= "st_perk_silver_tongued_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 30,
+			req_level 			= 25,			--30,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5				--3
 		},
 		perk_lockpick_mastery = {
 			name 				= "st_perk_lockpick_mastery",
@@ -357,7 +357,7 @@ local cxv_perks_settings = {
 			icon 				= "ui_experience_mod_empty_perk_icon",
 			req_level 			= 5,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 6				--3
 		},
 	--[[	-- WAITING TO BE IMPLEMENTED / UNUSED
 		perk_mag_loader = {

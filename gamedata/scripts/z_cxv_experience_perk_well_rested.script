@@ -6,8 +6,9 @@ local well_rested_threshold = { [0] = 9000, [1] = 1800, [2] = 2250, [3] = 2700}	
 local time_g
 local update_5s_timer = 0
 local update_5s_timer_interval = 50	-- update every 5 seconds
-local has_slept
-local given_message
+local has_slept = false
+local given_message = true
+local init_status = false
 
 
 local add_speed = speed.add_speed
@@ -58,11 +59,17 @@ function actor_status_sleep.actor_on_sleep(hours)
 	base_sleep(hours)
 	has_slept = true
 	given_message = false
+	save_status()
 end
 
 
 function actor_on_update()
 	if well_rested == 0 then return end
+	
+	if not init_status then
+		load_status()
+		init_status = true
+	end
 	
 	time_g = math_floor(time_global() * 0.01)	
 	
@@ -82,7 +89,9 @@ function actor_on_update()
 				WellRestedGoneNews()
 				has_slept = false
 			end
+			save_status()
 		end
+		
 		update_5s_timer = time_g + update_5s_timer_interval
 	end
 end
@@ -104,26 +113,20 @@ end
 -- Callbacks
 -------------------------------------------------------------------
 
-function save_state(m_data)
-	local well_rested_data = {}
-	well_rested_data.has_slept = has_slept
-	well_rested_data.given_message = given_message
-		
-	m_data.well_rested_data = well_rested_data
+function save_status()
+	utils_obj.save_var(db.actor,"has_slept",has_slept)
+	utils_obj.save_var(db.actor,"given_message",given_message)
 end
 
-function load_state(m_data)
-	local well_rested_data = m_data.well_rested_data
-	if well_rested_data then
-		has_slept = well_rested_data.has_slept or false
-		given_message = well_rested_data.given_message or false
-	end
+function load_status()
+	has_slept = utils_obj.load_var(db.actor,"has_slept") or has_slept
+	given_message = utils_obj.load_var(db.actor,"given_message") or given_message
 end
 
 
 function on_game_start()
-	RegisterScriptCallback("load_state",load_state)
-	RegisterScriptCallback("save_state",save_state)
+	--RegisterScriptCallback("load_state",load_state)
+	--RegisterScriptCallback("save_state",save_state)
 	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
 	RegisterScriptCallback("actor_on_update", 		actor_on_update)
 end

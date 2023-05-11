@@ -1,3 +1,5 @@
+if not arti_lootboxes then return end
+
 local gc = game.translate_string
 add_lockpick_diff_reduc = 0
 

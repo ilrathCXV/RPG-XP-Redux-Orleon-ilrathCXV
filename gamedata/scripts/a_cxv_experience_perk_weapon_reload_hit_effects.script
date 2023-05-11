@@ -15,6 +15,7 @@ local bloody_mess = 0
 
 local zone_slayer = 0
 local fourth_times = 0
+local fourth_times_timer_add = {[0] = 0, [1] = 0, [2] = 5, [3] = 10 } -- Each subsequent rank adds 0.5s to the grace timer
 
 local glass_cannon = 0
 local glass_cannon_exp = { [1] = 0.5, [2] = 0.85, [3] = 1.2 } -- At 0 HP (lol): 32.3% | 60.91% | 95.7%
@@ -195,7 +196,7 @@ function actor_on_update()
 		if (fourth_times >= 1) and (time_g > fourth_timer) and (fourth_times_counter > 0) and (fourth_timer > 0) then
 			fourth_times_counter = 0
 			fourth_timer = 0
-			play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.5, random_float(0.5, 1.0))
+			play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
 		end
 		update_1000ms_timer = time_g + update_1000ms_timer_interval
 	end
@@ -273,15 +274,15 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 				
 			if (pellet_count == 1) then
 				fourth_times_counter = fourth_times_counter + (1 * fourth_mult)
-				fourth_timer = time_g + 60				-- 6 seconds
+				fourth_timer = time_g + 60 + fourth_times_timer_add[fourth_times]			-- 6 seconds baseline
 			end
 			if (pellet_count > 1) then
 				fourth_times_counter = fourth_times_counter + ((1 / pellet_count) * fourth_mult)
-				fourth_timer = time_g + 60				-- 6 seconds
+				fourth_timer = time_g + 60 + fourth_times_timer_add[fourth_times]			-- 6 seconds baseline
 			end
 		elseif (weapon_class ~= "melee") then
 			fourth_times_counter = fourth_times_counter + (1 * fourth_mult)
-			fourth_timer = time_g + 60				-- 6 seconds
+			fourth_timer = time_g + 60 + fourth_times_timer_add[fourth_times]			-- 6 seconds baseline
 		end
 	end
 	
@@ -329,7 +330,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 			weapon:set_ammo_elapsed(ammo_total)
 		end
 		
-		play_sound_on_actor("interface\\item_usage\\pickup", 0.75, random_float(0.5, 1.0))
+		play_sound_on_actor("interface\\item_usage\\pickup", 0.9, random_float(0.85, 1.15))
 		fourth_times_counter = 0
 		fourth_timer = 0
 	end
@@ -524,7 +525,7 @@ function animation_weapons(anim_table,obj)
 	end
 	
 	if hide_anims[anim_table.anm_name] and (fourth_times_counter > 0) then
-		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.5, random_float(0.5, 1.0))
+		play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
 		fourth_times_counter = 0
 		fourth_timer = 0
 	end
