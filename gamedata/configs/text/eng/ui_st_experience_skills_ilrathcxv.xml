@@ -1293,4 +1293,18 @@
 		</text>
     </string>
 	
+	<string id="st_perk_fun_allowed">
+        <text>Rule Breaker</text>
+    </string>
+	<string id="st_perk_fun_allowed_desc">
+        <text>You learned a key skill that others seem unable to do: equip more than one of an attachment.</text>
+    </string>
+	<string id="st_perk_fun_allowed_desc_1">
+        <text>You learned a key skill that others seem unable to do: equip more than one of an attachment.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Removes the restriction of stacking of artefacts and attachments on your belt\n
+		%c[d_blue] - %c[ui_gray_2] In other words, you can now stack idential artefacts or attachemnts on your belt
+		</text>
+    </string>
+	
 </string_table>

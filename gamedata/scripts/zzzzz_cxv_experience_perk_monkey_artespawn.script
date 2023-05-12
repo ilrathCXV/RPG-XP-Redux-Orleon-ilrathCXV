@@ -6,9 +6,6 @@ local function experience_perk_on_update(id, data)
 		arte_finder = data["curr_level"]
 		arte_hunter_bonus = arte_finder * 3
 	end
-	if (id == "perk_zone_gunsmith") then
-		zone_gunsmith = data["curr_level"]
-	end	
 end
 
 

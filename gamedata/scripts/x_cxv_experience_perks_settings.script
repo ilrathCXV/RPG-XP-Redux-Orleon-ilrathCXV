@@ -315,6 +315,14 @@ local cxv_perks_settings = {
 			each_level 			= 3
 		}
 	--]]
+		perk_fun_allowed = {
+			name 				= "st_perk_fun_allowed",
+			description 		= "st_perk_fun_allowed_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 50,
+			max_level 			= 1,
+			each_level 			= 0
+		},
 	},
 	
 	-- Imported from 'perk_skill_expansion_port_ilrathcxv.ltx'
