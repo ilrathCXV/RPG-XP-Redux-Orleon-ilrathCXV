@@ -1213,7 +1213,7 @@
         <text>The Zone will now reward you for your exceptional marksmanship.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 1 ammo to your weapon or backpack\n
-		%c[d_blue] - %c[ui_gray_2] Landing a headshot will count as %c[d_green]2 hits\n
+		%c[d_blue] - %c[ui_gray_2] Landing a headshot or a critical hit via %c[yellow]Lucky Strike %c[ui_gray_2]or %c[yellow]Deadeye %c[ui_gray_2]will count as %c[d_green]2 hits\n
 		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
 		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 6 seconds will reset the hit counter
 		</text>
@@ -1222,7 +1222,7 @@
         <text>The Zone will now reward you for your exceptional marksmanship.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 2 ammo to your weapon or backpack\n
-		%c[d_blue] - %c[ui_gray_2] Landing a headshot will count as %c[d_green]2 hits\n
+		%c[d_blue] - %c[ui_gray_2] Landing a headshot or a critical hit via %c[yellow]Lucky Strike %c[ui_gray_2]or %c[yellow]Deadeye %c[ui_gray_2]will count as %c[d_green]2 hits\n
 		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
 		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 6.5 seconds will reset the hit counter
 		</text>
@@ -1231,7 +1231,7 @@
         <text>The Zone will now reward you for your exceptional marksmanship.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 3 ammo to your weapon or backpack\n
-		%c[d_blue] - %c[ui_gray_2] Landing a headshot will count as %c[d_green]2 hits\n
+		%c[d_blue] - %c[ui_gray_2] Landing a headshot or a critical hit via %c[yellow]Lucky Strike %c[ui_gray_2]or %c[yellow]Deadeye %c[ui_gray_2]will count as %c[d_green]2 hits\n
 		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
 		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 7 seconds will reset the hit counter
 		</text>

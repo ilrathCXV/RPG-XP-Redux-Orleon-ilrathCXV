@@ -4,7 +4,7 @@
 local perk_fun_allowed = 0
 
 local function experience_perk_on_update(id, data)
-	if (id == "perk_perk_fun_allowed") then
+	if (id == "perk_fun_allowed") then
 		perk_fun_allowed = data["curr_level"]
 	end
 end

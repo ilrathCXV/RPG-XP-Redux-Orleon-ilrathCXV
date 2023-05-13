@@ -30,7 +30,7 @@ function perk_effects_over_time()
     old_time = time_global() + 200
 	
 	if time_global() >= lucifer_time then
-		lucifer_time = time_global() + 3000
+		lucifer_time = time_global() + 1500		-- + 3000
 		heal_lucifer = true
 	end
 

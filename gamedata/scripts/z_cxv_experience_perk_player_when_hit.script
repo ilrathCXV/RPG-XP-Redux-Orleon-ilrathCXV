@@ -69,14 +69,17 @@ local get_time_hours = level.get_time_hours
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
-function perk_effects_player_hit(shit)
+base_grok_shit = grok_actor_damage_balancer.shit_booster
+function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
+--function perk_effects_player_hit(shit)
 
-	if shit.type == hit.telepatic then return end
+	-- if shit.type == hit.telepatic then return end
     local base_power = shit.power
-    local damage_mult = 1
+    local damage_mult = 1.0
     base_power = shit.power
     shit_type = shit.type
-	if not shit_type then return end
+	local is_elemental = (((shit_type == hit.shock) or (shit_type == hit.burn) or (shit_type == hit.light_burn) or (shit_type == hit.chemical_burn)
+	or string.find(shit.draftsman:id(),"field") or string.find(shit.draftsman:id(),"zone_mine")) and ((shit_type ~= hit.radiation) or (shit_type ~= hit.telepatic))) or false
 	
 	-- Need to account for Game Difficulty
 	local gameplay = alife_storage_manager.get_state().diff_game
@@ -89,12 +92,12 @@ function perk_effects_player_hit(shit)
 	local game_num = gameplay["type"] or game_num
 	
 ------------------------------------------------------------> Anomaly Defense
-    if anomaly_defense >= 1 and ((shit_type ~= hit.fire_wound) or (shit_type ~= hit.wound) or (shit_type ~= hit.wound_2)) then
+    if anomaly_defense >= 1 and is_elemental then
 		damage_mult = damage_mult - (0.05 * anomaly_defense)
     end
 
 ------------------------------------------------------------> Berserker
-	if shit.draftsman and (berserker >= 1) and ((shit_type == hit.fire_wound) or (shit_type == hit.wound) or (shit_type == hit.wound_2) or (shit_type == hit.explosion)) then
+	if shit.draftsman and (berserker >= 1) and not is_elemental then
 		local weaponPlayer = db.actor:active_item()
 		if IsMelee(weaponPlayer) then
 			damage_mult = damage_mult - (0.05 * berserker)
@@ -102,7 +105,7 @@ function perk_effects_player_hit(shit)
 	end
 
 ------------------------------------------------------------> Spiked
-    if shit.draftsman and (shit.draftsman:id() ~= db.actor:id()) and (spiked >= 1) and ((shit_type == hit.fire_wound) or (shit_type == hit.wound) or (shit_type == hit.wound_2) or (shit_type == hit.explosion)) then
+    if shit.draftsman and (shit.draftsman:id() ~= db.actor:id()) and (spiked >= 1) and not is_elemental then
 		local spike = base_power * (0.05 * spiked) * difficulty_multiplier_enemy[game_num]
 		shit.power = spike
 		shit.draftsman:hit(shit)
@@ -127,13 +130,18 @@ function perk_effects_player_hit(shit)
 		end
     end
 	
-	--printf("Original Damage: %s of type %s", shit.power, shit_type)
-	shit.power = shit.power * damage_mult
-	--printf("New Damage: %s", shit.power)
+	if damage_mult < 1.0 then
+		printf("///////////   RPG System: Damage reduction in progress  //////////////////")
+		printf("Original Base Hit: %s of type %s", shit.power, is_elemental)
+		shit.power = shit.power * damage_mult
+		printf("New Base Hit: %s", shit.power)
+	end
+	-- Return reduced values back into Grok's equations
+	base_grok_shit(shit, bone_id, k_ap)
 end
 
 function on_game_start()
 	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
 	
-    RegisterScriptCallback("actor_on_before_hit",               perk_effects_player_hit)
+    --RegisterScriptCallback("actor_on_before_hit",               perk_effects_player_hit)
 end
