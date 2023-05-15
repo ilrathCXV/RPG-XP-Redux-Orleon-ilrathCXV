@@ -6,7 +6,7 @@ local lightweight_dodge = 0
 local lightweight_dodge_chance = 0
 local wick_mode = 0
 
-local ceil = math.ceil
+local floor = math.floor
 local weaponCat = a_cxv_experience_perk_weapon_reload_hit_effects.sortK_of
 
 local function experience_perk_on_update(id, data)
@@ -89,8 +89,8 @@ function update_dodge_chance()
 	local outfit_weight = 0
 	local outfit = db.actor:item_in_slot(7)
 	if (outfit) then
-		local outfit_weight_upgraded = ceil(outfit:weight()) or 12
-		local outfit_weight_base = ini_sys:r_float_ex(outfit:section(), "inv_weight") or 12
+		local outfit_weight_upgraded = floor(outfit:weight()) or 12
+		local outfit_weight_base = floor(ini_sys:r_float_ex(outfit:section(), "inv_weight")) or 12
 		if outfit_weight_upgraded > 12 and outfit_weight_base > 12 then
 			outfit_weight = 12
 		elseif outfit_weight_upgraded < outfit_weight_base then
