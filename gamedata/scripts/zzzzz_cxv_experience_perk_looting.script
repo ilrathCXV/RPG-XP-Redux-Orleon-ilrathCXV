@@ -31,15 +31,20 @@ local function experience_perk_on_update(id, data)
 	end
 	if (id == "perk_zone_slayer") then
 		zone_slayer = data["curr_level"]
-		if zone_slayer >= 1 then
-			build_shotgun_list()
-		end
 	end
 end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 local looted_npc = {}
+
+local shotgun_ammo_check = {
+	["ammo_12x70_buck"] = true,
+	["ammo_23x75_shrapnel"] = true,
+	["ammo_23_eco"] = true,
+	["ammo_20x70_buck"] = true,
+}
+
 local shotgun_list = {}
 local rand = math.random
 
@@ -273,6 +278,8 @@ else
 	minCondition = 13
 	maxCondition = 27
 end
+
+local artefinder_bonus = {[0] = 0, [1] = 1, [2] = 3, [3] = 7, [4] = 12, [5] = 18 }
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -310,8 +317,8 @@ function looting_enemy(victim)
 	local artyDrop = (rand(100) <= arte_finder)
 	if artyDrop then
 		local allowed_artefacts = drx_da_main_artefacts.allowed_artefacts
-		local minArte = minCondition + math.floor((arte_finder) ^ 1.8)	-- 1 | 3 | 7 | 12 | 18 (10 -> 11, 13, 17, 22, 28)
-		local maxArte = maxCondition + math.floor((arte_finder) ^ 1.8) -- 1 | 3 | 7 | 12 | 18 (23 -> 24, 26, 30, 35, 41)
+		local minArte = minCondition + artefinder_bonus[arte_finder]
+		local maxArte = maxCondition + artefinder_bonus[arte_finder]
 		local conditionArty = rand(minArte, maxArte)
 		alife_create_item(allowed_artefacts[rand(#allowed_artefacts)], victim, {cond = (conditionArty * 0.01)})
 	end
@@ -320,7 +327,6 @@ function looting_enemy(victim)
 		find_zone_slayer_ammo(shotgun_list[rand(1,#shotgun_list)], victim)
 	end
 end
-
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 ------[NEW] Zone Slayer ammo selecion and creation
@@ -330,8 +336,8 @@ function find_zone_slayer_ammo(weapon,npc)
 	local ammo_table = parse_list(ini_sys,weapon:section(),"ammo_class")
 	local shells = ammo_table[rand(1,#ammo_table)]
 	if (shells) then
-		if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok
-			shells = arti_ammo_utils.downgrade_ammo(shells)
+		if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok, downgrade ammo to avoid granting rare ammo
+			shells = arti_ammo_utils.downgrade_ammo(shells, true)
 		end
 		alife_create_item(shells, npc, {ammo = 2})
 		printf('Zone Slayer ammo for %s: %s', weapon:section(), shells)
@@ -347,9 +353,9 @@ base_grok_condition = grok_artefacts_random_condition.grok_arti_random_efficienc
 function grok_artefacts_random_condition.grok_arti_random_efficiency(obj)
 	kind = SYS_GetParam(0, obj:section(), "kind")
 	if (obj:condition() == 1.0 and kind == "i_arty" or kind == "i_arty_cont" and obj:condition() == 1.0) then
-		local minArte = minCondition + math.floor((arte_finder) ^ 1.8)	-- 1 | 3 | 7 | 12 | 18  (10 -> 11, 13, 17, 22, 28)
-		local maxArte = maxCondition + math.floor((arte_finder) ^ 1.8) -- 1 | 3 | 7 | 12 | 18   (23 -> 24, 26, 30, 35, 41)
-		cond = (rand(minArte, maxArte) * 0.01)
+		local minArte = minCondition + artefinder_bonus[arte_finder]
+		local maxArte = maxCondition + artefinder_bonus[arte_finder]
+		local cond = (rand(minArte, maxArte) * 0.01)
 		if obj:section() == "af_ah_f1" then
 			cond = 0.98
 		end
@@ -386,44 +392,43 @@ end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 function build_shotgun_list()
-	if (zone_slayer >= 1) then
-		shotgun_list = {}
-		local w1, w2, w3, w4 = db.actor:item_in_slot(3), db.actor:item_in_slot(2), db.actor:item_in_slot(1), db.actor:item_in_slot(5)
+	if (zone_slayer < 1) then return end
+	shotgun_list = {}
+	local w1, w2, w3, w4 = db.actor:item_in_slot(3), db.actor:item_in_slot(2), db.actor:item_in_slot(1), db.actor:item_in_slot(5)
 		
-		if w1 then
-			local clip = ini_sys:r_float_ex(w1:section(), "ammo_mag_size") or 3
-			if clip <= 2 then
-				local ammo_table = parse_list(ini_sys,w1:section(),"ammo_class")
-				if (ammo_table) and (ammo_table[1]) and (ammo_table[1] == "ammo_12x70_buck" or ammo_table[1] == "ammo_23x75_shrapnel" or ammo_table[1] == "ammo_23_eco" or ammo_table[1] == "ammo_20x70_buck") then
-					shotgun_list[#shotgun_list + 1] = w1
-				end
+	if w1 then
+		local clip = ini_sys:r_float_ex(w1:section(), "ammo_mag_size") or 3
+		if clip <= 2 then
+			local ammo_table = parse_list(ini_sys,w1:section(),"ammo_class")
+			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
+				shotgun_list[#shotgun_list + 1] = w1
 			end
 		end
-		if w2 then
-			local clip = ini_sys:r_float_ex(w2:section(), "ammo_mag_size") or 3
-			if clip <= 2 then
-				local ammo_table = parse_list(ini_sys,w2:section(),"ammo_class")
-				if (ammo_table) and (ammo_table[1]) and (ammo_table[1] == "ammo_12x70_buck" or ammo_table[1] == "ammo_23x75_shrapnel" or ammo_table[1] == "ammo_23_eco" or ammo_table[1] == "ammo_20x70_buck") then
-					shotgun_list[#shotgun_list + 1] = w2
-				end
+	end
+	if w2 then
+		local clip = ini_sys:r_float_ex(w2:section(), "ammo_mag_size") or 3
+		if clip <= 2 then
+			local ammo_table = parse_list(ini_sys,w2:section(),"ammo_class")
+			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
+				shotgun_list[#shotgun_list + 1] = w2
 			end
 		end
-		if w3 then
-			local clip = ini_sys:r_float_ex(w3:section(), "ammo_mag_size") or 3
-			if clip <= 2 then
-				local ammo_table = parse_list(ini_sys,w3:section(),"ammo_class")
-				if (ammo_table) and (ammo_table[1]) and (ammo_table[1] == "ammo_12x70_buck" or ammo_table[1] == "ammo_23x75_shrapnel" or ammo_table[1] == "ammo_23_eco" or ammo_table[1] == "ammo_20x70_buck") then
-					shotgun_list[#shotgun_list + 1] = w3
-				end
+	end
+	if w3 then
+		local clip = ini_sys:r_float_ex(w3:section(), "ammo_mag_size") or 3
+		if clip <= 2 then
+			local ammo_table = parse_list(ini_sys,w3:section(),"ammo_class")
+			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
+				shotgun_list[#shotgun_list + 1] = w3
 			end
 		end
-		if w4 then
-			local clip = ini_sys:r_float_ex(w4:section(), "ammo_mag_size") or 3
-			if clip <= 2 then
-				local ammo_table = parse_list(ini_sys,w4:section(),"ammo_class")
-				if (ammo_table) and (ammo_table[1]) and (ammo_table[1] == "ammo_12x70_buck" or ammo_table[1] == "ammo_23x75_shrapnel" or ammo_table[1] == "ammo_23_eco" or ammo_table[1] == "ammo_20x70_buck") then
-					shotgun_list[#shotgun_list + 1] = w4
-				end
+	end
+	if w4 then
+		local clip = ini_sys:r_float_ex(w4:section(), "ammo_mag_size") or 3
+		if clip <= 2 then
+			local ammo_table = parse_list(ini_sys,w4:section(),"ammo_class")
+			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
+				shotgun_list[#shotgun_list + 1] = w4
 			end
 		end
 	end

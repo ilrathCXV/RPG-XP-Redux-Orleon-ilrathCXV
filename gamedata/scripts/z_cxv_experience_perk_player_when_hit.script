@@ -2,6 +2,12 @@ local berserker = 0
 local spiked = 0
 local anomaly_defense = 0
 local mutant_slayer = 0
+local lightweight_dodge = 0
+local lightweight_dodge_chance = 0
+local wick_mode = 0
+
+local ceil = math.ceil
+local weaponCat = a_cxv_experience_perk_weapon_reload_hit_effects.sortK_of
 
 local function experience_perk_on_update(id, data)
 	if (id == "perk_berserker") then
@@ -15,6 +21,12 @@ local function experience_perk_on_update(id, data)
 	end
 	if (id == "perk_mutant_slayer") then
 		mutant_slayer = data["curr_level"]
+	end
+	if (id == "perk_wick_mode") then
+		wick_mode = data["curr_level"]
+	end
+	if (id == "perk_lightweight_dodge") then
+		lightweight_dodge = data["curr_level"]
 	end
 end
 
@@ -67,12 +79,52 @@ local allowed_hit_types = {
 
 local get_time_hours = level.get_time_hours
 
+function update_dodge_chance()
+	if (lightweight_dodge <= 0) then
+		lightweight_dodge_chance = 0
+		printf("Dodge Chance: %s %",lightweight_dodge_chance)
+		return
+	end
+	
+	local outfit_weight = 0
+	local outfit = db.actor:item_in_slot(7)
+	if (outfit) then
+		local outfit_weight_upgraded = ceil(outfit:weight()) or 12
+		local outfit_weight_base = ini_sys:r_float_ex(outfit:section(), "inv_weight") or 12
+		if outfit_weight_upgraded > 12 and outfit_weight_base > 12 then
+			outfit_weight = 12
+		elseif outfit_weight_upgraded < outfit_weight_base then
+			outfit_weight = outfit_weight_upgraded
+		else
+			outfit_weight = outfit_weight_base
+		end
+	end
+	
+	lightweight_dodge_chance = (12 - outfit_weight) * lightweight_dodge
+	printf("Dodge Chance: %s %",lightweight_dodge_chance)
+end
+	
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 base_grok_shit = grok_actor_damage_balancer.shit_booster
 function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
---function perk_effects_player_hit(shit)
 
+	local player_weapon = db.actor:active_item()
+	if shit.type == hit.fire_wound and ((wick_mode > 0) or (lightweight_dodge > 0)) then
+		local dodge_chance = lightweight_dodge_chance
+		if a_cxv_experience_perk_weapon_reload_hit_effects and weaponCat(player_weapon) == "pistol" then
+			dodge_chance = dodge_chance + 15
+		end
+		if math.random(100) < dodge_chance then
+			printf("///////////   RPG System: Damage reduction in progress  //////////////////")
+			printf("Original Base Hit: %s of type %s", shit.power, is_elemental)
+			shit.power = shit.power * 0
+			printf("Dodged hit!")
+			return
+		end
+	end
+	
+	
 	-- if shit.type == hit.telepatic then return end
     local base_power = shit.power
     local damage_mult = 1.0
@@ -98,8 +150,7 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 
 ------------------------------------------------------------> Berserker
 	if shit.draftsman and (berserker >= 1) and not is_elemental then
-		local weaponPlayer = db.actor:active_item()
-		if IsMelee(weaponPlayer) then
+		if player_weapon and IsMelee(player_weapon) then
 			damage_mult = damage_mult - (0.05 * berserker)
 		end
 	end
@@ -142,6 +193,7 @@ end
 
 function on_game_start()
 	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
-	
-    --RegisterScriptCallback("actor_on_before_hit",               perk_effects_player_hit)
+	RegisterScriptCallback("actor_on_first_update", update_dodge_chance)
+	RegisterScriptCallback("actor_item_to_ruck", update_dodge_chance)
+	RegisterScriptCallback("actor_item_to_slot", update_dodge_chance)
 end

@@ -642,7 +642,7 @@
 	<string id="st_perk_master_zone_desc_1">
         <text>You have become one with the Zone. The Noosphere is now an ever-present force for your anomalous equipment.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Any artefacts or attachments equipped to your belt will %c[d_green]slowly repair themselves c%c[ui_gray_2]over time
+		%c[d_blue] - %c[ui_gray_2] Any artefacts or attachments equipped to your belt will %c[d_green]slowly repair themselves %c[ui_gray_2]over time
 		</text>
     </string>
 
@@ -774,19 +774,19 @@
 	<string id="st_perk_iron_resolve_desc_1">
         <text>Due to your sheer will, you are less affected by any incapacitating effects.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Recover slightly faster from any %c[d_orange]dizziness or drunkeness effects c%c[ui_gray_2]over time
+		%c[d_blue] - %c[ui_gray_2] Recover slightly faster from any %c[d_orange]dizziness or drunkeness effects %c[ui_gray_2]over time
 		</text>
     </string>
 	<string id="st_perk_iron_resolve_desc_2">
         <text>Due to your sheer will, you are less affected by any incapacitating effects.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Recover faster from any %c[yellow]dizziness or drunkeness effects c%c[ui_gray_2]over time
+		%c[d_blue] - %c[ui_gray_2] Recover faster from any %c[yellow]dizziness or drunkeness effects %c[ui_gray_2]over time
 		</text>
     </string>
 	<string id="st_perk_iron_resolve_desc_3">
         <text>Due to your sheer will, you are less affected by any incapacitating effects.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Recover much faster from any %c[d_green]dizziness or drunkeness effects c%c[ui_gray_2]over time
+		%c[d_blue] - %c[ui_gray_2] Recover much faster from any %c[d_green]dizziness or drunkeness effects %c[ui_gray_2]over time
 		</text>
     </string>
     
@@ -1170,7 +1170,7 @@
 		<text>Your affinity for double-barreled shotguns has awakened a hidden power within you...\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2] with %c[yellow]double-barreled shotguns\n
-		%c[d_green] - Stacks with other shotgun reload speed increases\n		
+		%c[d_green] - %c[ui_gray_2] Stacks additively with other shotgun reload bonuses\n	
 		%c[d_blue] - %c[ui_gray_2] Dead stalkers have a %c[d_green]30% chance%c[ui_gray_2] to drop 2 random shotgun shells for any of your %c[yellow]currently-equipped double-barrel shotguns
 		</text>
     </string>
@@ -1304,6 +1304,68 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Removes the restriction of stacking of artefacts and attachments on your belt\n
 		%c[d_blue] - %c[ui_gray_2] In other words, you can now stack idential artefacts or attachemnts on your belt
+		</text>
+    </string>
+	
+	<string id="st_perk_wick_mode">
+        <text>Wick Mode</text>
+    </string>
+	<string id="st_perk_wick_mode_desc">
+        <text>Don't just become the boogeyman. Become the one sent to kill the boogeyman.</text>
+    </string>
+	<string id="st_perk_wick_mode_desc_1">
+        <text>Don't just become the boogeyman. Become the one sent to %c[d_red]kill the boogeyman.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] While having a pistol equipped in your hands, you have a %c[d_green]15% chance to "dodge" incoming %c[yellow]bullet damage\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2]with %c[yellow]all pistols\n
+		%c[d_green] - %c[ui_gray_2] Reload bonus stacks additively with other pistol reload bonuses
+		</text>
+    </string>
+	
+	<string id="st_perk_lightweight_dodge">
+        <text>Lightweight</text>
+    </string>
+	<string id="st_perk_lightweight_dodge_desc">
+        <text>Lightweight armor now allows your reflexes to be much faster.</text>
+    </string>
+	<string id="st_perk_lightweight_dodge_desc_1">
+        <text>Lightweight armor now allows your reflexes to be much faster.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain %c[d_orange]+1% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields a  %c[d_orange]+12% dodge chance\n
+		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
+		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
+		</text>
+    </string>
+	<string id="st_perk_lightweight_dodge_desc_2">
+        <text>Lightweight armor now allows your reflexes to be much faster.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain %c[yellow]+2% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields a %c[yellow]+24% dodge chance\n
+		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
+		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
+		</text>
+    </string>
+	<string id="st_perk_lightweight_dodge_desc_3">
+		<text>Lightweight armor now allows your reflexes to be much faster.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain %c[d_green]+3% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields a %c[d_green]+36% dodge chance\n
+		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
+		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
+		</text>
+    </string>
+	<string id="st_perk_lightweight_dodge_desc_4">
+        <text>Lightweight armor now allows your reflexes to be much faster.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain %c[d_cyan]+4% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields a %c[d_cyan]+48% dodge chance\n
+		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
+		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
 		</text>
     </string>
 	

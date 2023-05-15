@@ -323,6 +323,22 @@ local cxv_perks_settings = {
 			max_level 			= 1,
 			each_level 			= 0
 		},
+		perk_wick_mode = {
+			name 				= "st_perk_wick_mode",
+			description 		= "st_perk_wick_mode_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 15,
+			max_level 			= 1,
+			each_level 			= 0
+		},
+		perk_lightweight_dodge = {
+			name 				= "st_perk_lightweight_dodge",
+			description 		= "st_perk_lightweight_dodge_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 15,
+			max_level 			= 4,
+			each_level 			= 3
+		},
 	},
 	
 	-- Imported from 'perk_skill_expansion_port_ilrathcxv.ltx'
