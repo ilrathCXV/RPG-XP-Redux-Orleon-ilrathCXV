@@ -194,6 +194,6 @@ end
 function on_game_start()
 	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
 	RegisterScriptCallback("actor_on_first_update", update_dodge_chance)
-	RegisterScriptCallback("actor_item_to_ruck", update_dodge_chance)
+	--RegisterScriptCallback("actor_item_to_ruck", update_dodge_chance)
 	RegisterScriptCallback("actor_item_to_slot", update_dodge_chance)
 end
