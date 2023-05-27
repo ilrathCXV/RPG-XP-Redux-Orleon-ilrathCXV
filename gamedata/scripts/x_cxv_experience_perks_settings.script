@@ -383,16 +383,14 @@ local cxv_perks_settings = {
 			max_level 			= 5,
 			each_level 			= 6				--3
 		},
-	--[[	-- WAITING TO BE IMPLEMENTED / UNUSED
 		perk_mag_loader = {
 			name 				= "st_perk_mag_loader",
 			description 		= "st_perk_mag_loader_desc",
 			icon 				= "ui_experience_mod_empty_perk_icon",
-			req_level 			= 10,
+			req_level 			= 5,
 			max_level 			= 5,
-			each_level 			= 1
+			each_level 			= 3
 		}
-	--]]
 	}
 }
 

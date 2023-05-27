@@ -204,12 +204,6 @@
 		</text>
     </string>
 	
-<!--
-	
-	.................Unused for now.................
-	
--->
-	
 	<string id="st_perk_mag_loader">
         <text>Mag Loader</text>
     </string>
@@ -217,19 +211,34 @@
         <text>Loading ammo is a pain. So, you decided to just get better at it. You now load ammo into weapon magazines much faster.</text>
     </string>
 	<string id="st_perk_mag_loader_desc_1">
-        <text>Loading ammo is a pain. So, you decided to just get better at it. You now load ammo into weapon magazines 20% faster.\n \n \nMax Perk Level: 5</text>
+        <text>Loading ammo is a pain. So, you decided to just get better at it.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]20% faster
+		</text>
     </string>
 	<string id="st_perk_mag_loader_desc_2">
-        <text>You now load ammo into weapon magazines 40% faster.\n \n \nMax Perk Level: 5</text>
-    </string>
+        <text>Loading ammo is a pain. So, you decided to just get better at it.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]40% faster
+		</text>
+     </string>
 	<string id="st_perk_mag_loader_desc_3">
-        <text>You now load ammo into weapon magazines 60% faster.\n \n \nMax Perk Level: 5</text>
-    </string>
+        <text>Loading ammo is a pain. So, you decided to just get better at it.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]60% faster
+		</text>
+     </string>
 	<string id="st_perk_mag_loader_desc_4">
-        <text>You now load ammo into weapon magazines 80% faster.\n \n \nMax Perk Level: 5</text>
-    </string>
+        <text>Loading ammo is a pain. So, you decided to just get better at it.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]80% faster
+		</text>
+     </string>
 	<string id="st_perk_mag_loader_desc_5">
-        <text>You now load ammo into weapon magazines 100% faster.\n \n \nMax Perk Level: 5</text>
-    </string>
+        <text>Loading ammo is a pain. So, you decided to just get better at it.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]100% faster
+		</text>
+     </string>
 	
 </string_table>

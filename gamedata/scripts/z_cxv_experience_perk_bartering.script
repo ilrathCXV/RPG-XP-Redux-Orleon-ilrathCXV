@@ -1,3 +1,7 @@
+if experience_core then end
+
+
+local repair_xp_value = experience_core.SETTINGS.REPAIR_ITM_XP or 1
 local bartering = 0
 
 local function experience_perk_on_update(id, data)
@@ -40,7 +44,7 @@ function perk_silver_tongued_end()
 	UnregisterScriptCallback("actor_on_item_take", actor_on_item_buy)
 	UnregisterScriptCallback("actor_on_item_drop", actor_on_item_sell)
 	--haru_skills.increase_skill("bartering", totalamounttraded/20)
-	experience_core.give_actor_experience_by_repair_items(totalamounttraded/75)
+	experience_core.give_actor_experience_by_repair_items((totalamounttraded/75) / repair_xp_value)
 	totalamounttraded = 0
 	item_costs = {}
 end
