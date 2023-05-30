@@ -486,10 +486,40 @@ hide_anims = {
 }
 
 function animation_weapons(anim_table,obj)
-	if not IsWeapon(obj) then return end
+	if (not IsWeapon(obj)) then return end
+	
+	if hide_anims[anim_table.anm_name] and (fourth_times_counter > 0) then
+		play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
+		fourth_times_counter = 0
+		fourth_timer = 0
+	end
+	
+	if not reload_anims[anim_table.anm_name] then return end
+	if (gunslinger < 1) and (rifleman < 1) and (heavy_gunner < 1) and (zone_slayer < 1) then return end
 	
 	local weapon_class = sortK_of(obj)
-	local anm_speed = anim_table.anm_speed
+	local reload_string = tostring(anim_table.anm_name)
+	local wpn_sec = obj:section()
+	local hud_sec = ini_sys:r_string_ex(wpn_sec,"hud")
+	
+	local reload_val = parse_list(ini_sys,hud_sec,reload_string)
+	local reload_speed = reload_val and reload_val[2] and tonumber(reload_val[2])
+	local reload_speed_2 = reload_val and reload_val[3] and tonumber(reload_val[3])
+	local reload_speed_3 = reload_val and reload_val[4] and tonumber(reload_val[4])
+	local reload_speed_4 = reload_val and reload_val[5] and tonumber(reload_val[5])
+	
+	local animation_speed = anim_table.anm_speed
+	
+	if reload_speed then
+		animation_speed = reload_speed
+	elseif reload_speed_2 then
+		animation_speed = reload_speed_2
+	elseif reload_speed_3 then
+		animation_speed = reload_speed_3
+	elseif reload_speed_4 then
+		animation_speed = reload_speed_4
+	end
+	
 	local anm_bonus = 1
 ------------------------------------------------------------> Gunslinger
 	if (gunslinger >= 1) and ((weapon_class == "smg") or (weapon_class == "pistol")) then
@@ -515,14 +545,9 @@ function animation_weapons(anim_table,obj)
 	end
 	
 	if reload_anims[anim_table.anm_name] then
-		anim_table.anm_speed = anm_speed * anm_bonus
+		anim_table.anm_speed = animation_speed * anm_bonus
 	end
 	
-	if hide_anims[anim_table.anm_name] and (fourth_times_counter > 0) then
-		play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
-		fourth_times_counter = 0
-		fourth_timer = 0
-	end
 end
 
 
