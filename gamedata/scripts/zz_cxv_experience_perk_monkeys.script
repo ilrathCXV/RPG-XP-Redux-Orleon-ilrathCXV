@@ -20,7 +20,9 @@ function experience_core.actor_on_item_before_pickup(obj, flags)
 			-- game_statistics.actor_artefacts[obj:id()] = true
 			local af_rank = SYS_GetParam(2, obj:section(), "af_rank") or 0
 			experience_core.give_actor_experience_by_artefact(af_rank)
-			experience_core.get_daily_manager():SendEvent("find_artefacts", 1)
+			if experience_core.get_daily_manager then
+				experience_core.get_daily_manager():SendEvent("find_artefacts", 1)
+			end
 		else
 			return
 		end
