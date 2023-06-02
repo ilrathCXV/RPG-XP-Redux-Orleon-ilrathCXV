@@ -394,11 +394,18 @@ local cxv_perks_settings = {
 	}
 }
 
-local function init_perks()
+local function init_perks(injector_func)
 	for i=1, #cxv_perks_settings do
 		for id, settings in pairs(cxv_perks_settings[i]) do
-			experience_core.inject_perk(id, settings)
+			injector_func(id, settings)
 		end
 	end
 end
-init_perks()
+
+if experience_core.inject_perk then
+	init_perks(experience_core.inject_perk)
+else
+	function on_game_start()
+		RegisterScriptCallback("experience_perks_on_before_load", init_perks)
+	end
+end
