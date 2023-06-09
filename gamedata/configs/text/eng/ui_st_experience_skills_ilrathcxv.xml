@@ -212,31 +212,31 @@
 	<string id="st_perk_berserker_desc_1">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_2">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]10% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_3">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]15% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]15% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_4">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]20% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_5">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Recieve %c[d_green]25% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
 		</text>
     </string>
 	
@@ -248,9 +248,9 @@
         <text>You can now jam an enemy's weapon when shooting them in the arm.</text>
     </string>
 	<string id="st_perk_jamming_shot_desc_1">
-        <text>You a nuisance to any Stalker that comes in your path.\n \n
+        <text>You are a nuisance to any Stalker that comes in your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Can %c[d_green]jam enemy weapons %c[ui_gray_2]by shooting them %c[yellow]in the arms
+		%c[d_blue] - %c[ui_gray_2] Can %c[d_green]jam enemy weapons %c[ui_gray_2]by shooting enemies %c[yellow]in their arms
 		</text>
     </string>
 	
@@ -1154,7 +1154,7 @@
 	<string id="st_perk_the_exalted_desc_1">
 		<text>Your influence among friendly factions comes with new benefits.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Can also exchange armor at %c[d_green]any friendly faction\n
+		%c[d_blue] - %c[ui_gray_2] Can now exchange armor at %c[d_green]any friendly faction\n
 		%c[d_blue] - %c[ui_gray_2] Most faction-locked tasks and dialogue options not tied to your own faction are available to you from %c[d_green]any friendly faction\n
 		%c[d_red] - %c[ui_gray_2] Friendly faction = having at least %c[d_green]1000 Goodwill %c[ui_gray_2]with a faction
 		</text>
@@ -1281,14 +1281,14 @@
 	<string id="st_perk_well_rested_desc_2">
        <text>You learn to appreciate a good-night's sleep.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] After a full sleep, you will be "Well-Rested", gaining %c[d_green]5% movement speed %c[ui_gray_2] and %c[d_green]25% bonus carry weight\n
+		%c[d_blue] - %c[ui_gray_2] After a full sleep, you will be "Well-Rested", gaining %c[d_green]5% movement speed %c[ui_gray_2] and %c[d_green]20% bonus carry weight\n
 		%c[d_blue] - %c[ui_gray_2] Effect goes away when your sleep meter goes below %c[yellow]75%
 		</text>
     </string>
 	<string id="st_perk_well_rested_desc_3">
         <text>You learn to appreciate a good-night's sleep.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] After a full sleep, you will be "Well-Rested", gaining %c[d_green]8% movement speed %c[ui_gray_2] and %c[d_green]40% bonus carry weight\n
+		%c[d_blue] - %c[ui_gray_2] After a full sleep, you will be "Well-Rested", gaining %c[d_green]10% movement speed %c[ui_gray_2] and %c[d_green]40% bonus carry weight\n
 		%c[d_blue] - %c[ui_gray_2] Effect goes away when your sleep meter goes below %c[d_green]70%
 		</text>
     </string>
@@ -1332,8 +1332,8 @@
         <text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain %c[d_orange]+1% dodge chance\n
-		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields a  %c[d_orange]+12% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain about %c[d_orange]+0.5% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[d_orange]+6% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
 		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
 		</text>
@@ -1342,8 +1342,8 @@
         <text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain %c[yellow]+2% dodge chance\n
-		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields a %c[yellow]+24% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain about %c[yellow]+1% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+12% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
 		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
 		</text>
@@ -1352,8 +1352,8 @@
 		<text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain %c[d_green]+3% dodge chance\n
-		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields a %c[d_green]+36% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain about a %c[d_green]+1.5% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[d_green]+18% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
 		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
 		</text>
@@ -1362,8 +1362,8 @@
         <text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain %c[d_cyan]+4% dodge chance\n
-		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields a %c[d_cyan]+48% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain about a%c[d_cyan]+2% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[d_cyan]+24% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
 		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
 		</text>

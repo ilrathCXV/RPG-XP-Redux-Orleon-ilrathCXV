@@ -40,20 +40,13 @@ function perk_silver_tongued_start()
 	skill_price_modifier = bartering * 0.05
 end
 
-function perk_silver_tongued_end()
-	UnregisterScriptCallback("actor_on_item_take", actor_on_item_buy)
-	UnregisterScriptCallback("actor_on_item_drop", actor_on_item_sell)
-	--haru_skills.increase_skill("bartering", totalamounttraded/20)
-	experience_core.give_actor_experience_by_repair_items((totalamounttraded/75) / repair_xp_value)
-	totalamounttraded = 0
-	item_costs = {}
-end
-
 function actor_on_item_buy(obj)
 	cost = item_costs[obj:id()]
 
 	if type(cost) == "number" then
-		totalamounttraded = totalamounttraded + (cost * 0.8)
+		if cost >= 1 then
+			totalamounttraded = totalamounttraded + (cost * 0.8)
+		end
 	end
 end
 
@@ -61,9 +54,20 @@ function actor_on_item_sell(obj)
 	cost = item_costs[obj:id()]
 	
 	if type(cost) == "number" then -- When donating the cost can be a boolean, which crashes the game if this isn't checked...
-		totalamounttraded = totalamounttraded + (cost * 1.2)
+		if cost >= 1 then
+			totalamounttraded = totalamounttraded + (cost * 1.2)
+		end
 	end
 end
+
+function perk_silver_tongued_end()
+	UnregisterScriptCallback("actor_on_item_take", actor_on_item_buy)
+	UnregisterScriptCallback("actor_on_item_drop", actor_on_item_sell)
+	experience_core.increase_experience(totalamounttraded/75)
+	totalamounttraded = 0
+	item_costs = {}
+end
+
 
 function on_game_start()
 	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
@@ -71,21 +75,4 @@ function on_game_start()
 	RegisterScriptCallback("ActorMenu_on_trade_started", perk_silver_tongued_start)
 	RegisterScriptCallback("ActorMenu_on_trade_closed", perk_silver_tongued_end)
 	RegisterScriptCallback("on_get_item_cost", perk_silver_tongued_cost)
-end
-
-
-function actor_on_item_buy(obj)
-	cost = item_costs[obj:id()]
-
-	if type(cost) == "number" then
-		totalamounttraded = totalamounttraded + (cost * 0.8)
-	end
-end
-
-function actor_on_item_sell(obj)
-	cost = item_costs[obj:id()]
-	
-	if type(cost) == "number" then -- When donating the cost can be a boolean, which crashes the game if this isn't checked...
-		totalamounttraded = totalamounttraded + (cost * 1.2)
-	end
 end

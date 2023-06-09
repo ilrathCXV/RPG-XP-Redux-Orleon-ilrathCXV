@@ -47,7 +47,7 @@
 	<string id="st_perk_calm_mind_desc_1">
         <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]3%\n
+		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]5%\n
 		%c[d_blue] - %c[ui_gray_2] Regenerate psy health %c[d_green]20% faster\n
 		%c[d_blue] - %c[ui_gray_2] Regeneration is multiplied by %c[d_green]20% %c[ui_gray_2]when near a campfire
 		</text>
@@ -55,7 +55,7 @@
 	<string id="st_perk_calm_mind_desc_2">
         <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]6%\n
+		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]10%\n
 		%c[d_blue] - %c[ui_gray_2] Regenerate psy health %c[d_green]40% faster\n
 		%c[d_blue] - %c[ui_gray_2] Regeneration is multiplied by %c[d_green]40% %c[ui_gray_2]when near a campfire
 		</text>
@@ -63,7 +63,7 @@
 	<string id="st_perk_calm_mind_desc_3">
         <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]9%\n
+		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]15%\n
 		%c[d_blue] - %c[ui_gray_2] Regenerate psy health %c[d_green]60% faster\n
 		%c[d_blue] - %c[ui_gray_2] Regeneration is multiplied by %c[d_green]60% %c[ui_gray_2]when near a campfire
 		</text>
@@ -71,7 +71,7 @@
 	<string id="st_perk_calm_mind_desc_4">
         <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]12%\n
+		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]20%\n
 		%c[d_blue] - %c[ui_gray_2] Regenerate psy health %c[d_green]80% faster\n
 		%c[d_blue] - %c[ui_gray_2] Regeneration is multiplied by %c[d_green]80% %c[ui_gray_2]when near a campfire
 		</text>
@@ -79,7 +79,7 @@
 	<string id="st_perk_calm_mind_desc_5">
         <text>Through meditation and continued exposure to the Zone, your mind has become stronger against its horrors.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]15%\n
+		%c[d_blue] - %c[ui_gray_2] Reduce psy damage by %c[d_green]25%\n
 		%c[d_blue] - %c[ui_gray_2] Regenerate psy health %c[d_green]100% faster\n
 		%c[d_blue] - %c[ui_gray_2] Regeneration is multiplied by %c[d_green]100% %c[ui_gray_2]when near a campfire
 		</text>
@@ -90,34 +90,34 @@
         <text>Repair Junkie</text>
     </string>
 	<string id="st_perk_repair_junkie_desc">
-        <text>Keeping your gear in good condition has taught you to be more efficent with your tools. You now have a chance to not consume a repair item when repairing or cleaning any item.\n \n \nMax Perk Level: 5</text>
+        <text>Keeping your gear in good condition has taught you to be more efficient with your tools. You now have a chance to not consume a repair item when repairing or cleaning any item.\n \n \nMax Perk Level: 5</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_1">
-        <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
+        <text>Keeping your gear in good condition has taught you to be more efficient with your tools.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]5% %c[ui_gray_2]chance to not consume the used repair item
 		</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_2">
-        <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
+        <text>Keeping your gear in good condition has taught you to be more efficient with your tools.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]10% %c[ui_gray_2]chance to not consume the used repair item
 		</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_3">
-        <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
+        <text>Keeping your gear in good condition has taught you to be more efficient with your tools.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]20% %c[ui_gray_2]chance to not consume the used repair item
 		</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_4">
-        <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
+        <text>Keeping your gear in good condition has taught you to be more efficient with your tools.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]40% %c[ui_gray_2]chance to not consume the used repair item
 		</text>
     </string>
 	<string id="st_perk_repair_junkie_desc_5">
-        <text>Keeping your gear in good condition has taught you to be more efficent with your tools.\n \n
+        <text>Keeping your gear in good condition has taught you to be more efficient with your tools.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Repairing or cleaning has a %c[d_green]75% %c[ui_gray_2]chance to not consume the used repair item
 		</text>
@@ -174,31 +174,31 @@
         <text>When bartering, you receive better prices when buying or selling.</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_1">
-        <text>Your charisma and charm is unmatched within the Zone.\n \n
+        <text>Your charisma and charm are unmatched within the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] > %c[ui_gray_2] Receive %c[d_green]5% %c[ui_gray_2]better prices when buying or selling
 		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_2">
-        <text>Your charisma and charm is unmatched within the Zone.\n \n
+        <text>Your charisma and charm are unmatched within the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% %c[ui_gray_2]better prices when buying or selling
 		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_3">
-        <text>Your charisma and charm is unmatched within the Zone.\n \n
+        <text>Your charisma and charm are unmatched within the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]15% %c[ui_gray_2]better prices when buying or selling
 		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_4">
-        <text>Your charisma and charm is unmatched within the Zone.\n \n
+        <text>Your charisma and charm are unmatched within the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% %c[ui_gray_2]better prices when buying or selling
 		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_5">
-        <text>Your charisma and charm is unmatched within the Zone.\n \n
+        <text>Your charisma and charm are unmatched within the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% c%c[ui_gray_2]better prices when buying or selling
 		</text>

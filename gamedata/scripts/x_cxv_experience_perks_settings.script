@@ -185,6 +185,7 @@ local cxv_perks_settings = {
 			max_level 			= 5,
 			each_level 			= 3
 		},
+--[[
 		perk_plate_finder = {
 			name 				= "st_perk_plate_finder",
 			description 		= "st_perk_plate_finder_desc",
@@ -193,6 +194,7 @@ local cxv_perks_settings = {
 			max_level 			= 5,
 			each_level 			= 3
 		},
+--]]
 		perk_medicine_man = {
 			name 				= "st_perk_medicine_man",
 			description 		= "st_perk_medicine_man_desc",

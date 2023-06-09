@@ -9,7 +9,7 @@ local wick_mode = 0
 local floor = math.floor
 local weaponCat = a_cxv_experience_perk_weapon_reload_hit_effects.sortK_of
 local string_find   = string.find
--- [string_find(section,wick_inclusions[i])]
+
 local wick_inclusions = {
 	"vz61",
 	"kiparis",
@@ -88,7 +88,7 @@ local get_time_hours = level.get_time_hours
 function update_dodge_chance()
 	if (lightweight_dodge <= 0) then
 		lightweight_dodge_chance = 0
-		printf("Dodge Chance: %s %",lightweight_dodge_chance)
+		printf("[RPG] LW Dodge Chance: %s %",lightweight_dodge_chance)
 		return
 	end
 	
@@ -106,8 +106,8 @@ function update_dodge_chance()
 		end
 	end
 	
-	lightweight_dodge_chance = (12 - outfit_weight) * lightweight_dodge
-	printf("Dodge Chance: %s %",lightweight_dodge_chance)
+	lightweight_dodge_chance = ((12 - outfit_weight) * 0.5) * lightweight_dodge
+	printf("[RPG] LW Dodge Chance: %s %",lightweight_dodge_chance)
 end
 	
 --------------------------------------------------------------------------------------------------------------
@@ -117,22 +117,22 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 
 	local player_weapon = db.actor:active_item()
 	if shit.type == hit.fire_wound and ((wick_mode > 0) or (lightweight_dodge > 0)) then
-		local dodge_chance = lightweight_dodge_chance
+		local dodge_chance = lightweight_dodge_chance * 10
 		if a_cxv_experience_perk_weapon_reload_hit_effects and player_weapon then
 			if (weaponCat(player_weapon) == "pistol") then
-				dodge_chance = dodge_chance + 15
+				dodge_chance = dodge_chance + 150
 			elseif a_cxv_experience_perk_weapon_reload_hit_effects and (weaponCat(player_weapon) == "smg") then
 				local is_exception = false
 				for i=1,#wick_inclusions do
 					if (string.find(player_weapon:section(), wick_inclusions[i])) and not is_exception then
 						is_exception = true
-						dodge_chance = dodge_chance + 15
+						dodge_chance = dodge_chance + 150
 					end
 				end
 			end
 		end
 		
-		if math.random(100) < dodge_chance then
+		if math.random(1000) < dodge_chance then
 			printf("///////////   RPG System: Damage reduction in progress  //////////////////")
 			printf("Original Base Hit: %s of type %s", shit.power, is_elemental)
 			shit.power = shit.power * 0

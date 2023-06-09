@@ -1,6 +1,6 @@
 local well_rested = 0
-local well_rested_speed = { [0] = 1, [1] = 1.025, [2] = 1.05, [3] = 1.08}
-local well_rested_weight = { [0] = 1, [1] = 1.10, [2] = 1.25, [3] = 1.40}
+local well_rested_speed = { [0] = 1, [1] = 1.025, [2] = 1.05, [3] = 1.1}
+local well_rested_weight = { [0] = 1, [1] = 1.10, [2] = 1.20, [3] = 1.40}
 local well_rested_threshold = { [0] = 9000, [1] = 1800, [2] = 2250, [3] = 2700}	-- 0 = 0% / 1 = 80% / 2 = 75% / 3 = 70%
 
 local time_g

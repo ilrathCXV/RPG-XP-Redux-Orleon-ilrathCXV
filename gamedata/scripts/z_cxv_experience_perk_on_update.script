@@ -19,8 +19,8 @@ local function experience_perk_on_update(id, data)
 end
 
 local old_time              = 0
-local lucifer_time			= 0
-local heal_lucifer			= false
+-- local lucifer_time			= 0
+-- local heal_lucifer			= false
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -29,10 +29,10 @@ function perk_effects_over_time()
     if time_global() < old_time then return end
     old_time = time_global() + 200
 	
-	if time_global() >= lucifer_time then
-		lucifer_time = time_global() + 1500		-- + 3000
-		heal_lucifer = true
-	end
+	--if time_global() >= lucifer_time then
+	--	lucifer_time = time_global() + 1500		-- + 3000
+	--	heal_lucifer = true
+	--end
 
 -------------------------------------------------------------> Cybermedic
     if cybermedic >= 1 then
@@ -48,21 +48,18 @@ function perk_effects_over_time()
 			local condition = obj:condition()
 			local newCondition = condition + 0.00015
 			obj:set_condition(clamp(newCondition, 0, 0.99))
-			if obj:section() == af_lucifer and heal_lucifer then
-				af_lucifer_data.condition = clamp((af_lucifer_data.condition + 0.00015), 0, 1.0)
-				has_lucifer_belt = true
-				heal_lucifer = false
+			if obj:section() == af_lucifer then														--and heal_lucifer then
+				if af_lucifer_data.condition < 0.51 then
+					af_lucifer_data.condition = 0.51
+					-- heal_lucifer = false
+				end
 			end
 		end)
-		--if af_lucifer_data and (not has_lucifer_belt) and heal_lucifer then
-		--	af_lucifer_data.condition = af_lucifer_data.condition + 0.000025
-		--	heal_lucifer = false
-		--end
 	end
 
 ------Броненосец-7. Иммунитет к долгоиграющим эффектам -------------------> Refreshness
     if iron_resolve >= 1 then
-		local dizzyRemoval = -0.0005 * iron_resolve
+		local dizzyRemoval = -0.001 * iron_resolve
 		db.actor.alcohol = dizzyRemoval
     end
 

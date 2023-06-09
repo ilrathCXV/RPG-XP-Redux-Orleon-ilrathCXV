@@ -36,7 +36,7 @@ end
 local base_arszi_on_before_hit = arszi_psy.actor_on_before_hit
 function arszi_psy.actor_on_before_hit(s_hit)
     if s_hit.power > 0 and s_hit.type == 4 then
-		s_hit.power = s_hit.power * (1 - (0.03 * calm_mind))			-- Calm Mind: 3% psy resistance (total to 15% when max rank)	
+		s_hit.power = s_hit.power * (1 - (0.05 * calm_mind))			-- Calm Mind: 5% psy resistance (total to 25% when max rank)	
 	end
 	base_arszi_on_before_hit(s_hit)
 end
