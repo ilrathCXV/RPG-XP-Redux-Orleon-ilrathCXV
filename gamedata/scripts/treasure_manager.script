@@ -921,6 +921,7 @@ function on_game_start()
 	RegisterScriptCallback("save_state",save_state)
 	RegisterScriptCallback("load_state",load_state)
 	RegisterScriptCallback("physic_object_on_use_callback",physic_object_on_use_callback)
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
 	
 	if enable_debug then
 		RegisterScriptCallback("map_spot_menu_add_property",map_spot_menu_add_property)

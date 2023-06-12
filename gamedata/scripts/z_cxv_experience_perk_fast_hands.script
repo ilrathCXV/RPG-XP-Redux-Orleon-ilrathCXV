@@ -6,17 +6,7 @@ local function experience_perk_on_update(id, data)
 	end
 end
 
-show_anims = {
-	anm_show = true,
-	anm_show_0 = true,
-	anm_show_1 = true,
-	anm_show_2 = true,
-	anm_show_empty = true,
-	anm_show_g = true,
-	anm_show_w_gl = true
-}
-
-hide_anims = {
+local stow_anims = {
 	anm_hide = true,
 	anm_hide_0 = true,
 	anm_hide_1 = true,
@@ -24,38 +14,48 @@ hide_anims = {
 	anm_hide_empty = true,
 	anm_hide_g = true,
 	anm_hide_w_gl = true,
+	anm_show = true,
+	anm_show_0 = true,
+	anm_show_1 = true,
+	anm_show_2 = true,
+	anm_show_empty = true,
+	anm_show_g = true,
+	anm_show_w_gl = true,
 }
+
 
 function fast_hands_speed(anim_table,obj)
 	-- if not IsWeapon(obj) then return end
-	if (fast_hands <= 0) then return end
 	
-	local anm_speed = anim_table.anm_speed
+	if (fast_hands < 1) then return end
+	if not stow_anims[anim_table.anm_name] then return end
+	
+	local anm_speed_base = anim_table.anm_speed
 	
 	local swap_string = tostring(anim_table.anm_name)
 	local item_sec = obj:section()
 	local hud_sec = ini_sys:r_string_ex(item_sec,"hud")
 	
 	local swap_val = parse_list(ini_sys,hud_sec,swap_string)
-	local swap_speed = reload_val and reload_val[2] and tonumber(reload_val[2])
-	local swap_speed_2 = reload_val and reload_val[3] and tonumber(reload_val[3])
-	local swap_speed_3 = reload_val and reload_val[4] and tonumber(reload_val[4])
-	local swap_speed_4 = reload_val and reload_val[5] and tonumber(reload_val[5])
+	local swap_speed = swap_val and swap_val[2] and tonumber(swap_val[2])
+	local swap_speed_2 = swap_val and swap_val[3] and tonumber(swap_val[3])
+	local swap_speed_3 = swap_val and swap_val[4] and tonumber(swap_val[4])
+	local swap_speed_4 = swap_val and swap_val[5] and tonumber(swap_val[5])
 	
 	if swap_speed then
-		anm_speed = swap_speed
+		anm_speed_base = swap_speed
 	elseif swap_speed_2 then
-		anm_speed = swap_speed_2
+		anm_speed_base = swap_speed_2
 	elseif swap_speed_3 then
-		anm_speed = swap_speed_3
+		anm_speed_base = swap_speed_3
 	elseif swap_speed_4 then
-		anm_speed = swap_speed_4
+		anm_speed_base = swap_speed_4
 	end
 	
-	if show_anims[anim_table.anm_name] or hide_anims[anim_table.anm_name] then
-		anim_table.anm_speed = anm_speed * (1 + (fast_hands * 0.15))
-		--printf("Weapon Handling Show/Hide")	
-	end
+	local swap_bonus = 1 + (fast_hands * 0.15)
+	printf("[RPG] Swap Bonus: %s", swap_bonus)
+	anim_table.anm_speed = anm_speed_base * swap_bonus
+	
 end
 
 function on_game_start()
