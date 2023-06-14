@@ -244,11 +244,11 @@ scav_tier5 = {
 
 local minCondition, maxCondition
 if drx_da_main then
-	arti_min_eff = 15
-	arti_max_eff = 35
+	minCondition = 15
+	maxCondition = 35
 else
-	arti_min_eff = 20
-	arti_max_eff = 35
+	minCondition = 20
+	maxCondition = 35
 end
 
 local artefinder_bonus = {[0] = 0, [1] = 1, [2] = 3, [3] = 7, [4] = 12, [5] = 18 }
