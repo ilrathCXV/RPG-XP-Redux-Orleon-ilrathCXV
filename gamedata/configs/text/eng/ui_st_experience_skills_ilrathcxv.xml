@@ -1155,8 +1155,9 @@
 		<text>Your influence among friendly factions comes with new benefits.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Can now exchange armor at %c[d_green]any friendly faction\n
-		%c[d_blue] - %c[ui_gray_2] Most faction-locked tasks and dialogue options not tied to your own faction are available to you from %c[d_green]any friendly faction\n
-		%c[d_red] - %c[ui_gray_2] Friendly faction = having at least %c[d_green]1000 Goodwill %c[ui_gray_2]with a faction
+		%c[d_blue] - %c[ui_gray_2] Most faction-locked tasks and dialogue options (such as armor trading in GAMMA) from other %c[d_green]any friendly faction %c[ui_gray_2]are available to you\n
+		%c[d_red] - %c[ui_gray_2] Friendly faction = having at least %c[d_green]1000 Goodwill %c[ui_gray_2]with a faction\n
+		%c[d_red] - %c[ui_gray_2] Most special faction-locked dialogue like storyline quests not available natively to your faction are locked behind %c[d_cyan]1500 Goodwill
 		</text>
     </string>
 	
@@ -1366,6 +1367,43 @@
 		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[d_cyan]+24% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
 		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
+		</text>
+    </string>
+	
+	<string id="st_perk_local_looting">
+        <text>Local Looting</text>
+    </string>
+	<string id="st_perk_local_looting_desc">
+        <text>It's a good practice to "shop" around your local community.</text>
+    </string>
+	<string id="st_perk_local_looting_desc_1">
+        <text>It's a good practice to "shop" around your local community.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]32.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
+		</text>
+    </string>
+	<string id="st_perk_local_looting_desc_2">
+        <text>It's a good practice to "shop" around your local community.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]40% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
+		</text>
+    </string>
+	<string id="st_perk_local_looting_desc_3">
+		<text>It's a good practice to "shop" around your local community.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]47.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
+		</text>
+    </string>
+	<string id="st_perk_local_looting_desc_4">
+        <text>It's a good practice to "shop" around your local community.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]55% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
+		</text>
+    </string>
+	<string id="st_perk_local_looting_desc_5">
+        <text>It's a good practice to "shop" around your local community.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]62.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
 		</text>
     </string>
 	

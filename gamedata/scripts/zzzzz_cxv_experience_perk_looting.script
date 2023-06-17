@@ -299,11 +299,20 @@ end
 --------------------------------------------------------------------------------------------------------------
 ------[NEW] Zone Slayer ammo selecion and creation
 
+local string_find   = string.find
+local string_gsub   = string.gsub
+
 function find_zone_slayer_ammo(weapon,npc)
 	if (rand(100) <= 30) then return end
 	local ammo_table = parse_list(ini_sys,weapon:section(),"ammo_class")
 	local shells = ammo_table[rand(1,#ammo_table)]
 	if (shells) then
+		if string_find(shells,"_verybad") then
+			local new_section = string_gsub(shells,"_verybad","")
+			if ini_sys:section_exist(new_section) then
+				shells = new_section
+			end
+		end
 		if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok, downgrade ammo to avoid granting rare ammo
 			shells = arti_ammo_utils.downgrade_ammo(shells, true)
 		end
@@ -355,6 +364,28 @@ function perk_loot_improvement(item)------------------> actor_on_item_take(item)
 			--db.actor:drop_item(item)
 		end
     end
+end
+
+if arti_lootboxes then
+	base_arti_money = arti_money.func_cash
+	function arti_money.func_cash(obj)
+
+		local money_range = SYS_GetParam(0, obj:section(), "money_value")
+		if money_range then
+			local mult = 1
+            mult = 1 + (0.05 * midas_touch)
+			money = arti_lootboxes.str_explode_num(money_range, ",")
+			if money[2] then
+				local min_amt = math.floor(tonumber(money[1])) * mult or 10
+				local max_amt = math.floor(tonumber(money[2])) * mult or 30
+				db.actor:give_money(math.random(min_amt, max_amt))
+			else
+				local amount = math.floor(tonumber(money[1])) * mult or 10
+				db.actor:give_money(amount)
+			end
+			alife_release(obj)
+		end
+	end
 end
 
 --------------------------------------------------------------------------------------------------------------

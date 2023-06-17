@@ -341,6 +341,14 @@ local cxv_perks_settings = {
 			max_level 			= 4,
 			each_level 			= 3
 		},
+		perk_local_looting = {
+			name 				= "st_perk_local_looting",
+			description 		= "st_perk_local_looting_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 12,
+			max_level 			= 5,
+			each_level 			= 3
+		},
 	},
 	
 	-- Imported from 'perk_skill_expansion_port_ilrathcxv.ltx'
