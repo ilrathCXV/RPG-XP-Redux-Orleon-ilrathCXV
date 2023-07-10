@@ -5,6 +5,7 @@ local mutant_slayer = 0
 local lightweight_dodge = 0
 local lightweight_dodge_chance = 0
 local wick_mode = 0
+local sturdy_legs = 0
 
 local floor = math.floor
 local weaponCat = a_cxv_experience_perk_weapon_reload_hit_effects.sortK_of
@@ -33,6 +34,9 @@ local function experience_perk_on_update(id, data)
 	end
 	if (id == "perk_lightweight_dodge") then
 		lightweight_dodge = data["curr_level"]
+	end
+	if (id == "perk_sturdy_legs") then
+		sturdy_legs = data["curr_level"]
 	end
 end
 
@@ -150,16 +154,6 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 	local is_elemental = (((shit_type == hit.shock) or (shit_type == hit.burn) or (shit_type == hit.light_burn) or (shit_type == hit.chemical_burn)
 	or string.find(shit.draftsman:id(),"field") or string.find(shit.draftsman:id(),"zone_mine")) and ((shit_type ~= hit.radiation) or (shit_type ~= hit.telepatic))) or false
 	
-	-- Need to account for Game Difficulty
-	local gameplay = alife_storage_manager.get_state().diff_game
-	if not (type(gameplay) == "table") then -- for old saves
-		alife_storage_manager.get_state().diff_game = {}
-		alife_storage_manager.get_state().diff_game["type"] = game_num
-		gameplay = alife_storage_manager.get_state().diff_game
-	end
-
-	local game_num = gameplay["type"] or game_num
-	
 ------------------------------------------------------------> Anomaly Defense
     if anomaly_defense >= 1 and is_elemental then
 		damage_mult = damage_mult - (0.05 * anomaly_defense)
@@ -174,6 +168,17 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 
 ------------------------------------------------------------> Spiked
     if shit.draftsman and (shit.draftsman:id() ~= db.actor:id()) and (spiked >= 1) and not is_elemental then
+		
+			-- Need to account for Game Difficulty
+		local gameplay = alife_storage_manager.get_state().diff_game
+		if not (type(gameplay) == "table") then -- for old saves
+			alife_storage_manager.get_state().diff_game = {}
+			alife_storage_manager.get_state().diff_game["type"] = game_num
+			gameplay = alife_storage_manager.get_state().diff_game
+		end
+
+		local game_num = gameplay["type"] or game_num
+		
 		local spike = base_power * (0.05 * spiked) * difficulty_multiplier_enemy[game_num]
 		shit.power = spike
 		shit.draftsman:hit(shit)
@@ -197,6 +202,10 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 			damage_mult = damage_mult - ((0.05 * mutant_slayer) * night_mult)
 		end
     end
+	
+	if shit.draftsman and (shit.draftsman:id() == db.actor:id()) and (not is_elemental) and (shit_type ~= hit.explosion) and (sturdy_legs > 0) then
+		damage_mult = damage_mult - 0.75
+	end
 	
 	if damage_mult < 1.0 then
 		printf("///////////   RPG System: Damage reduction in progress  //////////////////")

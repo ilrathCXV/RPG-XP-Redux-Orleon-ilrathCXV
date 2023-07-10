@@ -1407,4 +1407,54 @@
 		</text>
     </string>
 	
+	<string id="st_perk_jump_man">
+        <text>Jump Man</text>
+    </string>
+	<string id="st_perk_jump_man_desc">
+        <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.</text>
+    </string>
+	<string id="st_perk_jump_man_desc_1">
+        <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]3% higher
+		</text>
+    </string>
+	<string id="st_perk_jump_man_desc_2">
+        <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]6% higher
+		</text>
+    </string>
+	<string id="st_perk_jump_man_desc_3">
+		<text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]9% higher
+		</text>
+    </string>
+	<string id="st_perk_jump_man_desc_4">
+        <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]12% higher
+		</text>
+    </string>
+	<string id="st_perk_jump_man_desc_5">
+        <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]15% higher
+		</text>
+    </string>
+	
+	<string id="st_perk_sturdy_legs">
+        <text>Sturdy Legs</text>
+    </string>
+	<string id="st_perk_sturdy_legs_desc">
+        <text>After taking enough high falls, your body has become more resilient to the impact.</text>
+    </string>
+	<string id="st_perk_sturdy_legs_desc_1">
+        <text>After taking enough high falls, your body has become more resilient to the impact.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Fall damage is now reduced by %c[d_green]75%
+		</text>
+    </string>
+	
 </string_table>

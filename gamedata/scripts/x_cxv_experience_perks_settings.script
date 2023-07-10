@@ -349,6 +349,22 @@ local cxv_perks_settings = {
 			max_level 			= 5,
 			each_level 			= 3
 		},
+		perk_jump_man = {
+			name 				= "st_perk_jump_man",
+			description 		= "st_perk_jump_man_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 3,
+			max_level 			= 5,
+			each_level 			= 2
+		},
+		perk_sturdy_legs = {
+			name 				= "st_perk_sturdy_legs",
+			description 		= "st_perk_sturdy_legs_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 25,
+			max_level 			= 1,
+			each_level 			= 0
+		},
 	},
 	
 	-- Imported from 'perk_skill_expansion_port_ilrathcxv.ltx'

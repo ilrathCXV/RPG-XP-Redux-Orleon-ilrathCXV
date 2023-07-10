@@ -1,0 +1,52 @@
+local not_first_update = true
+local jump
+local jump_modifiers = {}
+
+local function actor_on_first_update()
+    jump = db.actor:get_actor_jump_speed()
+    not_first_update = false
+end
+
+function on_game_start()
+    RegisterScriptCallback("actor_on_first_update",actor_on_first_update)
+end 
+
+local function update_jump()
+    if not_first_update then
+        actor_on_first_update()
+    end
+
+    local coef = 1
+    for k, v in pairs(jump_modifiers) do
+        coef = coef * v
+    end
+
+    db.actor:set_actor_jump_speed(math.max(jump * coef, 0))
+end
+
+-- Usage: Add a jump modifier.
+-- Once a jump modifier is added, jump will be recalculated and set.
+-- Params:
+-- jump_key - Name of jump multiplier you want to add
+-- jump_mult - jump multiplier as a number (e.g. 0.5 will halve jump)
+-- force - Boolean, will overwrite existing jump.
+-- Returns true if jump added successfully, false if key already exists (and nothing happens as result)
+function add_jump(jump_key, jump_mult, force)
+    if force or not run_modifiers[jump_key] then
+        jump_modifiers[jump_key] = jump_mult
+        update_jump()
+        return true
+    else
+        return false
+    end
+end
+
+-- Usage: Drop a jump modifier. Once a jump modifier is dropped, jump will be recalculated and set. 
+-- Params
+-- jump_key - Name of jump multiplier to drop. Will drop from both tables.
+function remove_jump(jump_key)
+    if jump_modifiers[jump_key] then
+        jump_modifiers[jump_key] = nil
+        update_jump()
+    end
+end

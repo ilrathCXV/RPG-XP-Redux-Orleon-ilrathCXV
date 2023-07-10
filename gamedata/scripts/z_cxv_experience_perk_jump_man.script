@@ -1,0 +1,21 @@
+local jump_man = 0
+local jump_man_boost = 0.03
+local add_jump = jump.add_jump
+local remove_jump = jump.remove_jump
+
+local function experience_perk_on_update(id, data)
+	if (id == "perk_jump_man") then
+		jump_man = data["curr_level"]
+	end
+	
+	if jump_man > 0 then
+		add_jump("cxv_jump_man",1 + jump_man_boost * jump_man, true)
+	else
+		remove_jump("cxv_jump_man")
+	end
+end
+
+
+function on_game_start()
+	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+end
