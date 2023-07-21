@@ -59,6 +59,10 @@ local function create_item_random_uses(i, box)
     local max_uses = ini_sys:r_float_ex(i, "max_uses")
 	local box_size = ini_sys:r_float_ex(i, "box_size")
     local se_item = alife_create_item(i, box)
+	if not se_item then
+		printf("[RPG Crash Catch] This item does not exist: %s", i)
+		return
+	end
 	if max_uses then
 		printf('Max uses: %s', max_uses)
         alife_process_item(i, se_item.id, {uses = (rand(1, max_uses))})
