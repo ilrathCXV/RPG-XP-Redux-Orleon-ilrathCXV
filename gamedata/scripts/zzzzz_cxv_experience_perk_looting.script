@@ -74,7 +74,7 @@ local function create_item_random_uses(i, box)
 		alife_process_item(i, se_item.id, {cond = (rand(50 + (careful_handler_bonus[careful_handler]),100) * 0.01)})
 	else
 		alife_create_item(i, box)
-    end
+	end
 end
 
 local function roll_item_tiered(t, box, looter_level)
@@ -258,11 +258,17 @@ end
 local artefinder_bonus = {[0] = 0, [1] = 1, [2] = 3, [3] = 7, [4] = 12, [5] = 18 }
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+base_death_loot = death_manager.create_release_item
+death_manager.create_release_item = function(npc)
+	if not npc then return end
+	local id = npc:id()
+	base_death_loot(npc)
+	CreateTimeEvent("rpg_looting", id, 0.1, looting_enemy, npc)
+end
 
 function looting_enemy(victim)
 
-	if victim.health > 0 then return end
-	if victim:alive() then return end
+	if not victim then printf("[RPG] No NPC found... No loot for you!") return end
 	
 	-- Gather NPC info
 	local npc_id = victim:id()
@@ -298,6 +304,8 @@ function looting_enemy(victim)
 	if (#shotgun_list > 0) then
 		find_zone_slayer_ammo(shotgun_list[rand(1,#shotgun_list)], victim)
 	end
+	
+	return true
 end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -444,7 +452,7 @@ function on_game_start()
 
 	RegisterScriptCallback("save_state",                     save_state)
     RegisterScriptCallback("load_state",                     load_state)
-	RegisterScriptCallback("npc_on_use",                     looting_enemy)
+	-- RegisterScriptCallback("npc_on_use",                     looting_enemy)
 	RegisterScriptCallback("actor_on_item_take",             perk_loot_improvement)
 	RegisterScriptCallback("actor_item_to_ruck",             perk_loot_improvement)
 	RegisterScriptCallback("actor_on_first_update",          build_shotgun_list)

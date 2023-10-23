@@ -1030,26 +1030,19 @@
 	<string id="st_perk_strong_back_desc_3">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]15kg\n
-		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
-		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]15kg
 		</text>
     </string>
 	<string id="st_perk_strong_back_desc_4">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]20kg\n
-		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
-		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]25kg
 		</text>
     </string>
 	<string id="st_perk_strong_back_desc_5">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]25kg\n
-		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
-		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
-		</text>
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]40kg
     </string>
 	
 	<string id="st_perk_slow_metabolism">
