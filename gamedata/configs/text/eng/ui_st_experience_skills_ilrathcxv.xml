@@ -1043,6 +1043,7 @@
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]40kg
+		</text>
     </string>
 	
 	<string id="st_perk_slow_metabolism">
