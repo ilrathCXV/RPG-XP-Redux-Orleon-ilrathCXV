@@ -1385,19 +1385,22 @@
 	<string id="st_perk_local_looting_desc_3">
 		<text>It's a good practice to "shop" around your local community.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]47.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]47.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]7 completed tasks%c[ui_gray_2] instead of 8
 		</text>
     </string>
 	<string id="st_perk_local_looting_desc_4">
         <text>It's a good practice to "shop" around your local community.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]55% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]55% chance%c[ui_gray_2] to be %c[yellow]closer to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]7 completed tasks%c[ui_gray_2] instead of 8
 		</text>
     </string>
 	<string id="st_perk_local_looting_desc_5">
         <text>It's a good practice to "shop" around your local community.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]62.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]62.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]6 completed tasks%c[ui_gray_2] instead of 8
 		</text>
     </string>
 	
