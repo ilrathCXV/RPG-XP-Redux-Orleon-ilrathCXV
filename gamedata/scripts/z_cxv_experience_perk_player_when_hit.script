@@ -8,7 +8,7 @@ local wick_mode = 0
 local sturdy_legs = 0
 
 local floor = math.floor
-local weaponCat = a_cxv_experience_perk_weapon_reload_hit_effects.sortK_of
+local weaponCat = z_cxv_experience_perk_player_when_hit.sortK_of
 local string_find   = string.find
 
 local wick_inclusions = {

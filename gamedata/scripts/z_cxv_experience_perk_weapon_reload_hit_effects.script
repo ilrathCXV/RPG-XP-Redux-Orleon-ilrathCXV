@@ -236,7 +236,7 @@ function perk_damage_effects(npc, shit, bone_id, flags)
     if not (shit.draftsman and shit.draftsman:id() == 0) then return end
     if shit.draftsman:id() ~= db.actor:id() then return end
 
-    local weapon = db.actor:active_item()
+    local weapon = level.object_by_id(shit.weapon_id)
     if not weapon then return end
 
     local weapon_class = sortK_of(weapon)
@@ -421,7 +421,7 @@ end
 
 if grok_bo then
 	base_grok_npc = grok_bo.npc_on_before_hit
-	grok_bo.npc_on_before_hit = function(npc,shit,bone_id)
+	grok_bo.npc_on_before_hit = function(npc, shit, bone_id, flags)
 		
 		if shit.draftsman:id() ~= db.actor:id() then
 			return
@@ -433,9 +433,15 @@ if grok_bo then
 		
 		if not (shit.draftsman and shit.draftsman:id() == 0) then return end
 		if shit.draftsman:id() ~= db.actor:id() then return end
-
+		
+		local weapon = level.object_by_id(shit.weapon_id)
+		if not weapon then
+			printf("No weapon source found")
+			return
+		end
+		
 		local base_npc_health = npc and npc.health or 0
-		base_grok_npc(npc,shit,bone_id)
+		base_grok_npc(npc, shit, bone_id, flags)
 		local true_damage = (base_npc_health - (npc and npc.health)) or 0
 		
 		if true_damage <= 0 then return end
