@@ -347,7 +347,7 @@ local cxv_perks_settings = {
 			icon 				= "ui_experience_mod_empty_perk_icon",
 			req_level 			= 12,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5
 		},
 		perk_jump_man = {
 			name 				= "st_perk_jump_man",
