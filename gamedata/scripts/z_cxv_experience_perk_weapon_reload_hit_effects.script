@@ -237,7 +237,16 @@ function perk_damage_effects(npc, shit, bone_id, flags)
     if shit.draftsman:id() ~= db.actor:id() then return end
 
     local weapon = level.object_by_id(shit.weapon_id)
-    if not weapon then return end
+	
+    if weapon == nil then 
+		return 
+	end
+	
+	printf("[RPG - Hit Effects] Weapon registered: %s", weapon)
+	
+	if (not IsWeapon(weapon)) or (not IsGrenade(weapon)) or (not IsMelee(wpn)) then
+		return
+	end
 
     local weapon_class = sortK_of(weapon)
 	local head_shot = perk_based_artefacts_bone_mapper.is_critical_bone(npc:clsid(), bone_id)
