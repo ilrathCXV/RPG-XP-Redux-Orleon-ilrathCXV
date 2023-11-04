@@ -242,9 +242,10 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 		return 
 	end
 	
-	printf("[RPG - Hit Effects] Weapon registered: %s", weapon)
+	printf("[RPG - Hit Effects] Weapon registered: %s", weapon:section())
 	
-	if (not IsWeapon(weapon)) or (not IsGrenade(weapon)) or (not IsMelee(wpn)) then
+	if (not IsWeapon(weapon)) and (not IsGrenade(weapon)) and (not IsMelee(weapon)) then
+		printf("[RPG - Hit Effects] Not legit: W - %s, G - %s, M - %s", IsWeapon(weapon), IsGrenade(weapon), IsMelee(weapon))
 		return
 	end
 
