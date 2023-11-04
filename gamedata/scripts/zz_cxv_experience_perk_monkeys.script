@@ -1,8 +1,7 @@
 ---------------------------------------------------------------------------------------------------------------------------------
--- experience_core.script -------------------------------------------------------------------------------------------------------
+-- experience_actions.script -------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
-ActorOnItemBeforePickupArtefact = experience_core.actor_on_item_before_pickup
-function experience_core.actor_on_item_before_pickup(obj, flags)
+function experience_actions.actor_on_item_before_pickup(obj, flags)
 	if not IsArtefact(obj) then return end
 	
 	-- Hack to prevent player from exploting Artefacts Containers (gaining rank by recieving artefacts)
@@ -19,12 +18,7 @@ function experience_core.actor_on_item_before_pickup(obj, flags)
 		if not (game_statistics.actor_artefacts[obj:id()]) then
 			-- game_statistics.actor_artefacts[obj:id()] = true
 			local af_rank = SYS_GetParam(2, obj:section(), "af_rank") or 0
-			experience_core.give_actor_experience_by_artefact(af_rank)
-			if experience_core.get_daily_manager then
-				experience_core.get_daily_manager():SendEvent("find_artefacts", 1)
-			end
-		else
-			return
+			experience_actions.GetArtefactXP(af_rank)
 		end
 	end
 end
@@ -43,6 +37,6 @@ if zzzz_arti_jamming_repairs then
 		BaseReplacePart(id, part, kit_name, clean)
 		
 			
-		experience_core.give_actor_experience_by_repair_items(add_cond)
+		experience_actions.GetRepairItemXP(add_cond)
 	end
 end

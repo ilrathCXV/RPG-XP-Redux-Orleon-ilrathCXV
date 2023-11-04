@@ -1,7 +1,7 @@
 local strong_back = 0
 local strong_back_addition = {[0] = 0, [1] = 5, [2] = 10, [3] = 15, [4] = 25, [5] = 40} 
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_strong_back") then
 		strong_back = data["curr_level"]
 	end	
@@ -25,5 +25,5 @@ end
 
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
 end

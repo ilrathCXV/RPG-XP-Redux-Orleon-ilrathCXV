@@ -54,7 +54,7 @@ local remove_speed = speed.remove_speed
 local arte_finder = 0
 local arte_hunter_bonus = 0
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_artefinder") then
 		arte_finder = data["curr_level"]
 		arte_hunter_bonus = arte_finder * 3
@@ -3156,7 +3156,7 @@ end
 function on_game_start()
 
 	-- RPG
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
 	-- RPG end
 	
 	RegisterScriptCallback("actor_on_before_hit", actor_on_before_hit)

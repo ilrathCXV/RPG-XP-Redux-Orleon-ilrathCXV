@@ -4,7 +4,7 @@ if experience_core then end
 local repair_xp_value = experience_core.SETTINGS.REPAIR_ITM_XP or 1
 local bartering = 0
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_silver_tongued") then
 		bartering = data["curr_level"]
 	end
@@ -70,7 +70,7 @@ end
 
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
 
 	RegisterScriptCallback("ActorMenu_on_trade_started", perk_silver_tongued_start)
 	RegisterScriptCallback("ActorMenu_on_trade_closed", perk_silver_tongued_end)

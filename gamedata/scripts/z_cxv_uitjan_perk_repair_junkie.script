@@ -3,7 +3,7 @@ local repair_junkie_bonus = { [0] = 0, [1] = 0.05, [2] = 0.10, [3] = 0.20 , [4] 
 local zone_gunsmith = 0
 local zone_gunsmith_bonus = { [0] = 0, [1] = 0, [2] = 0, [3] = 0.1 , [4] = 0.3, [5] = 0.6}	-- Jury Rigging: Starting Rank 3, grants bonus repair item refund chance
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_repair_junkie") then
 		repair_junkie = data["curr_level"]
 	end
@@ -13,7 +13,7 @@ local function experience_perk_on_update(id, data)
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
 	
 	-- monkey patch for the Tinkering skill
 	local originalOnRepair = item_repair.UIRepair.OnRepair

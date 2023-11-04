@@ -30,7 +30,7 @@ local wick_inclusions = {
 }
 
 
-local function experience_perk_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
+local function experience_skill_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
 	--[[
 	if (id == "perk_ghost_ammo") then
 		ghost_ammo = data["curr_level"]
@@ -242,9 +242,10 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 		return 
 	end
 	
-	printf("[RPG - Hit Effects] Weapon registered: %s", weapon)
+	printf("[RPG - Hit Effects] Weapon registered: %s", weapon:section())
 	
-	if (not IsWeapon(weapon)) or (not IsGrenade(weapon)) or (not IsMelee(wpn)) then
+	if (not IsWeapon(weapon)) and (not IsGrenade(weapon)) and (not IsMelee(weapon)) then
+		printf("[RPG - Hit Effects] Not legit: W - %s, G - %s, M - %s", IsWeapon(weapon), IsGrenade(weapon), IsMelee(weapon))
 		return
 	end
 
@@ -747,7 +748,7 @@ end
 
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
 
 	--if not grok_bo then
 	--	RegisterScriptCallback("npc_on_before_hit",             perk_damage_effects)

@@ -8,7 +8,7 @@ local zone_slayer = 0
 
 local careful_handler_bonus = { [0] = 0, [1] = 3, [2] = 6, [3] = 9, [4] = 12, [5] = 15 }
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_medicine_man") then
 		medicine_man = data["curr_level"]
 	end
@@ -448,7 +448,7 @@ end
 --
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
 
 	RegisterScriptCallback("save_state",                     save_state)
     RegisterScriptCallback("load_state",                     load_state)
