@@ -1,7 +1,3 @@
-if experience_core then end
-
-
-local repair_xp_value = experience_core.SETTINGS.REPAIR_ITM_XP or 1
 local bartering = 0
 
 local function experience_skill_on_update(id, data)
@@ -63,7 +59,7 @@ end
 function perk_silver_tongued_end()
 	UnregisterScriptCallback("actor_on_item_take", actor_on_item_buy)
 	UnregisterScriptCallback("actor_on_item_drop", actor_on_item_sell)
-	experience_core.increase_experience(totalamounttraded/75)
+	experience_utils.IncreaseExperience(totalamounttraded/75)
 	totalamounttraded = 0
 	item_costs = {}
 end
