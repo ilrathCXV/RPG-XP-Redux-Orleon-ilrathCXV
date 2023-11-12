@@ -1,6 +1,6 @@
 local fast_hands = 0
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_fast_hands") then
 		fast_hands = data["curr_level"]
 	end
@@ -37,19 +37,12 @@ function fast_hands_speed(anim_table,obj)
 	local hud_sec = ini_sys:r_string_ex(item_sec,"hud")
 	
 	local swap_val = parse_list(ini_sys,hud_sec,swap_string)
-	local swap_speed = swap_val and swap_val[2] and tonumber(swap_val[2])
-	local swap_speed_2 = swap_val and swap_val[3] and tonumber(swap_val[3])
-	local swap_speed_3 = swap_val and swap_val[4] and tonumber(swap_val[4])
-	local swap_speed_4 = swap_val and swap_val[5] and tonumber(swap_val[5])
-	
-	if swap_speed then
-		anm_speed_base = swap_speed
-	elseif swap_speed_2 then
-		anm_speed_base = swap_speed_2
-	elseif swap_speed_3 then
-		anm_speed_base = swap_speed_3
-	elseif swap_speed_4 then
-		anm_speed_base = swap_speed_4
+
+	for k, v in pairs(swap_val) do
+		if tonumber(v) then
+			anm_speed_base = tonumber(v)
+			break
+		end
 	end
 	
 	local swap_bonus = 1 + (fast_hands * 0.15)
@@ -59,7 +52,11 @@ function fast_hands_speed(anim_table,obj)
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 
 	RegisterScriptCallback("actor_on_hud_animation_play", fast_hands_speed)
 end

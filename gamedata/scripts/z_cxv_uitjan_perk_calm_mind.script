@@ -1,7 +1,7 @@
 local calm_mind = 0
 local is_near_campfire = false
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_calm_mind") then
 		calm_mind = data["curr_level"]
 	end	
@@ -42,5 +42,9 @@ function arszi_psy.actor_on_before_hit(s_hit)
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 end

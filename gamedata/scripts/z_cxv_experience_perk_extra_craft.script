@@ -4,7 +4,7 @@ if zz_item_cooking_keep_crafting_window_open 	then end
 
 local craft_extra = 0
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_master_craftsman") then
 		craft_extra = data["curr_level"]
 	end
@@ -73,39 +73,11 @@ end
 
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 
-	--[[	
-	local base_crafting = ui_workshop.UIWorkshopCraft.Craft
-	ui_workshop.UIWorkshopCraft.Craft = function (self)
-		base_crafting(self)
-		local chance = math.random(100) * craft_extra
-		if chance >= 80 then
-			ExtraItemNews()
-			if IsItem("ammo",self.craft_item_r[1]) then
-				alife_create_item(self.craft_item_r[1], db.actor, {ammo = self.craft_item_r[2]})
-			else
-				for i = 1, self.craft_item_r[2] do
-					alife_create_item(self.craft_item_r[1], db.actor)
-				end
-			end
-		end
-	end
-		
-	local base_cooking = item_cooking.UICook.OnCook
-	--local GetSelectedMeal = item_cooking.UICook.GetSelectedMeal
-	item_cooking.UICook.OnCook = function (self)
-		base_cooking(self)
-		local chance = rand(100) * craft_extra
-		if chance >= 80 then
-			ExtraItemNews()
-			local meal = self:GetSelectedMeal()
-			if (not meal) then
-				return
-			end
-			alife_create_item(meal.sec, db.actor)
-		end
-	end
-	--]]
 	
 end

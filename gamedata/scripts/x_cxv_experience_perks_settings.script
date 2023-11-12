@@ -1,3 +1,5 @@
+if experience_potions then return end
+
 local cxv_perks_settings = {
 	-- Imported from 'perk_arpg_ilrathcxv.ltx'
 	[1] = {
@@ -59,6 +61,7 @@ local cxv_perks_settings = {
 			max_level 			= 1,
 			each_level 			= 0
 		},
+		--[[
 		perk_bloody_mess = {
 			name 				= "st_perk_bloody_mess",
 			description 		= "st_perk_bloody_mess_desc",
@@ -67,6 +70,7 @@ local cxv_perks_settings = {
 			max_level 			= 5,
 			each_level 			= 2
 		},
+		--]]
 		perk_disarming_shot = {
 			name 				= "st_perk_disarming_shot",
 			description 		= "st_perk_disarming_shot_desc",
@@ -347,7 +351,7 @@ local cxv_perks_settings = {
 			icon 				= "ui_experience_mod_empty_perk_icon",
 			req_level 			= 12,
 			max_level 			= 5,
-			each_level 			= 3
+			each_level 			= 5
 		},
 		perk_jump_man = {
 			name 				= "st_perk_jump_man",
@@ -364,6 +368,14 @@ local cxv_perks_settings = {
 			req_level 			= 25,
 			max_level 			= 1,
 			each_level 			= 0
+		},
+		perk_demo_expert = {
+			name 				= "st_perk_demo_expert",
+			description 		= "st_perk_demo_expert_desc",
+			icon 				= "ui_experience_mod_empty_perk_icon",
+			req_level 			= 25,
+			max_level 			= 3,
+			each_level 			= 8
 		},
 	},
 	

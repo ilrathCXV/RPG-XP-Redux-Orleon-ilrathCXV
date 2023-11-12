@@ -1,0 +1,61 @@
+local demo_expert = 0
+local math_random = math.random
+
+local grenade_list =
+{
+	"grenade_rgd5",
+	"grenade_f1",
+	"grenade_gd-05",
+	"grenade_smoke",
+	"ied_throwable",
+	"grenade_vog25hattab",
+	"grenade_rgn_impact",
+	"grenade_rgo_impact",
+}
+
+local explosive_weapon_list =
+{
+	"wpn_rg-6",
+	"wpn_rpg7",
+	"wpn_m79"
+}
+
+local function experience_skill_on_update(id, data)
+	if (id == "perk_demo_expert") then
+		demo_expert = data["curr_level"]
+	end
+end
+
+local function create_item(i, box)
+    local se_item = alife_create_item(i, box)
+	if not se_item then
+		printf("[RPG Crash Catch - EP] This explosive weaponry does not exist: %s", i)
+		return
+	end
+	alife_create_item(i, box)
+end
+
+function npc_on_net_spawn(npc)
+	if demo_expert > 0 then
+		if IsStalker(npc) then
+			if math_random(100) < math_random(demo_expert * 5) then
+				create_item(grenade_list[math_random(#grenade_list)], npc)
+			end
+			if demo_expert == 3 then
+				if math_random(10000) == 1 then
+					create_item(explosive_weapon_list[math_random(#explosive_weapon_list)], npc)
+				end
+			end
+		end
+	end
+end
+
+function on_game_start()
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
+	RegisterScriptCallback("npc_on_net_spawn",npc_on_net_spawn)
+
+end

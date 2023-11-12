@@ -1,13 +1,17 @@
 local mag_loading = 0
 
-local function experience_perk_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
+local function experience_skill_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
 	if (id == "perk_mag_loader") then
 		mag_loading = data["curr_level"]
 	end
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 end
 
 base_load_magazine = magazines.load_magazine

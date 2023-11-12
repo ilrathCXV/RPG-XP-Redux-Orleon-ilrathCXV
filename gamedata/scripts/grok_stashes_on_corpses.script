@@ -16,7 +16,7 @@ local SETTINGS = {
 
 local _used_corpses = {}
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_local_looting") then
 		local_looting = data["curr_level"]
 	end
@@ -45,7 +45,11 @@ function load_state(m)
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
 	
     RegisterScriptCallback("npc_on_use", npc_on_use)
     RegisterScriptCallback("server_entity_on_unregister", server_entity_on_unregister)

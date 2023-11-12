@@ -5,7 +5,7 @@ add_lockpick_diff_reduc = 0
 
 local lockpick_mastery = 0
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (not arti_lootboxes) then return end
 	if (id == "perk_lockpick_mastery") then
 		lockpick_mastery = data["curr_level"]
@@ -33,5 +33,9 @@ function arti_lootboxes.build_diff(box_sec)
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 end

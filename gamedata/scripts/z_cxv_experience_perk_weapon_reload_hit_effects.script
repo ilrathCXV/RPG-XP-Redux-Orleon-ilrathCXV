@@ -2,6 +2,8 @@
 local gunslinger = 0
 local rifleman = 0
 local heavy_gunner = 0
+local reload_bonuses = {[0] = 0, [1] = 11, [2] = 16, [3] = 25, [4] = 37, [5] = 55} 
+
 local berserker = 0
 local jamming_shot = 0
 local disarming_shot = 0
@@ -10,8 +12,6 @@ local deadeye = 0
 local lucky_strike = 0
 
 local vampirism = 0
--- local warmonger = 0
-local bloody_mess = 0
 
 local zone_slayer = 0
 local fourth_times = 0
@@ -20,7 +20,15 @@ local fourth_times_timer_add = {[0] = 0, [1] = 0, [2] = 5, [3] = 10 } -- Each su
 local glass_cannon = 0
 local glass_cannon_exp = { [1] = 0.5, [2] = 0.85, [3] = 1.2 } -- At 0 HP (lol): 32.3% | 60.91% | 95.7%
 
-local function experience_perk_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
+local wick_mode = 0
+local string_find = string.find
+local wick_inclusions = {
+	"vz61",
+	"kiparis",
+}
+
+
+local function experience_skill_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
 	--[[
 	if (id == "perk_ghost_ammo") then
 		ghost_ammo = data["curr_level"]
@@ -50,14 +58,6 @@ local function experience_perk_on_update(id, data)	-- messy I know (will look in
 	if (id == "perk_vampirism") then
 		vampirism = data["curr_level"]
 	end
-	--[[
-	if (id == "perk_warmonger") then
-		warmonger = data["curr_level"]
-	end
-	--]]
-	if (id == "perk_bloody_mess") then
-		bloody_mess = data["curr_level"]
-	end
 	if (id == "perk_deadeye") then
 		deadeye = data["curr_level"]
 	end
@@ -74,6 +74,9 @@ local function experience_perk_on_update(id, data)	-- messy I know (will look in
 
 	if (id == "perk_glass_cannon") then
 		glass_cannon = data["curr_level"]
+	end
+	if (id == "perk_wick_mode") then
+		wick_mode = data["curr_level"]
 	end
 end
 
@@ -144,7 +147,7 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
-
+--[[
 function kaboom(npc, dice)
 	if not dice then return end
     local boom = "mine_new_blow"
@@ -170,6 +173,7 @@ function kaboom(npc, dice)
         printf("No luck this time, dice is %s", dice)
     end
 end
+--]]
 
 local function get_object_by_id(id) -- same as _g.script one but without spamming in console
     if not id then return end
@@ -194,7 +198,7 @@ function actor_on_update()
 	time_g = math_floor(time_global() * 0.01)
 	
 	if (time_g > update_1000ms_timer) then
-		if (fourth_times >= 1) and (time_g > fourth_timer) and (fourth_times_counter > 0) and (fourth_timer > 0) then
+		if (fourth_times > 0) and (time_g > fourth_timer) and (fourth_times_counter > 0) and (fourth_timer > 0) then
 			fourth_times_counter = 0
 			fourth_timer = 0
 			play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
@@ -205,7 +209,9 @@ end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
-function perk_damage_effects(npc, shit, bone_id, flags)
+function perk_damage_effects(monster, shit, bone_id, flags)
+	
+	if not monster:alive() then return end
 	
 	if shit.draftsman:id() ~= db.actor:id() then
 		return
@@ -217,23 +223,32 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	
 	if shit.power >= 50 then return end
 	
-	local isCompanion = npc:has_info("npcx_is_companion")
+	local isCompanion = monster:has_info("monsterx_is_companion")
 	if isCompanion then return end
 	
     if not (shit.draftsman and shit.draftsman:id() == 0) then return end
     if shit.draftsman:id() ~= db.actor:id() then return end
 
-    local weapon = db.actor:active_item()
-    if not weapon then return end
+    local weapon = level.object_by_id(shit.weapon_id)
+	
+    if weapon == nil then 
+		return 
+	end
+	
+	printf("[RPG - Hit Effects] Weapon registered: %s", weapon:section())
+	
+	if (not IsWeapon(weapon)) and (not IsGrenade(weapon)) and (not IsMelee(weapon)) then
+		printf("[RPG - Hit Effects] Not legit: W - %s, G - %s, M - %s", IsWeapon(weapon), IsGrenade(weapon), IsMelee(weapon))
+		return
+	end
 
     local weapon_class = sortK_of(weapon)
-	local head_shot = perk_based_artefacts_bone_mapper.is_critical_bone(npc:clsid(), bone_id)
+	local head_shot = perk_based_artefacts_bone_mapper.is_critical_bone(monster:clsid(), bone_id)
 	
 	local is_breaked = ((bone_id >=20) and (bone_id <= 45))
     local is_breaked2 = bone_id >=36
 
     local base_shit = shit.power
-	
 	
 	local ammo_type_number
 	local ammo_list
@@ -262,9 +277,9 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	-- Lucky Strike + Deadeye: 	Critical damage and chance modifiers --
 	-------------------------------------------------------------------
 
-	if (lucky_strike <= 0) and (deadeye >= 1) then	-- if you have DE but don't have LS...
+	if (lucky_strike <= 0) and (deadeye > 0) then	-- if you have DE but don't have LS...
 		criticalChance = 1							-- Crit Chance is 0.1%
-	elseif (lucky_strike >= 1) then
+	elseif (lucky_strike > 0) then
 		criticalChance = (lucky_strike ^ 2) * 10	-- Crit Chance is (LS^2)%
 	end
 	
@@ -273,59 +288,33 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 		fourth_mult = 2
 	end
 	
-	if npc.health > 0 then
+	------------------------------------------------------------------------------------------------
+	-- GLASS CANNON: While lower than 65% health, gain exp. damage bonus the lower your health is --
+	------------------------------------------------------------------------------------------------
 	
-		------------------------------------------------------------------------------------------------
-		-- GLASS CANNON: While lower than 65% health, gain exp. damage bonus the lower your health is --
-		------------------------------------------------------------------------------------------------
-		
-		if (db.actor.health < 0.65) and (glass_cannon > 0) then
-			shit.power = shit.power * (2 - db.actor.health)^(glass_cannon_exp[glass_cannon])
-		end
-		
-		-------------------------------------------------------------------
-		-- Lucky Strike + Deadeye: 	Critical damage and chance modifiers --
-		-------------------------------------------------------------------
-		
-		if (math.random(1000) <= criticalChance) then
-			
-			fourth_mult = 2
-			
-			if (lucky_strike >= 1) and (deadeye <= 0) then	-- if you have LS but don't have DE...
-				criticalMultiplier = 1.1					-- Crit Multiplier is 10%
-			elseif (deadeye >= 1) then
-				criticalMultiplier = 1 + (0.25 * deadeye)	-- Crit Multiplier is (25  * DE)%
-			end
-		
-			txt = "Critical hit for " .. criticalMultiplier .. "x damage!"
-			sms(2, txt, 5)
-			play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, criticalMultiplier)
-			shit.power = shit.power * criticalMultiplier
-		end
-		
-		-----------------------------------------------------------------------------------------
-		-- Jamming Shot (also works with melees): Shooting an enemy's arms "jams" their weapon --
-		-----------------------------------------------------------------------------------------
-
-		if is_breaked and jamming_shot >= 1 then
-			local weapon2 = npc:active_item() --Багает оружие противника
-			if weapon2 then weapon2:unload_magazine(false) end
-		end
-		
-		--------------------------------------------------------------------------------------------------------------------------
-		-- Disarming Shot: 15% chance to make an NPC drop their weapon when shot in the hands (condition forced to 15%) --
-		--------------------------------------------------------------------------------------------------------------------------
-
-		if disarming_shot >= 1 and is_breaked2 then
-			local weapon2 = npc:active_item()
-			local dropChance = math.random(100) <= 15
-			if weapon and weapon2 and dropChance then
-				weapon2:set_condition(0.15)
-				npc:drop_item(weapon2)
-			end
-		end
+	if (db.actor.health < 0.65) and (glass_cannon > 0) then
+		shit.power = shit.power * (2 - db.actor.health)^(glass_cannon_exp[glass_cannon])
 	end
 	
+	-------------------------------------------------------------------
+	-- Lucky Strike + Deadeye: 	Critical damage and chance modifiers --
+	-------------------------------------------------------------------
+	
+	if (math.random(1000) <= criticalChance) then
+		
+		fourth_mult = 2
+		
+		if (lucky_strike > 0) and (deadeye <= 0) then	-- if you have LS but don't have DE...
+			criticalMultiplier = 1.1					-- Crit Multiplier is 10%
+		elseif (deadeye > 0) then
+			criticalMultiplier = 1 + (0.25 * deadeye)	-- Crit Multiplier is (25  * DE)%
+		end
+	
+		txt = "Critical hit for " .. criticalMultiplier .. "x damage!"
+		sms(2, txt, 5)
+		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, criticalMultiplier)
+		shit.power = shit.power * criticalMultiplier
+	end
 	--------------------------------------------------------------------------------------------------------
 	-- On Your Mark: Returns ammo to the mag if landing enough successful shots in a short period of time --
 	--------------------------------------------------------------------------------------------------------	
@@ -397,16 +386,201 @@ function perk_damage_effects(npc, shit, bone_id, flags)
 	local damage_bonus_news = tonumber(string.format("%.3f", damage_bonus))
 	if damage_bonus_news >= 0.0001 then
 		printf("///////////   RPG System: Damage increase in progress  //////////////////")
-		printf('RPG Damage increase - Extra damage to the enemy: %s', damage_bonus)
-	end
-	
-	if damage_bonus > 0 then
-		local life_removed = npc.health - (damage_bonus * difficulty_multiplier_player[game_num])	-- account for difficulty to avoid getting around it
-		printf('Enemy Health after hit: %s', npc.health)
-		npc:set_health_ex(life_removed)
+		printf('RPG Damage increase - Extra damage to the monster: %s', damage_bonus)
 	end
 end
 
+if grok_bo then
+	base_grok_npc = grok_bo.npc_on_before_hit
+	grok_bo.npc_on_before_hit = function(npc, shit, bone_id, flags)
+		
+		if shit.draftsman:id() ~= db.actor:id() then
+			return
+		end
+		
+		if bone_id == 65535 then
+			return
+		end
+		
+		if not (shit.draftsman and shit.draftsman:id() == 0) then return end
+		if shit.draftsman:id() ~= db.actor:id() then return end
+		
+		local weapon = level.object_by_id(shit.weapon_id)
+		if not weapon or weapon == nil then
+			printf("[RPG - Hit Effects]: No weapon/damage source found")
+			return
+		end
+		
+		local base_npc_health = npc and npc.health or 0
+		base_grok_npc(npc, shit, bone_id, flags)
+		local true_damage = (base_npc_health - (npc and npc.health)) or 0
+		
+		if true_damage <= 0 then return end
+
+		local weapon_class = sortK_of(weapon)
+		local head_shot = perk_based_artefacts_bone_mapper.is_critical_bone(npc:clsid(), bone_id)
+		
+		local is_breaked = ((bone_id >=20) and (bone_id <= 45))
+		local is_breaked2 = bone_id >=36
+		
+		if base_npc_health > 0 then
+		
+			local ammo_type_number
+			local ammo_list
+			local ammo_section
+			local pellet_count
+			local fourth_mult = 1
+
+			if (fourth_times > 0) then
+				ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
+				ammo_type_number = weapon:get_ammo_type()
+				ammo_section = ammo_list[ammo_type_number+1]
+				pellet_count = SYS_GetParam(2, ammo_section, "buck_shot") or 1
+			end
+
+			-------------------------------------------------------------------
+			-- Lucky Strike + Deadeye: 	Critical damage and chance modifiers --
+			-------------------------------------------------------------------
+
+			if (lucky_strike <= 0) and (deadeye > 0) then	-- if you have DE but don't have LS...
+				criticalChance = 1							-- Crit Chance is 0.1%
+			elseif (lucky_strike > 0) then
+				criticalChance = (lucky_strike ^ 2) * 10	-- Crit Chance is (LS^2)%
+			end
+
+			if head_shot then
+				criticalChance = criticalChance * 1.5
+				fourth_mult = 2
+			end
+
+			------------------------------------------------------------------------------------------------
+			-- GLASS CANNON: While lower than 65% health, gain exp. damage bonus the lower your health is --
+			------------------------------------------------------------------------------------------------
+			
+			if (db.actor.health < 0.65) and (glass_cannon > 0) then
+				shit.power = shit.power * (2 - db.actor.health)^(glass_cannon_exp[glass_cannon])
+			end
+			
+			-------------------------------------------------------------------
+			-- Lucky Strike + Deadeye: 	Critical damage and chance modifiers --
+			-------------------------------------------------------------------
+			
+			if (math.random(1000) <= criticalChance) then
+				
+				fourth_mult = 2
+				
+				if (lucky_strike > 0) and (deadeye <= 0) then	-- if you have LS but don't have DE...
+					criticalMultiplier = 1.1					-- Crit Multiplier is 10%
+				elseif (deadeye > 0) then
+					criticalMultiplier = 1 + (0.25 * deadeye)	-- Crit Multiplier is (25  * DE)%
+				end
+			
+				txt = "Critical hit for " .. criticalMultiplier .. "x damage!"
+				sms(2, txt, 5)
+				play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, criticalMultiplier)
+			end
+			
+			-----------------------------------------------------------------------------------------
+			-- Jamming Shot (also works with melees): Shooting an enemy's arms "jams" their weapon --
+			-----------------------------------------------------------------------------------------
+
+			if is_breaked and jamming_shot > 0 then
+				local weapon2 = npc:active_item() --Багает оружие противника
+				if weapon2 then weapon2:unload_magazine(false) end
+			end
+			
+			--------------------------------------------------------------------------------------------------------------------------
+			-- Disarming Shot: 15% chance to make an NPC drop their weapon when shot in the hands (condition forced to 15%) --
+			--------------------------------------------------------------------------------------------------------------------------
+
+			if disarming_shot > 0 and is_breaked2 then
+				local weapon2 = npc:active_item()
+				local dropChance = math.random(100) <= 15
+				if weapon and weapon2 and dropChance then
+					weapon2:set_condition(0.15)
+					npc:drop_item(weapon2)
+				end
+			end
+
+			--------------------------------------------------------------------------------------------------------
+			-- On Your Mark: Returns ammo to the mag if landing enough successful shots in a short period of time --
+			--------------------------------------------------------------------------------------------------------	
+
+			if (fourth_times > 0) and (ammo_type_number) and (ammo_list) and (ammo_section) then
+				if not IsMelee(weapon) then
+						
+					if (pellet_count == 1) then
+						fourth_times_counter = fourth_times_counter + (1 * fourth_mult)
+						fourth_timer = time_g + 60 + fourth_times_timer_add[fourth_times]			-- 6 seconds baseline
+					end
+					if (pellet_count > 1) then
+						fourth_times_counter = fourth_times_counter + ((1 / pellet_count) * fourth_mult)
+						fourth_timer = time_g + 60 + fourth_times_timer_add[fourth_times]			-- 6 seconds baseline
+					end
+				end
+			end
+
+			if (fourth_times_counter >= 8) then
+				-- alife_create_item(ammo_section, db.actor, {ammo = fourth_times})
+				
+				local ammo_to_load = 0
+				local ammo_counter = fourth_times
+				-- Mags Patch
+				if magazine_binder then
+					local mag_data = magazine_binder.get_data(weapon:id())
+					if (mag_data) then
+						local ammo_cap = SYS_GetParam(2, mag_data["section"], "max_mag_size")
+								
+						for i=1, ammo_cap do
+							if (mag_data["loaded"][i] == ammo_section) then
+								ammo_to_load = ammo_to_load + 1
+							end
+							if (mag_data["loaded"][i] ~= ammo_section) and (ammo_counter > 0) then 
+								mag_data["loaded"][i] = ammo_section
+								ammo_to_load = ammo_to_load + 1
+								ammo_counter = ammo_counter - 1
+							end
+						end
+						
+						if (ammo_counter > 0) then
+							alife_create_item(ammo_section, db.actor, { ammo = ammo_counter })
+						end		
+						
+						magazine_binder.set_data(weapon:id(), mag_data)
+					end
+					weapon:set_ammo_elapsed(ammo_to_load)
+				end
+				-- End Patch --
+				
+				if not magazine_binder then
+					local ammo_total = weapon:get_ammo_in_magazine()
+					local mag_size = ini_sys:r_u32(weapon:section(), "ammo_mag_size")
+					ammo_total = ammo_total + fourth_times
+					if (ammo_total > mag_size) then
+						ammo_counter = ammo_total - mag_size
+						alife_create_item(ammo_section, db.actor, { ammo = ammo_counter })
+						ammo_total = mag_size
+					end
+					weapon:set_ammo_elapsed(ammo_total)
+				end
+				
+				play_sound_on_actor("interface\\item_usage\\pickup", 1.2, random_float(0.85, 1.15))
+				fourth_times_counter = 0
+				fourth_timer = 0
+			end
+
+			local damage_bonus = true_damage * criticalMultiplier
+			if damage_bonus > true_damage then
+				local damage_bonus_news = tonumber(string.format("%.3f", damage_bonus))
+				printf("///////////   RPG System: Damage increase in progress  //////////////////")
+				printf('RPG Damage increase - Extra damage to the enemy: %s', damage_bonus)
+				local life_removed = npc.health - damage_bonus
+				printf('Enemy Health after hit: %s', npc.health)
+				npc:set_health_ex(life_removed)
+			end
+		end
+	end
+end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -414,17 +588,8 @@ function perk_kill_effects(victim, killer)
     if not killer then return end
     if killer:id() ~= db.actor:id() then return end
 	
--------------------------------------------------------------------------> Bloody Mess (SMG)/Bloodbath (Special)
-	if bloody_mess >= 1 then
-		local weapon = db.actor:active_item()
-		if weapon and not IsMelee(weapon) then
-			local dice = math.random(100) <= bloody_mess
-			kaboom(victim, dice)
-		end
-	end
-	
 -------------------------------------------------------------------------> Vampirism
-	if vampirism >= 1 then
+	if vampirism > 0 then
 		if killer.health < 1 then
 			killer:change_health(0.025 * vampirism)
 		end
@@ -432,25 +597,6 @@ function perk_kill_effects(victim, killer)
 			killer:change_power(0.025 * vampirism)
 		end
 	end
-	
--------------------------------------------------------------------------> Warmonger
---[[
-    if warmonger >= 1 then
-        local weapon = killer:active_item()
-		if not weapon or not IsWeapon(weapon) then return end
-		
-        local clip = ini_sys:r_float_ex(weapon:section(), "ammo_mag_size") or 1
-		if clip < 3 then return end
-		local ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
-		local ammoCurrent = weapon:get_ammo_type()
-		local ammoSec = ammo_list[ammoCurrent + 1]
-		
-		local war_bonus = math.floor(clip * 0.34)
-        local regain = math.random(1, war_bonus) or 1
-		printf('RPG System - Warmonger Refund: %s', regain)
-		alife_create_item(ammoSec, killer, {ammo = regain})
-	end
---]]	
 end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -498,49 +644,51 @@ function animation_weapons(anim_table,obj)
 	if (gunslinger < 1) and (rifleman < 1) and (heavy_gunner < 1) and (zone_slayer < 1) then return end
 	
 	local weapon_class = sortK_of(obj)
+	
 	local reload_string = tostring(anim_table.anm_name)
 	local wpn_sec = obj:section()
 	local hud_sec = ini_sys:r_string_ex(wpn_sec,"hud")
-	
+
 	local reload_val = parse_list(ini_sys,hud_sec,reload_string)
-	local reload_speed = reload_val and reload_val[2] and tonumber(reload_val[2])
-	local reload_speed_2 = reload_val and reload_val[3] and tonumber(reload_val[3])
-	local reload_speed_3 = reload_val and reload_val[4] and tonumber(reload_val[4])
-	local reload_speed_4 = reload_val and reload_val[5] and tonumber(reload_val[5])
-	
+
 	local animation_speed = anim_table.anm_speed
-	
-	if reload_speed then
-		animation_speed = reload_speed
-	elseif reload_speed_2 then
-		animation_speed = reload_speed_2
-	elseif reload_speed_3 then
-		animation_speed = reload_speed_3
-	elseif reload_speed_4 then
-		animation_speed = reload_speed_4
+	for k, v in pairs(reload_val) do
+		if tonumber(v) then
+			animation_speed = tonumber(v)
+			break
+		end
 	end
 	
 	local anm_bonus = 1
 ------------------------------------------------------------> Gunslinger
-	if (gunslinger >= 1) and ((weapon_class == "smg") or (weapon_class == "pistol")) then
-        anm_bonus = 1 + (math.floor(5^(1.5 + (0.25 * gunslinger))) * 0.01)		-- 11 | 16 | 25 | 37 | 55
+	if (gunslinger > 0) and ((weapon_class == "smg") or (weapon_class == "pistol")) then
+        anm_bonus = anm_bonus + (reload_bonuses[gunslinger] * 0.01)		-- 11 | 16 | 25 | 37 | 55
 		--printf("SMG Reload")
 	end
 ------------------------------------------------------------> Rifleman
-	if (rifleman >= 1) and (weapon_class == "rifle") then
-        anm_bonus = 1 + (math.floor(5^(1.5 + (0.25 * rifleman))) * 0.01)		-- 11 | 16 | 25 | 37 | 55
+	if (rifleman > 0) and (weapon_class == "rifle") then
+        anm_bonus = anm_bonus + (reload_bonuses[rifleman] * 0.01)		-- 11 | 16 | 25 | 37 | 55
 		--printf("Rifle Reload")
 	end
 ------------------------------------------------------------> Heavy Weapons
-	if (heavy_gunner >= 1) and ((weapon_class == "heavy") or (weapon_class == "shotgun") or (weapon_class == "sniper")) then
-        anm_bonus = 1 + (math.floor(5^(1.5 + (0.25 * heavy_gunner))) * 0.01)	-- 11 | 16 | 25 | 37 | 55
+	if (heavy_gunner > 0) and ((weapon_class == "heavy") or (weapon_class == "shotgun") or (weapon_class == "sniper")) then
+        anm_bonus = anm_bonus + (reload_bonuses[heavy_gunner] * 0.01)	-- 11 | 16 | 25 | 37 | 55
 		--printf("Heavy Reload")
 	end
-	
-	if (zone_slayer >= 1) and (weapon_class == "shotgun") then
+------------------------------------------------------------> Zone Slayer
+	if (zone_slayer > 0) and (weapon_class == "shotgun") then
 		local clip = ini_sys:r_float_ex(obj:section(), "ammo_mag_size") or 3
 		if clip <= 2 then
 			anm_bonus = anm_bonus + 0.15
+		end
+	end
+------------------------------------------------------------> Wick Mode
+	if wick_mode > 0 then
+		for i=1,#wick_inclusions do
+			if (string_find(wpn_sec, wick_inclusions[i])) or (weapon_class == "pistol") then
+				anm_bonus = anm_bonus + 0.15
+				break
+			end
 		end
 	end
 	
@@ -552,9 +700,16 @@ end
 
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 
-    RegisterScriptCallback("npc_on_before_hit",             perk_damage_effects)
+	--if not grok_bo then
+	--	RegisterScriptCallback("npc_on_before_hit",             perk_damage_effects)
+	--end
+	
     RegisterScriptCallback("monster_on_before_hit",         perk_damage_effects)
 	
     RegisterScriptCallback("npc_on_death_callback",         perk_kill_effects)

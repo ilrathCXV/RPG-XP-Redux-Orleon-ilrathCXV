@@ -3,7 +3,7 @@
 
 local perk_fun_allowed = 0
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_fun_allowed") then
 		perk_fun_allowed = data["curr_level"]
 	end
@@ -95,6 +95,10 @@ function remove_item_from_slot(slot_item)
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
 	RegisterScriptCallback("actor_item_to_belt", set_on_slot)
 end

@@ -11,6 +11,7 @@
 -- Modified by ilrathCXV
 -- 2023/02/07 - Added in "Careful Handler" and "Ammo Finder" Logic
 -- 2023/04/04 - GAMMA 0.9 adjustment
+-- 2023/10/22 - GAMMA 0.91 adjustment (none needed)
 -- =======================================================================================
 
 -------------------------------
@@ -21,7 +22,8 @@ local careful_handler = 0
 local careful_handler_bonus = { [0] = 0, [1] = 3, [2] = 6, [3] = 9, [4] = 12, [5] = 15 }
 local ammo_finder_bonus = { [0] = 0, [1] = 0.20, [2] = 0.40, [3] = 0.60, [4] = 0.80, [5] = 1.00 } -- (extra 20/40/60/80/100% ammo)
 
-local function experience_perk_on_update(id, data)
+
+local function experience_skill_on_update(id, data)
 	if (id == "perk_ammo_finder") then
 		ammo_finder = data["curr_level"]
 	end
@@ -974,7 +976,11 @@ end
 
 function on_game_start()
 	-- RPG_PERKS
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
 	-- RPG_PERKS END
 
 	RegisterScriptCallback("save_state",save_state)

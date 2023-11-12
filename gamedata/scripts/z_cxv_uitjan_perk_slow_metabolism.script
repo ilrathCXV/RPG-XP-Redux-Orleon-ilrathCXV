@@ -1,13 +1,17 @@
 local slow_metabolism = 0							-- Slow Metabolism: reduces satiety drain from various items on use; at max rank, will add 50% of an item's satiety (and hopefully thirst) as a timed boost over 60sec
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_slow_metabolism") then
 		slow_metabolism = data["curr_level"]
 	end
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 
     RegisterScriptCallback("actor_on_item_use",         get_actor_status_boost)
     RegisterScriptCallback("actor_on_update",             actor_status_boost)

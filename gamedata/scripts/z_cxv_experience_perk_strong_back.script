@@ -1,6 +1,7 @@
 local strong_back = 0
+local strong_back_addition = {[0] = 0, [1] = 5, [2] = 10, [3] = 15, [4] = 25, [5] = 40} 
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_strong_back") then
 		strong_back = data["curr_level"]
 	end	
@@ -13,218 +14,20 @@ base_haru_weight = haru_skills.update_strength
 function haru_skills.update_strength()
     base_haru_weight()
 	if (strong_back > 0) then
-		local strong_back_addition = strong_back * 5
-		weight.add_weight("cxv_strong_back", strong_back_addition, true)
+		weight.add_weight("cxv_strong_back", strong_back_addition[strong_back], true)
 	end
 	if (strong_back <= 0) then
 		weight.remove_weight("cxv_strong_back")
 	end
 end
 
-------------------------------------------------------------------------------
------------ Capstone: Travel when overweight regardless of setting -----------
--------------------- done via monkey patches (ilrathCXV) ---------------------
-------------------------------------------------------------------------------
-base_travel_logic = game_fast_travel.map_spot_menu_property_clicked
 
-local enabled = enabled
-local combattravel = game_fast_travel.combattravel
-local weighttravel = game_fast_travel.weighttravel
-local damagetravel = game_fast_travel.damagetravel
-local stormtravel = game_fast_travel.stormtravel
-local longnames = game_fast_travel.longnames
-local markermessage = game_fast_travel.markermessage
-local notime = game_fast_travel.notime
-local tsmarts = game_fast_travel.tsmarts
-
-local base_bbp_extra_weight = game_fast_travel.bbp_extra_weight
-
-function game_fast_travel.map_spot_menu_property_clicked(property_ui,id,level_name,prop)
-	if (strong_back < 3) then base_travel_logic(property_ui,id,level_name,prop) end
-	
-	local se_obj = alife_object(id)
-	if not (se_obj) then
-		return
-	end
-
-	if (longnames) then
-		if (prop ~= (game.translate_string("st_pda_fast_travel_to").." "..game.translate_string(level_name).." "..game.translate_string(se_obj:name()))) then
-			return
-		end
-	else
-		if (prop ~= (game.translate_string("st_pda_fast_travel_to").." "..game.translate_string(se_obj:name()))) then
-			return
-		end
-	end
-
-	-- Prevent fast travel if in combat.
-	if not (combattravel) then
-		if not (is_empty(xr_combat_ignore.fighting_with_actor_npcs)) then
-			hide_hud_pda()
-			actor_menu.set_msg(1, game.translate_string("st_travel_event"),4)
-			return
-		end
-	end
-	
---[[
-	-- Prevent fast travel while overloaded.
-	if not (weighttravel) then
-		if (strong_back < 3) then
-			local suit = db.actor:item_in_slot(7)
-			local diff = db.actor:get_total_weight() - db.actor:get_actor_max_walk_weight() - (suit and suit:get_additional_max_weight() or 0) - bbp_extra_weight()
-			if diff > 0 then
-				hide_hud_pda()
-				actor_menu.set_msg(1, game.translate_string("st_travel_overloaded"),4)
-				return
-			end
-		end
-	end
---]]
-
-	-- Prevent fast travel if bleeding and/or iradiated.
-	if not (damagetravel) then
-		local bleeding = db.actor.bleeding > 0
-		local radiation = db.actor.radiation > 0
-		if (bleeding or radiation) then
-			if (bleeding and radiation) then
-				actor_menu.set_msg(1, game.translate_string("st_sleep_bleeding_irradiated"),5)
-			elseif (bleeding) then
-				actor_menu.set_msg(1, game.translate_string("st_sleep_bleeding"),4)
-			elseif (radiation) then
-				actor_menu.set_msg(1, game.translate_string("st_sleep_irradiated"),4)
-			end
-			hide_hud_pda()
-			return
-		end
-	end
-
-	-- Prevent fast travel if an emission or psi-storm currently ongoing.
-	if not (stormtravel) then
-		if (xr_conditions.surge_started() or psi_storm_manager.is_started()) then
-			actor_menu.set_msg(1, game.translate_string("st_travel_event"),4)
-			hide_hud_pda()
-			return
-		end
-	end
-
-	-- forward time when traveling
-	if not (notime) then
-		local dist = db.actor:position():distance_to(se_obj.position)
-		level.change_game_time(0,math.floor(dist/1000)+math.random(0,2),math.random(1,59))
-		surge_manager.get_surge_manager().time_forwarded = true
-		psi_storm_manager.get_psi_storm_manager().time_forwarded = true
-		level_weathers.get_weather_manager():forced_weather_change()
-	end
-
-	if (se_obj.online) then
-		db.actor:set_actor_position(se_obj.position)
-		hide_hud_pda()
-	else
-		ChangeLevel(se_obj.position, se_obj.m_level_vertex_id, se_obj.m_game_vertex_id, VEC_ZERO, true)
-	end
-	-- edit demonized, returns true and params on success
-	return true, {
-		se_obj = se_obj,
-		dist = db.actor:position():distance_to(se_obj.position),
-	}
-	-- edit demonized end
-end
-
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
-base_backpack_travel_logic = game_backpack_travel.map_spot_menu_property_clicked
-
-local bp_travel = game_backpack_travel.bp_travel
-local bp_combat = game_backpack_travel.bp_combat
-local bp_damage = game_backpack_travel.bp_damage
-local bp_notime = game_backpack_travel.bp_notime
-local bp_storm = game_backpack_travel.bp_storm
-local bp_weight = game_backpack_travel.bp_weight
-
-function game_backpack_travel.map_spot_menu_property_clicked(property_ui,id,level_name,prop)
-	if (strong_back < 3) then base_backpack_travel_logic(property_ui,id,level_name,prop) end
-
-	local se_obj = alife_object(id)
-	if not (se_obj) then
-		return
-	end
-	if (prop == game.translate_string("bp_to")) then
-		if not (bp_combat) then
-			if not (is_empty(xr_combat_ignore.fighting_with_actor_npcs)) then
-				hide_hud_pda()
-				actor_menu.set_msg(1, game.translate_string("st_travel_event"),4)
-				return
-			end
-		end
-
---[[
-			if not (bp_weight) then
-			if (strong_back < 3) then
-				local suit = db.actor:item_in_slot(7)
-				local diff = db.actor:get_total_weight() - db.actor:get_actor_max_walk_weight() - (suit and suit:get_additional_max_weight() or 0) - bbp_extra_weight()
-				if diff > 0 then
-					hide_hud_pda()
-					actor_menu.set_msg(1, game.translate_string("st_travel_overloaded"),4)
-					return
-				end
-			end
-		end
---]]
-		if not (bp_damage) then
-			local bleeding = db.actor.bleeding > 0
-			local radiation = db.actor.radiation > 0
-			if (bleeding or radiation) then
-				if (bleeding and radiation) then
-					actor_menu.set_msg(1, game.translate_string("st_sleep_bleeding_irradiated"),5)
-				elseif (bleeding) then
-					actor_menu.set_msg(1, game.translate_string("st_sleep_bleeding"),4)
-				elseif (radiation) then
-					actor_menu.set_msg(1, game.translate_string("st_sleep_irradiated"),4)
-				end
-				hide_hud_pda()
-				return
-			end
-		end
-		if not (bp_storm) then
-			if (xr_conditions.surge_started() or psi_storm_manager.is_started()) then
-				actor_menu.set_msg(1, game.translate_string("st_travel_event"),4)
-				hide_hud_pda()
-				return
-			end
-		end
-		if not (bp_notime) then
-			local dist = db.actor:position():distance_to(se_obj.position)
-			level.change_game_time(0,math.floor(dist/1000)+math.random(0,2),math.random(1,59))
-			surge_manager.get_surge_manager().time_forwarded = true
-			psi_storm_manager.get_psi_storm_manager().time_forwarded = true
-			level_weathers.get_weather_manager():forced_weather_change()
-		end
-
-		if (level_name == level.name()) then
-			db.actor:set_actor_position(se_obj.position)
-			hide_hud_pda()
-		else
-			ChangeLevel(se_obj.position,se_obj.m_level_vertex_id,se_obj.m_game_vertex_id,VEC_ZERO, true)
-		end
-
-		-- edit demonized, returns true and params on success
-		return true, {
-			se_obj = se_obj,
-			dist = db.actor:position():distance_to(se_obj.position),
-		}
-		-- edit demonized end
-		
-	elseif (prop == game.translate_string("bp_open")) then
-		local b = level.object_by_id(id)
-		if (b) then
-			hide_hud_inventory()
-			b:use(db.actor)
-		end
-	end
-end
 
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 end

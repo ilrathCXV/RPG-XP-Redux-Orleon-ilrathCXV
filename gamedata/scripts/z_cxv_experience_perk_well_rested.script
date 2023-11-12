@@ -39,7 +39,7 @@ end
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_well_rested") then
 		well_rested = data["curr_level"]
 	end
@@ -127,6 +127,10 @@ end
 function on_game_start()
 	--RegisterScriptCallback("load_state",load_state)
 	--RegisterScriptCallback("save_state",save_state)
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 	RegisterScriptCallback("actor_on_update", 		actor_on_update)
 end

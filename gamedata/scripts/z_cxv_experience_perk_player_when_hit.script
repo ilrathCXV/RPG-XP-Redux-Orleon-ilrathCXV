@@ -6,9 +6,10 @@ local lightweight_dodge = 0
 local lightweight_dodge_chance = 0
 local wick_mode = 0
 local sturdy_legs = 0
+local demo_expert = 0
 
 local floor = math.floor
-local weaponCat = a_cxv_experience_perk_weapon_reload_hit_effects.sortK_of
+local weaponCat = z_cxv_experience_perk_weapon_reload_hit_effects.sortK_of
 local string_find   = string.find
 
 local wick_inclusions = {
@@ -16,7 +17,7 @@ local wick_inclusions = {
 	"kiparis",
 }
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_berserker") then
 		berserker = data["curr_level"]
 	end
@@ -37,6 +38,9 @@ local function experience_perk_on_update(id, data)
 	end
 	if (id == "perk_sturdy_legs") then
 		sturdy_legs = data["curr_level"]
+	end
+	if (id == "perk_demo_expert") then
+		demo_expert = data["curr_level"]
 	end
 end
 
@@ -122,10 +126,10 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 	local player_weapon = db.actor:active_item()
 	if shit.type == hit.fire_wound and ((wick_mode > 0) or (lightweight_dodge > 0)) then
 		local dodge_chance = lightweight_dodge_chance * 10
-		if a_cxv_experience_perk_weapon_reload_hit_effects and player_weapon then
+		if z_cxv_experience_perk_weapon_reload_hit_effects and player_weapon then
 			if (weaponCat(player_weapon) == "pistol") then
 				dodge_chance = dodge_chance + 150
-			elseif a_cxv_experience_perk_weapon_reload_hit_effects and (weaponCat(player_weapon) == "smg") then
+			elseif z_cxv_experience_perk_weapon_reload_hit_effects and (weaponCat(player_weapon) == "smg") then
 				local is_exception = false
 				for i=1,#wick_inclusions do
 					if (string.find(player_weapon:section(), wick_inclusions[i])) and not is_exception then
@@ -188,6 +192,7 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 		
     end
 	
+------------------------------------------------------------> Thick Skin	
 	if shit.draftsman and mutant_slayer >= 1 then
 		if mutant_list[shit.draftsman:clsid()] and allowed_hit_types[shit_type] then
 		
@@ -203,8 +208,14 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 		end
     end
 	
+------------------------------------------------------------> Sturdy Legs
 	if shit.draftsman and (shit.draftsman:id() == db.actor:id()) and (not is_elemental) and (shit_type ~= hit.explosion) and (sturdy_legs > 0) then
 		damage_mult = damage_mult - 0.75
+	end
+	
+------------------------------------------------------------> Explosive Personality (Damage Reduction)
+	if shit.draftsman and demo_expert > 0 and shit_type == hit.explosion then
+		damage_mult = damage_mult - (0.05 * demo_expert)
 	end
 	
 	if damage_mult < 1.0 then
@@ -218,7 +229,11 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 	RegisterScriptCallback("actor_on_first_update", update_dodge_chance)
 	--RegisterScriptCallback("actor_item_to_ruck", update_dodge_chance)
 	RegisterScriptCallback("actor_item_to_slot", update_dodge_chance)

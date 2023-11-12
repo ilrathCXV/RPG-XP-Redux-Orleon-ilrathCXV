@@ -1,10 +1,6 @@
-if experience_core then end
-
-
-local repair_xp_value = experience_core.SETTINGS.REPAIR_ITM_XP or 1
 local bartering = 0
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_silver_tongued") then
 		bartering = data["curr_level"]
 	end
@@ -63,14 +59,22 @@ end
 function perk_silver_tongued_end()
 	UnregisterScriptCallback("actor_on_item_take", actor_on_item_buy)
 	UnregisterScriptCallback("actor_on_item_drop", actor_on_item_sell)
-	experience_core.increase_experience(totalamounttraded/75)
+	if experience_potions then
+		experience_utils.IncreaseExperience(totalamounttraded/75)
+	else
+		experience_core.increase_experience(totalamounttraded/75)
+	end
 	totalamounttraded = 0
 	item_costs = {}
 end
 
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
 
 	RegisterScriptCallback("ActorMenu_on_trade_started", perk_silver_tongued_start)
 	RegisterScriptCallback("ActorMenu_on_trade_closed", perk_silver_tongued_end)

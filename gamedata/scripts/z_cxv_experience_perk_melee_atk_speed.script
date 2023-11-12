@@ -1,7 +1,7 @@
 --[
 local fighting_stance = 0
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_fighting_stace") then
 		fighting_stance = data["curr_level"]
 	end
@@ -26,7 +26,11 @@ function fighting_stance_speed(anim_table,obj)
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 
 	RegisterScriptCallback("actor_on_hud_animation_play", fighting_stance_speed)
 end

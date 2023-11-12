@@ -3,7 +3,7 @@ local repair_junkie_bonus = { [0] = 0, [1] = 0.05, [2] = 0.10, [3] = 0.20 , [4] 
 local zone_gunsmith = 0
 local zone_gunsmith_bonus = { [0] = 0, [1] = 0, [2] = 0, [3] = 0.1 , [4] = 0.3, [5] = 0.6}	-- Jury Rigging: Starting Rank 3, grants bonus repair item refund chance
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_repair_junkie") then
 		repair_junkie = data["curr_level"]
 	end
@@ -13,159 +13,168 @@ local function experience_perk_on_update(id, data)
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 	
 	-- monkey patch for the Tinkering skill
 	local originalOnRepair = item_repair.UIRepair.OnRepair
 	item_repair.UIRepair.OnRepair = function (self)
-		local repairkit = nil
-		local supportitem = nil
-		local supportitemid = 0
-		local kitremaininguses = 0
-		local supportremaininguses = 0
-		local waslastuse = false
-		local support_waslastuse = false
-		local degrade_factor = item_repair.degrade_factor or 0.2
-		if not zz_item_repair_keep_crafting_window_open then
-			repairkit = self.obj
-		elseif self.isMultiUse and self.multiUseItemsObj[1] then -- Compatibility code for "Keep Crafting Windows Open"
-			local repair_item = nil
-			self:CollectValidItems(self.obj, self.section)
-			for id, amount in pairs(self.multiUseItemsObj[1]) do
-				repair_item = get_object_by_id(id)
-				if (repair_item) then
-					repairkit = repair_item
-				end 
+	
+		if (repair_junkie > 0) then
+			local repairkit = nil
+			local supportitem = nil
+			local supportitemid = 0
+			local kitremaininguses = 0
+			local supportremaininguses = 0
+			local waslastuse = false
+			local support_waslastuse = false
+			local degrade_factor = item_repair.degrade_factor or 0.2
+			if not zz_item_repair_keep_crafting_window_open then
+				repairkit = self.obj
+			elseif self.isMultiUse and self.multiUseItemsObj[1] then -- Compatibility code for "Keep Crafting Windows Open"
+				local repair_item = nil
+				self:CollectValidItems(self.obj, self.section)
+				for id, amount in pairs(self.multiUseItemsObj[1]) do
+					repair_item = get_object_by_id(id)
+					if (repair_item) then
+						repairkit = repair_item
+					end 
+				end
+			else
+				repairkit = self.obj
 			end
-		else
-			repairkit = self.obj
-		end
-		
-		if self.CC[2]:GetCell_Selected(true) then
-			supportitem = self.CC[2]:GetCell_Selected(true)
-			supportitemid = self.CC[2]:GetCell_Selected(true):id()
-		end
-						
-		if repairkit then
 			
-			if IsItem("multiuse", repairkit:section()) then
-				kitremaininguses = repairkit:get_remaining_uses()
-				if kitremaininguses == 1 then
+			if self.CC[2]:GetCell_Selected(true) then
+				supportitem = self.CC[2]:GetCell_Selected(true)
+				supportitemid = self.CC[2]:GetCell_Selected(true):id()
+			end
+							
+			if repairkit then
+				
+				if IsItem("multiuse", repairkit:section()) then
+					kitremaininguses = repairkit:get_remaining_uses()
+					if kitremaininguses == 1 then
+						waslastuse = true
+						local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
+						math.randomseed(seed)
+						
+						local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
+						
+						if refundbool then
+							TinkerNews()
+						
+							repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
+						end
+					end
+				elseif utils_item.is_degradable(repairkit) and repairkit:condition() <= degrade_factor then
 					waslastuse = true
-					local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
+					local seed = repairkit:id() + repairkit:condition() + supportitemid + self.con_val[1]
 					math.randomseed(seed)
 					
 					local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
 					
 					if refundbool then
 						TinkerNews()
-					
-						repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
+						repairkit:set_condition(math.min(repairkit:condition() + degrade_factor,1))
 					end
 				end
-			elseif utils_item.is_degradable(repairkit) and repairkit:condition() <= degrade_factor then
-				waslastuse = true
-				local seed = repairkit:id() + repairkit:condition() + supportitemid + self.con_val[1]
-				math.randomseed(seed)
-				
-				local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
-				
-				if refundbool then
-					TinkerNews()
-					repairkit:set_condition(math.min(repairkit:condition() + degrade_factor,1))
-				end
 			end
-		end
-		
-		if supportitem then
 			
-			if IsItem("multiuse", supportitem:section()) then
-				supportremaininguses = supportitem:get_remaining_uses()
-				if supportremaininguses == 1 then
+			if supportitem then
+				
+				if IsItem("multiuse", supportitem:section()) then
+					supportremaininguses = supportitem:get_remaining_uses()
+					if supportremaininguses == 1 then
+						support_waslastuse = true
+						local seed = supportremaininguses + supportitemid + self.con_val[1]
+						math.randomseed(seed)
+						
+						local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
+						
+						if refundbool then
+							BonusNews()
+						
+							supportitem:set_remaining_uses(supportitem:get_remaining_uses() + 1)
+						end
+					end
+				elseif utils_item.is_degradable(supportitem) and supportitem:condition() <= degrade_factor then
 					support_waslastuse = true
-					local seed = supportremaininguses + supportitemid + self.con_val[1]
+					local seed = supportitem:condition() + supportitemid + self.con_val[1]
 					math.randomseed(seed)
 					
 					local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
 					
 					if refundbool then
 						BonusNews()
+						supportitem:set_condition(math.min(supportitem:condition() + degrade_factor,1))
+					end
+				else
+					local seed = supportitemid + self.con_val[1]
+					math.randomseed(seed)
 					
-						supportitem:set_remaining_uses(supportitem:get_remaining_uses() + 1)
+					local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
+					
+					if refundbool then
+						BonusNews()
+						alife_create_item(supportitem:section(), db.actor)
 					end
 				end
-			elseif utils_item.is_degradable(supportitem) and supportitem:condition() <= degrade_factor then
-				support_waslastuse = true
-				local seed = supportitem:condition() + supportitemid + self.con_val[1]
-				math.randomseed(seed)
-				
-				local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
-				
-				if refundbool then
-					BonusNews()
-					supportitem:set_condition(math.min(supportitem:condition() + degrade_factor,1))
-				end
-			else
-				local seed = supportitemid + self.con_val[1]
-				math.randomseed(seed)
-				
-				local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
-				
-				if refundbool then
-					BonusNews()
-					alife_create_item(supportitem:section(), db.actor)
+			end
+			
+			originalOnRepair(self)
+			
+			
+			if repairkit then
+				if not waslastuse and IsItem("multiuse", repairkit:section()) then
+					local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
+					math.randomseed(seed)
+					local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
+					
+					if refundbool then
+						TinkerNews()
+						repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
+					end
+				elseif not waslastuse and utils_item.is_degradable(repairkit) then
+					local seed = repairkit:id() + repairkit:condition() + supportitemid + self.con_val[1]
+					math.randomseed(seed)
+					
+					local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
+					
+					if refundbool then
+						TinkerNews()
+						repairkit:set_condition(math.min(repairkit:condition() + degrade_factor,1))
+					end
 				end
 			end
-		end
-		
-		originalOnRepair(self)
-		
-		
-		if repairkit then
-			if not waslastuse and IsItem("multiuse", repairkit:section()) then
-				local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
-				math.randomseed(seed)
-				local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
-				
-				if refundbool then
-					TinkerNews()
-					repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
-				end
-			elseif not waslastuse and utils_item.is_degradable(repairkit) then
-				local seed = repairkit:id() + repairkit:condition() + supportitemid + self.con_val[1]
-				math.randomseed(seed)
-				
-				local refundbool = math.random() < repair_junkie_bonus[repair_junkie]
-				
-				if refundbool then
-					TinkerNews()
-					repairkit:set_condition(math.min(repairkit:condition() + degrade_factor,1))
+			
+	
+			if supportitem then
+				if not support_waslastuse and IsItem("multiuse", supportitem:section()) then
+					local seed = supportremaininguses + supportitemid + self.con_val[1]
+					math.randomseed(seed)
+					local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
+					
+					if refundbool then
+						BonusNews()
+						supportitem:set_remaining_uses(supportitem:get_remaining_uses() + 1)
+					end
+				elseif not support_waslastuse and utils_item.is_degradable(supportitem) then
+					local seed = supportitem:condition() + supportitemid + self.con_val[1]
+					math.randomseed(seed)
+					
+					local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
+					
+					if refundbool then
+						BonusNews()
+						supportitem:set_condition(math.min(supportitem:condition() + degrade_factor,1))
+					end
 				end
 			end
-		end
-		
-
-		if supportitem then
-			if not support_waslastuse and IsItem("multiuse", supportitem:section()) then
-				local seed = supportremaininguses + supportitemid + self.con_val[1]
-				math.randomseed(seed)
-				local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
-				
-				if refundbool then
-					BonusNews()
-					supportitem:set_remaining_uses(supportitem:get_remaining_uses() + 1)
-				end
-			elseif not support_waslastuse and utils_item.is_degradable(supportitem) then
-				local seed = supportitem:condition() + supportitemid + self.con_val[1]
-				math.randomseed(seed)
-				
-				local refundbool = math.random() < zone_gunsmith_bonus[zone_gunsmith]
-				
-				if refundbool then
-					BonusNews()
-					supportitem:set_condition(math.min(supportitem:condition() + degrade_factor,1))
-				end
-			end
+		else
+			originalOnRepair(self)
 		end
 	end
 	-- monkey patch end

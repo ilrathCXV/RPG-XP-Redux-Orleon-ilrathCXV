@@ -1030,25 +1030,19 @@
 	<string id="st_perk_strong_back_desc_3">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]15kg\n
-		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
-		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]15kg
 		</text>
     </string>
 	<string id="st_perk_strong_back_desc_4">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]20kg\n
-		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
-		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]25kg
 		</text>
     </string>
 	<string id="st_perk_strong_back_desc_5">
         <text>Your travels through the Zone have strengthed your body.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]25kg\n
-		%c[d_blue] - %c[ui_gray_2] Can fast travel when %c[d_green]overweight\n
-		%c[d_red] - %c[ui_gray_2] Other fast travel rules still apply
+		%c[d_blue] - %c[ui_gray_2] Increase Carry Weight by a total of %c[d_green]40kg
 		</text>
     </string>
 	
@@ -1391,19 +1385,22 @@
 	<string id="st_perk_local_looting_desc_3">
 		<text>It's a good practice to "shop" around your local community.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]47.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]47.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]7 completed tasks%c[ui_gray_2] instead of 8
 		</text>
     </string>
 	<string id="st_perk_local_looting_desc_4">
         <text>It's a good practice to "shop" around your local community.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]55% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]55% chance%c[ui_gray_2] to be %c[yellow]closer to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]7 completed tasks%c[ui_gray_2] instead of 8
 		</text>
     </string>
 	<string id="st_perk_local_looting_desc_5">
         <text>It's a good practice to "shop" around your local community.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]62.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location
+		%c[d_blue] - %c[ui_gray_2] Looted stash locations have a %c[d_green]62.5% chance%c[ui_gray_2] to be %c[yellow]closer to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]6 completed tasks%c[ui_gray_2] instead of 8
 		</text>
     </string>
 	
@@ -1454,6 +1451,38 @@
         <text>After taking enough high falls, your body has become more resilient to the impact.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Fall damage is now reduced by %c[d_green]75%
+		</text>
+    </string>
+	
+	<string id="st_perk_demo_expert">
+        <text>Explosive Personality</text>
+    </string>
+	<string id="st_perk_demo_expert_desc">
+        <text>The Zone has been flooded with explosives in an effort to erradicate you. Thankfully, you've found a spare flak jacket in your travels.</text>
+    </string>
+	<string id="st_perk_demo_expert_desc_1">
+        <text>The Zone has been flooded with explosives in an effort to erradicate you. Thankfully, you've found a spare flak jacket in your travels.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[yellow]up to a 5% chance %c[ui_gray_2]to have at least one grenade on their person\n
+		%c[d_blue] - %c[ui_gray_2] You now receive %c[d_orange]5% less damage %c[ui_gray_2]from Explosive damage\n
+		%c[d_red] NOTE: Explosives are not just items to loot. They will use them against you and other stalkers. Kill them fast enough to claim your prize. PROCEED WITH CAUTION!
+		</text>
+    </string>
+	<string id="st_perk_demo_expert_desc_2">
+        <text>The Zone has been flooded with explosives in an effort to erradicate you. Thankfully, you've found a spare flak jacket in your travels.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[d_orange]up to a 10% chance %c[ui_gray_2]to have at least one grenade on their person\n
+		%c[d_blue] - %c[ui_gray_2] You now receive %c[yellow]10% less damage %c[ui_gray_2]from Explosive damage\n
+		%c[d_red] NOTE: Explosives are not just items to loot. They will use them against you and other stalkers. Kill them fast enough to claim your prize. PROCEED WITH CAUTION!
+		</text>
+    </string>
+	<string id="st_perk_demo_expert_desc_3">
+        <text>The Zone has been flooded with explosives in an effort to erradicate you. Thankfully, you've found a spare flak jacket in your travels.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[d_red]up to a 15% chance %c[ui_gray_2]to have at least one grenade on their person\n
+		%c[d_blue] - %c[ui_gray_2] You now receive %c[d_green]15% less damage %c[ui_gray_2]from Explosive damage\n
+		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[d_red]0.01% chance %c[ui_gray_2]to spawn with an explosive weapon\n
+		%c[d_red] NOTE: Explosives are not just items to loot. They will use them against you and other stalkers. Kill them fast enough to claim your prize. PROCEED WITH CAUTION!
 		</text>
     </string>
 	

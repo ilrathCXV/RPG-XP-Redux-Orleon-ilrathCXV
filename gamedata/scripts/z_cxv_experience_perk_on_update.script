@@ -6,7 +6,7 @@ local iron_resolve = 0
 
 local af_lucifer_data = perk_based_artefacts.artefact_props.af_lucifer
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_cybermedic") then
 		cybermedic = data["curr_level"]
 	end
@@ -66,7 +66,11 @@ function perk_effects_over_time()
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 	
     RegisterScriptCallback("actor_on_update",               perk_effects_over_time)
 end

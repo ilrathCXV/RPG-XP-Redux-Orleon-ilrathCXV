@@ -923,8 +923,7 @@ function is_critical_bone(c, bone)
 end
 -- code demonized end
 
--- code ilrathCXV
--- return if hit bone is legs
+-- ilrathCXV - Returns if hit bone is legs (used for perk mod)
 function is_leg_bone(c, bone)
 	local creature_t = creatures_cls[c]
 	if not creature_t then return false end

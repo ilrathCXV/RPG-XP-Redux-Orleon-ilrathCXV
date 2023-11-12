@@ -1,13 +1,17 @@
 local surgical_precision = 0							-- Surgical Precision: will grant 6% of rad/HP healing as a boost over time (up to 30% at max rank)
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_surgical_precision") then
 		surgical_precision = data["curr_level"]
 	end
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 
     RegisterScriptCallback("actor_on_item_use",         get_healing_boost)
     RegisterScriptCallback("actor_on_update",             healing_boost)

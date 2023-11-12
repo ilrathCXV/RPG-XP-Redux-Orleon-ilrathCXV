@@ -3,7 +3,7 @@ local jump_man_boost = 0.03
 local add_jump = jump.add_jump
 local remove_jump = jump.remove_jump
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_jump_man") then
 		jump_man = data["curr_level"]
 	end
@@ -17,5 +17,9 @@ end
 
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 end

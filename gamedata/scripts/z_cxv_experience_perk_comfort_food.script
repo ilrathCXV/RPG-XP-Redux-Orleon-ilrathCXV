@@ -1,6 +1,6 @@
 local comfort_food = 0
 
-local function experience_perk_on_update(id, data)
+local function experience_skill_on_update(id, data)
 	if (id == "perk_comfort_food") then
 		comfort_food = data["curr_level"]
 	end
@@ -32,7 +32,11 @@ function comfort_food(item,string)
 end
 
 function on_game_start()
-	RegisterScriptCallback("experience_perk_on_update", experience_perk_on_update)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
 
 	RegisterScriptCallback("actor_on_item_use", comfort_food)
 end
