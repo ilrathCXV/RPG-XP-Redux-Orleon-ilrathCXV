@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="windows-1251"?>
 
 <string_table>
+	
+	<!-- Skills Category in menu -->
+	<string id="ui_st_gamma_rpg_system_skills_category">
+        <text>GAMMA RPG System</text>
+    </string>
+	<!-- Options preset name -->
+	<string id="ui_exp_prst_gamma_rpg_system_default">
+        <text>GAMMA RPG System Preset</text>
+    </string>
 
 	<string id="st_perk_fast_hands">
         <text>Fast Hands</text>
