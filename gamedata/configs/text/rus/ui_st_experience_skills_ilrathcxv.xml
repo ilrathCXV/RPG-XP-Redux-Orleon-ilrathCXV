@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="windows-1251"?>
 
 <string_table>
+	
+	<!-- Skills Category in menu -->
+	<string id="ui_st_gamma_rpg_system_skills_category">
+        <text>RPG System</text>
+    </string>
+	<!-- Options preset name -->
+	<string id="ui_exp_prst_gamma_rpg_system_default">
+        <text>RPG System Preset</text>
+    </string>
+
 	<string id="st_perk_fast_hands">
         <text>Быстрые Руки</text>
     </string>
@@ -440,7 +450,7 @@
     </string>
 	
     <string id="st_perk_ammo_finder">
-        <text>Нюх на Патроны</text>
+        <text>Патронник</text>
     </string>
 	<string id="st_perk_ammo_finder_desc">
         <text>При обыске тела вы находите больше патронов.</text>
@@ -517,7 +527,7 @@
     </string>
 	
 	<string id="st_perk_artefinder">
-        <text>Нюх На Артефакты</text>
+        <text>Арте-фактор</text>
     </string>
 	<string id="st_perk_artefinder_desc">
         <text>При обыске тела у вас есть шанс найти артефакт, который обычно находится в текущей области. Кроме того, любой артефакт, который вы найдете, теперь будет иметь более высокую эффективность.</text>
@@ -1320,6 +1330,125 @@
 		%c[yellow] - %c[ui_gray_2] Отсутствие одежды дает шанс уклонения %c[d_cyan]+24%\n
 		%c[d_green] - %c[ui_gray_2] Вероятность уклонения суммируется с другими бонусами уклонения\n
 		%c[d_red] ПРИМЕЧАНИЕ. Вес брони основан на базовом весе или весе после улучшений (в зависимости от того, что легче)
+		</text>
+    </string>
+	
+	<string id="st_perk_local_looting">
+         <text>Локальный лутинг</text>
+     </string>
+<string id="st_perk_local_looting_desc">
+         <text>Мародерство в Зоне уже давно вошло у всех в привычку.</text>
+     </string>
+<string id="st_perk_local_looting_desc_1">
+         <text>Мародерство в Зоне уже давно вошло у всех в привычку.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2] Полученные тайники имеют %c[d_green]32,5% шанс%c[ui_gray_2] оказаться %c[yellow]ближе к вашему текущему местоположению.
+</text>
+     </string>
+<string id="st_perk_local_looting_desc_2">
+         <text>Мародерство в Зоне уже давно вошло у всех в привычку.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2] Полученные тайники имеют %c[d_green]40% шанс%c[ui_gray_2] оказаться %c[yellow]ближе к вашему текущему местоположению.
+</text>
+     </string>
+<string id="st_perk_local_looting_desc_3">
+<text>Мародерство в Зоне уже давно вошло у всех в привычку.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2] Полученные тайники имеют %c[d_green]47,5% шанс %c[ui_gray_2] оказаться %c[yellow]ближе к вашему текущему местоположению.
+</text>
+     </string>
+<string id="st_perk_local_looting_desc_4">
+         <text>Мародерство в Зоне уже давно вошло у всех в привычку.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2] Полученные тайники имеют %c[d_green]55% шанс%c[ui_gray_2] оказаться %c[yellow]ближе к вашему текущему местоположению.
+</text>
+     </string>
+<string id="st_perk_local_looting_desc_5">
+         <text>Мародерство в Зоне уже давно вошло у всех в привычку.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2] Полученные тайники имеют %c[d_green]62,5% шанс%c[ui_gray_2] оказаться %c[yellow]ближе к вашему текущему местоположению.
+</text>
+     </string>
+
+<string id="st_perk_jump_man">
+         <text>Прыгающий человек</text>
+     </string>
+<string id="st_perk_jump_man_desc">
+         <text>Ваши походы по Зоне сделали ваши ноги сильнее, что позволяет лучше передвигаться.</text>
+     </string>
+<string id="st_perk_jump_man_desc_1">
+         <text>Ваши походы по Зоне сделали ваши ноги сильнее, что позволяет лучше передвигаться.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2]Теперь вы можете прыгнуть на %c[d_green]3% выше
+</text>
+     </string>
+<string id="st_perk_jump_man_desc_2">
+         <text>Ваши походы по Зоне сделали ваши ноги сильнее, что позволяет лучше передвигаться.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2]Теперь вы можете прыгнуть на %c[d_green]на 6% выше
+</text>
+     </string>
+<string id="st_perk_jump_man_desc_3">
+<text>Ваши походы по Зоне сделали ваши ноги сильнее, что позволяет лучше передвигаться.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2]Теперь вы можете прыгнуть на %c[d_green]на 9% выше.
+</text>
+     </string>
+<string id="st_perk_jump_man_desc_4">
+         <text>Ваши походы по Зоне сделали ваши ноги сильнее, что позволяет лучше передвигаться.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2]Теперь вы можете прыгнуть на %c[d_green]на 12% выше.
+</text>
+     </string>
+<string id="st_perk_jump_man_desc_5">
+         <text>Ваши походы по Зоне сделали ваши ноги сильнее, что позволяет лучше передвигаться.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2]Теперь вы можете прыгнуть на %c[d_green]на 15% выше.
+</text>
+     </string>
+
+<string id="st_perk_sturdy_legs">
+         <text>Крепкие ноги</text>
+     </string>
+<string id="st_perk_sturdy_legs_desc">
+         <text>После достаточно высоких падений ваше тело стало более устойчивым к ударам.</text>
+     </string>
+<string id="st_perk_sturdy_legs_desc_1">
+         <text>После достаточно высоких падений ваше тело стало более устойчивым к ударам.\n \n
+%c[ui_gray_3]ЭФФЕКТЫ:\n
+%c[d_blue] - %c[ui_gray_2] Урон от падения теперь уменьшен на %c[d_green]75%.
+</text>
+     </string>
+	
+	<string id="st_perk_demo_expert">
+        <text>Взрывная личность</text>
+    </string>
+	<string id="st_perk_demo_expert_desc">
+        <text>Зону наводнили взрывчаткой, чтобы вас искоренить. К счастью, в своих путешествиях вы нашли запасной бронежилет.</text>
+    </string>
+	<string id="st_perk_demo_expert_desc_1">
+        <text>Зону наводнили взрывчаткой, чтобы вас искоренить. К счастью, в своих путешествиях вы нашли запасной бронежилет.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Сталкеры теперь имеют шанс %c[yellow]до 5% %c[ui_gray_2] иметь при себе хотя бы одну гранату\n
+		%c[d_blue] - %c[ui_gray_2] Теперь вы получаете %c[d_orange]на 5% меньше урона %c[ui_gray_2]от взрывов\n
+		%c[d_red] ПРИМЕЧАНИЕ. Взрывчатка — это не просто предметы, которые можно добыть. Они будут использовать их против вас и других сталкеров. Убейте их достаточно быстро, чтобы получить свой приз. ДЕЙСТВУЙТЕ С ОСТОРОЖНОСТЬЮ!
+		</text>
+    </string>
+	<string id="st_perk_demo_expert_desc_2">
+        <text>Зону наводнили взрывчаткой, чтобы вас искоренить. К счастью, в своих путешествиях вы нашли запасной бронежилет.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Сталкеры теперь имеют шанс %c[yellow]до 10% %c[ui_gray_2] иметь при себе хотя бы одну гранату\n
+		%c[d_blue] - %c[ui_gray_2] Теперь вы получаете %c[d_orange]на 10% меньше урона %c[ui_gray_2]от взрывов\n
+		%c[d_red] ПРИМЕЧАНИЕ. Взрывчатка — это не просто предметы, которые можно добыть. Они будут использовать их против вас и других сталкеров. Убейте их достаточно быстро, чтобы получить свой приз. ДЕЙСТВУЙТЕ С ОСТОРОЖНОСТЬЮ!
+		</text>
+    </string>
+	<string id="st_perk_demo_expert_desc_3">
+		<text>Зона была наводнена взрывчаткой, чтобы вас искоренить. К счастью, в своих путешествиях вы нашли запасной бронежилет.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Сталкеры теперь имеют шанс %c[yellow]до 15% %c[ui_gray_2] иметь при себе хотя бы одну гранату\n
+		%c[d_blue] - %c[ui_gray_2] Теперь вы получаете %c[d_green]на 15% меньше урона %c[ui_gray_2]от взрывов\n
+		%c[d_blue] - %c[ui_gray_2] Сталкеры теперь имеют %c[d_red]0,01% шанс %c[ui_gray_2] появиться с различными РПГ \n
+		%c[d_red] ПРИМЕЧАНИЕ. Взрывчатка — это не просто предметы, которые можно добыть. Они будут использовать их против вас и других сталкеров. Убейте их достаточно быстро, чтобы получить свой приз. ДЕЙСТВУЙТЕ С ОСТОРОЖНОСТЬЮ!
 		</text>
     </string>
 	
