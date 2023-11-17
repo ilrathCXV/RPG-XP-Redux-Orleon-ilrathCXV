@@ -120,8 +120,17 @@ end
 	
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
-base_grok_shit = grok_actor_damage_balancer.shit_booster
-function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
+local GActor_OnBeforeHitCallback = _G.CActor__BeforeHitCallback
+_G.CActor__BeforeHitCallback = function(actor, shit, bone_id)
+	rpg_damage_reduction(shit, bone_id)
+	return GActor_OnBeforeHitCallback(actor, shit, bone_id)
+end
+
+
+--base_grok_shit = grok_actor_damage_balancer.shit_booster
+--function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
+function rpg_damage_reduction(shit, bone_id)
+
 
 	local player_weapon = db.actor:active_item()
 	if shit.type == hit.fire_wound and ((wick_mode > 0) or (lightweight_dodge > 0)) then
@@ -142,9 +151,9 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 		
 		if math.random(1000) < dodge_chance then
 			printf("///////////   RPG System: Damage reduction in progress  //////////////////")
-			printf("Original Base Hit: %s of type %s", shit.power, is_elemental)
+			printf("[RPG - Player Dodged] Original Base Hit: %s of type %s", shit.power, shit.type)
 			shit.power = shit.power * 0
-			printf("Dodged hit!")
+			printf("[RPG - Player Dodged] Dodged hit!")
 			return
 		end
 	end
@@ -173,6 +182,7 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 ------------------------------------------------------------> Spiked
     if shit.draftsman and (shit.draftsman:id() ~= db.actor:id()) and (spiked >= 1) and not is_elemental then
 		
+		--[[
 			-- Need to account for Game Difficulty
 		local gameplay = alife_storage_manager.get_state().diff_game
 		if not (type(gameplay) == "table") then -- for old saves
@@ -184,6 +194,10 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 		local game_num = gameplay["type"] or game_num
 		
 		local spike = base_power * (0.05 * spiked) * difficulty_multiplier_enemy[game_num]
+		--]]
+		
+		local spike = base_power * (0.05 * spiked)
+		
 		shit.power = spike
 		shit.draftsman:hit(shit)
 			
@@ -220,12 +234,13 @@ function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 	
 	if damage_mult < 1.0 then
 		printf("///////////   RPG System: Damage reduction in progress  //////////////////")
-		printf("Original Base Hit: %s of type %s", shit.power, is_elemental)
+		printf("[RPG - Player Hurt] Original Base Hit: %s of type %s", shit.power, is_elemental)
 		shit.power = shit.power * damage_mult
-		printf("New Base Hit: %s", shit.power)
+		display_reduction = tonumber(100 - (damage_mult * 100))
+		printf("[RPG - Player Hurt] New Base Hit: %s | Damage Reduction: %s%", shit.power, display_reduction)
 	end
 	-- Return reduced values back into Grok's equations
-	base_grok_shit(shit, bone_id, k_ap)
+	-- base_grok_shit(shit, bone_id, k_ap)
 end
 
 function on_game_start()

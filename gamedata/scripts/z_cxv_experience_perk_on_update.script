@@ -47,12 +47,12 @@ function perk_effects_over_time()
 		db.actor:iterate_belt( function(owner, obj)
 			local condition = obj:condition()
 			local newCondition = condition + 0.00015
-			obj:set_condition(clamp(newCondition, 0, 0.99))
-			if obj:section() == af_lucifer then														--and heal_lucifer then
+			if obj:section() == af_lucifer then
 				if af_lucifer_data.condition < 0.51 then
-					af_lucifer_data.condition = 0.51
-					-- heal_lucifer = false
+					af_lucifer_data.condition = clamp(newCondition, 0, 0.51)
 				end
+			else
+				obj:set_condition(clamp(newCondition, 0, 0.99))
 			end
 		end)
 	end

@@ -199,6 +199,7 @@ function actor_on_update()
 	
 	if (time_g > update_1000ms_timer) then
 		if (fourth_times > 0) and (time_g > fourth_timer) and (fourth_times_counter > 0) and (fourth_timer > 0) then
+			printf("[RPG - Hit Effects] On Your Mark removed: %s of 8 hits", fourth_times_counter)
 			fourth_times_counter = 0
 			fourth_timer = 0
 			play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
@@ -330,6 +331,9 @@ function perk_damage_effects(monster, shit, bone_id, flags)
 				fourth_times_counter = fourth_times_counter + ((1 / pellet_count) * fourth_mult)
 				fourth_timer = time_g + 60 + fourth_times_timer_add[fourth_times]			-- 6 seconds baseline
 			end
+			
+			printf("[RPG - Hit Effects] On Your Mark stacks: %s of 8", fourth_times_counter)
+			
 		end
 	end
 	
@@ -377,6 +381,7 @@ function perk_damage_effects(monster, shit, bone_id, flags)
 			weapon:set_ammo_elapsed(ammo_total)
 		end
 		
+		printf("[RPG - Hit Effects] On Your Mark proc: %s", ammo_section)
 		play_sound_on_actor("interface\\item_usage\\pickup", 1.2, random_float(0.85, 1.15))
 		fourth_times_counter = 0
 		fourth_timer = 0
@@ -485,7 +490,7 @@ if grok_bo then
 			-----------------------------------------------------------------------------------------
 
 			if is_breaked and jamming_shot > 0 then
-				local weapon2 = npc:active_item() --Багает оружие противника
+				local weapon2 = npc:active_item()
 				if weapon2 then weapon2:unload_magazine(false) end
 			end
 			
@@ -517,6 +522,8 @@ if grok_bo then
 						fourth_times_counter = fourth_times_counter + ((1 / pellet_count) * fourth_mult)
 						fourth_timer = time_g + 60 + fourth_times_timer_add[fourth_times]			-- 6 seconds baseline
 					end
+					
+					printf("[RPG - Hit Effects] On Your Mark stacks: %s of 8", fourth_times_counter)
 				end
 			end
 
@@ -565,6 +572,7 @@ if grok_bo then
 				end
 				
 				play_sound_on_actor("interface\\item_usage\\pickup", 1.2, random_float(0.85, 1.15))
+				printf("[RPG - Hit Effects] On Your Mark proc: %s", ammo_section)
 				fourth_times_counter = 0
 				fourth_timer = 0
 			end
