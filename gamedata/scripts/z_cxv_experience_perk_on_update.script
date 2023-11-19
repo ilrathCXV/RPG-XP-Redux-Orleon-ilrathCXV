@@ -18,9 +18,21 @@ local function experience_skill_on_update(id, data)
 	end
 end
 
-local old_time              = 0
--- local lucifer_time			= 0
--- local heal_lucifer			= false
+local time_elapsed		 = 0
+local saved_time_elapsed = 0
+local old_time       	 = 0
+
+-- Credit to PBA for in-world time condition updating
+local get_game_time 	 = game.get_game_time
+local get_start_time 	 = level.get_start_time
+local time_factor 	 	 = 6 -- Default time_factor
+local floor				 = math.floor
+local max 				 = math.max
+
+local function get_time_elapsed()
+	--trace(time_factor)
+	return math.floor(get_game_time():diffSec(get_start_time()) / time_factor * 10) * 0.1
+end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -29,15 +41,13 @@ function perk_effects_over_time()
     if time_global() < old_time then return end
     old_time = time_global() + 200
 	
-	--if time_global() >= lucifer_time then
-	--	lucifer_time = time_global() + 1500		-- + 3000
-	--	heal_lucifer = true
-	--end
+	time_elapsed = get_time_elapsed()
+	local effect_factor = max(0, saved_time_elapsed > 0 and time_elapsed > 0 and (time_elapsed - saved_time_elapsed) or 1)
 
 -------------------------------------------------------------> Cybermedic
     if cybermedic >= 1 then
 		local bleedingCure = 0
-        bleedingCure = 0.00075 * cybermedic
+        bleedingCure = 0.00075 * cybermedic * effect_factor
 		db.actor.bleeding = bleedingCure
     end
 -------------------------------------------------------------> Master of the Zone
@@ -46,7 +56,8 @@ function perk_effects_over_time()
 		local has_lucifer_belt = false
 		db.actor:iterate_belt( function(owner, obj)
 			local condition = obj:condition()
-			local newCondition = condition + 0.00015
+			if condition >= 0.99 then return end
+			local newCondition = condition + 0.00015 * effect_factor
 			if obj:section() == af_lucifer then
 				if af_lucifer_data.condition < 0.51 then
 					af_lucifer_data.condition = clamp(newCondition, 0, 0.51)
@@ -59,10 +70,11 @@ function perk_effects_over_time()
 
 ------Броненосец-7. Иммунитет к долгоиграющим эффектам -------------------> Refreshness
     if iron_resolve >= 1 then
-		local dizzyRemoval = -0.001 * iron_resolve
+		local dizzyRemoval = -0.001 * iron_resolve * effect_factor
 		db.actor.alcohol = dizzyRemoval
     end
-
+	
+	saved_time_elapsed = time_elapsed
 end
 
 function on_game_start()

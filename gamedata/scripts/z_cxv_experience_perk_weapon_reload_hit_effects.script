@@ -2,7 +2,7 @@
 local gunslinger = 0
 local rifleman = 0
 local heavy_gunner = 0
-local reload_bonuses = {[0] = 0, [1] = 11, [2] = 16, [3] = 25, [4] = 37, [5] = 55} 
+local reload_bonuses = {[0] = 0, [1] = 10, [2] = 25, [3] = 50} 
 
 local berserker = 0
 local jamming_shot = 0
@@ -26,7 +26,6 @@ local wick_inclusions = {
 	"vz61",
 	"kiparis",
 }
-
 
 local function experience_skill_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
 	--[[
@@ -84,9 +83,7 @@ end
 --------------------------------------------------------------------------------------------------------------
 
 local sms = actor_menu.set_msg
-local criticalChance = 0
-local criticalMultiplier = 1
-local fourth_times_counter = 0
+fourth_times_counter = 0
 local fourth_times_grace = 0
 
 local get_safe_sound_object = xr_sound.get_safe_sound_object
@@ -243,6 +240,9 @@ function perk_damage_effects(monster, shit, bone_id, flags)
 		return
 	end
 
+	local criticalChance = 0
+	local criticalMultiplier = 1
+	
     local weapon_class = sortK_of(weapon)
 	local head_shot = perk_based_artefacts_bone_mapper.is_critical_bone(monster:clsid(), bone_id)
 	
@@ -421,7 +421,11 @@ if grok_bo then
 		local true_damage = (base_npc_health - (npc and npc.health)) or 0
 		
 		if true_damage <= 0 then return end
-
+		
+		local criticalChance = 0
+		local criticalMultiplier = 1
+		local glassCannon_Multiplier = 1
+		
 		local weapon_class = sortK_of(weapon)
 		local head_shot = perk_based_artefacts_bone_mapper.is_critical_bone(npc:clsid(), bone_id)
 		
@@ -463,7 +467,7 @@ if grok_bo then
 			------------------------------------------------------------------------------------------------
 			
 			if (db.actor.health < 0.65) and (glass_cannon > 0) then
-				shit.power = shit.power * (2 - db.actor.health)^(glass_cannon_exp[glass_cannon])
+				glassCannon_Multiplier = (2 - db.actor.health)^(glass_cannon_exp[glass_cannon])
 			end
 			
 			-------------------------------------------------------------------
@@ -577,7 +581,7 @@ if grok_bo then
 				fourth_timer = 0
 			end
 
-			local damage_bonus = true_damage * criticalMultiplier
+			local damage_bonus = true_damage * criticalMultiplier * glassCannon_Multiplier
 			if damage_bonus > true_damage then
 				local damage_bonus_news = tonumber(string.format("%.3f", damage_bonus))
 				printf("///////////   RPG System: Damage increase in progress  //////////////////")
@@ -585,6 +589,10 @@ if grok_bo then
 				local life_removed = npc.health - damage_bonus
 				printf('Enemy Health after hit: %s', npc.health)
 				npc:set_health_ex(life_removed)
+				
+				if life_removed <= 0 then
+					grok_bo.PBA_odc(npc, shit.draftsman)
+				end
 			end
 		end
 	end
@@ -670,17 +678,17 @@ function animation_weapons(anim_table,obj)
 	local anm_bonus = 1
 ------------------------------------------------------------> Gunslinger
 	if (gunslinger > 0) and ((weapon_class == "smg") or (weapon_class == "pistol")) then
-        anm_bonus = anm_bonus + (reload_bonuses[gunslinger] * 0.01)		-- 11 | 16 | 25 | 37 | 55
+        anm_bonus = anm_bonus + (reload_bonuses[gunslinger] * 0.01)
 		--printf("SMG Reload")
 	end
 ------------------------------------------------------------> Rifleman
 	if (rifleman > 0) and (weapon_class == "rifle") then
-        anm_bonus = anm_bonus + (reload_bonuses[rifleman] * 0.01)		-- 11 | 16 | 25 | 37 | 55
+        anm_bonus = anm_bonus + (reload_bonuses[rifleman] * 0.01)
 		--printf("Rifle Reload")
 	end
 ------------------------------------------------------------> Heavy Weapons
 	if (heavy_gunner > 0) and ((weapon_class == "heavy") or (weapon_class == "shotgun") or (weapon_class == "sniper")) then
-        anm_bonus = anm_bonus + (reload_bonuses[heavy_gunner] * 0.01)	-- 11 | 16 | 25 | 37 | 55
+        anm_bonus = anm_bonus + (reload_bonuses[heavy_gunner] * 0.01)
 		--printf("Heavy Reload")
 	end
 ------------------------------------------------------------> Zone Slayer

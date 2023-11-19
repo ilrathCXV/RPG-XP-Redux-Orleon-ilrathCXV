@@ -1,12 +1,24 @@
 local berserker = 0
+local berserker_resist = 0
+
 local spiked = 0
+local spiked_reflect_perc = 0
+
 local anomaly_defense = 0
+local anomaly_defense_resist = 0
+
+local jump_man = 0
+local jump_man_threshold = 0
+
 local mutant_slayer = 0
+local base_mutant_resist = 0
+
 local lightweight_dodge = 0
 local lightweight_dodge_chance = 0
 local wick_mode = 0
-local sturdy_legs = 0
+
 local demo_expert = 0
+local demo_expert_resist = 0
 
 local floor = math.floor
 local weaponCat = z_cxv_experience_perk_weapon_reload_hit_effects.sortK_of
@@ -20,15 +32,19 @@ local wick_inclusions = {
 local function experience_skill_on_update(id, data)
 	if (id == "perk_berserker") then
 		berserker = data["curr_level"]
+		berserker_resist = berserker * 0.05
 	end
 	if (id == "perk_spiked") then
 		spiked = data["curr_level"]
+		spiked_reflect_perc = 0.05 * spiked
 	end
 	if (id == "perk_anomaly_defense") then
 		anomaly_defense = data["curr_level"]
+		anomaly_defense_resist = anomaly_defense * 0.09
 	end
 	if (id == "perk_mutant_slayer") then
 		mutant_slayer = data["curr_level"]
+		base_mutant_resist = mutant_slayer * 0.05
 	end
 	if (id == "perk_wick_mode") then
 		wick_mode = data["curr_level"]
@@ -36,11 +52,13 @@ local function experience_skill_on_update(id, data)
 	if (id == "perk_lightweight_dodge") then
 		lightweight_dodge = data["curr_level"]
 	end
-	if (id == "perk_sturdy_legs") then
-		sturdy_legs = data["curr_level"]
+	if (id == "perk_jump_man") then
+		jump_man = data["curr_level"]
+		jump_man_threshold = jump_man * 0.15
 	end
 	if (id == "perk_demo_expert") then
 		demo_expert = data["curr_level"]
+		demo_expert_resist = demo_expert * 0.05
 	end
 end
 
@@ -161,42 +179,28 @@ function rpg_damage_reduction(shit, bone_id)
 	
 	-- if shit.type == hit.telepatic then return end
     local base_power = shit.power
-    local damage_mult = 1.0
+    local damage_mult = 1
     base_power = shit.power
     shit_type = shit.type
 	local is_elemental = (((shit_type == hit.shock) or (shit_type == hit.burn) or (shit_type == hit.light_burn) or (shit_type == hit.chemical_burn)
 	or string.find(shit.draftsman:id(),"field") or string.find(shit.draftsman:id(),"zone_mine")) and ((shit_type ~= hit.radiation) or (shit_type ~= hit.telepatic))) or false
 	
 ------------------------------------------------------------> Anomaly Defense
-    if anomaly_defense >= 1 and is_elemental then
-		damage_mult = damage_mult - (0.05 * anomaly_defense)
+    if anomaly_defense > 0 and is_elemental then
+		damage_mult = damage_mult - (anomaly_defense_resist)
     end
 
 ------------------------------------------------------------> Berserker
-	if shit.draftsman and (berserker >= 1) and not is_elemental then
+	if shit.draftsman and (berserker > 0) and not is_elemental then
 		if player_weapon and IsMelee(player_weapon) then
-			damage_mult = damage_mult - (0.05 * berserker)
+			damage_mult = damage_mult - (berserker_resist)
 		end
 	end
 
 ------------------------------------------------------------> Spiked
-    if shit.draftsman and (shit.draftsman:id() ~= db.actor:id()) and (spiked >= 1) and not is_elemental then
+    if shit.draftsman and (shit.draftsman:id() ~= db.actor:id()) and (spiked > 0) and not is_elemental then
 		
-		--[[
-			-- Need to account for Game Difficulty
-		local gameplay = alife_storage_manager.get_state().diff_game
-		if not (type(gameplay) == "table") then -- for old saves
-			alife_storage_manager.get_state().diff_game = {}
-			alife_storage_manager.get_state().diff_game["type"] = game_num
-			gameplay = alife_storage_manager.get_state().diff_game
-		end
-
-		local game_num = gameplay["type"] or game_num
-		
-		local spike = base_power * (0.05 * spiked) * difficulty_multiplier_enemy[game_num]
-		--]]
-		
-		local spike = base_power * (0.05 * spiked)
+		local spike = base_power * spiked_reflect_perc
 		
 		shit.power = spike
 		shit.draftsman:hit(shit)
@@ -207,10 +211,10 @@ function rpg_damage_reduction(shit, bone_id)
     end
 	
 ------------------------------------------------------------> Thick Skin	
-	if shit.draftsman and mutant_slayer >= 1 then
+	if shit.draftsman and mutant_slayer > 0 then
 		if mutant_list[shit.draftsman:clsid()] and allowed_hit_types[shit_type] then
 		
-			local night_mult = 1.0
+			local night_mult = 1
 			if mutant_slayer >= 3 then
 				local hours = get_time_hours()
 				if hours >= 21 or hours <= 5 then
@@ -218,18 +222,22 @@ function rpg_damage_reduction(shit, bone_id)
 				end
 			end
 			
-			damage_mult = damage_mult - ((0.05 * mutant_slayer) * night_mult)
+			damage_mult = damage_mult - (base_mutant_resist * night_mult)
 		end
     end
 	
-------------------------------------------------------------> Sturdy Legs
-	if shit.draftsman and (shit.draftsman:id() == db.actor:id()) and (not is_elemental) and (shit_type ~= hit.explosion) and (sturdy_legs > 0) then
-		damage_mult = damage_mult - 0.75
+------------------------------------------------------------> Jump Man/Acrobatics
+	if shit.draftsman and (shit.draftsman:id() == db.actor:id()) and (not is_elemental) and (shit_type ~= hit.explosion) and (jump_man > 0) then
+		if shit.power < jump_man_threshold then
+			damage_mult = 0
+		elseif jump_man == 3 then	-- take half damage if over threshold at max rank
+			damage_mult = damage_mult - 0.5
+		end
 	end
 	
 ------------------------------------------------------------> Explosive Personality (Damage Reduction)
 	if shit.draftsman and demo_expert > 0 and shit_type == hit.explosion then
-		damage_mult = damage_mult - (0.05 * demo_expert)
+		damage_mult = damage_mult - demo_expert_resist
 	end
 	
 	if damage_mult < 1.0 then

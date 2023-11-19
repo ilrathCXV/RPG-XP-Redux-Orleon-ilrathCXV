@@ -1,4 +1,5 @@
 local fast_hands = 0
+local fast_hands_bonuses = {[0] = 0, [1] = 15, [2] = 30, [3] = 70} 
 
 local function experience_skill_on_update(id, data)
 	if (id == "perk_fast_hands") then
@@ -45,7 +46,7 @@ function fast_hands_speed(anim_table,obj)
 		end
 	end
 	
-	local swap_bonus = 1 + (fast_hands * 0.15)
+	local swap_bonus = 1 + (fast_hands_bonuses[fast_hands] * 0.01)
 	printf("[RPG] Swap Bonus: %s", swap_bonus)
 	anim_table.anm_speed = anm_speed_base * swap_bonus
 	

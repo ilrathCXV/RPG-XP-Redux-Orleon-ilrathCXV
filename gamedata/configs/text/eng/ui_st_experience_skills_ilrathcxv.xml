@@ -32,9 +32,10 @@
 	<string id="st_perk_fast_hands_desc_3">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]45%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]70%
 		</text>
     </string>
+<!--
 	<string id="st_perk_fast_hands_desc_4">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
@@ -47,50 +48,7 @@
 		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]75%
 		</text>
     </string>
-	
-	
-    <string id="st_perk_ghost_ammo">
-        <text>Ghost Ammo</text>
-    </string>
-	<string id="st_perk_ghost_ammo_desc">
-        <text>The Zone appreciates your marksmanship, and will She will reward you for it.</text>
-    </string>
-	<string id="st_perk_ghost_ammo_desc_1">
-        <text>The Zone appreciates your marksmanship, and will She will reward you for it. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]1% %c[ui_gray_2]chance to refund a shot when hitting a target\n
-		%c[d_red] - %c[ui_gray_2] Refund chance increases to %c[d_red]3% %c[ui_gray_2] when landing a headshot
-		</text>
-    </string>
-	<string id="st_perk_ghost_ammo_desc_2">
-        <text>The Zone appreciates your marksmanship, and will She will reward you for it. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2% %c[ui_gray_2]chance to refund a shot when hitting a target\n
-		%c[d_red] - %c[ui_gray_2] Refund chance increases to %c[d_red]9% %c[ui_gray_2] when landing a headshot
-		</text>
-    </string>
-	<string id="st_perk_ghost_ammo_desc_3">
-        <text>The Zone appreciates your marksmanship, and will She will reward you for it. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]3% %c[ui_gray_2]chance to refund a shot when hitting a target\n
-		%c[d_red] - %c[ui_gray_2] Refund chance increases to %c[d_red]17% %c[ui_gray_2] when landing a headshot
-		</text>
-    </string>
-	<string id="st_perk_ghost_ammo_desc_4">
-        <text>The Zone appreciates your marksmanship, and will She will reward you for it. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]4% %c[ui_gray_2]chance to refund a shot when hitting a target\n
-		%c[d_red] - %c[ui_gray_2] Refund chance increases to %c[d_red]27% %c[ui_gray_2] when landing a headshot
-		</text>
-    </string>
-	<string id="st_perk_ghost_ammo_desc_5">
-        <text>The Zone appreciates your marksmanship, and will She will reward you for it. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]5% %c[ui_gray_2]chance to refund a shot when hitting a target\n
-		%c[d_red] - %c[ui_gray_2] Refund chance increases to %c[d_red]39% %c[ui_gray_2] when landing a headshot
-		</text>
-    </string>
-	
+-->
 	
     <string id="st_perk_gunslinger">
         <text>Gunslinger</text>
@@ -101,21 +59,22 @@
 	<string id="st_perk_gunslinger_desc_1">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]11% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_2">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]16% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_3">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]50% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
+<!--
 	<string id="st_perk_gunslinger_desc_4">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
@@ -128,7 +87,7 @@
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
-
+-->
 	
 	<string id="st_perk_rifleman">
         <text>Rifleman</text>
@@ -139,21 +98,22 @@
 	<string id="st_perk_rifleman_desc_1">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]11% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_2">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]16% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_3">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]50% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
+<!--
 	<string id="st_perk_rifleman_desc_4">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
@@ -166,7 +126,7 @@
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
-	
+-->
 	
 	<string id="st_perk_heavy_gunner">
         <text>Heavy Gunner</text>
@@ -177,24 +137,25 @@
 	<string id="st_perk_heavy_gunner_desc_1">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]11% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_red] - %c[ui_gray_2] Does not affect grenade damage
-		</text>
-    </string>
-	<string id="st_perk_heavy_gunner_desc_2">
-        <text>You have taken to the more specialized weapons in the Zone. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]16% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
-	<string id="st_perk_heavy_gunner_desc_3">
+	<string id="st_perk_heavy_gunner_desc_2">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
+	<string id="st_perk_heavy_gunner_desc_3">
+        <text>You have taken to the more specialized weapons in the Zone. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]50% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
+		</text>
+    </string>
+<!--
 	<string id="st_perk_heavy_gunner_desc_4">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
@@ -209,7 +170,7 @@
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
-	
+-->
 	
 	
     <string id="st_perk_berserker">
@@ -264,54 +225,6 @@
     </string>
 	
 	
-	<string id="st_perk_bloody_mess">
-        <text>Bloody Mess</text>
-    </string>
-	<string id="st_perk_bloody_mess_desc">
-        <text>When killing an enemy, they have a 1% chance to explode, damaging anyone caught in the blast (including YOU).</text>
-    </string>
-	<string id="st_perk_bloody_mess_desc_1">
-        <text>You have added fragments of a Dragon's Eye to your weapon's barrel. Bullets fired can have an explosive reaction when coming into contact with tissue.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Killing an enemy has a %c[d_green]1% %c[ui_gray_2]chance to cause them to explode\n
-		%c[d_blue] - %c[ui_gray_2] Explosion damages anyone caught in the blast %c[d_red]including YOU\n
-		%c[d_red] - %c[ui_gray_2] Does not trigger from melee kills to avoid damaging yourself
-		</text>
-    </string>
-	<string id="st_perk_bloody_mess_desc_2">
-        <text>You have added fragments of a Dragon's Eye to your weapon's barrel. Bullets fired can have an explosive reaction when coming into contact with tissue.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Killing an enemy has a %c[d_green]2% %c[ui_gray_2]chance to cause them to explode\n
-		%c[d_blue] - %c[ui_gray_2] Explosion damages anyone caught in the blast %c[d_red]including YOU\n
-		%c[d_red] - %c[ui_gray_2] Does not trigger from melee kills to avoid damaging yourself
-		</text>
-    </string>
-	<string id="st_perk_bloody_mess_desc_3">
-        <text>You have added fragments of a Dragon's Eye to your weapon's barrel. Bullets fired can have an explosive reaction when coming into contact with tissue.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Killing an enemy has a %c[d_green]3% %c[ui_gray_2]chance to cause them to explode\n
-		%c[d_blue] - %c[ui_gray_2] Explosion damages anyone caught in the blast %c[d_red]including YOU\n
-		%c[d_red] - %c[ui_gray_2] Does not trigger from melee kills to avoid damaging yourself
-		</text>
-    </string>
-	<string id="st_perk_bloody_mess_desc_4">
-        <text>You have added fragments of a Dragon's Eye to your weapon's barrel. Bullets fired can have an explosive reaction when coming into contact with tissue.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Killing an enemy has a %c[d_green]4% %c[ui_gray_2]chance to cause them to explode\n
-		%c[d_blue] - %c[ui_gray_2] Explosion damages anyone caught in the blast %c[d_red]including YOU\n
-		%c[d_red] - %c[ui_gray_2] Does not trigger from melee kills to avoid damaging yourself
-		</text>
-    </string>
-	<string id="st_perk_bloody_mess_desc_5">
-        <text>You have added fragments of a Dragon's Eye to your weapon's barrel. Bullets fired can have an explosive reaction when coming into contact with tissue.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Killing an enemy has a %c[d_green]5% %c[ui_gray_2]chance to cause them to explode\n
-		%c[d_blue] - %c[ui_gray_2] Explosion damages anyone caught in the blast %c[d_red]including YOU\n
-		%c[d_red] - %c[ui_gray_2] Does not trigger from melee kills to avoid damaging yourself
-		</text>
-    </string>
-	
-	
     <string id="st_perk_disarming_shot">
         <text>Disarming Shot</text>
     </string>
@@ -335,31 +248,31 @@
 	<string id="st_perk_scavenger_desc_1">
         <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]7% %c[ui_gray_2]chance of finding %c[d_red]salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1.5% %c[ui_gray_2]chance of finding %c[d_red]salvage and crafting materials
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_2">
 		<text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]14% %c[ui_gray_2]chance of finding %c[d_orange]slightly better salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding %c[d_orange]slightly better salvage and crafting materials
 		</text>   
 	</string>
 	<string id="st_perk_scavenger_desc_3">
 		<text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]21% %c[ui_gray_2]chance of finding %c[yellow]better salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4.5% %c[ui_gray_2]chance of finding %c[yellow]better salvage and crafting materials
 		</text>
 	</string>
 	<string id="st_perk_scavenger_desc_4">
         <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]28% %c[ui_gray_2]chance of finding %c[d_green]much better salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]6% %c[ui_gray_2]chance of finding %c[d_green]much better salvage and crafting materials
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_5">
         <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]35% %c[ui_gray_2]chance of finding %c[d_green]better and high-quality salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]7.5% %c[ui_gray_2]chance of finding %c[d_green]better and high-quality salvage and crafting materials
 		</text>
     </string>
 	
@@ -368,56 +281,41 @@
         <text>Careful Handler</text>
     </string>
 	<string id="st_perk_careful_handler_desc">
-        <text>When looting armor and weapons from an enemy, they will have a minimum condition of 15%.</text>
+        <text>As they always say: one man's trash is another man's treasure.</text>
     </string>
 	<string id="st_perk_careful_handler_desc_1">
-        <!--<text>As they always say: one man's trash is another man's treasure.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]15%
-		</text>!-->
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted armors and weapons will have their condition improved by %c[d_green]3%
+		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]3% \n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]3%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_2">
-        <!--<text>As they always say: one man's trash is another man's treasure.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]20%
-		</text>!-->
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted armors and weapons will have their condition improved by %c[d_green]6%
+		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]6% \n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]6%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_3">
-        <!--<text>As they always say: one man's trash is another man's treasure.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]25%
-		</text>!-->
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted armors and weapons will have their condition improved by %c[d_green]9%
+		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]9% \n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]9%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_4">
-        <!--<text>As they always say: one man's trash is another man's treasure.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]30%
-		</text>!-->
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted armors and weapons will have their condition improved by %c[d_green]12%
+		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]12% \n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]12%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_5">
-        <!--<text>As they always say: one man's trash is another man's treasure.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted/picked-up armors and weapons will have a minimum condition of %c[d_green]35%
-		</text>!-->
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looted armors and weapons will have their condition improved by %c[d_green]15%
+		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]15% \n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]15%
 		</text>
     </string>
     
@@ -426,7 +324,7 @@
         <text>Master Craftsman</text>
     </string>
 	<string id="st_perk_master_craftsman_desc">
-        <text>When crafting or cooking, you have a 10% chance to make 2 crafted items for the cost of 1.</text>
+        <text>Your tools have become an extension of yorself.</text>
     </string>	
 	<string id="st_perk_master_craftsman_desc_1">
         <text>Your tools have become an extension of yorself.\n \n
@@ -490,31 +388,34 @@
 	<string id="st_perk_ammo_finder_desc_1">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers can drop %c[d_green]20% more %c[ui_gray_2]ammo
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_2">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers can drop %c[d_green]40% more %c[ui_gray_2]ammo
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]4% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_3">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers can drop %c[d_green]60% more %c[ui_gray_2]ammo
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]6% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes\n
+		%c[d_blue] - %c[ui_gray_2] If there is no ammo to double on a successful roll, you will be given a small amount of ammo instead
 		</text>
 	</string>
 	<string id="st_perk_ammo_finder_desc_4">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers can drop %c[d_green]80% more %c[ui_gray_2]ammo
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]8% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes\n
+		%c[d_blue] - %c[ui_gray_2] If there is no ammo to double on a successful roll, you will be given a small amount of ammo instead
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_5">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers can drop %c[d_green]100% more %c[ui_gray_2]ammo
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]10% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes\n
+		%c[d_blue] - %c[ui_gray_2] If there is no ammo to double on a successful roll, you will be given a small amount of ammo instead
 		</text>
     </string>
 	
@@ -528,31 +429,31 @@
 	<string id="st_perk_medicine_man_desc_1">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]7% %c[ui_gray_2]chance of finding %c[d_red] a medical item
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1.5% %c[ui_gray_2]chance of finding %c[d_red] a medical item
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_2">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]14% %c[ui_gray_2]chance of finding %c[d_orange] a slightly better quality medical item
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding %c[d_orange] a slightly better quality medical item
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_3">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]21% %c[ui_gray_2]chance of finding %c[yellow] a better quality medical item
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4.5% %c[ui_gray_2]chance of finding %c[yellow] a better quality medical item
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_4">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]28% %c[ui_gray_2]chance of finding %c[d_green] a much better quality medical item
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]6% %c[ui_gray_2]chance of finding %c[d_green] a much better quality medical item
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_5">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]35% %c[ui_gray_2]chance of finding %c[d_green] a better and high-quality medical item
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]7.5% %c[ui_gray_2]chance of finding %c[d_green] a better and high-quality medical item
 		</text>
     </string>
 	
@@ -566,7 +467,7 @@
 	<string id="st_perk_artefinder_desc_1">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]3%\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 11 - 24% percent%c[ui_gray_2])
 		</text>
@@ -574,7 +475,7 @@
 	<string id="st_perk_artefinder_desc_2">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]2% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]2% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]6%\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 13 - 26% percent%c[ui_gray_2])
 		</text>
@@ -582,7 +483,7 @@
 	<string id="st_perk_artefinder_desc_3">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]3% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]9%\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 17 - 30% percent%c[ui_gray_2])
 		</text>
@@ -590,7 +491,7 @@
 	<string id="st_perk_artefinder_desc_4">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]4% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]12%\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 22 - 35% percent%c[ui_gray_2])
 		</text>
@@ -598,7 +499,7 @@
 	<string id="st_perk_artefinder_desc_5">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has a %c[d_green]5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]15%\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 28 - 41% percent%c[ui_gray_2])
 		</text>
@@ -655,44 +556,6 @@
 		%c[d_blue] - %c[ui_gray_2] The %c[yellow]"Lucifer" %c[ui_gray_2]artefact will only be repaired %c[d_green]up to 51% %c[ui_gray_2]to avoid its negative effects if equipped on your belt
 		</text>
     </string>
-
-    
-	<string id="st_perk_plate_finder">
-        <text>Plate Finder</text>
-    </string>
-	<string id="st_perk_plate_finder_desc">
-        <text>When looting an enemy, you have a small chance of finding a damaged armor plate on them.</text>
-    </string>
-	<string id="st_perk_plate_finder_desc_1">
-        <text>Stalkers have been using kevlar plates much more recently.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]2% %c[ui_gray_2]chance of finding a random damaged armor plate
-		</text>
-    </string>
-	<string id="st_perk_plate_finder_desc_2">
-        <text>Stalkers have been using kevlar plates much more recently.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]5% %c[ui_gray_2]chance of finding a random damaged armor plate
-		</text>
-    </string>
-	<string id="st_perk_plate_finder_desc_3">
-        <text>Stalkers have been using kevlar plates much more recently.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]10% %c[ui_gray_2]chance of finding a random damaged armor plate
-		</text>
-    </string>
-	<string id="st_perk_plate_finder_desc_4">
-        <text>Stalkers have been using kevlar plates much more recently.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]15% %c[ui_gray_2]chance of finding a random damaged armor plate
-		</text>
-    </string>
-	<string id="st_perk_plate_finder_desc_5">
-        <text>Stalkers have been using kevlar plates much more recently.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies has %c[d_green]20% %c[ui_gray_2]chance of finding a random damaged armor plate
-		</text>
-    </string>
 	
 	<string id="st_perk_spiked">
         <text>Spiked</text>
@@ -746,21 +609,22 @@
 	<string id="st_perk_anomaly_defense_desc_1">
         <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]5% %c[ui_gray_2]less damage
+		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]9% %c[ui_gray_2]less damage
 		</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_2">
         <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]10% %c[ui_gray_2]less damage
+		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]18% %c[ui_gray_2]less damage
 		</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_3">
         <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]15% %c[ui_gray_2]less damage
+		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]27% %c[ui_gray_2]less damage
 		</text>
     </string>
+<!---
 	<string id="st_perk_anomaly_defense_desc_4">
         <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
 		%c[ui_gray_3]EFFECTS:\n
@@ -773,7 +637,7 @@
 		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]25% %c[ui_gray_2]less damage
 		</text>
     </string>
-
+-->
 
 	<string id="st_perk_iron_resolve">
         <text>Iron Resolve</text>
@@ -901,21 +765,6 @@
         <text>Exposure to bloodsuckers has given you a surprisingly useful mutation.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]7.5% %c[ui_gray_2]Health and Stamina when killing an enemy
-		</text>
-    </string>
-	
-	
-	<string id="st_perk_warmonger">
-        <text>Warmonger</text>
-    </string>
-	<string id="st_perk_warmonger_desc">
-        <text>When killing an enemy, you receive a third of your weapon's magazine size as ammo to your backpack (Min. mag size of 3).</text>
-    </string>
-	<string id="st_perk_warmonger_desc_1">
-        <text>The Zone has chosen to assist you in battles against your foes.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive a  %c[d_green]third of your weapon's magazine size %c[ui_gray_2]as ammo to your backpack\n
-		%c[d_red] - %c[ui_gray_2] Requires a mag size of at least 3
 		</text>
     </string>
 
@@ -1423,21 +1272,26 @@
 	<string id="st_perk_jump_man_desc_1">
         <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]3% higher
+		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]5% higher\n
+		%c[d_blue] - %c[ui_gray_2]Ignore all fall damage that is less than %c[d_green]15% of your max HP
 		</text>
     </string>
 	<string id="st_perk_jump_man_desc_2">
         <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]6% higher
+		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]10% higher\n
+		%c[d_blue] - %c[ui_gray_2]Ignore all fall damage that is less than %c[d_green]30% of your max HP
 		</text>
     </string>
 	<string id="st_perk_jump_man_desc_3">
 		<text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]9% higher
+		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]15% higher\n
+		%c[d_blue] - %c[ui_gray_2]Ignore all fall damage that is less than %c[d_green]45% of your max HP\n
+		%c[d_blue] - %c[ui_gray_2]Any fall damage not ignored will be reduced by %c[d_green]50%
 		</text>
     </string>
+<!--
 	<string id="st_perk_jump_man_desc_4">
         <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
 		%c[ui_gray_3]EFFECTS:\n
@@ -1463,7 +1317,7 @@
 		%c[d_blue] - %c[ui_gray_2] Fall damage is now reduced by %c[d_green]75%
 		</text>
     </string>
-	
+-->	
 	<string id="st_perk_demo_expert">
         <text>Explosive Personality</text>
     </string>

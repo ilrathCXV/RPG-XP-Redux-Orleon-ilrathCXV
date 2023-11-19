@@ -1,5 +1,5 @@
 local jump_man = 0
-local jump_man_boost = 0.03
+local jump_man_boost = 0.05
 local add_jump = jump.add_jump
 local remove_jump = jump.remove_jump
 

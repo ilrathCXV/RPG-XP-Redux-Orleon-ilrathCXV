@@ -1,12 +1,15 @@
 local medicine_man = 0
 local arte_finder = 0
 local scavenger = 0
-local careful_handler = 0
 local midas_touch = 0
 
 local zone_slayer = 0
 
-local careful_handler_bonus = { [0] = 0, [1] = 3, [2] = 6, [3] = 9, [4] = 12, [5] = 15 }
+local ammo_finder = 0
+local ammo_finder_chance = 0
+local was_ammo_found = false
+local careful_handler = 0
+local careful_handler_bonus = 0
 
 local function experience_skill_on_update(id, data)
 	if (id == "perk_medicine_man") then
@@ -20,12 +23,17 @@ local function experience_skill_on_update(id, data)
 	end
 	if (id == "perk_careful_handler") then
 		careful_handler = data["curr_level"]
+		careful_handler_bonus = careful_handler * 3
 	end
 	if (id == "perk_midas_touch") then
 		midas_touch = data["curr_level"]
 	end
 	if (id == "perk_zone_slayer") then
 		zone_slayer = data["curr_level"]
+	end
+	if (id == "perk_ammo_finder") then
+		ammo_finder = data["curr_level"]
+		ammo_finder_chance = ammo_finder * 2
 	end
 end
 
@@ -40,7 +48,35 @@ local shotgun_ammo_check = {
 	["ammo_20x70_buck"] = true,
 }
 
+local ammo_parts_check = {
+	["casing_p"] = true,
+	["casing_s"] = true,
+	["casing_r5"] = true,
+	["casing_r7"] = true,
+	["powder_1"] = true,
+	["powder_2"] = true,
+	["powder_3"] = true,
+	["bullet_pistol"] = true,
+	["bullet_pistol_ap"] = true,
+	["bullet_shotgun"] = true,
+	["bullet_shotgun_ap"] = true,
+	["bullet_r5"] = true,
+	["bullet_r5_ap"] = true,
+	["bullet_r7"] = true,
+	["bullet_r7_ap"] = true,
+	["powder_gravi"] = true,
+	-- Arti's/ArtiGrok's Ballistics Compat.
+	["powder_fire"] = true,
+	["powder_gravi"] = true,
+	["powder_fireball"] = true,
+	["powder_nightstar"] = true,
+	["powder_blood"] = true,
+	["powder_battery"] = true,
+	["powder_medusa"] = true,
+}
+
 local shotgun_list = {}
+local weapon_list = {}
 local rand = math.random
 
 function save_state(m_data)
@@ -60,7 +96,7 @@ local function create_item_random_uses(i, box)
 	local box_size = ini_sys:r_float_ex(i, "box_size")
     local se_item = alife_create_item(i, box)
 	if not se_item then
-		printf("[RPG Crash Catch] This item does not exist: %s", i)
+		printf("[RPG - Looting] This item does not exist: %s. Skipping...", i)
 		return
 	end
 	if max_uses then
@@ -93,13 +129,13 @@ end
 
 function try_spawn_meds(box, looter_level)
     if rand(1,1000) <= looter_level then
-		printf("Medicine Man proc!")
+		-- printf("Medicine Man proc!")
 		local medChance = math.floor((medicine_man * 7) * rand(1.0,3.0))
         local tbl = {
 			{ 100, meds_tier5},
-            { 90, meds_tier4},
-            { 70, meds_tier3},
-            { 40, meds_tier2},
+            { 70, meds_tier4},
+            { 35, meds_tier3},
+            { 22, meds_tier2},
             { 0, meds_tier1},
         }
         roll_item_tiered(tbl, box, medChance)
@@ -107,69 +143,68 @@ function try_spawn_meds(box, looter_level)
 end
 
 meds_tier1 = {
-    "bandage",
-    "caffeine",
-    "drug_sleepingpills",
-    "yadylin",
-    "medkit",
-    "glucose_s",
+    "bandage",				-- bandage
+    "caffeine",				-- caffine tablets
+    "drug_sleepingpills",	-- sleeping pills
+    "yadylin",				-- yadulin
+    "glucose_s",			-- glucose shot
 }
 
 meds_tier2 = {
-	"medkit",
-	"caffeine",
-    "drug_sleepingpills",
-    "medkit_army",
-    "stimpack",
-    "salicidic_acid",
-    "glucose",
-    "drug_psy_blockade",
-	"drug_coagulant",
-	"antirad",
-	"yadylin",
+	"medkit",				-- AI-2 medkit
+    "caffeine",				-- caffine tablets
+    "drug_sleepingpills",	-- sleeping pills
+    "analgetic",			-- diclofenac sodium
+    "glucose",				-- large glucose shot
+    "drug_psy_blockade",	-- Psy-block
+	"drug_coagulant",		-- Vinca
+	"antirad_kalium",		-- potassium iodide
+    "yadylin",				-- yadulin
+	"tetanus",				-- fentanyl
 }
 
 meds_tier3 = {
-	"akvatab",
-    "medkit_scientic",
-    "stimpack_army",
-    "drug_radioprotector",
-    "drug_anabiotic",
-	"drug_booster",
-    "antirad_cystamine",
-	"antirad_kalium",
-	"jgut",
+	"akvatab",				-- Ibuprofen
+    "medkit_army",			-- Army medkit
+    "stimpack",				-- improvised stimpack
+    "drug_radioprotector",	-- radioprotectant
+    "drug_anabiotic",		-- anabiotics
+	"drug_booster",			-- Hercules
+	"antirad",				-- anti-radiation drugs
+	"jgut",					-- tourniquet
+	"salicidic_acid",		-- metamizole ampoule
+	"tetanus",				-- fentanyl
 }
 
 meds_tier4 = {
-	"drug_radioprotector",
-	"medkit_scientic",
-    "stimpack_army",
-    "stimpack_scientic",
-	"adrenalin",
-	"morphine",
-	"survival_kit",
-	"tetanus",
-	"rebirth",
+    "drug_anabiotic",		-- anabiotics
+    "drug_radioprotector",	-- radioprotectant
+    "medkit_scientic",		-- Scientific medkit
+    "stimpack_army",		-- Military stimpack
+	"cocaine",				-- cocaine
+	"rebirth",				-- Axyltallisal "The Rebirth"
+    "antirad_cystamine",	-- cystamine
 }
 
 meds_tier5 = {
-	"rebirth",
-	"stimpack_scientic",
-	"survival_kit",
-	"medkit_ai1",
+	"adrenalin",			-- epinephrine shot
+	"morphine",				-- morphine ampoule
+	"rebirth",				-- Axyltallisal "The Rebirth"
+    "stimpack_scientic",	-- Scientific stimpack
+	"survival_kit",			-- small survival kit
+	"medkit_ai1",			-- basic medical package
 }
 
 
 function try_spawn_scav(box, looter_level)
     if rand(1,1000) <= looter_level then
-		printf("Scavenger proc!")
+		-- printf("Scavenger proc!")
 		local scavChance = math.floor((scavenger * 7) * rand(1.0,3.0))
         local tbl = {
 			{ 100, scav_tier5},
-            { 90, scav_tier4},
-            { 70, scav_tier3},
-            { 40, scav_tier2},
+            { 70, scav_tier4},
+            { 35, scav_tier3},
+            { 22, scav_tier2},
             { 0, scav_tier1},
         }
         roll_item_tiered(tbl, box, scavChance)
@@ -177,73 +212,73 @@ function try_spawn_scav(box, looter_level)
 end
 
 scav_tier1 = {
-	"prt_i_paper",
-	"prt_i_wood",
-	"prt_i_plastic",
-	"e_syringe",
-	"prt_i_textolite",
+	"prt_i_paper",			-- paper sheets
+	"prt_i_wood",			-- wooden parts
+	"prt_i_plastic",		-- plastic film
+	"e_syringe",			-- empty syringe
+	"prt_i_textolite",		-- textolite base
 }
 
 scav_tier2 = {
-	"prt_i_scrap",
-	"prt_i_copper",
-	"prt_i_fasteners",
-	"ball_hammer",
-	"e_syringe",
+	"prt_i_scrap",			-- scrap metal
+	"prt_i_copper",			-- copper wire
+	"prt_i_fasteners",		-- fasteners
+	"ball_hammer",			-- ball-peen hammer
+	"e_syringe",			-- empty syringe
 }
 
 scav_tier3 = {
-	"prt_i_scrap",
-	"prt_i_copper",
-	"prt_i_fasteners",
-	"prt_i_capacitors",
-	"prt_i_transistors",
-	"prt_i_resistors",
-	"swiss_knife",
-	"grooming",
-	"casing_s",
-	"powder_1",
-	"bullet_shotgun",
-	"casing_p",
-	"bullet_pistol",
+	"prt_i_scrap",			-- scrap metal
+	"prt_i_copper",			-- copper wire
+	"prt_i_fasteners",		-- fasteners
+	"prt_i_capacitors",		-- capacitors
+	"prt_i_transistors",	-- transistors
+	"prt_i_resistors",		-- resistors
+	"swiss_knife",			-- swiss army knife
+	"grooming",				-- grooming kit
+	"casing_s",				-- shotgun casings
+	"powder_1",				-- pistol/shotgun powder
+	"bullet_shotgun",		-- shotgun pellets
+	"casing_p",				-- pistol casings
+	"bullet_pistol",		-- pistol heads
 }
 
 scav_tier4 = {
-	"casing_s",
-	"powder_1",
-	"bullet_shotgun",
-	"casing_p",
-	"bullet_pistol",
-	"prt_i_scrap",
-	"prt_i_copper",
-	"prt_i_fasteners",
-	"prt_i_capacitors",
-	"prt_i_transistors",
-	"prt_i_resistors",
-	"broken_detector",
-	"flashlight_broken",
-	"walkie",
-	"batteries_dead",
-	"powder_2",
-	"casing_r5",
-	"bullet_r5",
-	"bullet_shotgun_ap",
-	"bullet_pistol_ap",
+	"casing_s",				-- shotgun casings
+	"powder_1",				-- pistol/shotgun powder
+	"bullet_shotgun",		-- shotgun pellets
+	"casing_p",				-- pistol casings
+	"bullet_pistol",		-- pistol heads
+	"prt_i_scrap",			-- scrap metal
+	"prt_i_copper",			-- copper wire
+	"prt_i_fasteners",		-- fasteners
+	"prt_i_capacitors",		-- capacitors
+	"prt_i_transistors",	-- transistors
+	"prt_i_resistors",		-- resistors
+	"broken_detector",		-- broken detector
+	"flashlight_broken",	-- broken flashlight
+	"walkie",				-- walkie talkie
+	"batteries_dead",		-- batteries
+	"powder_2",				-- small rifle powder
+	"casing_r5",			-- small-rifle casings
+	"bullet_r5",			-- small-rifle heads
+	"bullet_shotgun_ap",	-- sabot dart/shotgun AP heads
+	"bullet_pistol_ap",		-- pistol AP heads
 }
 
 scav_tier5 = {
-	"batteries_dead",
-	"powder_2",
-	"casing_r5",
-	"bullet_r5",
-	"bullet_shotgun_ap",
-	"bullet_pistol_ap",
+	"batteries_dead",		-- batteries
+	"powder_2",				-- small rifle powder
+	"casing_r5",			-- small-rifle casings
+	"bullet_r5",			-- small-rifle heads
+	"bullet_shotgun_ap",	-- sabot dart/shotgun AP heads
+	"bullet_pistol_ap",		-- pistol AP heads
+	"lead_box",				-- artefact lead box
 	"lead_box",
-	"lead_box",
-	"powder_3",
-	"casing_r7",
-	"bullet_r5_ap",
-	"bullet_r7",
+	"powder_3",				-- large-rifle powder
+	"casing_r7",			-- large-rifle casings
+	"bullet_r5_ap",			-- small-rifle AP heads
+	"bullet_r7",			-- large-rifle bullet heads
 }
 
 local minCondition, maxCondition
@@ -263,49 +298,140 @@ death_manager.create_release_item = function(npc)
 	if not npc then return end
 	local id = npc:id()
 	base_death_loot(npc)
-	CreateTimeEvent("rpg_looting", id, 0.05, looting_enemy, npc)
+	looting_enemy(npc)
+end
+
+base_stash_loot = treasure_manager.try_spawn_treasure
+treasure_manager.try_spawn_treasure = function(box, ...)
+	local id = box:id()
+	if not treasure_manager.caches[id] then return end
+	if not (type(treasure_manager.caches[id]) == "string") then return end
+	base_stash_loot(box, ...)
+
+	looting_enemy(box)
 end
 
 function looting_enemy(victim)
 
-	if not victim then printf("[RPG] No NPC found... No loot for you!") return end
+	if not victim then printf("[RPG] No NPC/box found... No loot for you!") return end
+	
+	was_ammo_found = false
 	
 	-- Gather NPC info
 	local npc_id = victim:id() or 0
 	
-	-- Return if corpse has been looted already
-	if looted_npc[npc_id] or npc_id == 0 then
-        return
+	if not IsInvbox(victim) then
+		-- Return if corpse has been looted already
+		if looted_npc[npc_id] or npc_id == 0 then
+			return
+		end
+		looted_npc[npc_id] = true
 	end
-	looted_npc[npc_id] = true
-		
+	
+	-- ensure this goes first before creating any items to avoid double-dipping
+	if careful_handler > 0 then
+		CreateTimeEvent("careful_handler_proc", npc_id, 0.1, careful_handler_proc, victim)
+	end
+	
 -----------------------------------------------------------> Medicine Man
-	if medicine_man >= 1 then
-		local medQuality = medicine_man * 15
-		try_spawn_meds(victim, medQuality)
+	if medicine_man > 0 then
+		local medChance = medicine_man * 15
+		try_spawn_meds(victim, medChance)
 	end
 	
 -----------------------------------------------------------> Scavenger
-	if scavenger >= 1 then
-		local scavQuality = scavenger * 15
-		try_spawn_scav(victim, scavQuality)
+	if scavenger > 0 then
+		local scavChance = scavenger * 15
+		try_spawn_scav(victim, scavChance)
 	end
 	
 ------------------------------------------------------------> Arte-finder
-	local artyDrop = (rand(100) <= arte_finder)
-	if artyDrop then
+	local artyDrop = (arte_finder > rand(1,100))
+	if artyDrop and not IsInvbox(victim) then
 		local allowed_artefacts = drx_da_main_artefacts.allowed_artefacts
 		local minArte = minCondition + artefinder_bonus[arte_finder]
 		local maxArte = maxCondition + artefinder_bonus[arte_finder]
 		local conditionArty = rand(minArte, maxArte)
 		alife_create_item(allowed_artefacts[rand(#allowed_artefacts)], victim, {cond = (conditionArty * 0.01)})
 	end
-		
-	if (#shotgun_list > 0) then
-		find_zone_slayer_ammo(shotgun_list[rand(1,#shotgun_list)], victim)
+	
+	if ammo_finder_chance > rand(1,100) then
+		CreateTimeEvent("ammo_finder_proc", npc_id, 0.1, ammo_finder_proc, victim)
 	end
 	
+	if (#shotgun_list > 0) and not IsInvbox(victim) then
+		if (rand(1,100) > 30) then
+			find_zone_slayer_ammo(shotgun_list[rand(1,#shotgun_list)], victim)
+		end
+	end
+end
+
+function ammo_finder_proc(box)
+	if IsInvbox(box) then
+		box:iterate_inventory_box(iter_create_ammo, box)
+	else
+		box:iterate_inventory(iter_create_ammo, box)
+	end
+	
+	if not was_ammo_found and ammo_finder > 2 and (#weapon_list > 0) then
+		find_spare_ammo(weapon_list[rand(1,#weapon_list)], box)
+	end
 	return true
+end
+
+function iter_create_ammo(box, obj)
+	local sec = obj:section()
+	if IsAmmo(obj) and not ammo_parts_check[sec] then
+		local ammo_count = obj:ammo_get_count()
+		printf("[RPG - Looting] Ammo Found: %s of %s", ammo_count, sec)
+		alife_create_item(sec, box, {ammo = ammo_count})
+		was_ammo_found = true
+--	else
+--		printf("[RPG - Looting] Item is not ammo: %s", sec)
+	end
+end
+
+function careful_handler_proc(box)
+	if IsInvbox(box) then
+		box:iterate_inventory_box(iter_careful_cond_increase, box)
+	else
+		box:iterate_inventory(iter_careful_cond_increase, box)
+	end
+	return true
+end
+
+local function IsValidWeapon(obj)
+	return IsWeapon(obj) and not IsItem("fake_ammo_wpn",obj:section())
+end
+
+local function IsValidMelee(obj)
+	if not obj then return false end
+	local o_sec = obj:section()
+	local get_slot = SYS_GetParam(2, o_sec, "animation_slot") or 0
+    return (SYS_GetParam(0, o_sec, "kind") == "w_melee") and (get_slot ~= 13)
+end
+
+function iter_careful_cond_increase(box, obj)
+	sec = obj:section()
+	if IsOutfit(obj) or IsValidWeapon(obj) then
+		-- printf("[RPG - Looting] Weapon/Armor being Carefully Handled: %s", sec)
+		-- increase armor and weapon drop conditions
+		local item_cond = obj:condition()
+		obj:set_condition(clamp(item_cond + (careful_handler_bonus * 0.01), 0, 1))
+		
+		if IsValidWeapon(obj) then
+			local saved_parts = item_parts.get_parts_con(obj) or 0
+			if saved_parts ~= 0 then
+				for k,v in pairs(saved_parts) do
+					saved_parts[k] = v + careful_handler_bonus
+				end
+			end
+		end
+	elseif utils_item.is_degradable(nil, sec) then
+		-- printf("[RPG - Looting] Item being Carefully Handled: %s", sec)
+		local item_cond = obj:condition()
+		obj:set_condition(clamp(item_cond + (careful_handler_bonus * 0.01), 0, 1))
+	end
 end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -315,7 +441,6 @@ local string_find   = string.find
 local string_gsub   = string.gsub
 
 function find_zone_slayer_ammo(weapon,npc)
-	if (rand(100) <= 30) then return end
 	local ammo_table = parse_list(ini_sys,weapon:section(),"ammo_class")
 	local shells = ammo_table[rand(1,#ammo_table)]
 	if (shells) then
@@ -329,7 +454,25 @@ function find_zone_slayer_ammo(weapon,npc)
 			shells = arti_ammo_utils.downgrade_ammo(shells, true)
 		end
 		alife_create_item(shells, npc, {ammo = 2})
-		printf('Zone Slayer ammo for %s: %s', weapon:section(), shells)
+		-- printf('[RPG - Looting] Zone Slayer ammo for %s: %s', weapon:section(), shells)
+	end
+end
+
+function find_spare_ammo(weapon,npc)
+	local ammo_table = parse_list(ini_sys,weapon:section(),"ammo_class")
+	local rounds = ammo_table[rand(1,#ammo_table)]
+	if (rounds) then
+		if string_find(rounds,"_verybad") then
+			local new_section = string_gsub(rounds,"_verybad","")
+			if ini_sys:section_exist(new_section) then
+				rounds = new_section
+			end
+		end
+		if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok, downgrade ammo to avoid granting rare ammo
+			rounds = arti_ammo_utils.downgrade_ammo(rounds, true)
+		end
+		alife_create_item(rounds, npc, {ammo = ammo_finder})
+		printf('[RPG - Looting] Ammo Finder extra ammo for %s: %s', weapon:section(), rounds)
 	end
 end
 
@@ -402,12 +545,14 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
-function build_shotgun_list()
+function build_weapon_list()
 	if (zone_slayer < 1) then return end
 	shotgun_list = {}
+	weapon_list = {}
 	local w1, w2, w3, w4 = db.actor:item_in_slot(3), db.actor:item_in_slot(2), db.actor:item_in_slot(1), db.actor:item_in_slot(5)
 		
-	if w1 then
+	if w1 and not IsValidMelee(w1) then
+		weapon_list[#weapon_list + 1] = w1 
 		local clip = ini_sys:r_float_ex(w1:section(), "ammo_mag_size") or 3
 		if clip <= 2 then
 			local ammo_table = parse_list(ini_sys,w1:section(),"ammo_class")
@@ -416,7 +561,8 @@ function build_shotgun_list()
 			end
 		end
 	end
-	if w2 then
+	if w2 and not IsValidMelee(w2) then
+		weapon_list[#weapon_list + 1] = w2 
 		local clip = ini_sys:r_float_ex(w2:section(), "ammo_mag_size") or 3
 		if clip <= 2 then
 			local ammo_table = parse_list(ini_sys,w2:section(),"ammo_class")
@@ -425,7 +571,8 @@ function build_shotgun_list()
 			end
 		end
 	end
-	if w3 then
+	if w3 and not IsValidMelee(w3) then
+		weapon_list[#weapon_list + 1] = w3
 		local clip = ini_sys:r_float_ex(w3:section(), "ammo_mag_size") or 3
 		if clip <= 2 then
 			local ammo_table = parse_list(ini_sys,w3:section(),"ammo_class")
@@ -434,7 +581,8 @@ function build_shotgun_list()
 			end
 		end
 	end
-	if w4 then
+	if w4 and not IsValidMelee(w4) then
+		weapon_list[#weapon_list + 1] = w4
 		local clip = ini_sys:r_float_ex(w4:section(), "ammo_mag_size") or 3
 		if clip <= 2 then
 			local ammo_table = parse_list(ini_sys,w4:section(),"ammo_class")
@@ -458,9 +606,9 @@ function on_game_start()
 	-- RegisterScriptCallback("npc_on_use",                     looting_enemy)
 	RegisterScriptCallback("actor_on_item_take",             perk_loot_improvement)
 	RegisterScriptCallback("actor_item_to_ruck",             perk_loot_improvement)
-	RegisterScriptCallback("actor_on_first_update",          build_shotgun_list)
-	RegisterScriptCallback("actor_item_to_ruck",             build_shotgun_list)
-	RegisterScriptCallback("actor_item_to_slot",             build_shotgun_list)
+	RegisterScriptCallback("actor_on_first_update",          build_weapon_list)
+	RegisterScriptCallback("actor_item_to_ruck",             build_weapon_list)
+	RegisterScriptCallback("actor_item_to_slot",             build_weapon_list)
 end
 
 -- Weapon Parts Monkey Patching
@@ -486,9 +634,9 @@ function zzzz_arti_jamming_repairs.weapon_eval_parts(wpn)
 			arti_jamming.print_dbg("Short circuiting")
 			parts_data[part] = rand(90, 99)
 		elseif rand(100) < final_chance then
-			parts_data[part] = rand(good_breakpoint + careful_handler_bonus[careful_handler], 99)
+			parts_data[part] = rand(good_breakpoint + careful_handler_bonus, 99)
 		else
-			parts_data[part] = rand(1, good_breakpoint - 1) + careful_handler_bonus[careful_handler]
+			parts_data[part] = rand(1, good_breakpoint - 1) + careful_handler_bonus
 		end
     end
 	se_save_var( wpn:id(), wpn:name(), "parts", parts_data )

@@ -176,7 +176,7 @@
 	<string id="st_perk_silver_tongued_desc_1">
         <text>Your charisma and charm are unmatched within the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] > %c[ui_gray_2] Receive %c[d_green]5% %c[ui_gray_2]better prices when buying or selling
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]5% %c[ui_gray_2]better prices when buying or selling
 		</text>
     </string>
 	<string id="st_perk_silver_tongued_desc_2">
