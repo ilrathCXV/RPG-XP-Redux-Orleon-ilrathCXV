@@ -419,14 +419,16 @@ function iter_careful_cond_increase(box, obj)
 		local item_cond = obj:condition()
 		obj:set_condition(clamp(item_cond + (careful_handler_bonus * 0.01), 0, 1))
 		
+		--[[
 		if IsValidWeapon(obj) then
 			local saved_parts = item_parts.get_parts_con(obj) or 0
 			if saved_parts ~= 0 then
 				for k,v in pairs(saved_parts) do
-					saved_parts[k] = v + careful_handler_bonus
+					saved_parts[k] = clamp((v + careful_handler_bonus), 0, 100)
 				end
 			end
 		end
+		--]]
 	elseif utils_item.is_degradable(nil, sec) then
 		-- printf("[RPG - Looting] Item being Carefully Handled: %s", sec)
 		local item_cond = obj:condition()
@@ -634,9 +636,11 @@ function zzzz_arti_jamming_repairs.weapon_eval_parts(wpn)
 			arti_jamming.print_dbg("Short circuiting")
 			parts_data[part] = rand(90, 99)
 		elseif rand(100) < final_chance then
-			parts_data[part] = rand(good_breakpoint + careful_handler_bonus, 99)
+			parts_data[part] = rand(good_breakpoint, 99) + careful_handler_bonus
+			parts_data[part] = clamp(parts_data[part], 0, 100)
 		else
 			parts_data[part] = rand(1, good_breakpoint - 1) + careful_handler_bonus
+			parts_data[part] = clamp(parts_data[part], 0, 100)
 		end
     end
 	se_save_var( wpn:id(), wpn:name(), "parts", parts_data )

@@ -2,7 +2,7 @@
 local gunslinger = 0
 local rifleman = 0
 local heavy_gunner = 0
-local reload_bonuses = {[0] = 0, [1] = 10, [2] = 25, [3] = 50} 
+local reload_bonuses = {[0] = 0, [1] = 10, [2] = 25, [3] = 50, [4] = 50, [5] = 50} -- 4 & 5 are failsafes for current runs for players
 
 local berserker = 0
 local jamming_shot = 0

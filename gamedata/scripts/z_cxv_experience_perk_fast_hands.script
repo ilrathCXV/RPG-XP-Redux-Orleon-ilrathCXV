@@ -1,5 +1,5 @@
 local fast_hands = 0
-local fast_hands_bonuses = {[0] = 0, [1] = 15, [2] = 30, [3] = 70} 
+local fast_hands_bonuses = {[0] = 0, [1] = 15, [2] = 30, [3] = 70, [4] = 70, [5] = 70} -- 4 & 5 are failsafes for older saves 
 
 local function experience_skill_on_update(id, data)
 	if (id == "perk_fast_hands") then
