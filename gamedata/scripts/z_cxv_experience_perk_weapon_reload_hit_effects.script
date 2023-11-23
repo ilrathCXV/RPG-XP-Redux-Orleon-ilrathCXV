@@ -397,7 +397,7 @@ end
 
 if grok_bo then
 	base_grok_npc = grok_bo.npc_on_before_hit
-	grok_bo.npc_on_before_hit = function(npc, shit, bone_id)
+	grok_bo.npc_on_before_hit = function(npc, shit, bone_id, flags)
 		
 		if shit.draftsman:id() ~= db.actor:id() then
 			return
