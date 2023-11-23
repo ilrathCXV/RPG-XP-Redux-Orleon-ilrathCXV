@@ -283,11 +283,11 @@ scav_tier5 = {
 
 local minCondition, maxCondition
 if drx_da_main then
-	minCondition = 15
-	maxCondition = 35
+	minCondition = 20
+	maxCondition = 30
 else
 	minCondition = 20
-	maxCondition = 35
+	maxCondition = 40
 end
 
 local artefinder_bonus = {[0] = 0, [1] = 1, [2] = 3, [3] = 7, [4] = 12, [5] = 18 }
@@ -480,24 +480,116 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
-------[NEW] Arte-finder functionality (increases to GAMMA's min and max thresholds)
-base_grok_condition = grok_artefacts_random_condition.grok_arti_random_efficiency
+------[NEW] Arte-finder functionality (updated to match GAMMA's 2nd Anniversary update new functionality)
+local in_actor_ruck = utils_item.in_actor_ruck
+local rad_factor = 0.5 -- multiplier to artefact rad effect in ruck
+local rad_tg_step = 300 --[ms]
 
+zz_dbg = false
+function pr(...) if zz_dbg then printf(...) end end
+function r(v) return round_idp(v, 3) end
 
-function grok_artefacts_random_condition.grok_arti_random_efficiency(obj)
-	kind = SYS_GetParam(0, obj:section(), "kind")
-	if (obj:condition() == 1.0 and kind == "i_arty" or kind == "i_arty_cont" and obj:condition() == 1.0) then
-		local minArte = minCondition + artefinder_bonus[arte_finder]
-		local maxArte = maxCondition + artefinder_bonus[arte_finder]
-		local cond = (rand(minArte, maxArte) * 0.01)
-		if obj:section() == "af_ah_f1" then
+item_artefact.artefact_binder.update = function(self, delta)
+	object_binder.update(self, delta)
+--	printf("pl:art [%s] pos %s", self.object:name(), vec_to_str(self.object:position()))
+
+	-- randomizer (first update)
+	local kind = SYS_GetParam(0, self.object:section(), "kind")
+	local kind_fits = kind and (kind == "i_arty" or kind == "i_arty_cont")
+	if (not zz_item_artefact.cond_t[self.object:id()] and self.object:condition() >= 1 and kind_fits) then
+		local cond = (math.random(minCondition + artefinder_bonus[arte_finder], maxCondition + artefinder_bonus[arte_finder]) / 100)
+		if self.object:section() == "af_ah_f1" then
 			cond = 0.98
 		end
-		obj:set_condition(cond)
+		self.object:set_condition(cond)
+		zz_item_artefact.cond_t[self.object:id()] = cond
+		pr("~randomizer set cond to: %s", r(cond))
 	end
 
+	-- if condition of stored artefact was changed by online transition / loading
+	if zz_item_artefact.cond_t[self.object:id()] and self.object:condition() >= 1 then
+		-- set stored condition back
+		pr("condition changed from online/loading, prev: %s || curr: %s", r(self.object:condition()), r(zz_item_artefact.cond_t[self.object:id()]))
+		self.object:set_condition(zz_item_artefact.cond_t[self.object:id()])
+	end
+
+	-- if condition was changed by other addons
+	if (zz_item_artefact.cond_t[self.object:id()] and self.object:condition() ~= zz_item_artefact.cond_t[self.object:id()]) or (not zz_item_artefact.cond_t[self.object:id()] and self.object:condition() < 1) then
+		pr("condition changed by other addons, prev: %s || curr: %s", zz_item_artefact.cond_t[self.object:id()] and r(zz_item_artefact.cond_t[self.object:id()]) or "nil", r(self.object:condition()))
+		-- update this condition
+		zz_item_artefact.cond_t[self.object:id()] = self.object:condition()
+	end
+
+    if self.first_call == true then
+		local se_obj = alife_object(self.object:id())
+		if (se_obj) then
+			local m_data = alife_storage_manager.get_se_obj_state(se_obj, true)
+			if (m_data and m_data.offline_condition and m_data.name == self.object:name()) then
+				printf("loaded condition for %s "..tonumber(m_data.offline_condition), se_obj:section_name())
+			--	self.object:set_condition(tonumber(m_data.offline_condition) or 0.9999999)
+				--m_data.offline_condition = nil
+			end
+		end								  
+		local ini = self.object:spawn_ini()
+		if not (ini and ini:section_exist("fixed_bone")) then
+			self.first_call = false
+			return
+		end
+		local bone_name = ini:r_string_ex("fixed_bone", "name")
+
+		local ph_shell = self.object:get_physics_shell()
+		if not ph_shell then
+			--printf("no ph shell")
+			return
+		end
+
+		local ph_element = ph_shell:get_element_by_bone_name(bone_name)
+
+		if ph_element:is_fixed() then
+			--printf("OBJECT FIXED")
+		else
+			--printf("FIXING OBJECT")
+			ph_element:fix()
+		end
+		
+		self.first_call = false
+
+
+    end	
+	
+		local obj = self.object
+		local cobj = obj:cast_Artefact()
+		if (not cobj) then
+			return
+		end
+		local tg = time_global()
+		local val = 0
+		
+		if (tg > self._tmr_rad) and (not self.no_rad) and in_actor_ruck(obj) then
+			self._tmr_rad = tg + rad_tg_step
+	
+		-- Get radiation restore speed
+		local rad_val = cobj.m_fRadiationRestoreSpeed or 0
+		
+		-- No process for artefacts with no / healing rad effect
+		if (self.no_rad == nil) then
+			self.no_rad = (rad_val <= 0)
+			if self.no_rad then
+				--print_dbg("Inventory radiation | artefact [%s] is not harmful -> exclude!", obj:name())
+				return
+			end
+		end
+
+		-- Apply radiation on actor
+		local rad_delta = rad_val * rad_factor
+		db.actor:change_radiation(rad_delta)
+		
+		--print_dbg("Inventory radiation | artefact: %s - radiation effect: %s", obj:name(), rad_delta)
+		end
 end
 
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
 
 function perk_loot_improvement(item)------------------> actor_on_item_take(item)		
 ------Мародёр-6: увеличивает количество собираемого бабла на 3% за уровень. --------> May need looking at for same reason as above
