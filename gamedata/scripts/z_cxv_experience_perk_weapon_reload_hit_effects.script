@@ -417,7 +417,7 @@ if grok_bo then
 		end
 		
 		local base_npc_health = npc and npc.health or 0
-		base_grok_npc(npc, shit, bone_id)
+		base_grok_npc(npc, shit, bone_id, flags)
 		local true_damage = (base_npc_health - (npc and npc.health)) or 0
 		
 		if true_damage <= 0 then return end
