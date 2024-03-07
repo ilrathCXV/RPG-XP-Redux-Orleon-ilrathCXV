@@ -133,7 +133,7 @@ function update_dodge_chance()
 	end
 	
 	lightweight_dodge_chance = ((12 - outfit_weight) * 0.5) * lightweight_dodge
-	printf("[RPG] LW Dodge Chance: %s %",lightweight_dodge_chance)
+	printf("[RPG - Player When Hit] LW Dodge Chance: %s %",lightweight_dodge_chance)
 end
 	
 --------------------------------------------------------------------------------------------------------------
@@ -148,8 +148,8 @@ end
 --base_grok_shit = grok_actor_damage_balancer.shit_booster
 --function grok_actor_damage_balancer.shit_booster (shit, bone_id, k_ap)
 function rpg_damage_reduction(shit, bone_id)
-
-
+	
+	
 	local player_weapon = db.actor:active_item()
 	if shit.type == hit.fire_wound and ((wick_mode > 0) or (lightweight_dodge > 0)) then
 		local dodge_chance = lightweight_dodge_chance * 10
@@ -169,9 +169,9 @@ function rpg_damage_reduction(shit, bone_id)
 		
 		if math.random(1000) < dodge_chance then
 			printf("///////////   RPG System: Damage reduction in progress  //////////////////")
-			printf("[RPG - Player Dodged] Original Base Hit: %s of type %s", shit.power, shit.type)
+			printf("[RPG - Player When Hit] Original Base Hit: %s of type %s", shit.power, shit.type)
 			shit.power = shit.power * 0
-			printf("[RPG - Player Dodged] Dodged hit!")
+			printf("[RPG - Player When Hit] Dodged hit!")
 			return
 		end
 	end
@@ -188,12 +188,14 @@ function rpg_damage_reduction(shit, bone_id)
 ------------------------------------------------------------> Anomaly Defense
     if anomaly_defense > 0 and is_elemental then
 		damage_mult = damage_mult - (anomaly_defense_resist)
+		--printf("[RPG - Player When Hit] Anomaly Defense %s% damage reduction!", anomaly_defense_resist)
     end
 
 ------------------------------------------------------------> Berserker
 	if shit.draftsman and (berserker > 0) and not is_elemental then
 		if player_weapon and IsMelee(player_weapon) then
 			damage_mult = damage_mult - (berserker_resist)
+			--printf("[RPG - Player When Hit] Berserker %s% damage reduction!", berserker_resist)
 		end
 	end
 
@@ -208,6 +210,7 @@ function rpg_damage_reduction(shit, bone_id)
 		-- Make sure to return hit back to normal values for the true damage reduction
 		shit.power = base_power
 		
+		--printf("[RPG - Player When Hit] Spiked %s% damage reflection (no damage reduction)!", spiked_reflect_perc)
     end
 	
 ------------------------------------------------------------> Thick Skin	
@@ -223,29 +226,34 @@ function rpg_damage_reduction(shit, bone_id)
 			end
 			
 			damage_mult = damage_mult - (base_mutant_resist * night_mult)
+			--printf("[RPG - Player When Hit] Thick Skin %s% damage reduction!", (base_mutant_resist * night_mult))
 		end
     end
 	
 ------------------------------------------------------------> Jump Man/Acrobatics
-	if shit.draftsman and (shit.draftsman:id() == db.actor:id()) and (not is_elemental) and (shit_type ~= hit.explosion) and (jump_man > 0) then
+	if shit.draftsman and (shit.draftsman:id() == db.actor:id()) and (not is_elemental) and (shit_type ~= hit.explosion) and 
+	(shit_type ~= hit.radiation) and (jump_man > 0) then
 		if shit.power < jump_man_threshold then
 			damage_mult = 0
+			--printf("[RPG - Player When Hit] Jump Man negating all fall damage!")
 		elseif jump_man == 3 then	-- take half damage if over threshold at max rank
 			damage_mult = damage_mult - 0.5
+			--printf("[RPG - Player When Hit] Jump Man negating 50% of the fall damage!")
 		end
 	end
 	
 ------------------------------------------------------------> Explosive Personality (Damage Reduction)
 	if shit.draftsman and demo_expert > 0 and shit_type == hit.explosion then
 		damage_mult = damage_mult - demo_expert_resist
+		--printf("[RPG - Player When Hit] Explosive Personality %s% damage reduction!", demo_expert_resist)
 	end
 	
-	if damage_mult < 1.0 then
+	if damage_mult < 1 then
 		printf("///////////   RPG System: Damage reduction in progress  //////////////////")
-		printf("[RPG - Player Hurt] Original Base Hit: %s of type %s", shit.power, is_elemental)
+		printf("[RPG - Player When Hit] Original Base Hit: %s of type %s (Is Elemental? %s)", shit.power, shit.type, is_elemental)
 		shit.power = shit.power * damage_mult
 		display_reduction = tonumber(100 - (damage_mult * 100))
-		printf("[RPG - Player Hurt] New Base Hit: %s | Damage Reduction: %s%", shit.power, display_reduction)
+		printf("[RPG - Player When Hit] New Base Hit: %s | Damage Reduction: %s%", shit.power, display_reduction)
 	end
 	-- Return reduced values back into Grok's equations
 	-- base_grok_shit(shit, bone_id, k_ap)

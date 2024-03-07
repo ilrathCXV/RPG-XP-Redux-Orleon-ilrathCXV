@@ -221,7 +221,7 @@ function perk_damage_effects(monster, shit, bone_id, flags)
 	
 	if shit.power >= 50 then return end
 	
-	local isCompanion = monster:has_info("monsterx_is_companion")
+	local isCompanion = monster:has_info("npcx_is_companion")
 	if isCompanion then return end
 	
     if not (shit.draftsman and shit.draftsman:id() == 0) then return end

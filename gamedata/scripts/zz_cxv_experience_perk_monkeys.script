@@ -72,3 +72,14 @@ if zzzz_arti_jamming_repairs then
 		end
 	end
 end
+
+---------------------------------------------------------------------------------------------------------------------------------
+-- experience_actions.script ----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+if experience_actions then
+	local baseStalkerXP = experience_actions.GetStalkerXP
+	function experience_actions.GetStalkerXP(faction, rank, killer_type, victim_id)
+		if faction == "arena_enemy" then faction = "stalker" end
+		baseStalkerXP(faction, rank, killer_type, victim_id)
+	end
+end

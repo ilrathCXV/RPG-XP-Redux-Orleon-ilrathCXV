@@ -588,11 +588,35 @@ item_artefact.artefact_binder.update = function(self, delta)
 		end
 end
 
+-- Item to backpack version added in a recent GAMMA update (2/10/24)
+-- Quick check in case someone has not updated to most recent GAMMA update/in case function is deleted in GAMMA
+if zz_item_artefact.actor_item_to_ruck then
+	function zz_item_artefact.actor_item_to_ruck(item)
+		local kind = SYS_GetParam(0, item:section(), "kind")
+		
+		local junk = kind and (kind == "i_arty_junk")
+		if (not zz_item_artefact.cond_t[item:id()] and junk) then
+			cond = item:condition()
+			zz_item_artefact.cond_t[item:id()] = cond
+		end
+		
+		local arte = kind and (kind == "i_arty" or kind == "i_arty_cont")
+		if (not zz_item_artefact.cond_t[item:id()] and item:condition() >= 1 and arte) then
+			local cond = (math.random(minCondition + artefinder_bonus[arte_finder], maxCondition + artefinder_bonus[arte_finder]) / 100)
+			if item:section() == "af_ah_f1" then
+				cond = 0.98
+			end
+			item:set_condition(cond)
+			zz_item_artefact.cond_t[item:id()] = cond
+			pr("~randomizer set cond to: %s", r(cond))
+		end
+	end
+end
+
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
 function perk_loot_improvement(item)------------------> actor_on_item_take(item)		
-------Мародёр-6: увеличивает количество собираемого бабла на 3% за уровень. --------> May need looking at for same reason as above
 	if midas_touch >= 1 then
 		local money_amount = parse_list(ini_sys,item:section(),"money_amount")
 		if #money_amount > 0 then

@@ -63,7 +63,11 @@ function perk_effects_over_time()
 					af_lucifer_data.condition = clamp(newCondition, 0, 0.51)
 				end
 			else
-				obj:set_condition(clamp(newCondition, 0, 0.99))
+				newCondition = clamp(newCondition, 0, 0.99)
+				obj:set_condition(newCondition)
+				if (zz_item_artefact.cond_t[obj:id()] and newCondition ~= zz_item_artefact.cond_t[obj:id()]) then
+					zz_item_artefact.cond_t[obj:id()] = newCondition
+				end
 			end
 		end)
 	end
