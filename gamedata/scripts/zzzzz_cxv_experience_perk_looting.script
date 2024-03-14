@@ -614,10 +614,44 @@ if zz_item_artefact.actor_item_to_ruck then
 end
 
 --------------------------------------------------------------------------------------------------------------
+----------------- [WIP] Arte-finder Rank 5 Mutant Looting Chance (1%)  (Credit to Orleon) --------------------
+--------------------------------------------------------------------------------------------------------------
+function monster_on_loot_init(victim, loot_table)
+	if arte_finder == 5 then
+		try_spawn_artefact(loot_table, "mutant")
+	end
+end
+
+function try_spawn_artefact(box, typ)
+    local allowed_artefacts = drx_da_main_artefacts.allowed_artefacts
+	if not allowed_artefacts then return end
+	
+	local spawned_artefact = allowed_artefacts[rand(#allowed_artefacts)]
+	if not spawned_artefact then return end
+
+    if not box[sec] then
+        box[sec] = {count = 0}
+    end
+	
+    box[sec].count = box[sec].count + 1
+end
+
+--------------------------------------------------------------------------------------------------------------
+---------------------- [WIP] Midas' Touch - Better Task Rewards  (Credit to Orleon) --------------------------
+--------------------------------------------------------------------------------------------------------------
+local GetEcoFactor = game_difficulties.get_eco_factor
+game_difficulties.get_eco_factor = function(key)
+	if (key == "rewards") and (midas_touch > 0) then
+		return GetEcoFactor(key) + (0.05 * midas_touch)
+	end
+	return GetEcoFactor(key)
+end
+
+--------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
 function perk_loot_improvement(item)------------------> actor_on_item_take(item)		
-	if midas_touch >= 1 then
+	if midas_touch > 0 then
 		local money_amount = parse_list(ini_sys,item:section(),"money_amount")
 		if #money_amount > 0 then
 			if used_wallet then
@@ -719,14 +753,15 @@ function on_game_start()
 	else
 		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
 	end
-	RegisterScriptCallback("save_state",                     save_state)
-    RegisterScriptCallback("load_state",                     load_state)
+	RegisterScriptCallback("save_state",					save_state)
+    RegisterScriptCallback("load_state",					load_state)
 	-- RegisterScriptCallback("npc_on_use",                     looting_enemy)
-	RegisterScriptCallback("actor_on_item_take",             perk_loot_improvement)
-	RegisterScriptCallback("actor_item_to_ruck",             perk_loot_improvement)
-	RegisterScriptCallback("actor_on_first_update",          build_weapon_list)
-	RegisterScriptCallback("actor_item_to_ruck",             build_weapon_list)
-	RegisterScriptCallback("actor_item_to_slot",             build_weapon_list)
+	RegisterScriptCallback("actor_on_item_take",			perk_loot_improvement)
+	RegisterScriptCallback("actor_item_to_ruck",			perk_loot_improvement)
+	RegisterScriptCallback("actor_on_first_update",			build_weapon_list)
+	RegisterScriptCallback("actor_item_to_ruck",			build_weapon_list)
+	RegisterScriptCallback("actor_item_to_slot",			build_weapon_list)
+	RegisterScriptCallback("monster_on_loot_init",			monster_on_loot_init)
 end
 
 -- Weapon Parts Monkey Patching

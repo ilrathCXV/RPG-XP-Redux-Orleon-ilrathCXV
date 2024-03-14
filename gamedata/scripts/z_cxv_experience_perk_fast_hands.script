@@ -47,7 +47,7 @@ function fast_hands_speed(anim_table,obj)
 	end
 	
 	local swap_bonus = 1 + (fast_hands_bonuses[fast_hands] * 0.01)
-	printf("[RPG] Swap Bonus: %s", swap_bonus)
+	-- printf("[RPG] Swap Bonus: %s", swap_bonus)
 	anim_table.anm_speed = anm_speed_base * swap_bonus
 	
 end

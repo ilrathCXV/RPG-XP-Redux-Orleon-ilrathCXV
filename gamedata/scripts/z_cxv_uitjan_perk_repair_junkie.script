@@ -31,7 +31,6 @@ function on_game_start()
 			local supportremaininguses = 0
 			local waslastuse = false
 			local support_waslastuse = false
-			local degrade_factor = item_repair.degrade_factor or 0.2
 			if not zz_item_repair_keep_crafting_window_open then
 				repairkit = self.obj
 			elseif self.isMultiUse and self.multiUseItemsObj[1] then -- Compatibility code for "Keep Crafting Windows Open"
@@ -53,7 +52,11 @@ function on_game_start()
 			end
 							
 			if repairkit then
-				
+				local degrade_factor = ini_sys:r_float_ex(repairkit:section(), "degradation_factor") or 0.2
+				--if degrade_factor == 0.2 then
+				--	printf("POOP - Failed to get degradation_factor - default to 0.2")
+				--	printe("POOP - Failed to get degradation_factor - default to 0.2")
+				--end
 				if IsItem("multiuse", repairkit:section()) then
 					kitremaininguses = repairkit:get_remaining_uses()
 					if kitremaininguses == 1 then
@@ -128,6 +131,11 @@ function on_game_start()
 			
 			
 			if repairkit then
+				local degrade_factor = ini_sys:r_float_ex(repairkit:section(), "degradation_factor") or 0.2
+				--if degrade_factor == 0.2 then
+				--	printf("POOP - Failed to get degradation_factor - default to 0.2")
+				--	printe("POOP - Failed to get degradation_factor - default to 0.2")
+				--end	
 				if not waslastuse and IsItem("multiuse", repairkit:section()) then
 					local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
 					math.randomseed(seed)

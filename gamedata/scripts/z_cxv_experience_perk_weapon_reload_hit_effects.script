@@ -27,6 +27,7 @@ local wick_inclusions = {
 	"kiparis",
 }
 
+
 local function experience_skill_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
 	--[[
 	if (id == "perk_ghost_ammo") then
@@ -581,11 +582,11 @@ if grok_bo then
 				fourth_timer = 0
 			end
 
-			local damage_bonus = true_damage * criticalMultiplier * glassCannon_Multiplier
-			if damage_bonus > true_damage then
-				local damage_bonus_news = tonumber(string.format("%.3f", damage_bonus))
+			local damage_bonus = (true_damage * criticalMultiplier * glassCannon_Multiplier) - true_damage
+
+			if damage_bonus > 0 then
 				printf("///////////   RPG System: Damage increase in progress  //////////////////")
-				printf('RPG Damage increase - Extra damage to the enemy: %s', damage_bonus)
+				printf('RPG Damage increase - Base Damage: %s | Additional Damage: %s', true_damage, damage_bonus)
 				local life_removed = npc.health - damage_bonus
 				printf('Enemy Health after hit: %s', npc.health)
 				npc:set_health_ex(life_removed)
@@ -664,7 +665,9 @@ function animation_weapons(anim_table,obj)
 	local reload_string = tostring(anim_table.anm_name)
 	local wpn_sec = obj:section()
 	local hud_sec = ini_sys:r_string_ex(wpn_sec,"hud")
-
+	
+	if (string_find(wpn_sec, "ppsh")) then weapon_class = "smg" end
+	
 	local reload_val = parse_list(ini_sys,hud_sec,reload_string)
 
 	local animation_speed = anim_table.anm_speed

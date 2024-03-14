@@ -500,6 +500,7 @@
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting mutants havs a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]15%\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 28 - 41% percent%c[ui_gray_2])
 		</text>
@@ -515,31 +516,36 @@
 	<string id="st_perk_midas_touch_desc_1">
         <text>The dangers of the Zone has granted you a strange mutation. Any money you find seems to multiply in your hands!\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]5% bonus cash %c[ui_gray_2]when looting it from dead enemies
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]5% bonus cash %c[ui_gray_2]when looting it from dead enemies\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]5% bonus cash %c[ui_gray_2]when completing tasks
 		</text>
     </string>
 	<string id="st_perk_midas_touch_desc_2">
         <text>The dangers of the Zone has granted you a strange mutation. Any money you find seems to multiply in your hands!\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% bonus cash %c[ui_gray_2]when looting it from dead enemies
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% bonus cash %c[ui_gray_2]when looting it from dead enemies\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% bonus cash %c[ui_gray_2]when completing tasks
 		</text>
     </string>
 	<string id="st_perk_midas_touch_desc_3">
         <text>The dangers of the Zone has granted you a strange mutation. Any money you find seems to multiply in your hands!\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]15% bonus cash %c[ui_gray_2]when looting it from dead enemies
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]15% bonus cash %c[ui_gray_2]when looting it from dead enemies\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]15% bonus cash %c[ui_gray_2]when completing tasks
 		</text>
     </string>
 	<string id="st_perk_midas_touch_desc_4">
         <text>The dangers of the Zone has granted you a strange mutation. Any money you find seems to multiply in your hands!\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% bonus cash %c[ui_gray_2]when looting it from dead enemies
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% bonus cash %c[ui_gray_2]when looting it from dead enemies\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% bonus cash %c[ui_gray_2]when completing tasks
 		</text>
     </string>
 	<string id="st_perk_midas_touch_desc_5">
         <text>The dangers of the Zone has granted you a strange mutation. Any money you find seems to multiply in your hands!\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% bonus cash %c[ui_gray_2]when looting it from dead enemies
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% bonus cash %c[ui_gray_2]when looting it from dead enemies\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% bonus cash %c[ui_gray_2]when completing tasks
 		</text>
     </string>
 	
