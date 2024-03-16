@@ -629,11 +629,11 @@ function try_spawn_artefact(box, typ)
 	local spawned_artefact = allowed_artefacts[rand(#allowed_artefacts)]
 	if not spawned_artefact then return end
 
-    if not box[sec] then
-        box[sec] = {count = 0}
+    if not box[spawned_artefact] then
+        box[spawned_artefact] = {count = 0}
     end
 	
-    box[sec].count = box[sec].count + 1
+    box[spawned_artefact].count = box[spawned_artefact].count + 1
 end
 
 --------------------------------------------------------------------------------------------------------------

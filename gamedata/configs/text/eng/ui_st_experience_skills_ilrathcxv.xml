@@ -137,22 +137,19 @@
 	<string id="st_perk_heavy_gunner_desc_1">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_2">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_3">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]50% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
+		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]50% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
 		</text>
     </string>
 <!--
@@ -500,7 +497,7 @@
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Looting mutants havs a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
+		%c[d_blue] - %c[ui_gray_2] Looting mutants has a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]15%\n
 		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 28 - 41% percent%c[ui_gray_2])
 		</text>
@@ -1279,22 +1276,22 @@
         <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]5% higher\n
-		%c[d_blue] - %c[ui_gray_2]Ignore all fall damage that is less than %c[d_green]15% of your max HP
+		%c[d_blue] - %c[ui_gray_2]Ignore fall damage if total damage is less than %c[d_green]15% of your max HP
 		</text>
     </string>
 	<string id="st_perk_jump_man_desc_2">
         <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]10% higher\n
-		%c[d_blue] - %c[ui_gray_2]Ignore all fall damage that is less than %c[d_green]30% of your max HP
+		%c[d_blue] - %c[ui_gray_2]Ignore fall damage if total damage is less than %c[d_green]30% of your max HP
 		</text>
     </string>
 	<string id="st_perk_jump_man_desc_3">
 		<text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]15% higher\n
-		%c[d_blue] - %c[ui_gray_2]Ignore all fall damage that is less than %c[d_green]45% of your max HP\n
-		%c[d_blue] - %c[ui_gray_2]Any fall damage not ignored will be reduced by %c[d_green]50%
+		%c[d_blue] - %c[ui_gray_2]Ignore fall damage if total damage is less than %c[d_green]45% of your max HP\n
+		%c[d_blue] - %c[ui_gray_2]If fall damage is not ignored, it will be reduced by %c[d_green]50% %c[ui_gray_2]instead
 		</text>
     </string>
 <!--
