@@ -618,6 +618,7 @@ end
 --------------------------------------------------------------------------------------------------------------
 function monster_on_loot_init(victim, loot_table)
 	if arte_finder == 5 then
+		if math.random(100) > 1 then return end
 		try_spawn_artefact(loot_table, "mutant")
 	end
 end
