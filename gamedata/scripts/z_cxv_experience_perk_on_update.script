@@ -52,18 +52,19 @@ function perk_effects_over_time()
     end
 -------------------------------------------------------------> Master of the Zone
 	if master_zone >= 1 then 
-		-- local artyBonus = 0.00015
-		local has_lucifer_belt = false
 		db.actor:iterate_belt( function(owner, obj)
-			local condition = obj:condition()
-			if condition >= 0.99 then return end
-			local newCondition = condition + 0.00015 * effect_factor
-			if obj:section() == af_lucifer then
+			if obj:section() == "af_lucifer" then
 				if af_lucifer_data.condition < 0.51 then
-					af_lucifer_data.condition = clamp(newCondition, 0, 0.51)
+					local condRepair = (0.00015 * effect_factor)
+					af_lucifer_data.condition = clamp(af_lucifer_data.condition + condRepair, 0, 0.51)
 				end
 			else
-				newCondition = clamp(newCondition, 0, 0.99)
+				local condition = obj:condition()
+				if condition > 0.98 then return end
+				
+				local condRepair = (0.00015 * effect_factor)
+				
+				newCondition = clamp(condition + condRepair, 0, 0.99)
 				obj:set_condition(newCondition)
 				if (zz_item_artefact.cond_t[obj:id()] and newCondition ~= zz_item_artefact.cond_t[obj:id()]) then
 					zz_item_artefact.cond_t[obj:id()] = newCondition

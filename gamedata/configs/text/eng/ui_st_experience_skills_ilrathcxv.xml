@@ -556,7 +556,8 @@
         <text>You have become one with the Zone. The Noosphere is now an ever-present force for your anomalous equipment.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Any artefacts or attachments equipped to your belt will %c[d_green]slowly repair themselves %c[ui_gray_2]over time\n
-		%c[d_blue] - %c[ui_gray_2] The %c[yellow]"Lucifer" %c[ui_gray_2]artefact will only be repaired %c[d_green]up to 51% %c[ui_gray_2]to avoid its negative effects if equipped on your belt
+		%c[d_blue] - %c[ui_gray_2] The %c[yellow]"Lucifer" %c[ui_gray_2]artefact will only be repaired %c[yellow]if it is equipped on your belt\n
+		%c[d_blue] - %c[ui_gray_2] The %c[yellow]"Lucifer" %c[ui_gray_2]artefact will be repaired %c[yellow] if below 51% condition
 		</text>
     </string>
 	

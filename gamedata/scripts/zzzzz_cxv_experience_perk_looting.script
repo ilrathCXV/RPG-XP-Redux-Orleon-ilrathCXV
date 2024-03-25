@@ -66,7 +66,7 @@ local ammo_parts_check = {
 	["bullet_r7_ap"] = true,
 	["powder_gravi"] = true,
 	-- Arti's/ArtiGrok's Ballistics Compat.
-	["powder_fire"] = true,
+	-- ["powder_fire"] = true,
 	["powder_gravi"] = true,
 	["powder_fireball"] = true,
 	["powder_nightstar"] = true,
@@ -383,7 +383,7 @@ function iter_create_ammo(box, obj)
 	local sec = obj:section()
 	if IsAmmo(obj) and not ammo_parts_check[sec] then
 		local ammo_count = obj:ammo_get_count()
-		printf("[RPG - Looting] Ammo Found: %s of %s", ammo_count, sec)
+		-- printf("[RPG - Looting] Ammo Found: %s of %s", ammo_count, sec)
 		alife_create_item(sec, box, {ammo = ammo_count})
 		was_ammo_found = true
 --	else
