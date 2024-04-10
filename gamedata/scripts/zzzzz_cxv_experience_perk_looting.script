@@ -142,58 +142,122 @@ function try_spawn_meds(box, looter_level)
     end
 end
 
-meds_tier1 = {
-    "bandage",				-- bandage
-    "caffeine",				-- caffine tablets
-    "drug_sleepingpills",	-- sleeping pills
-    "yadylin",				-- yadulin
-    "glucose_s",			-- glucose shot
-}
+meds_tier1 = {}
+meds_tier2 = {}
+meds_tier3 = {}
+meds_tier4 = {}
+meds_tier5 = {}
 
-meds_tier2 = {
-	"medkit",				-- AI-2 medkit
-    "caffeine",				-- caffine tablets
-    "drug_sleepingpills",	-- sleeping pills
-    "analgetic",			-- diclofenac sodium
-    "glucose",				-- large glucose shot
-    "drug_psy_blockade",	-- Psy-block
-	"drug_coagulant",		-- Vinca
-	"antirad_kalium",		-- potassium iodide
-    "yadylin",				-- yadulin
-	"tetanus",				-- fentanyl
-}
+if eftmeds_util then
+	
+	meds_tier1 = {
+		"splint",
+		"caffeine",
+		"drug_sleepingpills",
+		"bandage",
+		"glucose_s",
+	}
+	
+	meds_tier2 = {
+		"swiss_knife",			-- swiss army knife
+		"caffeine",				-- caffine tablets
+		"drug_sleepingpills",	-- sleeping pills
+		"glucose",				-- large glucose shot
+		"drug_psy_blockade",	-- Psy-block
+		"drug_coagulant",		-- Vinca
+		"antirad_kalium",		-- potassium iodide
+		"akvatab",				-- Ibuprofen
+	}
+	
+	meds_tier3 = {
+		"alu_splint",
+		"yadylin",				-- yadulin
+		"medkit",
+		"drug_radioprotector",	-- radioprotectant
+		"drug_antidot",		-- anabiotics
+		"drug_booster",			-- Hercules
+		"antirad",				-- anti-radiation drugs
+		"jgut",					-- tourniquet
+		"salicidic_acid",		-- metamizole ampoule
+	}
+	
+	meds_tier4 = {
+		"drug_radioprotector",	-- radioprotectant
+		"medkit_army",
+		"cms",
+		"stimpack",
+		"cocaine",				-- cocaine
+		"rebirth",				-- Axyltallisal "The Rebirth"
+		"antirad_cystamine",	-- cystamine
+	}
+	
+	meds_tier5 = {
+		"medkit_scientic",
+		"cms",
+		"adrenalin",			-- epinephrine shot
+		"morphine",				-- morphine ampoule
+		"rebirth",				-- Axyltallisal "The Rebirth"
+		"stimpack_army",
+		"survival_kit",			-- small survival kit
+		"medkit_ai1",			-- basic medical package
+	}
+	
+else
 
-meds_tier3 = {
-	"akvatab",				-- Ibuprofen
-    "medkit_army",			-- Army medkit
-    "stimpack",				-- improvised stimpack
-    "drug_radioprotector",	-- radioprotectant
-    "drug_anabiotic",		-- anabiotics
-	"drug_booster",			-- Hercules
-	"antirad",				-- anti-radiation drugs
-	"jgut",					-- tourniquet
-	"salicidic_acid",		-- metamizole ampoule
-	"tetanus",				-- fentanyl
-}
+	meds_tier1 = {
+		"bandage",				-- bandage
+		"caffeine",				-- caffine tablets
+		"drug_sleepingpills",	-- sleeping pills
+		"yadylin",				-- yadulin
+		"glucose_s",			-- glucose shot
+	}
+	
+	meds_tier2 = {
+		"medkit",				-- AI-2 medkit
+		"caffeine",				-- caffine tablets
+		"drug_sleepingpills",	-- sleeping pills
+		"analgetic",			-- diclofenac sodium
+		"glucose",				-- large glucose shot
+		"drug_psy_blockade",	-- Psy-block
+		"drug_coagulant",		-- Vinca
+		"antirad_kalium",		-- potassium iodide
+		"yadylin",				-- yadulin
+		"tetanus",				-- fentanyl
+	}
+	
+	meds_tier3 = {
+		"akvatab",				-- Ibuprofen
+		"medkit_army",			-- Army medkit
+		"stimpack",				-- improvised stimpack
+		"drug_radioprotector",	-- radioprotectant
+		"drug_anabiotic",		-- anabiotics
+		"drug_booster",			-- Hercules
+		"antirad",				-- anti-radiation drugs
+		"jgut",					-- tourniquet
+		"salicidic_acid",		-- metamizole ampoule
+		"tetanus",				-- fentanyl
+	}
+	
+	meds_tier4 = {
+		"drug_anabiotic",		-- anabiotics
+		"drug_radioprotector",	-- radioprotectant
+		"medkit_scientic",		-- Scientific medkit
+		"stimpack_army",		-- Military stimpack
+		"cocaine",				-- cocaine
+		"rebirth",				-- Axyltallisal "The Rebirth"
+		"antirad_cystamine",	-- cystamine
+	}
+	
+	meds_tier5 = {
+		"adrenalin",			-- epinephrine shot
+		"morphine",				-- morphine ampoule
+		"rebirth",				-- Axyltallisal "The Rebirth"
+		"stimpack_scientic",	-- Scientific stimpack
+		"survival_kit",			-- small survival kit
+		"medkit_ai1",			-- basic medical package
+	}
 
-meds_tier4 = {
-    "drug_anabiotic",		-- anabiotics
-    "drug_radioprotector",	-- radioprotectant
-    "medkit_scientic",		-- Scientific medkit
-    "stimpack_army",		-- Military stimpack
-	"cocaine",				-- cocaine
-	"rebirth",				-- Axyltallisal "The Rebirth"
-    "antirad_cystamine",	-- cystamine
-}
-
-meds_tier5 = {
-	"adrenalin",			-- epinephrine shot
-	"morphine",				-- morphine ampoule
-	"rebirth",				-- Axyltallisal "The Rebirth"
-    "stimpack_scientic",	-- Scientific stimpack
-	"survival_kit",			-- small survival kit
-	"medkit_ai1",			-- basic medical package
-}
+end
 
 
 function try_spawn_scav(box, looter_level)

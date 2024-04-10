@@ -74,7 +74,7 @@ function actor_on_update()
 	time_g = math_floor(time_global() * 0.01)	
 	
 	if (time_g > update_5s_timer) then
-		printf("Sleep level: %s | Has slept? - %s", get_last_sleep(), has_slept)
+		-- printf("Sleep level: %s | Has slept? - %s", get_last_sleep(), has_slept)
 		-- has_slept = get_last_sleep() < 200 or false
 		if has_slept then
 			if get_last_sleep() < well_rested_threshold[well_rested] then

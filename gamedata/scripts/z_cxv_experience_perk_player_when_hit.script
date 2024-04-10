@@ -112,9 +112,9 @@ local allowed_hit_types = {
 local get_time_hours = level.get_time_hours
 
 function update_dodge_chance()
-	if (lightweight_dodge <= 0) then
+	if (lightweight_dodge < 1) then
 		lightweight_dodge_chance = 0
-		printf("[RPG] LW Dodge Chance: %s %",lightweight_dodge_chance)
+		-- printf("[RPG] LW Dodge Chance: %s %",lightweight_dodge_chance)
 		return
 	end
 	

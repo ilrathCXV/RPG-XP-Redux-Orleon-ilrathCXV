@@ -1,0 +1,41 @@
+local_looting = 0
+local_looting_bonus = 0
+local_looting_stask_red = { [0] = 7, [1] = 7, [2] = 7, [3] = 6, [4] = 6, [5] = 5 }
+
+local function experience_skill_on_update(id, data)
+	if (id == "perk_local_looting") then
+		local_looting = data["curr_level"]
+		local_looting_bonus = local_looting * 0.075
+		treasure_manager.stash_rare.task_num = local_looting_stask_red[local_looting]
+	end
+end
+
+if grok_stashes_on_corpses then
+
+	grok_stash_base = grok_stashes_on_corpses.npc_on_use
+	function grok_stashes_on_corpses.npc_on_use(npc)
+		if local_looting == 0 then
+			grok_stash_base(npc)
+		else
+			if npc:alive() then return end
+			if grok_stashes_on_corpses._used_corpses[npc:id()] then return end
+			grok_stashes_on_corpses._used_corpses[npc:id()] = true
+			if math.random() > grok_stashes_on_corpses.SETTINGS.chance then return end
+			treasure_manager.create_random_stash(nil, nil, nil, math.random() > (0.75 - (local_looting * 0.075)))
+		end
+	end
+	
+	
+	
+end
+
+
+
+
+function on_game_start()
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
+end

@@ -1,0 +1,67 @@
+-- Do nothing if they don't own the script
+if not grok_remove_belt_duplicates then return end
+
+perk_fun_allowed = 0
+
+local function experience_skill_on_update(id, data)
+	if (id == "perk_fun_allowed") then
+		perk_fun_allowed = data["curr_level"]
+	end
+end
+
+base_belt_dupe_slot = grok_remove_belt_duplicates.set_on_slot
+function grok_remove_belt_duplicates.set_on_slot(slot_item)
+	if perk_fun_allowed > 0 then
+		base_belt_dupe_slot(slot_item)
+	else
+		slot_item_sec = slot_item:section()
+		if SYS_GetParam(0, slot_item_sec, "kind", "") == "i_arty_junk" then return end
+		
+		itm_tbl={}
+		db.actor:iterate_belt(
+			function (owner, obj)
+				local id = obj:id()
+				local section = obj:section()
+	
+				if SYS_GetParam(0, section, "kind", "") == "i_arty_cont" then
+					section = grok_remove_belt_duplicates.get_artefact_from_container(section)
+				end
+	
+				if itm_tbl[section] then
+					itm_tbl[section] = itm_tbl[section] + 1
+				else
+					itm_tbl[section] = 1
+				end 
+	
+				if grok_remove_belt_duplicates.categories[section] then
+					cat = grok_remove_belt_duplicates.categories[section]
+					if itm_tbl[cat] then
+						itm_tbl[cat] = itm_tbl[cat] + 1
+					else
+						itm_tbl[cat] = 1
+					end
+				end
+			end)
+	
+		if itm_tbl[slot_item_sec] then
+			if itm_tbl[slot_item_sec] >= 2 then
+				grok_remove_belt_duplicates.remove_item_from_slot(slot_item)
+			end
+		end
+	
+		if grok_remove_belt_duplicates.categories[slot_item_sec] then
+			cat_to_check = grok_remove_belt_duplicates.categories[slot_item_sec]
+			if itm_tbl[cat_to_check] >= 2 then
+				grok_remove_belt_duplicates.remove_item_from_slot(slot_item)
+			end
+		end
+	end
+end
+
+function on_game_start()
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
+end

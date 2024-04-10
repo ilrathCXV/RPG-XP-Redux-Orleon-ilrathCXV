@@ -342,21 +342,21 @@
         <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Heal bleeding wounds over time at a %c[d_orange]slow rate\n
-		%c[d_blue] - %c[ui_gray_2] Every 30 seconds heals at the same magnitude as a %c[d_green]bandage
+		%c[d_blue] - %c[ui_gray_2] Every 25 seconds heals at the same magnitude as a %c[d_green]whole bandage
 		</text>
     </string>
 	<string id="st_perk_cybermedic_desc_2">
         <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Heal bleeding wounds over time at a %c[yellow]faster rate\n
-		%c[d_blue] - %c[ui_gray_2] Every 20 seconds heals at the same magnitude as a %c[d_green]bandage
+		%c[d_blue] - %c[ui_gray_2] Every 16 seconds heals at the same magnitude as a %c[d_green]whole bandage
 		</text>
     </string>
 	<string id="st_perk_cybermedic_desc_3">
         <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Heal bleeding wounds over time at a %c[d_green]faster rate\n
-		%c[d_blue] - %c[ui_gray_2] Every 10 seconds heals at the same magnitude as a %c[d_green]bandage
+		%c[d_blue] - %c[ui_gray_2] Every 8 seconds heals at the same magnitude as a %c[d_green]whole bandage
 		</text>
     </string>
 	
@@ -611,19 +611,19 @@
         <text>Anomalies will deal reduced damage to you.</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_1">
-        <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
+        <text>Anomalies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]9% %c[ui_gray_2]less damage
 		</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_2">
-        <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
+        <text>Anomalies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]18% %c[ui_gray_2]less damage
 		</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_3">
-        <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
+        <text>Anomalies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]27% %c[ui_gray_2]less damage
 		</text>
@@ -702,7 +702,7 @@
 	<string id="st_perk_silver_tongued_desc_5">
         <text>Your charisma and charm is unmatched within the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% c%c[ui_gray_2]better prices when buying or selling
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% %c[ui_gray_2]better prices when buying or selling
 		</text>
     </string>
 	

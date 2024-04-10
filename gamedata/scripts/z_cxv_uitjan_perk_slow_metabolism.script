@@ -49,12 +49,12 @@ function get_actor_status_boost(obj, string)
 	
 	if slow_metabolism > 0 then
 		if satiety < 0 then
-			printf("Satiety drain: %s", satiety)
+			-- printf("Satiety drain: %s", satiety)
 			local satiety_drain_resist = satiety * (slow_metabolism * 0.18)
 			db.actor:change_satiety(-satiety_drain_resist)
 		end
 		if radiation > 0 then
-			printf("Radiation taken: %s", radiation)
+			-- printf("Radiation taken: %s", radiation)
 			local radiation_resist = radiation * (slow_metabolism * 0.18)
 			db.actor:change_radiation(-radiation_resist)
 		end

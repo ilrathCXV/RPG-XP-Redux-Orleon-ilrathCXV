@@ -22,6 +22,16 @@ local stow_anims = {
 	anm_show_empty = true,
 	anm_show_g = true,
 	anm_show_w_gl = true,
+	
+	-- grenade throw
+	-- anm_throw_begin = true,
+	-- anm_throw = true,
+	
+	-- knife
+	-- anm_attack       = true,
+	-- anm_attack2      = true,
+	-- anm_attack2_e    = true,
+	-- anm_attack_e     = true,
 }
 
 

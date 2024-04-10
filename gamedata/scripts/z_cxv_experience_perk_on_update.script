@@ -46,9 +46,11 @@ function perk_effects_over_time()
 
 -------------------------------------------------------------> Cybermedic
     if cybermedic >= 1 then
-		local bleedingCure = 0
-        bleedingCure = 0.00075 * cybermedic * effect_factor
-		db.actor.bleeding = bleedingCure
+		if db.actor.bleeding > 0 then
+			local bleedingCure = 0
+			bleedingCure = 0.003 * cybermedic * effect_factor
+			db.actor.bleeding = bleedingCure
+		end
     end
 -------------------------------------------------------------> Master of the Zone
 	if master_zone >= 1 then 
@@ -75,8 +77,11 @@ function perk_effects_over_time()
 
 ------Броненосец-7. Иммунитет к долгоиграющим эффектам -------------------> Refreshness
     if iron_resolve >= 1 then
-		local dizzyRemoval = -0.001 * iron_resolve * effect_factor
-		db.actor.alcohol = dizzyRemoval
+		local conditions = db.actor:cast_Actor():conditions()
+		if conditions then
+			local dizzyRemoval = -0.00375 * iron_resolve * effect_factor
+			conditions:ChangeAlcohol(dizzyRemoval)
+		end
     end
 	
 	saved_time_elapsed = time_elapsed
