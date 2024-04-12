@@ -87,7 +87,7 @@ function on_game_start()
 			end
 			
 			if supportitem then
-				
+				local degrade_factor = ini_sys:r_float_ex(supportitem:section(), "degradation_factor") or 0.2
 				if IsItem("multiuse", supportitem:section()) then
 					supportremaininguses = supportitem:get_remaining_uses()
 					if supportremaininguses == 1 then
@@ -160,6 +160,7 @@ function on_game_start()
 			
 	
 			if supportitem then
+				local degrade_factor = ini_sys:r_float_ex(supportitem:section(), "degradation_factor") or 0.2
 				if not support_waslastuse and IsItem("multiuse", supportitem:section()) then
 					local seed = supportremaininguses + supportitemid + self.con_val[1]
 					math.randomseed(seed)
