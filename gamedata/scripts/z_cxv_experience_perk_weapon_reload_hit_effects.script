@@ -385,7 +385,9 @@ function perk_damage_effects(monster, shit, bone_id, flags)
 	end
 end
 
-if grok_bo and grok_bo.PBA_obh then
+if grok_bo and not cxv_artigrok_bo then	
+-- only if not using ArtiGrok (grok_bo exists inside it - but empty - just for compat.)
+
 	base_grok_PBA = grok_bo.PBA_obh
 	function grok_bo.PBA_obh(npc, shit, bone_id, flags)
 		
@@ -693,12 +695,13 @@ function on_game_start()
 		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
 	end	
 
-	--if not grok_bo then
-	--	RegisterScriptCallback("npc_on_before_hit",             perk_damage_effects)
-	--end
+	if (not grok_bo) or (cxv_artigrok_bo) then
+		RegisterScriptCallback("npc_on_before_hit",             perk_damage_effects)
+	end
 	
     RegisterScriptCallback("monster_on_before_hit",         perk_damage_effects)
 	
+	RegisterScriptCallback("monster_on_death_callback",     perk_kill_effects)
     RegisterScriptCallback("npc_on_death_callback",         perk_kill_effects)
     RegisterScriptCallback("actor_on_update",         		actor_on_update)
 	
