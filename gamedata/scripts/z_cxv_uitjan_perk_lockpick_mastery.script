@@ -3,6 +3,7 @@ if not arti_lootboxes then return end
 local gc = game.translate_string
 
 local lockpick_mastery = 0
+local lockpick_reduction = {[0] = 0, [1] = 1, [2] = 2, [3] = 3, [4] = 5, [5] = 8}
 
 local function experience_skill_on_update(id, data)
 	if (not arti_lootboxes) then return end
@@ -14,7 +15,7 @@ end
 req_picks = arti_lootboxes.get_difficulty
 function arti_lootboxes.get_difficulty(box, tool)
     difficulty = req_picks(box, tool)
-    return math.ceil( difficulty - (1.5 * lockpick_mastery) )	-- -15% per rank
+    return math.ceil( difficulty - lockpick_reduction[lockpick_mastery] )	-- -15% per rank
 end
 
 base_build_diff = arti_lootboxes.build_diff

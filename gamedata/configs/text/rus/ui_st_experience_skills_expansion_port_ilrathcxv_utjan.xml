@@ -151,35 +151,35 @@
 	<string id="st_perk_lockpick_mastery_desc_1">
         <text>Найдя руководство по слесарному делу, вы теперь более эффективно взламываете замки запертых контейнеров.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Сложность замков на контейнерах понижается %c[d_green]15% %c[ui_gray_2]\n 
+		%c[d_blue] - %c[ui_gray_2] Сложность замков на контейнерах понижается %c[d_green]10% %c[ui_gray_2]\n 
 		%c[d_red] - ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"
 		</text>
     </string>
 	<string id="st_perk_lockpick_mastery_desc_2">
         <text>Найдя руководство по слесарному делу, вы теперь более эффективно взламываете замки запертых контейнеров.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Сложность замков на контейнерах понижается %c[d_green]30% %c[ui_gray_2]\n 
+		%c[d_blue] - %c[ui_gray_2] Сложность замков на контейнерах понижается %c[d_green]20% %c[ui_gray_2]\n 
 		%c[d_red] - ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"
 		</text>
     </string>
 	<string id="st_perk_lockpick_mastery_desc_3">
         <text>Найдя руководство по слесарному делу, вы теперь более эффективно взламываете замки запертых контейнеров.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Сложность замков на контейнерах понижается %c[d_green]45% %c[ui_gray_2]\n 
+		%c[d_blue] - %c[ui_gray_2] Сложность замков на контейнерах понижается %c[d_green]30% %c[ui_gray_2]\n 
 		%c[d_red] - ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"
 		</text>
     </string>
 	<string id="st_perk_lockpick_mastery_desc_4">
         <text>Найдя руководство по слесарному делу, вы теперь более эффективно взламываете замки запертых контейнеров.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Сложность замков на контейнерах понижается %c[d_green]60% %c[ui_gray_2]\n 
+		%c[d_blue] - %c[ui_gray_2] Сложность замков на контейнерах понижается %c[d_green]50% %c[ui_gray_2]\n 
 		%c[d_red] - ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"
 		</text>
     </string>
 	<string id="st_perk_lockpick_mastery_desc_5">
         <text>Найдя руководство по слесарному делу, вы теперь более эффективно взламываете замки запертых контейнеров.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Сложность замков на контейнерах понижается %c[d_green]75% %c[ui_gray_2]\n 
+		%c[d_blue] - %c[ui_gray_2] Сложность замков на контейнерах понижается %c[d_green]80% %c[ui_gray_2]\n 
 		%c[d_red] - ДЛЯ РАБОТЫ НАВЫКА ТРЕБУЕТСЯ МОД "LOOTBOXES"
 		</text>
     </string>
