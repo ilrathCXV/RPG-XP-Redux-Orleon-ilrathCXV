@@ -19,17 +19,23 @@ function get_nearby_lit_campfire(dist)
 	return false
 end
 
-function update_insanity() -- happens once per second
-	local psyregenmult = 1
-	if get_nearby_lit_campfire(10.0) then
-        psyregenmult = (1 + (0.2 * calm_mind))							-- Calm Mind: Multiply psy regen by 20% per rank when near a campfire (doubles psy regen at max rank)
-	end
-	local regen_amount = (0.0006 * calm_mind) * psyregenmult			-- Calm Mind: 20% of base psy regen per rank (should double base psy regen at max rank)
-	if arszi_psy.get_psy_health() < (1 - regen_amount) then
-		local newpsyhealth = arszi_psy.get_psy_health() + regen_amount
-		arszi_psy.set_psy_health(newpsyhealth)
+base_psy_regen_getter = arszi_psy.get_psy_health_regeneration
+function arszi_psy.get_psy_health_regeneration() -- happens once per second
+	local psyregenmult = base_psy_regen_getter()
+	if psyregenmult < 0 then
+		local temp_regen = psyregenmult
+		temp_regen = (1 + (0.2 * calm_mind)) * temp_regen			-- Calm Mind: 20% of base psy regen per rank (should double base psy regen at max rank)
+		if get_nearby_lit_campfire(10.0) then
+			temp_regen = temp_regen * (1 + (0.2 * calm_mind))							-- Calm Mind: Multiply psy regen by 20% per rank when near a campfire (doubles psy regen at max rank)
+		end
+		psyregenmult = psyregenmult + (psyregenmult - temp_regen)
+		return psyregenmult
 	else
-		arszi_psy.set_psy_health(1)
+		psyregenmult = (1 + (0.2 * calm_mind)) * psyregenmult			-- Calm Mind: 20% of base psy regen per rank (should double base psy regen at max rank)
+		if get_nearby_lit_campfire(10.0) then
+			psyregenmult = psyregenmult * (1 + (0.2 * calm_mind))							-- Calm Mind: Multiply psy regen by 20% per rank when near a campfire (doubles psy regen at max rank)
+		end
+		return psyregenmult
 	end
 end
 
