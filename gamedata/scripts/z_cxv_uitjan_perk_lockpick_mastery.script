@@ -15,7 +15,7 @@ end
 req_picks = arti_lootboxes.get_difficulty
 function arti_lootboxes.get_difficulty(box, tool)
     difficulty = req_picks(box, tool)
-    return math.ceil( difficulty - lockpick_reduction[lockpick_mastery] )	-- -15% per rank
+    return math.ceil( clamp(difficulty - lockpick_reduction[lockpick_mastery], 0, difficulty) )	-- -15% per rank
 end
 
 base_build_diff = arti_lootboxes.build_diff
