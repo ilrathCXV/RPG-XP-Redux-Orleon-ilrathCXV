@@ -13,6 +13,7 @@ local stow_anims = {
 	anm_hide_1 = true,
 	anm_hide_2 = true,
 	anm_hide_empty = true,
+	anm_hide_jammed = true,
 	anm_hide_g = true,
 	anm_hide_w_gl = true,
 	anm_show = true,
@@ -20,6 +21,7 @@ local stow_anims = {
 	anm_show_1 = true,
 	anm_show_2 = true,
 	anm_show_empty = true,
+	anm_show_jammed = true,
 	anm_show_g = true,
 	anm_show_w_gl = true,
 	

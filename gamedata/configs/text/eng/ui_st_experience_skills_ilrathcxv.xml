@@ -49,6 +49,31 @@
 		</text>
     </string>
 -->
+
+	<string id="st_perk_rapid_reload">
+        <text>Rapid Reload</text>
+    </string>
+	<string id="st_perk_rapid_reload_desc">
+        <text>Speed is key in the heat of battle.</text>
+    </string>
+	<string id="st_perk_rapid_reload_desc_1">
+        <text>Speed is key in the heat of battle. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]15%
+		</text>
+    </string>
+	<string id="st_perk_rapid_reload_desc_2">
+        <text>Speed is key in the heat of battle. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]40%
+		</text>
+    </string>
+	<string id="st_perk_rapid_reload_desc_3">
+        <text>Speed is key in the heat of battle. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]75%
+		</text>
+    </string>
 	
     <string id="st_perk_gunslinger">
         <text>Gunslinger</text>
@@ -59,35 +84,35 @@
 	<string id="st_perk_gunslinger_desc_1">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]5% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_2">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_3">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]50% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]15% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
-<!--
+
 	<string id="st_perk_gunslinger_desc_4">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]37% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]20% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_5">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
 		</text>
     </string>
--->
+
 	
 	<string id="st_perk_rifleman">
         <text>Rifleman</text>
@@ -98,35 +123,33 @@
 	<string id="st_perk_rifleman_desc_1">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]5% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_2">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_3">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]50% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]15% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
-<!--
 	<string id="st_perk_rifleman_desc_4">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]37% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]20% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_5">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
--->
 	
 	<string id="st_perk_heavy_gunner">
         <text>Heavy Gunner</text>
@@ -137,37 +160,35 @@
 	<string id="st_perk_heavy_gunner_desc_1">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]5% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_2">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_3">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]50% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]15% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
 		</text>
     </string>
-<!--
 	<string id="st_perk_heavy_gunner_desc_4">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]37% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]20% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_5">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
--->
 	
 	
     <string id="st_perk_berserker">
@@ -426,31 +447,34 @@
 	<string id="st_perk_medicine_man_desc_1">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1.5% %c[ui_gray_2]chance of finding %c[d_red] a medical item
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_2">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding %c[d_orange] a slightly better quality medical item
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]4% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_3">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4.5% %c[ui_gray_2]chance of finding %c[yellow] a better quality medical item
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]6% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes\n 
+		%c[d_blue] - %c[ui_gray_2] If there are no medical items to double on a successful roll, you will be given a random medical item instead
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_4">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]6% %c[ui_gray_2]chance of finding %c[d_green] a much better quality medical item
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]8% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes\n 
+		%c[d_blue] - %c[ui_gray_2] If there are no medical items to double on a successful roll, you will be given a random medical item instead
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_5">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]7.5% %c[ui_gray_2]chance of finding %c[d_green] a better and high-quality medical item
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]10% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes\n 
+		%c[d_blue] - %c[ui_gray_2] If there are no medical items to double on a successful roll, you will be given a random medical item instead
 		</text>
     </string>
 	
@@ -1027,9 +1051,9 @@
 	<string id="st_perk_zone_slayer_desc_1">
 		<text>Your affinity for double-barreled shotguns has awakened a hidden power within you...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2] with %c[yellow]double-barreled shotguns\n
-		%c[d_green] - %c[ui_gray_2] Stacks additively with other shotgun reload bonuses\n	
-		%c[d_blue] - %c[ui_gray_2] Dead stalkers have a %c[d_green]30% chance%c[ui_gray_2] to drop 2 random shotgun shells for any of your %c[yellow]currently-equipped double-barrel shotguns
+		%c[d_blue] - %c[ui_gray_2] Increase damage by an additional %c[d_green]5% %c[ui_gray_2] with %c[yellow]shotguns with an ammo capacity of 2 or less\n
+		%c[d_green] - %c[ui_gray_2] This damage bonus only applies against %c[yellow]mutants\n
+		%c[d_blue] - %c[ui_gray_2] Dead stalkers have a %c[d_green]30% chance%c[ui_gray_2] to drop 2 random shotgun shells for any of your %c[yellow]shotguns with an ammo capacity of 2 or less
 		</text>
     </string>
 	
@@ -1175,8 +1199,8 @@
         <text>Don't just become the boogeyman. Become the one sent to %c[d_red]kill the boogeyman.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] While having a pistol equipped in your hands, you have a %c[d_green]15% chance to "dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]15% %c[ui_gray_2]with %c[yellow]all pistols\n
-		%c[d_green] - %c[ui_gray_2] Reload bonus stacks additively with other pistol reload bonuses
+		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]5% %c[ui_gray_2]with %c[yellow]all pistols\n
+		%c[d_green] - %c[ui_gray_2] This damage bonus only applies against %c[yellow]Stalkers
 		</text>
     </string>
 	
@@ -1295,33 +1319,7 @@
 		%c[d_blue] - %c[ui_gray_2]If fall damage is not ignored, it will be reduced by %c[d_green]50% %c[ui_gray_2]instead
 		</text>
     </string>
-<!--
-	<string id="st_perk_jump_man_desc_4">
-        <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]12% higher
-		</text>
-    </string>
-	<string id="st_perk_jump_man_desc_5">
-        <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]15% higher
-		</text>
-    </string>
-	
-	<string id="st_perk_sturdy_legs">
-        <text>Sturdy Legs</text>
-    </string>
-	<string id="st_perk_sturdy_legs_desc">
-        <text>After taking enough high falls, your body has become more resilient to the impact.</text>
-    </string>
-	<string id="st_perk_sturdy_legs_desc_1">
-        <text>After taking enough high falls, your body has become more resilient to the impact.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Fall damage is now reduced by %c[d_green]75%
-		</text>
-    </string>
--->	
+
 	<string id="st_perk_demo_expert">
         <text>Explosive Personality</text>
     </string>

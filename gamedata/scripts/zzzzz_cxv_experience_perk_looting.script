@@ -8,6 +8,7 @@ local zone_slayer = 0
 local ammo_finder = 0
 local ammo_finder_chance = 0
 local was_ammo_found = false
+local was_medicine_found = false
 local careful_handler = 0
 local careful_handler_bonus = 0
 
@@ -125,21 +126,6 @@ local function roll_item_tiered(t, box, looter_level)
         end
     end
     return false
-end
-
-function try_spawn_meds(box, looter_level)
-    if rand(1,1000) <= looter_level then
-		-- printf("Medicine Man proc!")
-		local medChance = math.floor((medicine_man * 7) * rand(1.0,3.0))
-        local tbl = {
-			{ 100, meds_tier5},
-            { 70, meds_tier4},
-            { 35, meds_tier3},
-            { 22, meds_tier2},
-            { 0, meds_tier1},
-        }
-        roll_item_tiered(tbl, box, medChance)
-    end
 end
 
 meds_tier1 = {}
@@ -380,6 +366,7 @@ function looting_enemy(victim)
 	if not victim then printf("[RPG] No NPC/box found... No loot for you!") return end
 	
 	was_ammo_found = false
+	was_medicine_found = false
 	
 	-- Gather NPC info
 	local npc_id = victim:id() or 0
@@ -394,13 +381,13 @@ function looting_enemy(victim)
 	
 	-- ensure this goes first before creating any items to avoid double-dipping
 	if careful_handler > 0 then
-		CreateTimeEvent("careful_handler_proc", npc_id, 0.1, careful_handler_proc, victim)
+		--CreateTimeEvent("careful_handler_proc", npc_id, 0.01, careful_handler_proc, victim)
+		careful_handler_proc(victim)
 	end
 	
 -----------------------------------------------------------> Medicine Man
 	if medicine_man > 0 then
-		local medChance = medicine_man * 15
-		try_spawn_meds(victim, medChance)
+		medicine_man_proc(victim)
 	end
 	
 -----------------------------------------------------------> Scavenger
@@ -420,11 +407,12 @@ function looting_enemy(victim)
 	end
 	
 	if ammo_finder_chance > rand(1,100) then
-		CreateTimeEvent("ammo_finder_proc", npc_id, 0.1, ammo_finder_proc, victim)
+		--CreateTimeEvent("ammo_finder_proc", npc_id, 0.01, ammo_finder_proc, victim)
+		ammo_finder_proc(victim)
 	end
 	
 	if (#shotgun_list > 0) and not IsInvbox(victim) then
-		if (rand(1,100) > 30) then
+		if (rand(1,100) <= 30) then
 			find_zone_slayer_ammo(shotgun_list[rand(1,#shotgun_list)], victim)
 		end
 	end
@@ -440,7 +428,7 @@ function ammo_finder_proc(box)
 	if not was_ammo_found and ammo_finder > 2 and (#weapon_list > 0) then
 		find_spare_ammo(weapon_list[rand(1,#weapon_list)], box)
 	end
-	return true
+	--return true
 end
 
 function iter_create_ammo(box, obj)
@@ -461,7 +449,41 @@ function careful_handler_proc(box)
 	else
 		box:iterate_inventory(iter_careful_cond_increase, box)
 	end
-	return true
+	--return true
+end
+
+
+function medicine_man_proc(box)
+    if rand(1,100) <= (medicine_man * 2) then
+		-- printf("Medicine Man proc!")
+		if IsInvbox(box) then
+			box:iterate_inventory_box(iter_create_meds, box)
+		else
+			box:iterate_inventory(iter_create_meds, box)
+		end
+		
+		if not was_medicine_found and medicine_man > 2 then
+			local medChance = math.floor((medicine_man * 7) * round_idp(rand(0.5,3.0),2) )
+			local tbl = {
+				{ 100, meds_tier5},
+				{ 70, meds_tier4},
+				{ 35, meds_tier3},
+				{ 22, meds_tier2},
+				{ 0, meds_tier1},
+			}
+			roll_item_tiered(tbl, box, medChance)
+		end
+    end
+end
+
+function iter_create_meds(box, obj)
+	local sec = obj:section()
+	if SYS_GetParam(0, sec, "kind") == "i_medical" then
+		local ammo_count = obj:ammo_get_count()
+		-- printf("[RPG - Looting] Meds Found: %s", sec)
+		create_item_random_uses(sec, box)
+		was_medicine_found = true
+	end
 end
 
 local function IsValidWeapon(obj)
@@ -482,17 +504,6 @@ function iter_careful_cond_increase(box, obj)
 		-- increase armor and weapon drop conditions
 		local item_cond = obj:condition()
 		obj:set_condition(clamp(item_cond + (careful_handler_bonus * 0.01), 0, 1))
-		
-		--[[
-		if IsValidWeapon(obj) then
-			local saved_parts = item_parts.get_parts_con(obj) or 0
-			if saved_parts ~= 0 then
-				for k,v in pairs(saved_parts) do
-					saved_parts[k] = clamp((v + careful_handler_bonus), 0, 100)
-				end
-			end
-		end
-		--]]
 	elseif utils_item.is_degradable(nil, sec) then
 		-- printf("[RPG - Looting] Item being Carefully Handled: %s", sec)
 		local item_cond = obj:condition()
@@ -545,6 +556,7 @@ end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 ------[NEW] Arte-finder functionality (updated to match GAMMA's 2nd Anniversary update new functionality)
+
 local in_actor_ruck = utils_item.in_actor_ruck
 local rad_factor = 0.5 -- multiplier to artefact rad effect in ruck
 local rad_tg_step = 300 --[ms]
@@ -584,7 +596,7 @@ item_artefact.artefact_binder.update = function(self, delta)
 		zz_item_artefact.cond_t[self.object:id()] = self.object:condition()
 	end
 
-    if self.first_call == true then
+	if self.first_call == true then
 		local se_obj = alife_object(self.object:id())
 		if (se_obj) then
 			local m_data = alife_storage_manager.get_se_obj_state(se_obj, true)
@@ -619,7 +631,7 @@ item_artefact.artefact_binder.update = function(self, delta)
 		self.first_call = false
 
 
-    end	
+	end	
 	
 		local obj = self.object
 		local cobj = obj:cast_Artefact()
