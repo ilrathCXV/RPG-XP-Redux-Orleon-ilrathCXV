@@ -83,3 +83,19 @@ if experience_actions then
 		baseStalkerXP(faction, rank, killer_type, victim_id)
 	end
 end
+
+---------------------------------------------------------------------------------------------------------------------------------
+-- ammo_maker.script ------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+if ammo_maker then
+	if ammo_maker.breakdown then
+		local base_breakdown = ammo_maker.breakdown
+		function ammo_maker.breakdown(ammo, tool, batch)
+			local sec = ammo and ammo:section() or nil
+			base_breakdown(ammo, tool, batch)
+			if sec then
+				experience_actions.GetDisassemblyItemsXP(ammo)
+			end
+		end
+	end
+end

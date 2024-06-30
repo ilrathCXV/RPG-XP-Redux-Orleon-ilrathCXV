@@ -433,7 +433,8 @@
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]10% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes\n
-		%c[d_blue] - %c[ui_gray_2] If there is no ammo to double on a successful roll, you will be given a small amount of ammo instead
+		%c[d_blue] - %c[ui_gray_2] You will be given a small amount of ammo for one of your weapons, even if ammo is found when looting\n
+		%c[d_blue] - %c[ui_gray_2] This extra ammo has a chance equal to your Ammo Finder rank to double the amount given\n
 		</text>
     </string>
 	

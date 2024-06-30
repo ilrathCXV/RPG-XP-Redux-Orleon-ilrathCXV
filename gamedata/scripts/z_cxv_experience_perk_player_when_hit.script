@@ -190,7 +190,7 @@ function rpg_damage_reduction(shit, bone_id)
     end
 
 ------------------------------------------------------------> Berserker
-	if hitter and (berserker > 0) and not IsAnomaly() then
+	if hitter and (berserker > 0) and not IsAnomaly(hitter) then
 		if player_weapon and IsMelee(player_weapon) then
 			damage_mult = damage_mult - (berserker_resist)
 			--printf("[RPG - Player When Hit] Berserker %s% damage reduction!", berserker_resist)
@@ -198,7 +198,7 @@ function rpg_damage_reduction(shit, bone_id)
 	end
 
 ------------------------------------------------------------> Spiked
-    if hitter and (hitter:id() ~= db.actor:id()) and (spiked > 0) and not IsAnomaly() then
+    if hitter and (hitter:id() ~= db.actor:id()) and (spiked > 0) and not IsAnomaly(hitter) then
 		
 		local spike = base_power * spiked_reflect_perc
 		

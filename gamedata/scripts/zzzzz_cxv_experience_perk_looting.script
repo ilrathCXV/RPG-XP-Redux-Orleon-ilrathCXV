@@ -40,8 +40,6 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
-local looted_npc = {}
-
 local shotgun_ammo_check = {
 	["ammo_12x70_buck"] = true,
 	["ammo_23x75_shrapnel"] = true,
@@ -65,9 +63,12 @@ local ammo_parts_check = {
 	["bullet_r5_ap"] = true,
 	["bullet_r7"] = true,
 	["bullet_r7_ap"] = true,
+}
+
+-- Arti's/ArtiGrok's Ballistics Compat.
+local ammo_blocklist = {
+	["powder_fire"] = true,
 	["powder_gravi"] = true,
-	-- Arti's/ArtiGrok's Ballistics Compat.
-	-- ["powder_fire"] = true,
 	["powder_gravi"] = true,
 	["powder_fireball"] = true,
 	["powder_nightstar"] = true,
@@ -79,6 +80,8 @@ local ammo_parts_check = {
 local shotgun_list = {}
 local weapon_list = {}
 local rand = math.random
+--[[
+local looted_npc = {}
 
 function save_state(m_data)
     m_data.looted_npc = looted_npc
@@ -87,6 +90,7 @@ end
 function load_state(m_data)
     if m_data.looted_npc then looted_npc = m_data.looted_npc end
 end
+--]]
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -355,7 +359,7 @@ base_stash_loot = treasure_manager.try_spawn_treasure
 treasure_manager.try_spawn_treasure = function(box, ...)
 	local id = box:id()
 	if not treasure_manager.caches[id] then return end
-	if not (type(treasure_manager.caches[id]) == "string") then return end
+	-- if not (type(treasure_manager.caches[id]) == "string") then return end
 	base_stash_loot(box, ...)
 
 	looting_enemy(box)
@@ -371,6 +375,7 @@ function looting_enemy(victim)
 	-- Gather NPC info
 	local npc_id = victim:id() or 0
 	
+	--[[
 	if not IsInvbox(victim) then
 		-- Return if corpse has been looted already
 		if looted_npc[npc_id] or npc_id == 0 then
@@ -378,6 +383,7 @@ function looting_enemy(victim)
 		end
 		looted_npc[npc_id] = true
 	end
+	--]]
 	
 	-- ensure this goes first before creating any items to avoid double-dipping
 	if careful_handler > 0 then
@@ -425,8 +431,10 @@ function ammo_finder_proc(box)
 		box:iterate_inventory(iter_create_ammo, box)
 	end
 	
-	if not was_ammo_found and ammo_finder > 2 and (#weapon_list > 0) then
-		find_spare_ammo(weapon_list[rand(1,#weapon_list)], box)
+	if ammo_finder == 5 and (#weapon_list > 0) then
+		find_spare_ammo(box)
+	elseif not was_ammo_found and ammo_finder > 2 and (#weapon_list > 0) then
+		find_spare_ammo(box)
 	end
 	--return true
 end
@@ -518,8 +526,10 @@ local string_find   = string.find
 local string_gsub   = string.gsub
 
 function find_zone_slayer_ammo(weapon,npc)
-	local ammo_table = parse_list(ini_sys,weapon:section(),"ammo_class")
-	local shells = ammo_table[rand(1,#ammo_table)]
+	local wpn_id = weapon:id()
+	local ammo_type_number = weapon:get_ammo_type()
+	local ammo_list = utils_item.get_ammo(weapon:section(), wpn_id)
+	local shells = ammo_list[rand(1,#ammo_list)]
 	if (shells) then
 		if string_find(shells,"_verybad") then
 			local new_section = string_gsub(shells,"_verybad","")
@@ -535,23 +545,46 @@ function find_zone_slayer_ammo(weapon,npc)
 	end
 end
 
-function find_spare_ammo(weapon,npc)
-	local ammo_table = parse_list(ini_sys,weapon:section(),"ammo_class")
-	local rounds = ammo_table[rand(1,#ammo_table)]
-	if (rounds) then
-		if string_find(rounds,"_verybad") then
-			local new_section = string_gsub(rounds,"_verybad","")
-			if ini_sys:section_exist(new_section) then
-				rounds = new_section
-			end
-		end
-		if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok, downgrade ammo to avoid granting rare ammo
-			rounds = arti_ammo_utils.downgrade_ammo(rounds, true)
-		end
-		alife_create_item(rounds, npc, {ammo = ammo_finder})
-		printf('[RPG - Looting] Ammo Finder extra ammo for %s: %s', weapon:section(), rounds)
+function find_spare_ammo(box)
+	local attempt_count = 0
+	local rounds = nil
+	local weapon = nil
+	
+	while ((attempt_count < 10) and (not rounds)) do
+		weapon = weapon_list[rand(1,#weapon_list)]
+		local wpn_id = weapon:id()
+		local ammo_type_number = weapon:get_ammo_type()
+		local ammo_list = utils_item.get_ammo(weapon:section(), wpn_id)
+		rounds = ammo_list[rand(1,#ammo_list)]
+		attempt_count = attempt_count + 1
 	end
+	
+	if ((attempt_count >= 10) or (not rounds)) then 
+		printf("[RPG Looting] No weapon was found to give spare ammo!")
+		return
+	end
+
+	if string_find(rounds,"_verybad") then
+		local new_section = string_gsub(rounds,"_verybad","")
+		if ini_sys:section_exist(new_section) then
+			rounds = new_section
+		end
+	end
+	if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok, downgrade ammo to avoid granting rare ammo
+		rounds = arti_ammo_utils.downgrade_ammo(rounds, true)
+	end
+	
+	local amount = rand(1,ammo_finder) or 1
+	if ammo_finder_chance > rand(1,100) then
+		amount = amount * 2
+	end
+	
+	alife_create_item(rounds, box, {ammo = amount})
+	
+	printf('[RPG - Looting] Ammo Finder gave %s extra rounds for %s: %s', amount, weapon:section(), rounds)
+	
 end
+
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -694,17 +727,24 @@ end
 --------------------------------------------------------------------------------------------------------------
 function monster_on_loot_init(victim, loot_table)
 	if arte_finder == 5 then
-		if math.random(100) > 1 then return end
+		local rng_roll = math.random(1,100)
+		if rng_roll > 1 then
+			-- printf("[RPG Looting] Artefinder mutant loot: %s", rng_roll == 1)
+			return
+		end
 		try_spawn_artefact(loot_table, "mutant")
+		-- printf("[RPG Looting] Artefinder mutant loot: %s", rng_roll == 1)
 	end
 end
 
 function try_spawn_artefact(box, typ)
     local allowed_artefacts = drx_da_main_artefacts.allowed_artefacts
 	if not allowed_artefacts then return end
+	-- printf("[RPG Looting] Allowed Artefacts found")
 	
 	local spawned_artefact = allowed_artefacts[rand(#allowed_artefacts)]
 	if not spawned_artefact then return end
+	-- printf("[RPG Looting] Artefact selected: %s", spawned_artefact)
 
     if not box[spawned_artefact] then
         box[spawned_artefact] = {count = 0}
@@ -712,6 +752,7 @@ function try_spawn_artefact(box, typ)
 	
     box[spawned_artefact].count = box[spawned_artefact].count + 1
 end
+
 
 --------------------------------------------------------------------------------------------------------------
 ---------------------- [WIP] Midas' Touch - Better Task Rewards  (Credit to Orleon) --------------------------
@@ -731,10 +772,6 @@ function perk_loot_improvement(item)------------------> actor_on_item_take(item)
 	if midas_touch > 0 then
 		local money_amount = parse_list(ini_sys,item:section(),"money_amount")
 		if #money_amount > 0 then
-			if used_wallet then
-			used_wallet = false
-				return
-			end
 			local mult = 1
             mult = 1 + (0.05 * midas_touch)
 			if money_amount[2] then
@@ -745,7 +782,6 @@ function perk_loot_improvement(item)------------------> actor_on_item_take(item)
 				local amount = math.floor(tonumber(money_amount[1])) * mult or 10
 				db.actor:give_money(amount)
 			end
-			--db.actor:drop_item(item)
 		end
     end
 end
@@ -830,8 +866,8 @@ function on_game_start()
 	else
 		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
 	end
-	RegisterScriptCallback("save_state",					save_state)
-    RegisterScriptCallback("load_state",					load_state)
+	-- RegisterScriptCallback("save_state",					save_state)
+    -- RegisterScriptCallback("load_state",					load_state)
 	-- RegisterScriptCallback("npc_on_use",                     looting_enemy)
 	RegisterScriptCallback("actor_on_item_take",			perk_loot_improvement)
 	RegisterScriptCallback("actor_item_to_ruck",			perk_loot_improvement)
