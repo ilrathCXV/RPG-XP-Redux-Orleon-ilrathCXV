@@ -94,7 +94,11 @@ if ammo_maker then
 			local sec = ammo and ammo:section() or nil
 			base_breakdown(ammo, tool, batch)
 			if sec then
-				experience_actions.GetDisassemblyItemsXP(ammo)
+				if experience_actions then
+					experience_actions.GetDisassemblyItemsXP(ammo)
+				else
+					experience_core.give_actor_experience_by_disassembly_items(ammo)
+				end
 			end
 		end
 	end

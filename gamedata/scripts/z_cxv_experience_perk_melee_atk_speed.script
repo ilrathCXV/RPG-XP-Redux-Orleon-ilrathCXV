@@ -1,4 +1,4 @@
---[
+--[[
 local fighting_stance = 0
 
 local function experience_skill_on_update(id, data)
@@ -34,4 +34,4 @@ function on_game_start()
 
 	RegisterScriptCallback("actor_on_hud_animation_play", fighting_stance_speed)
 end
-]--
+]]--
