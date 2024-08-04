@@ -9,31 +9,31 @@
 	<string id="st_perk_surgical_precision_desc_1">
         <text>You are a professional with a scalpel.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]6% of its radiation and HP healing %c[ui_gray_2]as an additional boost over time
+		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]6% of its total radiation and HP healing %c[ui_gray_2]instantly as extra healing
 		</text>
     </string>
 	<string id="st_perk_surgical_precision_desc_2">
         <text>You are a professional with a scalpel.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]12% of its radiation and HP healing %c[ui_gray_2]as an additional boost over time
+		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]12% of its total radiation and HP healing %c[ui_gray_2]instantly as extra healing
 		</text>
     </string>
 	<string id="st_perk_surgical_precision_desc_3">
         <text>You are a professional with a scalpel.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]18% of its radiation and HP healing %c[ui_gray_2]as an additional boost over time
+		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]18% of its total radiation and HP healing %c[ui_gray_2]instantly as extra healing
 		</text>
     </string>
 	<string id="st_perk_surgical_precision_desc_4">
         <text>You are a professional with a scalpel.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]24% of its radiation and HP healing %c[ui_gray_2]as an additional boost over time
+		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]24% of its total radiation and HP healing %c[ui_gray_2]instantly as extra healing
 		</text>
     </string>
 	<string id="st_perk_surgical_precision_desc_5">
         <text>You are a professional with a scalpel.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]30% of its radiation and HP healing %c[ui_gray_2]as an additional boost over time
+		%c[d_blue] - %c[ui_gray_2] Medical items grant %c[d_green]30% of its total radiation and HP healing %c[ui_gray_2]instantly as extra healing
 		</text>
     </string>
 	

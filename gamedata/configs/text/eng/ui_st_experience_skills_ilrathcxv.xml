@@ -1129,22 +1129,22 @@
 	<string id="st_perk_glass_cannon_desc_1">
         <text>No pain, no gain.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] While %c[d_red]under 65% total health%c[ui_gray_2], you gain an exponential damage boost the lower your health is\n
-		%c[d_blue] - %c[ui_gray_2] Grants up to %c[d_green]32% bonus damage %c[ui_gray_2] at 1% HP 
+		%c[d_blue] - %c[ui_gray_2] While %c[d_red]under 80% total health%c[ui_gray_2], you gain an exponential damage boost the lower your health is\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]16.7% %c[ui_gray_2](@ 80% HP) to %c[d_green]60% %c[ui_gray_2](@ 1% HP) %c[d_green]bonus damage %c[ui_gray_2]
 		</text>
     </string>
 	<string id="st_perk_glass_cannon_desc_2">
         <text>No pain, no gain.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] While %c[d_red]under 65% total health%c[ui_gray_2], you gain an exponential damage boost the lower your health is\n
-		%c[d_blue] - %c[ui_gray_2] Grants up to %c[d_green]60% bonus damage %c[ui_gray_2] at 1% HP 
+		%c[d_blue] - %c[ui_gray_2] While %c[d_red]under 80% total health%c[ui_gray_2], you gain an exponential damage boost the lower your health is\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]22.2% %c[ui_gray_2](@ 80% HP) to %c[d_green]113% %c[ui_gray_2](@ 1% HP) %c[d_green]bonus damage %c[ui_gray_2]
 		</text>
     </string>
 	<string id="st_perk_glass_cannon_desc_3">
         <text>No pain, no gain.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] While %c[d_red]under 65% total health%c[ui_gray_2], you gain an exponential damage boost the lower your health is\n
-		%c[d_blue] - %c[ui_gray_2] Grants up to %c[d_green]94% bonus damage %c[ui_gray_2] at 1% HP 
+		%c[d_blue] - %c[ui_gray_2] While %c[d_red]under 80% total health%c[ui_gray_2], you gain an exponential damage boost the lower your health is\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]27.9% %c[ui_gray_2](@ 80% HP) to %c[d_green]153% %c[ui_gray_2](@ 1% HP) %c[d_green]bonus damage %c[ui_gray_2]
 		</text>
     </string>
 	
@@ -1350,6 +1350,43 @@
 		%c[d_blue] - %c[ui_gray_2] You now receive %c[d_green]15% less damage %c[ui_gray_2]from Explosive damage\n
 		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[d_red]0.01% chance %c[ui_gray_2]to spawn with an explosive weapon\n
 		%c[d_red] NOTE: Explosives are not just items to loot. They will use them against you and other stalkers. Kill them fast enough to claim your prize. PROCEED WITH CAUTION!
+		</text>
+    </string>
+	
+	<string id="st_perk_jewelcrafter">
+        <text>Jewelcrafter</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc">
+        <text>You can now refine Trait gems more successfully.</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc_1">
+        <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+1% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc_2">
+        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+2% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc_3">
+		<text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+3% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc_4">
+        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+5% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc_5">
+        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+8% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
 		</text>
     </string>
 	

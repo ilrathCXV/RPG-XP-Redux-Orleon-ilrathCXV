@@ -14,7 +14,7 @@ function on_game_start()
 	end	
 
     RegisterScriptCallback("actor_on_item_use",         get_healing_boost)
-    RegisterScriptCallback("actor_on_update",             healing_boost)
+   -- RegisterScriptCallback("actor_on_update",             healing_boost)
 end
 
 -- MEDICINE SKILL CODE
@@ -28,6 +28,8 @@ local heal_per_sec = 0
 local radheal_per_sec = 0
 
 medicine_boost_addition = 0
+
+--[[
 
 function healing_boost()
 	
@@ -64,12 +66,13 @@ function healing_boost()
 	end
 end
 
+--]]
+
 function get_healing_boost(obj, string)
 	
 	if surgical_precision > 0 then
 		if SYS_GetParam(0, obj:section(), "kind") == "i_medical" then
-			local cost = obj:cost()
-		
+--[[	old healing per second
 			if SYS_GetParam(2, obj:section(), "boost_health_restore") and SYS_GetParam(2, obj:section(), "boost_health_restore") > 0 then
 				heal_item_boost_time = SYS_GetParam(2, obj:section(), "boost_time")
 				heal_per_sec = SYS_GetParam(2, obj:section(), "boost_health_restore") * 6
@@ -82,6 +85,21 @@ function get_healing_boost(obj, string)
 				radheal_timeofuse = time_global()
 				radheal_timeoflasttick = radheal_timeofuse
 			end
+--]]		
+
+			if SYS_GetParam(2, obj:section(), "boost_health_restore") and SYS_GetParam(2, obj:section(), "boost_health_restore") > 0 then
+				heal_item_boost_time = SYS_GetParam(2, obj:section(), "boost_time")
+				heal_per_sec = SYS_GetParam(2, obj:section(), "boost_health_restore") * 6
+				instant_heal = heal_per_sec * (surgical_precision * 0.06 * heal_item_boost_time)
+				db.actor:change_health(instant_heal)
+			end
+			if SYS_GetParam(2, obj:section(), "boost_radiation_restore") and SYS_GetParam(2, obj:section(), "boost_radiation_restore") > 0 then
+				radheal_item_boost_time = SYS_GetParam(2, obj:section(), "boost_time")
+				radheal_per_sec = SYS_GetParam(2, obj:section(), "boost_radiation_restore") * 6
+				instant_radaway = -(radheal_per_sec * (surgical_precision * 0.06 * radheal_item_boost_time))
+				db.actor:change_radiation(instant_radaway)
+			end
+	
 		end
 	end
 end

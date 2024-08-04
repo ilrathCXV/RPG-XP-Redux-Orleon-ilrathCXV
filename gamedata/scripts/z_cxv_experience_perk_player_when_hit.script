@@ -184,7 +184,7 @@ function rpg_damage_reduction(shit, bone_id)
 	or string.find(hitter:id(),"field") or string.find(hitter:id(),"zone_mine")) and ((shit_type ~= hit.radiation) or (shit_type ~= hit.telepatic))) or false
 	
 ------------------------------------------------------------> Anomaly Defense
-    if anomaly_defense > 0 and IsAnomaly(hitter) then
+    if anomaly_defense > 0 and IsAnomaly(hitter) and shit.type ~= hit.radiation then
 		damage_mult = damage_mult - (anomaly_defense_resist)
 		--printf("[RPG - Player When Hit] Anomaly Defense %s% damage reduction!", anomaly_defense_resist)
     end
@@ -247,11 +247,11 @@ function rpg_damage_reduction(shit, bone_id)
 	end
 	
 	if damage_mult < 1 then
-		printf("///////////   RPG System: Damage reduction in progress  //////////////////")
-		printf("[RPG - Player When Hit] Original Base Hit: %s of type %s (Is Elemental? %s)", shit.power, shit.type, is_elemental)
+		--printf("///////////   RPG System: Damage reduction in progress  //////////////////")
+		--printf("[RPG - Player When Hit] Original Base Hit: %s of type %s (Is Elemental? %s)", shit.power, shit.type, is_elemental)
 		shit.power = shit.power * damage_mult
 		display_reduction = tonumber(100 - (damage_mult * 100))
-		printf("[RPG - Player When Hit] New Base Hit: %s | Damage Reduction: %s%", shit.power, display_reduction)
+		--printf("[RPG - Player When Hit] New Base Hit: %s | Damage Reduction: %s%", shit.power, display_reduction)
 	end
 	
 end

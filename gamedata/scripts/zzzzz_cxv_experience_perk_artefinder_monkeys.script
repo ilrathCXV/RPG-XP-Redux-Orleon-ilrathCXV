@@ -24,10 +24,10 @@ function experience_skill_on_update(id, data)
 		arte_finder = data["curr_level"]
 		arte_hunter_bonus = arte_finder * 3
 		
-		if grok_artefacts_random_spawner then
-			grok_artefacts_random_spawner.regular_fields_chance = 7 + arte_hunter_bonus
-			grok_artefacts_random_spawner.dynamic_fields_chance = 2 + arte_hunter_bonus
-		end
+--		if grok_artefacts_random_spawner then
+--			grok_artefacts_random_spawner.regular_fields_chance = 7 + arte_hunter_bonus
+--			grok_artefacts_random_spawner.dynamic_fields_chance = 2 + arte_hunter_bonus
+--		end
 		
 		if drx_da_main_artefacts then
 			if drx_da_main_artefacts.artefacts_map_chances then

@@ -1,0 +1,40 @@
+if not experience_traits then return end
+
+local jewelcrafter = 0
+local jewelcrafter_bonus = {[0] = 0, [1] = 1, [2] = 2, [3] = 3, [4] = 5, [5] = 8}
+
+local function experience_skill_on_update(id, data)
+	if (id == "perk_jewelcrafter") then
+		jewelcrafter = data["curr_level"]
+	end
+end
+
+experience_traits.UIExperienceTraits.UpdateUpgradeChance = function(self)
+	local tr_manager = experience_traits.get_traits_manager()
+    local tr = tr_manager:trait_by_id(self.selected.id)
+    local max_level = tr:max_level()
+    local qual = tr:quality() - (self.upgr_mode.quality - 1)
+    local curr_level = tr:level() - self.upgr_mode.curr_level
+
+    local base_chance = 99
+    if qual > 0 then
+        base_chance = base_chance / qual
+    elseif qual < 0 then
+        base_chance = base_chance + base_chance / (self.max_qual_lvl + qual)
+    end
+    local result = ( base_chance - base_chance / (max_level / curr_level) ) + jewelcrafter_bonus[jewelcrafter]
+    result = clamp(math.floor(result + 0.5), 1, 100)
+
+    local flags = { chance = result }
+    SendScriptCallback("experience_on_upgrade_trait_chance", tr:section(), tr:level(), tr:max_level(), tr:quality(), flags)
+
+    self.upgr_mode.chance = type(flags.chance) == "number" and clamp(math.floor(flags.chance + 0.5), 1, 100) or result
+end
+
+function on_game_start()
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end	
+end
