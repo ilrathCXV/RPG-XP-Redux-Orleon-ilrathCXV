@@ -1,11 +1,46 @@
--- local ghost_ammo = 0
 local gunslinger = 0
 local rifleman = 0
 local heavy_gunner = 0
 local gunner_damage_multiplier = 0.05
 
 local jamming_shot = 0
+local can_jam = false
+
 local disarming_shot = 0
+local can_disarm = true
+
+local jamming_bones = {
+	[20] = true, 
+	[21] = true, 
+	[22] = true,
+	[33] = true,
+	[34] = true, 
+	[35] = true,
+}
+
+local disarming_bones = {
+	[23] = true, 
+	[24] = true, 
+	[25] = true, 
+	[26] = true,  
+	[27] = true, 
+	[28] = true,  
+	[29] = true,  
+	[30] = true, 
+	[31] = true,  
+	[32] = true,
+	[36] = true,
+	[37] = true,
+	[38] = true, 
+	[39] = true, 
+	[40] = true,
+	[41] = true, 
+	[42] = true, 
+	[43] = true,
+	[44] = true, 
+	[45] = true, 	
+}
+
 local deadeye = 0
 local lucky_strike = 0
 
@@ -21,6 +56,8 @@ local glass_cannon_exp = { [1] = 0.85, [2] = 1.1, [3] = 1.35 }
 local wick_mode = 0
 local string_find = string.find
 
+local the_end = 0
+
 local function experience_skill_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
 	if (id == "perk_gunslinger") then
 		gunslinger = data["curr_level"]
@@ -33,9 +70,15 @@ local function experience_skill_on_update(id, data)	-- messy I know (will look i
 	end
 	if (id == "perk_jamming_shot") then
 		jamming_shot = data["curr_level"]
+		if jamming_shot > 0 then
+			can_jam = true
+		end
 	end
 	if (id == "perk_disarming_shot") then
 		disarming_shot = data["curr_level"]
+		if disarming_shot > 0 then
+			can_disarm = true
+		end
 	end
 	if (id == "perk_vampirism") then
 		vampirism = data["curr_level"]
@@ -59,6 +102,10 @@ local function experience_skill_on_update(id, data)	-- messy I know (will look i
 	end
 	if (id == "perk_wick_mode") then
 		wick_mode = data["curr_level"]
+	end
+	
+	if (id == "perk_the_end") then
+		the_end = data["curr_level"]
 	end
 end
 
@@ -201,10 +248,7 @@ function perk_damage_effects(victim, shit, bone_id, flags)
     local weapon_class = sortK_of(weapon)
 	local head_shot = perk_based_artefacts_bone_mapper.is_critical_bone(victim:clsid(), bone_id)
 	
-	if (string_find(weapon:section(), "ppsh")) then weapon_class = "smg" end
-	
-	local is_breaked = ((bone_id >=20) and (bone_id <= 45))
-    local is_breaked2 = bone_id >=36
+	if (string_find(weapon:section(), "_ppsh")) then weapon_class = "smg" end
 
     local base_shit = shit.power
 	
@@ -274,6 +318,47 @@ function perk_damage_effects(victim, shit, bone_id, flags)
 		shit.power = shit.power * criticalMultiplier
 	end
 	
+	-----------------------------------------------------------------------------------------------------------
+	-- Jamming Shot (also works with melees): Shooting an enemy's arms "jams" their weapon (5 sec. cooldown) --
+	-----------------------------------------------------------------------------------------------------------
+	if jamming_bones[bone_id] and jamming_shot > 0 and can_jam then
+		local enemy_weapon = victim:active_item()
+		if enemy_weapon and IsWeapon(enemy_weapon) then 
+			can_jam = false
+			CreateTimeEvent("can_jam_reset"..victim:id(), db.actor:id(), 5.0, reset_shot_conditions, 0)
+			enemy_weapon:unload_magazine()
+		end
+	end
+	
+	-----------------------------------------------------------------------------------------------------------------------------------
+	-- Disarming Shot: 30% chance to make an NPC drop their weapon when shot in the hands (condition and ammo will be set correctly) --
+	-- 				   								[[[ 10 sec. cooldown ]]]														 --
+	-----------------------------------------------------------------------------------------------------------------------------------
+	if disarming_shot > 0 and disarming_bones[bone_id] and can_disarm then
+		local enemy_weapon = victim:best_weapon()
+		local dropChance = math.random(100) <= 30
+		if weapon and enemy_weapon and IsWeapon(enemy_weapon) and dropChance then
+			-- Credit to Banjaji's Nutcracker Mayhem for weapon condition
+			-- Added bonus that the weapon will have the same ammo in its mag when it is dropped
+			can_disarm = false
+			local get_current_ammo = enemy_weapon:get_ammo_in_magazine() or 0
+			local cls = enemy_weapon:clsid()
+			if (not (cls == clsid.wpn_grenade_rgd5_s or cls == clsid.wpn_grenade_f1_s)) then
+				death_manager.set_weapon_drop_condition(victim,enemy_weapon)
+			end
+			
+			local mag_size = utils_item.get_param(enemy_weapon:section(), enemy_weapon and enemy_weapon:id(), "ammo_mag_size", "float", true)
+			if not mag_size then
+				mag_size = ini_sys:r_u32(enemy_weapon:section(), "ammo_mag_size") or 0
+			end
+			
+			-- set random amount of ammo in the magazine
+			enemy_weapon:set_ammo_elapsed(get_current_ammo)
+			victim:drop_item(enemy_weapon)
+			CreateTimeEvent("can_disarm_reset"..victim:id(), db.actor:id(), 10.0, reset_shot_conditions, 1)
+		end
+	end
+	
 	-----------------------------------------------------------
 	-- Gunslinger/Rifleman/Heavy Gunner: 	Damage modifiers --
 	-----------------------------------------------------------
@@ -303,6 +388,18 @@ function perk_damage_effects(victim, shit, bone_id, flags)
 			shit.power = shit.power * 1.05
 		end
 	end	
+	
+	-------------------------------------------------------------
+	-- "The End": 30% more damage with snipers when hip-firing --
+	-------------------------------------------------------------
+	if the_end > 0 and weapon_class == "sniper" then
+		if not string_find(weapon:section(), "_gauss") and not string_find(weapon:section(), "_wa2000") then
+			local weapon_rpm = ini_sys:r_u32(weapon:section(), "ammo_mag_size") or 60
+				if weapon_rpm < 60 and not axr_main.weapon_is_zoomed then
+				shit.power = shit.power * 1.3
+			end
+		end
+	end
 	
 	--------------------------------------------------------------------------------------------------------
 	-- On Your Mark: Returns ammo to the mag if landing enough successful shots in a short period of time --
@@ -417,9 +514,6 @@ if grok_bo and not cxv_artigrok_bo then
 				
 				if (string_find(weapon:section(), "ppsh")) then weapon_class = "smg" end
 				
-				local is_breaked = ((bone_id >= 20) and (bone_id <= 45))
-				local is_breaked2 = bone_id >=36
-				
 				local ammo_type_number
 				local ammo_list
 				local ammo_section
@@ -476,15 +570,20 @@ if grok_bo and not cxv_artigrok_bo then
 				-- Wick Mode/Zone Slayer: 	Damage modifiers --
 				-----------------------------------------------
 				if (wick_mode > 0) and (weapon_class == "pistol") and IsStalker(npc) then
-					gunnerMultiplier = gunnerMultiplier + .05
+					gunnerMultiplier = gunnerMultiplier + 0.05
 				end
 				
-				-- Don't need since this code is only triggered against Stalkers
-				--if (zone_slayer > 0) and (weapon_class == "shotgun") and IsMonster(victim) then
-				--	if mag_size < 3 then
-				--		gunnerMultiplier = gunnerMultiplier + .05
-				--	end
-				--end
+				-------------------------------------------------------------
+				-- "The End": 30% more damage with snipers when hip-firing --
+				-------------------------------------------------------------
+				if the_end > 0 and weapon_class == "sniper" then
+					if not string_find(weapon:section(), "_gauss") and not string_find(weapon:section(), "_wa2000") then
+						local weapon_rpm = ini_sys:r_u32(weapon:section(), "ammo_mag_size") or 60
+							if weapon_rpm < 60 and not axr_main.weapon_is_zoomed then
+							shit.power = gunnerMultiplier + 0.3
+						end
+					end
+				end
 				
 				-------------------------------------------------------------------
 				-- Lucky Strike + Deadeye: 	Critical damage and chance modifiers --
@@ -505,27 +604,48 @@ if grok_bo and not cxv_artigrok_bo then
 					play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, criticalMultiplier)
 				end
 				
-				-----------------------------------------------------------------------------------------
-				-- Jamming Shot (also works with melees): Shooting an enemy's arms "jams" their weapon --
-				-----------------------------------------------------------------------------------------
+				-----------------------------------------------------------------------------------------------------------
+				-- Jamming Shot (also works with melees): Shooting an enemy's arms "jams" their weapon (5 sec. cooldown) --
+				-----------------------------------------------------------------------------------------------------------
 		
-				if is_breaked and jamming_shot > 0 then
-					local weapon2 = npc:active_item()
-					if weapon2 then weapon2:unload_magazine(false) end
-				end
-				
-				--------------------------------------------------------------------------------------------------------------------------
-				-- Disarming Shot: 15% chance to make an NPC drop their weapon when shot in the hands (condition forced to 15%) --
-				--------------------------------------------------------------------------------------------------------------------------
-		
-				if disarming_shot > 0 and is_breaked2 then
-					local weapon2 = npc:active_item()
-					local dropChance = math.random(100) <= 15
-					if weapon and weapon2 and dropChance then
-						weapon2:set_condition(0.15)
-						npc:drop_item(weapon2)
+				if jamming_bones[bone_id] and jamming_shot > 0 and can_jam then
+					local enemy_weapon = npc:active_item()
+					if enemy_weapon and IsWeapon(enemy_weapon) then 
+						can_jam = false
+						CreateTimeEvent("can_jam_reset"..npc:id(), db.actor:id(), 5.0, reset_shot_conditions, 0)
+						enemy_weapon:unload_magazine()
 					end
 				end
+				
+				-----------------------------------------------------------------------------------------------------------------------------------
+				-- Disarming Shot: 30% chance to make an NPC drop their weapon when shot in the hands (condition and ammo will be set correctly) --
+				-- 				   								[[[ 10 sec. cooldown ]]]														 --
+				-----------------------------------------------------------------------------------------------------------------------------------
+		
+				if disarming_shot > 0 and disarming_bones[bone_id] and can_disarm then
+				local enemy_weapon = npc:best_weapon()
+				local dropChance = math.random(100) <= 30
+				if weapon and enemy_weapon and IsWeapon(enemy_weapon) and dropChance then
+					-- Credit to Banjaji's Nutcracker Mayhem for weapon condition
+					-- Added bonus that the weapon will have the same ammo in its mag when it is dropped
+					can_disarm = false
+					local get_current_ammo = enemy_weapon:get_ammo_in_magazine() or 0
+					local cls = enemy_weapon:clsid()
+					if (not (cls == clsid.wpn_grenade_rgd5_s or cls == clsid.wpn_grenade_f1_s)) then
+						death_manager.set_weapon_drop_condition(npc,enemy_weapon)
+					end
+			
+					local mag_size = utils_item.get_param(enemy_weapon:section(), enemy_weapon and enemy_weapon:id(), "ammo_mag_size", "float", true)
+					if not mag_size then
+						mag_size = ini_sys:r_u32(enemy_weapon:section(), "ammo_mag_size") or 0
+					end
+			
+					-- set random amount of ammo in the magazine
+					enemy_weapon:set_ammo_elapsed(get_current_ammo)
+					CreateTimeEvent("can_disarm_reset"..npc:id(), db.actor:id(), 10.0, reset_shot_conditions, 1)
+					npc:drop_item(enemy_weapon)
+				end
+			end
 		
 				--------------------------------------------------------------------------------------------------------
 				-- On Your Mark: Returns ammo to the mag if landing enough successful shots in a short period of time --
@@ -655,6 +775,20 @@ function fourth_times_swap_reset(anim_table,obj)
 	
 end
 
+-- 0 == jamming shot | 1 == disarming shot
+function reset_shot_conditions(perk_type)
+	if perk_type == 0 then
+		can_jam = true
+		return true
+	end
+	
+	if perk_type == 1 then
+		can_disarm = true
+		return true
+	end
+	
+	return true
+end
 
 function on_game_start()
 	if experience_potions then

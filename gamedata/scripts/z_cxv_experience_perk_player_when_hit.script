@@ -1,5 +1,5 @@
 local berserker = 0
-local berserker_resist = 0
+local berserker_resist = {[0] = 0, [1] = 0.10, [2] = 0.20, [3] = 0.30, [4] = 0.40, [5] = 0.50}
 
 local spiked = 0
 local spiked_reflect_perc = 0
@@ -21,7 +21,7 @@ local demo_expert = 0
 local demo_expert_resist = 0
 
 local floor = math.floor
-local weaponCat = z_cxv_experience_perk_weapon_reload_hit_effects.sortK_of
+local weaponCat = z_cxv_experience_perk_weapon_reload_hit_effects.sortK_of	-- need to make a script file with utils moved into there
 local string_find   = string.find
 
 local wick_inclusions = {
@@ -29,10 +29,11 @@ local wick_inclusions = {
 	"kiparis",
 }
 
+local the_end = 0
+
 local function experience_skill_on_update(id, data)
 	if (id == "perk_berserker") then
 		berserker = data["curr_level"]
-		berserker_resist = berserker * 0.05
 	end
 	if (id == "perk_spiked") then
 		spiked = data["curr_level"]
@@ -59,6 +60,9 @@ local function experience_skill_on_update(id, data)
 	if (id == "perk_demo_expert") then
 		demo_expert = data["curr_level"]
 		demo_expert_resist = demo_expert * 0.05
+	end
+	if (id == "perk_the_end") then
+		the_end = data["curr_level"]
 	end
 end
 
@@ -147,7 +151,7 @@ end
 function rpg_damage_reduction(shit, bone_id)
 	
 	local hitter = shit.draftsman
-	
+------------------------------------------------------------> Wick Mode
 	local player_weapon = db.actor:active_item()
 	if shit.type == hit.fire_wound and ((wick_mode > 0) or (lightweight_dodge > 0)) then
 		local dodge_chance = lightweight_dodge_chance * 10
@@ -157,7 +161,7 @@ function rpg_damage_reduction(shit, bone_id)
 			elseif z_cxv_experience_perk_weapon_reload_hit_effects and (weaponCat(player_weapon) == "smg") then
 				local is_exception = false
 				for i=1,#wick_inclusions do
-					if (string.find(player_weapon:section(), wick_inclusions[i])) and not is_exception then
+					if (string_find(player_weapon:section(), wick_inclusions[i])) and not is_exception then
 						is_exception = true
 						dodge_chance = dodge_chance + 150
 					end
@@ -174,7 +178,6 @@ function rpg_damage_reduction(shit, bone_id)
 		end
 	end
 	
-	
 	-- if shit.type == hit.telepatic then return end
     local base_power = shit.power
     local damage_mult = 1
@@ -182,6 +185,16 @@ function rpg_damage_reduction(shit, bone_id)
     shit_type = shit.type
 	local is_elemental = (((shit_type == hit.shock) or (shit_type == hit.burn) or (shit_type == hit.light_burn) or (shit_type == hit.chemical_burn)
 	or string.find(hitter:id(),"field") or string.find(hitter:id(),"zone_mine")) and ((shit_type ~= hit.radiation) or (shit_type ~= hit.telepatic))) or false
+	
+------------------------------------------------------------> "The End": 15% less damage when ADS with a bolt-action sniper (base RPM must be < 60)
+	if the_end > 0 then
+		if (weaponCat(player_weapon) == "sniper") and not string_find(player_weapon:section(), "_gauss") then
+			local weapon_rpm = ini_sys:r_u32(player_weapon:section(), "ammo_mag_size") or 60
+			if weapon_rpm < 60 and axr_main.weapon_is_zoomed then
+				damage_mult = damage_mult - 0.15
+			end
+		end
+	end
 	
 ------------------------------------------------------------> Anomaly Defense
     if anomaly_defense > 0 and IsAnomaly(hitter) and shit.type ~= hit.radiation then
@@ -192,8 +205,8 @@ function rpg_damage_reduction(shit, bone_id)
 ------------------------------------------------------------> Berserker
 	if hitter and (berserker > 0) and not IsAnomaly(hitter) then
 		if player_weapon and IsMelee(player_weapon) then
-			damage_mult = damage_mult - (berserker_resist)
-			--printf("[RPG - Player When Hit] Berserker %s% damage reduction!", berserker_resist)
+			damage_mult = damage_mult - (berserker_resist[berserker])
+			--printf("[RPG - Player When Hit] Berserker %s% damage reduction!", berserker_resist[berserker])
 		end
 	end
 

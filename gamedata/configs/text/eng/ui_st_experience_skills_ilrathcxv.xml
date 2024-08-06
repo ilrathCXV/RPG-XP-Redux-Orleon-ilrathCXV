@@ -200,31 +200,36 @@
 	<string id="st_perk_berserker_desc_1">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]5% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
+		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]10%
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_2">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
+		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]20%
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_3">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]15% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]30% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
+		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]30%
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_4">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]40% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
+		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]50%
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_5">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]25% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]50% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
+		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]75%
 		</text>
     </string>
 	
@@ -238,7 +243,8 @@
 	<string id="st_perk_jamming_shot_desc_1">
         <text>You are a nuisance to any Stalker that comes in your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Can %c[d_green]jam enemy weapons %c[ui_gray_2]by shooting enemies %c[yellow]in their arms
+		%c[d_blue] - %c[ui_gray_2] Can %c[d_green]jam enemy weapons %c[ui_gray_2]by shooting them %c[yellow]in their arms\n
+		%c[d_red] - %c[ui_gray_2] You can only jam enemies once every %c[d_red]5 seconds\n
 		</text>
     </string>
 	
@@ -247,12 +253,13 @@
         <text>Disarming Shot</text>
     </string>
 	<string id="st_perk_disarming_shot_desc">
-        <text>Shooting an enemy's weapon has a 15% chance for them to drop it on the ground.</text>
+        <text>Shooting an enemy's weapon has a 30% chance for them to drop it on the ground.</text>
     </string>
 	<string id="st_perk_disarming_shot_desc_1">
         <text>You've learned a neat trick to disable enemies: shooting their shooter.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Shooting an enemy's weapon has a %c[d_green]15% %c[ui_gray_2]chance for them to drop it on the ground
+		%c[d_blue] - %c[ui_gray_2] Shooting an enemy's hands has a %c[d_green]30% %c[ui_gray_2]chance for them to drop it on the ground\n
+		%c[d_red] - %c[ui_gray_2] You can only disarm enemies once every %c[d_red]10 seconds\n
 		</text>
     </string>
 	
@@ -1387,6 +1394,20 @@
         <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+8% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		</text>
+    </string>
+	
+	<string id="st_perk_the_end">
+        <text>The End</text>
+    </string>
+	<string id="st_perk_the_end_desc">
+        <text>"I am The End, I am here to bring you to your ultimate fate."</text>
+    </string>
+	<string id="st_perk_the_end_desc_1">
+        <text>"I am The End, I am here to bring you to your ultimate fate."\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] When aiming down sights with %c[yellow]bolt-action sniper-class weapons%c[ui_gray_2], you receive %c[d_green]15% less damage from all sources\n
+		%c[d_blue] - %c[ui_gray_2] When firing from the hip with %c[yellow]bolt-action sniper-class weapons%c[ui_gray_2],you deal %c[d_green]30% more damage against all Stalkers and mutants
 		</text>
     </string>
 	
