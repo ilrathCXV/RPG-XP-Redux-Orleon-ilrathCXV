@@ -4,11 +4,11 @@
 	
 	<!-- Skills Category in menu -->
 	<string id="ui_st_gamma_rpg_system_skills_category">
-        <text>RPG System</text>
+        <text>РПГ Система</text>
     </string>
 	<!-- Options preset name -->
 	<string id="ui_exp_prst_gamma_rpg_system_default">
-        <text>RPG System Preset</text>
+        <text>Пресет РПГ системы</text>
     </string>
 
 	<string id="st_perk_fast_hands">
@@ -35,139 +35,151 @@
 		%c[d_blue] - %c[ui_gray_2] Увеличивает скорость доставания/убирания оружия на %c[d_green]70%
 		</text>
     </string>
-<!--
-	<string id="st_perk_fast_hands_desc_4">
-        <text>You have learned to handle your items more effectively. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]60%
+
+	<string id="st_perk_rapid_reload">
+        <text>Быстрая перезарядка</text>
+    </string>
+	<string id="st_perk_rapid_reload_desc">
+        <text>Скорость - ключ к успеху в пылу битвы. %c[d_red]ВАЖНО! Скорость перезарядки оружия перестанет совпадать со звуком перезарядки (неисправимый движковый баг). \n \n
 		</text>
     </string>
-	<string id="st_perk_fast_hands_desc_5">
-        <text>You have learned to handle your items more effectively. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]75%
+	<string id="st_perk_rapid_reload_desc_1">
+        <text>Скорость - ключ к успеху в пылу битвы. \n \n
+		%c[d_red]ВАЖНО! Скорость перезарядки оружия перестанет совпадать со звуком перезарядки (неисправимый движковый баг). \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Ваша скорость перезарядки увеличивается на %c[d_green]15%
 		</text>
     </string>
--->
+	<string id="st_perk_rapid_reload_desc_2">
+        <text>Скорость - ключ к успеху в пылу битвы. \n \n
+		%c[d_red]ВАЖНО! Скорость перезарядки оружия перестанет совпадать со звуком перезарядки (неисправимый движковый баг). \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Ваша скорость перезарядки увеличивается на %c[d_green]40%
+		</text>
+    </string>
+	<string id="st_perk_rapid_reload_desc_3">
+        <text>Скорость - ключ к успеху в пылу битвы. \n \n
+		%c[d_red]ВАЖНО! Скорость перезарядки оружия перестанет совпадать со звуком перезарядки (неисправимый движковый баг). \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Ваша скорость перезарядки увеличивается на %c[d_green]75%
+		</text>
+    </string>
 	
     <string id="st_perk_gunslinger">
         <text>Ковбой</text>
     </string>
 	<string id="st_perk_gunslinger_desc">
-        <text>Теперь вы наносите повышенный урон из пистолетов и пистолетов-пулеметов.</text>
+        <text>Вам всегда нравились пистолеты и пистолеты-пулеметы, а так же прочее компактное огнестрельное оружие. Возможно, вы даже фанат фильма Эквилибриум. Теперь при стрельбе из пистолетов ваши враги получат больше урона.</text>
     </string>
 	<string id="st_perk_gunslinger_desc_1">
-        <text>Вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
+        <text>Мастерство обращение с компактным огнестрельным оружием не прошло даром, теперь вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Скорость перезарядки увеличена на %c[d_green]10% %c[ui_gray_2]для %c[yellow]пистолетов и пистолет-пулемётов
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]5% %c[ui_gray_2] для %c[yellow]Пистолетов и Пистолетов-пулеметов
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_2">
-        <text>Вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
+        <text>Мастерство обращение с компактным огнестрельным оружием не прошло даром, теперь вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Скорость перезарядки увеличена на %c[d_green]25% %c[ui_gray_2]для %c[yellow]пистолетов и пистолет-пулемётов
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]10% %c[ui_gray_2] для %c[yellow]Пистолетов и Пистолетов-пулеметов
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_3">
-        <text>Вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
+        <text>Мастерство обращение с компактным огнестрельным оружием не прошло даром, теперь вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Скорость перезарядки увеличена на %c[d_green]50% %c[ui_gray_2]для %c[yellow]пистолетов и пистолет-пулемётов																						  
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]15% %c[ui_gray_2] для %c[yellow]Пистолетов и Пистолетов-пулеметов
 		</text>
     </string>
-<!--
+
 	<string id="st_perk_gunslinger_desc_4">
-        <text>You have mastered your skills with using small arms. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]37% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+        <text>Мастерство обращение с компактным огнестрельным оружием не прошло даром, теперь вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]20% %c[ui_gray_2] для %c[yellow]Пистолетов и Пистолетов-пулеметов
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_5">
-        <text>You have mastered your skills with using small arms. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+        <text>Мастерство обращение с компактным огнестрельным оружием не прошло даром, теперь вы наносите повышенный урон при использовании пистолетов и пистолетов-пулеметов. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]25% %c[ui_gray_2] для %c[yellow]Пистолетов и Пистолетов-пулеметов
 		</text>
     </string>
--->
+
 	
 	<string id="st_perk_rifleman">
         <text>Стрелок</text>
     </string>
 	<string id="st_perk_rifleman_desc">
-        <text>Теперь вы наносите повышенный урон из штурмовых винтовок.</text>
+        <text>Вас уже начинают сравнивать с легендарным сталкером. Ваши навыки стрельбы из штурмовых винтовок поражают многих. Теперь ваши выстрелы из винтовок подобного типа так же будут наносить повышенный урон!</text>
     </string>
 	<string id="st_perk_rifleman_desc_1">
-        <text>Ваш урон из штурмовых винтовок увеличен. \n \n
+        <text>Вы стали экспертом в классе штурмовых винтовок и карабинов. Урон при стрельбе из них увеличен. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ::\n
-		%c[d_blue] - %c[ui_gray_2] Скорость перезарядки увеличена на %c[d_green]10% %c[ui_gray_2]для %c[yellow]штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]5% %c[ui_gray_2] для %c[yellow]Штурмовых винтовок и Пулеметов
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_2">
-        <text>Ваш урон из штурмовых винтовок увеличен. \n \n
+        <text>Вы стали экспертом в классе штурмовых винтовок и карабинов. Урон при стрельбе из них увеличен.  \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ::\n
-		%c[d_blue] - %c[ui_gray_2] Скорость перезарядки увеличена на %c[d_green]25% %c[ui_gray_2]для %c[yellow]штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]10% %c[ui_gray_2] для %c[yellow]Штурмовых винтовок и Пулеметов
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_3">
-        <text>Ваш урон из штурмовых винтовок увеличен. \n \n
+        <text>Вы стали экспертом в классе штурмовых винтовок и карабинов. Урон при стрельбе из них увеличен.  \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ::\n
-		%c[d_blue] - %c[ui_gray_2] Скорость перезарядки увеличена на %c[d_green]50% %c[ui_gray_2]для %c[yellow]штурмовых винтовок и %c[ui_gray_2]большинства %c[yellow]пулемётов																										  
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]15% %c[ui_gray_2] для %c[yellow]Штурмовых винтовок и Пулеметов
 		</text>
     </string>
-<!--
 	<string id="st_perk_rifleman_desc_4">
-        <text>You have become an expert with rifle-styled platforms. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]37% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+        <text>Вы стали экспертом в классе штурмовых винтовок и карабинов. Урон при стрельбе из них увеличен.  \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]20% %c[ui_gray_2] для %c[yellow]Штурмовых винтовок и Пулеметов
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_5">
-        <text>You have become an expert with rifle-styled platforms. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+        <text>Вы стали экспертом в классе штурмовых винтовок и карабинов. Урон при стрельбе из них увеличен.  \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]25% %c[ui_gray_2] для %c[yellow]Штурмовых винтовок и Пулеметов
 		</text>
     </string>
--->
 	
 	<string id="st_perk_heavy_gunner">
         <text>Танк</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc">
-        <text>Теперь вы наносите повышенный урон из дробовиков, снайперских винтовок и гранатомётов.</text>
+        <text>Вам всегда нравились большие пушки. Неважно, какие: снайперские винтовки, дробовики или даже гранатометы. Теперь в ваших руках они стали еще более смертоносным оружием!</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_1">
-        <text>Вы стали чаще использовать более специализированные оружия в Зоне. \n \n
+        <text>Вы стали чаще использовать более специализированное оружие в Зоне, и это пошло вам на пользу. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Скорость перезарядки увеличена на %c[d_green]10% %c[ui_gray_2]для%c[yellow]дробовиков, снайперских винтовок и гранатомётов\n
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]5% %c[ui_gray_2] для %c[yellow]Дробовиков, Снайперский винтовок и Взрывчатки
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_2">
-        <text>Вы стали чаще использовать более специализированные оружия в Зоне. \n \n
+        <text>Вы стали чаще использовать более специализированное оружие в Зоне, и это пошло вам на пользу. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Скорость перезарядки увеличена на %c[d_green]25% %c[ui_gray_2]для%c[yellow]дробовиков, снайперских винтовок и гранатомётов\n
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]10% %c[ui_gray_2] для %c[yellow]Дробовиков, Снайперский винтовок и Взрывчатки
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_3">
-        <text>Вы стали чаще использовать более специализированные оружия в Зоне. \n \n
+        <text>Вы стали чаще использовать более специализированное оружие в Зоне, и это пошло вам на пользу. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
-		%c[d_blue] - %c[ui_gray_2] Скорость перезарядки увеличена на %c[d_green]50% %c[ui_gray_2]для%c[yellow]дробовиков, снайперских винтовок и гранатомётов\n
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]15% %c[ui_gray_2] для %c[yellow]Дробовиков, Снайперский винтовок и Взрывчатки
 		</text>
     </string>
-<!--
 	<string id="st_perk_heavy_gunner_desc_4">
-        <text>You have taken to the more specialized weapons in the Zone. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]37% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
+        <text>Вы стали чаще использовать более специализированное оружие в Зоне, и это пошло вам на пользу. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]20% %c[ui_gray_2] для %c[yellow]Дробовиков, Снайперский винтовок и Взрывчатки\n
+		%c[d_red] - %c[ui_gray_2] Не затгаривает бросаемые гранаты.
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_5">
-        <text>You have taken to the more specialized weapons in the Zone. \n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase reload speed by %c[d_green]55% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
+        <text>Вы стали чаще использовать более специализированное оружие в Зоне, и это пошло вам на пользу. \n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Увеличение урона на %c[d_green]25% %c[ui_gray_2] для %c[yellow]Дробовиков, Снайперский винтовок и Взрывчатки\n
+		%c[d_red] - %c[ui_gray_2] Не затгаривает бросаемые гранаты.
 		</text>
     </string>
--->
+	
 	
     <string id="st_perk_berserker">
         <text>Берсерк</text>
@@ -179,30 +191,35 @@
         <text>Пока другие оттачивали свою меткость, вы упражнялись в рукопашном бое. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] Вы получаете на  %c[d_green]5% %c[ui_gray_2]меньше повреждений при использовании оружия ближнего боя.
+		%c[d_blue] - %c[ui_gray_2] Скорость атаки в ближнем бою увеличивается на %c[d_green]10%
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_2">
         <text>Пока другие оттачивали свою меткость, вы упражнялись в рукопашном бое. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] Вы получаете на  %c[d_green]10% %c[ui_gray_2]меньше повреждений при использовании оружия ближнего боя.
+		%c[d_blue] - %c[ui_gray_2] Скорость атаки в ближнем бою увеличивается на %c[d_green]20%
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_3">
         <text>Пока другие оттачивали свою меткость, вы упражнялись в рукопашном бое. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] Вы получаете на  %c[d_green]15% %c[ui_gray_2]меньше повреждений при использовании оружия ближнего боя.
+		%c[d_blue] - %c[ui_gray_2] Скорость атаки в ближнем бою увеличивается на %c[d_green]30%
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_4">
         <text>Пока другие оттачивали свою меткость, вы упражнялись в рукопашном бое. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] Вы получаете на  %c[d_green]20% %c[ui_gray_2]меньше повреждений при использовании оружия ближнего боя.
+		%c[d_blue] - %c[ui_gray_2] Скорость атаки в ближнем бою увеличивается на %c[d_green]50%
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_5">
         <text>Пока другие оттачивали свою меткость, вы упражнялись в рукопашном бое. \n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] Вы получаете на  %c[d_green]25% %c[ui_gray_2]меньше повреждений при использовании оружия ближнего боя.
+		%c[d_blue] - %c[ui_gray_2] Скорость атаки в ближнем бою увеличивается на %c[d_green]75%
 		</text>
     </string>							   
 	<string id="st_perk_jamming_shot">
@@ -229,6 +246,7 @@
         <text>Вы научились ловкому трюку, чтобы обезоружить врага: выстрелить в его пушку.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При попадании по оружию противника есть %c[d_green]15% %c[ui_gray_2]шанс, что он его выронит
+		%c[d_red] - %c[ui_gray_2] Вы можете разоружать врагов только раз в %c[d_red]10 секунд\n
 		</text>
     </string>
 	
@@ -408,6 +426,7 @@
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При обыске тела вы находите на %c[d_green]10% \n%c[ui_gray_2]больше патронов
 		%c[d_blue] - %c[ui_gray_2] Если  боеприпасов, которые можно удвоить нет, то будет предоставлено небольшое количество боеприпасов.
+		%c[d_blue] - %c[ui_gray_2] У этих дополнительных боеприпасов есть шанс удвоить количество, равное вашему рангу в поиске боеприпасов.\n
 		</text>
     </string>
 	
@@ -418,33 +437,35 @@
         <text>При обыске тела у вас есть шанс найти дополнительный медицинский предмет. Качество предмета увеличивается при повышении уровня навыка.</text>
     </string>
 	<string id="st_perk_medicine_man_desc_1">
-        <text>Слухи о вашей силе заставили сталкеров носить с собой дополнительные медикаменты в поле.\n \n
+        <text>Слухи о вашей силе заставили сталкеров носить с собой дополнительные медикаменты.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]1.5% %c[ui_gray_2]шанс найти дополнительный %c[d_red] медицинский предмет
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_2">
-        <text>Слухи о вашей силе заставили сталкеров носить с собой дополнительные медикаменты в поле.\n \n
+        <text>Слухи о вашей силе заставили сталкеров носить с собой дополнительные медикаменты.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]3% %c[ui_gray_2]шанс найти дополнительный %c[d_red] медицинский предмет
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_3">
-        <text>Слухи о вашей силе заставили сталкеров носить с собой дополнительные медикаменты в поле.\n \n
+        <text>Слухи о вашей силе заставили сталкеров носить с собой дополнительные медикаменты.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]4.5% %c[ui_gray_2]шанс найти дополнительный %c[d_red] медицинский предмет\n
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_4">
-        <text>Слухи о вашей силе заставили сталкеров носить с собой дополнительные медикаменты в поле.\n \n
+        <text>Слухи о вашей силе заставили сталкеров носить с собой дополнительные медикаменты.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]6% %c[ui_gray_2]шанс найти дополнительный %c[d_red] медицинский предмет\n
+		%c[d_blue] - %c[ui_gray_2] При успехе, если нет предметов медицинского назначения, которые можно было бы удвоить, вместо них вам будет выдан случайный предмет медицинского назначения\n
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_5">
-        <text>Слухи о вашей силе заставили сталкеров носить с собой дополнительные медикаменты в поле.\n \n
+        <text>Слухи о вашей силе заставили сталкеров носить с собой дополнительные медикаменты.\n \n
 		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] При обыске тела у вас есть %c[d_green]7.5% %c[ui_gray_2]шанс найти дополнительный %c[d_red] медицинский предмет\n
+		%c[d_blue] - %c[ui_gray_2] При успехе, если нет предметов медицинского назначения, которые можно было бы удвоить, вместо них вам будет выдан случайный предмет медицинского назначения\n
 		</text>
     </string>
 	
@@ -624,13 +645,13 @@
 <!---
 	<string id="st_perk_anomaly_defense_desc_4">
         <text>Anomlies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
-		%c[ui_gray_3]EFFECTS:\n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]20% %c[ui_gray_2]less damage
 		</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_5">
         <text>Аномалии начинают становиться менее опасными. Скорее, они становятся все более разрдражающими.\n \n
-		%c[ui_gray_3]EFFECTS:\n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
 		%c[d_blue] - %c[ui_gray_2] Аномалии будут наносить на %c[d_green]25% %c[ui_gray_2]меньше урона
 		</text>
     </string>
@@ -1339,6 +1360,57 @@
 		%c[d_blue] - %c[ui_gray_2] Теперь вы получаете %c[d_green]на 15% меньше урона %c[ui_gray_2]от взрывов\n
 		%c[d_blue] - %c[ui_gray_2] Сталкеры теперь имеют %c[d_red]0,01% шанс %c[ui_gray_2] появиться с различными РПГ \n
 		%c[d_red] ПРИМЕЧАНИЕ. Взрывчатка — это не просто предметы, которые можно добыть. Они будут использовать их против вас и других сталкеров. Убейте их достаточно быстро, чтобы получить свой приз. ДЕЙСТВУЙТЕ С ОСТОРОЖНОСТЬЮ!
+		</text>
+    </string>
+	
+	<string id="st_perk_jewelcrafter">
+        <text>Ювелир</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc">
+        <text>Теперь вы можете более успешно совершенствовать драгоценные камни-характеристики.</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc_1">
+        <text>Вы отточили свои навыки изготовления ювелирных изделий, что повышает шансы на успех при обновлении драгоценных камней-характеристик.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Теперь вы получите %c[d_green]+1% %c[ui_gray_2]к шансу улучшения драгоценного камня характеристик.
+		</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc_2">
+        <text>Вы отточили свои навыки изготовления ювелирных изделий, что повышает шансы на успех при обновлении драгоценных камней-характеристик.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Теперь вы получите %c[d_green]+2% %c[ui_gray_2]к шансу улучшения драгоценного камня характеристик.
+		</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc_3">
+        <text>Вы отточили свои навыки изготовления ювелирных изделий, что повышает шансы на успех при обновлении драгоценных камней-характеристик.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Теперь вы получите %c[d_green]+3% %c[ui_gray_2]к шансу улучшения драгоценного камня характеристик.
+		</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc_4">
+        <text>Вы отточили свои навыки изготовления ювелирных изделий, что повышает шансы на успех при обновлении драгоценных камней-характеристик.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Теперь вы получите %c[d_green]+5% %c[ui_gray_2]к шансу улучшения драгоценного камня характеристик.
+		</text>
+    </string>
+	<string id="st_perk_jewelcrafter_desc_5">
+        <text>Вы отточили свои навыки изготовления ювелирных изделий, что повышает шансы на успех при обновлении драгоценных камней-характеристик.\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] Теперь вы получите %c[d_green]+8% %c[ui_gray_2]к шансу улучшения драгоценного камня характеристик.
+		</text>
+    </string>
+	
+	<string id="st_perk_the_end">
+        <text>Завершение</text>
+    </string>
+	<string id="st_perk_the_end_desc">
+        <text>"Я - Конец, я здесь, чтобы привести тебя к твоей окончательной судьбе."</text>
+    </string>
+	<string id="st_perk_the_end_desc_1">
+        <text>"Я - Конец, я здесь, чтобы привести тебя к твоей окончательной судьбе."\n \n
+		%c[ui_gray_3]ЭФФЕКТЫ:\n
+		%c[d_blue] - %c[ui_gray_2] При наведении прицела вниз с помощью %c[yellow]болтовых снайперских винтовок%c[ui_gray_2], вы получаете на %c[d_green]15% меньший урон от всех источников урона.\n
+		%c[d_blue] - %c[ui_gray_2] При стрельбе от бедра с %c[yellow]болтовых снайперских винтовок %c[ui_gray_2], вы наносите на %c[d_green]30% больше урона по всем сталкерам и мутантам.
 		</text>
     </string>
 	

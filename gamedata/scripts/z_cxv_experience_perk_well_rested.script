@@ -3,6 +3,35 @@ local well_rested_speed = { [0] = 1, [1] = 1.025, [2] = 1.05, [3] = 1.1}
 local well_rested_weight = { [0] = 1, [1] = 1.10, [2] = 1.20, [3] = 1.40}
 local well_rested_threshold = { [0] = 9000, [1] = 1800, [2] = 2250, [3] = 2700}	-- 0 = 0% / 1 = 80% / 2 = 75% / 3 = 70%
 
+local well_rested_capstone_food = {
+	"meat_tushkano_a",
+	"meat_tushkano_a",
+	"meat_dog_a",
+	"meat_pseudodog_a",
+	"meat_flesh_a",
+	"meat_boar_a",
+	"meat_bloodsucker_a",
+	"meat_snork_a",
+	"meat_snork_a",
+	"meat_psysucker_a",
+	"meat_lurker_a",
+	"meat_chimera_a",
+}
+
+local well_rested_capstone_drink = {
+	"flask",
+	"flask",
+	"brewed_coffee",
+	"brewed_coffee",
+	"brewed_coffee",
+	"brewed_coffee",
+	"coffee_drink",
+	"coffee_drink",
+	"coffee_drink",
+	"water_drink",
+	"drink_crow",
+}
+
 local time_g
 local update_5s_timer = 0
 local update_5s_timer_interval = 50	-- update every 5 seconds
@@ -82,6 +111,10 @@ function actor_on_update()
 				add_speed("perk_well_rested", well_rested_speed[well_rested], false, true)
 				if not given_message then
 					WellRestedNews()
+					if well_rested >= 3 then
+						alife_create_item(well_rested_capstone_food[math.random(#well_rested_capstone_food)], db.actor)
+						alife_create_item(well_rested_capstone_drink[math.random(#well_rested_capstone_drink)], db.actor)
+					end
 				end
 			else
 				remove_speed("perk_well_rested")

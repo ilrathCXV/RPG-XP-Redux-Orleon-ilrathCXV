@@ -426,14 +426,16 @@
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]6% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes\n
-		%c[d_blue] - %c[ui_gray_2] If there is no ammo to double on a successful roll, you will be given a small amount of ammo instead
+		%c[d_blue] - %c[ui_gray_2] If there is no ammo to double on a successful roll, you will be given a small amount of ammo instead\n
+		%c[d_blue] - %c[ui_gray_2] Stashes will give more ammo if none is found
 		</text>
 	</string>
 	<string id="st_perk_ammo_finder_desc_4">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]8% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes\n
-		%c[d_blue] - %c[ui_gray_2] If there is no ammo to double on a successful roll, you will be given a small amount of ammo instead
+		%c[d_blue] - %c[ui_gray_2] If there is no ammo to double on a successful roll, you will be given a small amount of ammo instead\n
+		%c[d_blue] - %c[ui_gray_2] Stashes will give more ammo if none is found
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_5">
@@ -441,7 +443,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]10% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes\n
 		%c[d_blue] - %c[ui_gray_2] You will be given a small amount of ammo for one of your weapons, even if ammo is found when looting\n
-		%c[d_blue] - %c[ui_gray_2] This extra ammo has a chance equal to your Ammo Finder rank to double the amount given\n
+		%c[d_blue] - %c[ui_gray_2] Stashes will give more of this spare ammo
 		</text>
     </string>
 	
@@ -1074,21 +1076,21 @@
 	<string id="st_perk_battle_runner_desc_1">
         <text>You enjoy the thrill of the kill...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]10% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]15% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
 		%c[d_blue] - %c[ui_gray_2] Kills while Battle Runner is active %c[d_green]resets the timer
 		</text>
     </string>
 	<string id="st_perk_battle_runner_desc_2">
         <text>You enjoy the thrill of the kill...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]20% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]30% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
 		%c[d_blue] - %c[ui_gray_2] Kills while Battle Runner is active %c[d_green]resets the timer
 		</text>
     </string>
 	<string id="st_perk_battle_runner_desc_3">
         <text>You enjoy the thrill of the kill...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]30% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]50% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
 		%c[d_blue] - %c[ui_gray_2] Kills while Battle Runner is active %c[d_green]resets the timer
 		</text>
     </string>
@@ -1178,8 +1180,9 @@
 	<string id="st_perk_well_rested_desc_3">
         <text>You learn to appreciate a good-night's sleep.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] After a full sleep, you will be "Well-Rested", gaining %c[d_green]10% movement speed %c[ui_gray_2] and %c[d_green]40% bonus carry weight\n
-		%c[d_blue] - %c[ui_gray_2] Effect goes away when your sleep meter goes below %c[d_green]70%
+		%c[d_blue] - %c[ui_gray_2] After a full sleep, you will be "Well-Rested", gaining %c[d_green]10% movement speed %c[ui_gray_2]and %c[d_green]40% bonus carry weight\n
+		%c[d_blue] - %c[ui_gray_2] Effect goes away when your sleep meter goes below %c[d_green]70%\n
+		%c[d_blue] - %c[ui_gray_2] After a full sleep, you will wake up to breakfast in bed: %c[d_green]one random purified mutant meal and one random hydrating drink
 		</text>
     </string>
 	
@@ -1373,25 +1376,25 @@
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_2">
-        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+        <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+2% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_3">
-		<text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+        <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+3% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_4">
-        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+        <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+5% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_5">
-        <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
+        <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+8% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
 		</text>

@@ -478,8 +478,8 @@ function perk_damage_effects(victim, shit, bone_id, flags)
 	local damage_bonus = shit.power - base_shit
 	local damage_bonus_news = tonumber(string.format("%.3f", damage_bonus))
 	if damage_bonus_news >= 0.0001 then
-		printf("///////////   RPG System: Damage increase in progress  //////////////////")
-		printf('RPG Damage increase - Extra damage to the victim: %s', damage_bonus)
+		--printf("///////////   RPG System: Damage increase in progress  //////////////////")
+		--printf('RPG Damage increase - Extra damage to the victim: %s', damage_bonus)
 	end
 end
 
@@ -808,4 +808,109 @@ function on_game_start()
     RegisterScriptCallback("actor_on_update",         		actor_on_update)
 	
 	RegisterScriptCallback("actor_on_hud_animation_play", fourth_times_swap_reset)
+end
+
+--------------------------------------------------------------------------------------------------------------
+-- Damage UI adjustment
+--------------------------------------------------------------------------------------------------------------
+
+if momopate_accurate_stats then
+	original_weapon_damage = momopate_accurate_stats.get_weapon_damage
+	function momopate_accurate_stats.get_weapon_damage(obj, sec)
+		
+		if (gunslinger == 0) and (rifleman == 0) and (heavy_gunner == 0) and (wick_mode == 0) then
+			return original_weapon_damage(obj, sec)
+		end
+		
+		local id = obj and obj:id()
+		local hit_power = utils_item.get_wpn_param(obj, sec, "hit_power", 0)
+		local ammo_list = utils_item.get_ammo(sec, id)
+		
+		if (momopate_accurate_stats.ammo_affects_dmg == true) then
+			if ammo_list[1] then
+				local k_hit = ini_sys:r_float_ex(ammo_list[1], "k_hit") or 1
+				hit_power = (hit_power ~= 0) and (k_hit * hit_power) or k_hit
+				
+				if (SYS_GetParam(2, ammo_list[1], "buck_shot") >= 2) then
+					hit_power = hit_power * SYS_GetParam(2, ammo_list[1], "buck_shot")
+				else
+					hit_power = (momopate_accurate_stats.purist_damage == true) and (hit_power / 1.5) or hit_power
+				end
+			end
+		end
+		
+		hit_power = hit_power * 100
+		
+		-----------------------------------------------------------
+		-- Gunslinger/Rifleman/Heavy Gunner: 	Damage modifiers --
+		-----------------------------------------------------------
+		local weapon_class = sortK_of(obj)
+		if (gunslinger > 0) and ((weapon_class == "smg") or (weapon_class == "pistol")) then
+				hit_power = hit_power * (1 + (gunner_damage_multiplier * gunslinger))
+			end
+			
+		if (rifleman > 0) and (weapon_class == "rifle") then
+			hit_power = hit_power * (1 + (gunner_damage_multiplier * rifleman))
+		end
+		------------------------------------------------------------> Heavy Weapons
+		if (heavy_gunner > 0) and ((weapon_class == "heavy") or (weapon_class == "shotgun") or (weapon_class == "sniper")) then
+			hit_power = hit_power * (1 + (gunner_damage_multiplier * heavy_gunner))
+		end
+		
+		-----------------------------------------------
+		-- Wick Mode/Zone Slayer: 	Damage modifiers --
+		-----------------------------------------------
+		if (wick_mode > 0) and (weapon_class == "pistol") and IsStalker(victim) then
+			hit_power = hit_power * 1.05
+		end
+		
+		if (hit_power < 10) then
+			return round_idp(hit_power, 2)
+		else
+			return round_idp(hit_power, 1)
+		end
+		
+		return 0
+	end
+end
+
+orig_prop_damage = utils_ui.prop_damage
+function utils_ui.prop_damage(obj,sec)
+
+	if (gunslinger == 0) and (rifleman == 0) and (heavy_gunner == 0) and (wick_mode == 0) then
+		return orig_prop_damage(obj, sec)
+	end
+	
+	local id = obj and obj:id()
+	local hit_power = utils_item.get_wpn_param(obj, sec, "hit_power", 0)
+	local ammo_list = utils_item.get_ammo(sec, id)
+	if ammo_list[1] then
+		local k_hit = ini_sys:r_float_ex(ammo_list[1], "k_hit") or 1
+		hit_power = (hit_power ~= 0) and (k_hit*hit_power) or k_hit
+	end
+	
+	-----------------------------------------------------------
+	-- Gunslinger/Rifleman/Heavy Gunner: 	Damage modifiers --
+	-----------------------------------------------------------
+	local weapon_class = sortK_of(obj)
+	if (gunslinger > 0) and ((weapon_class == "smg") or (weapon_class == "pistol")) then
+			hit_power = hit_power * (1 + (gunner_damage_multiplier * gunslinger))
+		end
+		
+	if (rifleman > 0) and (weapon_class == "rifle") then
+		hit_power = hit_power * (1 + (gunner_damage_multiplier * rifleman))
+	end
+	------------------------------------------------------------> Heavy Weapons
+	if (heavy_gunner > 0) and ((weapon_class == "heavy") or (weapon_class == "shotgun") or (weapon_class == "sniper")) then
+		hit_power = hit_power * (1 + (gunner_damage_multiplier * heavy_gunner))
+	end
+	
+	-----------------------------------------------
+	-- Wick Mode/Zone Slayer: 	Damage modifiers --
+	-----------------------------------------------
+	if (wick_mode > 0) and (weapon_class == "pistol") and IsStalker(victim) then
+		hit_power = hit_power * 1.05
+	end
+	
+	return normalize(hit_power, 0, 1.5)
 end

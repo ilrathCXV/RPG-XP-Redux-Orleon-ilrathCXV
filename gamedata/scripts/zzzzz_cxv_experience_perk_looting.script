@@ -425,16 +425,18 @@ function looting_enemy(victim)
 end
 
 function ammo_finder_proc(box)
+	local is_stash = false
 	if IsInvbox(box) then
 		box:iterate_inventory_box(iter_create_ammo, box)
+		is_stash = true
 	else
 		box:iterate_inventory(iter_create_ammo, box)
 	end
 	
 	if ammo_finder == 5 and (#weapon_list > 0) then
-		find_spare_ammo(box)
+		find_spare_ammo(box, is_stash)
 	elseif not was_ammo_found and ammo_finder > 2 and (#weapon_list > 0) then
-		find_spare_ammo(box)
+		find_spare_ammo(box, is_stash)
 	end
 	--return true
 end
@@ -545,7 +547,7 @@ function find_zone_slayer_ammo(weapon,npc)
 	end
 end
 
-function find_spare_ammo(box)
+function find_spare_ammo(box, is_stash)
 	local attempt_count = 0
 	local rounds = nil
 	local weapon = nil
@@ -576,7 +578,7 @@ function find_spare_ammo(box)
 	
 	local amount = rand(1,ammo_finder) or 1
 	if ammo_finder_chance > rand(1,100) then
-		amount = amount * 2
+		amount = amount * ((is_stash and 5) or 2)
 	end
 	
 	alife_create_item(rounds, box, {ammo = amount})
