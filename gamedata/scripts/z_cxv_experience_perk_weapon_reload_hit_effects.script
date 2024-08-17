@@ -831,7 +831,9 @@ if momopate_accurate_stats then
 				local k_hit = ini_sys:r_float_ex(ammo_list[1], "k_hit") or 1
 				hit_power = (hit_power ~= 0) and (k_hit * hit_power) or k_hit
 				
-				if (SYS_GetParam(2, ammo_list[1], "buck_shot") >= 2) then
+				local buck = SYS_GetParam(2, ammo_list[1], "buck_shot") or 1
+				
+				if (buck >= 2) then
 					hit_power = hit_power * SYS_GetParam(2, ammo_list[1], "buck_shot")
 				else
 					hit_power = (momopate_accurate_stats.purist_damage == true) and (hit_power / 1.5) or hit_power
