@@ -497,7 +497,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]3%\n
-		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 11 - 24% percent%c[ui_gray_2])
+		%c[d_blue] - %c[ui_gray_2] Any newly-found artefact you find will now have %c[d_green]1% higher-than-normal efficiency
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_2">
@@ -505,7 +505,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]2% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]6%\n
-		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 13 - 26% percent%c[ui_gray_2])
+		%c[d_blue] - %c[ui_gray_2] Any newly-found artefact you find will now have %c[d_green]3% higher-than-normal efficiency
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_3">
@@ -513,7 +513,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]9%\n
-		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 17 - 30% percent%c[ui_gray_2])
+		%c[d_blue] - %c[ui_gray_2] Any newly-found artefact you find will now have %c[d_green]7% higher-than-normal efficiency
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_4">
@@ -521,7 +521,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]12%\n
-		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 22 - 35% percent%c[ui_gray_2])
+		%c[d_blue] - %c[ui_gray_2] Any newly-found artefact you find will now have %c[d_green]12% higher-than-normal efficiency
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_5">
@@ -530,7 +530,7 @@
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Looting mutants has a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]15%\n
-		%c[d_blue] - %c[ui_gray_2] Any artefact you find will now have higher-than-normal efficiency (%c[yellow]up to 28 - 41% percent%c[ui_gray_2])
+		%c[d_blue] - %c[ui_gray_2] Any newly-found artefact you find will now have %c[d_green]18% higher-than-normal efficiency
 		</text>
     </string>
 	
@@ -1408,6 +1408,34 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] When aiming down sights with %c[yellow]bolt-action sniper-class weapons%c[ui_gray_2], you receive %c[d_green]15% less damage from all sources\n
 		%c[d_blue] - %c[ui_gray_2] When firing from the hip with %c[yellow]bolt-action sniper-class weapons%c[ui_gray_2],you deal %c[d_green]30% more damage against all Stalkers and mutants
+		</text>
+    </string>
+	
+	<string id="st_perk_the_end">
+        <text>The End</text>
+    </string>
+	<string id="st_perk_the_end_desc">
+        <text>"I am The End, I am here to bring you to your ultimate fate."</text>
+    </string>
+	<string id="st_perk_the_end_desc_1">
+        <text>"I am The End, I am here to bring you to your ultimate fate."\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] When aiming down sights with %c[yellow]bolt-action sniper-class weapons%c[ui_gray_2], you receive %c[d_green]15% less damage from all sources\n
+		%c[d_blue] - %c[ui_gray_2] When firing from the hip with %c[yellow]bolt-action sniper-class weapons%c[ui_gray_2],you deal %c[d_green]30% more damage against all Stalkers and mutants
+		</text>
+    </string>
+	
+	<string id="st_perk_plus_one">
+        <text>Plus One</text>
+    </string>
+	<string id="st_perk_plus_one_desc">
+        <text>Even when you think you have run empty, you always find one more.</text>
+    </string>
+	<string id="st_perk_plus_one_desc_1">
+        <text>Even when you think you have run empty, you always find one more.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] When looting, you will always find at least %c[d_green]one bullet for one of your weapons\n
+		%c[d_blue] - %c[ui_gray_2] Stashes have a %c[d_green]1% chance%c[ui_gray_2] to grant an %c[d_green]entire box of said ammo%c[ui_gray_2] when looting
 		</text>
     </string>
 	
