@@ -648,8 +648,8 @@ function find_spare_ammo(box)
 	if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok, downgrade ammo to avoid granting rare ammo
 		rounds = arti_ammo_utils.downgrade_ammo(rounds, true)
 	end
-	if upgrade_list[rounds] then
-		rounds = upgrade_list[rounds]
+	if ammo_upgrade_list[rounds] then
+		rounds = ammo_upgrade_list[rounds]
 	end
 	
 	local box_size = ini_sys:r_float_ex(rounds, "box_size") or 1
