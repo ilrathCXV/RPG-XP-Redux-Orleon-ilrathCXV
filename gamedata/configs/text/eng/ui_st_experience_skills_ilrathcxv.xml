@@ -411,39 +411,36 @@
         <text>Increases the amount of ammo found when looting a body.</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_1">
-        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
+        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_red]2% chance %c[ui_gray_2]to find or loot more %c[d_red]low-tier ammo parts
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_2">
-        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
+        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]4% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_orange]4% chance %c[ui_gray_2]to find or loot more %c[d_orange]mostly low-tier ammo parts OR medium-tier ammo parts if otherwise
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_3">
-        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
+        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]6% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes\n
-		%c[d_blue] - %c[ui_gray_2] If there is no ammo to double on a successful roll, you will be given a small amount of ammo instead\n
-		%c[d_blue] - %c[ui_gray_2] Stashes will give more ammo if none is found
+		%c[d_blue] - %c[ui_gray_2] You have a %c[yellow]6% chance %c[ui_gray_2]to find or loot more %c[yellow]mostly medium-tier ammo parts OR low-tier ammo parts if otherwise\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[yellow]1% chance %c[ui_gray_2]to find double the ammo on looted bodies
 		</text>
 	</string>
 	<string id="st_perk_ammo_finder_desc_4">
-        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
+        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]8% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes\n
-		%c[d_blue] - %c[ui_gray_2] If there is no ammo to double on a successful roll, you will be given a small amount of ammo instead\n
-		%c[d_blue] - %c[ui_gray_2] Stashes will give more ammo if none is found
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]8% chance %c[ui_gray_2]to find or loot more %c[d_green]mostly medium-tier ammo parts OR low-tier/high-tier ammo parts if otherwise\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]3% chance %c[ui_gray_2]to find double the ammo on looted bodies
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_5">
-        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo in case they find themselves at the end of your weapon.\n \n
+        <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]10% chance %c[ui_gray_2]to find double the amount of ammo when looting stalkers and stashes\n
-		%c[d_blue] - %c[ui_gray_2] You will be given a small amount of ammo for one of your weapons, even if ammo is found when looting\n
-		%c[d_blue] - %c[ui_gray_2] Stashes will give more of this spare ammo
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_cyan]10% chance %c[ui_gray_2]to find or loot more %c[d_cyan]mostly medium-tier ammo parts OR high-tier ammo parts if otherwise\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_cyan]5% chance %c[ui_gray_2]to find double the ammo on looted bodies
 		</text>
     </string>
 	
