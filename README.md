@@ -7,4 +7,6 @@ This mod incorporates suitable perks from Anomaly RPG (https://www.moddb.com/mod
 For a full list of available perks, please visit the following link to a Pastebin with all the details, such as level requirements and ranks: https://pastebin.com/vKWxD7hy
 
 
-The only mod needed for this pack to work for GAMMA is Experience Framework linked above. For non-GAMMA users, this pack will not work as it may lead to various crashes due to needing certain mods that GAMMA either uses or has created for the modpack itself.
+The only mod needed for this pack to work for GAMMA is Experience Framework linked above.
+
+For non-GAMMA users, this pack will not work properly as it may lead to various crashes due to needing certain mods that GAMMA uses. Use at your own risk - you will not receive support if you are not using GAMMA alongside this.
