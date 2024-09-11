@@ -1,27 +1,11 @@
 if not magazines then return end
 
-local mag_loading = 0
-
-local function experience_skill_on_update(id, data)	-- messy I know (will look into a cleaner solution later to avoid YandereDev coding trash)
-	if (id == "perk_mag_loader") then
-		mag_loading = data["curr_level"]
-	end
-end
-
-function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
-end
-
 base_load_magazine = magazines.load_magazine
 function magazines.load_magazine(magazine, capacity, delay)
 	local mag_data = magazines.get_mag_data(magazine:id())
 	local prev_loaded = mag_data.loaded
 	
-	local newdelay = delay / (1 + (mag_loading * 0.20))
+	local newdelay = delay / (1 + (x_cxv_perks_data.perks["perk_mag_loader"] * 0.20))
 	
 	bool = base_load_magazine(magazine, capacity, newdelay)
 	
@@ -33,7 +17,7 @@ function magazines.unload_magazine(magazine, delay)
 	local mag_data = magazines.get_mag_data(magazine:id())
 	local prev_loaded = mag_data.loaded
 
-	local newdelay = delay / (1 + (mag_loading * 0.20))
+	local newdelay = delay / (1 + (x_cxv_perks_data.perks["perk_mag_loader"] * 0.20))
 	
 	bool = base_unload_magazine(magazine, newdelay)
 	

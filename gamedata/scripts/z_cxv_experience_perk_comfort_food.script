@@ -1,18 +1,10 @@
-local comfort_food = 0
-
-local function experience_skill_on_update(id, data)
-	if (id == "perk_comfort_food") then
-		comfort_food = data["curr_level"]
-	end
-end
-
-function comfort_food(item,string)
+function comfort_food_healing(item,string)
 	if not item then return end
     local sec = item:section()
 	local itemType = SYS_GetParam(0, sec, "kind") or 0
 	if (itemType ~= "i_food") or (itemType ~= "i_drink") then return end	-- testing
 	
-	if (comfort_food > 0 and (itemType == "i_food" or itemType == "i_drink")) then
+	if (x_cxv_perks_data.perks["perk_comfort_food"] > 0 and (itemType == "i_food" or itemType == "i_drink")) then
         local drink = ini_sys:r_float_ex(sec, "eat_thirstiness") or 0
 		drink = drink * (-1)
 		local food = ini_sys:r_float_ex(sec, "eat_satiety") or 0
@@ -32,11 +24,5 @@ function comfort_food(item,string)
 end
 
 function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
-
-	RegisterScriptCallback("actor_on_item_use", comfort_food)
+	RegisterScriptCallback("actor_on_item_use", comfort_food_healing)
 end

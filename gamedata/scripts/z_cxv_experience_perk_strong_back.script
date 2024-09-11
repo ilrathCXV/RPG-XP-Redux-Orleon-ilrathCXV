@@ -1,33 +1,14 @@
-local strong_back = 0
 local strong_back_addition = {[0] = 0, [1] = 5, [2] = 10, [3] = 15, [4] = 25, [5] = 40} 
-
-local function experience_skill_on_update(id, data)
-	if (id == "perk_strong_back") then
-		strong_back = data["curr_level"]
-	end	
-end
-
 ------------------------------------------------------------------------------
 --------------------------- Haru Weight Functions ----------------------------
 ------------------------------------------------------------------------------
 base_haru_weight = haru_skills.update_strength
 function haru_skills.update_strength()
     base_haru_weight()
-	if (strong_back > 0) then
-		weight.add_weight("cxv_strong_back", strong_back_addition[strong_back], true)
+	if (x_cxv_perks_data.perks["perk_strong_back"] > 0) then
+		weight.add_weight("cxv_strong_back", strong_back_addition[x_cxv_perks_data.perks["perk_strong_back"]], true)
 	end
-	if (strong_back <= 0) then
+	if (x_cxv_perks_data.perks["perk_strong_back"] <= 0) then
 		weight.remove_weight("cxv_strong_back")
 	end
-end
-
-
-
-
-function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
 end

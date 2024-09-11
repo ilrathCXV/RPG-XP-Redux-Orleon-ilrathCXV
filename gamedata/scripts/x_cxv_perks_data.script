@@ -1,0 +1,283 @@
+perks = {
+	["perk_ammo_finder"] = 0,
+	["perk_anomaly_defense"] = 0,
+	["perk_artefinder"] = 0,
+	["perk_battle_runner"] = 0,
+	["perk_berserker"] = 0,
+	["perk_calm_mind"] = 0,
+	["perk_careful_handler"] = 0,
+	["perk_comfort_food"] = 0,
+	["perk_cybermedic"] = 0,
+	["perk_deadeye"] = 0,
+	["perk_demo_expert"] = 0,
+	["perk_disarming_shot"] = 0,
+	["perk_fast_hands"] = 0,
+	["perk_fourth_times"] = 0,
+	["perk_fun_allowed"] = 0,
+	["perk_glass_cannon"] = 0,
+	["perk_gunslinger"] = 0,
+	["perk_heavy_gunner"] = 0,
+	["perk_iron_resolve"] = 0,
+	["perk_jamming_shot"] = 0,
+	["perk_jewelcrafter"] = 0,
+	["perk_jump_man"] = 0,
+	["perk_lightweight_dodge"] = 0,
+	["perk_local_looting"] = 0,
+	["perk_lockpick_mastery"] = 0,
+	["perk_lucky_strike"] = 0,
+	["perk_mag_loader"] = 0,
+	["perk_master_craftsman"] = 0,
+	["perk_master_zone"] = 0,
+	["perk_medicine_man"] = 0,
+	["perk_midas_touch"] = 0,
+	["perk_mutant_slayer"] = 0,
+	["perk_plus_one"] = 0,
+	["perk_rapid_reload"] = 0,
+	["perk_repair_junkie"] = 0,
+	["perk_rifleman"] = 0,
+	["perk_scavenger"] = 0,
+	["perk_silver_tongued"] = 0,
+	["perk_slow_metabolism"] = 0,
+	["perk_spiked"] = 0,
+	["perk_strong_back"] = 0,
+	["perk_surgical_precision"] = 0,
+	["perk_the_exalted"] = 0,
+	["perk_the_end"] = 0,
+	["perk_vampirism"] = 0,
+	["perk_well_rested"] = 0,
+	["perk_wick_mode"] = 0,
+	["perk_zone_gunsmith"] = 0,
+	["perk_zone_slayer"] = 0,
+}
+
+local minCondition = 0
+local maxCondition = 0
+local artefinder_bonus = {[0] = 0, [1] = 1, [2] = 3, [3] = 7, [4] = 12, [5] = 18 }
+
+original_map_chances = {
+	["k01_darkscape"] = 35,
+	["l03u_agr_underground"] = 50,
+	["l04u_labx18"] = 60,
+	["l08u_brainlab"] = 60,
+	["l10_radar"] = 40,
+	["l10u_bunker"] = 80,
+	["l11_hospital"] = 80,
+	["l12_stancia"] = 30,
+	["l12_stancia_2"] = 30,
+	["l12u_control_monolith"] = 80,
+	["l12u_sarcofag"] = 80,
+	["l13_generators"] = 30,
+	["l13u_warlab"] = 80,
+	["labx8"] = 80,
+}
+
+wp_table = {
+	["w_explosive"] = "explosive",
+	["w_misc"] = "misc",
+	["w_melee"] = "melee",
+	["w_smg"] = "smg",
+	["w_pistol"] = "pistol",
+	["w_rifle"] = "rifle",
+	["w_sniper"] = "sniper",
+	["w_shotgun"] = "shotgun",
+	["w_heavy"] = "heavy",
+}
+
+function sortK_of(weapon)
+    if not weapon then return "empty hands" end
+    local kind = ini_sys:r_string(weapon:section(), "kind") or nil
+	if kind == "w_explosive" then
+		local slot = ini_sys:r_string(weapon:section(), "slot")
+		if slot ~= "3" then
+			local class = ini_sys:r_string(weapon:section(), "weapon_class")
+			if class == "heavy_weapon" then
+				kind = "w_heavy"
+			end	
+		end
+	end
+    return wp_table[kind]
+end
+
+local function IsValidMelee(obj)
+	if not obj then return false end
+	local o_sec = obj:section()
+	local get_slot = SYS_GetParam(2, o_sec, "animation_slot") or 0
+    return (SYS_GetParam(0, o_sec, "kind") == "w_melee") and (get_slot ~= 13)
+end
+
+-- Local Looting vars
+looting_stash_reduc = { [0] = 0, [1] = 0, [2] = -1, [3] = -2, [4] = -2, [5] = -3 }
+base_task_num = 0
+
+-- Disarming/Jamming Shot
+can_jam = false
+can_disarm = true
+
+-- Jump Man
+local jump_man_boost = 0.05
+local add_jump = jump.add_jump
+local remove_jump = jump.remove_jump
+
+-- Lists for Zone Slayer/Plus One ammo looting
+shotgun_list = {}
+weapon_list = {}
+
+-- Well Rested
+local remove_speed = speed.remove_speed
+local remove_weight = weight.remove_weight
+has_slept = false
+
+local function experience_skill_on_update(perk_id, perk_data)
+	if perks[perk_id] then
+		perks[perk_id] = perk_data["curr_level"]
+	end
+	
+	if perk_id == "perk_artefinder" then
+		-- Artefinder
+		if zz_item_artefact then
+			if zz_item_artefact.cond_t then
+				if minCondition == 0 then
+					minCondition = zz_item_artefact.arti_min_eff or 20
+				end
+				zz_item_artefact.arti_min_eff = minCondition + artefinder_bonus[ perks["perk_artefinder"] ]
+				if maxCondition == 0 then
+					maxCondition = zz_item_artefact.arti_max_eff or 30
+				end
+				zz_item_artefact.arti_max_eff = maxCondition + artefinder_bonus[ perks["perk_artefinder"] ]
+				printf('Old Arte. Min: %s | New Arte. Min %s | Old Arte. Max: %s | New Arte. Max %s', minCondition, zz_item_artefact.arti_min_eff, maxCondition, zz_item_artefact.arti_max_eff)
+			end
+		end
+		
+		if drx_da_main_artefacts then
+			if drx_da_main_artefacts.artefacts_map_chances then
+				for k,v in pairs(drx_da_main_artefacts.artefacts_map_chances) do
+					if original_map_chances[k] then
+						drx_da_main_artefacts.artefacts_map_chances[k] = original_map_chances[k] + ( perks["perk_artefinder"] * 3 )
+						printf("[Artefinder Monkeys] Original value: %s | New value: %s", original_map_chances[k], drx_da_main_artefacts.artefacts_map_chances[k])
+					end
+				end
+			end
+		end
+	end
+	
+	
+	-- Local Looting
+	if perk_id == "perk_local_looting" then
+		if base_task_num == 0 then
+			base_task_num = treasure_manager.stash_rare.task_num or 8
+		end
+		treasure_manager.stash_rare.task_num = base_task_num + looting_stash_reduc[x_cxv_perks_data.perks["perk_local_looting"]]
+		printf("New Base Rare Stash Task Amt: %s", treasure_manager.stash_rare.task_num)
+	end
+	
+	-- Disarming/Jamming Shot
+	if perk_id == "perk_jamming_shot" and perks["perk_jamming_shot"] > 0 then
+		can_jam = true
+	end
+	if perk_id == "perk_disarming_shot" and perks["perk_disarming_shot"] > 0 then
+		can_disarm = true
+	end
+	
+	-- Jump Man
+	if perk_id == "perk_jump_man" then
+		if perks["perk_jump_man"] > 0 then
+			add_jump("cxv_jump_man", 1 + (jump_man_boost * perks["perk_jump_man"]), true)
+		else
+			remove_jump("cxv_jump_man")
+		end
+	end
+	
+	-- Plus One
+	if perk_id == "perk_plus_one" and (perks["perk_plus_one"] > 0) and (#weapon_list < 1) then
+		build_weapon_list()
+	end
+	
+	-- Well Rested
+	if perk_id == "perk_well_rested" then
+		if perks["perk_well_rested"] == 0 then 
+			remove_speed("perk_well_rested")
+			remove_weight("perk_well_rested")
+			has_slept = false
+		end
+	end
+	
+	-- Zone Slayer
+	if perk_id == "perk_zone_slayer" and (perks["perk_zone_slayer"] > 0) and (#shotgun_list < 1) and (#weapon_list < 1) then
+		build_weapon_list()
+	end
+	
+	
+end
+
+function on_game_start()
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
+	
+	RegisterScriptCallback("actor_on_first_update",			build_weapon_list)
+	RegisterScriptCallback("actor_item_to_ruck",			build_weapon_list)
+	RegisterScriptCallback("actor_item_to_slot",			build_weapon_list)
+end
+
+local shotgun_ammo_check = {
+	["ammo_12x70_buck"] = true,
+	["ammo_23x75_shrapnel"] = true,
+	["ammo_23_eco"] = true,
+	["ammo_20x70_buck"] = true,
+}
+
+function build_weapon_list()
+
+	weapon_list = {}
+	shotgun_list = {}
+	
+	if (perks["perk_zone_slayer"] < 1) and (perks["perk_plus_one"] < 1) then return end
+	local w1, w2, w3, w4 = db.actor:item_in_slot(3), db.actor:item_in_slot(2), db.actor:item_in_slot(1), db.actor:item_in_slot(5)
+		
+	if w1 and not IsValidMelee(w1) then
+		weapon_list[#weapon_list + 1] = w1 
+		printf('Weapon 1: %s', w1:section())
+		local clip = ini_sys:r_float_ex(w1:section(), "ammo_mag_size") or 3
+		if clip <= 2 then
+			local ammo_table = parse_list(ini_sys,w1:section(),"ammo_class")
+			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
+				shotgun_list[#shotgun_list + 1] = w1
+			end
+		end
+	end
+	if w2 and not IsValidMelee(w2) then
+		weapon_list[#weapon_list + 1] = w2 
+		printf('Weapon 2: %s', w2:section())
+		local clip = ini_sys:r_float_ex(w2:section(), "ammo_mag_size") or 3
+		if clip <= 2 then
+			local ammo_table = parse_list(ini_sys,w2:section(),"ammo_class")
+			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
+				shotgun_list[#shotgun_list + 1] = w2
+			end
+		end
+	end
+	if w3 and not IsValidMelee(w3) then
+		weapon_list[#weapon_list + 1] = w3
+		printf('Weapon 3: %s', w3:section())
+		local clip = ini_sys:r_float_ex(w3:section(), "ammo_mag_size") or 3
+		if clip <= 2 then
+			local ammo_table = parse_list(ini_sys,w3:section(),"ammo_class")
+			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
+				shotgun_list[#shotgun_list + 1] = w3
+			end
+		end
+	end
+	if w4 and not IsValidMelee(w4) then
+		weapon_list[#weapon_list + 1] = w4
+		printf('Weapon 4: %s', w4:section())
+		local clip = ini_sys:r_float_ex(w4:section(), "ammo_mag_size") or 3
+		if clip <= 2 then
+			local ammo_table = parse_list(ini_sys,w4:section(),"ammo_class")
+			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
+				shotgun_list[#shotgun_list + 1] = w4
+			end
+		end
+	end
+end

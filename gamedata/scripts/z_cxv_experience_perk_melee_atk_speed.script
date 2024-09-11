@@ -1,11 +1,4 @@
-local berserker = 0
 local berserker_speed_bonus = {[0] = 0, [1] = 0.1, [2] = 0.2, [3] = 0.3, [4] = 0.5, [5] = 0.75}
-
-local function experience_skill_on_update(id, data)
-	if (id == "perk_berserker") then
-		berserker = data["curr_level"]
-	end
-end
 
 melee_anims = {
 	anm_attack = true,
@@ -16,7 +9,7 @@ melee_anims = {
 
 
 function berserker_melee_speed(anim_table,obj)
-	if (berserker <= 0) then return end
+	if (x_cxv_perks_data.perks["perk_berserker"] <= 0) then return end
 	
 	local melee_string = tostring(anm_name)
 	local wpn_sec = obj:section()
@@ -35,16 +28,10 @@ function berserker_melee_speed(anim_table,obj)
 	end
 	
 	if melee_anims[anim_table.anm_name] then
-		anim_table.anm_speed = animation_speed * (1 + berserker_speed_bonus[berserker])
+		anim_table.anm_speed = animation_speed * (1 + berserker_speed_bonus[x_cxv_perks_data.perks["perk_berserker"]])
 	end
 end
 
 function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
-
 	RegisterScriptCallback("actor_on_hud_animation_play", berserker_melee_speed)
 end

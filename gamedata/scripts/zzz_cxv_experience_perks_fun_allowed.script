@@ -1,27 +1,11 @@
 -- Do nothing if they don't own the script
 if not grok_remove_belt_duplicates then return end
 
-perk_fun_allowed = 0
-
-local function experience_skill_on_update(id, data)
-	if (id == "perk_fun_allowed") then
-		perk_fun_allowed = data["curr_level"]
-	end
-end
-
 base_belt_dupe_slot = grok_remove_belt_duplicates.set_on_slot
 function grok_remove_belt_duplicates.set_on_slot(slot_item)
-	if perk_fun_allowed > 0 then
+	if x_cxv_perks_data.perks["perk_fun_allowed"] > 0 then
 		return
 	else
 		base_belt_dupe_slot(slot_item)
-	end
-end
-
-function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
 	end
 end

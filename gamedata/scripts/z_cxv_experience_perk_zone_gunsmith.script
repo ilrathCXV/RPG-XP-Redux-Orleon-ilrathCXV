@@ -1,19 +1,7 @@
-local zone_gunsmith = 0
-
-local function experience_skill_on_update(id, data)
-	if (id == "perk_zone_gunsmith") then
-		zone_gunsmith = data["curr_level"]
-	end	
-end
-
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
 base_repair_inventory = item_repair.UIRepair.InitInventory
-
 item_repair.UIRepair.InitInventory = function(self, n)
 	
-	if (zone_gunsmith <= 0) then 
+	if (x_cxv_perks_data.perks["perk_zone_gunsmith"] <= 0) then 
 		base_repair_inventory(self,n)
 		
 	else
@@ -69,7 +57,7 @@ item_repair.UIRepair.InitInventory = function(self, n)
 						inf[size_t] = part_bonus
 					
 					elseif (sec == "prt_i_scrap") then
-						local part_bonus = 0.02 + (0.01 * zone_gunsmith)
+						local part_bonus = 0.02 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
 						part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
 						part_bonus = clamp(math.floor(part_bonus*100) , 0 , 100)
 				
@@ -98,7 +86,7 @@ end
 base_repair_item_select = item_repair.UIRepair.OnItemSelect
 item_repair.UIRepair.OnItemSelect = function(self, n)
 
-	if (zone_gunsmith <= 0) then 
+	if (x_cxv_perks_data.perks["perk_zone_gunsmith"] <= 0) then 
 		base_repair_item_select(self,n)
 		
 	else
@@ -117,7 +105,7 @@ item_repair.UIRepair.OnItemSelect = function(self, n)
 			con = (game_achievements.has_achievement("mechanized_warfare")) and (con + 0.02) or con
 			con = clamp(math.floor(con*100)*self.parts_multi , 0 , 100)
 		elseif n == 2 and (sec == "prt_i_scrap") then
-			con = 0.02 + (0.01 * zone_gunsmith)
+			con = 0.02 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
 			con = (game_achievements.has_achievement("mechanized_warfare")) and (con + 0.02) or con
 			con = clamp(math.floor(con*100) , 0 , 100)
 		end
@@ -154,14 +142,4 @@ item_repair.UIRepair.OnItemSelect = function(self, n)
 	
 		self.btn_repair:Enable(true)
 	end
-end
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
-function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
 end

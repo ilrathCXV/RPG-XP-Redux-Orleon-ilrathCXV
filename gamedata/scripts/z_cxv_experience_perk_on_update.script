@@ -1,22 +1,6 @@
 if perk_based_artefacts then end
 
-local cybermedic = 0
-local master_zone = 0
-local iron_resolve = 0
-
 local af_lucifer_data = perk_based_artefacts.artefact_props.af_lucifer
-
-local function experience_skill_on_update(id, data)
-	if (id == "perk_cybermedic") then
-		cybermedic = data["curr_level"]
-	end
-	if (id == "perk_master_zone") then
-		master_zone = data["curr_level"]
-	end
-	if (id == "perk_iron_resolve") then
-		iron_resolve = data["curr_level"]
-	end
-end
 
 local time_elapsed		 = 0
 local saved_time_elapsed = 0
@@ -45,15 +29,15 @@ function perk_effects_over_time()
 	local effect_factor = max(0, saved_time_elapsed > 0 and time_elapsed > 0 and (time_elapsed - saved_time_elapsed) or 1)
 
 -------------------------------------------------------------> Cybermedic
-    if cybermedic >= 1 then
+    if x_cxv_perks_data.perks["perk_cybermedic"] >= 1 then
 		if db.actor.bleeding > 0 then
 			local bleedingCure = 0
-			bleedingCure = 0.003 * cybermedic * effect_factor
+			bleedingCure = 0.003 * x_cxv_perks_data.perks["perk_cybermedic"] * effect_factor
 			db.actor.bleeding = bleedingCure
 		end
     end
 -------------------------------------------------------------> Master of the Zone
-	if master_zone >= 1 then 
+	if x_cxv_perks_data.perks["perk_master_zone"] >= 1 then 
 		db.actor:iterate_belt( function(owner, obj)
 			if obj:section() == "af_lucifer" then
 				if af_lucifer_data.condition < 0.51 then
@@ -75,11 +59,11 @@ function perk_effects_over_time()
 		end)
 	end
 
-------Броненосец-7. Иммунитет к долгоиграющим эффектам -------------------> Refreshness
-    if iron_resolve >= 1 then
+-------------------------------------------------------------> Refreshness
+    if x_cxv_perks_data.perks["perk_iron_resolve"] >= 1 then
 		local conditions = db.actor:cast_Actor():conditions()
 		if conditions then
-			local dizzyRemoval = -0.00375 * iron_resolve * effect_factor
+			local dizzyRemoval = -0.00375 * x_cxv_perks_data.perks["perk_iron_resolve"] * effect_factor
 			conditions:ChangeAlcohol(dizzyRemoval)
 		end
     end
@@ -88,11 +72,5 @@ function perk_effects_over_time()
 end
 
 function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
-	
     RegisterScriptCallback("actor_on_update",               perk_effects_over_time)
 end

@@ -1,11 +1,4 @@
-local battle_runner = 0
 local battle_runner_speed = { [1] = 1.15, [2] = 1.30, [3] = 1.50 }		-- 10%, 20%, 30%
-
-local function experience_skill_on_update(id, data)
-	if (id == "perk_battle_runner") then
-		battle_runner = data["curr_level"]
-	end
-end
 
 local time_g
 local update_1000ms_timer = 0
@@ -29,7 +22,7 @@ function actor_on_update()
 	
 	
 	if (time_g > update_1000ms_timer) then
-		if (battle_runner >= 1) and (time_g > battle_runner_timer) and (battle_runner_active) then
+		if (x_cxv_perks_data.perks["perk_battle_runner"] >= 1) and (time_g > battle_runner_timer) and (battle_runner_active) then
 			remove_speed("perk_battle_runner")
 			printf("[RPG] Battle Runner ended")
 			play_sound("anomaly\\electra_hit",0.5)
@@ -43,7 +36,7 @@ function actor_on_kill(victim, killer)
 	if not killer then return end
     if killer:id() ~= db.actor:id() then return end
 	
-	if (battle_runner >= 1) then
+	if (x_cxv_perks_data.perks["perk_battle_runner"] >= 1) then
 		if (battle_runner_active) then										-- only refresh the timer back to 10 seconds if active
 			local time_limit = time_g - time_g_orig
 			battle_runner_timer = battle_runner_timer + time_limit
@@ -55,7 +48,7 @@ function actor_on_kill(victim, killer)
 			time_g_orig = math_floor(time_global() * 0.01)
 			battle_runner_timer = time_g_orig + 100
 			battle_runner_orig = battle_runner_timer
-			add_speed("perk_battle_runner", battle_runner_speed[battle_runner], false, true)
+			add_speed("perk_battle_runner", battle_runner_speed[ x_cxv_perks_data.perks["perk_battle_runner"] ], false, true)
 			if not (battle_runner_active) then
 				play_sound("anomaly\\gravity_entrance",0.8)
 				battle_runner_active = true
@@ -66,11 +59,6 @@ function actor_on_kill(victim, killer)
 end
 
 function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
 	RegisterScriptCallback("actor_on_first_update", 		actor_on_first_update)
 	RegisterScriptCallback("actor_on_update", 				actor_on_update)
 	RegisterScriptCallback("npc_on_death_callback", 		actor_on_kill)

@@ -1,30 +1,12 @@
-local slow_metabolism = 0							-- Slow Metabolism: reduces satiety drain from various items on use; at max rank, will add 50% of an item's satiety (and hopefully thirst) as a timed boost over 60sec
-
-local function experience_skill_on_update(id, data)
-	if (id == "perk_slow_metabolism") then
-		slow_metabolism = data["curr_level"]
-	end
-end
-
-function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
-
-    RegisterScriptCallback("actor_on_item_use",         get_actor_status_boost)
-    RegisterScriptCallback("actor_on_update",             actor_status_boost)
-end
-
--- MEDICINE SKILL CODE
+-- Slow Metabolism: Reduces satiety drain from various items on use
+-- 					At max rank, will add 50% of an item's satiety (and hopefully thirst) as a timed boost over 60sec
 local satiety_timeofuse = nil
 local satiety_timeoflasttick = nil
 local satiety_item_boost_time = 0
 local satiety_per_sec = 0
 
 function actor_status_boost()
-	if slow_metabolism >= 5 then -- extra checks to catch a reported crash maybe
+	if x_cxv_perks_data.perks["perk_slow_metabolism"] >= 5 then -- extra checks to catch a reported crash maybe
 		if satiety_timeofuse then
 			local satietyoftick = 0
 			if time_global() <= satiety_timeofuse + (satiety_item_boost_time * 100) then -- duration = 10% of item boost time
@@ -47,20 +29,20 @@ function get_actor_status_boost(obj, string)
 	local satiety = ini_sys:r_float_ex(sec, "eat_satiety") or 0
 	local radiation = ini_sys:r_float_ex(sec, "eat_radiation") or 0
 	
-	if slow_metabolism > 0 then
+	if x_cxv_perks_data.perks["perk_slow_metabolism"] > 0 then
 		if satiety < 0 then
 			-- printf("Satiety drain: %s", satiety)
-			local satiety_drain_resist = satiety * (slow_metabolism * 0.18)
+			local satiety_drain_resist = satiety * (x_cxv_perks_data.perks["perk_slow_metabolism"] * 0.18)
 			db.actor:change_satiety(-satiety_drain_resist)
 		end
 		if radiation > 0 then
 			-- printf("Radiation taken: %s", radiation)
-			local radiation_resist = radiation * (slow_metabolism * 0.18)
+			local radiation_resist = radiation * (x_cxv_perks_data.perks["perk_slow_metabolism"] * 0.18)
 			db.actor:change_radiation(-radiation_resist)
 		end
 	end
 	
-	if slow_metabolism >= 5 then
+	if x_cxv_perks_data.perks["perk_slow_metabolism"] >= 5 then
 		if satiety > 0 then
 			satiety_item_boost_time = 60
 			satiety_per_sec = satiety
@@ -70,4 +52,8 @@ function get_actor_status_boost(obj, string)
 		end
 	end
 end
--- MEDICINE SKILL CODE END
+
+function on_game_start()
+    RegisterScriptCallback("actor_on_item_use",         get_actor_status_boost)
+    RegisterScriptCallback("actor_on_update",             actor_status_boost)
+end

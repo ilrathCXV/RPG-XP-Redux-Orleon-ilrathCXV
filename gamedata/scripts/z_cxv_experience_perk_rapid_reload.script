@@ -1,5 +1,4 @@
 local reload_bonuses = {[0] = 0, [1] = 15, [2] = 40, [3] = 75}
-local rapid_reload = 0
 
 local reload_anims = {
 	anm_reload = true,
@@ -47,14 +46,6 @@ local reload_anims = {
 	anm_reload_ammo1_variant5 = true,
 }
 
-local function experience_skill_on_update(id, data)
-	if (id == "perk_rapid_reload") then
-		rapid_reload = data["curr_level"]
-	end
-end
-
-
-
 function actor_on_hud_animation_play(anim_table,obj)
 	if (not IsWeapon(obj)) then return end
 	
@@ -63,7 +54,7 @@ function actor_on_hud_animation_play(anim_table,obj)
 	
 	if obj:parent() and obj:parent():id() ~= AC_ID then return end
 	
-	if (rapid_reload < 1) then return end
+	if (x_cxv_perks_data.perks["perk_rapid_reload"] < 1) then return end
 
 	if not reload_anims[anm_name] then return end
 
@@ -81,17 +72,11 @@ function actor_on_hud_animation_play(anim_table,obj)
 		end
 	end
 	
-	anim_table.anm_speed = animation_speed * (1 + reload_bonuses[rapid_reload] * 0.01)
+	anim_table.anm_speed = animation_speed * (1 + reload_bonuses[x_cxv_perks_data.perks["perk_rapid_reload"]] * 0.01)
 	
 end
 
 function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
-
 	--[NEW] Reload Speed
 	RegisterScriptCallback("actor_on_hud_animation_play", actor_on_hud_animation_play)
 end

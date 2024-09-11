@@ -1,11 +1,4 @@
-local fast_hands = 0
 local fast_hands_bonuses = {[0] = 0, [1] = 15, [2] = 30, [3] = 70, [4] = 70, [5] = 70} -- 4 & 5 are failsafes for older saves 
-
-local function experience_skill_on_update(id, data)
-	if (id == "perk_fast_hands") then
-		fast_hands = data["curr_level"]
-	end
-end
 
 local stow_anims = {
 	anm_hide = true,
@@ -40,7 +33,7 @@ local stow_anims = {
 function fast_hands_speed(anim_table,obj)
 	-- if not IsWeapon(obj) then return end
 	
-	if (fast_hands < 1) then return end
+	if (x_cxv_perks_data.perks["perk_fast_hands"] < 1) then return end
 	if not stow_anims[anim_table.anm_name] then return end
 	
 	local anm_speed_base = anim_table.anm_speed
@@ -58,18 +51,12 @@ function fast_hands_speed(anim_table,obj)
 		end
 	end
 	
-	local swap_bonus = 1 + (fast_hands_bonuses[fast_hands] * 0.01)
+	local swap_bonus = 1 + (fast_hands_bonuses[x_cxv_perks_data.perks["perk_fast_hands"]] * 0.01)
 	-- printf("[RPG] Swap Bonus: %s", swap_bonus)
 	anim_table.anm_speed = anm_speed_base * swap_bonus
 	
 end
 
 function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
-
 	RegisterScriptCallback("actor_on_hud_animation_play", fast_hands_speed)
 end
