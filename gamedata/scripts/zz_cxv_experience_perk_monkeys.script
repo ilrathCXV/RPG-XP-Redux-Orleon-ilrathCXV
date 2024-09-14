@@ -1,4 +1,53 @@
 ---------------------------------------------------------------------------------------------------------------------------------
+-- experience_ui.script (2.X.X) -------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+if experience_ui and experience_potions then 	-- (2.X.X)
+	
+	experience_ui.UIExperienceMenu.Close = function(self)
+		if self:IsShown() then
+			self:UnregisterCallBacks()
+			self:StopMenuMusic()
+			self:HideDialog()
+			self:Show(false)
+			Unregister_UI("UIExperienceMenu")
+			exec_console_cmd("main_menu off")
+			SendScriptCallback("main_menu_on_quit",self)
+		end
+	end
+	
+end
+
+---------------------------------------------------------------------------------------------------------------------------------
+-- return_menu_music.script (2.X.X)-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+if return_menu_music and experience_potions then -- (2.X.X)
+
+	if return_menu_music.main_menu_on_init then	-- in case it isn't instantiated due to EGUI
+		base_menu_music = return_menu_music.main_menu_on_init
+		function return_menu_music.main_menu_on_init()
+			if (experience_ui.ui_is_opening) then return end	-- "ui_is_opening" gets set to false after Exp Menu is built, so Main Menu music no longer plays there incorrectly
+			base_menu_music()
+		end
+	end
+	
+end
+
+---------------------------------------------------------------------------------------------------------------------------------
+-- zzzzzz_mm_music.script - EGUI (2.X.X)-----------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+if zzzzzz_mm_music and experience_potions then -- (2.X.X)
+
+	if zzzzzz_mm_music.main_menu_on_init then
+		base_egui_music = zzzzzz_mm_music.main_menu_on_init
+		function zzzzzz_mm_music.main_menu_on_init()
+			if (experience_ui.ui_is_opening) then return end	-- "ui_is_opening" gets set to false after Exp Menu is built, so Main Menu music no longer plays there incorrectly
+			base_egui_music()
+		end
+	end
+	
+end
+
+---------------------------------------------------------------------------------------------------------------------------------
 -- experience_core.script (1.X.X) OR experience_actions.script (2.X.X) ----------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
 if experience_potions then 	-- (2.X.X)
