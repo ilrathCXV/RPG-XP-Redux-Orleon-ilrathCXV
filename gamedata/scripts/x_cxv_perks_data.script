@@ -202,7 +202,7 @@ local function experience_skill_on_update(perk_id, perk_data)
 	end
 	
 	-- Zone Slayer
-	if perk_id == "perk_zone_slayer" and (perks["perk_zone_slayer"] > 0) and (#shotgun_list < 1) and (#weapon_list < 1) then
+	if perk_id == "perk_zone_slayer" and (perks["perk_zone_slayer"] > 0) and (#shotgun_list < 1) or (#weapon_list < 1) then
 		build_weapon_list()
 	end
 	
@@ -217,7 +217,7 @@ function on_game_start()
 	end
 	
 	RegisterScriptCallback("actor_on_first_update",			build_weapon_list)
-	RegisterScriptCallback("actor_item_to_ruck",			build_weapon_list)
+	RegisterScriptCallback("actor_item_to_ruck",			check_weapon_list_ruck)
 	RegisterScriptCallback("actor_item_to_slot",			build_weapon_list)
 end
 
@@ -280,4 +280,9 @@ function build_weapon_list()
 			end
 		end
 	end
+end
+
+function check_weapon_list_ruck(item)
+	if (perks["perk_zone_slayer"] < 1) and (perks["perk_plus_one"] < 1) then return end
+	if not IsValidMelee(item) then build_weapon_list() end
 end

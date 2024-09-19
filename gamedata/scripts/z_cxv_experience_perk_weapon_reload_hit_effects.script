@@ -99,7 +99,7 @@ function actor_on_update()
 			-- printf("[RPG - Hit Effects] On Your Mark removed: %s of 8 hits", fourth_times_counter)
 			fourth_times_counter = 0
 			fourth_timer = 0
-			play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
+			-- play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
 		end
 		update_1000ms_timer = time_g + update_1000ms_timer_interval
 	end
@@ -340,7 +340,7 @@ function process_perk_effects(victim, weapon, bone_id)
 		end
 		
 		printf("[RPG - Hit Effects] On Your Mark proc: %s", ammo_section)
-		play_sound_on_actor("interface\\item_usage\\pickup", 1.2, random_float(0.85, 1.15))
+		-- play_sound_on_actor("interface\\item_usage\\pickup", 1.2, random_float(0.85, 1.15))
 		fourth_times_counter = 0
 		fourth_timer = 0
 	end
@@ -465,7 +465,7 @@ function fourth_times_swap_reset(anim_table,obj)
 	if (not IsWeapon(obj)) then return end
 	
 	if hide_anims[anim_table.anm_name] and (fourth_times_counter > 0) then
-		play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
+		-- play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
 		printf("On Your Mark resetting... | Counter before reset: %s", fourth_times_counter)
 		fourth_times_counter = 0
 		fourth_timer = 0

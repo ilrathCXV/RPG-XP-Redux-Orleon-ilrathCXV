@@ -224,7 +224,6 @@ end
 function iter_create_meds(box, obj)
 	local sec = obj:section()
 	if SYS_GetParam(0, sec, "kind") == "i_medical" then
-		local ammo_count = obj:ammo_get_count()
 		-- printf("[RPG - Looting] Meds Found: %s", sec)
 		create_item_random_uses(sec, box)
 		was_medicine_found = true
@@ -469,8 +468,8 @@ function looting_enemy(victim)
 	end
 	
 ------------------------------------------------------------> Plus One
-	if x_cxv_perks_data.perks["perk_plus_one"] > 0 then
-		find_spare_ammo(victim)
+	if x_cxv_perks_data.perks["perk_plus_one"] > 0 and (#x_cxv_perks_data.weapon_list > 0) then
+		find_spare_ammo(x_cxv_perks_data.weapon_list[rand(1,#x_cxv_perks_data.weapon_list)], victim)
 	end
 end
 
@@ -527,28 +526,21 @@ function find_zone_slayer_ammo(weapon,npc)
 	end
 end
 
-function find_spare_ammo(box)
-	local attempt_count = 0
-	local rounds = nil
-	local weapon = nil
-	local ammo_upgrade_list = {
-		["ammo_m209_bad"] = "ammo_m209",
-		["ammo_vog-25_bad"] = "ammo_vog-25",
-		["ammo_og-7b_bad"] = "ammo_og-7b",
-		["ammo_gauss_bad"] = "ammo_gauss",
-	}
+local ammo_upgrade_list = {
+	["ammo_m209_bad"] = "ammo_m209",
+	["ammo_vog-25_bad"] = "ammo_vog-25",
+	["ammo_og-7b_bad"] = "ammo_og-7b",
+	["ammo_gauss_bad"] = "ammo_gauss",
+}
+
+function find_spare_ammo(weapon, box)
+	local wpn_id = weapon:id()
+	local ammo_type_number = weapon:get_ammo_type()
+	local ammo_list = utils_item.get_ammo(weapon:section(), wpn_id)
+	local rounds = ammo_list[rand(1,#ammo_list)] or nil
 	
-	while ((attempt_count < 10) and (not rounds)) do
-		weapon = x_cxv_perks_data.weapon_list[rand(1,#x_cxv_perks_data.weapon_list)]
-		local wpn_id = weapon:id()
-		local ammo_type_number = weapon:get_ammo_type()
-		local ammo_list = utils_item.get_ammo(weapon:section(), wpn_id)
-		rounds = ammo_list[rand(1,#ammo_list)]
-		attempt_count = attempt_count + 1
-	end
-	
-	if ((attempt_count >= 10) or (not rounds)) then 
-		printf("[RPG Looting] No weapon was found to give spare ammo!")
+	if (not rounds) then 
+		printf("[RPG Looting] No legit ammo was found to spare!")
 		return
 	end
 
@@ -568,7 +560,14 @@ function find_spare_ammo(box)
 	local box_size = ini_sys:r_float_ex(rounds, "box_size") or 1
 	local amount = (IsInvbox(box) and (rand(1,100) == 1) and box_size) or 1
 	
-	alife_create_item(rounds, box, {ammo = amount})
+	if (amount == box_size) then
+		alife_create_item(rounds, box)
+	else
+		local se_item = alife_create_item(rounds, box)
+		if not se_item then return end
+		alife_process_item(rounds, se_item.id, {ammo = amount})
+	end
+	
 	
 	printf('[RPG - Looting] ||Plus One|| gave %s extra round(s) for %s: %s', amount, weapon:section(), rounds)
 	
