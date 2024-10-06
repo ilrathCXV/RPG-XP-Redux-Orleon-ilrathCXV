@@ -360,7 +360,7 @@ ammo_parts_tier5 = {
 	"bullet_r7",			-- large-rifle AP heads
 }
 
-function try_spawn_ammo_parts(box, looter_level)
+function try_spawn_ammo_parts(box)
 	-- printf("Ammo Finder proc!")
 	local a_parts_chance = math.floor((x_cxv_perks_data.perks["perk_ammo_finder"] * 7) * rand(1.0,3.0))
     local tbl = {

@@ -1,0 +1,5 @@
+og_funct = experience_utils.CanStartFramework
+function experience_utils.CanStartFramework()
+    og_funct()
+    return ((GAME_VERSION == "1.5.2" or GAME_VERSION == "1.5.3") and get_modded_exes_version ~= nil)
+end

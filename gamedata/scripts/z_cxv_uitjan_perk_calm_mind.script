@@ -37,11 +37,3 @@ function arszi_psy.actor_on_before_hit(s_hit)
 	end
 	base_arszi_on_before_hit(s_hit)
 end
-
-function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end	
-end

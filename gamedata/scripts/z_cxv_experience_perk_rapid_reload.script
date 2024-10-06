@@ -54,7 +54,7 @@ function actor_on_hud_animation_play(anim_table,obj)
 	
 	if obj:parent() and obj:parent():id() ~= AC_ID then return end
 	
-	if (x_cxv_perks_data.perks["perk_rapid_reload"] < 1) then return end
+	if (x_cxv_perks_data.perks["perk_rapid_reload"] < 1) and (x_cxv_perks_data.perks["perk_zone_slayer"] < 1) and (x_cxv_perks_data.perks["perk_wick_mode"] < 1) then return end
 
 	if not reload_anims[anm_name] then return end
 
@@ -72,7 +72,36 @@ function actor_on_hud_animation_play(anim_table,obj)
 		end
 	end
 	
-	anim_table.anm_speed = animation_speed * (1 + reload_bonuses[x_cxv_perks_data.perks["perk_rapid_reload"]] * 0.01)
+	local zone_slayer_bonus = 0
+	local wick_mode_bonus = 0
+	
+	local wick_slayer_reload = x_cxv_perks_mcm.get_config("wick_slayer_reload") or false
+	
+	if wick_slayer_reload then
+	
+		if x_cxv_perks_data.perks["perk_zone_slayer"] > 0 and #x_cxv_perks_data.shotgun_list > 0 then
+			for i = 1, #x_cxv_perks_data.shotgun_list do
+				if x_cxv_perks_data.shotgun_list[i] then
+					local weapon_from_list = x_cxv_perks_data.shotgun_list[i]
+					printf("[RR] Weapon: %s", weapon_from_list)
+					if weapon_from_list:section() == wpn_sec then
+						zone_slayer_bonus = 0.30
+						break
+					end
+				end
+			end
+		end
+		
+		
+		if x_cxv_perks_data.perks["perk_wick_mode"] > 0 then
+			if x_cxv_perks_data.sortK_of(obj) == "pistol" then
+				wick_mode_bonus = 0.30
+			end
+		end
+	
+	end
+	
+	anim_table.anm_speed = animation_speed * (1 + (reload_bonuses[x_cxv_perks_data.perks["perk_rapid_reload"]] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
 	
 end
 
