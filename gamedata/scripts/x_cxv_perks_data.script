@@ -52,7 +52,7 @@ perks = {
 
 local minCondition = 0
 local maxCondition = 0
-local artefinder_bonus = {[0] = 0, [1] = 1, [2] = 3, [3] = 7, [4] = 12, [5] = 18 }
+-- local artefinder_bonus = {[0] = 0, [1] = 1, [2] = 3, [3] = 7, [4] = 12, [5] = 18 }
 
 original_map_chances = {
 	["k01_darkscape"] = 35,
@@ -132,27 +132,30 @@ local function experience_skill_on_update(perk_id, perk_data)
 		perks[perk_id] = perk_data["curr_level"]
 	end
 	
-	if perk_id == "perk_artefinder" then
+	-- if perk_id == "perk_artefinder" then
+	if perk_id == "perk_careful_handler" then
 		-- Artefinder
 		if zz_item_artefact then
 			if zz_item_artefact.cond_t then
 				if minCondition == 0 then
 					minCondition = zz_item_artefact.arti_min_eff or 20
 				end
-				zz_item_artefact.arti_min_eff = minCondition + artefinder_bonus[ perks["perk_artefinder"] ]
+				zz_item_artefact.arti_min_eff = minCondition + (perks[perk_id] * 3)		-- artefinder_bonus[ perks["perk_artefinder"] ]
 				if maxCondition == 0 then
 					maxCondition = zz_item_artefact.arti_max_eff or 30
 				end
-				zz_item_artefact.arti_max_eff = maxCondition + artefinder_bonus[ perks["perk_artefinder"] ]
+				zz_item_artefact.arti_max_eff = maxCondition + (perks[perk_id] * 3)		-- artefinder_bonus[ perks["perk_artefinder"] ]
 				printf('Old Arte. Min: %s | New Arte. Min %s | Old Arte. Max: %s | New Arte. Max %s', minCondition, zz_item_artefact.arti_min_eff, maxCondition, zz_item_artefact.arti_max_eff)
 			end
 		end
-		
+	end
+	
+	if perk_id == "perk_artefinder" then
 		if drx_da_main_artefacts then
 			if drx_da_main_artefacts.artefacts_map_chances then
 				for k,v in pairs(drx_da_main_artefacts.artefacts_map_chances) do
 					if original_map_chances[k] then
-						drx_da_main_artefacts.artefacts_map_chances[k] = original_map_chances[k] + ( perks["perk_artefinder"] * 3 )
+						drx_da_main_artefacts.artefacts_map_chances[k] = original_map_chances[k] + ( perks[perk_id] * 3 )
 						printf("[Artefinder Monkeys] Original value: %s | New value: %s", original_map_chances[k], drx_da_main_artefacts.artefacts_map_chances[k])
 					end
 				end
@@ -166,7 +169,7 @@ local function experience_skill_on_update(perk_id, perk_data)
 		if base_task_num == 0 then
 			base_task_num = treasure_manager.stash_rare.task_num or 8
 		end
-		treasure_manager.stash_rare.task_num = base_task_num + looting_stash_reduc[x_cxv_perks_data.perks["perk_local_looting"]]
+		treasure_manager.stash_rare.task_num = base_task_num + looting_stash_reduc[ perks[perk_id] ]
 		printf("New Base Rare Stash Task Amt: %s", treasure_manager.stash_rare.task_num)
 	end
 	
@@ -181,7 +184,7 @@ local function experience_skill_on_update(perk_id, perk_data)
 	-- Jump Man
 	if perk_id == "perk_jump_man" then
 		if perks["perk_jump_man"] > 0 then
-			add_jump("cxv_jump_man", 1 + (jump_man_boost * perks["perk_jump_man"]), true)
+			add_jump("cxv_jump_man", 1 + (jump_man_boost * perks[perk_id]), true)
 		else
 			remove_jump("cxv_jump_man")
 		end
@@ -194,7 +197,7 @@ local function experience_skill_on_update(perk_id, perk_data)
 	
 	-- Well Rested
 	if perk_id == "perk_well_rested" then
-		if perks["perk_well_rested"] == 0 then 
+		if perks[perk_id] == 0 then 
 			remove_speed("perk_well_rested")
 			remove_weight("perk_well_rested")
 			has_slept = false
@@ -236,7 +239,8 @@ function build_weapon_list()
 	if (perks["perk_zone_slayer"] < 1) and (perks["perk_plus_one"] < 1) then return end
 	local w1, w2, w3, w4 = db.actor:item_in_slot(3), db.actor:item_in_slot(2), db.actor:item_in_slot(1), db.actor:item_in_slot(5)
 		
-	if w1 and not IsValidMelee(w1) then
+	-- if w1 and not IsValidMelee(w1) then
+	if (IsWeapon(w1) and (not IsItem("fake_ammo_wpn",w1:section()))) then
 		weapon_list[#weapon_list + 1] = w1 
 		printf('Weapon 1: %s', w1:section())
 		local clip = ini_sys:r_float_ex(w1:section(), "ammo_mag_size") or 3
@@ -247,7 +251,8 @@ function build_weapon_list()
 			end
 		end
 	end
-	if w2 and not IsValidMelee(w2) then
+	-- if w2 and not IsValidMelee(w2) and not IsBinoc(w2) then
+	if (IsWeapon(w2) and (not IsItem("fake_ammo_wpn",w2:section()))) then
 		weapon_list[#weapon_list + 1] = w2 
 		printf('Weapon 2: %s', w2:section())
 		local clip = ini_sys:r_float_ex(w2:section(), "ammo_mag_size") or 3
@@ -258,7 +263,8 @@ function build_weapon_list()
 			end
 		end
 	end
-	if w3 and not IsValidMelee(w3) then
+	-- if w3 and not IsValidMelee(w3) then
+	if (IsWeapon(w3) and (not IsItem("fake_ammo_wpn",w3:section()))) then
 		weapon_list[#weapon_list + 1] = w3
 		printf('Weapon 3: %s', w3:section())
 		local clip = ini_sys:r_float_ex(w3:section(), "ammo_mag_size") or 3
@@ -269,7 +275,7 @@ function build_weapon_list()
 			end
 		end
 	end
-	if w4 and not IsValidMelee(w4) then
+	if (IsWeapon(w4) and (not IsItem("fake_ammo_wpn",w4:section()))) then
 		weapon_list[#weapon_list + 1] = w4
 		printf('Weapon 4: %s', w4:section())
 		local clip = ini_sys:r_float_ex(w4:section(), "ammo_mag_size") or 3

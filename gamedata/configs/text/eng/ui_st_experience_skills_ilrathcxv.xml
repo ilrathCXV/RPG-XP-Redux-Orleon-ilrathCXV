@@ -312,6 +312,7 @@
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]3% \n
+		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]3%\n
 		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]3%
 		</text>
     </string>
@@ -319,6 +320,7 @@
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]6% \n
+		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]6%\n
 		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]6%
 		</text>
     </string>
@@ -326,6 +328,7 @@
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]9% \n
+		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]9%\n
 		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]9%
 		</text>
     </string>
@@ -333,6 +336,7 @@
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]12% \n
+		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]12%\n
 		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]12%
 		</text>
     </string>
@@ -340,6 +344,7 @@
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]15% \n
+		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]15%\n
 		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]15%
 		</text>
     </string>
@@ -496,32 +501,28 @@
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]3%\n
-		%c[d_blue] - %c[ui_gray_2] Any newly-found artefact you find will now have %c[d_green]1% higher-than-normal efficiency
+		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]3%
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_2">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]2% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]6%\n
-		%c[d_blue] - %c[ui_gray_2] Any newly-found artefact you find will now have %c[d_green]3% higher-than-normal efficiency
+		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]6%
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_3">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]9%\n
-		%c[d_blue] - %c[ui_gray_2] Any newly-found artefact you find will now have %c[d_green]7% higher-than-normal efficiency
+		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]9%
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_4">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]12%\n
-		%c[d_blue] - %c[ui_gray_2] Any newly-found artefact you find will now have %c[d_green]12% higher-than-normal efficiency
+		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]12%
 		</text>
     </string>
 	<string id="st_perk_artefinder_desc_5">
@@ -529,8 +530,7 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Looting mutants has a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
-		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]15%\n
-		%c[d_blue] - %c[ui_gray_2] Any newly-found artefact you find will now have %c[d_green]18% higher-than-normal efficiency
+		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]15%
 		</text>
     </string>
 	
