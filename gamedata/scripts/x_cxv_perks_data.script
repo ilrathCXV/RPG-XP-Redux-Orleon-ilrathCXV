@@ -226,6 +226,7 @@ end
 
 local shotgun_ammo_check = {
 	["ammo_12x70_buck"] = true,
+	["ammo_12x76_zhekan"] = true,
 	["ammo_23x75_shrapnel"] = true,
 	["ammo_23_eco"] = true,
 	["ammo_20x70_buck"] = true,

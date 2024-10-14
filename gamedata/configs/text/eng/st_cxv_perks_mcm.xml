@@ -19,4 +19,24 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	<string id="st_refund_1">
+		<text>Repair item refunded!</text>
+	</string>
+	<string id="st_refund_2">
+		<text>Bonus item refunded!</text>
+	</string>
+	<string id="st_craft_bonus">
+		<text>Extra item crafted!</text>
+	</string>
+	<string id="st_rested_1">
+		<text>You are now Well-Rested!</text>
+	</string>
+	<string id="st_rested_2">
+		<text>You are no longer Well-Rested!</text>
+	</string>
 </string_table>

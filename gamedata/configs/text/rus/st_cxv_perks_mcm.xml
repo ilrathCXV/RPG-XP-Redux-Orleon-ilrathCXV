@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<string_table>
+	<string id="ui_mcm_menu_rpg_redux">
+		<text>RPG Redux</text>
+	</string>
+	<string id="ui_mcm_rpg_redux_title">
+		<text>Перковые опции в RPG Redux</text>
+	</string>
+	<string id="ui_mcm_rpg_redux_wick_slayer_reload">
+		<text>Бонусы за перезарядку в режиме Уика/Охотник?</text>
+	</string>
+	<string id="ui_mcm_rpg_redux_wick_slayer_reload_desc">
+		<text>
+			Включение этого параметра позволит "Режиму Уика" и "Охотнику" увеличить скорость перезарядки соответствующего оружия на 30% в дополнение к их текущим эффектам.\n \n
+			Отключение этого параметра не приведет к получению бонусов за перезарядку этих перков ("Быстрая перезарядка" не будет затронута).
+		</text>
+	</string>
+		
+	
+	
+	
+	
+	
+	
+	
+	<string id="st_refund_1">
+		<text>Предмет для ремонта возвращен!</text>
+	</string>
+		<string id="st_refund_2">
+		<text>Бонусный предмет возвращен!</text>
+	</string>
+	<string id="st_craft_bonus">
+		<text>Скрафчен дополнительный предмет!</text>
+	</string>
+	<string id="st_rested_1">
+		<text>Теперь вы хорошо отдохнувший!</text>
+	</string>
+	<string id="st_rested_2">
+		<text>Вы больше не хорошо отдохнувший!</text>
+	</string>
+</string_table>

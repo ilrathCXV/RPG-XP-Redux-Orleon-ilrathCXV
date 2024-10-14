@@ -114,14 +114,14 @@ function actor_on_update()
 end
 
 function WellRestedNews()
-	local message = "You are now Well-Rested"
+	local message = game.translate_string("st_rested_1")
 	sms(2, message, 5)
 	play_sound_on_actor("decoder", 0.75, 0.8)
 	given_message = true
 end
 
 function WellRestedGoneNews()
-	local message = "You are no longer Well-Rested"
+	local message = game.translate_string("st_rested_2")
 	sms(2, message, 5)
 	play_sound_on_actor("decoder", 0.75, 0.8)
 end
