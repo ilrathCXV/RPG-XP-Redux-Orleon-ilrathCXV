@@ -28,6 +28,7 @@ function get_actor_status_boost(obj, string)
 	local sec = obj:section()
 	local satiety = ini_sys:r_float_ex(sec, "eat_satiety") or 0
 	local radiation = ini_sys:r_float_ex(sec, "eat_radiation") or 0
+	local health = ini_sys:r_float_ex(sec, "eat_health") or 0
 	
 	if x_cxv_perks_data.perks["perk_slow_metabolism"] > 0 then
 		if satiety < 0 then
@@ -39,6 +40,13 @@ function get_actor_status_boost(obj, string)
 			-- printf("Radiation taken: %s", radiation)
 			local radiation_resist = radiation * (x_cxv_perks_data.perks["perk_slow_metabolism"] * 0.18)
 			db.actor:change_radiation(-radiation_resist)
+		end
+		if health < 0 then
+			-- printf("Health taken: %s", health)
+			local health_resist = (-1) * health * (x_cxv_perks_data.perks["perk_slow_metabolism"] * 0.18)
+			CreateTimeEvent("lead_belly" .. obj:id(), obj:id(), 0.05, function()
+				db.actor:change_health(health_resist)
+			end)
 		end
 	end
 	

@@ -59,16 +59,28 @@
 	<string id="st_perk_rapid_reload_desc_1">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]15%
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]10%
 		</text>
     </string>
 	<string id="st_perk_rapid_reload_desc_2">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]40%
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]20%
 		</text>
     </string>
 	<string id="st_perk_rapid_reload_desc_3">
+        <text>Speed is key in the heat of battle. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]35%
+		</text>
+    </string>
+	<string id="st_perk_rapid_reload_desc_4">
+        <text>Speed is key in the heat of battle. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]50%
+		</text>
+    </string>
+	<string id="st_perk_rapid_reload_desc_5">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]75%
@@ -403,8 +415,8 @@
 	<string id="st_perk_comfort_food_desc_1">
         <text>Your body has learned to survive on the "bread" of the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] When eating or drinking, you will receive health equal to a portion of their thirst or hunger restore\n
-		%c[d_blue] - %c[ui_gray_2] Health restore will be based on which of the two have a higher magnitude
+		%c[d_blue] - %c[ui_gray_2] When eating or drinking, you will receive health equal to %c[d_green]30%%c[ui_gray_2] of their thirst and hunger restore\n
+		%c[d_blue] - %c[ui_gray_2] Health restore will be a combination of both their %c[yellow]positive%c[ui_gray_2] thirst and hunger restore
 		</text>
     </string>
 	
@@ -950,6 +962,7 @@
         <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]18% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]18% less HP %c[ui_gray_2]when consuming any item that drains it\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]18% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
@@ -957,6 +970,7 @@
         <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]36% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]36% less HP %c[ui_gray_2]when consuming any item that drains it\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]36% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
@@ -964,6 +978,7 @@
         <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]54% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]54% less HP %c[ui_gray_2]when consuming any item that drains it\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]54% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
@@ -971,6 +986,7 @@
         <text>Your stomach has become more resistant to the harmful effects of ingested medicines and irradiated foods.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]72% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]72% less HP %c[ui_gray_2]when consuming any item that drains it\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]72% less radiation %c[ui_gray_2] from consumed items
 		</text>
     </string>
@@ -978,6 +994,7 @@
 		<text>Your body has adapted to your medication and drug use.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]90% less satiety %c[ui_gray_2]when consuming any item that drains it\n
+		%c[d_blue] - %c[ui_gray_2] Lose %c[d_green]90% less HP %c[ui_gray_2]when consuming any item that drains it\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]90% less radiation %c[ui_gray_2] from consumed items\n
         %c[d_blue] - %c[ui_gray_2] Consumables that restore satiety give %c[d_green]half of its satiety %c[ui_gray_2]as an additional boost over %c[yellow]1 minute
 		</text>
@@ -1045,7 +1062,7 @@
 		%c[d_blue] - %c[ui_gray_2] Can now exchange armor at %c[d_green]any friendly faction\n
 		%c[d_blue] - %c[ui_gray_2] Most faction-locked tasks and dialogue options (such as armor trading in GAMMA) from other %c[d_green]any friendly faction %c[ui_gray_2]are available to you\n
 		%c[d_red] - %c[ui_gray_2] Friendly faction = having at least %c[d_green]1000 Goodwill %c[ui_gray_2]with a faction\n
-		%c[d_red] - %c[ui_gray_2] Most special faction-locked dialogue like storyline quests not available natively to your faction are locked behind %c[d_cyan]1500 Goodwill
+		%c[d_red] - %c[ui_gray_2] Dialogue hidden because your faction is enemies with the NPC's faction is available at %c[d_cyan]1500 Goodwill
 		</text>
     </string>
 	

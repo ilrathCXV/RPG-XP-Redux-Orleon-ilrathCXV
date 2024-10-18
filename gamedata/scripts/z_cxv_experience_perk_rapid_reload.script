@@ -1,4 +1,4 @@
-local reload_bonuses = {[0] = 0, [1] = 15, [2] = 40, [3] = 75}
+local reload_bonuses = {[0] = 0, [1] = 10, [2] = 20, [3] = 35, [4] = 50, [5] = 75}
 
 local reload_anims = {
 	anm_reload = true,

@@ -16,14 +16,6 @@
 			Отключение этого параметра не приведет к получению бонусов за перезарядку этих перков ("Быстрая перезарядка" не будет затронута).
 		</text>
 	</string>
-		
-	
-	
-	
-	
-	
-	
-	
 	<string id="st_refund_1">
 		<text>Предмет для ремонта возвращен!</text>
 	</string>
@@ -38,5 +30,11 @@
 	</string>
 	<string id="st_rested_2">
 		<text>Вы больше не хорошо отдохнувший!</text>
+	</string>
+	<string id="st_critical_hit_1">
+		<text>Критическое попадание на </text>
+	</string>
+	<string id="st_critical_hit_2">
+		<text>x урона!</text>
 	</string>
 </string_table>

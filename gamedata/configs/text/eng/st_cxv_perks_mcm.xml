@@ -39,4 +39,10 @@
 	<string id="st_rested_2">
 		<text>You are no longer Well-Rested!</text>
 	</string>
+	<string id="st_critical_hit_1">
+		<text>Critical hit for </text>
+	</string>
+	<string id="st_critical_hit_2">
+		<text>x damage!</text>
+	</string>
 </string_table>

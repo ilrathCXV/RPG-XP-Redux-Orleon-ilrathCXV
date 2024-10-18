@@ -140,11 +140,11 @@ local function experience_skill_on_update(perk_id, perk_data)
 				if minCondition == 0 then
 					minCondition = zz_item_artefact.arti_min_eff or 20
 				end
-				zz_item_artefact.arti_min_eff = minCondition + (perks[perk_id] * 3)		-- artefinder_bonus[ perks["perk_artefinder"] ]
+				zz_item_artefact.arti_min_eff = minCondition + (perks["perk_careful_handler"] * 3)		-- artefinder_bonus[ perks["perk_artefinder"] ]
 				if maxCondition == 0 then
 					maxCondition = zz_item_artefact.arti_max_eff or 30
 				end
-				zz_item_artefact.arti_max_eff = maxCondition + (perks[perk_id] * 3)		-- artefinder_bonus[ perks["perk_artefinder"] ]
+				zz_item_artefact.arti_max_eff = maxCondition + (perks["perk_careful_handler"] * 3)		-- artefinder_bonus[ perks["perk_artefinder"] ]
 				printf('Old Arte. Min: %s | New Arte. Min %s | Old Arte. Max: %s | New Arte. Max %s', minCondition, zz_item_artefact.arti_min_eff, maxCondition, zz_item_artefact.arti_max_eff)
 			end
 		end
@@ -155,14 +155,13 @@ local function experience_skill_on_update(perk_id, perk_data)
 			if drx_da_main_artefacts.artefacts_map_chances then
 				for k,v in pairs(drx_da_main_artefacts.artefacts_map_chances) do
 					if original_map_chances[k] then
-						drx_da_main_artefacts.artefacts_map_chances[k] = original_map_chances[k] + ( perks[perk_id] * 3 )
+						drx_da_main_artefacts.artefacts_map_chances[k] = original_map_chances[k] + ( perks["perk_artefinder"] * 3 )
 						printf("[Artefinder Monkeys] Original value: %s | New value: %s", original_map_chances[k], drx_da_main_artefacts.artefacts_map_chances[k])
 					end
 				end
 			end
 		end
 	end
-	
 	
 	-- Local Looting
 	if perk_id == "perk_local_looting" then
@@ -191,13 +190,13 @@ local function experience_skill_on_update(perk_id, perk_data)
 	end
 	
 	-- Plus One
-	if perk_id == "perk_plus_one" and (perks["perk_plus_one"] > 0) and (#weapon_list < 1) then
+	if perk_id == "perk_plus_one" and (perks[perk_id] > 0) and (#weapon_list < 1) then
 		build_weapon_list()
 	end
 	
 	-- Well Rested
 	if perk_id == "perk_well_rested" then
-		if perks[perk_id] == 0 then 
+		if perks["perk_well_rested"] == 0 then 
 			remove_speed("perk_well_rested")
 			remove_weight("perk_well_rested")
 			has_slept = false
@@ -208,7 +207,6 @@ local function experience_skill_on_update(perk_id, perk_data)
 	if perk_id == "perk_zone_slayer" and (perks["perk_zone_slayer"] > 0) and (#shotgun_list < 1) or (#weapon_list < 1) then
 		build_weapon_list()
 	end
-	
 	
 end
 

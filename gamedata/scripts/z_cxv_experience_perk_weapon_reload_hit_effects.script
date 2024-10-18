@@ -182,7 +182,7 @@ function process_perk_effects(victim, weapon, bone_id)
 			criticalMultiplier = 1 + (0.25 * x_cxv_perks_data.perks["perk_deadeye"])	-- Crit Multiplier is (25  * DE)%
 		end
 	
-		txt = "Critical hit for " .. criticalMultiplier .. "x damage!"
+		txt = game.translate_string("st_critical_hit_1") .. " " .. criticalMultiplier .. game.translate_string("st_critical_hit_2")
 		sms(2, txt, 5)
 		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, criticalMultiplier)
 		damage_multiplier = damage_multiplier * criticalMultiplier

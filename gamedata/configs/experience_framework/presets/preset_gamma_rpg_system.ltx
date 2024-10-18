@@ -1,5 +1,16 @@
 [gamma_rpg_system_default]
-XP/LEVEL_UP_MULT						= 295
+Main/G_MAX_PRESTIGE						= 10
+Main/G_ADD_LEVEL_PER_PRESTIGE			= 1
+Main/G_MAX_LEVEL						= 45
+
+Main/MAX_SPAWN_TRAITS					= 2
+Main/TRAITS_SPAWN_CHANCE_stash			= 100
+Main/TRAITS_SPAWN_CHANCE_stalker		= 90
+Main/TRAITS_SPAWN_CHANCE_mutant			= 75
+
+
+XP/LEVEL_UP_BASE						= 375
+XP/LEVEL_UP_MULT						= 200
 
 XP/stalker								= 30
 XP/bandit								= 24
@@ -13,7 +24,7 @@ XP/monolith								= 48
 XP/greh									= 72
 XP/renegade								= 24
 XP/isg									= 100
-XP/zombied								= 18
+XP/zombied								= 24
 
 XP/novice								= 1
 XP/trainee								= 1.25
@@ -25,24 +36,24 @@ XP/master								= 4
 XP/legend								= 5
 
 XP/bloodsucker							= 72
-XP/boar									= 30
+XP/boar									= 50
 XP/burer								= 108
 XP/chimera								= 180
 XP/controller							= 96
 XP/dog									= 18
 XP/flesh								= 12
 XP/gigant								= 180
-XP/poltergeist							= 60
-XP/pyrogeist							= 80
+XP/poltergeist							= 100
+XP/pyrogeist							= 100
 XP/pseudogeist							= 100
-XP/psy_dog								= 76
+XP/psy_dog								= 100
 XP/pseudodog							= 36
-XP/snork								= 52
+XP/snork								= 50
 XP/tushkano								= 3
 XP/cat									= 24
 XP/fracture								= 24
 XP/zombie								= 12
-XP/karlik								= 76
+XP/karlik								= 50
 XP/psysucker							= 84
 XP/lurker								= 40
 
@@ -68,8 +79,8 @@ XP/REPAIR_ITM_XP						= 3
 XP/COOKING_XP							= 10
 
 XP/WORKSHOP_CRAFT_XP					= 5
-XP/WORKSHOP_REPAIR_XP					= 10
-XP/WORKSHOP_UPGRADE_XP					= 10
+XP/WORKSHOP_REPAIR_XP					= 25
+XP/WORKSHOP_UPGRADE_XP					= 25
 
 XP/ART_XP								= 70
 XP/ART_XP_MULT_RANK_0					= 1
@@ -77,7 +88,7 @@ XP/ART_XP_MULT_RANK_1					= 1.3
 XP/ART_XP_MULT_RANK_2					= 1.6
 XP/ART_XP_MULT_RANK_3					= 2
 
-XP/HARU_SKILLS_XP						= 2
+XP/HARU_SKILLS_XP						= 10
 
 ; Loaction Multipliers
 XP/LOC_MULT_fake_start					= 0
@@ -85,35 +96,35 @@ XP/LOC_MULT_k00_marsh					= -0.1
 XP/LOC_MULT_l01_escape					= -0.2
 XP/LOC_MULT_k01_darkscape				= -0.2
 XP/LOC_MULT_y04_pole					= -0.2
-XP/LOC_MULT_l02_garbage					= -0.1
-XP/LOC_MULT_l03_agroprom				= -0.15
-XP/LOC_MULT_l04_darkvalley				= -0.15
+XP/LOC_MULT_l02_garbage					= -0.15
+XP/LOC_MULT_l03_agroprom				= -0.05
+XP/LOC_MULT_l04_darkvalley				= -0.05
 XP/LOC_MULT_l05_bar						= -0.15
 XP/LOC_MULT_l06_rostok					= -0.15
 XP/LOC_MULT_k02_trucks_cemetery			= 0
-XP/LOC_MULT_l08_yantar					= -0.1
-XP/LOC_MULT_l07_military				= -0.05
-XP/LOC_MULT_l09_deadcity				= 0
-XP/LOC_MULT_l10_red_forest				= 0
-XP/LOC_MULT_l10_radar					= 0
-XP/LOC_MULT_l10_limansk					= 0
-XP/LOC_MULT_l11_pripyat					= 0
-XP/LOC_MULT_pripyat						= 0
-XP/LOC_MULT_jupiter						= 0.1
-XP/LOC_MULT_zaton						= 0.1
-XP/LOC_MULT_l11_hospital				= 0.1
-XP/LOC_MULT_l12_stancia					= 0.2
-XP/LOC_MULT_l12_stancia_2				= 0.2
-XP/LOC_MULT_l13_generators				= 0.2
-XP/LOC_MULT_l03u_agr_underground		= 0.2
+XP/LOC_MULT_l08_yantar					= -0.05
+XP/LOC_MULT_l07_military				= 0
+XP/LOC_MULT_l09_deadcity				= -0.05
+XP/LOC_MULT_l10_red_forest				= 0.1
+XP/LOC_MULT_l10_radar					= 0.1
+XP/LOC_MULT_l10_limansk					= 0.2
+XP/LOC_MULT_l11_pripyat					= 0.2
+XP/LOC_MULT_pripyat						= 0.2
+XP/LOC_MULT_jupiter						= 0.15
+XP/LOC_MULT_zaton						= 0.15
+XP/LOC_MULT_l11_hospital				= 0.2
+XP/LOC_MULT_l12_stancia					= 0.25
+XP/LOC_MULT_l12_stancia_2				= 0.3
+XP/LOC_MULT_l13_generators				= 0.4
+XP/LOC_MULT_l03u_agr_underground		= 0
 XP/LOC_MULT_jupiter_underground			= 0.2
-XP/LOC_MULT_l08u_brainlab				= 0.2
-XP/LOC_MULT_l04u_labx18					= 0.2
+XP/LOC_MULT_l08u_brainlab				= 0
+XP/LOC_MULT_l04u_labx18					= 0
 XP/LOC_MULT_l10u_bunker					= 0.2
 XP/LOC_MULT_labx8						= 0.2
-XP/LOC_MULT_l12u_control_monolith		= 0.2
-XP/LOC_MULT_l13u_warlab					= 0.2
-XP/LOC_MULT_l12u_sarcofag				= 0.2
+XP/LOC_MULT_l12u_control_monolith		= 0.4
+XP/LOC_MULT_l13u_warlab					= 0.4
+XP/LOC_MULT_l12u_sarcofag				= 0.4
 
 UI/OPEN_UI_ANIMATION					= false
 UI/MENU_MUSIC_VOLUME					= 0.2
