@@ -42,10 +42,11 @@ function get_actor_status_boost(obj, string)
 			db.actor:change_radiation(-radiation_resist)
 		end
 		if health < 0 then
-			-- printf("Health taken: %s", health)
+			-- printf("[CXV Lead Belly] Health taken: %s | Object: %s", health, obj:section())
 			local health_resist = (-1) * health * (x_cxv_perks_data.perks["perk_slow_metabolism"] * 0.18)
 			CreateTimeEvent("lead_belly" .. obj:id(), obj:id(), 0.05, function()
 				db.actor:change_health(health_resist)
+				return true
 			end)
 		end
 	end
