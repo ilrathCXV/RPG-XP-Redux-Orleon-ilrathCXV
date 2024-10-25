@@ -27,6 +27,7 @@ function actor_on_update()
 			printf("[RPG] Battle Runner ended")
 			play_sound("anomaly\\electra_hit",0.5)
 			battle_runner_active = false
+			battle_runner_timer = 0
 		end
 		update_1000ms_timer = time_g + update_1000ms_timer_interval
 	end
@@ -38,22 +39,18 @@ function actor_on_kill(victim, killer)
 	
 	if (x_cxv_perks_data.perks["perk_battle_runner"] >= 1) then
 		if (battle_runner_active) then										-- only refresh the timer back to 10 seconds if active
-			local time_limit = time_g - time_g_orig
+			local time_limit = math_floor(time_global() * 0.01) - time_g_orig
+			time_g_orig = math_floor(time_global() * 0.01)
 			battle_runner_timer = battle_runner_timer + time_limit
-			time_limit = time_limit * 0.1
-			battle_runner_orig = battle_runner_timer
-			printf('[RPG] Battle Runner refreshed by %s second(s)', time_limit)
+			printf('[RPG] Battle Runner refreshed by %s second(s)', time_limit * 0.1)
 		end
-		if (battle_runner_orig == 0) and not (battle_runner_active) then	-- BR not active; grant 10 seconds of speed
+		if (battle_runner_timer == 0) and not (battle_runner_active) then	-- BR not active; grant 10 seconds of speed
 			time_g_orig = math_floor(time_global() * 0.01)
 			battle_runner_timer = time_g_orig + 100
-			battle_runner_orig = battle_runner_timer
 			add_speed("perk_battle_runner", battle_runner_speed[ x_cxv_perks_data.perks["perk_battle_runner"] ], false, true)
-			if not (battle_runner_active) then
-				play_sound("anomaly\\gravity_entrance",0.8)
-				battle_runner_active = true
-				printf("[RPG] Battle Runner started")
-			end
+			play_sound("anomaly\\gravity_entrance",0.8)
+			battle_runner_active = true
+			printf("[RPG] Battle Runner started (%s)", time_g_orig)
 		end
 	end
 end

@@ -289,5 +289,5 @@ end
 
 function check_weapon_list_ruck(item)
 	if (perks["perk_zone_slayer"] < 1) and (perks["perk_plus_one"] < 1) then return end
-	if not IsValidMelee(item) then build_weapon_list() end
+	if not IsValidMelee(item) and IsWeapon(item) then build_weapon_list() end
 end
