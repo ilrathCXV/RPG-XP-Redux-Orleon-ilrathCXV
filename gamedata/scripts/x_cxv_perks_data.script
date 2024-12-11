@@ -55,20 +55,36 @@ local maxCondition = 0
 -- local artefinder_bonus = {[0] = 0, [1] = 1, [2] = 3, [3] = 7, [4] = 12, [5] = 18 }
 
 original_map_chances = {
-	["k01_darkscape"] = 35,
-	["l03u_agr_underground"] = 50,
-	["l04u_labx18"] = 60,
-	["l08u_brainlab"] = 60,
-	["l10_radar"] = 40,
-	["l10u_bunker"] = 80,
-	["l11_hospital"] = 80,
+	["k00_marsh"] = 20,
+	["l01_escape"] = 20,
+	["l02_garbage"] = 20,
+	["y04_pole"] = 28,
+	["l05_bar"] = 0,
+	["l03_agroprom"] = 20,
+	["k01_darkscape"] = 20,
+	["l04_darkvalley"] = 20,
+	["k02_trucks_cemetery"] = 28,
+	["l06_rostok"] = 25,
+	["l07_military"] = 20,
+	["l09_deadcity"] = 20,
+	["l08_yantar"] = 20,
+	["l03u_agr_underground"] = 20,
+	["jupiter"] = 20,
+	["l10_limansk"] = 30,
+	["l04u_labx18"] = 30,
+	["l10_red_forest"] = 35,
+	["l08u_brainlab"] = 30,
+	["l10_radar"] = 35,
+	["l10u_bunker"] = 30,
+	["l11_hospital"] = 30,
 	["l12_stancia"] = 30,
 	["l12_stancia_2"] = 30,
-	["l12u_control_monolith"] = 80,
-	["l12u_sarcofag"] = 80,
+	["l12u_control_monolith"] = 30,
+	["l12u_sarcofag"] = 30,
 	["l13_generators"] = 30,
-	["l13u_warlab"] = 80,
-	["labx8"] = 80,
+	["l13u_warlab"] = 30,
+	["labx8"] = 30,
+	["pripyat"] = 30,
 }
 
 wp_table = {
@@ -138,11 +154,11 @@ local function experience_skill_on_update(perk_id, perk_data)
 		if zz_item_artefact then
 			if zz_item_artefact.cond_t then
 				if minCondition == 0 then
-					minCondition = zz_item_artefact.arti_min_eff or 20
+					minCondition = zz_item_artefact.arti_min_eff or 29
 				end
 				zz_item_artefact.arti_min_eff = minCondition + (perks["perk_careful_handler"] * 3)		-- artefinder_bonus[ perks["perk_artefinder"] ]
 				if maxCondition == 0 then
-					maxCondition = zz_item_artefact.arti_max_eff or 30
+					maxCondition = zz_item_artefact.arti_max_eff or 37
 				end
 				zz_item_artefact.arti_max_eff = maxCondition + (perks["perk_careful_handler"] * 3)		-- artefinder_bonus[ perks["perk_artefinder"] ]
 				printf('Old Arte. Min: %s | New Arte. Min %s | Old Arte. Max: %s | New Arte. Max %s', minCondition, zz_item_artefact.arti_min_eff, maxCondition, zz_item_artefact.arti_max_eff)
@@ -166,7 +182,7 @@ local function experience_skill_on_update(perk_id, perk_data)
 	-- Local Looting
 	if perk_id == "perk_local_looting" then
 		if base_task_num == 0 then
-			base_task_num = treasure_manager.stash_rare.task_num or 8
+			base_task_num = treasure_manager.stash_rare.task_num or 7
 		end
 		treasure_manager.stash_rare.task_num = base_task_num + looting_stash_reduc[ perks[perk_id] ]
 		printf("New Base Rare Stash Task Amt: %s", treasure_manager.stash_rare.task_num)

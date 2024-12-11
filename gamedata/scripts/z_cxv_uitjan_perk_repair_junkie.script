@@ -53,7 +53,7 @@ function on_game_start()
 						math.randomseed(seed)
 						
 						local refundbool = math.random() < repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]]
-						printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
+						-- printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
 						
 						if refundbool then
 							TinkerNews()
@@ -67,7 +67,7 @@ function on_game_start()
 					math.randomseed(seed)
 					
 					local refundbool = math.random() < repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]]
-					printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
+					-- printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
 					
 					if refundbool then
 						TinkerNews()
@@ -86,7 +86,7 @@ function on_game_start()
 						math.randomseed(seed)
 						
 						local refundbool = math.random() < zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]]
-						printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
+						-- printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
 						
 						if refundbool then
 							BonusNews()
@@ -100,7 +100,7 @@ function on_game_start()
 					math.randomseed(seed)
 					
 					local refundbool = math.random() < zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]]
-					printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
+					-- printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
 	
 					if refundbool then
 						BonusNews()
@@ -111,7 +111,7 @@ function on_game_start()
 					math.randomseed(seed)
 					
 					local refundbool = math.random() < zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]]
-					printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
+					-- printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
 					
 					if refundbool then
 						BonusNews()
@@ -134,7 +134,7 @@ function on_game_start()
 					math.randomseed(seed)
 					
 					local refundbool = math.random() < repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]]
-					printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
+					-- printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
 	
 					if refundbool then
 						TinkerNews()
@@ -145,7 +145,7 @@ function on_game_start()
 					math.randomseed(seed)
 					
 					local refundbool = math.random() < repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]]
-					printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
+					-- printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
 					
 					if refundbool then
 						TinkerNews()
@@ -162,7 +162,7 @@ function on_game_start()
 					math.randomseed(seed)
 					
 					local refundbool = math.random() < zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]]
-					printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
+					-- printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
 	
 					
 					if refundbool then
@@ -174,7 +174,7 @@ function on_game_start()
 					math.randomseed(seed)
 					
 					local refundbool = math.random() < zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]]
-					printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
+					-- printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
 					
 					if refundbool then
 						BonusNews()

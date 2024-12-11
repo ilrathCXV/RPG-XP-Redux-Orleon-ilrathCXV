@@ -152,3 +152,12 @@ if ammo_maker then
 		end
 	end
 end
+
+---------------------------------------------------------------------------------------------------------------------------------
+-- experience_utils.script - Increase XP based on Prestige ----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+local base_XP_gain = experience_utils.IncreaseExperience
+function experience_utils.IncreaseExperience(amount, action_key, ignore_multipliers)
+	local actor_prestige = experience_utils.GetActorPrestige() or 0
+	base_XP_gain(amount * (1 + (0.1 * actor_prestige)), action_key, ignore_multipliers)
+end
