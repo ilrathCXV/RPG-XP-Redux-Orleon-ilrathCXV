@@ -20,6 +20,11 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+-- ilrathCXV (12/16/24): "Cyber-medic" will now utilize the Bandage's Bleed Recovery Boost as its baseline + make use of actor's bleed coef to be closer to actual Bandage heal tick
+--						 Current time-to-heal-for-one-bandage-tick is 2.85s/2.15s/1.175s OR bleed-recovery-per-sec is 0.7%/1.11%/2.03%
+local bandage_base_boost = ini_sys:r_float_ex("bandage", "boost_bleeding_restore") or 0.004	-- Now gets true value of Bandage's boost
+local actor_bleed_k = ini_sys:r_float_ex("actor_condition", "bleed_speed_k") or 1
+local bleed_coef_table = {[0] = 0, [1] = 0.3509, [2] = 0.4651, [3] = 0.851 }
 
 function perk_effects_over_time()
     if time_global() < old_time then return end
@@ -32,7 +37,9 @@ function perk_effects_over_time()
     if x_cxv_perks_data.perks["perk_cybermedic"] >= 1 then
 		if db.actor.bleeding > 0 then
 			local bleedingCure = 0
-			bleedingCure = 0.003 * x_cxv_perks_data.perks["perk_cybermedic"] * effect_factor
+			bleed_table_index = clamp(x_cxv_perks_data.perks["perk_cybermedic"], 1, 3)
+			bleedingCure = round_idp(bandage_base_boost * x_cxv_perks_data.perks["perk_cybermedic"] * effect_factor * actor_bleed_k * bleed_coef_table[bleed_table_index], 4)
+			-- printf("Bleeding Cure amt: %s", bleedingCure)
 			db.actor.bleeding = bleedingCure
 		end
     end

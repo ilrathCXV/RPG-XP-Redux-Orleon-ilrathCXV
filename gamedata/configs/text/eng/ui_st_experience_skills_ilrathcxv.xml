@@ -387,21 +387,27 @@
         <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Heal bleeding wounds over time at a %c[d_orange]slow rate\n
-		%c[d_blue] - %c[ui_gray_2] Every 25 seconds heals at the same magnitude as a %c[d_green]whole bandage
+		%c[d_blue] - %c[ui_gray_2] Your base bleed recovery's magnitude is %c[d_orange]35% of one Bandage tick\n
+		%c[d_blue] - %c[ui_gray_2] This equates roughly to %c[d_orange]0.7% %c[ui_gray_2]bleed recovery per second\n \n
+		%c[d_red] NOTE: Recovery per second is based off of GAMMA 0.9.3's Bandage bleed recovery numbers
 		</text>
     </string>
 	<string id="st_perk_cybermedic_desc_2">
         <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Heal bleeding wounds over time at a %c[yellow]faster rate\n
-		%c[d_blue] - %c[ui_gray_2] Every 16 seconds heals at the same magnitude as a %c[d_green]whole bandage
+		%c[d_blue] - %c[ui_gray_2] Your base bleed recovery's magnitude is %c[yellow]46% of one Bandage tick\n
+		%c[d_blue] - %c[ui_gray_2] This equates roughly to %c[yellow]1.11% %c[ui_gray_2]bleed recovery per second\n \n
+		%c[d_red] NOTE: Recovery per second is based off of GAMMA 0.9.3's Bandage bleed recovery numbers 
 		</text>
     </string>
 	<string id="st_perk_cybermedic_desc_3">
         <text>You have become outfitted with an implant that helps to slowly stop bleeding wounds.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Heal bleeding wounds over time at a %c[d_green]faster rate\n
-		%c[d_blue] - %c[ui_gray_2] Every 8 seconds heals at the same magnitude as a %c[d_green]whole bandage
+		%c[d_blue] - %c[ui_gray_2] Your base bleed recovery's magnitude is %c[d_green]85% of one Bandage tick\n
+		%c[d_blue] - %c[ui_gray_2] This equates roughly to %c[d_green]2.03% %c[ui_gray_2]bleed recovery per second\n \n
+		%c[d_red] NOTE: Recovery per second is based off of GAMMA 0.9.3's Bandage bleed recovery numbers
 		</text>
     </string>
 	
