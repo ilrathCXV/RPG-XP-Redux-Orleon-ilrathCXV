@@ -382,7 +382,13 @@ function looting_enemy(victim)
 	
 	-- ilrathCXV (10/21/24): Consolidate all "iter" functions into one
 	if x_cxv_perks_data.perks["perk_careful_handler"] > 0 or  x_cxv_perks_data.perks["perk_medicine_man"] > 0 or x_cxv_perks_data.perks["perk_ammo_finder"] > 0 then
+		
+	CreateTimeEvent("looting_perks_proc",victim:id(), 0.05, function()
 		looting_perks_proc(victim)
+		return true
+    end)
+		
+		
 	end
 	
 -----------------------------------------------------------> Scavenger
@@ -487,11 +493,11 @@ end
 
 function careful_handler_cond_increase(obj, sec, box)
 	-- printf("Object to be considered: %s | Is Weapon?: %s | Is Outfit?: %s | Is Helmet?: %s", sec, IsValidWeapon(obj), IsOutfit(obj), IsHeadgear(obj))
-	if IsOutfit(obj) or IsHeadgear(obj) or IsValidWeapon(obj) then
-		-- printf("[RPG - Looting] Weapon/Armor being Carefully Handled: %s", sec)
+	if IsOutfit(obj) or IsHeadgear(obj) or IsWeapon(obj) then
+		printf("[RPG - Looting] Weapon/Armor being Carefully Handled: %s", sec)
 		-- increase armor and weapon drop conditions
 		local item_cond = obj:condition()
-		obj:set_condition(clamp(item_cond + (x_cxv_perks_data.perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), 0, 1))
+		obj:set_condition(clamp(item_cond + (x_cxv_perks_data.perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), item_cond, 0.980))
 
 --		-- increase weapon parts condition of weapons themselves
 --		if IsValidWeapon(obj) then			
@@ -508,15 +514,14 @@ function careful_handler_cond_increase(obj, sec, box)
 --				item_parts.set_parts_con(obj:id(), parts)
 --			end
 --		else
---			local data = utils_stpk.get_item_data(obj)
---			data.condition = (clamp(data.condition + (x_cxv_perks_data.perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), 0, 1))
---			utils_stpk.set_item_data(data, obj)
+--			local gear_cond = obj:condition()
+--			obj:set_condition(clamp(gear_cond + (x_cxv_perks_data.perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), gear_cond, 1))
 --		end
 		
-	elseif utils_item.is_degradable(nil, sec) then
+	elseif utils_item.is_degradable(obj, sec) or obj:condition() < 1 then
 		printf("[RPG - Looting] Item being Carefully Handled: %s", sec)
 		local item_cond = obj:condition()
-		obj:set_condition(clamp(item_cond + (x_cxv_perks_data.perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), 0, 1))
+		obj:set_condition(clamp(item_cond + (x_cxv_perks_data.perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), item_cond, 0.980))
 	end
 end
 
@@ -700,6 +705,7 @@ if arti_lootboxes then
 	end
 end
 
+--[[
 --------------------------------------------------------------------------------------------------------------
 ------------------ Careful Handler for Outfit Drops (credit to Joris9521 for catching this) ------------------
 --------------------------------------------------------------------------------------------------------------
@@ -713,11 +719,12 @@ function death_manager.spawn_with_condition(npc, section, condition)
 		return base_condition_spawn(npc, section, condition)
 	end
 end
-
+]]--
 --------------------------------------------------------------------------------------------------------------
 ------------------------------------ Careful Handler for Parts on Weapons ------------------------------------
 --------------------------------------------------------------------------------------------------------------
 -- For GAMMA users
+
 BasePartsEval = zzzz_arti_jamming_repairs.weapon_eval_parts
 if BasePartsEval then
 
@@ -802,8 +809,10 @@ if BaseNewPartsEval then
 		se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
 	end
 end
+
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+
 
 function on_game_start()
 	RegisterScriptCallback("actor_on_item_take",			midas_touch_money_increase)

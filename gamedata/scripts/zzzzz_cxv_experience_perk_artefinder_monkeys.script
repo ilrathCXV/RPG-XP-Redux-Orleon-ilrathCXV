@@ -1,3 +1,0 @@
-function do_nothing()
-	printf("No longer needed - handled in z_cxv_perk_data script - artefinder_monkeys")
-end
