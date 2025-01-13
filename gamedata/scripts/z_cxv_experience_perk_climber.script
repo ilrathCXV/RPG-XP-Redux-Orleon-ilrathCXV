@@ -1,0 +1,16 @@
+local climber_modifiers = {[0] = 1, [1] = 0.90, [2] = 0.75, [3] = 0.60}
+
+BaseClimbingPowerDrain = demonized_ledge_grabbing.getStaminaDrain
+function demonized_ledge_grabbing.getStaminaDrain()
+	return (BaseClimbingPowerDrain() * climber_modifiers[x_cxv_perks_data.perks["perk_mtn_climber"]])
+end
+
+BaseClimbingSatietyDrain = demonized_ledge_grabbing.getSatietyDrain
+function demonized_ledge_grabbing.getSatietyDrain()
+	return (BaseClimbingSatietyDrain() * climber_modifiers[x_cxv_perks_data.perks["perk_mtn_climber"]])
+end
+
+BaseClimbingSpeedModifier = demonized_ledge_grabbing.getAnimationSpeedModifier
+function demonized_ledge_grabbing.getAnimationSpeedModifier()
+	return (BaseClimbingSpeedModifier() * (2 - climber_modifiers[x_cxv_perks_data.perks["perk_mtn_climber"]]))
+end

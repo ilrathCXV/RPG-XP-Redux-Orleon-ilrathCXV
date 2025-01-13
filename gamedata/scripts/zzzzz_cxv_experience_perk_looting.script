@@ -383,7 +383,7 @@ function looting_enemy(victim)
 	-- ilrathCXV (10/21/24): Consolidate all "iter" functions into one
 	if x_cxv_perks_data.perks["perk_careful_handler"] > 0 or  x_cxv_perks_data.perks["perk_medicine_man"] > 0 or x_cxv_perks_data.perks["perk_ammo_finder"] > 0 then
 		
-	CreateTimeEvent("looting_perks_proc",victim:id(), 0.05, function()
+	CreateTimeEvent("looting_perks_proc",victim:id(), 0.15, function()
 		looting_perks_proc(victim)
 		return true
     end)
@@ -422,6 +422,8 @@ end
 local ammo_double_proc = false
 local med_man_proc = false
 local med_man_items_to_create = {}
+local ammo_double_chance = { [0] = 0, [1] = 0, [2] = 0, [3] = 1, [4] = 3, [5] = 5, }
+
 function looting_perks_proc(box)
 
 	ammo_double_proc = false
@@ -429,7 +431,6 @@ function looting_perks_proc(box)
 	med_man_items_to_create = {}
 	
 	if x_cxv_perks_data.perks["perk_ammo_finder"] > 2 then
-		local ammo_double_chance = { [0] = 0, [1] = 0, [2] = 0, [3] = 1, [4] = 3, [5] = 5, }
 		if ammo_double_chance[x_cxv_perks_data.perks["perk_ammo_finder"]] > rand(1,100) then
 			ammo_double_proc = true
 		end
@@ -554,7 +555,7 @@ local string_gsub   = string.gsub
 
 function find_zone_slayer_ammo(weapon,npc)
 	local wpn_id = weapon:id()
-	local ammo_type_number = weapon:get_ammo_type()
+--	local ammo_type_number = weapon:get_ammo_type()
 	local ammo_list = utils_item.get_ammo(weapon:section(), wpn_id)
 	local shells = ammo_list[rand(1,#ammo_list)]
 	if (shells) then
@@ -581,7 +582,7 @@ local ammo_upgrade_list = {
 
 function find_spare_ammo(weapon, box)
 	local wpn_id = weapon:id()
-	local ammo_type_number = weapon:get_ammo_type()
+--	local ammo_type_number = weapon:get_ammo_type()
 	local ammo_list = utils_item.get_ammo(weapon:section(), wpn_id)
 	local rounds = ammo_list[rand(1,#ammo_list)] or nil
 	
@@ -720,6 +721,53 @@ function death_manager.spawn_with_condition(npc, section, condition)
 	end
 end
 ]]--
+
+----------------------------------------------------------------------------------------
+------------------ Increasing Crate Item Drop Chance and Loot Quality ------------------	-- Ammo Finder + Scavenger + Plus One
+----------------------------------------------------------------------------------------
+-- ilrathCXV (01/10/25): Add small chance to find loot from boxes and crates ( was +2.5% to each item roll, now is a multiplier )
+local scav_bonus = {[0] = 1, [1] = 2, [2] = 3, [3] = 4.5, [4] = 6, [5] = 8 }
+BoxCreateItems = xr_box.create_items
+function xr_box.create_items(obj, section, number, rnd)
+	local is_ammo = (section and IsItem("ammo",section)) or false
+	
+	-- Each item gets its drop chance multiplied
+	rnd = rnd * scav_bonus[math.min(x_cxv_perks_data.perks["perk_scavenger"], 5)]
+	
+	-- Doing the random check here to avoid unnecessary script work if the item doesn't even get to spawn
+	if is_ammo and math.random() <= rnd then
+		rnd = 0 -- this will ensure the ammo spawns since the random check was successful above
+		-- Ammo Finder double chance applies to ammo in boxes
+		if x_cxv_perks_data.perks["perk_ammo_finder"] > 2 then
+			if is_ammo and ammo_double_chance[x_cxv_perks_data.perks["perk_ammo_finder"]] > rand(1,100) then
+				number = number * 2
+			end
+		end
+		
+		-- "Plus One" has a 0.1% chance to change any given ammo drop from a container to an ammo type for a player's currently-equipped weapons
+		if x_cxv_perks_data.perks["perk_plus_one"] > 0 then
+			if is_ammo and rand(1,1000) == 1 then
+				local weapon = x_cxv_perks_data.weapon_list[rand(1,#x_cxv_perks_data.weapon_list)]
+				local wpn_id = weapon:id()
+				local ammo_list = utils_item.get_ammo(weapon:section(), wpn_id)
+				local rounds = ammo_list[rand(1,#ammo_list)] or nil
+				
+				if rounds then
+					if string_find(rounds,"_verybad") then
+						local new_section = string_gsub(rounds,"_verybad","")
+						if ini_sys:section_exist(new_section) then
+							rounds = new_section
+							section = rounds
+						end
+					end
+				end
+			end
+		end
+	end
+	
+	BoxCreateItems(obj, section, number, rnd)
+end
+
 --------------------------------------------------------------------------------------------------------------
 ------------------------------------ Careful Handler for Parts on Weapons ------------------------------------
 --------------------------------------------------------------------------------------------------------------

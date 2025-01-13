@@ -1,14 +1,11 @@
-community_bonus_self = 0
-community_bonus_other = 0
-local community_bonus = 0
 local totalamounttraded = 0
 local item_costs = {}
 
 function perk_silver_tongued_cost(kind, obj, profile, calculated_cost, ret)
 	if profile.mode == 1 then -- when selling
-		ret.new_cost = math.floor((ret.new_cost or calculated_cost) * (1 + (x_cxv_perks_data.perks["perk_silver_tongued"] * 0.05) + community_bonus))
+		ret.new_cost = math.floor((ret.new_cost or calculated_cost) * (1 + (x_cxv_perks_data.perks["perk_silver_tongued"] * 0.05)))
 	elseif profile.mode == 2 then -- when buying
-		ret.new_cost = math.ceil((ret.new_cost or calculated_cost) * (1 - (x_cxv_perks_data.perks["perk_silver_tongued"] * 0.05) - community_bonus))
+		ret.new_cost = math.ceil((ret.new_cost or calculated_cost) * (1 - (x_cxv_perks_data.perks["perk_silver_tongued"] * 0.05)))
 	end
 	item_costs[obj:id()] = ret.new_cost or calculated_cost
 end
@@ -16,14 +13,6 @@ end
 function perk_silver_tongued_start()
 	RegisterScriptCallback("actor_on_item_take", actor_on_item_buy)
 	RegisterScriptCallback("actor_on_item_drop", actor_on_item_sell)
-	trader = mob_trade.GetTalkingNpc()
-	
-	if trader and trader:character_community() == db.actor:character_community() then
-		community_bonus = community_bonus_self
-	elseif trader then
-		community_bonus = community_bonus_other
-	end
-	
 end
 
 function actor_on_item_buy(obj)

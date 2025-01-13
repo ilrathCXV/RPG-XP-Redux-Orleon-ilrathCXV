@@ -1,0 +1,89 @@
+local perks = x_cxv_perks_data.perks
+local battleforged_threshold = 70
+
+-- Needed for this copy-paste monkeypatch
+cgd = arti_jamming.cgd
+print_dbg =  arti_jamming.print_dbg
+get_config = a_arti_jamming_mcm.get_config
+local math_random = math.random
+-- Randomly damage 1 part of the weapon by DAMAGE, skipping barrels
+BaseDamagePart = arti_jamming.damage_part
+function damage_part(wpn)
+	if perks["perk_battleforged"] == 0 then
+		BaseDamagePart(wpn)
+		return
+	end
+	
+	local to_damage = random_key_table(cgd.parts)
+	local part_con = cgd.parts[to_damage]
+	
+	-- Battle-forged Armory: If the picked part's condition is below the threshold, don't damage it
+	if part_con < battleforged_threshold then return end
+	
+	local damage = math_random(5, 12)
+	cgd.parts[to_damage] = part_con > damage and (part_con - damage) or 1
+
+	print_dbg("%s damaged to %s condition", to_damage, cgd.parts[to_damage])
+	if (get_config("verbosity") > 1) then
+		news_manager.send_tip(db.actor, gc("ui_st_parts_damage"), nil, "swiss_knife", 6000)
+	end
+end
+
+-- This is for ArtiGrok users
+if cxv_artigrok_bo and arti_handlers then
+	BaseConditionDegrade = arti_handlers.condition_degrade_on_fire
+	function arti_handlers.condition_degrade_on_fire(amount, wpn, chance)
+		if perks["perk_battleforged"] == 0 then
+			BaseConditionDegrade(amount, wpn, chance)
+			return
+		end
+		
+		local rand = math_random(1, chance)
+		local weapon = wpn or db.actor:active_item()
+		local dura_rip = amount or 0.0025
+		if weapon and rand == 1 then
+			if grok_gun_condition_fixed then
+				if arti_jamming.has_parts(weapon) then
+					local parts = se_load_var(weapon:id(), weapon:name(), "parts")
+					if not parts then return end
+					
+					local part_names = {}
+					for k,v in pairs(parts) do
+						if v >= battleforged_threshold then
+							table.insert(part_names, k)
+						end
+					end
+					
+					local total_part_names = #part_names
+					if total_part_names < 1 then return end
+					
+					local part_to_dmg
+					
+					for i = 1, total_part_names do
+						part_index = math_random(1, #part_names)
+						part_to_dmg = part_names[part_index]
+						-- printf("Part to damage: %s", part_to_dmg)
+						if arti_jamming.is_part(part_to_dmg) then
+							if (not arti_jamming.is_barrel(part_to_dmg)) or (arti_jamming.is_barrel(part_to_dmg) and math_random(1, 2) == 1) then	-- if barrel is picked, 50% chance to not damage it --> choose a new part to damage
+								break
+							end
+						end
+						table.remove(part_names, part_index)
+						part_to_dmg = nil
+					end
+					
+					if not part_to_dmg then return end
+					
+					parts[part_to_dmg] = clamp(parts[part_to_dmg] - ((dura_rip == 0.0105 and 3) or (dura_rip == 0.0025 and 2) or 1), 1, parts[part_to_dmg])
+
+					item_parts.set_parts_con(weapon:id(), parts)
+					
+					se_save_var( weapon:id(), weapon:name(), "parts", parts )
+					
+				end
+			else
+				weapon:set_condition(clamp(weapon:condition() - dura_rip, 0, 1))	-- Lose 0.25% condition when using variants
+			end
+		end
+	end
+end

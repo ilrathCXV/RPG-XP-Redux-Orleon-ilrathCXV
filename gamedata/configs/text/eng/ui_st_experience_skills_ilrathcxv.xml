@@ -283,33 +283,38 @@
         <text>When looting an enemy, you have a small chance of finding salvage and crafting materials.</text>
     </string>
 	<string id="st_perk_scavenger_desc_1">
-        <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
+        <text>You have developed a keen eye for finding scrap and materials when looting around the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1.5% %c[ui_gray_2]chance of finding %c[d_red]salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1.5% %c[ui_gray_2]chance of finding %c[d_red]salvage and crafting materials \n
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will be %c[d_green]drop rate multiplied by 2x
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_2">
-		<text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
+		<text>You have developed a keen eye for finding scrap and materials when looting around the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding %c[d_orange]slightly better salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding %c[d_orange]slightly better salvage and crafting materials \n
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 3x
 		</text>   
 	</string>
 	<string id="st_perk_scavenger_desc_3">
-		<text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
+		<text>You have developed a keen eye for finding scrap and materials when looting around the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4.5% %c[ui_gray_2]chance of finding %c[yellow]better salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4.5% %c[ui_gray_2]chance of finding %c[yellow]better salvage and crafting materials \n
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 4.5x
 		</text>
 	</string>
 	<string id="st_perk_scavenger_desc_4">
-        <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
+        <text>You have developed a keen eye for finding scrap and materials when looting around the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]6% %c[ui_gray_2]chance of finding %c[d_green]much better salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]6% %c[ui_gray_2]chance of finding %c[d_green]much better salvage and crafting materials \n
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 6x
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_5">
-        <text>You have developed a keen eye for finding scrap and materials when looting dead stalker.\n \n
+        <text>You have developed a keen eye for finding scrap and materials when looting around the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]7.5% %c[ui_gray_2]chance of finding %c[d_green]better and high-quality salvage and crafting materials
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]7.5% %c[ui_gray_2]chance of finding %c[d_green]better and high-quality salvage and crafting materials \n
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 8x
 		</text>
     </string>
 	
@@ -449,21 +454,21 @@
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You have a %c[yellow]6% chance %c[ui_gray_2]to find or loot more %c[yellow]mostly medium-tier ammo parts OR low-tier ammo parts if otherwise\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[yellow]1% chance %c[ui_gray_2]to find double the ammo on looted bodies
+		%c[d_blue] - %c[ui_gray_2] You have a %c[yellow]1% chance %c[ui_gray_2]to find double the ammo on looted bodies and breakable containers
 		</text>
 	</string>
 	<string id="st_perk_ammo_finder_desc_4">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]8% chance %c[ui_gray_2]to find or loot more %c[d_green]mostly medium-tier ammo parts OR low-tier/high-tier ammo parts if otherwise\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]3% chance %c[ui_gray_2]to find double the ammo on looted bodies
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]3% chance %c[ui_gray_2]to find double the ammo on looted bodies and breakable containers
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_5">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You have a %c[d_cyan]10% chance %c[ui_gray_2]to find or loot more %c[d_cyan]mostly medium-tier ammo parts OR high-tier ammo parts if otherwise\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_cyan]5% chance %c[ui_gray_2]to find double the ammo on looted bodies
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_cyan]5% chance %c[ui_gray_2]to find double the ammo on looted bodies and breakable containers
 		</text>
     </string>
 	
@@ -1460,7 +1465,75 @@
         <text>Even when you think you have run empty, you always find one more.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] When looting, you will always find at least %c[d_green]one bullet for one of your weapons\n
-		%c[d_blue] - %c[ui_gray_2] Stashes have a %c[d_green]1% chance%c[ui_gray_2] to grant an %c[d_green]entire box of said ammo%c[ui_gray_2] when looting
+		%c[d_blue] - %c[ui_gray_2] Stashes have a %c[d_green]1% chance%c[ui_gray_2] to grant an %c[d_green]entire box of said ammo%c[ui_gray_2] when looting \n
+		%c[d_blue] - %c[ui_gray_2] Breakable containers will have a %c[d_green]0.1% chance%c[ui_gray_2] to have an ammo drop %c[d_green]turn into ammo for one of your currently equipped weapons
+		</text>
+    </string>
+	
+	<string id="st_perk_battleforged">
+        <text>Battle-forged Armory</text>
+    </string>
+	<string id="st_perk_battleforged_desc">
+        <text>Your weapon's parts might be damaged, but they won't fail on you.</text>
+    </string>
+	<string id="st_perk_battleforged_desc_1">
+        <text>Your weapon's parts might be damaged, but they won't fail on you.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2]Weapon parts%c[yellow] under 70% condition%c[ui_gray_2] will %c[d_green]no longer take damage from firing\n 
+		%c[d_blue] - %c[ui_gray_2]This effectively means that these parts should not fall under their current condition
+		</text>
+    </string>
+	
+	<string id="st_perk_keen_eye">
+        <text>Keen Eye</text>
+    </string>
+	<string id="st_perk_keen_eye_desc">
+        <text>Your eyes are much better without any fancy zoom.</text>
+    </string>
+	<string id="st_perk_keen_eye_desc_1">
+        <text>Your eyes are much better without any fancy zoom.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Using %c[yellow]iron sights or non-hybrid 1x magnification sights%c[ui_gray_2] will %c[d_green]increase headshot damage by 10%
+		</text>
+    </string>
+	<string id="st_perk_keen_eye_desc_2">
+        <text>Your eyes are much better without any fancy zoom.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Using %c[yellow]iron sights or non-hybrid 1x magnification sights%c[ui_gray_2] will %c[d_green]increase headshot damage by 20%
+		</text>
+    </string>
+	<string id="st_perk_keen_eye_desc_3">
+        <text>Your eyes are much better without any fancy zoom.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Using %c[yellow]iron sights or non-hybrid 1x magnification sights%c[ui_gray_2] will %c[d_green]increase headshot damage by 30%
+		</text>
+    </string>
+	
+	<string id="st_perk_mtn_climber">
+        <text>Mountain Climber</text>
+    </string>
+	<string id="st_perk_mtn_climber_desc">
+        <text>There may be no mountains, but you sure can climb.</text>
+    </string>
+	<string id="st_perk_mtn_climber_desc_1">
+        <text>There may be no mountains, but you sure can climb.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Stamina and hunger drain from climbing is %c[d_orange]reduced by 10%\n
+		%c[d_blue] - %c[ui_gray_2] Climbing speed is %c[d_orange]increased by 10%
+		</text>
+    </string>
+	<string id="st_perk_mtn_climber_desc_2">
+        <text>There may be no mountains, but you sure can climb.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Stamina and hunger drain from climbing is %c[yellow]reduced by 25%\n
+		%c[d_blue] - %c[ui_gray_2] Climbing speed is %c[yellow]increased by 25%
+		</text>
+    </string>
+	<string id="st_perk_mtn_climber_desc_3">
+        <text>There may be no mountains, but you sure can climb.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Stamina and hunger drain from climbing is %c[d_green]reduced by 40%\n
+		%c[d_blue] - %c[ui_gray_2] Climbing speed is %c[d_green]increased by 40%
 		</text>
     </string>
 	

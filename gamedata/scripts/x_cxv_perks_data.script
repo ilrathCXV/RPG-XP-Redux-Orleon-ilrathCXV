@@ -2,6 +2,7 @@ perks = {
 	["perk_ammo_finder"] = 0,
 	["perk_anomaly_defense"] = 0,
 	["perk_artefinder"] = 0,
+	["perk_battleforged"] = 0,
 	["perk_battle_runner"] = 0,
 	["perk_berserker"] = 0,
 	["perk_calm_mind"] = 0,
@@ -21,6 +22,7 @@ perks = {
 	["perk_jamming_shot"] = 0,
 	["perk_jewelcrafter"] = 0,
 	["perk_jump_man"] = 0,
+	["perk_keen_eye"] = 0,
 	["perk_lightweight_dodge"] = 0,
 	["perk_local_looting"] = 0,
 	["perk_lockpick_mastery"] = 0,
@@ -30,6 +32,7 @@ perks = {
 	["perk_master_zone"] = 0,
 	["perk_medicine_man"] = 0,
 	["perk_midas_touch"] = 0,
+	["perk_mtn_climber"] = 0,
 	["perk_mutant_slayer"] = 0,
 	["perk_plus_one"] = 0,
 	["perk_rapid_reload"] = 0,
@@ -127,7 +130,7 @@ base_task_num = 0
 
 -- Disarming/Jamming Shot
 can_jam = false
-can_disarm = true
+can_disarm = false
 
 -- Jump Man
 local jump_man_boost = 0.05
@@ -178,9 +181,9 @@ local function experience_skill_on_update(perk_id, perk_data)
 			end
 		end
 		if grok_artefacts_random_spawner then
-			grok_artefacts_random_spawner.regular_fields_chance = 40 + (perks["perk_careful_handler"] * 3)
-			grok_artefacts_random_spawner.dynamic_fields_chance = 22 + (perks["perk_careful_handler"] * 3)
-			grok_artefacts_random_spawner.per_field_probability = 35 + (perks["perk_careful_handler"] * 3)
+			grok_artefacts_random_spawner.regular_fields_chance = 40 + (perks["perk_artefinder"] * 3)
+			grok_artefacts_random_spawner.dynamic_fields_chance = 22 + (perks["perk_artefinder"] * 3)
+			grok_artefacts_random_spawner.per_field_probability = 35 + (perks["perk_artefinder"] * 3)
 		end
 	end
 	
@@ -229,18 +232,6 @@ local function experience_skill_on_update(perk_id, perk_data)
 		build_weapon_list()
 	end
 	
-end
-
-function on_game_start()
-	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
-	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
-	end
-	
-	RegisterScriptCallback("actor_on_first_update",			build_weapon_list)
-	RegisterScriptCallback("actor_item_to_ruck",			check_weapon_list_ruck)
-	RegisterScriptCallback("actor_item_to_slot",			build_weapon_list)
 end
 
 local shotgun_ammo_check = {
@@ -311,4 +302,16 @@ end
 function check_weapon_list_ruck(item)
 	if (perks["perk_zone_slayer"] < 1) and (perks["perk_plus_one"] < 1) then return end
 	if not IsValidMelee(item) and IsWeapon(item) then build_weapon_list() end
+end
+
+function on_game_start()
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
+	
+	RegisterScriptCallback("actor_on_first_update",			build_weapon_list)
+	RegisterScriptCallback("actor_item_to_ruck",			check_weapon_list_ruck)
+	RegisterScriptCallback("actor_item_to_slot",			build_weapon_list)
 end

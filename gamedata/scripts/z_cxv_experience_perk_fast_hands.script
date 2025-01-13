@@ -2,6 +2,7 @@ local fast_hands_bonuses = {[0] = 0, [1] = 15, [2] = 30, [3] = 70, [4] = 70, [5]
 
 local stow_anims = {
 	anm_hide = true,
+	anm_hide_fast = true,
 	anm_hide_0 = true,
 	anm_hide_1 = true,
 	anm_hide_2 = true,
@@ -10,6 +11,7 @@ local stow_anims = {
 	anm_hide_g = true,
 	anm_hide_w_gl = true,
 	anm_show = true,
+	anm_show_fast = true,
 	anm_show_0 = true,
 	anm_show_1 = true,
 	anm_show_2 = true,
