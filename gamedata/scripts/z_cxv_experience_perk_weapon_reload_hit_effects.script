@@ -46,22 +46,7 @@ local sms = actor_menu.set_msg
 fourth_times_counter = 0
 local fourth_times_grace = 0
 
-local get_safe_sound_object = xr_sound.get_safe_sound_object
-
-local function play_sound_on_actor(snd, volume, frequency)
-	if not snd then
-		-- trace("snd is nil")
-		return
-	end
-	local actor = db.actor
-	local snd = get_safe_sound_object(snd)
-	if snd then
-		snd:play(actor, 0, sound_object.s2d)
-		snd.volume = volume or 1
-		snd.frequency = frequency or 1
-		return snd
-	end
-end
+local play_sound_on_actor = x_cxv_perks_data.play_sound_on_actor
 
 local difficulty_multiplier_player = {
 	[1]  = 1.3,
@@ -100,7 +85,7 @@ function actor_on_update()
 			-- printf("[RPG - Hit Effects] On Your Mark removed: %s of 8 hits", fourth_times_counter)
 			fourth_times_counter = 0
 			fourth_timer = 0
-			-- play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
+			play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
 		end
 		update_1000ms_timer = time_g + update_1000ms_timer_interval
 	end
@@ -185,7 +170,7 @@ function process_perk_effects(victim, weapon, bone_id)
 	
 		txt = game.translate_string("st_critical_hit_1") .. " " .. criticalMultiplier .. game.translate_string("st_critical_hit_2")
 		sms(2, txt, 5)
-		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 0.75, criticalMultiplier)
+		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 1, criticalMultiplier)
 		damage_multiplier = damage_multiplier * criticalMultiplier
 	end
 	
@@ -275,7 +260,7 @@ function process_perk_effects(victim, weapon, bone_id)
 	---------------------------------------------------------------------------------
 	-- Keen Eye: 10/20/30% more headshot damage with iron sights or 1x scopes/kits --
 	---------------------------------------------------------------------------------
-	if head_shot and perks["perk_keen_eye"] > 0 then
+	if head_shot and perks["perk_keen_eye"] > 0 and not IsMelee(weapon) then
 		local check_zoom_factor = ini_sys:r_u32(weapon:section(), "scope_zoom_factor") or 1
 		-- local has_scope = utils_item.has_attached_scope(weapon) or true
 		-- printf('[RPG CXV] Keen Eye checking ... Zoom Factor : %s | Is Perk Active?: %s', check_zoom_factor, (check_zoom_factor == 0))
@@ -353,7 +338,7 @@ function process_perk_effects(victim, weapon, bone_id)
 		end
 		
 		printf("[RPG - Hit Effects] On Your Mark proc: %s", ammo_section)
-		-- play_sound_on_actor("interface\\item_usage\\pickup", 1.2, random_float(0.85, 1.15))
+		play_sound_on_actor("interface\\item_usage\\pickup", 1.2, random_float(0.85, 1.15))
 		fourth_times_counter = 0
 		fourth_timer = 0
 	end
@@ -481,7 +466,7 @@ function fourth_times_swap_reset(obj, hud_sec, anm_name, unknown_1, unknown_2)
 	
 	-- For actor_on_hud_animation_end callback
 	if hide_anims[anm_name] and (fourth_times_counter > 0) then
-		-- play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
+		play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
 		printf("On Your Mark resetting... | Counter before reset: %s", fourth_times_counter)
 		fourth_times_counter = 0
 		fourth_timer = 0
@@ -489,7 +474,7 @@ function fourth_times_swap_reset(obj, hud_sec, anm_name, unknown_1, unknown_2)
 	
 	-- For actor_on_hud_animation_play callback
 --	if hide_anims[anim_table.anm_name] and (fourth_times_counter > 0) then
---		-- play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
+--		play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
 --		printf("On Your Mark resetting... | Counter before reset: %s", fourth_times_counter)
 --		fourth_times_counter = 0
 --		fourth_timer = 0
