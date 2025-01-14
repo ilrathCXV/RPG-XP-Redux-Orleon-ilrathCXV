@@ -2,29 +2,7 @@ if z_monkeypatch_item_cooking 					then end
 if zz_ui_workshop_keep_crafting_window_open 	then end
 if zz_item_cooking_keep_crafting_window_open 	then end
 
-local get_safe_sound_object = xr_sound.get_safe_sound_object
-
-local function play_sound_on_actor(snd, volume, frequency)
-	if not snd then
-		trace("snd is nil")
-		return
-	end
-	local actor = db.actor
-	local snd = get_safe_sound_object(snd)
-	if snd then
-		snd:play(actor, 0, sound_object.s2d)
-		snd.volume = volume or 1
-		snd.frequency = frequency or 1
-		return snd
-	end
-end
-
-function ExtraItemNews()
-	local sms = actor_menu.set_msg
-	local message = game.translate_string("st_craft_bonus")
-	sms(2, message, 5)
-	play_sound_on_actor("grok\\actor_10", 0.75, random_float(0.85, 1.05))
-end
+local play_sound_on_actor = x_cxv_perks_data.play_sound_on_actor
 
 base_crafting = ui_workshop.UIWorkshopCraft.Craft
 

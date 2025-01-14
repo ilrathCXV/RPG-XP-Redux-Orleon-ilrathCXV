@@ -47,22 +47,7 @@ local sms = actor_menu.set_msg
 local get_last_sleep = actor_status_sleep.get_last_sleep
 local math_floor = math.floor
 
-local get_safe_sound_object = xr_sound.get_safe_sound_object
-
-local function play_sound_on_actor(snd, volume, frequency)
-	if not snd then
-		trace("snd is nil")
-		return
-	end
-	local actor = db.actor
-	local snd = get_safe_sound_object(snd)
-	if snd then
-		snd:play(actor, 0, sound_object.s2d)
-		snd.volume = volume or 1
-		snd.frequency = frequency or 1
-		return snd
-	end
-end
+local play_sound_on_actor = x_cxv_perks_data.play_sound_on_actor
 
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------

@@ -1,5 +1,6 @@
 -- If you don't use MCM, change your defaults from here.
 local defaults = {
+	["perk_sfx_enable"] = false,
     ["wick_slayer_reload"] = false,
 }
 
@@ -10,7 +11,8 @@ end
 function on_mcm_load()
     op = { id= "rpg_redux",sh=true ,gr={
             { id= "title",type= "slide",link= "ui_options_slider_player",text="ui_mcm_rpg_redux_title",size= {512,50},spacing= 20 },
-            {id = "wick_slayer_reload", type = "check", val = 1, def=false},
+            {id = "perk_sfx_enable", type = "check", val = 1, def=false},
+			{id = "wick_slayer_reload", type = "check", val = 1, def=false},
         }
     }
     return op

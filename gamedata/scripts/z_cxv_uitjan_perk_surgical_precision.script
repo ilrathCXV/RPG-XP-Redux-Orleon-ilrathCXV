@@ -37,3 +37,16 @@ end
 function on_game_start()
     RegisterScriptCallback("actor_on_item_use",         get_healing_boost)
 end
+
+-- If using the food poisoning mod, this perk will increase the amount of toxins cured
+if food_poisoning then
+	BaseFoodPoisonQueue = food_poisoning.add_to_queue
+	function food_poisoning.add_to_queue(id, ticks, amt)
+		
+		if amt > 0 then return BaseFoodPoisonQueue(id, ticks, amt) end
+		
+		return BaseFoodPoisonQueue(id, ticks, (amt * (1 + (x_cxv_perks_data.perks["perk_surgical_precision"] * 0.06))))
+		
+		--return true
+	end
+end

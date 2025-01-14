@@ -73,6 +73,7 @@ original_map_chances = {
 	["l08_yantar"] = 20,
 	["l03u_agr_underground"] = 20,
 	["jupiter"] = 20,
+	["zaton"] = 20,
 	["l10_limansk"] = 30,
 	["l04u_labx18"] = 30,
 	["l10_red_forest"] = 35,
@@ -302,6 +303,29 @@ end
 function check_weapon_list_ruck(item)
 	if (perks["perk_zone_slayer"] < 1) and (perks["perk_plus_one"] < 1) then return end
 	if not IsValidMelee(item) and IsWeapon(item) then build_weapon_list() end
+end
+
+get_safe_sound_object = xr_sound.get_safe_sound_object
+function play_sound_on_actor(snd, volume, frequency)
+	if not snd then
+		-- trace("snd is nil")
+		return
+	end
+	
+	local perk_sfx_enable = x_cxv_perks_mcm.get_config("perk_sfx_enable") or false
+	if not perk_sfx_enable then return end
+	
+	local actor = db.actor
+	local snd = get_safe_sound_object(snd)
+	if snd then
+		local player_volume = ui_options.get("sound/general/master_volume") or 1
+		local sound_vol = volume or 1
+		sound_vol = sound_vol * player_volume
+		snd:play(actor, 0, sound_object.s2d)
+		snd.volume = sound_vol
+		snd.frequency = frequency or 1
+		return snd
+	end
 end
 
 function on_game_start()

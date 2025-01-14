@@ -10,7 +10,7 @@ local battle_runner_active = false
 
 local add_speed = speed.add_speed
 local remove_speed = speed.remove_speed
-local play_sound = utils_obj.play_sound
+local play_sound_on_actor = x_cxv_perks_data.play_sound_on_actor
 local math_floor = math.floor
 
 function actor_on_first_update()
@@ -25,7 +25,7 @@ function actor_on_update()
 		if (x_cxv_perks_data.perks["perk_battle_runner"] >= 1) and (time_g > battle_runner_timer) and (battle_runner_active) then
 			remove_speed("perk_battle_runner")
 			printf("[RPG] Battle Runner ended")
-			play_sound("anomaly\\electra_hit",0.5)
+			play_sound_on_actor("anomaly\\electra_hit",0.5)
 			battle_runner_active = false
 			battle_runner_timer = 0
 		end
@@ -48,7 +48,7 @@ function actor_on_kill(victim, killer)
 			time_g_orig = math_floor(time_global() * 0.01)
 			battle_runner_timer = time_g_orig + 100
 			add_speed("perk_battle_runner", battle_runner_speed[ x_cxv_perks_data.perks["perk_battle_runner"] ], false, true)
-			play_sound("anomaly\\gravity_entrance",0.8)
+			play_sound_on_actor("anomaly\\gravity_entrance",0.8)
 			battle_runner_active = true
 			printf("[RPG] Battle Runner started (%s)", time_g_orig)
 		end

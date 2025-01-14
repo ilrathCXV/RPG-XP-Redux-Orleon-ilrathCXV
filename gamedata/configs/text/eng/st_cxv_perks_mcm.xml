@@ -16,8 +16,16 @@
 			\nTurning this off will not give those reload bonuses for those perks ("Rapid Reload" will be unaffected).
 		</text>
 	</string>
-	
-	
+	<string id="ui_mcm_rpg_redux_perk_sfx_enable">
+		<text>Enable Perk SFX?</text>
+	</string>
+	<string id="ui_mcm_rpg_redux_perk_sfx_enable_desc">
+		<text>
+			Turning this on will allow perks that have activated or timed effects to play a sound to let the player know their current state.\n
+			Turning this off will turn off all perk sounds effects.\n
+			\nSounds effects from perks will be modified base on your standard Master/Sound Effects setting.
+		</text>
+	</string>
 	
 	
 	

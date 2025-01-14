@@ -4,6 +4,8 @@ local repair_junkie_bonus = { [0] = 0, [1] = 0.05, [2] = 0.10, [3] = 0.20 , [4] 
 -- Jury Rigging: Starting Rank 3, grants bonus repair item refund chance
 local zone_gunsmith_bonus = { [0] = 0, [1] = 0, [2] = 0, [3] = 0.1 , [4] = 0.3, [5] = 0.6}
 
+local play_sound_on_actor = x_cxv_perks_data.play_sound_on_actor
+
 function on_game_start()
 	
 	-- monkey patch for the Tinkering skill
@@ -226,23 +228,6 @@ function on_game_start()
 		end
 	end
 	-- WPO patch end
-end
-
-local get_safe_sound_object = xr_sound.get_safe_sound_object
-
-local function play_sound_on_actor(snd, volume, frequency)
-	if not snd then
-		trace("snd is nil")
-		return
-	end
-	local actor = db.actor
-	local snd = get_safe_sound_object(snd)
-	if snd then
-		snd:play(actor, 0, sound_object.s2d)
-		snd.volume = volume or 1
-		snd.frequency = frequency or 1
-		return snd
-	end
 end
 
 function TinkerNews()
