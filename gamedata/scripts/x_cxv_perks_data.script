@@ -89,6 +89,7 @@ original_map_chances = {
 	["l13u_warlab"] = 30,
 	["labx8"] = 30,
 	["pripyat"] = 30,
+	["l11_pripyat"] = 30,
 }
 
 wp_table = {

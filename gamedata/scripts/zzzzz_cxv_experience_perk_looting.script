@@ -519,7 +519,13 @@ function careful_handler_cond_increase(obj, sec, box)
 --			obj:set_condition(clamp(gear_cond + (x_cxv_perks_data.perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), gear_cond, 1))
 --		end
 		
-	elseif utils_item.is_degradable(obj, sec) or obj:condition() < 1 then
+	elseif (utils_item.is_degradable(obj, sec) and obj:condition() < 1) or (obj:condition() < 1) then
+	
+		-- We don't need to handle artefacts since we do that already elsewhere
+		local kind = SYS_GetParam(0, obj:section(), "kind")
+		local is_arte = kind and (kind == "i_arty" or kind == "i_arty_cont")
+		if is_arte then return end
+		
 		printf("[RPG - Looting] Item being Carefully Handled: %s", sec)
 		local item_cond = obj:condition()
 		obj:set_condition(clamp(item_cond + (x_cxv_perks_data.perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), item_cond, 0.980))
@@ -670,15 +676,18 @@ function midas_touch_money_increase(item)------------------> actor_on_item_take(
 	if x_cxv_perks_data.perks["perk_midas_touch"]  > 0 then
 		local money_amount = parse_list(ini_sys,item:section(),"money_amount")
 		if #money_amount > 0 then
-			local mult = 1
-            mult = 1 + (0.05 * x_cxv_perks_data.perks["perk_midas_touch"] )
+            local perk_mult = 1 + (0.15 * x_cxv_perks_data.perks["perk_midas_touch"] )
+			printf("[Midas Touch] Progression Option: %s | Perk Mult: %s", progression_mult, perk_mult)
 			if money_amount[2] then
-				local min_amt = math.floor(tonumber(money_amount[1])) * mult or 10
-				local max_amt = math.floor(tonumber(money_amount[2])) * mult or 30
-				db.actor:give_money(rand(min_amt, max_amt))
+				local min_amt = tonumber(money_amount[1]) or 10
+				local max_amt = tonumber(money_amount[2]) or 30
+				local base_amount = rand(min_amt, max_amt)
+				local perk_amount = math.floor((base_amount * perk_mult) + 0.5)
+				db.actor:give_money(perk_amount - base_amount)
 			else
-				local amount = math.floor(tonumber(money_amount[1])) * mult or 10
-				db.actor:give_money(amount)
+				local base_amount = tonumber(money_amount[1]) or 10
+				local perk_amount = math.floor((base_amount * perk_mult) + 0.5)
+				db.actor:give_money(perk_amount - base_amount)
 			end
 		end
     end
