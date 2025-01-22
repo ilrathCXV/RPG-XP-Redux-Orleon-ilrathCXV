@@ -1,0 +1,59 @@
+-- Just to make reading the code a bit more neat
+local GetActorLevel = experience_utils.GetActorLevel
+local GetNextLevelExperience = experience_utils.GetNextLevelExperience
+local GetActorPrestige = experience_utils.GetActorPrestige
+local GetActorMaxLevel = experience_utils.GetActorMaxLevel
+local ResetActorProgress = experience_utils.ResetActorProgress
+local ActorHasMaxLevel = experience_utils.ActorHasMaxLevel
+local GetActorExperience = experience_utils.GetActorExperience
+local GetActorExperienceCap = experience_utils.GetActorExperienceCap
+
+local cxv_get_config = x_cxv_perks_mcm.get_config
+
+-- ilrathCXV (01/21/25): Will give an addtional point every few levels depending on your Prestige Level
+--						 Prestige 1-3 will grant +1 every 4 levels | Prestige 4-7 will grant +1 every 3 Levels | Prestige 8-11 will grant +1 every 2 Levels | Prestige 12+ will grant +1 every Level
+--						 Current Prestige cap is 10, so you technically should never get +1 every Level
+function prestige_skill_points_addition()
+	if not cxv_get_config("prestige_point_extra_enable") then return 0 end
+
+	if (GetActorPrestige() == 0) or (experience_core.XP.level == 0) then
+		return 0
+	end
+	
+	if (experience_core.XP.level % (4 - math.floor(GetActorPrestige() / 4))) == 0 then
+		return 1
+	else
+		return 0
+	end
+	
+end
+
+function experience_utils.SetActorLevel(actor_level)
+    if type(actor_level) == "number" then
+        ResetActorProgress(true)
+        local n = clamp(math.floor(actor_level), 0, GetActorMaxLevel())
+        for i=1, n do
+            experience_core.XP.level = experience_core.XP.level + 1		
+            experience_core.XP.skillpoints = experience_core.XP.skillpoints + experience_options.Get("Main/G_SKILLPOINT_PER_LEVEL") + prestige_skill_points_addition()
+            experience_core.XP.experience = experience_core.XP.experience_cap
+            experience_core.XP.experience_cap = experience_core.XP.experience_cap + GetNextLevelExperience(experience_core.XP.level)
+        end
+    end
+end
+
+function EditedTryLevelUp()
+	if (experience_core.XP.experience >= experience_core.XP.experience_cap and not ActorHasMaxLevel()) then
+        experience_core.XP.level = experience_core.XP.level + 1
+        experience_core.XP.skillpoints = experience_core.XP.skillpoints + experience_options.Get("Main/G_SKILLPOINT_PER_LEVEL") + prestige_skill_points_addition()
+        experience_core.XP.experience_cap = experience_core.XP.experience_cap + GetNextLevelExperience(GetActorLevel())
+        SendScriptCallback("experience_on_level_up")
+
+        experience_dbg.WriteDebug(3, "Gained New Level! | Level: %s, Total XP: %s, XP Cap: %s", GetActorLevel(), GetActorExperience(), GetActorExperienceCap())
+        experience_messages.AddMessage("lvl", GetActorLevel())
+        EditedTryLevelUp()
+    end
+end
+
+function experience_utils.TryLevelUp()
+    EditedTryLevelUp()
+end

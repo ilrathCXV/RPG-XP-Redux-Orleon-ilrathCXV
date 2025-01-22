@@ -26,6 +26,19 @@
 			\nSounds effects from perks will be modified base on your standard Master/Sound Effects setting.
 		</text>
 	</string>
+	<string id="ui_mcm_rpg_redux_prestige_point_extra_enable">
+		<text>Enable Progressive Prestige Points?</text>
+	</string>
+	<string id="ui_mcm_rpg_redux_prestige_point_extra_enable_desc">
+		<text>
+			Enabling this will allow you to start earning an additional perk point to spend every few levels based on your Prestige Level.\n
+			Disabling this off will have you earn the normal amount of perk points, regardless of your Prestige Level.\n
+			\nPrestige Brackets: \n
+			%c[d_orange]Prestige 1-3: +1 additional Perk Point every 4 earned Levels \n
+			%c[yellow]Prestige 4-7: +1 additional Perk Point every 3 earned Levels \n
+			%c[d_green]Prestige 8-10: +1 additional Perk Point every 2 earned Levels
+		</text>
+	</string>
 	
 	
 	
