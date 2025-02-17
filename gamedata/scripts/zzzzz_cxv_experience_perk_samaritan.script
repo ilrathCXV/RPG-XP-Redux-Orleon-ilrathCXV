@@ -1,0 +1,56 @@
+-- Good Samaritan: Gain 10/20/30% more goodwill + Lose 25/50/75% less goodwill from task completions and events
+local samaritan_pos_mult = 0.10
+local samaritan_neg_mult = 0.25
+
+BaseFactionGoodwill = xr_effects.inc_faction_goodwill_to_actor
+function xr_effects.inc_faction_goodwill_to_actor(actor, npc, p)
+	
+	local samaritan_level =  x_cxv_perks_data.perks["perk_samaritan"]
+	
+	if samaritan_level == 0 then
+		BaseFactionGoodwill(actor, npc, p)
+		return
+	end
+	
+	local id = actor:id()
+	local community = p[1]
+	local delta		= p[2]
+	if delta and community then
+		game_relations.change_factions_community_num(community, id, tonumber(delta))
+		printdbg("/ Goodwill (main) gained with %s: %s", community, delta)
+	else
+		printe("!Wrong parameters in function 'inc_faction_goodwill_to_actor'")
+		return
+	end
+	delta = tonumber(delta)
+	
+	local is_gain = ((delta) > 0) and true or false
+	local delta_b = math.abs(delta)
+	local delta_b2 = math.ceil(delta_b * 0.5)
+	local delta_b3 = math.ceil(delta_b * 0.8)
+	local delta_rnd = ((delta_b) > 1) and math.random(delta_b2,delta_b3) or delta_b
+	local delta_rnd_sub = delta_b - delta_rnd
+	
+	local pass_natural, pass_enemy
+	local rnd_enemy = game_relations.get_random_enemy_faction(community)
+	local rnd_natural = game_relations.get_random_natural_faction(community)
+	
+	if is_gain and delta_rnd and delta_rnd_sub then
+		if rnd_enemy and (delta_rnd > 0) and (relation_registry.community_goodwill(rnd_enemy, id) > 0) then
+			local rep_modifier = math.max(0, (1 - (samaritan_level * samaritan_neg_mult)))
+			game_relations.change_factions_community_num(rnd_enemy, id, ((-1) * delta_rnd * rep_modifier) )
+			pass_enemy = true
+			printdbg("/ Goodwill (side) lost with %s: %s", rnd_enemy, ((-1) * delta_rnd * rep_modifier))
+		end
+		if rnd_natural and (delta_rnd_sub > 0) and (relation_registry.community_goodwill(rnd_natural, id) > 0) then
+			game_relations.change_factions_community_num(rnd_natural, id, (delta_rnd_sub * (1 + (samaritan_level * samaritan_pos_mult)) ) )
+			pass_natural = true
+			printdbg("/ Goodwill (side) gained with %s: %s", rnd_natural, (delta_rnd_sub * (1 + (samaritan_level * samaritan_pos_mult))))
+		end
+	end
+	
+	
+	if community and p[3] then
+		dialogs_mlr.show_goodwill_change_message( community, (pass_natural and rnd_natural or nil), (pass_enemy and rnd_enemy or nil), is_gain )
+	end
+end

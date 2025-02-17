@@ -148,7 +148,7 @@ function process_perk_effects(victim, weapon, bone_id)
 	-- GLASS CANNON: While lower than 80% health, gain exp. damage bonus the lower your health is --
 	------------------------------------------------------------------------------------------------
 	
-	if (db.actor.health < 0.80) and (perks["perk_glass_cannon"] > 0) then
+	if (perks["perk_glass_cannon"] > 0) and (db.actor.health < 0.80) then
 		damage_multiplier = damage_multiplier * (2 - db.actor.health)^(glass_cannon_exp[perks["perk_glass_cannon"]])
 	end
 	
@@ -175,7 +175,7 @@ function process_perk_effects(victim, weapon, bone_id)
 	-----------------------------------------------------------------------------------------------------------
 	-- Jamming Shot (also works with melees): Shooting an enemy's arms "jams" their weapon (5 sec. cooldown) --
 	-----------------------------------------------------------------------------------------------------------
-	if perks["perk_jamming_shot"] > 0 and jamming_bones[bone_id] and x_cxv_perks_data.can_jam and IsStalker(victim) then
+	if perks["perk_jamming_shot"] > 0 and IsStalker(victim) and jamming_bones[bone_id] and x_cxv_perks_data.can_jam then
 		local enemy_weapon = victim:active_item()
 		if enemy_weapon and IsWeapon(enemy_weapon) then 
 			x_cxv_perks_data.can_jam = false
@@ -188,10 +188,10 @@ function process_perk_effects(victim, weapon, bone_id)
 	-- Disarming Shot: 30% chance to make an NPC drop their weapon when shot in the hands (condition and ammo will be set correctly) --
 	-- 				   								[[[ 10 sec. cooldown ]]]														 --
 	-----------------------------------------------------------------------------------------------------------------------------------
-	if perks["perk_disarming_shot"] > 0 and disarming_bones[bone_id] and x_cxv_perks_data.can_disarm and IsStalker(victim) then
+	if perks["perk_disarming_shot"] > 0 and IsStalker(victim) and disarming_bones[bone_id] and x_cxv_perks_data.can_disarm  then
 		local enemy_weapon = victim:best_weapon()
 		local dropChance = math.random(100) <= 30
-		if weapon and enemy_weapon and IsWeapon(enemy_weapon) and dropChance then
+		if dropChance and weapon and enemy_weapon and IsWeapon(enemy_weapon) then
 			-- Credit to Banjaji's Nutcracker Mayhem for weapon condition
 			-- Added bonus that the weapon will have the same ammo in its mag when it is dropped
 			x_cxv_perks_data.can_disarm = false
@@ -232,11 +232,17 @@ function process_perk_effects(victim, weapon, bone_id)
 	-----------------------------------------------
 	-- Wick Mode/Zone Slayer: 	Damage modifiers --
 	-----------------------------------------------
-	if (perks["perk_wick_mode"] > 0) and (weapon_class == "pistol") and IsStalker(victim) then
-		damage_multiplier = damage_multiplier * 1.05
+	if (perks["perk_wick_mode"] > 0) and IsStalker(victim) then
+		if (weapon_class == "pistol") then
+			damage_multiplier = damage_multiplier * 1.05
+		elseif weapon_class ~= "melee" and weapon_class ~= "explosive" and weapon_class ~= "misc" and weapon_class ~= "heavy" then
+			if SYS_GetParam(2, weapon:section(), "single_handed") == 1 then
+				damage_multiplier = damage_multiplier * 1.05
+			end
+		end
 	end
 	
-	if (perks["perk_zone_slayer"] > 0) and (weapon_class == "shotgun") and IsMonster(victim) then
+	if (perks["perk_zone_slayer"] > 0) and IsMonster(victim) and (weapon_class == "shotgun") then
 		local mag_size = ini_sys:r_u32(weapon:section(), "ammo_mag_size") or 3
 		if mag_size < 3 then
 			damage_multiplier = damage_multiplier * 1.05
@@ -610,13 +616,6 @@ function utils_ui.prop_damage(obj,sec)
 	------------------------------------------------------------> Heavy Weapons
 	if (perks["perk_heavy_gunner"] > 0) and ((weapon_class == "heavy") or (weapon_class == "shotgun") or (weapon_class == "sniper")) then
 		hit_power = hit_power * (1 + (gunner_damage_multiplier * perks["perk_heavy_gunner"]))
-	end
-	
-	-----------------------------------------------
-	-- Wick Mode/Zone Slayer: 	Damage modifiers --
-	-----------------------------------------------
-	if (perks["perk_wick_mode"] > 0) and (weapon_class == "pistol") and IsStalker(victim) then
-		hit_power = hit_power * 1.05
 	end
 	
 	return normalize(hit_power, 0, 1.5)

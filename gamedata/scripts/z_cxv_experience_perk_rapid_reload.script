@@ -94,8 +94,13 @@ function actor_on_hud_animation_play(anim_table,obj)
 		
 		
 		if x_cxv_perks_data.perks["perk_wick_mode"] > 0 then
-			if x_cxv_perks_data.sortK_of(obj) == "pistol" then
+			wpn_kind = x_cxv_perks_data.sortK_of(obj)
+			if wpn_kind == "pistol" then
 				wick_mode_bonus = 0.30
+			elseif wpn_kind ~= "melee" and wpn_kind ~= "explosive" and wpn_kind ~= "misc" and wpn_kind ~= "heavy" then
+				if SYS_GetParam(2, obj:section(), "single_handed") == 1 then
+					wick_mode_bonus = 0.30
+				end
 			end
 		end
 	

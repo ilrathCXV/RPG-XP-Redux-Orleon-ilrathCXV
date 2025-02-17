@@ -13,6 +13,7 @@ perks = {
 	["perk_demo_expert"] = 0,
 	["perk_disarming_shot"] = 0,
 	["perk_fast_hands"] = 0,
+	["perk_fetch_finder"] = 0,
 	["perk_fourth_times"] = 0,
 	["perk_fun_allowed"] = 0,
 	["perk_glass_cannon"] = 0,
@@ -38,6 +39,7 @@ perks = {
 	["perk_rapid_reload"] = 0,
 	["perk_repair_junkie"] = 0,
 	["perk_rifleman"] = 0,
+	["perk_samaritan"] = 0,
 	["perk_scavenger"] = 0,
 	["perk_silver_tongued"] = 0,
 	["perk_slow_metabolism"] = 0,
@@ -233,7 +235,7 @@ local function experience_skill_on_update(perk_id, perk_data)
 	if perk_id == "perk_zone_slayer" and (perks["perk_zone_slayer"] > 0) and (#shotgun_list < 1) or (#weapon_list < 1) then
 		build_weapon_list()
 	end
-	
+
 end
 
 local shotgun_ammo_check = {

@@ -1234,7 +1234,7 @@
 	<string id="st_perk_wick_mode_desc_1">
         <text>Don't just become the boogeyman. Become the one sent to %c[d_red]kill the boogeyman.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] While having a pistol equipped in your hands, you have a %c[d_green]15% chance to "dodge" incoming %c[yellow]bullet damage\n
+		%c[d_blue] - %c[ui_gray_2] While having a pistol (or any non-explosive gun that can be one-handed) in your hands, you have a %c[d_green]15% chance to "dodge" incoming %c[yellow]bullet damage\n
 		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]5% %c[ui_gray_2]with %c[yellow]all pistols\n
 		%c[d_green] - %c[ui_gray_2] This damage bonus only applies against %c[yellow]Stalkers
 		</text>
@@ -1535,6 +1535,49 @@
 		%c[d_blue] - %c[ui_gray_2] Stamina and hunger drain from climbing is %c[d_green]reduced by 40%\n
 		%c[d_blue] - %c[ui_gray_2] Climbing speed is %c[d_green]increased by 40%
 		</text>
+    </string>
+	
+	<string id="st_perk_samaritan">
+        <text>Good Samaritan</text>
+    </string>
+	<string id="st_perk_samaritan_desc">
+        <text>You always seek to help others. Even conflicting actions are understood.</text>
+    </string>
+	<string id="st_perk_samaritan_desc_1">
+        <text>You always seek to help others. Even conflicting actions are understood.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Goodwill gains from completing tasks are %c[d_orange]increased by 10%\n
+		%c[d_blue] - %c[ui_gray_2] Goodwill losses from completing tasks are %c[d_orange]reduced by 25%
+		</text>
+    </string>
+	<string id="st_perk_samaritan_desc_2">
+        <text>You always seek to help others. Even conflicting actions are understood.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Goodwill gains from completing tasks are %c[yellow]increased by 20%\n
+		%c[d_blue] - %c[ui_gray_2] Goodwill losses from completing tasks are %c[yellow]reduced by 50%
+		</text>
+    </string>
+	<string id="st_perk_samaritan_desc_3">
+        <text>You always seek to help others. Even conflicting actions are understood.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Goodwill gains from completing tasks are %c[d_green]increased by 30%\n
+		%c[d_blue] - %c[ui_gray_2] Goodwill losses from completing tasks are %c[d_green]reduced by 75%
+		</text>
+    </string>
+	
+	<string id="st_perk_fetch_finder">
+        <text>Fetch Finder</text>
+    </string>
+	<string id="st_perk_fetch_finder_desc">
+        <text>The job market is very tight in the Zone. Time to downsize the competition.</text>
+    </string>
+	<string id="st_perk_fetch_finder_desc_1">
+        <text>The job market is very tight in the Zone. Time to downsize the competition. \n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Items needed for Fetch tasks have a %c[d_green]3% chance%c[ui_gray_2] to be found when looting stalkers\n
+		%c[d_blue] - %c[ui_gray_2] Items needed for Fetch tasks have a %c[d_green]6.7% chance%c[ui_gray_2] to be found when looting stashes\n
+		%c[d_blue] - %c[ui_gray_2] Chances to find items are slightly better if multiple fetch quests require them\n
+		%c[d_red] - %c[ui_gray_2] T2 and T3 devices (i.e. better detectors and PDAs) and unique quest items (i.e. Tracking Devices and stash PDAs) will not be included in		</text>
     </string>
 	
 </string_table>

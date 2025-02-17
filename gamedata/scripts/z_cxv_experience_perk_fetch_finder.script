@@ -1,0 +1,191 @@
+local task_ini = ini_file("misc\\task\\task_manager.ltx")
+task_item_list = {}
+
+invalid_kinds = {
+	["i_quest"] = true,
+	["w_pistol"] = true,
+	["w_smg"] = true,
+	["w_rifle"] = true,
+	["w_shotgun"] = true,
+	["w_sniper"] = true,
+	["w_melee"] = true,
+	["w_explosive"] = true,
+	["w_heavy"] = true,
+}
+
+damaged_kinds = {
+	["i_arty"] = true,
+	["i_arty_cont"] = true,
+	["i_arty_junk"] = true,
+	["i_mutant_belt"] = true,
+}
+
+blacklisted_sections = {
+	["itm_basickit"] = true,
+	["itm_advancedkit"] = true,
+	["itm_expertkit"] = true,
+	["itm_drugkit"] = true,
+	["itm_ammokit"] = true,
+	["device_pda_2"] = true,
+	["device_pda_3"] = true,
+	["detector_advanced"] = true,
+	["detector_elite"] = true,
+	["detector_scientific"] = true,
+	["detector_anomaly"] = true,
+	["detector_grizzly"] = true,
+	["device_pda_milspec"] = true,
+}
+
+function valid_fetch_loot(sec)
+	local kind = SYS_GetParam(0, sec, "kind")
+	
+	return (not invalid_kinds[kind])
+end
+
+function get_task_items()
+	local actor = db.actor
+	if not actor then return end
+	
+	empty_table(task_item_list)
+	task_item_list = {}
+	
+	if (x_cxv_perks_data.perks["perk_fetch_finder"] < 1) then return end
+	
+	local tm = task_manager.get_task_manager()
+	local task_info = tm.task_info
+	
+	for task_id,v in pairs(task_info) do
+		local status = task_info[task_id].last_check_task
+		if not (status == "complete" or status == "fail") then 
+	
+			-- Fetch
+			local fetch_sec = load_var(actor, task_id.."_fetch")
+			if fetch_sec and (not blacklisted_sections[fetch_sec]) and valid_fetch_loot(fetch_sec) then
+				task_item_list[fetch_sec] = (task_item_list[fetch_sec] and task_item_list[fetch_sec] + 1) or 1
+				printf("[RPG] Task Item being added to list: %s (%s)", fetch_sec, task_item_list[fetch_sec])
+			end
+	
+			-- Multi fetch
+			check_multifetch_items(task_id, true)
+		end
+	end
+end
+
+function check_multifetch_items(task_id, is_adding)
+
+	local _M
+	_M = _M or alife_storage_manager.get_state().multifetch_data
+	
+	local required_items = _M and _M[task_id] and _M[task_id].required_items
+	if required_items then
+		for k,v in pairs(required_items) do
+			if required_items[k].sec and (not blacklisted_sections[required_items[k].sec]) and valid_fetch_loot(required_items[k].sec) then
+				task_item_list[required_items[k].sec] = (is_adding and (task_item_list[required_items[k].sec] and task_item_list[required_items[k].sec] + 1) or 1) or 
+														(task_item_list[required_items[k].sec] and math.max((task_item_list[required_items[k].sec] - 1), 0) or 0)
+				printf("[RPG] Task Item being assesed: %s | Is adding?: %s | Count: %s", required_items[k].sec, is_adding, task_item_list[required_items[k].sec])
+			end
+		end
+	end
+	local optional_items = _M and _M[task_id] and _M[task_id].optional_items
+	if optional_items then
+		for k,v in pairs(optional_items) do
+			if optional_items[k].sec and (not blacklisted_sections[optional_items[k].sec]) and valid_fetch_loot(optional_items[k].sec) then
+				task_item_list[optional_items[k].sec] = (is_adding and (task_item_list[optional_items[k].sec] and task_item_list[optional_items[k].sec] + 1) or 1) or 
+														(task_item_list[optional_items[k].sec] and math.max((task_item_list[optional_items[k].sec] - 1), 0) or 0)
+				printf("[RPG] Task Item being assesed: %s | Is adding?: %s | Count: %s", optional_items[k].sec, is_adding, task_item_list[optional_items[k].sec])
+			end
+		end
+	end
+end
+
+OrigGiveTask = task_manager.CRandomTask.give_task
+task_manager.CRandomTask.give_task = function(self,task_id,task_giver_id)
+
+	if not task_ini:section_exist(task_id) then
+		printe("!ERROR There is no task [%s] in task ini_file or ini_file is not included!!!", task_id)
+		return
+	end
+	
+	OrigGiveTask(self,task_id,task_giver_id)
+	
+	if (x_cxv_perks_data.perks["perk_fetch_finder"] < 1) then return end
+	
+	-- Increment task item in list
+	local check_fetch_quest_sec = load_var(db.actor, task_id.."_fetch")
+	if check_fetch_quest_sec and (not blacklisted_sections[check_fetch_quest_sec]) then
+		task_item_list[check_fetch_quest_sec] = (task_item_list[check_fetch_quest_sec] and task_item_list[check_fetch_quest_sec] + 1) or 1
+		printf("[RPG] Task Item being added to list: %s (%s)", check_fetch_quest_sec, task_item_list[check_fetch_quest_sec])
+	end
+	
+	check_multifetch_items(task_id, true)
+	
+end
+
+OrigCompleteTask = task_manager.CRandomTask.set_task_completed
+task_manager.CRandomTask.set_task_completed = function(self, task_id)
+	if (self.task_info[task_id]) then
+		-- Decrement items from the fetch list
+		if (x_cxv_perks_data.perks["perk_fetch_finder"] > 0) then
+			local check_fetch_quest_sec = load_var(db.actor, task_id.."_fetch")
+			if check_fetch_quest_sec and task_item_list[check_fetch_quest_sec] then
+				task_item_list[check_fetch_quest_sec] = (task_item_list[check_fetch_quest_sec] and math.max(task_item_list[check_fetch_quest_sec] - 1, 0)) or 0
+				printf("[RPG] Task Item being removed to list: %s (%s)", check_fetch_quest_sec, task_item_list[check_fetch_quest_sec])
+			end
+			check_multifetch_items(task_id, false)
+		end
+		
+		self.task_info[task_id].forced_status = "complete"
+	end
+end
+
+OrigFailTask = task_manager.CRandomTask.set_task_failed
+task_manager.CRandomTask.set_task_failed = function(self, task_id)
+	if (self.task_info[task_id]) then
+		
+		-- Decrement items from the fetch list
+		if (x_cxv_perks_data.perks["perk_fetch_finder"] > 0) then
+			local check_fetch_quest_sec = load_var(db.actor, task_id.."_fetch")
+			if check_fetch_quest_sec and task_item_list[check_fetch_quest_sec] then
+				task_item_list[check_fetch_quest_sec] = (task_item_list[check_fetch_quest_sec] and math.max(task_item_list[check_fetch_quest_sec] - 1, 0)) or 0
+				printf("[RPG] Task Item being removed to list: %s (%s)", check_fetch_quest_sec, task_item_list[check_fetch_quest_sec])
+			end
+			check_multifetch_items(task_id, false)
+		end
+		
+		self.task_info[task_id].forced_status = "fail"
+	end
+end
+
+OrigCancelTask = task_manager.CRandomTask.set_task_cancelled
+task_manager.CRandomTask.set_task_cancelled = function(self, task_id)
+    if (self.task_info[task_id]) then
+		
+		-- Decrement items from the fetch list
+		if (x_cxv_perks_data.perks["perk_fetch_finder"] > 0) then
+			local check_fetch_quest_sec = load_var(db.actor, task_id.."_fetch")
+			if check_fetch_quest_sec and task_item_list[check_fetch_quest_sec] then
+				task_item_list[check_fetch_quest_sec] = (task_item_list[check_fetch_quest_sec] and math.max(task_item_list[check_fetch_quest_sec] - 1, 0)) or 0
+				printf("[RPG] Task Item being removed to list: %s (%s)", check_fetch_quest_sec, task_item_list[check_fetch_quest_sec])
+			end
+			check_multifetch_items(task_id, false)
+		end
+		
+		self.task_info[task_id].forced_status = "fail"
+		self.task_info[task_id].cancelled_by_actor = true
+    end
+end
+
+local function experience_skill_on_update(perk_id, perk_data)
+	if perk_id == "perk_fetch_finder" and perk_data["curr_level"] > 0 and is_empty(task_item_list) then
+		get_task_items()
+	end
+end
+
+function on_game_start()
+	RegisterScriptCallback("actor_on_first_update", 		get_task_items)
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
+end
