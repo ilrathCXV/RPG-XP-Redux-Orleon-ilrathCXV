@@ -1,7 +1,8 @@
 local was_medicine_found = false
 local perks = x_cxv_perks_data.perks
-task_item_list = z_cxv_experience_perk_fetch_finder.task_item_list
 damaged_task_kind_list = z_cxv_experience_perk_fetch_finder.damaged_kinds
+
+local fetch_finder_count_chances = {[0] = 1000, [1] = 33, [2] = 25, [3] = 20, [4] = 18, [5] = 16}
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 local ammo_parts_check = {
@@ -59,7 +60,7 @@ local function create_item_random_uses(i, box)
 		printf('Degradable')
 		alife_process_item(i, se_item.id, {cond = (rand(50 + (perks["perk_careful_handler"] * 3),100) * 0.01)})
 	else
-		alife_create_item(i, box)
+		alife_process_item(i, se_item.id)
 	end
 end
 
@@ -372,6 +373,21 @@ treasure_manager.try_spawn_treasure = function(box, ...)
 	looting_enemy(box)
 end
 
+function random_key_from_table(t)
+	local check = t and type(t) == "table"
+	if not check then
+		printf("nil or not table!")
+		callback()
+		assert(nil, "global function random_key_table() called with invalid argument (nil or not table)")
+	end
+	local n = {}
+	for k,v in pairs(t) do
+		printf("k: %s", k)
+		n[#n+1] = k
+	end
+	return #n > 0 and n[math.random(#n)] or nil
+end
+
 function looting_enemy(victim)
 
 	if not victim then printf("[RPG] No NPC/box found... No loot for you!") return end
@@ -402,12 +418,14 @@ function looting_enemy(victim)
 
 -----------------------------------------------------------> Fetch Finder: 3% chance to find a task item (6.7% with stashes) & more duplicates means better chances w/ diminishing returns
 	if perks["perk_fetch_finder"] > 0 then
-		local random_task_sec = random_key_table(task_item_list)
-		if random_task_sec and task_item_list[random_task_sec] > 0 the
-			local random_ceil = (IsInvbox(victim) and 15) or 30
-			random_ceil = math.ceil(random_ceil / task_item_list[random_task_sec]) + math.min((task_item_list[random_task_sec] - 1), 4)
+		local random_task_sec = z_cxv_experience_perk_fetch_finder.get_random_sec()
+		local random_sec_count = z_cxv_experience_perk_fetch_finder.get_sec_count(random_task_sec)
+		if random_task_sec and random_sec_count > 0 then
+			local random_ceil = (fetch_finder_count_chances[math.min(random_sec_count, 5)] * ((IsInvbox(victim) and 0.5) or 1)) or 33
+--			printf("[RPG] task item val: %s | random chance: %s", random_sec_count, round_idp(1/random_ceil * 100, 2))
 			if rand(1, random_ceil) == 1 then
-				local kind = SYS_GetParam(0, sec, "kind")
+				printf("[RPG] Fetch Finder creating item: %s", random_task_sec)
+				local kind = SYS_GetParam(0, random_task_sec, "kind")
 				if kind and damaged_task_kind_list[kind] then
 					local se_item = alife_create_item(random_task_sec, box)
 					alife_process_item(random_task_sec, se_item.id, {cond = (rand(1, 15 + (perks["perk_careful_handler"] * 3)) * 0.01)})
@@ -799,11 +817,14 @@ function xr_box.create_items(obj, section, number, rnd)
 			end
 		end
 		
-		-- "Fetch Finder" will have a 3% chance to double the chance of the item if within the fetch list
-		if perks["perk_fetch_finder"] > 0 and task_item_list[section] and task_item_list[section] > 0 then
-			local random_ceil = math.ceil(33 / task_item_list[section]) + math.min((task_item_list[section] - 1), 4)
-			if rand(1, random_ceil) then
-				rnd = rnd * 2
+		-- "Fetch Finder" will have a base 3% chance to double the chance of the item if within the fetch list
+		if perks["perk_fetch_finder"] > 0  then
+			local sec_count = z_cxv_experience_perk_fetch_finder.get_sec_count(section)
+			if sec_count then
+				local random_ceil = fetch_finder_count_chances[math.min(sec_count, 5)] or 33
+				if rand(1, random_ceil) then
+					rnd = rnd * 2
+				end
 			end
 		end
 	end

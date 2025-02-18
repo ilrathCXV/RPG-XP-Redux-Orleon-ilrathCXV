@@ -181,6 +181,14 @@ local function experience_skill_on_update(perk_id, perk_data)
 	end
 end
 
+function get_random_sec()
+	return random_key_table(task_item_list)
+end
+
+function get_sec_count(sec)
+	return task_item_list[sec] or false
+end
+
 function on_game_start()
 	RegisterScriptCallback("actor_on_first_update", 		get_task_items)
 	if experience_potions then
