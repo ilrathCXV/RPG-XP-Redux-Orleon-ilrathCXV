@@ -96,32 +96,37 @@
 	<string id="st_perk_gunslinger_desc_1">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]5% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]5% %c[ui_gray_2]with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+2 %c[ui_gray_2]with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_2">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]10% %c[ui_gray_2]with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+4 %c[ui_gray_2]with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_3">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]15% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]15% %c[ui_gray_2]with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+6 %c[ui_gray_2]with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 
 	<string id="st_perk_gunslinger_desc_4">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]20% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]20% %c[ui_gray_2]with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+8 %c[ui_gray_2]with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 	<string id="st_perk_gunslinger_desc_5">
         <text>You have mastered your skills with using small arms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Pistols and SMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]25% %c[ui_gray_2]with %c[yellow]Pistols and SMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+10 %c[ui_gray_2]with %c[yellow]Pistols and SMGs
 		</text>
     </string>
 
@@ -135,31 +140,36 @@
 	<string id="st_perk_rifleman_desc_1">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]5% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]5% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+2 %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_2">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]10% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+4 %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_3">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]15% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]15% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+6 %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_4">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]20% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]20% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+8 %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	<string id="st_perk_rifleman_desc_5">
         <text>You have become an expert with rifle-styled platforms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Assault Rifles and most LMGs
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]25% %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+10 %c[ui_gray_2]with %c[yellow]Assault Rifles and most LMGs
 		</text>
     </string>
 	
@@ -172,32 +182,40 @@
 	<string id="st_perk_heavy_gunner_desc_1">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]5% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]5% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+2 %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_2">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]10% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]10% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+4 %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_3">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]15% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]15% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+6 %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_4">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]20% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]20% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+8 %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_5">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by %c[d_green]25% %c[ui_gray_2] with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]25% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+10 %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
     </string>
@@ -213,35 +231,40 @@
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]10% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
-		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]10%
+		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]10%\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of your melee weapon by %c[d_green]+2
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_2">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]20% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
-		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]20%
+		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]20%\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of your melee weapon by %c[d_green]+4
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_3">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]30% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
-		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]30%
+		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]30%\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of your melee weapon by %c[d_green]+6
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_4">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]40% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
-		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]50%
+		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]50%\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of your melee weapon by %c[d_green]+8
 		</text>
     </string>
 	<string id="st_perk_berserker_desc_5">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]50% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
-		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]75%
+		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]75%\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of your melee weapon by %c[d_green]+10
 		</text>
     </string>
 	
@@ -1578,6 +1601,34 @@
 		%c[d_blue] - %c[ui_gray_2] Items needed for Fetch tasks have a %c[d_green]6.7% chance%c[ui_gray_2] to be found when looting stashes\n
 		%c[d_blue] - %c[ui_gray_2] Chances to find items are slightly better if multiple fetch quests require them\n
 		%c[d_red] - %c[ui_gray_2] T2 and T3 devices (i.e. better detectors and PDAs) and unique quest items (i.e. Tracking Devices and stash PDAs) will not be included in		</text>
+    </string>
+	
+	<string id="st_perk_perkifact_power">
+        <text>Perkifact Power</text>
+    </string>
+	<string id="st_perk_perkifact_power_desc">
+        <text>The Zone grows tired of Stalkers using the same artefacts. It has empowered you when using perk-based artefacts.</text>
+    </string>
+	<string id="st_perk_perkifact_power_desc_1">
+        <text>The Zone grows tired of Stalkers using the same artefacts. It has empowered you when using perk-based artefacts.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] When wearing perk-based artefacts (perkifacts), their effects will behave as if you are wearing %c[d_orange]one additional copy\n
+		%c[d_blue] - %c[ui_gray_2] For instance, wearing a 1 "Signet" will result in its effects acting as if you are wearing %c[d_orange]2 "Signets"
+		</text>
+    </string>
+	<string id="st_perk_perkifact_power_desc_2">
+        <text>The Zone grows tired of Stalkers using the same artefacts. It has empowered you when using perk-based artefacts.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] When wearing perk-based artefacts (perkifacts), their effects will behave as if you are wearing %c[yellow]two additional copies\n
+		%c[d_blue] - %c[ui_gray_2] For instance, wearing a 1 "Signet" will result in its effects acting as if you are wearing %c[yellow]3 "Signets"
+		</text>
+    </string>
+	<string id="st_perk_perkifact_power_desc_3">
+        <text>The Zone grows tired of Stalkers using the same artefacts. It has empowered you when using perk-based artefacts.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] When wearing perk-based artefacts (perkifacts), their effects will behave as if you are wearing %c[d_green]three additional copies\n
+		%c[d_blue] - %c[ui_gray_2] For instance, wearing a 1 "Signet" will result in its effects acting as if you are wearing %c[d_green]4 "Signets"
+		</text>
     </string>
 	
 </string_table>

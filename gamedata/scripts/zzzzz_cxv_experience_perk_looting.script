@@ -427,7 +427,7 @@ function looting_enemy(victim)
 				printf("[RPG] Fetch Finder creating item: %s", random_task_sec)
 				local kind = SYS_GetParam(0, random_task_sec, "kind")
 				if kind and damaged_task_kind_list[kind] then
-					local se_item = alife_create_item(random_task_sec, box)
+					local se_item = alife_create_item(random_task_sec, victim)
 					alife_process_item(random_task_sec, se_item.id, {cond = (rand(1, 15 + (perks["perk_careful_handler"] * 3)) * 0.01)})
 				else
 					create_item_random_uses(random_task_sec, victim)

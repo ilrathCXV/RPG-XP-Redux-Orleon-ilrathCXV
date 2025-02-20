@@ -1,0 +1,15 @@
+BasePBAProcess = perk_based_artefacts.process_artefacts
+perk_based_artefacts.process_artefacts = function(artefacts_table, ...)
+	if x_cxv_perks_data.perks["perk_perkifact_power"] == 0 then
+		BasePBAProcess(artefacts_table, ...)
+	else
+		for artefact, props in pairs(perk_based_artefacts.artefacts) do
+			if artefacts_table[artefact] then
+--				trace("artefact %s", artefact)
+--				printf("Artefact (%s) count: %s", artefact, props.count)
+				new_count = ((props.count > 0) and (props.count + x_cxv_perks_data.perks["perk_perkifact_power"])) or props.count
+				artefacts_table[artefact](db.actor, new_count, props.ids, props.names, ...)
+			end
+		end
+	end
+end

@@ -1,5 +1,6 @@
 local perks = x_cxv_perks_data.perks
 local gunner_damage_multiplier = 0.05
+local gunner_ap_additions = {[0] = 0, [1] = 0.002, [2] = 0.004, [3] = 0.006, [4] = 0.008, [5] = 0.010 }
 
 local jamming_bones = {
 	[20] = true, 
@@ -213,20 +214,21 @@ function process_perk_effects(victim, weapon, bone_id)
 		end
 	end
 	
-	-----------------------------------------------------------
-	-- Gunslinger/Rifleman/Heavy Gunner: 	Damage modifiers --
-	-----------------------------------------------------------
-	
-	if (perks["perk_gunslinger"] > 0) and ((weapon_class == "smg") or (weapon_class == "pistol")) then
-		damage_multiplier = damage_multiplier * (1 + (gunner_damage_multiplier * perks["perk_gunslinger"]))
-	end
-		
-	if (perks["perk_rifleman"] > 0) and (weapon_class == "rifle") then
-		damage_multiplier = damage_multiplier * (1 + (gunner_damage_multiplier * perks["perk_rifleman"]))
-	end
-	------------------------------------------------------------> Heavy Weapons
-	if (perks["perk_heavy_gunner"] > 0) and ((weapon_class == "heavy") or (weapon_class == "shotgun") or (weapon_class == "sniper")) then
-		damage_multiplier = damage_multiplier * (1 + (gunner_damage_multiplier * perks["perk_heavy_gunner"]))
+	if IsMonster(victim) then
+		-----------------------------------------------------------
+		-- Gunslinger/Rifleman/Heavy Gunner: 	Damage modifiers --
+		-----------------------------------------------------------
+		if (perks["perk_gunslinger"] > 0) and ((weapon_class == "smg") or (weapon_class == "pistol")) then
+			damage_multiplier = damage_multiplier * (1 + (gunner_damage_multiplier * perks["perk_gunslinger"]))
+		end
+			
+		if (perks["perk_rifleman"] > 0) and (weapon_class == "rifle") then
+			damage_multiplier = damage_multiplier * (1 + (gunner_damage_multiplier * perks["perk_rifleman"]))
+		end
+		------------------------------------------------------------> Heavy Weapons
+		if (perks["perk_heavy_gunner"] > 0) and ((weapon_class == "heavy") or (weapon_class == "shotgun") or (weapon_class == "sniper")) then
+			damage_multiplier = damage_multiplier * (1 + (gunner_damage_multiplier * perks["perk_heavy_gunner"]))
+		end
 	end
 	
 	-----------------------------------------------
@@ -504,12 +506,6 @@ function reset_shot_conditions(perk_type)
 	return true
 end
 
---[[
-function test_reload_callback(obj, total_ammo_remaining)
-	printf('Weapon: %s | Number: %s', weapon, total_ammo_remaining)
-end
-]]
-
 function on_game_start()
 	if (not grok_bo) or (cxv_artigrok_bo) or golden then
 		RegisterScriptCallback("npc_on_before_hit",             perk_damage_effects)
@@ -607,8 +603,8 @@ function utils_ui.prop_damage(obj,sec)
 	-----------------------------------------------------------
 	local weapon_class = x_cxv_perks_data.sortK_of(obj)
 	if (perks["perk_gunslinger"] > 0) and ((weapon_class == "smg") or (weapon_class == "pistol")) then
-			hit_power = hit_power * (1 + (gunner_damage_multiplier * perks["perk_gunslinger"]))
-		end
+		hit_power = hit_power * (1 + (gunner_damage_multiplier * perks["perk_gunslinger"]))
+	end
 		
 	if (perks["perk_rifleman"] > 0) and (weapon_class == "rifle") then
 		hit_power = hit_power * (1 + (gunner_damage_multiplier * perks["perk_rifleman"]))
@@ -619,4 +615,109 @@ function utils_ui.prop_damage(obj,sec)
 	end
 	
 	return normalize(hit_power, 0, 1.5)
+end
+
+local ap_weapon_class
+
+local find_float = ini_sys.r_float_ex
+local function modify_ap(ini,sec,stat,def)
+	-- Do nothing if not dealing with the "k_ap" stat
+	if stat ~= "k_ap" then
+--		printf("stat (%s) is not k_ap", stat)
+		return find_float(ini,sec,stat,def)
+	end
+	
+	-- Increase AP against Stalkers based on weapon type
+	local return_stat = find_float(ini,sec,stat,def)
+	if type(return_stat) == "number" and ap_weapon_class then
+		if (perks["perk_gunslinger"] > 0) and ((ap_weapon_class == "smg") or (ap_weapon_class == "pistol")) then
+			return_stat = return_stat + gunner_ap_additions[perks["perk_gunslinger"]]
+		end
+			
+		if (perks["perk_rifleman"] > 0) and (ap_weapon_class == "rifle") then
+			return_stat = return_stat + gunner_ap_additions[perks["perk_rifleman"]]
+		end
+		
+		if (perks["perk_heavy_gunner"] > 0) and ((ap_weapon_class == "heavy") or (ap_weapon_class == "shotgun") or (ap_weapon_class == "sniper")) then
+			return_stat = return_stat + gunner_ap_additions[perks["perk_heavy_gunner"]]
+		end
+		
+		if (perks["perk_berserker"] > 0) and ((ap_weapon_class == "melee") then
+			return_stat = return_stat + gunner_ap_additions[perks["perk_berserker"]]
+		end
+	end
+	
+	return return_stat
+end
+
+if grok_bo then
+	grok_bo.ini_sys.r_float_ex = modify_ap 
+	
+	if grok_bo.npc_on_before_hit then
+		local baseGrokNPC = grok_bo.npc_on_before_hit
+		function grok_bo.npc_on_before_hit(npc,shit,bone_id)
+			
+			-- Null the class variable to avoid any issues if not the player
+			if shit.draftsman:id() ~= db.actor:id() then
+				ap_weapon_class = nil
+				return
+			end
+			
+			local shooter = shit.draftsman
+			wpn = level.object_by_id(shit.weapon_id)
+			sec = wpn:section()
+			
+			-- This will be fed to the modify_ap function so that it gets the correct bonus
+			ap_weapon_class = x_cxv_perks_data.get_weapon_perk_class(sec) or nil
+			
+			-- Allow the original function to do its work, the AP will be modified based on the weapon class and perk levels
+			baseGrokNPC(npc,shit,bone_id)
+		end
+	end
+end
+
+if cxv_artigrok_bo then
+	cxv_artigrok_bo.ini_sys.r_float_ex = modify_ap
+	
+	if cxv_artigrok_bo.validate_hit then
+		BaseAGValidate = cxv_artigrok_bo.validate_hit
+		function cxv_artigrok_bo.validate_hit(shit, bone_id, npc_id)
+			-- Allow the original function to run to get the needed info
+			local return_data = BaseAGValidate(shit, bone_id, npc_id)
+			
+			-- Null the class variable to avoid any issues if not the player
+			if shit.draftsman:id() ~= db.actor:id() then
+				ap_weapon_class = nil
+				return return_data
+			end
+			
+			-- Null the class variable to avoid any issues if not a valid hit
+			if not return_data then
+				ap_weapon_class = nil
+				return
+			end
+			
+			-- This will be fed to the modify_ap function so that it gets the correct bonus
+			ap_weapon_class = x_cxv_perks_data.get_weapon_perk_class(return_data.sec) or nil
+			
+			-- return the valid data so damage calculations can continue + have the AP modification take effect
+			return return_data
+			
+		end
+	end
+end
+
+if momopate_knife_stats then
+
+	function  momopate_knife_stats.prop_ap(obj, sec)
+		local ammo_sec = SYS_GetParam(0, obj and obj:section() or sec, "ammo_class") or "nil"
+		if ammo_sec ~= "nil" then
+			k_ap = (SYS_GetParam(2, ammo_sec, "k_ap") or 0
+			k_ap = k_ap + gunner_ap_additions[perks["perk_berserker"]]
+			return round_idp(k_ap * 1000, 0)
+		end
+		
+		return 0
+	end
+	
 end
