@@ -642,7 +642,7 @@ local function modify_ap(ini,sec,stat,def)
 			return_stat = return_stat + gunner_ap_additions[perks["perk_heavy_gunner"]]
 		end
 		
-		if (perks["perk_berserker"] > 0) and ((ap_weapon_class == "melee") then
+		if (perks["perk_berserker"] > 0) and (ap_weapon_class == "melee") then
 			return_stat = return_stat + gunner_ap_additions[perks["perk_berserker"]]
 		end
 	end
