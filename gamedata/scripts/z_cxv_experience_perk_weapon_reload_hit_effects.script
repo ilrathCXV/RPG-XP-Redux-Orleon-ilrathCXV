@@ -712,7 +712,7 @@ if momopate_knife_stats then
 	function  momopate_knife_stats.prop_ap(obj, sec)
 		local ammo_sec = SYS_GetParam(0, obj and obj:section() or sec, "ammo_class") or "nil"
 		if ammo_sec ~= "nil" then
-			k_ap = (SYS_GetParam(2, ammo_sec, "k_ap") or 0
+			k_ap = SYS_GetParam(2, ammo_sec, "k_ap") or 0
 			k_ap = k_ap + gunner_ap_additions[perks["perk_berserker"]]
 			return round_idp(k_ap * 1000, 0)
 		end
