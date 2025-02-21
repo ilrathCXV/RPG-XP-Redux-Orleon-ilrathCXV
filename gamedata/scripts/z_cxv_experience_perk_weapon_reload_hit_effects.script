@@ -618,6 +618,7 @@ function utils_ui.prop_damage(obj,sec)
 end
 
 local ap_weapon_class
+local ignore_increase = false
 
 local find_float = ini_sys.r_float_ex
 local function modify_ap(ini,sec,stat,def)
@@ -629,7 +630,8 @@ local function modify_ap(ini,sec,stat,def)
 	
 	-- Increase AP against Stalkers based on weapon type
 	local return_stat = find_float(ini,sec,stat,def)
-	if type(return_stat) == "number" and ap_weapon_class then
+	if type(return_stat) == "number" and ap_weapon_class and (not ignore_increase) then
+--		printf("[AP] old stat: %s, ap_weapon_class: %s", return_stat, ap_weapon_class)
 		if (perks["perk_gunslinger"] > 0) and ((ap_weapon_class == "smg") or (ap_weapon_class == "pistol")) then
 			return_stat = return_stat + gunner_ap_additions[perks["perk_gunslinger"]]
 		end
@@ -647,6 +649,7 @@ local function modify_ap(ini,sec,stat,def)
 		end
 	end
 	
+--	printf("[AP] new stat: %s", return_stat)
 	return return_stat
 end
 
@@ -655,11 +658,11 @@ if grok_bo then
 	
 	if grok_bo.npc_on_before_hit then
 		local baseGrokNPC = grok_bo.npc_on_before_hit
-		function grok_bo.npc_on_before_hit(npc,shit,bone_id)
+		function grok_bo.npc_on_before_hit(npc, shit, bone_id, flags)
 			
 			-- Null the class variable to avoid any issues if not the player
 			if shit.draftsman:id() ~= db.actor:id() then
-				ap_weapon_class = nil
+				ignore_increase = true
 				return
 			end
 			
@@ -669,9 +672,10 @@ if grok_bo then
 			
 			-- This will be fed to the modify_ap function so that it gets the correct bonus
 			ap_weapon_class = x_cxv_perks_data.get_weapon_perk_class(sec) or nil
+			ignore_increase = false
 			
 			-- Allow the original function to do its work, the AP will be modified based on the weapon class and perk levels
-			baseGrokNPC(npc,shit,bone_id)
+			baseGrokNPC(npc, shit, bone_id, flags)
 		end
 	end
 end
@@ -685,20 +689,21 @@ if cxv_artigrok_bo then
 			-- Allow the original function to run to get the needed info
 			local return_data = BaseAGValidate(shit, bone_id, npc_id)
 			
-			-- Null the class variable to avoid any issues if not the player
-			if shit.draftsman:id() ~= db.actor:id() then
-				ap_weapon_class = nil
-				return return_data
+			-- Return if not a valid hit
+			if not return_data then
+				ignore_increase = true				
+				return
 			end
 			
-			-- Null the class variable to avoid any issues if not a valid hit
-			if not return_data then
-				ap_weapon_class = nil
-				return
+			-- Null the class variable to avoid any issues if not the player
+			if shit.draftsman:id() ~= db.actor:id() then
+				ignore_increase = true	
+				return return_data
 			end
 			
 			-- This will be fed to the modify_ap function so that it gets the correct bonus
 			ap_weapon_class = x_cxv_perks_data.get_weapon_perk_class(return_data.sec) or nil
+			ignore_increase = false
 			
 			-- return the valid data so damage calculations can continue + have the AP modification take effect
 			return return_data

@@ -19,6 +19,10 @@ local stow_anims = {
 	anm_show_jammed = true,
 	anm_show_g = true,
 	anm_show_w_gl = true,
+	anm_hide_quick = true,
+	anm_show_quick = true,
+	anm_zoom_hide_fast = true,
+	anm_zoom_show_fast = true,
 	
 	-- grenade throw
 	-- anm_throw_begin = true,
