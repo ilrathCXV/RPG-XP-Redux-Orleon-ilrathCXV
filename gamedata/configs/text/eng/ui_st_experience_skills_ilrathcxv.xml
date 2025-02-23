@@ -309,35 +309,35 @@
         <text>You have developed a keen eye for finding scrap and materials when looting around the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1.5% %c[ui_gray_2]chance of finding %c[d_red]salvage and crafting materials \n
-		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will be %c[d_green]drop rate multiplied by 2x
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will be %c[d_green]drop rate multiplied by 1.25x
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_2">
 		<text>You have developed a keen eye for finding scrap and materials when looting around the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding %c[d_orange]slightly better salvage and crafting materials \n
-		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 3x
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 1.5x
 		</text>   
 	</string>
 	<string id="st_perk_scavenger_desc_3">
 		<text>You have developed a keen eye for finding scrap and materials when looting around the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4.5% %c[ui_gray_2]chance of finding %c[yellow]better salvage and crafting materials \n
-		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 4.5x
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 2.0x
 		</text>
 	</string>
 	<string id="st_perk_scavenger_desc_4">
         <text>You have developed a keen eye for finding scrap and materials when looting around the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]6% %c[ui_gray_2]chance of finding %c[d_green]much better salvage and crafting materials \n
-		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 6x
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 2.5x
 		</text>
     </string>
 	<string id="st_perk_scavenger_desc_5">
         <text>You have developed a keen eye for finding scrap and materials when looting around the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]7.5% %c[ui_gray_2]chance of finding %c[d_green]better and high-quality salvage and crafting materials \n
-		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 8x
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate multiplied by 3x
 		</text>
     </string>
 	
@@ -1124,21 +1124,24 @@
 	<string id="st_perk_battle_runner_desc_1">
         <text>You enjoy the thrill of the kill...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]15% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]10% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Outfits receive a %c[d_green]+5% sprint speed bonus at all times\n
 		%c[d_blue] - %c[ui_gray_2] Kills while Battle Runner is active %c[d_green]resets the timer
 		</text>
     </string>
 	<string id="st_perk_battle_runner_desc_2">
         <text>You enjoy the thrill of the kill...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]30% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]20% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Outfits receive a %c[d_green]+10% sprint speed bonus at all times\n
 		%c[d_blue] - %c[ui_gray_2] Kills while Battle Runner is active %c[d_green]resets the timer
 		</text>
     </string>
 	<string id="st_perk_battle_runner_desc_3">
         <text>You enjoy the thrill of the kill...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]50% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Grants %c[d_green]35% movement speed bonus %c[ui_gray_2]for 10 seconds upon killing a stalker or mutant\n
+		%c[d_blue] - %c[ui_gray_2] Outfits receive a %c[d_green]+15% sprint speed bonus at all times\n
 		%c[d_blue] - %c[ui_gray_2] Kills while Battle Runner is active %c[d_green]resets the timer
 		</text>
     </string>

@@ -374,7 +374,7 @@ function perk_damage_effects(victim, shit, bone_id, flags)
 	local isCompanion = victim:has_info("npcx_is_companion")
 	if isCompanion then return end
 
-    local weapon = get_object_by_id(shit.weapon_id)
+    local weapon = level.object_by_id(shit.weapon_id)
 	
     if weapon == nil then 
 		return 
@@ -640,8 +640,16 @@ local function modify_ap(ini,sec,stat,def)
 			return_stat = return_stat + gunner_ap_additions[perks["perk_rifleman"]]
 		end
 		
-		if (perks["perk_heavy_gunner"] > 0) and ((ap_weapon_class == "heavy") or (ap_weapon_class == "shotgun") or (ap_weapon_class == "sniper")) then
-			return_stat = return_stat + gunner_ap_additions[perks["perk_heavy_gunner"]]
+--		if (perks["perk_heavy_gunner"] > 0) and ((ap_weapon_class == "heavy") or (ap_weapon_class == "shotgun") or (ap_weapon_class == "sniper")) then 
+--			return_stat = return_stat + gunner_ap_additions[perks["perk_heavy_gunner"]]
+--		end
+
+		if (perks["perk_heavy_gunner"] > 0) then
+			if (ap_weapon_class == "heavy") or (ap_weapon_class == "sniper") then 
+				return_stat = return_stat + gunner_ap_additions[perks["perk_heavy_gunner"]]
+			elseif (ap_weapon_class == "shotgun") then
+				return_stat = return_stat * (1 + gunner_damage_multiplier[perks["perk_heavy_gunner"]])
+			end
 		end
 		
 		if (perks["perk_berserker"] > 0) and (ap_weapon_class == "melee") then

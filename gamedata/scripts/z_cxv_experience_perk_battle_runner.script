@@ -1,4 +1,4 @@
-local battle_runner_speed = { [1] = 1.15, [2] = 1.30, [3] = 1.50 }		-- 10%, 20%, 30%
+local battle_runner_speed = { [1] = 1.10, [2] = 1.20, [3] = 1.35 }		-- 10%, 20%, 30%
 
 local time_g
 local update_1000ms_timer = 0
@@ -61,3 +61,30 @@ function on_game_start()
 	RegisterScriptCallback("npc_on_death_callback", 		actor_on_kill)
 	RegisterScriptCallback("monster_on_death_callback", 	actor_on_kill)
 end
+
+if outfit_speed_mcm then
+	BaseOutfitSpeed = outfit_speed_mcm.get_outfit_speed
+	function outfit_speed_mcm.get_outfit_speed(obj, sec, sprint)
+		
+		local outfit_speed = BaseOutfitSpeed(obj, sec, sprint)
+		if sprint and x_cxv_perks_data.perks["perk_battle_runner"] > 0 and outfit_speed and outfit_speed > 0 then
+			return (outfit_speed + (x_cxv_perks_data.perks["perk_battle_runner"] * 0.05))
+		end
+		
+		return outfit_speed
+	end
+end
+
+--[[
+if momopate_accurate_stats then
+	BaseMomoSpeed = momopate_accurate_stats.get_outfit_speed
+	function momopate_accurate_stats.get_outfit_speed(obj, sec)
+		local outfit_speed = BaseMomoSpeed(obj,sec)
+		if x_cxv_perks_data.perks["perk_battle_runner"] > 0 and outfit_speed > 0 then
+			return (outfit_speed + (x_cxv_perks_data.perks["perk_battle_runner"] * 5))
+		end
+		
+		return outfit_speed
+	end
+end
+]]

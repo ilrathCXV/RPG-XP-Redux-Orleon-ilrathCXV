@@ -772,13 +772,24 @@ end
 ------------------ Increasing Crate Item Drop Chance and Loot Quality ------------------	-- Ammo Finder + Scavenger + Plus One + Fetch Finder
 ----------------------------------------------------------------------------------------
 -- ilrathCXV (01/10/25): Add small chance to find loot from boxes and crates ( was +2.5% to each item roll, now is a multiplier )
-local scav_bonus = {[0] = 1, [1] = 2, [2] = 3, [3] = 4.5, [4] = 6, [5] = 8 }
+local scav_bonus = {[0] = 1, [1] = 1.25, [2] = 1.5, [3] = 2, [4] = 2.5, [5] = 3 }
 BoxCreateItems = xr_box.create_items
 function xr_box.create_items(obj, section, number, rnd)
 	local is_ammo = (section and IsItem("ammo",section)) or false
 	
 	-- Each item gets its drop chance multiplied
 	rnd = rnd * scav_bonus[math.min(perks["perk_scavenger"], 5)]
+	
+	-- "Fetch Finder" will have a base 3% chance to double the chance of the item if within the fetch list
+	if perks["perk_fetch_finder"] > 0  then
+		local sec_count = z_cxv_experience_perk_fetch_finder.get_sec_count(section)
+		if sec_count then
+			local random_ceil = fetch_finder_count_chances[math.min(sec_count, 5)] or 33
+			if rand(1, random_ceil) then
+				rnd = rnd * 2
+			end
+		end
+	end
 	
 	-- Doing the random check here to avoid unnecessary script work if the item doesn't even get to spawn
 	if is_ammo and math.random() <= rnd then
@@ -813,17 +824,6 @@ function xr_box.create_items(obj, section, number, rnd)
 							section = rounds
 						end
 					end
-				end
-			end
-		end
-		
-		-- "Fetch Finder" will have a base 3% chance to double the chance of the item if within the fetch list
-		if perks["perk_fetch_finder"] > 0  then
-			local sec_count = z_cxv_experience_perk_fetch_finder.get_sec_count(section)
-			if sec_count then
-				local random_ceil = fetch_finder_count_chances[math.min(sec_count, 5)] or 33
-				if rand(1, random_ceil) then
-					rnd = rnd * 2
 				end
 			end
 		end

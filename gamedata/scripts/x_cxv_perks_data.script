@@ -166,9 +166,21 @@ local remove_speed = speed.remove_speed
 local remove_weight = weight.remove_weight
 has_slept = false
 
+-- Battle Runner
+local last_runner_level = 0
+
 local function experience_skill_on_update(perk_id, perk_data)
 	if perks[perk_id] then
 		perks[perk_id] = perk_data["curr_level"]
+	end
+	
+	-- Battle Runner (refresh outfit speeds)
+	if perk_id == "perk_battle_runner" then
+		if perks[perk_id] > 0 and (last_carbon_level == 0 or last_runner_level ~= perks[perk_id]) then
+			outfit_speed_mcm.last_outfit = nil
+			outfit_speed_mcm.manage_outfit_speed()
+			last_runner_level = perks[perk_id]
+		end
 	end
 	
 	-- if perk_id == "perk_artefinder" then
@@ -193,9 +205,19 @@ local function experience_skill_on_update(perk_id, perk_data)
 		if drx_da_main_artefacts then
 			if drx_da_main_artefacts.artefacts_map_chances then
 				for k,v in pairs(drx_da_main_artefacts.artefacts_map_chances) do
-					if original_map_chances[k] >= 0 then
+					if original_map_chances[k] and original_map_chances[k] >= 0 then
 						drx_da_main_artefacts.artefacts_map_chances[k] = original_map_chances[k] + ( perks["perk_artefinder"] * 3 )
-						printf("[Artefinder Monkeys] Original value: %s | New value: %s", original_map_chances[k], drx_da_main_artefacts.artefacts_map_chances[k])
+						printf("[Artefinder Monkeys] Adjusting DRX value: %s | New value: %s", original_map_chances[k], drx_da_main_artefacts.artefacts_map_chances[k])
+					else
+						original_map_chances[k] = drx_da_main_artefacts.artefacts_map_chances[k]
+						drx_da_main_artefacts.artefacts_map_chances[k] = original_map_chances[k] + ( perks["perk_artefinder"] * 3 )
+						printf("[Artefinder Monkeys] Level added to Orig List: %s | Original value: %s | New value: %s", k, original_map_chances[k], drx_da_main_artefacts.artefacts_map_chances[k])
+					end
+				end
+				for k,v in pairs(original_map_chances) do
+					if not drx_da_main_artefacts.artefacts_map_chances[k] then
+						drx_da_main_artefacts.artefacts_map_chances[k] = original_map_chances[k] + ( perks["perk_artefinder"] * 3 )
+						printf("[Artefinder Monkeys] Level added to DRX List: %s | Original value: %s | New value: %s", original_map_chances[k], drx_da_main_artefacts.artefacts_map_chances[k])
 					end
 				end
 			end
