@@ -676,11 +676,13 @@ if grok_bo then
 			
 			local shooter = shit.draftsman
 			wpn = level.object_by_id(shit.weapon_id)
-			sec = wpn:section()
 			
-			-- This will be fed to the modify_ap function so that it gets the correct bonus
-			ap_weapon_class = x_cxv_perks_data.get_weapon_perk_class(sec) or nil
-			ignore_increase = false
+			if wpn and (IsWeapon(wpn) or IsGrenade(wpn) or IsMelee(wpn)) then
+				sec = wpn:section()
+				-- This will be fed to the modify_ap function so that it gets the correct bonus
+				ap_weapon_class = x_cxv_perks_data.get_weapon_perk_class(sec) or nil
+				ignore_increase = false
+			end
 			
 			-- Allow the original function to do its work, the AP will be modified based on the weapon class and perk levels
 			baseGrokNPC(npc, shit, bone_id, flags)
@@ -709,9 +711,11 @@ if cxv_artigrok_bo then
 				return return_data
 			end
 			
-			-- This will be fed to the modify_ap function so that it gets the correct bonus
-			ap_weapon_class = x_cxv_perks_data.get_weapon_perk_class(return_data.sec) or nil
-			ignore_increase = false
+			if return_data.wpn and (IsWeapon(return_data.wpn) or IsGrenade(return_data.wpn) or IsMelee(return_data.wpn)) then
+				-- This will be fed to the modify_ap function so that it gets the correct bonus
+				ap_weapon_class = x_cxv_perks_data.get_weapon_perk_class(return_data.sec) or nil
+				ignore_increase = false
+			end
 			
 			-- return the valid data so damage calculations can continue + have the AP modification take effect
 			return return_data
