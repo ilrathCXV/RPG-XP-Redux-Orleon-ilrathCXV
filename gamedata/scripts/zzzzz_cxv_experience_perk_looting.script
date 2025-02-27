@@ -355,10 +355,16 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+local med_man_proc = false
+local meds_found = false
+local ammo_double_chance = { [0] = 0, [1] = 0, [2] = 0, [3] = 1, [4] = 3, [5] = 5 }
+
 base_death_loot = death_manager.create_release_item
 death_manager.create_release_item = function(npc)
 	if not npc then return end
-	local id = npc:id()
+	med_man_proc = (perks["perk_medicine_man"] * 2) > rand(1,100)
+	meds_found = false
+	
 	base_death_loot(npc)
 	looting_enemy(npc)
 end
@@ -367,9 +373,9 @@ base_stash_loot = treasure_manager.try_spawn_treasure
 treasure_manager.try_spawn_treasure = function(box, ...)
 	local id = box:id()
 	if not treasure_manager.caches[id] then return end
-	-- if not (type(treasure_manager.caches[id]) == "string") then return end
+	med_man_proc = (perks["perk_medicine_man"] * 2) > rand(1,100)
+	meds_found = false
 	base_stash_loot(box, ...)
-
 	looting_enemy(box)
 end
 
@@ -391,22 +397,15 @@ end
 function looting_enemy(victim)
 
 	if not victim then printf("[RPG] No NPC/box found... No loot for you!") return end
-	
-	was_medicine_found = false
+
 	ammo_finder_proc = false
 	
 	-- Gather NPC info
 	local npc_id = victim:id() or 0
 	
 	-- ilrathCXV (10/21/24): Consolidate all "iter" functions into one
-	if perks["perk_careful_handler"] > 0 or  perks["perk_medicine_man"] > 0 or perks["perk_ammo_finder"] > 0 then
-		
-	CreateTimeEvent("looting_perks_proc",victim:id(), 0.15, function()
+	if perks["perk_careful_handler"] > 0 or  perks["perk_medicine_man"] > 0 or perks["perk_ammo_finder"] > 0 then	
 		looting_perks_proc(victim)
-		return true
-    end)
-		
-		
 	end
 	
 -----------------------------------------------------------> Scavenger
@@ -457,35 +456,104 @@ function looting_enemy(victim)
 	
 end
 
-local ammo_double_proc = false
-local med_man_proc = false
-local med_man_items_to_create = {}
-local ammo_double_chance = { [0] = 0, [1] = 0, [2] = 0, [3] = 1, [4] = 3, [5] = 5, }
+BaseDeathWeaponDrop = death_manager.set_weapon_drop_condition
+function death_manager.set_weapon_drop_condition(npc,itm)
+	BaseDeathWeaponDrop(npc,itm)
+	if perks["perk_careful_handler"] > 0 and (npc and itm) then
+		local old_condition = itm:condition()
+--		printf("Changing weapon (%s) condition (%s)", itm:section(), itm:condition())
+		itm:set_condition(old_condition + (perks["perk_careful_handler"] * 3 * 0.01))
+--		printf("New weapon (%s) condition (%s)", itm:section(), itm:condition())
+	end 
+end
 
-function looting_perks_proc(box)
-
-	ammo_double_proc = false
-	med_man_proc = false
-	med_man_items_to_create = {}
+BaseSetData = utils_stpk.set_item_data
+function adjust_item_data_npc(data, se_obj)
 	
-	if perks["perk_ammo_finder"] > 2 then
-		if ammo_double_chance[perks["perk_ammo_finder"]] > rand(1,100) then
-			ammo_double_proc = true
+	if perks["perk_careful_handler"] > 0 and (data and data.condition) then
+		printf("Changing NPC loot condition (%s)", data.condition)
+		data.condition = data.condition + perks["perk_careful_handler"] * 3 * 0.01
+		printf("New NPC loot condition (%s)", data.condition)
+	end
+	
+	return BaseSetData(data, se_obj)
+end
+
+function adjust_item_data_stash(data, se_obj)
+	
+	if perks["perk_careful_handler"] > 0 and (data and data.condition) then
+		printf("Changing stash loot condition (%s)", data.condition)
+		data.condition = data.condition + perks["perk_careful_handler"] * 6 * 0.01
+		printf("New stash loot condition (%s)", data.condition)
+	end
+	
+	return BaseSetData(data, se_obj)
+end
+
+if treasure_manager then treasure_manager.utils_stpk.set_item_data = adjust_item_data_stash end
+if death_manager then death_manager.utils_stpk.set_item_data = adjust_item_data_npc end
+
+
+BaseCreateItem = alife_create_item
+function looting_perk_item(section, obj, t)
+	
+	if not section or not obj then
+		return BaseCreateItem(section, obj, t)
+	end
+	
+	if not (perks["perk_careful_handler"] > 0 or perks["perk_medicine_man"] > 0 or perks["perk_ammo_finder"] > 0) then
+		return BaseCreateItem(section, obj, t)
+	end
+	
+	local kind = SYS_GetParam(0, section, "kind")
+	if perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) then
+		local careful_handler_bonus = perks["perk_careful_handler"] * 3 * (IsInvbox(box) and 2 or 1)
+		if t.cond then
+			printf("OLD t.cond = %s", t.cond)
+			t.cond = clamp(t.cond + (careful_handler_bonus * 0.01), t.cond, 1)
+			printf("NEW t.cond = %s", t.cond)
+		end
+		if t.cond_r then
+			for i = 1, #t.cond_r do
+				printf("OLD t.cond_r[%s] = %s", i, t.cond_r[i])
+				t.cond_r[i] = clamp(t.cond_r[i] + careful_handler_bonus, t.cond_r[i], 100)
+				printf("NEW t.cond_r[%s] = %s", i, t.cond_r[i])
+			end
+		end
+		if t.cond_cr then
+			for j = 1, #t.cond_cr do
+				printf("OLD t.cond_cr[%s] = %s", j, t.cond_cr[j])
+				t.cond_cr[j] = clamp(t.cond_cr[j] + careful_handler_bonus, t.cond_cr[j], 100)
+				printf("NEW t.cond_cr[%s] = %s", j, t.cond_cr[j])
+			end
 		end
 	end
 	
-	if (perks["perk_medicine_man"] * 2) > rand(1,100) then
-		med_man_proc = true
+	if (t and t.ammo) and perks["perk_ammo_finder"] > 2 then
+		if ammo_double_chance[perks["perk_ammo_finder"]] > rand(1,100) then
+			t.ammo = t.ammo * 2 * (IsInvbox(obj) and 2 or 1)
+		end
 	end
 	
-	-- Do all looting iter functions
-	if IsInvbox(box) then
-		box:iterate_inventory_box(iter_looting_perks, box)
-	else
-		box:iterate_inventory(iter_looting_perks, box)
+	if kind == "i_medical" and (med_man_proc) then
+		meds_found = true
+		BaseCreateItem(section, obj, t)
+		if IsInvbox(obj) then
+			BaseCreateItem(section, obj, t)
+		end
 	end
 	
-	-- Stashes generate twice the failsafe loot
+	return BaseCreateItem(section, obj, t)
+	
+end
+
+if outfit_drop_mcm then outfit_drop_mcm.alife_create_item = looting_perk_item end
+if treasure_manager then treasure_manager.alife_create_item = looting_perk_item end
+if death_manager then death_manager.alife_create_item = looting_perk_item end
+
+function looting_perks_proc(box)
+	
+	-- Stashes generate twice the loot
 	if (perks["perk_ammo_finder"] * 2 > rand(1,100)) then
 		try_spawn_ammo_parts(box)
 		if IsInvbox(box) then
@@ -493,16 +561,10 @@ function looting_perks_proc(box)
 		end
 	end
 	
-	if perks["perk_medicine_man"] > 2 and med_man_proc and not was_medicine_found then
+	if perks["perk_medicine_man"] > 2 and med_man_proc and (not meds_found) then
 		try_spawn_meds(box)
 		if IsInvbox(box) then
 			try_spawn_meds(box)
-		end
-	end
-	
-	if med_man_proc and #med_man_items_to_create > 0 then
-		for i = 1, #med_man_items_to_create do
-			create_item_random_uses(med_man_items_to_create[i], box)
 		end
 	end
 	
@@ -510,85 +572,6 @@ end
 
 local function IsValidWeapon(obj)
 	return IsWeapon(obj) and not IsItem("fake_ammo_wpn",obj:section())
-end
-
-function iter_looting_perks(box, obj)
-	sec = obj:section()
-	
-	-- Careful Handler goes first
-	if perks["perk_careful_handler"] > 0 then
-		careful_handler_cond_increase(obj, sec, box)
-	end
-	
-	if med_man_proc then
-		medicine_man_loot_gen(obj, sec, box)
-	end
-	
-	if ammo_double_proc then
-		ammo_finder_double_ammo(obj, sec, box)
-	end
-end
-
-
-function careful_handler_cond_increase(obj, sec, box)
-	-- printf("Object to be considered: %s | Is Weapon?: %s | Is Outfit?: %s | Is Helmet?: %s", sec, IsValidWeapon(obj), IsOutfit(obj), IsHeadgear(obj))
-	if IsOutfit(obj) or IsHeadgear(obj) or IsWeapon(obj) then
-		printf("[RPG - Looting] Weapon/Armor being Carefully Handled: %s", sec)
-		-- increase armor and weapon drop conditions
-		local item_cond = obj:condition()
-		obj:set_condition(clamp(item_cond + (perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), item_cond, 0.980))
-
---		-- increase weapon parts condition of weapons themselves
---		if IsValidWeapon(obj) then			
---			local parts = item_parts.get_parts_con(obj, nil, true)
---			-- check is needed in case it is a part-less weapon (i.e. RPG)
---			if parts then
---				for k,v in pairs(parts) do
---					if arti_jamming.is_part(k) then
---						printf("Part %s has condition of %s", k, parts[k])
---						parts[k] = clamp(v + (perks["perk_careful_handler"] * 3 * (IsInvbox(box) and 2 or 1)), v, 100)
---						printf("Part %s has new condition of %s", k, parts[k])
---					end
---				end
---				item_parts.set_parts_con(obj:id(), parts)
---			end
---		else
---			local gear_cond = obj:condition()
---			obj:set_condition(clamp(gear_cond + (perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), gear_cond, 1))
---		end
-		
-	elseif (utils_item.is_degradable(obj, sec) and obj:condition() < 1) or (obj:condition() < 1) then
-	
-		-- We don't need to handle artefacts since we do that already elsewhere
-		local kind = SYS_GetParam(0, obj:section(), "kind")
-		local is_arte = kind and (kind == "i_arty" or kind == "i_arty_cont")
-		if is_arte then return end
-		
-		printf("[RPG - Looting] Item being Carefully Handled: %s", sec)
-		local item_cond = obj:condition()
-		obj:set_condition(clamp(item_cond + (perks["perk_careful_handler"] * 3 * 0.01 * (IsInvbox(box) and 2 or 1)), item_cond, 0.980))
-	end
-end
-
-function medicine_man_loot_gen(obj, sec, box)
-	if SYS_GetParam(0, sec, "kind") == "i_medical" then
-		printf("[RPG - Medicine Man] Med about to get doubled: %s", sec)
-		med_man_items_to_create[#med_man_items_to_create + 1] = sec
-		--create_item_random_uses(sec, box)
-		if IsInvbox(box) then
-			med_man_items_to_create[#med_man_items_to_create + 1] = sec
-			--create_item_random_uses(sec, box)
-		end
-		was_medicine_found = true
-	end
-end
-
-function ammo_finder_double_ammo(obj, sec, box)
-	if not ammo_parts_check[sec] and IsAmmo(obj) then
-		local ammo_count = obj:ammo_get_count()
-		printf("[RPG - Looting] Ammo Found: %s of %s", ammo_count, sec)
-		alife_create_item(sec, box, {ammo = ammo_count * (IsInvbox(box) and 2 or 1)})
-	end
 end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -751,22 +734,6 @@ if arti_lootboxes then
 		end
 	end
 end
-
---[[
---------------------------------------------------------------------------------------------------------------
------------------- Careful Handler for Outfit Drops (credit to Joris9521 for catching this) ------------------
---------------------------------------------------------------------------------------------------------------
-base_condition_spawn = death_manager.spawn_with_condition
-function death_manager.spawn_with_condition(npc, section, condition)
-	if perks["perk_careful_handler"] > 0 then
-		local new_cond = clamp(condition + (perks["perk_careful_handler"] * 3 * 0.01), condition, 1)	-- always an NPC, so no need to check if it is a stash
-		printf("Spawning %s ... Old condition = %s ... New condition = %s", section, condition, new_cond)
-		return base_condition_spawn(npc, section, new_cond)
-	else
-		return base_condition_spawn(npc, section, condition)
-	end
-end
-]]--
 
 ----------------------------------------------------------------------------------------
 ------------------ Increasing Crate Item Drop Chance and Loot Quality ------------------	-- Ammo Finder + Scavenger + Plus One + Fetch Finder
