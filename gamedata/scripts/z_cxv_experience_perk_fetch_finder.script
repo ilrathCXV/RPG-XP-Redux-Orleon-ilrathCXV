@@ -101,13 +101,14 @@ end
 OrigGiveTask = task_manager.CRandomTask.give_task
 task_manager.CRandomTask.give_task = function(self,task_id,task_giver_id)
 
-	if not task_ini:section_exist(task_id) then
-		printe("!ERROR There is no task [%s] in task ini_file or ini_file is not included!!!", task_id)
-		return
-	end
+--	Remove this b/c WTF does its own thing that will cause these lines to make WTF not work at all...
+--	if not task_ini:section_exist(task_id) then
+--		printe("!ERROR There is no task [%s] in task ini_file or ini_file is not included!!!", task_id)
+--		return
+--	end
 	
 	OrigGiveTask(self,task_id,task_giver_id)
-	
+
 	if (x_cxv_perks_data.perks["perk_fetch_finder"] < 1) then return end
 	
 	-- Increment task item in list
