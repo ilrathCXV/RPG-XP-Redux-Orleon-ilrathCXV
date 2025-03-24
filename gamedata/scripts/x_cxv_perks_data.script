@@ -294,48 +294,48 @@ function build_weapon_list()
 		
 	-- if w1 and not IsValidMelee(w1) then
 	if (IsWeapon(w1) and (not IsItem("fake_ammo_wpn",w1:section()))) then
-		weapon_list[#weapon_list + 1] = w1 
+		weapon_list[#weapon_list + 1] = w1:id() 
 		printf('Weapon 1: %s', w1:section())
 		local clip = ini_sys:r_float_ex(w1:section(), "ammo_mag_size") or 3
 		if clip <= 2 then
 			local ammo_table = parse_list(ini_sys,w1:section(),"ammo_class")
 			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
-				shotgun_list[#shotgun_list + 1] = w1
+				shotgun_list[#shotgun_list + 1] = w1:id() 
 			end
 		end
 	end
 	-- if w2 and not IsValidMelee(w2) and not IsBinoc(w2) then
 	if (IsWeapon(w2) and (not IsItem("fake_ammo_wpn",w2:section()))) then
-		weapon_list[#weapon_list + 1] = w2 
+		weapon_list[#weapon_list + 1] = w2:id() 
 		printf('Weapon 2: %s', w2:section())
 		local clip = ini_sys:r_float_ex(w2:section(), "ammo_mag_size") or 3
 		if clip <= 2 then
 			local ammo_table = parse_list(ini_sys,w2:section(),"ammo_class")
 			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
-				shotgun_list[#shotgun_list + 1] = w2
+				shotgun_list[#shotgun_list + 1] = w2:id() 
 			end
 		end
 	end
 	-- if w3 and not IsValidMelee(w3) then
 	if (IsWeapon(w3) and (not IsItem("fake_ammo_wpn",w3:section()))) then
-		weapon_list[#weapon_list + 1] = w3
+		weapon_list[#weapon_list + 1] = w3:id() 
 		printf('Weapon 3: %s', w3:section())
 		local clip = ini_sys:r_float_ex(w3:section(), "ammo_mag_size") or 3
 		if clip <= 2 then
 			local ammo_table = parse_list(ini_sys,w3:section(),"ammo_class")
 			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
-				shotgun_list[#shotgun_list + 1] = w3
+				shotgun_list[#shotgun_list + 1] = w3:id() 
 			end
 		end
 	end
 	if (IsWeapon(w4) and (not IsItem("fake_ammo_wpn",w4:section()))) then
-		weapon_list[#weapon_list + 1] = w4
+		weapon_list[#weapon_list + 1] = w4:id() 
 		printf('Weapon 4: %s', w4:section())
 		local clip = ini_sys:r_float_ex(w4:section(), "ammo_mag_size") or 3
 		if clip <= 2 then
 			local ammo_table = parse_list(ini_sys,w4:section(),"ammo_class")
 			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
-				shotgun_list[#shotgun_list + 1] = w4
+				shotgun_list[#shotgun_list + 1] = w4:id() 
 			end
 		end
 	end

@@ -94,6 +94,20 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+local slayer_usage = false	-- "Zone Slayer" flag: ammo generation moved here to keep things "tidy" now that it give +5 AP to double-barrel shotguns
+
+function is_zone_slayer(wpn)
+	if #x_cxv_perks_data.shotgun_list > 0 and wpn then
+		for i = 1, #x_cxv_perks_data.shotgun_list do
+			if (x_cxv_perks_data.shotgun_list[i] == wpn:id()) then
+				return true
+			end
+		end
+	end
+	
+	return false
+end
+
 
 function process_perk_effects(victim, weapon, bone_id)
 	
@@ -112,16 +126,6 @@ function process_perk_effects(victim, weapon, bone_id)
 	local ammo_section
 	local pellet_count
 	local fourth_mult = 1
-	
-	-- Need to account for Game Difficulty
-	local gameplay = alife_storage_manager.get_state().diff_game
-	if not (type(gameplay) == "table") then -- for old saves
-		alife_storage_manager.get_state().diff_game = {}
-		alife_storage_manager.get_state().diff_game["type"] = game_num
-		gameplay = alife_storage_manager.get_state().diff_game
-	end
-
-	local game_num = gameplay["type"] or game_num
 	
 	if (perks["perk_fourth_times"] > 0) then
 		ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
@@ -244,10 +248,12 @@ function process_perk_effects(victim, weapon, bone_id)
 		end
 	end
 	
-	if (perks["perk_zone_slayer"] > 0) and IsMonster(victim) and (weapon_class == "shotgun") then
-		local mag_size = ini_sys:r_u32(weapon:section(), "ammo_mag_size") or 3
-		if mag_size < 3 then
-			damage_multiplier = damage_multiplier * 1.05
+	if (perks["perk_zone_slayer"] > 0) and (weapon_class == "shotgun") then
+		if is_zone_slayer(weapon) then
+			slayer_usage = true
+			if IsMonster(victim) then
+				damage_multiplier = damage_multiplier * 1.05
+			end
 		end
 	end	
 	
@@ -314,7 +320,7 @@ function process_perk_effects(victim, weapon, bone_id)
 					if (mag_data["loaded"][i] == ammo_section) then
 						ammo_to_load = ammo_to_load + 1
 					end
-					if (mag_data["loaded"][i] ~= ammo_section) and (ammo_counter > 0) then 
+					if (mag_data["loaded"][i] == nil) and (ammo_counter > 0) then 
 						mag_data["loaded"][i] = ammo_section
 						ammo_to_load = ammo_to_load + 1
 						ammo_counter = ammo_counter - 1
@@ -389,6 +395,8 @@ function perk_damage_effects(victim, shit, bone_id, flags)
 	
 	local base_shit = shit.power
 	
+	slayer_usage = false
+	
 	local damage_multiplier = process_perk_effects(victim, weapon, bone_id) or 1
 	
 	shit.power = shit.power * damage_multiplier
@@ -433,10 +441,37 @@ if grok_bo and not cxv_artigrok_bo then
 end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+local string_find   = string.find
+local string_gsub   = string.gsub
+
+function find_zone_slayer_ammo(wpn_id,npc)
+	local ammo_list = utils_item.get_ammo(nil, wpn_id)
+	local shells = ammo_list[math.random(1,#ammo_list)]
+	if (shells) then
+		if string_find(shells,"_verybad") then
+			local new_section = string_gsub(shells,"_verybad","")
+			if ini_sys:section_exist(new_section) then
+				shells = new_section
+			end
+		end
+		if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok, downgrade ammo to avoid granting rare ammo
+			shells = arti_ammo_utils.downgrade_ammo(shells, true)
+		end
+		alife_create_item(shells, npc, {ammo = 1})
+		-- printf('[RPG - Looting] Zone Slayer ammo given: %s', shells)
+	end
+	slayer_usage = false
+end
 
 function perk_kill_effects(victim, killer)
     if not killer then return end
     if killer:id() ~= db.actor:id() then return end
+	
+-------------------------------------------------------------------------> Zone Slayer
+	
+	if slayer_usage and (perks["perk_zone_slayer"]  > 0) and (#x_cxv_perks_data.shotgun_list > 0) and IsStalker(victim) then
+		find_zone_slayer_ammo(x_cxv_perks_data.shotgun_list[math.random(1,#x_cxv_perks_data.shotgun_list)], victim)
+	end
 	
 -------------------------------------------------------------------------> Vampirism
 	if perks["perk_vampirism"] > 0 then
@@ -619,8 +654,9 @@ end
 
 local ap_weapon_class
 local ignore_increase = false
+local zone_slayer_increase = false
 
-local find_float = ini_sys.r_float_ex
+find_float = ini_sys.r_float_ex
 local function modify_ap(ini,sec,stat,def)
 	-- Do nothing if not dealing with the "k_ap" stat
 	if stat ~= "k_ap" then
@@ -640,9 +676,11 @@ local function modify_ap(ini,sec,stat,def)
 			return_stat = return_stat + gunner_ap_additions[perks["perk_rifleman"]]
 		end
 		
---		if (perks["perk_heavy_gunner"] > 0) and ((ap_weapon_class == "heavy") or (ap_weapon_class == "shotgun") or (ap_weapon_class == "sniper")) then 
---			return_stat = return_stat + gunner_ap_additions[perks["perk_heavy_gunner"]]
---		end
+		-- Zone Slayer: shotguns of a mag-size of 2 or less add +5 AP on hits ("Heavy Gunner" will then multiply the new AP if perk is leveled)
+		if (perks["perk_zone_slayer"] > 0) and zone_slayer_increase then 
+			printf("[AP] Zone Slayer adding +5 AP")
+			return_stat = return_stat + 0.005
+		end
 
 		if (perks["perk_heavy_gunner"] > 0) then
 			if (ap_weapon_class == "heavy") or (ap_weapon_class == "sniper") then 
@@ -671,6 +709,7 @@ if grok_bo then
 			-- Null the class variable to avoid any issues if not the player
 			if shit.draftsman:id() ~= db.actor:id() then
 				ignore_increase = true
+				zone_slayer_increase = false
 				return
 			end
 			
@@ -682,6 +721,7 @@ if grok_bo then
 				-- This will be fed to the modify_ap function so that it gets the correct bonus
 				ap_weapon_class = x_cxv_perks_data.get_weapon_perk_class(sec) or nil
 				ignore_increase = false
+				zone_slayer_increase = is_zone_slayer(wpn)
 			end
 			
 			-- Allow the original function to do its work, the AP will be modified based on the weapon class and perk levels
@@ -701,13 +741,15 @@ if cxv_artigrok_bo then
 			
 			-- Return if not a valid hit
 			if not return_data then
-				ignore_increase = true				
+				ignore_increase = true	
+				zone_slayer_increase = false
 				return
 			end
 			
 			-- Null the class variable to avoid any issues if not the player
 			if shit.draftsman:id() ~= db.actor:id() then
 				ignore_increase = true	
+				zone_slayer_increase = false
 				return return_data
 			end
 			
@@ -715,6 +757,7 @@ if cxv_artigrok_bo then
 				-- This will be fed to the modify_ap function so that it gets the correct bonus
 				ap_weapon_class = x_cxv_perks_data.get_weapon_perk_class(return_data.sec) or nil
 				ignore_increase = false
+				zone_slayer_increase = is_zone_slayer(return_data.wpn)
 			end
 			
 			-- return the valid data so damage calculations can continue + have the AP modification take effect

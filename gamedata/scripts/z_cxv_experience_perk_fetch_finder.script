@@ -37,9 +37,13 @@ blacklisted_sections = {
 }
 
 function valid_fetch_loot(sec)
+	if not sec then return false end
+
 	local kind = SYS_GetParam(0, sec, "kind")
 	
-	return (not invalid_kinds[kind])
+	if invalid_kinds[kind] then return false end
+	
+	return true
 end
 
 function get_task_items()
@@ -113,7 +117,7 @@ task_manager.CRandomTask.give_task = function(self,task_id,task_giver_id)
 	
 	-- Increment task item in list
 	local check_fetch_quest_sec = load_var(db.actor, task_id.."_fetch")
-	if check_fetch_quest_sec and (not blacklisted_sections[check_fetch_quest_sec]) then
+	if check_fetch_quest_sec and (not blacklisted_sections[check_fetch_quest_sec]) and valid_fetch_loot(check_fetch_quest_sec) then
 		task_item_list[check_fetch_quest_sec] = (task_item_list[check_fetch_quest_sec] and task_item_list[check_fetch_quest_sec] + 1) or 1
 		printf("[RPG] Task Item being added to list: %s (%s)", check_fetch_quest_sec, task_item_list[check_fetch_quest_sec])
 	end
@@ -182,6 +186,7 @@ local function experience_skill_on_update(perk_id, perk_data)
 	end
 end
 
+-- helper getter functions for looting script - trying to call the list from another script does not return anything but these functions work
 function get_random_sec()
 	return random_key_table(task_item_list)
 end

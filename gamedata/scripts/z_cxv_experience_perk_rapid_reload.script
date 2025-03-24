@@ -84,9 +84,8 @@ function actor_on_hud_animation_play(anim_table,obj)
 		if x_cxv_perks_data.perks["perk_zone_slayer"] > 0 and #x_cxv_perks_data.shotgun_list > 0 then
 			for i = 1, #x_cxv_perks_data.shotgun_list do
 				if x_cxv_perks_data.shotgun_list[i] then
-					local weapon_from_list = x_cxv_perks_data.shotgun_list[i]
-					printf("[RR] Weapon: %s", weapon_from_list)
-					if weapon_from_list:section() == wpn_sec then
+					local wpn_id = x_cxv_perks_data.shotgun_list[i]
+					if obj:id() == wpn_id then
 						zone_slayer_bonus = 0.30
 						break
 					end

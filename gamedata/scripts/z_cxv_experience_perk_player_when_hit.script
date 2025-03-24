@@ -89,7 +89,7 @@ end
 --------------------------------------------------------------------------------------------------------------
 local GActor_OnBeforeHitCallback = _G.CActor__BeforeHitCallback
 _G.CActor__BeforeHitCallback = function(actor, shit, bone_id)
-	rpg_damage_reduction(shit, bone_id)
+--	rpg_damage_reduction(shit, bone_id)
 	return GActor_OnBeforeHitCallback(actor, shit, bone_id)
 end
 
@@ -129,7 +129,7 @@ function rpg_damage_reduction(shit, bone_id)
     base_power = shit.power
     shit_type = shit.type
 	local is_elemental = (((shit_type == hit.shock) or (shit_type == hit.burn) or (shit_type == hit.light_burn) or (shit_type == hit.chemical_burn)
-	or string.find(hitter:id(),"field") or string.find(hitter:id(),"zone_mine")) and ((shit_type ~= hit.radiation) or (shit_type ~= hit.telepatic))) or false
+	or string.find(hitter:section(),"field") or string.find(hitter:section(),"zone_mine")) and ((shit_type ~= hit.radiation) or (shit_type ~= hit.telepatic))) or false
 	
 ------------------------------------------------------------> "The End": 15% less damage when ADS with a bolt-action sniper (base RPM must be < 60)
 	if x_cxv_perks_data.perks["perk_the_end"] > 0 then
@@ -142,7 +142,7 @@ function rpg_damage_reduction(shit, bone_id)
 	end
 	
 ------------------------------------------------------------> Anomaly Defense
-    if x_cxv_perks_data.perks["perk_anomaly_defense"] > 0 and IsAnomaly(hitter) and shit.type ~= hit.radiation then
+    if x_cxv_perks_data.perks["perk_anomaly_defense"] > 0 and ((IsAnomaly(hitter) and shit.type ~= hit.radiation) or is_elemental) then
 		damage_mult = damage_mult * (1 - (x_cxv_perks_data.perks["perk_anomaly_defense"] * 0.09))
 		--printf("[RPG - Player When Hit] Anomaly Defense %s% damage reduction!", (x_cxv_perks_data.perks["perk_anomaly_defense"] * 0.09))
     end

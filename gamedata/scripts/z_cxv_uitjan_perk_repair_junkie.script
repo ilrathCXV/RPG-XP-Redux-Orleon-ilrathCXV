@@ -6,22 +6,126 @@ local zone_gunsmith_bonus = { [0] = 0, [1] = 0, [2] = 0, [3] = 0.1 , [4] = 0.3, 
 
 local play_sound_on_actor = x_cxv_perks_data.play_sound_on_actor
 
+is_repairing = false
+is_repairing_wpo = false
+repairkit = nil
+repairkit_id = 0
+supportitem = nil
+supportitem_id = 0
+
 function on_game_start()
 	
+	-- New way to do monkeypatch for "Repair Junkie" and "Zone Gunsmith" in the Repair UI
+	-- Will mainly monkeypatch the degrade/discharge functions ONLY if "is_repairing" is true (set within the OnRepair function before doing the normal functionality)
+	local origDischarge = utils_item.discharge
+	function utils_item.discharge(obj, num)
+		if not obj then return end
+		if not is_repairing then return origDischarge(obj, num) end
+		
+		-- Repair Junkie for repair items (check IDs to see if they match)
+		-- Simply return to skip discharge
+		local obj_id = obj:id()
+		printf("Obj ID (%s) | Repair Kit ID (%s)", obj_id, repairkit_id)
+		if obj_id and obj_id == repairkit_id and x_cxv_perks_data.perks["perk_repair_junkie"] > 0 then
+			if math.random() <= repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]] then
+				if is_repairing_wpo then
+					TinkerNewsParts()
+				else
+					TinkerNews()
+				end
+				return
+			else
+				return origDischarge(obj, num)
+			end
+		end
+		
+		-- Zone Gunsmith for bonus items (Rank 3+) (check IDs to see if they match)
+		-- Simply return to skip discharge
+		printf("Obj ID (%s) | Support Item ID (%s)", obj_id, supportitem_id)
+		if obj_id and obj_id == supportitem_id and x_cxv_perks_data.perks["perk_zone_gunsmith"] > 2 then
+			if math.random() <= zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]] then
+				BonusNews()
+				return
+			else
+				return origDischarge(obj, num)
+			end
+		end
+		
+		-- in case nothing goes right, do normal route
+		return origDischarge(obj, num)
+	end
+	
+	local origDegrade = utils_item.degrade
+	function utils_item.degrade(obj, num)
+		if not obj then return end
+		if not is_repairing then return origDegrade(obj, num) end
+		
+		-- Repair Junkie for repair items (check IDs to see if they match)
+		-- Send degrade factor (num) to 0 to have it skip
+		local obj_id = obj:id()
+		printf("Obj ID (%s) | Repair Kit ID (%s)", obj_id, repairkit_id)
+		if obj_id and obj_id == repairkit_id and x_cxv_perks_data.perks["perk_repair_junkie"] > 0 then
+			if math.random() <= repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]] then
+				if is_repairing_wpo then
+					TinkerNewsParts()
+				else
+					TinkerNews()
+				end
+				return origDegrade(obj, 0)
+			else
+				return origDegrade(obj, num)
+			end
+		end
+		
+		-- Zone Gunsmith for bonus items (Rank 3+) (check IDs to see if they match)
+		-- Send degrade factor (num) to 0 to have it skip
+		printf("Obj ID (%s) | Support Item ID (%s)", obj_id, supportitem_id)
+		if obj_id and obj_id == supportitem_id and x_cxv_perks_data.perks["perk_zone_gunsmith"] > 2 then
+			if math.random() <= zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]] then
+				BonusNews()
+				return origDegrade(obj, 0)
+			else
+				return origDegrade(obj, num)
+			end
+		end
+		
+		-- in case nothing goes right, do normal route
+		return origDegrade(obj, num)
+	end
+	
+	-- WPO patch
+	-- utilizing the new approach explained above
+	if zzzz_arti_jamming_repairs then
+		local BaseReplacePart = zzzz_arti_jamming_repairs.replace_part
+		function zzzz_arti_jamming_repairs.replace_part(id, part, kit_name, clean)
+			if x_cxv_perks_data.perks["perk_repair_junkie"] < 1 then
+				BaseReplacePart(id, part, kit_name, clean)
+			else
+				repairkit = db.actor:object(kit_name)
+				repairkit_id = repairkit and repairkit:id()
+				is_repairing = true
+				is_repairing_wpo = true
+				BaseReplacePart(id, part, kit_name, clean)
+				is_repairing = false
+				is_repairing_wpo = false
+			end
+		end
+	end
+	-- WPO patch end
+	
 	-- monkey patch for the Tinkering skill
+	-- utilizing the new approach explained above
 	local originalOnRepair = item_repair.UIRepair.OnRepair
 	item_repair.UIRepair.OnRepair = function (self)
-	
 		if (x_cxv_perks_data.perks["perk_repair_junkie"] > 0) or (x_cxv_perks_data.perks["perk_zone_gunsmith"] > 0) then
-			local repairkit = nil
-			local supportitem = nil
-			local supportitemid = 0
-			local kitremaininguses = 0
-			local supportremaininguses = 0
-			local waslastuse = false
-			local support_waslastuse = false
+			is_repairing = true
+			repairkit = nil
+			repairkit_id = 0
+			supportitem = nil
+			supportitem_id = 0
 			if not zz_item_repair_keep_crafting_window_open then
 				repairkit = self.obj
+				repairkit_id = (repairkit and repairkit:id()) or 0
 			elseif self.isMultiUse and self.multiUseItemsObj[1] then -- Compatibility code for "Keep Crafting Windows Open"
 				local repair_item = nil
 				self:CollectValidItems(self.obj, self.section)
@@ -29,205 +133,26 @@ function on_game_start()
 					repair_item = get_object_by_id(id)
 					if (repair_item) then
 						repairkit = repair_item
+						repairkit_id = (repairkit and repairkit:id()) or 0
 					end 
 				end
 			else
 				repairkit = self.obj
+				repairkit_id = (repairkit and repairkit:id()) or 0
 			end
 			
 			if self.CC[2]:GetCell_Selected(true) then
 				supportitem = self.CC[2]:GetCell_Selected(true)
-				supportitemid = self.CC[2]:GetCell_Selected(true):id()
-			end
-				
-				
-			if repairkit then
-				local degrade_factor = ini_sys:r_float_ex(repairkit:section(), "degradation_factor") or 0.2
-				--if degrade_factor == 0.2 then
-				--	printf("POOP - Failed to get degradation_factor - default to 0.2")
-				--	printe("POOP - Failed to get degradation_factor - default to 0.2")
-				--end
-				if IsItem("multiuse", repairkit:section()) then
-					kitremaininguses = repairkit:get_remaining_uses()
-					if kitremaininguses == 1 then
-						waslastuse = true
-						local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
-						math.randomseed(seed)
-						
-						local refundbool = math.random() < repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]]
-						-- printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
-						
-						if refundbool then
-							TinkerNews()
-						
-							repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
-						end
-					end
-				elseif utils_item.is_degradable(repairkit) and repairkit:condition() <= degrade_factor then
-					waslastuse = true
-					local seed = repairkit:id() + repairkit:condition() + supportitemid + self.con_val[1]
-					math.randomseed(seed)
-					
-					local refundbool = math.random() < repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]]
-					-- printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
-					
-					if refundbool then
-						TinkerNews()
-						repairkit:set_condition(math.min(repairkit:condition() + degrade_factor,1))
-					end
-				end
-			end
-			
-			if supportitem then
-				local degrade_factor = ini_sys:r_float_ex(supportitem:section(), "degradation_factor") or 0.2
-				if IsItem("multiuse", supportitem:section()) then
-					supportremaininguses = supportitem:get_remaining_uses()
-					if supportremaininguses == 1 then
-						support_waslastuse = true
-						local seed = supportremaininguses + supportitemid + self.con_val[1]
-						math.randomseed(seed)
-						
-						local refundbool = math.random() < zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]]
-						-- printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
-						
-						if refundbool then
-							BonusNews()
-						
-							supportitem:set_remaining_uses(supportitem:get_remaining_uses() + 1)
-						end
-					end
-				elseif utils_item.is_degradable(supportitem) and supportitem:condition() <= degrade_factor then
-					support_waslastuse = true
-					local seed = supportitem:condition() + supportitemid + self.con_val[1]
-					math.randomseed(seed)
-					
-					local refundbool = math.random() < zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]]
-					-- printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
-	
-					if refundbool then
-						BonusNews()
-						supportitem:set_condition(math.min(supportitem:condition() + degrade_factor,1))
-					end
-				else
-					local seed = supportitemid + self.con_val[1]
-					math.randomseed(seed)
-					
-					local refundbool = math.random() < zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]]
-					-- printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
-					
-					if refundbool then
-						BonusNews()
-						alife_create_item(supportitem:section(), db.actor)
-					end
-				end
+				supportitem_id = supportitem:id()
 			end
 			
 			originalOnRepair(self)
+			is_repairing = false
 			
-			
-			if repairkit then
-				local degrade_factor = ini_sys:r_float_ex(repairkit:section(), "degradation_factor") or 0.2
-				--if degrade_factor == 0.2 then
-				--	printf("POOP - Failed to get degradation_factor - default to 0.2")
-				--	printe("POOP - Failed to get degradation_factor - default to 0.2")
-				--end	
-				if not waslastuse and IsItem("multiuse", repairkit:section()) then
-					local seed = repairkit:id() + kitremaininguses + supportitemid + self.con_val[1]
-					math.randomseed(seed)
-					
-					local refundbool = math.random() < repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]]
-					-- printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
-	
-					if refundbool then
-						TinkerNews()
-						repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
-					end
-				elseif not waslastuse and utils_item.is_degradable(repairkit) then
-					local seed = repairkit:id() + repairkit:condition() + supportitemid + self.con_val[1]
-					math.randomseed(seed)
-					
-					local refundbool = math.random() < repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]]
-					-- printf("[CXV Repair Junkie] Should refund repair? - %s | RJ Bonus - %s", refundbool, repair_junkie_bonus[x_cxv_perks_data.perks["perk_repair_junkie"]])
-					
-					if refundbool then
-						TinkerNews()
-						repairkit:set_condition(math.min(repairkit:condition() + degrade_factor,1))
-					end
-				end
-			end
-			
-	
-			if supportitem then
-				local degrade_factor = ini_sys:r_float_ex(supportitem:section(), "degradation_factor") or 0.2
-				if not support_waslastuse and IsItem("multiuse", supportitem:section()) then
-					local seed = supportremaininguses + supportitemid + self.con_val[1]
-					math.randomseed(seed)
-					
-					local refundbool = math.random() < zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]]
-					-- printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
-	
-					
-					if refundbool then
-						BonusNews()
-						supportitem:set_remaining_uses(supportitem:get_remaining_uses() + 1)
-					end
-				elseif not support_waslastuse and utils_item.is_degradable(supportitem) then
-					local seed = supportitem:condition() + supportitemid + self.con_val[1]
-					math.randomseed(seed)
-					
-					local refundbool = math.random() < zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]]
-					-- printf("[CXV Zone Gunsmith] Should refund bonus item? - %s | ZG Bonus - %s", refundbool, zone_gunsmith_bonus[x_cxv_perks_data.perks["perk_zone_gunsmith"]])
-					
-					if refundbool then
-						BonusNews()
-						supportitem:set_condition(math.min(supportitem:condition() + degrade_factor,1))
-					end
-				end
-			end
 		else
 			originalOnRepair(self)
 		end
 	end
-	
-	-- WPO patch
-	if zzzz_arti_jamming_repairs then
-		local BaseReplacePart = zzzz_arti_jamming_repairs.replace_part
-		function zzzz_arti_jamming_repairs.replace_part(id, part, kit_name, clean)
-			if x_cxv_perks_data.perks["perk_repair_junkie"] < 1 then
-				BaseReplacePart(id, part, kit_name, clean)
-			else
-				local repairkit = db.actor:object(kit_name)
-				local waslastuse = false
-				local remaining_uses = repairkit:get_remaining_uses()
-				local parts = se_load_var(id, nil, "parts")
-				local part_cond = 0
-				if parts and parts[part] then
-					part_cond = parts[part]
-				end
-				local seed = repairkit:id() + remaining_uses + id + part_cond
-				math.randomseed(seed)	
-				
-				if math.random(1,100) < (x_cxv_perks_data.perks["perk_repair_junkie"] * 5) then
-					if remaining_uses == 1 then
-						waslastuse = true
-						tinker_news_wpo()
-						-- alife_create_item(kit_name, db.actor, {uses = 1})
-						repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
-					end
-					
-					BaseReplacePart(id, part, kit_name, clean)
-					
-					if not waslastuse then
-						tinker_news_wpo()
-						repairkit:set_remaining_uses(repairkit:get_remaining_uses() + 1)
-					end
-				else
-					BaseReplacePart(id, part, kit_name, clean)
-				end
-			end
-		end
-	end
-	-- WPO patch end
 end
 
 function TinkerNews()
@@ -244,7 +169,7 @@ function BonusNews()
 	play_sound_on_actor("decoder", 0.75, 0.8)
 end
 
-function tinker_news_wpo()
+function TinkerNewsParts()
 	local message = game.translate_string("st_refund_1")
 	news_manager.send_tip(db.actor, message, nil, "swiss_knife", 6000)
 	play_sound_on_actor("decoder", 0.75, 0.8)

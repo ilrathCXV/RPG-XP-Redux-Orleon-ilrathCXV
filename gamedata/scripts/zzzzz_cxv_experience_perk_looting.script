@@ -442,13 +442,6 @@ function looting_enemy(victim)
 		alife_create_item(allowed_artefacts[rand(#allowed_artefacts)], victim)
 	end
 	
-------------------------------------------------------------> Zone Slayer
-	if (perks["perk_zone_slayer"]  > 0) and (#x_cxv_perks_data.shotgun_list > 0) and not IsInvbox(victim) then
-		if (rand(1,100) <= 30) then
-			find_zone_slayer_ammo(x_cxv_perks_data.shotgun_list[rand(1,#x_cxv_perks_data.shotgun_list)], victim)
-		end
-	end
-	
 ------------------------------------------------------------> Plus One
 	if perks["perk_plus_one"] > 0 and (#x_cxv_perks_data.weapon_list > 0) then
 		find_spare_ammo(x_cxv_perks_data.weapon_list[rand(1,#x_cxv_perks_data.weapon_list)], victim)
@@ -509,22 +502,22 @@ function looting_perk_item(section, obj, t)
 	if perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) then
 		local careful_handler_bonus = perks["perk_careful_handler"] * 3 * (IsInvbox(box) and 2 or 1)
 		if t.cond then
-			printf("OLD t.cond = %s", t.cond)
+--			printf("OLD t.cond = %s", t.cond)
 			t.cond = clamp(t.cond + (careful_handler_bonus * 0.01), t.cond, 1)
-			printf("NEW t.cond = %s", t.cond)
+--			printf("NEW t.cond = %s", t.cond)
 		end
 		if t.cond_r then
 			for i = 1, #t.cond_r do
-				printf("OLD t.cond_r[%s] = %s", i, t.cond_r[i])
+--				printf("OLD t.cond_r[%s] = %s", i, t.cond_r[i])
 				t.cond_r[i] = clamp(t.cond_r[i] + careful_handler_bonus, t.cond_r[i], 100)
-				printf("NEW t.cond_r[%s] = %s", i, t.cond_r[i])
+--				printf("NEW t.cond_r[%s] = %s", i, t.cond_r[i])
 			end
 		end
 		if t.cond_cr then
 			for j = 1, #t.cond_cr do
-				printf("OLD t.cond_cr[%s] = %s", j, t.cond_cr[j])
+--				printf("OLD t.cond_cr[%s] = %s", j, t.cond_cr[j])
 				t.cond_cr[j] = clamp(t.cond_cr[j] + careful_handler_bonus, t.cond_cr[j], 100)
-				printf("NEW t.cond_cr[%s] = %s", j, t.cond_cr[j])
+--				printf("NEW t.cond_cr[%s] = %s", j, t.cond_cr[j])
 			end
 		end
 	end
@@ -575,30 +568,9 @@ local function IsValidWeapon(obj)
 end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
-------[NEW] Zone Slayer ammo selecion and creation
 
 local string_find   = string.find
 local string_gsub   = string.gsub
-
-function find_zone_slayer_ammo(weapon,npc)
-	local wpn_id = weapon:id()
---	local ammo_type_number = weapon:get_ammo_type()
-	local ammo_list = utils_item.get_ammo(weapon:section(), wpn_id)
-	local shells = ammo_list[rand(1,#ammo_list)]
-	if (shells) then
-		if string_find(shells,"_verybad") then
-			local new_section = string_gsub(shells,"_verybad","")
-			if ini_sys:section_exist(new_section) then
-				shells = new_section
-			end
-		end
-		if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok, downgrade ammo to avoid granting rare ammo
-			shells = arti_ammo_utils.downgrade_ammo(shells, true)
-		end
-		alife_create_item(shells, npc, {ammo = 2})
-		-- printf('[RPG - Looting] Zone Slayer ammo for %s: %s', weapon:section(), shells)
-	end
-end
 
 local ammo_upgrade_list = {
 	["ammo_m209_bad"] = "ammo_m209",
@@ -607,10 +579,10 @@ local ammo_upgrade_list = {
 	["ammo_gauss_bad"] = "ammo_gauss",
 }
 
-function find_spare_ammo(weapon, box)
-	local wpn_id = weapon:id()
+function find_spare_ammo(wpn_id, box)
+	local weapon = level.object_by_id(wpn_id)
 --	local ammo_type_number = weapon:get_ammo_type()
-	local ammo_list = utils_item.get_ammo(weapon:section(), wpn_id)
+	local ammo_list = utils_item.get_ammo(nil, wpn_id)
 	local rounds = ammo_list[rand(1,#ammo_list)] or nil
 	
 	if (not rounds) then 
@@ -643,7 +615,7 @@ function find_spare_ammo(weapon, box)
 	end
 	
 	
-	-- printf('[RPG - Looting] ||Plus One|| gave %s extra round(s) for %s: %s', amount, weapon:section(), rounds)
+	-- printf('[RPG - Looting] ||Plus One|| gave %s extra round(s) of type: %s', amount, rounds)
 	
 end
 
@@ -736,17 +708,15 @@ if arti_lootboxes then
 end
 
 ----------------------------------------------------------------------------------------
------------------- Increasing Crate Item Drop Chance and Loot Quality ------------------	-- Ammo Finder + Scavenger + Plus One + Fetch Finder
+------------------ Increasing Crate Item Drop Chance and Loot Quality ------------------	-- Scavenger + Fetch Finder + Ammo Finder + Plus One + Medicine Man + Careful Handler
 ----------------------------------------------------------------------------------------
 -- ilrathCXV (01/10/25): Add small chance to find loot from boxes and crates ( was +2.5% to each item roll, now is a multiplier )
-local scav_bonus = {[0] = 1, [1] = 1.25, [2] = 1.5, [3] = 2, [4] = 2.5, [5] = 3 }
+-- ilrathCXV (03/06/25): Reverting to flat chance, but it will be +0.5% instead
 BoxCreateItems = xr_box.create_items
 function xr_box.create_items(obj, section, number, rnd)
-	local is_ammo = (section and IsItem("ammo",section)) or false
-	
-	-- Each item gets its drop chance multiplied
-	rnd = rnd * scav_bonus[math.min(perks["perk_scavenger"], 5)]
-	
+	-- Each item gets its drop chance increased
+	rnd = rnd + (0.005 * perks["perk_scavenger"])
+
 	-- "Fetch Finder" will have a base 3% chance to double the chance of the item if within the fetch list
 	if perks["perk_fetch_finder"] > 0  then
 		local sec_count = z_cxv_experience_perk_fetch_finder.get_sec_count(section)
@@ -758,22 +728,53 @@ function xr_box.create_items(obj, section, number, rnd)
 		end
 	end
 	
-	-- Doing the random check here to avoid unnecessary script work if the item doesn't even get to spawn
-	if is_ammo and math.random() <= rnd then
-		rnd = 0 -- this will ensure the ammo spawns since the random check was successful above
-		-- Ammo Finder double chance applies to ammo in boxes
-		if perks["perk_ammo_finder"] > 2 then
-			if is_ammo and ammo_double_chance[perks["perk_ammo_finder"]] > rand(1,100) then
-				number = number * 2
+	BoxCreateItems(obj, section, number, rnd)
+end
+
+-- ilrathCXV (03/06/25): Utilizing the same monkeypatch logic but with an added twist just for "Plus One"
+function box_double_ammo(section, obj, t)
+	
+	if not (perks["perk_careful_handler"] > 0 or perks["perk_medicine_man"] > 0 or perks["perk_ammo_finder"] > 0 or perks["perk_plus_one"] > 0) then
+		return BaseCreateItem(section, obj, t)
+	end
+	
+	local kind = SYS_GetParam(0, section, "kind")
+	local is_ammo = (section and IsItem("ammo",section)) or false
+	
+	if perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) then
+		local careful_handler_bonus = perks["perk_careful_handler"] * 3
+		if t.cond then
+--			printf("OLD t.cond = %s", t.cond)
+			t.cond = clamp(t.cond + (careful_handler_bonus * 0.01), t.cond, 1)
+--			printf("NEW t.cond = %s", t.cond)
+		end
+		if t.cond_r then
+			for i = 1, #t.cond_r do
+--				printf("OLD t.cond_r[%s] = %s", i, t.cond_r[i])
+				t.cond_r[i] = clamp(t.cond_r[i] + careful_handler_bonus, t.cond_r[i], 100)
+--				printf("NEW t.cond_r[%s] = %s", i, t.cond_r[i])
 			end
 		end
-		
+		if t.cond_cr then
+			for j = 1, #t.cond_cr do
+--				printf("OLD t.cond_cr[%s] = %s", j, t.cond_cr[j])
+				t.cond_cr[j] = clamp(t.cond_cr[j] + careful_handler_bonus, t.cond_cr[j], 100)
+--				printf("NEW t.cond_cr[%s] = %s", j, t.cond_cr[j])
+			end
+		end
+	end
+	
+	if kind == "i_medical" and ((perks["perk_medicine_man"] * 2) > rand(1,100)) then
+		BaseCreateItem(section, obj, t)
+	end
+	
+	-- Doing the random check here to avoid unnecessary script work if the item doesn't even get to spawn
+	if is_ammo then
 		-- "Plus One" has a 0.1% chance to change any given ammo drop from a container to an ammo type for a player's currently-equipped weapons
 		if perks["perk_plus_one"] > 0 then
-			if is_ammo and rand(1,1000) == 1 then
-				local weapon = x_cxv_perks_data.weapon_list[rand(1,#x_cxv_perks_data.weapon_list)]
-				local wpn_id = weapon:id()
-				local ammo_list = utils_item.get_ammo(weapon:section(), wpn_id)
+			if rand(1,1000) == 1 then
+				local wpn_id = x_cxv_perks_data.weapon_list[rand(1,#x_cxv_perks_data.weapon_list)]
+				local ammo_list = utils_item.get_ammo(nil, wpn_id)
 				local rounds = ammo_list[rand(1,#ammo_list)] or nil
 				
 				if rounds then
@@ -794,10 +795,26 @@ function xr_box.create_items(obj, section, number, rnd)
 				end
 			end
 		end
+		
+		-- Ammo Finder double chance applies to ammo in boxes
+		if perks["perk_ammo_finder"] > 2 then
+			if ammo_double_chance[perks["perk_ammo_finder"]] > rand(1,100) then
+				-- double the ammo amount dropped
+				if t and t.ammo then
+					t.ammo = t.ammo * 2
+					
+				-- if no ammo amount, then drop a second box
+				else
+					BaseCreateItem(section, obj, t)
+				end
+			end
+		end
 	end
 	
-	BoxCreateItems(obj, section, number, rnd)
+	return BaseCreateItem(section, obj, t)
 end
+
+if xr_box then xr_box.alife_create_item = box_double_ammo end
 
 --------------------------------------------------------------------------------------------------------------
 ------------------------------------ Careful Handler for Parts on Weapons ------------------------------------
