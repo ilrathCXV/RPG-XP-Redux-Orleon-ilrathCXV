@@ -89,7 +89,7 @@ end
 --------------------------------------------------------------------------------------------------------------
 local GActor_OnBeforeHitCallback = _G.CActor__BeforeHitCallback
 _G.CActor__BeforeHitCallback = function(actor, shit, bone_id)
---	rpg_damage_reduction(shit, bone_id)
+	rpg_damage_reduction(shit, bone_id)
 	return GActor_OnBeforeHitCallback(actor, shit, bone_id)
 end
 
