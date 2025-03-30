@@ -1,5 +1,6 @@
 local perks = x_cxv_perks_data.perks
 local gunner_damage_multiplier = 0.05
+local gunner_shotgun_ap_factor = 0.05
 local gunner_ap_additions = {[0] = 0, [1] = 0.002, [2] = 0.004, [3] = 0.006, [4] = 0.008, [5] = 0.010 }
 
 local jamming_bones = {
@@ -686,7 +687,7 @@ local function modify_ap(ini,sec,stat,def)
 			if (ap_weapon_class == "heavy") or (ap_weapon_class == "sniper") then 
 				return_stat = return_stat + gunner_ap_additions[perks["perk_heavy_gunner"]]
 			elseif (ap_weapon_class == "shotgun") then
-				return_stat = return_stat * (1 + (gunner_damage_multiplier * perks["perk_heavy_gunner"]))
+				return_stat = return_stat * (1 + (gunner_shotgun_ap_factor * perks["perk_heavy_gunner"]))
 			end
 		end
 		

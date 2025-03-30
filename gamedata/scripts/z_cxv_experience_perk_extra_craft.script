@@ -44,5 +44,5 @@ function ExtraItemNews()
 	local sms = actor_menu.set_msg
 	local message = game.translate_string("st_craft_bonus")
 	sms(2, message, 5)
-	play_sound_on_actor("grok\\actor_10", 0.75, random_float(0.85, 1.05))
+	play_sound_on_actor("grok\\actor_10", 1, random_float(0.85, 1.05))
 end

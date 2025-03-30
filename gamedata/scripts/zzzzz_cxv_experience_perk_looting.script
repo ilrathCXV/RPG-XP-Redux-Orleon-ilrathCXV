@@ -359,14 +359,22 @@ local med_man_proc = false
 local meds_found = false
 local ammo_double_chance = { [0] = 0, [1] = 0, [2] = 0, [3] = 1, [4] = 3, [5] = 5 }
 
+-- needed so that certain functions only adjust loot when looting (script_name.script_name.function doesn't work quite as intended)
+-- without, fieldstripping parts gives condition via "Careful Handler"
+-- will be used for other looting-based functions as well
+local should_proc = false
+local is_stash = false
+
 base_death_loot = death_manager.create_release_item
 death_manager.create_release_item = function(npc)
 	if not npc then return end
 	med_man_proc = (perks["perk_medicine_man"] * 2) > rand(1,100)
 	meds_found = false
-	
+	should_proc = true
+	is_stash = false
 	base_death_loot(npc)
 	looting_enemy(npc)
+	should_proc = false
 end
 
 base_stash_loot = treasure_manager.try_spawn_treasure
@@ -375,8 +383,11 @@ treasure_manager.try_spawn_treasure = function(box, ...)
 	if not treasure_manager.caches[id] then return end
 	med_man_proc = (perks["perk_medicine_man"] * 2) > rand(1,100)
 	meds_found = false
+	should_proc = true
+	is_stash = true
 	base_stash_loot(box, ...)
 	looting_enemy(box)
+	should_proc = false
 end
 
 function random_key_from_table(t)
@@ -420,8 +431,8 @@ function looting_enemy(victim)
 		local random_task_sec = z_cxv_experience_perk_fetch_finder.get_random_sec()
 		local random_sec_count = z_cxv_experience_perk_fetch_finder.get_sec_count(random_task_sec)
 		if random_task_sec and random_sec_count > 0 then
-			local random_ceil = (fetch_finder_count_chances[math.min(random_sec_count, 5)] * ((IsInvbox(victim) and 0.5) or 1)) or 33
---			printf("[RPG] task item val: %s | random chance: %s", random_sec_count, round_idp(1/random_ceil * 100, 2))
+			local random_ceil = (fetch_finder_count_chances[math.min(random_sec_count, 5)] * ((is_stash and 0.5) or 1)) or 33
+			printf("[RPG] task item val: %s | random chance: %s", random_sec_count, round_idp(1/random_ceil * 100, 2))
 			if rand(1, random_ceil) == 1 then
 				printf("[RPG] Fetch Finder creating item: %s", random_task_sec)
 				local kind = SYS_GetParam(0, random_task_sec, "kind")
@@ -437,7 +448,7 @@ function looting_enemy(victim)
 
 ------------------------------------------------------------> Arte-finder
 	local artyDrop = (perks["perk_artefinder"] > rand(1,100))
-	if artyDrop and not IsInvbox(victim) then
+	if artyDrop and not is_stash then
 		local allowed_artefacts = drx_da_main_artefacts.allowed_artefacts
 		alife_create_item(allowed_artefacts[rand(#allowed_artefacts)], victim)
 	end
@@ -461,18 +472,28 @@ function death_manager.set_weapon_drop_condition(npc,itm)
 end
 
 BaseSetData = utils_stpk.set_item_data
-function adjust_item_data_npc(data, se_obj)
+--function adjust_item_data_npc(data, se_obj)
+function utils_stpk.set_item_data(data, se_obj)
+	
+	if not should_proc then
+		return BaseSetData(data, se_obj)
+	end
 	
 	if perks["perk_careful_handler"] > 0 and (data and data.condition) then
-		printf("Changing NPC loot condition (%s)", data.condition)
-		data.condition = data.condition + perks["perk_careful_handler"] * 3 * 0.01
-		printf("New NPC loot condition (%s)", data.condition)
+		printf("Changing loot condition (%s)", data.condition)
+		data.condition = data.condition + perks["perk_careful_handler"] * ((is_stash and 6) or 3) * 0.01
+		printf("New loot condition (%s)", data.condition)
 	end
 	
 	return BaseSetData(data, se_obj)
 end
 
+--[[
 function adjust_item_data_stash(data, se_obj)
+	
+	if not should_proc then
+		return BaseSetData(data, se_obj)
+	end
 	
 	if perks["perk_careful_handler"] > 0 and (data and data.condition) then
 		printf("Changing stash loot condition (%s)", data.condition)
@@ -485,10 +506,14 @@ end
 
 if treasure_manager then treasure_manager.utils_stpk.set_item_data = adjust_item_data_stash end
 if death_manager then death_manager.utils_stpk.set_item_data = adjust_item_data_npc end
-
+]]
 
 BaseCreateItem = alife_create_item
 function looting_perk_item(section, obj, t)
+	
+	if not should_proc then
+		return BaseCreateItem(section, obj, t)
+	end
 	
 	if not section or not obj then
 		return BaseCreateItem(section, obj, t)
@@ -500,7 +525,7 @@ function looting_perk_item(section, obj, t)
 	
 	local kind = SYS_GetParam(0, section, "kind")
 	if perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) then
-		local careful_handler_bonus = perks["perk_careful_handler"] * 3 * (IsInvbox(box) and 2 or 1)
+		local careful_handler_bonus = perks["perk_careful_handler"] * 3 * (is_stash and 2 or 1)
 		if t.cond then
 --			printf("OLD t.cond = %s", t.cond)
 			t.cond = clamp(t.cond + (careful_handler_bonus * 0.01), t.cond, 1)
@@ -524,14 +549,14 @@ function looting_perk_item(section, obj, t)
 	
 	if (t and t.ammo) and perks["perk_ammo_finder"] > 2 then
 		if ammo_double_chance[perks["perk_ammo_finder"]] > rand(1,100) then
-			t.ammo = t.ammo * 2 * (IsInvbox(obj) and 2 or 1)
+			t.ammo = t.ammo * 2 * (is_stash and 2 or 1)
 		end
 	end
 	
 	if kind == "i_medical" and (med_man_proc) then
 		meds_found = true
 		BaseCreateItem(section, obj, t)
-		if IsInvbox(obj) then
+		if is_stash then
 			BaseCreateItem(section, obj, t)
 		end
 	end
@@ -549,14 +574,14 @@ function looting_perks_proc(box)
 	-- Stashes generate twice the loot
 	if (perks["perk_ammo_finder"] * 2 > rand(1,100)) then
 		try_spawn_ammo_parts(box)
-		if IsInvbox(box) then
+		if is_stash then
 			try_spawn_ammo_parts(box)
 		end
 	end
 	
 	if perks["perk_medicine_man"] > 2 and med_man_proc and (not meds_found) then
 		try_spawn_meds(box)
-		if IsInvbox(box) then
+		if is_stash then
 			try_spawn_meds(box)
 		end
 	end
@@ -604,7 +629,7 @@ function find_spare_ammo(wpn_id, box)
 	end
 	
 	local box_size = ini_sys:r_float_ex(rounds, "box_size") or 1
-	local amount = (IsInvbox(box) and (rand(1,100) == 1) and box_size) or 1
+	local amount = (is_stash and (rand(1,100) == 1) and box_size) or 1
 	
 	if (amount == box_size) then
 		alife_create_item(rounds, box)
@@ -712,6 +737,7 @@ end
 ----------------------------------------------------------------------------------------
 -- ilrathCXV (01/10/25): Add small chance to find loot from boxes and crates ( was +2.5% to each item roll, now is a multiplier )
 -- ilrathCXV (03/06/25): Reverting to flat chance, but it will be +0.5% instead
+local box_loot_proc = false
 BoxCreateItems = xr_box.create_items
 function xr_box.create_items(obj, section, number, rnd)
 	-- Each item gets its drop chance increased
@@ -728,11 +754,17 @@ function xr_box.create_items(obj, section, number, rnd)
 		end
 	end
 	
+	box_loot_proc = true
 	BoxCreateItems(obj, section, number, rnd)
+	box_loot_proc = false
 end
 
 -- ilrathCXV (03/06/25): Utilizing the same monkeypatch logic but with an added twist just for "Plus One"
-function box_double_ammo(section, obj, t)
+function box_loot_mod(section, obj, t)
+	
+	if not box_loot_proc then
+		return BaseCreateItem(section, obj, t)
+	end
 	
 	if not (perks["perk_careful_handler"] > 0 or perks["perk_medicine_man"] > 0 or perks["perk_ammo_finder"] > 0 or perks["perk_plus_one"] > 0) then
 		return BaseCreateItem(section, obj, t)
@@ -814,7 +846,7 @@ function box_double_ammo(section, obj, t)
 	return BaseCreateItem(section, obj, t)
 end
 
-if xr_box then xr_box.alife_create_item = box_double_ammo end
+if xr_box then xr_box.alife_create_item = box_loot_mod end
 
 --------------------------------------------------------------------------------------------------------------
 ------------------------------------ Careful Handler for Parts on Weapons ------------------------------------
