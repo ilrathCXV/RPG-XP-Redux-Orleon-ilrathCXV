@@ -18,6 +18,7 @@ perks = {
 	["perk_fun_allowed"] = 0,
 	["perk_glass_cannon"] = 0,
 	["perk_gunslinger"] = 0,
+	["perk_hells_kitchen"] = 0,
 	["perk_heavy_gunner"] = 0,
 	["perk_iron_resolve"] = 0,
 	["perk_jamming_shot"] = 0,
@@ -279,10 +280,74 @@ end
 local shotgun_ammo_check = {
 	["ammo_12x70_buck"] = true,
 	["ammo_12x76_zhekan"] = true,
+	["ammo_12x76_dart"] = true,
 	["ammo_23x75_shrapnel"] = true,
+	["ammo_23x75_barrikada"] = true,
 	["ammo_23_eco"] = true,
 	["ammo_20x70_buck"] = true,
+	["ammo_20x70_devastator"] = true,
+	["ammo_20x70_star"] = true,
+	
+	-- For those of you who gave yourself the Bull shotgun
+	["ammo_12x76_bull"] = true,
+	
+	-- WTF Tasks Compat. (though why are you using this for any sort of combat lol)
+	["ammo_23_igi_eco"] = true,
 }
+
+-- checks if valid "Zone Slayer" shotguns are actually using shotgun ammo (check first available ammo type)
+function shotgun_ammo_validity_check(wpn_sec)
+	
+	local ammo_table = parse_list(ini_sys,wpn_sec,"ammo_class")
+	if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
+		return true
+	end
+	
+	return false
+end
+
+function zone_slayer_validity_check(wpn_sec, wpn_id)
+	
+	if not wpn_sec then return end
+	if not wpn_id then return end
+	
+	if perks["perk_zone_slayer"] == 0 then return end
+	
+	-- check if clip size is small enough (double-/single-barrel or that one bolt-action TOZ)
+	local clip = ini_sys:r_float_ex(wpn_sec, "ammo_mag_size") or 3
+	if clip <= 2 then
+		if shotgun_ammo_validity_check(wpn_sec) == true then
+			shotgun_list[#shotgun_list + 1] = wpn_id
+			return
+		end
+	end
+	
+	-- check if tube-fed pump-action shotgun
+	if perks["perk_zone_slayer"] < 2 then return end
+	
+	-- need to use SYS_GetParam so that it can return nil (r_string just crashes if said variable doesn't exist)
+	local tri_state = SYS_GetParam(0, wpn_sec, "tri_state_reload") or "off"
+	if tri_state and tri_state == "on" then
+		local rpm = ini_sys:r_float_ex(wpn_sec, "rpm")
+		if rpm and rpm <= 120 then	-- 120 is a generous value
+			local fire_mode_list = parse_list(ini_sys,wpn_sec,"fire_modes")
+			if fire_mode_list then
+				for i = 1, #fire_mode_list do
+					if fire_mode_list[i] == "-1" then
+						return	-- completely exit since we found full-auto (pumps shouldn't have full-auto)
+					end
+				end
+			end
+			
+			-- finally, check first ammo type then add to list if valid
+			if shotgun_ammo_validity_check(wpn_sec) == true then
+				shotgun_list[#shotgun_list + 1] = wpn_id
+				return
+			end
+		end
+	end
+	
+end
 
 function build_weapon_list()
 
@@ -292,52 +357,28 @@ function build_weapon_list()
 	if (perks["perk_zone_slayer"] < 1) and (perks["perk_plus_one"] < 1) then return end
 	local w1, w2, w3, w4 = db.actor:item_in_slot(3), db.actor:item_in_slot(2), db.actor:item_in_slot(1), db.actor:item_in_slot(5)
 		
-	-- if w1 and not IsValidMelee(w1) then
 	if (IsWeapon(w1) and (not IsItem("fake_ammo_wpn",w1:section()))) then
 		weapon_list[#weapon_list + 1] = w1:id() 
 		printf('Weapon 1: %s', w1:section())
-		local clip = ini_sys:r_float_ex(w1:section(), "ammo_mag_size") or 3
-		if clip <= 2 then
-			local ammo_table = parse_list(ini_sys,w1:section(),"ammo_class")
-			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
-				shotgun_list[#shotgun_list + 1] = w1:id() 
-			end
-		end
+		zone_slayer_validity_check(w1:section(), w1:id())
 	end
-	-- if w2 and not IsValidMelee(w2) and not IsBinoc(w2) then
+
 	if (IsWeapon(w2) and (not IsItem("fake_ammo_wpn",w2:section()))) then
 		weapon_list[#weapon_list + 1] = w2:id() 
 		printf('Weapon 2: %s', w2:section())
-		local clip = ini_sys:r_float_ex(w2:section(), "ammo_mag_size") or 3
-		if clip <= 2 then
-			local ammo_table = parse_list(ini_sys,w2:section(),"ammo_class")
-			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
-				shotgun_list[#shotgun_list + 1] = w2:id() 
-			end
-		end
+		zone_slayer_validity_check(w2:section(), w2:id())
 	end
-	-- if w3 and not IsValidMelee(w3) then
+
 	if (IsWeapon(w3) and (not IsItem("fake_ammo_wpn",w3:section()))) then
 		weapon_list[#weapon_list + 1] = w3:id() 
 		printf('Weapon 3: %s', w3:section())
-		local clip = ini_sys:r_float_ex(w3:section(), "ammo_mag_size") or 3
-		if clip <= 2 then
-			local ammo_table = parse_list(ini_sys,w3:section(),"ammo_class")
-			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
-				shotgun_list[#shotgun_list + 1] = w3:id() 
-			end
-		end
+		zone_slayer_validity_check(w3:section(), w3:id())
 	end
+	
 	if (IsWeapon(w4) and (not IsItem("fake_ammo_wpn",w4:section()))) then
 		weapon_list[#weapon_list + 1] = w4:id() 
 		printf('Weapon 4: %s', w4:section())
-		local clip = ini_sys:r_float_ex(w4:section(), "ammo_mag_size") or 3
-		if clip <= 2 then
-			local ammo_table = parse_list(ini_sys,w4:section(),"ammo_class")
-			if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
-				shotgun_list[#shotgun_list + 1] = w4:id() 
-			end
-		end
+		zone_slayer_validity_check(w4:section(), w4:id())
 	end
 end
 
@@ -379,4 +420,5 @@ function on_game_start()
 	RegisterScriptCallback("actor_on_first_update",			build_weapon_list)
 	RegisterScriptCallback("actor_item_to_ruck",			check_weapon_list_ruck)
 	RegisterScriptCallback("actor_item_to_slot",			build_weapon_list)
+	
 end

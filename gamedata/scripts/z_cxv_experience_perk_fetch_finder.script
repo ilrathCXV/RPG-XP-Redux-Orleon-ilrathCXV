@@ -3,12 +3,12 @@ task_item_list = {}
 
 invalid_kinds = {
 	["i_quest"] = true,
-	["w_pistol"] = true,
-	["w_smg"] = true,
+	["w_pistol"] = false,
+	["w_smg"] = false,
 	["w_rifle"] = true,
-	["w_shotgun"] = true,
+	["w_shotgun"] = false,
 	["w_sniper"] = true,
-	["w_melee"] = true,
+	["w_melee"] = false,
 	["w_explosive"] = true,
 	["w_heavy"] = true,
 }
@@ -18,6 +18,10 @@ damaged_kinds = {
 	["i_arty_cont"] = true,
 	["i_arty_junk"] = true,
 	["i_mutant_belt"] = true,
+	["w_pistol"] = true,
+	["w_shotgun"] = true,
+	["w_melee"] = true,
+	["w_smg"] = true,
 }
 
 blacklisted_sections = {
@@ -202,4 +206,58 @@ function on_game_start()
 	else
 		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
 	end
+end
+
+local location_ranks = {
+	["k00_marsh"] = "trainee",
+	["l01_escape"] = "novice",
+	["l02_garbage"] = "trainee",
+	["y04_pole"] = "novice",
+	["l05_bar"] = "trainee",
+	["l03_agroprom"] = "trainee",
+	["k01_darkscape"] = "experienced",
+	["l04_darkvalley"] = "trainee",
+	["k02_trucks_cemetery"] = "experienced",
+	["l06_rostok"] = "trainee",
+	["l07_military"] = "experienced",
+	["l09_deadcity"] = "trainee",
+	["l08_yantar"] = "trainee",
+	["l03u_agr_underground"] = "experienced",
+	["jupiter"] = "professional",
+	["l10_limansk"] = "professional",
+	["l04u_labx18"] = "professional",
+	["l10_red_forest"] = "professional",
+	["l08u_brainlab"] = "experienced",
+	["l10_radar"] = "professional",
+	["l10u_bunker"] = "veteran",
+	["l11_hospital"] = "veteran",
+	["l12_stancia"] = "expert",
+	["l12_stancia_2"] = "expert",
+	["l12u_control_monolith"] = "master",
+	["l12u_sarcofag"] = "master",
+	["l13_generators"] = "legend",
+	["l13u_warlab"] = "legend",
+	["labx8"] = "experienced",
+	["pripyat"] = "veteran",
+	["grimwood"] = "experienced",
+	["promzona"] = "experienced",
+	["poselok_ug"] = "veteran",
+	["bunker_a1"] = "veteran",
+	["collaider"] = "veteran",
+	["l11_pripyat"] = "veteran",
+}
+
+-- Needed for weapon drops for Fetch Finder
+BaseObjRank = ranks.get_obj_rank_name
+function ranks.get_obj_rank_name( obj )
+	if obj and IsInvbox(obj) then
+		local level_name = level.name()
+		if level_name and location_ranks[level_name] then
+			return location_ranks[level_name]
+		else
+			return "trainee"
+		end
+	end
+	
+	return BaseObjRank( obj )
 end

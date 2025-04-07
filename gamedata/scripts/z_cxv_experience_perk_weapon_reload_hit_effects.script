@@ -727,6 +727,8 @@ if grok_bo then
 			
 			-- Allow the original function to do its work, the AP will be modified based on the weapon class and perk levels
 			baseGrokNPC(npc, shit, bone_id, flags)
+			
+			zone_slayer_increase = false
 		end
 	end
 end
@@ -764,6 +766,15 @@ if cxv_artigrok_bo then
 			-- return the valid data so damage calculations can continue + have the AP modification take effect
 			return return_data
 			
+		end
+	end
+	
+	if cxv_artigrok_bo.npc_on_before_hit then
+		BaseNPCHit = cxv_artigrok_bo.npc_on_before_hit
+		function cxv_artigrok_bo.npc_on_before_hit(npc, shit, bone_id, ...)
+			local npc_hit_data = BaseNPCHit(npc, shit, bone_id, ...)
+			zone_slayer_increase = false
+			return npc_hit_data
 		end
 	end
 end

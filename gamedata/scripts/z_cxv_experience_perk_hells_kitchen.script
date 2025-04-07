@@ -1,0 +1,62 @@
+local cooking_supplies_cost_red = { [0] = 0, [1] = 0.15, [2] = 0.4, [3] = 0.7 }	-- 15/40/70% off each rank
+local cooking_supplies = {
+	["charcoal"] = true,
+	["kerosene"] = true,
+	["explo_jerrycan_fuel"] = true,
+	["explo_balon_gas"] = true,
+}
+
+local cooked_meals_cost_inc = { [0] = 0, [1] = 0.2, [2] = 0.45, [3] = 0.8 }	-- 20/45/80% more for selling cooked food
+local cooked_meals = {
+	["meat_flesh"] = true,
+	["meat_boar"] = true,
+	["meat_dog"] = true,
+	["meat_pseudodog"] = true,
+	["meat_bloodsucker"] = true,
+	["meat_psysucker"] = true,
+	["meat_snork"] = true,
+	["meat_chimera"] = true,			
+	["meat_lurker"] = true,			
+	["meat_tushkano"] = true,
+	["meat_flesh_b"] = true,
+	["meat_boar_b"] = true,
+	["meat_dog_b"] = true,
+	["meat_pseudodog_b"] = true,
+	["meat_bloodsucker_b"] = true,
+	["meat_psysucker_b"] = true,
+	["meat_snork_b"] = true,
+	["meat_chimera_b"] = true,			
+	["meat_lurker_b"] = true,			
+	["meat_tushkano_b"] = true,	
+	["meat_flesh_a"] = true,
+	["meat_boar_a"] = true,
+	["meat_dog_a"] = true,
+	["meat_pseudodog_a"] = true,
+	["meat_bloodsucker_a"] = true,
+	["meat_psysucker_a"] = true,
+	["meat_snork_a"] = true,
+	["meat_chimera_a"] = true,			
+	["meat_lurker_a"] = true,			
+	["meat_tushkano_a"] = true	
+}
+
+function hells_kitchen_cost(kind, obj, profile, calculated_cost, ret)
+	local sec = obj:section()
+	local hells_kitchen_lvl = math.min(x_cxv_perks_data.perks["perk_hells_kitchen"], 3) or 0
+	if profile.mode == 1 and cooked_meals[sec] then -- when selling
+		printf("Item (%s) old cost: %s", sec, ret.new_cost or calculated_cost)
+		ret.new_cost = math.floor((ret.new_cost or calculated_cost) * (1 + cooked_meals_cost_inc[hells_kitchen_lvl]))
+		printf("Item (%s) new cost: %s", sec, ret.new_cost)
+	elseif profile.mode == 2 and cooking_supplies[sec] then -- when buying
+		printf("Item (%s) old cost: %s", sec, ret.new_cost or calculated_cost)
+		ret.new_cost = math.ceil((ret.new_cost or calculated_cost) * (1 - cooking_supplies_cost_red[hells_kitchen_lvl]))
+		printf("Item (%s) new cost: %s", sec, ret.new_cost)
+	end
+	
+	-- needs to update cost table for giving the player XP for buying/selling
+	z_cxv_experience_perk_bartering.item_costs[obj:id()] = ret.new_cost or calculated_cost
+end
+
+function on_game_start()
+	RegisterScriptCallback("on_get_item_cost", hells_kitchen_cost)
+end

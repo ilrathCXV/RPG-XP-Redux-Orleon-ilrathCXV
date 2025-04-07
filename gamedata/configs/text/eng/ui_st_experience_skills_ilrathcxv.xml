@@ -1109,14 +1109,27 @@
         <text>The Zone Slayer</text>
     </string>
 	<string id="st_perk_zone_slayer_desc">
-        <text>Your affinity for double-barreled shotguns has awakened a hidden power within you...</text>
+        <text>Your affinity for certain shotguns has awakened a hidden power within you...</text>
     </string>
 	<string id="st_perk_zone_slayer_desc_1">
-		<text>Your affinity for double-barreled shotguns has awakened a hidden power within you...\n \n
+		<text>Your affinity for certain shotguns has awakened a hidden power within you...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage by an additional %c[d_green]5% against mutants%c[ui_gray_2]with %c[yellow]shotguns with an ammo capacity of 2 or less\n
-		%c[d_blue] - %c[ui_gray_2] Stalkers killed by %c[yellow]one of your shotguns with an ammo capacity of 2 or less%c[ui_gray_2] will drop 1 random shotgun shell\n
-		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+5 %c[ui_gray_2]for %c[yellow]shotguns with an ammo capacity of 2 or less\n
+		%c[d_blue] - %c[ui_gray_2] The following bonuses are applied to %c[yellow]shotguns with an ammo capacity of 2 or less\n
+		%c[d_blue] - %c[ui_gray_2] These valid shotguns must be using %c[yellow]any type of shotgun ammo (12-gauge, 20-gauge, 23x75)\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage by an additional %c[d_green]5% against mutants\n
+		%c[d_blue] - %c[ui_gray_2] Stalkers killed by %c[yellow]valid shotguns%c[ui_gray_2] will drop 1 random shotgun shell\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+5 %c[ui_gray_2]for %c[yellow]valid shotguns\n
+		%c[d_green] - %c[ui_gray_2] The final AP of said ammo will be affected by the AP multiplier from "Heavy Gunner"
+		</text>
+    </string>
+	<string id="st_perk_zone_slayer_desc_2">
+		<text>Your affinity for certain shotguns has awakened a hidden power within you...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] The following bonuses are applied to %c[yellow]shotguns with an ammo capacity of 2 or less %c[d_green]AND tube-fed pump-action shotguns\n
+		%c[d_blue] - %c[ui_gray_2] These valid shotguns must be using %c[yellow]any type of shotgun ammo (12-gauge, 20-gauge, 23x75)\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage by an additional %c[d_green]5% against mutants\n
+		%c[d_blue] - %c[ui_gray_2] Stalkers killed by %c[yellow]valid shotguns%c[ui_gray_2] will drop 1 random shotgun shell\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+5 %c[ui_gray_2]for %c[yellow]valid shotguns\n
 		%c[d_green] - %c[ui_gray_2] The final AP of said ammo will be affected by the AP multiplier from "Heavy Gunner"
 		</text>
     </string>
@@ -1399,24 +1412,24 @@
 	<string id="st_perk_demo_expert_desc_1">
         <text>The Zone has been flooded with explosives in an effort to erradicate you. Thankfully, you've found a spare flak jacket in your travels.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[yellow]up to a 5% chance %c[ui_gray_2]to have at least one grenade on their person\n
-		%c[d_blue] - %c[ui_gray_2] You now receive %c[d_orange]5% less damage %c[ui_gray_2]from Explosive damage\n
+		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[yellow]up to a 10% chance %c[ui_gray_2]to have at least one grenade on their person\n
+		%c[d_blue] - %c[ui_gray_2] You now receive %c[d_orange]10% less damage %c[ui_gray_2]from Explosive damage\n
 		%c[d_red] NOTE: Explosives are not just items to loot. They will use them against you and other stalkers. Kill them fast enough to claim your prize. PROCEED WITH CAUTION!
 		</text>
     </string>
 	<string id="st_perk_demo_expert_desc_2">
         <text>The Zone has been flooded with explosives in an effort to erradicate you. Thankfully, you've found a spare flak jacket in your travels.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[d_orange]up to a 10% chance %c[ui_gray_2]to have at least one grenade on their person\n
-		%c[d_blue] - %c[ui_gray_2] You now receive %c[yellow]10% less damage %c[ui_gray_2]from Explosive damage\n
+		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[d_orange]up to a 20% chance %c[ui_gray_2]to have at least one grenade on their person\n
+		%c[d_blue] - %c[ui_gray_2] You now receive %c[yellow]20% less damage %c[ui_gray_2]from Explosive damage\n
 		%c[d_red] NOTE: Explosives are not just items to loot. They will use them against you and other stalkers. Kill them fast enough to claim your prize. PROCEED WITH CAUTION!
 		</text>
     </string>
 	<string id="st_perk_demo_expert_desc_3">
         <text>The Zone has been flooded with explosives in an effort to erradicate you. Thankfully, you've found a spare flak jacket in your travels.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[d_red]up to a 15% chance %c[ui_gray_2]to have at least one grenade on their person\n
-		%c[d_blue] - %c[ui_gray_2] You now receive %c[d_green]15% less damage %c[ui_gray_2]from Explosive damage\n
+		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[d_red]up to a 30% chance %c[ui_gray_2]to have at least one grenade on their person\n
+		%c[d_blue] - %c[ui_gray_2] You now receive %c[d_green]30% less damage %c[ui_gray_2]from Explosive damage\n
 		%c[d_blue] - %c[ui_gray_2] Stalkers now have a %c[d_red]0.01% chance %c[ui_gray_2]to spawn with an explosive weapon\n
 		%c[d_red] NOTE: Explosives are not just items to loot. They will use them against you and other stalkers. Kill them fast enough to claim your prize. PROCEED WITH CAUTION!
 		</text>
@@ -1637,6 +1650,34 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] When wearing perk-based artefacts (perkifacts), their effects will behave as if you are wearing %c[d_green]three additional copies\n
 		%c[d_blue] - %c[ui_gray_2] For instance, wearing a 1 "Signet" will result in its effects acting as if you are wearing %c[d_green]4 "Signets"
+		</text>
+    </string>
+	
+	<string id="st_perk_hells_kitchen">
+        <text>Hell's Kitchen</text>
+    </string>
+	<string id="st_perk_hells_kitchen_desc">
+        <text>Knowledge of your culinary skills have made its way through the Zone. Everyone is itching to watch and taste your talent.</text>
+    </string>
+	<string id="st_perk_hells_kitchen_desc_1">
+        <text>Knowledge of your culinary skills have made its way through the Zone. Everyone is itching to watch and taste your talent.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[d_orange]15% cheaper\n
+		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[d_cyan]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_orange]20% more profitable
+		</text>
+    </string>
+	<string id="st_perk_hells_kitchen_desc_2">
+        <text>Knowledge of your culinary skills have made its way through the Zone. Everyone is itching to watch and taste your talent.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[yellow]40% cheaper\n
+		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[d_cyan]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[yellow]45% more profitable
+		</text>
+    </string>
+	<string id="st_perk_hells_kitchen_desc_3">
+        <text>Knowledge of your culinary skills have made its way through the Zone. Everyone is itching to watch and taste your talent.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[d_green]70% cheaper\n
+		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[d_cyan]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_green]80% more profitable
 		</text>
     </string>
 	

@@ -1,5 +1,5 @@
 local totalamounttraded = 0
-local item_costs = {}
+item_costs = {}
 
 function perk_silver_tongued_cost(kind, obj, profile, calculated_cost, ret)
 	if profile.mode == 1 then -- when selling

@@ -405,6 +405,7 @@ function random_key_from_table(t)
 	return #n > 0 and n[math.random(#n)] or nil
 end
 
+local looting_proc_arty = true
 function looting_enemy(victim)
 
 	if not victim then printf("[RPG] No NPC/box found... No loot for you!") return end
@@ -449,8 +450,13 @@ function looting_enemy(victim)
 ------------------------------------------------------------> Arte-finder
 	local artyDrop = (perks["perk_artefinder"] > rand(1,100))
 	if artyDrop and not is_stash then
+		-- no need to do "Careful Handler" since we already adjust it in x_cxv_perks_data.script
+		local min_cond = arti_min_eff
+		local max_cond = arti_max_eff
 		local allowed_artefacts = drx_da_main_artefacts.allowed_artefacts
-		alife_create_item(allowed_artefacts[rand(#allowed_artefacts)], victim)
+		looting_proc_arty = true
+		alife_create_item(allowed_artefacts[rand(#allowed_artefacts)], victim, {cond = rand(min_cond, max_cond)})
+		looting_proc_arty = false
 	end
 	
 ------------------------------------------------------------> Plus One
@@ -475,6 +481,7 @@ BaseSetData = utils_stpk.set_item_data
 --function adjust_item_data_npc(data, se_obj)
 function utils_stpk.set_item_data(data, se_obj)
 	
+	-- not looting, execute the normal functionality
 	if not should_proc then
 		return BaseSetData(data, se_obj)
 	end
@@ -487,26 +494,6 @@ function utils_stpk.set_item_data(data, se_obj)
 	
 	return BaseSetData(data, se_obj)
 end
-
---[[
-function adjust_item_data_stash(data, se_obj)
-	
-	if not should_proc then
-		return BaseSetData(data, se_obj)
-	end
-	
-	if perks["perk_careful_handler"] > 0 and (data and data.condition) then
-		printf("Changing stash loot condition (%s)", data.condition)
-		data.condition = data.condition + perks["perk_careful_handler"] * 6 * 0.01
-		printf("New stash loot condition (%s)", data.condition)
-	end
-	
-	return BaseSetData(data, se_obj)
-end
-
-if treasure_manager then treasure_manager.utils_stpk.set_item_data = adjust_item_data_stash end
-if death_manager then death_manager.utils_stpk.set_item_data = adjust_item_data_npc end
-]]
 
 BaseCreateItem = alife_create_item
 function looting_perk_item(section, obj, t)
@@ -524,7 +511,7 @@ function looting_perk_item(section, obj, t)
 	end
 	
 	local kind = SYS_GetParam(0, section, "kind")
-	if perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) then
+	if perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) and (not looting_proc_arty) then
 		local careful_handler_bonus = perks["perk_careful_handler"] * 3 * (is_stash and 2 or 1)
 		if t.cond then
 --			printf("OLD t.cond = %s", t.cond)
@@ -571,9 +558,10 @@ if death_manager then death_manager.alife_create_item = looting_perk_item end
 
 function looting_perks_proc(box)
 	
-	-- Stashes generate twice the loot
+	
 	if (perks["perk_ammo_finder"] * 2 > rand(1,100)) then
 		try_spawn_ammo_parts(box)
+		-- Stashes generate twice the loot
 		if is_stash then
 			try_spawn_ammo_parts(box)
 		end
@@ -581,6 +569,7 @@ function looting_perks_proc(box)
 	
 	if perks["perk_medicine_man"] > 2 and med_man_proc and (not meds_found) then
 		try_spawn_meds(box)
+		-- Stashes generate twice the loot
 		if is_stash then
 			try_spawn_meds(box)
 		end
@@ -621,6 +610,7 @@ function find_spare_ammo(wpn_id, box)
 			rounds = new_section
 		end
 	end
+	
 	if arti_ammo_utils then	-- for those using Arti's Ammo or ArtiGrok, downgrade ammo to avoid granting rare ammo
 		rounds = arti_ammo_utils.downgrade_ammo(rounds, true)
 	end
@@ -773,7 +763,7 @@ function box_loot_mod(section, obj, t)
 	local kind = SYS_GetParam(0, section, "kind")
 	local is_ammo = (section and IsItem("ammo",section)) or false
 	
-	if perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) then
+	if perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) and (not looting_proc_arty) then
 		local careful_handler_bonus = perks["perk_careful_handler"] * 3
 		if t.cond then
 --			printf("OLD t.cond = %s", t.cond)

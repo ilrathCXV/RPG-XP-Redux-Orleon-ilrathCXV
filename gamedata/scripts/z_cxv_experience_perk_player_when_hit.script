@@ -200,8 +200,8 @@ function rpg_damage_reduction(shit, bone_id)
 	
 ------------------------------------------------------------> Explosive Personality (Damage Reduction)
 	if hitter and x_cxv_perks_data.perks["perk_demo_expert"] > 0 and shit_type == hit.explosion then
-		damage_mult = damage_mult * (1 - (x_cxv_perks_data.perks["perk_demo_expert"] * 0.05))
-		--printf("[RPG - Player When Hit] Explosive Personality %s% damage reduction!", (x_cxv_perks_data.perks["perk_demo_expert"] * 0.05))
+		damage_mult = damage_mult * (1 - (x_cxv_perks_data.perks["perk_demo_expert"] * 0.10))
+		--printf("[RPG - Player When Hit] Explosive Personality %s% damage reduction!", (x_cxv_perks_data.perks["perk_demo_expert"] * 0.10))
 	end
 	
 	if damage_mult < 1 then

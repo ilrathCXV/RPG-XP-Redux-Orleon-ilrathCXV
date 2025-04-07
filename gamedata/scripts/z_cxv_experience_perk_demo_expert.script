@@ -28,8 +28,8 @@ local function create_item(i, box)
 	alife_create_item(i, box)
 end
 
-BaseNPCLoadout = xrs_rnd_npc_loadout.scripton_creation
-function xrs_rnd_npc_loadout.scripton_creation(se_npc)
+BaseNPCLoadout = xrs_rnd_npc_loadout.on_creation
+function xrs_rnd_npc_loadout.on_creation(se_npc)
 	if not (se_npc) then
 		return
 	end
@@ -42,7 +42,7 @@ function xrs_rnd_npc_loadout.scripton_creation(se_npc)
 	BaseNPCLoadout(se_npc)
 	if x_cxv_perks_data.perks["perk_demo_expert"] > 0 then
 		if IsStalker(npc) then
-			if math_random(100) < math_random(x_cxv_perks_data.perks["perk_demo_expert"] * 5) then
+			if math_random(100) < math_random(x_cxv_perks_data.perks["perk_demo_expert"] * 10) then
 				create_item(grenade_list[math_random(#grenade_list)], se_npc)
 			end
 			if x_cxv_perks_data.perks["perk_demo_expert"] == 3 then
