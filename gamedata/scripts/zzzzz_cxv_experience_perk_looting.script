@@ -72,10 +72,10 @@ local function roll_item_tiered(t, box, looter_level)
             local itm = n[2][rand(#n[2])]
             --smr_debug.get_log().info("loot/rolls", "Rolled succesfully for %s (%s >= %s)", itm, r, n[1])
             create_item_random_uses(itm, box)
-            return true
+--            return true
         end
     end
-    return false
+--    return false
 end
 
 --------------------------------------------------------------------------------------------------------------
@@ -450,12 +450,16 @@ function looting_enemy(victim)
 ------------------------------------------------------------> Arte-finder
 	local artyDrop = (perks["perk_artefinder"] > rand(1,100))
 	if artyDrop and not is_stash then
-		-- no need to do "Careful Handler" since we already adjust it in x_cxv_perks_data.script
-		local min_cond = arti_min_eff
-		local max_cond = arti_max_eff
+		-- no need to do "Careful Handler" for arti_min/max
+		local min_cond = (zz_item_artefact and zz_item_artefact.arti_min_eff) or ((perks["perk_careful_handler"] * 3) + 30)
+		local max_cond = (zz_item_artefact and zz_item_artefact.arti_max_eff) or ((perks["perk_careful_handler"] * 3) + 44)
 		local allowed_artefacts = drx_da_main_artefacts.allowed_artefacts
 		looting_proc_arty = true
-		alife_create_item(allowed_artefacts[rand(#allowed_artefacts)], victim, {cond = rand(min_cond, max_cond)})
+		if allowed_artefacts then
+			alife_create_item(allowed_artefacts[rand(#allowed_artefacts)], victim, {cond = rand(min_cond, max_cond)})
+		else
+			alife_create_item("af_skull_miser", victim, {cond = rand(min_cond, max_cond)})
+		end
 		looting_proc_arty = false
 	end
 	
