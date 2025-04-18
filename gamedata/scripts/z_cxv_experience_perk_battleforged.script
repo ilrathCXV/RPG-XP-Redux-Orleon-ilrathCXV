@@ -1,5 +1,6 @@
 local perks = x_cxv_perks_data.perks
 local battleforged_threshold = 70
+gc = game.translate_string
 
 -- Needed for this copy-paste monkeypatch
 cgd = arti_jamming.cgd
