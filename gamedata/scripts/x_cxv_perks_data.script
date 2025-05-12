@@ -296,9 +296,11 @@ local shotgun_ammo_check = {
 }
 
 -- checks if valid "Zone Slayer" shotguns are actually using shotgun ammo (check first available ammo type)
-function shotgun_ammo_validity_check(wpn_sec)
+function shotgun_ammo_validity_check(wpn_sec, wpn_id)
 	
-	local ammo_table = parse_list(ini_sys,wpn_sec,"ammo_class")
+	-- this allows accurate ammo checking
+	local ammo_table = utils_item.get_ammo(wpn_sec, wpn_id)
+
 	if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
 		return true
 	end
@@ -314,7 +316,7 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 	if perks["perk_zone_slayer"] == 0 then return end
 	
 	-- if the weapon is not using shotgun ammo, return
-	if shotgun_ammo_validity_check(wpn_sec) == false then return end
+	if shotgun_ammo_validity_check(wpn_sec, wpn_id) == false then return end
 	
 	-- check if clip size is small enough (double-/single-barrel or that one bolt-action TOZ)
 	local clip = ini_sys:r_float_ex(wpn_sec, "ammo_mag_size") or 3
