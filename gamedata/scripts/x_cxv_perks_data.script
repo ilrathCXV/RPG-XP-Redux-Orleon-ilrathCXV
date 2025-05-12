@@ -313,21 +313,29 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 	
 	if perks["perk_zone_slayer"] == 0 then return end
 	
+	-- if the weapon is not using shotgun ammo, return
+	if shotgun_ammo_validity_check(wpn_sec) == false then return end
+	
 	-- check if clip size is small enough (double-/single-barrel or that one bolt-action TOZ)
 	local clip = ini_sys:r_float_ex(wpn_sec, "ammo_mag_size") or 3
 	if clip <= 2 then
-		if shotgun_ammo_validity_check(wpn_sec) == true then
-			shotgun_list[#shotgun_list + 1] = wpn_id
-			return
-		end
+		shotgun_list[#shotgun_list + 1] = wpn_id
+		return
 	end
 	
-	-- check if tube-fed pump-action shotgun
+	-- check if tube-fed pump-action/single-round-fed-reloaded shotgun
 	if perks["perk_zone_slayer"] < 2 then return end
 	
 	-- need to use SYS_GetParam so that it can return nil (r_string just crashes if said variable doesn't exist)
 	local tri_state = SYS_GetParam(0, wpn_sec, "tri_state_reload") or "off"
 	if tri_state and tri_state == "on" then
+		
+		-- Rank 3: All shotguns that reload one shell at a time are valid
+		if perks["perk_zone_slayer"] > 2 then
+			shotgun_list[#shotgun_list + 1] = wpn_id
+			return
+		end
+		
 		local rpm = ini_sys:r_float_ex(wpn_sec, "rpm")
 		if rpm and rpm <= 120 then	-- 120 is a generous value
 			local fire_mode_list = parse_list(ini_sys,wpn_sec,"fire_modes")
@@ -339,11 +347,9 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 				end
 			end
 			
-			-- finally, check first ammo type then add to list if valid
-			if shotgun_ammo_validity_check(wpn_sec) == true then
-				shotgun_list[#shotgun_list + 1] = wpn_id
-				return
-			end
+			-- finally, add to list if valid
+			shotgun_list[#shotgun_list + 1] = wpn_id
+			return
 		end
 	end
 	

@@ -37,12 +37,11 @@ local stow_anims = {
 
 
 function fast_hands_speed(anim_table,obj)
-	-- if not IsWeapon(obj) then return end
 	
 	if (x_cxv_perks_data.perks["perk_fast_hands"] < 1) then return end
 	if not stow_anims[anim_table.anm_name] then return end
 	
-	local anm_speed_base = anim_table.anm_speed
+	local animation_speed = anim_table.anm_speed
 	
 	local swap_string = tostring(anim_table.anm_name)
 	local item_sec = obj:section()
@@ -52,14 +51,14 @@ function fast_hands_speed(anim_table,obj)
 
 	for k, v in pairs(swap_val) do
 		if tonumber(v) then
-			anm_speed_base = tonumber(v)
+			animation_speed = tonumber(v)
 			break
 		end
 	end
 	
 	local swap_bonus = 1 + (fast_hands_bonuses[x_cxv_perks_data.perks["perk_fast_hands"]] * 0.01)
 	-- printf("[RPG] Swap Bonus: %s", swap_bonus)
-	anim_table.anm_speed = anm_speed_base * swap_bonus
+	anim_table.anm_speed = animation_speed * swap_bonus
 	
 end
 

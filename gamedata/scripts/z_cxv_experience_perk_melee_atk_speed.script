@@ -5,13 +5,24 @@ melee_anims = {
 	anm_attack2 = true,
 	anm_attack2_e = true,
 	anm_attack_e = true,
+	
+	-- animation script additions
+	anm_attack_svariant1 = true,
+	anm_attack_svariant2 = true,
+	anm_attack_svariant3 = true
+	
 }
 
 
 function berserker_melee_speed(anim_table,obj)
-	if (x_cxv_perks_data.perks["perk_berserker"] <= 0) then return end
 	
-	local melee_string = tostring(anm_name)
+	if (x_cxv_perks_data.perks["perk_berserker"] <= 0) then return end
+	if not melee_anims[anim_table.anm_name] then return end
+	
+	if (not IsWeapon(obj)) then return end
+	if obj:parent() and obj:parent():id() ~= AC_ID then return end
+	
+	local melee_string = tostring(anim_table.anm_name)
 	local wpn_sec = obj:section()
 	local hud_sec = ini_sys:r_string_ex(wpn_sec,"hud")
 	

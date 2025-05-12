@@ -49,16 +49,14 @@ local reload_anims = {
 }
 
 function actor_on_hud_animation_play(anim_table,obj)
-	if (not IsWeapon(obj)) then return end
 	
-	local anm_name = anim_table.anm_name
-	-- printf("[Rapid Reload] Animation Name: %s", anm_name)
-	
-	if obj:parent() and obj:parent():id() ~= AC_ID then return end
+	local anm_name = anim_table.anm_name	
 	
 	if (x_cxv_perks_data.perks["perk_rapid_reload"] < 1) and (x_cxv_perks_data.perks["perk_zone_slayer"] < 1) and (x_cxv_perks_data.perks["perk_wick_mode"] < 1) then return end
-
 	if not reload_anims[anm_name] then return end
+
+	if (not IsWeapon(obj)) then return end
+	if obj:parent() and obj:parent():id() ~= AC_ID then return end
 
 	local reload_string = tostring(anm_name)
 	local wpn_sec = obj:section()

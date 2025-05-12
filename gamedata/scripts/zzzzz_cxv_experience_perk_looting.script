@@ -2,7 +2,7 @@ local was_medicine_found = false
 local perks = x_cxv_perks_data.perks
 damaged_task_kind_list = z_cxv_experience_perk_fetch_finder.damaged_kinds
 
-local fetch_finder_count_chances = {[0] = 1000, [1] = 33, [2] = 25, [3] = 20, [4] = 18, [5] = 16}
+local fetch_finder_count_chances = {[0] = 1000, [1] = 33, [2] = 25, [3] = 20, [4] = 18, [5] = 16}	-- 0.1%/3.03%/4.0%/5.0%/5.55~%/6.25%
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 local ammo_parts_check = {

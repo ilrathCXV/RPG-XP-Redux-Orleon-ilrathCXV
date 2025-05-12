@@ -59,31 +59,36 @@
 	<string id="st_perk_rapid_reload_desc_1">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]10%
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]10%\n
+		%c[d_red] -  This perk will cause your reload animations to become de-synced with the reload sounds (engine limitation)
 		</text>
     </string>
 	<string id="st_perk_rapid_reload_desc_2">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]20%
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]20%\n
+		%c[d_red] -  This perk will cause your reload animations to become de-synced with the reload sounds (engine limitation)
 		</text>
     </string>
 	<string id="st_perk_rapid_reload_desc_3">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]35%
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]35%\n
+		%c[d_red] -  This perk will cause your reload animations to become de-synced with the reload sounds (engine limitation)
 		</text>
     </string>
 	<string id="st_perk_rapid_reload_desc_4">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]50%
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]50%\n
+		%c[d_red] -  This perk will cause your reload animations to become de-synced with the reload sounds (engine limitation)
 		</text>
     </string>
 	<string id="st_perk_rapid_reload_desc_5">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]75%
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]75%\n
+		%c[d_red] -  This perk will cause your reload animations to become de-synced with the reload sounds (engine limitation)
 		</text>
     </string>
 	
@@ -1115,7 +1120,7 @@
 		<text>Your affinity for certain shotguns has awakened a hidden power within you...\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] The following bonuses are applied to %c[yellow]shotguns with an ammo capacity of 2 or less\n
-		%c[d_blue] - %c[ui_gray_2] These valid shotguns must be using %c[yellow]any type of shotgun ammo (12-gauge, 20-gauge, 23x75)\n
+		%c[d_blue] - %c[ui_gray_2] Any weapon using %c[yellow]any type of shotgun ammo (12-gauge, 20-gauge, 23x75)%c[ui_gray_2] will be counted as a shotgun\n
 		%c[d_blue] - %c[ui_gray_2] Increase damage by an additional %c[d_green]5% against mutants\n
 		%c[d_blue] - %c[ui_gray_2] Stalkers killed by %c[yellow]valid shotguns%c[ui_gray_2] will drop 1 random shotgun shell\n
 		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+5 %c[ui_gray_2]for %c[yellow]valid shotguns\n
@@ -1126,7 +1131,18 @@
 		<text>Your affinity for certain shotguns has awakened a hidden power within you...\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] The following bonuses are applied to %c[yellow]shotguns with an ammo capacity of 2 or less %c[d_green]AND tube-fed pump-action shotguns\n
-		%c[d_blue] - %c[ui_gray_2] These valid shotguns must be using %c[yellow]any type of shotgun ammo (12-gauge, 20-gauge, 23x75)\n
+		%c[d_blue] - %c[ui_gray_2] Any weapon using %c[yellow]any type of shotgun ammo (12-gauge, 20-gauge, 23x75)%c[ui_gray_2] will be counted as a shotgun\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage by an additional %c[d_green]5% against mutants\n
+		%c[d_blue] - %c[ui_gray_2] Stalkers killed by %c[yellow]valid shotguns%c[ui_gray_2] will drop 1 random shotgun shell\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+5 %c[ui_gray_2]for %c[yellow]valid shotguns\n
+		%c[d_green] - %c[ui_gray_2] The final AP of said ammo will be affected by the AP multiplier from "Heavy Gunner"
+		</text>
+    </string>
+	<string id="st_perk_zone_slayer_desc_3">
+		<text>Your affinity for certain shotguns has awakened a hidden power within you...\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] The following bonuses are applied to %c[yellow]shotguns with an ammo capacity of 2 or less, %c[d_green]tube-fed pump-action shotguns,%c[d_cyan] AND any shotgun that reloads one round at a time\n
+		%c[d_blue] - %c[ui_gray_2] Any weapon using %c[yellow]any type of shotgun ammo (12-gauge, 20-gauge, 23x75)%c[ui_gray_2] will be counted as a shotgun\n
 		%c[d_blue] - %c[ui_gray_2] Increase damage by an additional %c[d_green]5% against mutants\n
 		%c[d_blue] - %c[ui_gray_2] Stalkers killed by %c[yellow]valid shotguns%c[ui_gray_2] will drop 1 random shotgun shell\n
 		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+5 %c[ui_gray_2]for %c[yellow]valid shotguns\n
@@ -1266,7 +1282,8 @@
         <text>You learned a key skill that others seem unable to do: equip more than one of an attachment.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Removes the restriction of stacking of artefacts and attachments on your belt\n
-		%c[d_blue] - %c[ui_gray_2] In other words, you can now stack idential artefacts or attachemnts on your belt
+		%c[d_blue] - %c[ui_gray_2] In other words, you can now stack idential artefacts or attachemnts on your belt\n
+		%c[d_blue] - %c[ui_gray_2] Additionally, you can now wear multiple types of mutant pelts - no longer restricted to only one type of mutant pelt
 		</text>
     </string>
 	
