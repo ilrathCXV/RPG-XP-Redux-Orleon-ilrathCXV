@@ -1098,7 +1098,7 @@
         <text>The Exalted</text>
     </string>
 	<string id="st_perk_the_exalted_desc">
-        <text>Your influence among friendly factions comes with new benefits. Any faction that you don't belong to and have at least 1000 Goodwill with will now offer you the option to exchange other armors for similar armors belonging to their faction. Additionally, any faction-locked dialogue options and quests from said factions may be available to you.</text>
+        <text>Your influence among factions comes with new benefits. Befriend any faction to a certain point, and you can become an honorary member of said faction, unlocking special tasks and dialogue only meant for members of those factions.</text>
     </string>
 	<string id="st_perk_the_exalted_desc_1">
 		<text>Your influence among friendly factions comes with new benefits.\n \n
@@ -1107,6 +1107,11 @@
 		%c[d_blue] - %c[ui_gray_2] Most faction-locked tasks and dialogue options (such as armor trading in GAMMA) from other %c[d_green]any friendly faction %c[ui_gray_2]are available to you\n
 		%c[d_red] - %c[ui_gray_2] Friendly faction = having at least %c[d_green]1000 Goodwill %c[ui_gray_2]with a faction\n
 		%c[d_red] - %c[ui_gray_2] Dialogue hidden because your faction is enemies with the NPC's faction is available at %c[d_cyan]1500 Goodwill
+		%c[d_blue] - %c[ui_gray_2] Players who %c[yellow]start as Military, Renegade, or Bandit%c[ui_gray_2] will unlock access to the "Lost to the Zone" main questline upon reaching %c[d_cyan]1500 Goodwill %c[ui_gray_2]with any faction that has access to the questline\n
+		%c[d_blue] - %c[ui_gray_2] Players who seek to do tasks unlocked by having %c[d_cyan]1500 Goodwill %c[ui_gray_2]with factions may need %c[yellow]to use disguises in some scenarios%c[ui_gray_2] to avoid softlocks and/or buggy behaviour\n
+		%c[d_red] - %c[ui_gray_2] The factions that you can reach %c[d_cyan]1500 Goodwill%c[ui_gray_2] to unlock access to the main storyline are:%c[yellow] Clear Sky, Duty, Ecologists, Freedom, Loners, Mercenaries\n
+		%c[d_red] - %c[ui_gray_2] The first story faction that you reach %c[d_cyan]1500 Goodwill%c[ui_gray_2] with will be your %c[yellow]main story faction%c[ui_gray_2] - talk with their usual starting quest NPC to start the questline\n
+		%c[d_red] - %c[ui_gray_2] Monolith/Sin/UNISG players %c[d_red]CANNOT unlock the "Lost to the Zone" questline%c[ui_gray_2] due to various possible softlocks and buggy behavior
 		</text>
     </string>
 	
@@ -1395,24 +1400,24 @@
         <text>Jump Man</text>
     </string>
 	<string id="st_perk_jump_man_desc">
-        <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.</text>
+        <text>Your treks in the Zone have made your legs stronger, allowing for better traversal.</text>
     </string>
 	<string id="st_perk_jump_man_desc_1">
-        <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
+        <text>Your treks in the Zone have made your legs stronger, allowing for better traversal.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]5% higher\n
 		%c[d_blue] - %c[ui_gray_2]Ignore fall damage if total damage is less than %c[d_green]15% of your max HP
 		</text>
     </string>
 	<string id="st_perk_jump_man_desc_2">
-        <text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
+        <text>Your treks in the Zone have made your legs stronger, allowing for better traversal.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]10% higher\n
 		%c[d_blue] - %c[ui_gray_2]Ignore fall damage if total damage is less than %c[d_green]30% of your max HP
 		</text>
     </string>
 	<string id="st_perk_jump_man_desc_3">
-		<text>Your treks while in the Zone has made your legs stronger, allowing for better traversal.\n \n
+		<text>Your treks in the Zone have made your legs stronger, allowing for better traversal.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2]You can now jump %c[d_green]15% higher\n
 		%c[d_blue] - %c[ui_gray_2]Ignore fall damage if total damage is less than %c[d_green]45% of your max HP\n
@@ -1698,4 +1703,19 @@
 		</text>
     </string>
 	
+	
+	<string id="st_perk_mono_mind">
+        <text>Monolithian Mind</text>
+    </string>
+	<string id="st_perk_mono_mind_desc">
+        <text>Through your exposure to psy-waves and studying psi-emitters, you have discovered a way into tricking the Zone into believing you are one of its chosen.</text>
+    </string>
+	<string id="st_perk_mono_mind_desc_1">
+        <text>Through your exposure to psy-waves and studying psi-emitters, you have discovered a way into tricking the Zone into believing you are one of its chosen.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You can now %c[d_green]disguise as a Monolith member%c[ui_gray_2] when wearing their armor with their patch attached\n
+		%c[d_blue] - %c[ui_gray_2] You have become %c[d_green]immune%c[ui_gray_2] to %c[yellow]emissions and psy-storms\n
+		%c[d_red] - %c[ui_gray_2] This %c[d_red]does NOT make you immune%c[ui_gray_2] to %c[yellow]Pulse anomalies%c[ui_gray_2] that trigger during psy-storms as they are Shock damage
+		</text>
+    </string>
 </string_table>

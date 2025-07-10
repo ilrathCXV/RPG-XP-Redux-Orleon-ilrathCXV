@@ -1,0 +1,10 @@
+-- The disguise section is in x_cxv_perks_data.script
+
+local actor_immune_emissions = level_environment.is_actor_immune
+function level_environment.is_actor_immune()
+	if x_cxv_perks_data.perks["perk_mono_mind"] > 0 then
+		return true
+	end
+	
+	return actor_immune_emissions()
+end

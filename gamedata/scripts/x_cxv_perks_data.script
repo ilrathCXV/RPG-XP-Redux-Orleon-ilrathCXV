@@ -34,6 +34,7 @@ perks = {
 	["perk_master_zone"] = 0,
 	["perk_medicine_man"] = 0,
 	["perk_midas_touch"] = 0,
+	["perk_mono_mind"] = 0,
 	["perk_mtn_climber"] = 0,
 	["perk_mutant_slayer"] = 0,
 	["perk_perkifact_power"] = 0,
@@ -184,9 +185,8 @@ local function experience_skill_on_update(perk_id, perk_data)
 		end
 	end
 	
-	-- if perk_id == "perk_artefinder" then
+	-- Careful Handler affecting artefact condition
 	if perk_id == "perk_careful_handler" then
-		-- Artefinder
 		if zz_item_artefact then
 			if zz_item_artefact.cond_t then
 				if minCondition == 0 then
@@ -202,6 +202,7 @@ local function experience_skill_on_update(perk_id, perk_data)
 		end
 	end
 	
+	-- Artefinder affecting artefact map chances
 	if perk_id == "perk_artefinder" then
 		if drx_da_main_artefacts then
 			if drx_da_main_artefacts.artefacts_map_chances then
@@ -273,6 +274,17 @@ local function experience_skill_on_update(perk_id, perk_data)
 	-- Zone Slayer
 	if perk_id == "perk_zone_slayer" and (perks["perk_zone_slayer"] > 0) and (#shotgun_list < 1) or (#weapon_list < 1) then
 		build_weapon_list()
+	end
+	
+	-- Monolithian Mind
+	if perk_id == "perk_mono_mind" then
+		if gameplay_disguise.blacklisted_factions then
+			if (perks[perk_id] > 0) then
+				gameplay_disguise.blacklisted_factions["monolith"] = false
+			else
+				gameplay_disguise.blacklisted_factions["monolith"] = true
+			end
+		end
 	end
 
 end
@@ -428,5 +440,4 @@ function on_game_start()
 	RegisterScriptCallback("actor_on_first_update",			build_weapon_list)
 	RegisterScriptCallback("actor_item_to_ruck",			check_weapon_list_ruck)
 	RegisterScriptCallback("actor_item_to_slot",			build_weapon_list)
-	
 end

@@ -223,31 +223,36 @@
 	<string id="st_perk_mag_loader_desc_1">
         <text>Loading ammo is a pain. So, you decided to just get better at it.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]20% faster
+		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]20% faster\n 
+		%c[d_red] - REQUIRES MAGS REDUX OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
 		</text>
     </string>
 	<string id="st_perk_mag_loader_desc_2">
         <text>Loading ammo is a pain. So, you decided to just get better at it.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]40% faster
+		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]40% faster\n 
+		%c[d_red] - REQUIRES MAGS REDUX OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
 		</text>
      </string>
 	<string id="st_perk_mag_loader_desc_3">
         <text>Loading ammo is a pain. So, you decided to just get better at it.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]60% faster
+		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]60% faster\n 
+		%c[d_red] - REQUIRES MAGS REDUX OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
 		</text>
      </string>
 	<string id="st_perk_mag_loader_desc_4">
         <text>Loading ammo is a pain. So, you decided to just get better at it.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]80% faster
+		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]80% faster\n 
+		%c[d_red] - REQUIRES MAGS REDUX OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
 		</text>
      </string>
 	<string id="st_perk_mag_loader_desc_5">
         <text>Loading ammo is a pain. So, you decided to just get better at it.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]100% faster
+		%c[d_blue] - %c[ui_gray_2] Load and unload weapon magazines %c[d_green]100% faster\n 
+		%c[d_red] - REQUIRES MAGS REDUX OR A MODIFACTION OF THE MOD IN ORDER TO HAVE ANY EFFECT
 		</text>
      </string>
 	

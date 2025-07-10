@@ -1,3 +1,5 @@
+local perks = x_cxv_perks_data.perks
+
 local goodwill_honored = 999
 local goodwill_exalted = 1499
 
@@ -18,9 +20,9 @@ end
 base_stalker_faction = dialogs.actor_stalker
 function dialogs.actor_stalker(first_speaker, second_speaker)
 	local is_stalker = character_community(db.actor) == "actor_stalker"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_stalker then
+	if perks["perk_the_exalted"] <= 0 or is_stalker then
 		return is_stalker
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_stalker or is_ally)
 	end
@@ -29,9 +31,9 @@ end
 base_bandit_faction = dialogs.actor_bandit
 function dialogs.actor_bandit(first_speaker, second_speaker)
 	local is_bandit = character_community(db.actor) == "actor_bandit"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_bandit then
+	if perks["perk_the_exalted"] <= 0 or is_bandit then
 		return is_bandit
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_bandit or is_ally)
 	end
@@ -40,9 +42,9 @@ end
 base_freedom_faction = dialogs.actor_freedom
 function dialogs.actor_freedom(first_speaker, second_speaker)
 	local is_freedom = character_community(db.actor) == "actor_freedom"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_freedom then
+	if perks["perk_the_exalted"] <= 0 or is_freedom then
 		return is_freedom
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_freedom or is_ally)
 	end
@@ -52,9 +54,9 @@ end
 base_dolg_faction = dialogs.actor_dolg
 function dialogs.actor_dolg(first_speaker, second_speaker)
 	local is_dolg = character_community(db.actor) == "actor_dolg"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_dolg then
+	if perks["perk_the_exalted"] <= 0 or is_dolg then
 		return is_dolg
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_dolg or is_ally)
 	end
@@ -64,9 +66,9 @@ end
 base_killer_faction = dialogs.actor_killer
 function dialogs.actor_killer(first_speaker, second_speaker)
 	local is_killer = character_community(db.actor) == "actor_killer"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_killer then
+	if perks["perk_the_exalted"] <= 0 or is_killer then
 		return is_killer
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_killer or is_ally)
 	end
@@ -76,9 +78,9 @@ end
 base_army_faction = dialogs.actor_army
 function dialogs.actor_army(first_speaker, second_speaker)
 	local is_army = character_community(db.actor) == "actor_army"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_army then
+	if perks["perk_the_exalted"] <= 0 or is_army then
 		return is_army
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_army or is_ally)
 	end
@@ -88,9 +90,9 @@ end
 base_ecolog_faction = dialogs.actor_ecolog
 function dialogs.actor_ecolog(first_speaker, second_speaker)
 	local is_ecolog = character_community(db.actor) == "actor_ecolog"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_ecolog then
+	if perks["perk_the_exalted"] <= 0 or is_ecolog then
 		return is_ecolog
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_ecolog or is_ally)
 	end
@@ -100,9 +102,9 @@ end
 base_csky_faction = dialogs.actor_csky
 function dialogs.actor_csky(first_speaker, second_speaker)
 	local is_csky = character_community(db.actor) == "actor_csky"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_csky then
+	if perks["perk_the_exalted"] <= 0 or is_csky then
 		return is_csky
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_csky or is_ally)
 	end
@@ -111,9 +113,9 @@ end
 base_monolith_faction = dialogs.actor_monolith
 function dialogs.actor_monolith(first_speaker, second_speaker)
 	local is_monolith = character_community(db.actor) == "actor_monolith"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_monolith then
+	if perks["perk_the_exalted"] <= 0 or is_monolith then
 		return is_monolith
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		return (is_monolith or is_ally)
 	end
 end
@@ -122,9 +124,9 @@ end
 base_renegade_faction = dialogs.actor_renegade
 function dialogs.actor_renegade(first_speaker, second_speaker)
 	local is_renegade = character_community(db.actor) == "actor_renegade"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_monolith then
+	if perks["perk_the_exalted"] <= 0 or is_monolith then
 		return is_renegade
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_renegade or is_ally)
 	end
@@ -134,9 +136,9 @@ end
 base_greh_faction = dialogs.actor_greh
 function dialogs.actor_greh(first_speaker, second_speaker)
 	local is_greh = character_community(db.actor) == "actor_greh"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_greh then
+	if perks["perk_the_exalted"] <= 0 or is_greh then
 		return is_greh
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_greh or is_ally)
 	end
@@ -146,9 +148,9 @@ end
 base_isg_faction = dialogs.actor_isg
 function dialogs.actor_isg(first_speaker, second_speaker)
 	local is_isg = character_community(db.actor) == "actor_isg"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_isg then
+	if perks["perk_the_exalted"] <= 0 or is_isg then
 		return is_isg
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local is_ally = is_actor_ally(first_speaker, second_speaker)
 		return (is_isg or is_ally)
 	end
@@ -160,9 +162,9 @@ base_not_stalker = dialogs.actor_not_stalker
 function dialogs.actor_not_stalker(first_speaker, second_speaker)
 
 	local is_not_stalker = character_community(db.actor) ~= "actor_stalker"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_stalker then
+	if perks["perk_the_exalted"] <= 0 or is_not_stalker then
 		return is_not_stalker
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("stalker", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -172,9 +174,9 @@ end
 base_not_bandit = dialogs.actor_not_bandit
 function dialogs.actor_not_bandit(first_speaker, second_speaker)
 	local is_not_bandit = character_community(db.actor) ~= "actor_bandit"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_bandit then
+	if perks["perk_the_exalted"] <= 0 or is_not_bandit then
 		return is_not_bandit
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("bandit", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -183,9 +185,9 @@ end
 base_not_freedom = dialogs.actor_not_freedom
 function dialogs.actor_not_freedom(first_speaker, second_speaker)
 	local is_not_freedom = character_community(db.actor) ~= "actor_freedom"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_freedom then
+	if perks["perk_the_exalted"] <= 0 or is_not_freedom then
 		return is_not_freedom
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("freedom", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -194,9 +196,9 @@ end
 base_not_dolg = dialogs.actor_not_dolg
 function dialogs.actor_not_dolg(first_speaker, second_speaker)
 	local is_not_dolg = character_community(db.actor) ~= "actor_dolg"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_dolg then
+	if perks["perk_the_exalted"] <= 0 or is_not_dolg then
 		return is_not_dolg
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("dolg", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -205,9 +207,9 @@ end
 base_not_killer = dialogs.actor_not_killer
 function dialogs.actor_not_killer(first_speaker, second_speaker)
 	local is_not_killer = character_community(db.actor) ~= "actor_killer"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_killer then
+	if perks["perk_the_exalted"] <= 0 or is_not_killer then
 		return is_not_killer
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("killer", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -216,9 +218,9 @@ end
 base_not_army = dialogs.actor_not_army
 function dialogs.actor_not_army(first_speaker, second_speaker)
 	local is_not_army = character_community(db.actor) ~= "actor_army"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_army then
+	if perks["perk_the_exalted"] <= 0 or is_not_army then
 		return is_not_army
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("army", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -227,9 +229,9 @@ end
 base_not_ecolog = dialogs.actor_not_ecolog
 function dialogs.actor_not_ecolog(first_speaker, second_speaker)
 	local is_not_ecolog = character_community(db.actor) ~= "actor_ecolog"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_ecolog then
+	if perks["perk_the_exalted"] <= 0 or is_not_ecolog then
 		return is_not_ecolog
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("ecolog", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -238,9 +240,9 @@ end
 base_not_csky = dialogs.actor_not_csky
 function dialogs.actor_not_csky(first_speaker, second_speaker)
 	local is_not_csky = character_community(db.actor) ~= "actor_csky"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_csky then
+	if perks["perk_the_exalted"] <= 0 or is_not_csky then
 		return is_not_csky
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("csky", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -249,9 +251,9 @@ end
 base_not_monolith = dialogs.actor_not_monolith
 function dialogs.actor_not_monolith(first_speaker, second_speaker)
 	local is_not_monolith = character_community(db.actor) ~= "actor_monolith"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_monolith then
+	if perks["perk_the_exalted"] <= 0 or is_not_monolith then
 		return is_not_monolith
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("monolith", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -260,9 +262,9 @@ end
 base_not_renegade = dialogs.actor_not_renegade
 function dialogs.actor_not_renegade(first_speaker, second_speaker)
 	local is_not_renegade = character_community(db.actor) ~= "actor_renegade"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_renegade then
+	if perks["perk_the_exalted"] <= 0 or is_not_renegade then
 		return is_not_renegade
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("renegade", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -271,9 +273,9 @@ end
 base_not_greh = dialogs.actor_not_greh
 function dialogs.actor_not_greh(first_speaker, second_speaker)
 	local is_not_greh = character_community(db.actor) ~= "actor_greh"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_greh then
+	if perks["perk_the_exalted"] <= 0 or is_not_greh then
 		return is_not_greh
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("greh", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -282,9 +284,9 @@ end
 base_not_isg = dialogs.actor_not_isg
 function dialogs.actor_not_isg(first_speaker, second_speaker)
 	local is_not_isg = character_community(db.actor) ~= "actor_isg"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_isg then
+	if perks["perk_the_exalted"] <= 0 or is_not_isg then
 		return is_not_isg
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("isg", AC_ID)
 		return goodwill <= goodwill_honored
 	end
@@ -296,9 +298,9 @@ end
 base_true_stalker = dialogs.actor_true_stalker
 function dialogs.actor_true_stalker(first_speaker, second_speaker)
 	local is_stalker = get_actor_true_community() == "stalker"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_stalker then
+	if perks["perk_the_exalted"] <= 0 or is_stalker then
 		return is_stalker
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("stalker", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -307,9 +309,9 @@ end
 base_true_bandit = dialogs.actor_true_bandit
 function dialogs.actor_true_bandit(first_speaker, second_speaker)
 	local is_bandit = get_actor_true_community() == "bandit"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_bandit then
+	if perks["perk_the_exalted"] <= 0 or is_bandit then
 		return is_bandit
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("bandit", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -318,9 +320,9 @@ end
 base_true_freedom = dialogs.actor_true_freedom
 function dialogs.actor_true_freedom(first_speaker, second_speaker)
 	local is_freedom = get_actor_true_community() == "freedom"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_freedom then
+	if perks["perk_the_exalted"] <= 0 or is_freedom then
 		return is_freedom
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("freedom", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -329,9 +331,9 @@ end
 base_true_dolg = dialogs.actor_true_dolg
 function dialogs.actor_true_dolg(first_speaker, second_speaker)
 	local is_dolg = get_actor_true_community() == "dolg"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_dolg then
+	if perks["perk_the_exalted"] <= 0 or is_dolg then
 		return is_dolg
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("dolg", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -340,9 +342,9 @@ end
 base_true_killer = dialogs.actor_true_killer
 function dialogs.actor_true_killer(first_speaker, second_speaker)
 	local is_killer = get_actor_true_community() == "killer"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_killer then
+	if perks["perk_the_exalted"] <= 0 or is_killer then
 		return is_killer
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("killer", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -351,9 +353,9 @@ end
 base_true_army = dialogs.actor_true_army
 function dialogs.actor_true_army(first_speaker, second_speaker)
 	local is_army = get_actor_true_community() == "army"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_army then
+	if perks["perk_the_exalted"] <= 0 or is_army then
 		return is_army
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("army", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -362,9 +364,9 @@ end
 base_true_ecolog = dialogs.actor_true_ecolog
 function dialogs.actor_true_ecolog(first_speaker, second_speaker)
 	local is_ecolog = get_actor_true_community() == "ecolog"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_ecolog then
+	if perks["perk_the_exalted"] <= 0 or is_ecolog then
 		return is_ecolog
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("ecolog", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -373,9 +375,9 @@ end
 base_true_csky = dialogs.actor_true_csky
 function dialogs.actor_true_csky(first_speaker, second_speaker)
 	local is_csky = get_actor_true_community() == "csky"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_csky then
+	if perks["perk_the_exalted"] <= 0 or is_csky then
 		return is_csky
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("csky", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -384,9 +386,9 @@ end
 base_true_monolith = dialogs.actor_true_monolith
 function dialogs.actor_true_monolith(first_speaker, second_speaker)
 	local is_monolith = get_actor_true_community() == "monolith"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_monolith then
+	if perks["perk_the_exalted"] <= 0 or is_monolith then
 		return is_monolith
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("monolith", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -395,9 +397,9 @@ end
 base_true_renegade = dialogs.actor_true_renegade
 function dialogs.actor_true_renegade(first_speaker, second_speaker)
 	local is_renegade = get_actor_true_community() == "renegade"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_renegade then
+	if perks["perk_the_exalted"] <= 0 or is_renegade then
 		return is_renegade
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("renegade", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -406,9 +408,9 @@ end
 base_true_greh = dialogs.actor_true_greh
 function dialogs.actor_true_greh(first_speaker, second_speaker)
 	local is_greh = get_actor_true_community() == "greh"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_greh then
+	if perks["perk_the_exalted"] <= 0 or is_greh then
 		return is_greh
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("greh", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -417,9 +419,9 @@ end
 base_true_isg = dialogs.actor_true_isg
 function dialogs.actor_true_isg(first_speaker, second_speaker)
 	local is_isg = get_actor_true_community() == "isg"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_isg then
+	if perks["perk_the_exalted"] <= 0 or is_isg then
 		return is_isg
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("isg", AC_ID)
 		return goodwill > goodwill_exalted
 	end
@@ -431,9 +433,9 @@ end
 base_not_true_stalker = dialogs.actor_not_true_stalker
 function dialogs.actor_not_true_stalker(first_speaker, second_speaker)
 	local is_not_stalker = get_actor_true_community() ~= "stalker"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_stalker then
+	if perks["perk_the_exalted"] <= 0 or is_not_stalker then
 		return is_not_stalker
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("stalker", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -442,9 +444,9 @@ end
 base_not_true_bandit = dialogs.actor_not_true_bandit
 function dialogs.actor_not_true_bandit(first_speaker, second_speaker)
 	local is_not_bandit = get_actor_true_community() ~= "bandit"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_bandit then
+	if perks["perk_the_exalted"] <= 0 or is_not_bandit then
 		return is_not_bandit
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("bandit", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -453,9 +455,9 @@ end
 base_not_true_freedom = dialogs.actor_not_true_freedom
 function dialogs.actor_not_true_freedom(first_speaker, second_speaker)
 	local is_not_freedom = get_actor_true_community() ~= "freedom"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_freedom then
+	if perks["perk_the_exalted"] <= 0 or is_not_freedom then
 		return is_not_freedom
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("freedom", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -464,9 +466,9 @@ end
 base_not_true_dolg = dialogs.actor_not_true_dolg
 function dialogs.actor_not_true_dolg(first_speaker, second_speaker)
 	local is_not_dolg = get_actor_true_community() ~= "dolg"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_dolg then
+	if perks["perk_the_exalted"] <= 0 or is_not_dolg then
 		return is_not_dolg
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("dolg", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -475,9 +477,9 @@ end
 base_not_true_killer = dialogs.actor_not_true_killer
 function dialogs.actor_not_true_killer(first_speaker, second_speaker)
 	local is_not_killer = get_actor_true_community() ~= "killer"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_killer then
+	if perks["perk_the_exalted"] <= 0 or is_not_killer then
 		return is_not_killer
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("killer", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -486,9 +488,9 @@ end
 base_not_true_army = dialogs.actor_not_true_army
 function dialogs.actor_not_true_army(first_speaker, second_speaker)
 	local is_not_army = get_actor_true_community() ~= "army"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_army then
+	if perks["perk_the_exalted"] <= 0 or is_not_army then
 		return is_not_army
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("army", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -497,9 +499,9 @@ end
 base_not_true_ecolog = dialogs.actor_not_true_ecolog
 function dialogs.actor_not_true_ecolog(first_speaker, second_speaker)
 	local is_not_ecolog = get_actor_true_community() ~= "ecolog"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_ecolog then
+	if perks["perk_the_exalted"] <= 0 or is_not_ecolog then
 		return is_not_ecolog
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("ecolog", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -508,9 +510,9 @@ end
 base_not_true_csky = dialogs.actor_not_true_csky
 function dialogs.actor_not_true_csky(first_speaker, second_speaker)
 	local is_not_csky = get_actor_true_community() ~= "csky"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_csky then
+	if perks["perk_the_exalted"] <= 0 or is_not_csky then
 		return is_not_csky
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("csky", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -519,9 +521,9 @@ end
 base_not_true_monolith = dialogs.actor_not_true_monolith
 function dialogs.actor_not_true_monolith(first_speaker, second_speaker)
 	local is_not_monolith = get_actor_true_community() ~= "monolith"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_monolith then
+	if perks["perk_the_exalted"] <= 0 or is_not_monolith then
 		return is_not_monolith
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("monolith", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -530,9 +532,9 @@ end
 base_not_true_renegade = dialogs.actor_not_true_renegade
 function dialogs.actor_not_true_renegade(first_speaker, second_speaker)
 	local is_not_renegade = get_actor_true_community() ~= "renegade"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_renegade then
+	if perks["perk_the_exalted"] <= 0 or is_not_renegade then
 		return is_not_renegade
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("renegade", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -541,9 +543,9 @@ end
 base_not_true_greh = dialogs.actor_not_true_greh
 function dialogs.actor_not_true_greh(first_speaker, second_speaker)
 	local is_not_greh = get_actor_true_community() ~= "greh"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_greh then
+	if perks["perk_the_exalted"] <= 0 or is_not_greh then
 		return is_not_greh
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("greh", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -552,9 +554,9 @@ end
 base_not_true_isg = dialogs.actor_not_true_isg
 function dialogs.actor_not_true_isg(first_speaker, second_speaker)
 	local is_not_isg = get_actor_true_community() ~= "isg"
-	if x_cxv_perks_data.perks["perk_the_exalted"] <= 0 or is_not_isg then
+	if perks["perk_the_exalted"] <= 0 or is_not_isg then
 		return is_not_isg
-	elseif x_cxv_perks_data.perks["perk_the_exalted"] > 0 then
+	elseif perks["perk_the_exalted"] > 0 then
 		local goodwill = relation_registry.community_goodwill("isg", AC_ID)
 		return goodwill <= goodwill_exalted
 	end
@@ -566,7 +568,7 @@ end
 base_valid_faction_actor = utils_slht.valid_faction_actor
 function utils_slht.valid_faction_actor()
 
-	if x_cxv_perks_data.perks["perk_the_exalted"] == 0 then return base_valid_faction_actor() end 
+	if perks["perk_the_exalted"] == 0 then return base_valid_faction_actor() end 
 	
 	local actor_com = get_actor_true_community()
 	local factions = { ["army"] = true }
@@ -574,7 +576,7 @@ function utils_slht.valid_faction_actor()
 	    return true 
 	elseif not factions[actor_com] then
 		local goodwill = relation_registry.community_goodwill("army", AC_ID)
-		printf("Goodwill w/ Army: %s", goodwill)
+		printf("[RPG - Exalted] Goodwill w/ Army: %s", goodwill)
 		if goodwill > goodwill_exalted then 
 			return true
 		end
@@ -582,11 +584,415 @@ function utils_slht.valid_faction_actor()
 	return false
 end
 
-function ah_dialogs.check_community_actor(first_speaker, second_speaker) 
-	if x_cxv_perks_data.perks["perk_the_exalted"] == 0 then
-		return (db.actor:character_community() == "actor_monolith" )
-	else
-		local goodwill = relation_registry.community_goodwill("monolith", AC_ID)
-		return goodwill > goodwill_honored
+-------------------------------------------------------------------------------------------------------
+local lttz_faction_infos = {
+	["csky"] = {
+		info = {
+			[1] = "living_legend_csky",
+			[2] = "living_legend_csky_answer",
+			[3] = "mortal_sin_csky",
+			[4] = "operation_afterglow_csky",
+			[5] = "living_legend_st",
+		},
+		task = {
+			[1] = "lttz_ll_finish_csky",
+			[2] = "lttz_ms_start_csky",
+			[3] = "lttz_ms_report_csky",
+			[4] = "lttz_ms_ambush_csky",
+			[5] = "lttz_ms_urban_warfare_csky",
+			[6] = "lttz_ms_zone_hero_csky",
+			[7] = "lttz_ll_visit_barkeep",
+		}
+	},
+	
+	["dolg"] = {
+		info = {
+			[1] = "living_legend_dolg",
+			[2] = "living_legend_dolg_answer",
+			[3] = "mortal_sin_dolg",
+			[4] = "operation_afterglow_dolg",
+			[5] = "living_legend_st",
+		},
+		task = {
+			[1] = "lttz_ll_finish_dolg",
+			[2] = "lttz_ms_start_dolg",
+			[3] = "lttz_ms_report_dolg",
+			[4] = "lttz_ms_ambush_dolg",
+			[5] = "lttz_ms_urban_warfare_dolg",
+			[6] = "lttz_ms_zone_hero_dolg",
+			[7] = "lttz_ll_visit_barkeep",
+		}
+	},
+	
+	["freedom"] = {
+		info = {
+			[1] = "living_legend_freedom",
+			[2] = "living_legend_freedom_answer",
+			[3] = "mortal_sin_freedom",
+			[4] = "operation_afterglow_freedom",
+			[5] = "living_legend_alt",
+		},
+		task = {
+			[1] = "lttz_ll_finish_freedom",
+			[2] = "lttz_ms_start_freedom",
+			[3] = "lttz_ms_report_freedom",
+			[4] = "lttz_ms_ambush_freedom",
+			[5] = "lttz_ms_urban_warfare_freedom",
+			[6] = "lttz_ms_zone_hero_freedom",
+			[7] = "lttz_ll_visit_blackjack",
+		}
+	},
+	
+	["ecolog"] = {
+		info = {
+			[1] = "living_legend_ecolog",
+			[2] = "living_legend_ecolog_answer",
+			[3] = "mortal_sin_ecolog",
+			[4] = "operation_afterglow_ecolog",
+			[5] = "living_legend_st",
+		},
+		task = {
+			[1] = "lttz_ll_finish_ecolog",
+			[2] = "lttz_ms_start_ecolog",
+			[3] = "lttz_ms_report_ecolog",
+			[4] = "lttz_ms_ambush_ecolog",
+			[5] = "lttz_ms_urban_warfare_ecolog",
+			[6] = "lttz_ms_zone_hero_ecolog",
+			[7] = "lttz_ll_visit_barkeep",
+		}
+	},
+	
+	["killer"] = {
+		info = {
+			[1] = "living_legend_killer",
+			[2] = "living_legend_killer_answer",
+			[3] = "mortal_sin_killer",
+			[4] = "operation_afterglow_killer",
+			[5] = "living_legend_alt",
+		},
+		task = {
+			[1] = "lttz_ll_finish_killer",
+			[2] = "lttz_ms_start_killer",
+			[3] = "lttz_ms_report_killer",
+			[4] = "lttz_ms_ambush_killer",
+			[5] = "lttz_ms_urban_warfare_killer",
+			[6] = "lttz_ms_zone_hero_killer",
+			[7] = "lttz_ll_visit_blackjack",
+		}
+	},
+	
+	["stalker"] = {
+		info = {
+			[1] = "living_legend_stalker",
+			[2] = "living_legend_stalker_answer",
+			[3] = "mortal_sin_stalker",
+			[4] = "operation_afterglow_stalker",
+			[5] = "living_legend_st",
+		},
+		task = {
+			[1] = "lttz_ll_finish_stalker",
+			[2] = "lttz_ms_start_stalker",
+			[3] = "lttz_ms_report_stalker",
+			[4] = "lttz_ms_ambush_stalker",
+			[5] = "lttz_ms_urban_warfare_stalker",
+			[6] = "lttz_ms_zone_hero_stalker",
+			[7] = "lttz_ll_visit_barkeep",
+		}
+	},
+}
+
+local lttz_starting_info = {
+	["csky"] = {
+		[1] = "living_legend",
+		[2] = "living_legend_st",
+		[3] = "living_legend_csky",
+	},
+	
+	["dolg"] = {
+		[1] = "living_legend",
+		[2] = "living_legend_st",
+		[3] = "living_legend_dolg",
+	},
+	
+	["freedom"] = {
+		[1] = "living_legend",
+		[2] = "living_legend_alt",
+		[3] = "living_legend_freedom",
+	},
+	
+	["ecolog"] = {
+		[1] = "living_legend",
+		[2] = "living_legend_st",
+		[3] = "living_legend_ecolog",
+	},
+	
+	["killer"] = {
+		[1] = "living_legend",
+		[2] = "living_legend_alt",
+		[3] = "living_legend_killer",
+	},
+	
+	["stalker"] = {
+		[1] = "living_legend",
+		[2] = "living_legend_st",
+		[3] = "living_legend_stalker",
+	},
+}
+
+saved_friendly_faction = nil
+local has_given_story_quests = false
+
+
+BaseCheckLLTZ = dialogs_lostzone.check_lttz_faction_task
+function dialogs_lostzone.check_lttz_faction_task(a, b)
+	if perks["perk_the_exalted"] <= 0 then
+		return BaseCheckLLTZ(a, b)
 	end
+	
+	local old_faction = get_actor_true_community()
+	local task_old = old_faction and lttz_faction_infos[old_faction] and lttz_faction_infos[old_faction].task
+	local task_saved = saved_friendly_faction and lttz_faction_infos[saved_friendly_faction] and lttz_faction_infos[saved_friendly_faction].task
+	if task_old then
+		local tm = task_manager.get_task_manager()
+		for k,v in pairs(task_old) do
+			if tm.task_info[v] then
+				return false
+			end
+		end
+	elseif task_saved then
+		local tm = task_manager.get_task_manager()
+		for k,v in pairs(task_saved) do
+			if tm.task_info[v] then
+				return false
+			end
+		end
+	end
+	return true
+end
+
+
+story_comm = {
+	["csky"] = true,
+	["dolg"] = true,
+	["ecolog"] = true,
+	["freedom"] = true,
+	["killer"] = true,
+	["stalker"] = true,
+}
+
+local blacklist = {
+	["greh"] = true,
+	["monolith"] = true,
+	["zombied"] = true,
+	["isg"] = true,
+}
+
+_G.IsStoryPlayer = function()
+	local comm = gameplay_disguise.get_default_comm()
+	if saved_friendly_faction and (not story_comm[comm]) and (not blacklist[comm]) then
+		printf("[RPG - Exalted] Current comm not in story list (%s) but saved comm is (%s)", comm, saved_friendly_faction)
+		return story_comm[saved_friendly_faction]
+	end
+	return story_comm[comm]
+end
+
+
+if dynamic_news_manager then
+	local is_dyn_news = false
+	
+	BaseGossipLL = dynamic_news_manager.DynamicNewsManager.GossipTaskLL
+	function dynamic_news_manager.DynamicNewsManager.GossipTaskLL(self)
+		is_dyn_news = true
+		BaseGossipLL(self)
+		is_dyn_news = false
+	end
+	
+	BaseGossipMS = dynamic_news_manager.DynamicNewsManager.GossipTaskMS
+	function dynamic_news_manager.DynamicNewsManager.GossipTaskMS(self)
+		is_dyn_news = true
+		BaseGossipMS(self)
+		is_dyn_news = false
+	end
+	
+	BaseGossipOA = dynamic_news_manager.DynamicNewsManager.GossipTaskOA
+	function dynamic_news_manager.DynamicNewsManager.GossipTaskOA(self)
+		is_dyn_news = true
+		BaseGossipOA(self)
+		is_dyn_news = false
+	end
+	
+	BaseGossipDRX = dynamic_news_manager.DynamicNewsManager.GossipTaskDRX
+	function dynamic_news_manager.DynamicNewsManager.GossipTaskDRX(self)
+		is_dyn_news = true
+		BaseGossipDRX(self)
+		is_dyn_news = false
+	end
+end
+
+function exalted_true_comm()
+	local true_comm = get_actor_true_community()
+	if is_dyn_news and saved_friendly_faction and lttz_starting_info[saved_friendly_faction] and (not lttz_starting_info[true_comm]) then
+		printf("[RPG - Exalted] Sending saved friendly faction b/c actor true comm is not in story list", saved_friendly_faction)
+		return saved_friendly_faction
+	end
+	
+	return true_comm
+end
+
+if dynamic_news_manager then dynamic_news_manager.get_actor_true_community = exalted_true_comm end
+
+function give_lostzone_quests()
+	-- if somehow the player has no friendly faction assigned, do nothing
+	if not saved_friendly_faction then
+		printf("[RPG - Exalted] No friendly faction is saved - exiting quest script")
+		return
+	end
+	
+	if has_alife_info("faction_limited_playthrough") then
+		printf("[RPG - Exalted] Faction is unable to do LLTZ - exiting quest script")
+		return
+	end
+	
+	-- do nothing if not in story mode
+	if not IsStoryMode() then
+		printf("[RPG - Exalted] Not currently story mode - exiting quest script")
+		return
+	end
+	
+	local curr_comm = get_actor_true_community()
+	
+	-- if actor's current community is already in the story list, do nothing
+	if lttz_faction_infos[curr_comm] then
+		printf("[RPG - Exalted] Player is already in a faction (%s) that has the questlines - exiting quest script", curr_comm)
+		return
+	end
+	
+	-- if somehow the faction picked is not in the list, do nothing
+	if not lttz_faction_infos[saved_friendly_faction] then
+		printf("[RPG - Exalted] Saved friendly faction (%s) does not have quest steps - exiting quest script", saved_friendly_faction)
+		return
+	end
+	
+	-- Disable picked faction info for safety (POSSIBLY NOT NEEDED)
+	local info_friendly = saved_friendly_faction and lttz_faction_infos[saved_friendly_faction] and lttz_faction_infos[saved_friendly_faction].info
+	if (not info_friendly) then return end
+	
+	for k,v in pairs(info_friendly) do
+		if has_alife_info(v) then
+			db.actor:disable_info_portion(v)
+			printf("[RPG - Exalted] LTTZ info from saved faction (%s) is now disabled: %s", saved_friendly_faction, v)
+		end
+	end
+	
+	-- Recycle DRX availability to the new faction
+--	xr_effects.drx_sl_cancel_questlines(nil,nil,{})
+--	xr_effects.drx_sl_setup_questlines(nil,nil,{saved_friendly_faction})	-- this causes issues with the misc. questline that has you go to various important NPCs
+	
+	-- Force giving needed info for LTTZ to start properly
+	for i=1, #lttz_starting_info[saved_friendly_faction] do
+		printf("[RPG - Exalted] Info: %s", lttz_starting_info[saved_friendly_faction][i])
+		give_info(lttz_starting_info[saved_friendly_faction][i])
+		printf("[RPG - Exalted] Does player have info (%s)?: %s", lttz_starting_info[saved_friendly_faction][i], has_alife_info(lttz_starting_info[saved_friendly_faction][i]))
+	end
+	
+--	dialogs_lostzone.give_task_lttz_ll_find_doctor()
+	
+	printf("[RPG - Exalted] Story quest for faction (%s) have been given...", saved_friendly_faction)
+	
+	-- Might not need the Dynamic News triggers, but we'll leave it for now
+	local dynNewsInst = dynamic_news_manager.get_dynamic_news()
+	if dynNewsInst then
+		dynNewsInst:GossipTaskLL()
+	end
+	
+	has_given_story_quests = true
+end
+
+BaseCeasefire = xr_effects.stalker_ceasefire
+function xr_effects.stalker_ceasefire()
+	if not saved_friendly_faction then
+		BaseCeasefire()
+		return
+	end
+	
+	-- Standard make player's faction friendly to Loners
+	local actor_comm = get_actor_true_community()
+	if (not blacklist[actor_comm]) and game_relations.is_factions_enemies("stalker",actor_comm) then
+		game_relations.save_relation ( "stalker" , actor_comm , 2000 )
+		game_relations.save_relation ( "actor_stalker" , actor_comm , 2000 )
+		game_relations.save_relation ( "stalker" , "actor_" .. actor_comm , 2000 )
+		game_relations.send_news ("stalker" , actor_comm , "st_relations_cease_fire" , nil)
+	end
+	
+	-- ADDITIONAL: Ceasefire b/w player comm and saved friendly comm
+	-- Standard make player's faction friendly to Loners
+	if (not blacklist[actor_comm]) and game_relations.is_factions_enemies(saved_friendly_faction, actor_comm) then
+		game_relations.save_relation ( saved_friendly_faction , actor_comm , 2000 )
+		game_relations.save_relation ( "actor_" .. saved_friendly_faction , actor_comm , 2000 )
+		game_relations.save_relation ( saved_friendly_faction , "actor_" .. actor_comm , 2000 )
+		game_relations.send_news (saved_friendly_faction, actor_comm , "st_relations_cease_fire" , nil)
+	end
+	
+end
+
+function save_state(m_data)
+	m_data.saved_friendly_faction = saved_friendly_faction
+	m_data.has_given_story_quests = has_given_story_quests
+end
+
+function load_state(m_data)
+	saved_friendly_faction = m_data.saved_friendly_faction or nil
+	has_given_story_quests = m_data.has_given_story_quests or false
+end
+
+local function experience_skill_on_update(perk_id, perk_data)
+	if perk_id == "perk_the_exalted" and perk_data["curr_level"] > 0 then
+	
+		-- Skip this is part of Sin/Monolith/ISG as they can't do story quests
+		local actor_comm = get_actor_true_community()
+		if blacklist[actor_comm] then return end
+		
+		printf("[RPG - Exalted] Saved Faction: %s | Has Given Story Quests?: %s", saved_friendly_faction, has_given_story_quests)
+		if has_alife_info("mortal_sin_zone_hero") and (not has_alife_info("operation_afterglow_info_about_done")) then
+			-- Might not need the Dynamic News triggers, but we'll leave it for now
+			local dNewsIn = dynamic_news_manager.get_dynamic_news()
+			if dNewsIn then
+				dynNewsInst:GossipTaskOA()
+			end
+			db.actor:give_info_portion("operation_afterglow_info_about_done")
+		end
+		if not saved_friendly_faction then
+			local highest_goodwill_faction
+			local highest_goodwill_amt = 0
+			for k, v in pairs(lttz_faction_infos) do
+				local goodwill = relation_registry.community_goodwill(k, AC_ID)
+				printf("[RPG - Exalted] Goodwill w/ %s: %s", k, goodwill)
+				if goodwill > goodwill_exalted and (goodwill > highest_goodwill_amt) then 
+					highest_goodwill_faction = k
+					highest_goodwill_amt = goodwill
+				end 	
+			end
+			if highest_goodwill_faction then
+				printf("[RPG - Exalted] Faction picked for story quests: %s", highest_goodwill_faction)
+				saved_friendly_faction = highest_goodwill_faction
+			else
+				saved_friendly_faction = nil
+			end
+		end
+		if saved_friendly_faction and (not has_given_story_quests) then
+			printf("[RPG - Exalted] Attempting to give Story Quests from this faction: %s", saved_friendly_faction)
+			give_lostzone_quests()
+		end
+	end
+end
+
+function on_game_start()
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
+
+	RegisterScriptCallback("save_state", save_state)
+	RegisterScriptCallback("load_state", load_state)
 end
