@@ -1,0 +1,38 @@
+local gt = game.translate_string
+local get_obj_wpn_class = x_cxv_perks_data.sortK_of
+local get_sec_wpn_class = x_cxv_perks_data.get_weapon_perk_class
+
+local class_string_table = {
+	["explosive"] = "cxv_wpn_class_tooltip_explosive",
+	["misc"] = "cxv_wpn_class_tooltip_misc",
+	["melee"] = "cxv_wpn_class_tooltip_melee",
+	["smg"] = "cxv_wpn_class_tooltip_smg",
+	["pistol"] = "cxv_wpn_class_tooltip_pistol",
+	["rifle"] = "cxv_wpn_class_tooltip_ar",
+	["sniper"] = "cxv_wpn_class_tooltip_sniper",
+	["shotgun"] = "cxv_wpn_class_tooltip_shotgun",
+	["heavy"] = "cxv_wpn_class_tooltip_heavy",
+}
+
+build_footer_base = ui_item.build_desc_footer
+function ui_item.build_desc_footer(obj, sec, str)
+	str = str or gt(ini_sys:r_string_ex(sec, "description"))
+	if (not str) then return "" end
+	
+	local weapon_class = (obj and get_obj_wpn_class(obj)) or (sec and get_sec_wpn_class(sec))
+	if not weapon_class then
+		return build_footer_base(obj, sec, str)
+	end
+	
+	local cyan_clr = utils_xml.get_color("d_cyan")
+	local w_clr = utils_xml.get_color("pda_white")
+	local def_clr = utils_xml.get_color("ui_gray_1")
+	
+	local sec_str = "\\n " .. cyan_clr .. gt("cxv_wpn_class_tooltip_dot") .. " " .. def_clr .. gt("cxv_wpn_class_tooltip_title") .. " " .. w_clr .. gt(class_string_table[weapon_class]) .. "\\n \\n" .. def_clr
+	
+	if sec_str then
+		return build_footer_base(obj, sec, str) .. sec_str
+	end
+
+	return build_footer_base(obj, sec, str)
+end

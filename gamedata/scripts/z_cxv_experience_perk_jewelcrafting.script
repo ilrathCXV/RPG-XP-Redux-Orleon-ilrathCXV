@@ -8,13 +8,21 @@ experience_traits.UIExperienceTraits.UpdateUpgradeChance = function(self)
     local max_level = tr:max_level()
     local qual = tr:quality() - (self.upgr_mode.quality - 1)
     local curr_level = tr:level() - self.upgr_mode.curr_level
-
+	
+	-- TEST: Grant a bonus to base chance if both gems are the same (20% bonus)
+	local are_same_family = tr:section() == self.upgr_mode.sec
+	
     local base_chance = 99
     if qual > 0 then
         base_chance = base_chance / qual
     elseif qual < 0 then
         base_chance = base_chance + base_chance / (self.max_qual_lvl + qual)
     end
+	
+	if are_same_family then
+		base_chance = base_chance * 1.2
+	end
+	
     local result = ( base_chance - base_chance / (max_level / curr_level) ) + jewelcrafter_bonus[x_cxv_perks_data.perks["perk_jewelcrafter"]]
     result = clamp(math.floor(result + 0.5), 1, 100)
 

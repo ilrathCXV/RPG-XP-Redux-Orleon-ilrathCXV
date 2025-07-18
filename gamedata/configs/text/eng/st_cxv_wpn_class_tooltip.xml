@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+
+	<string id="cxv_wpn_class_tooltip_dot">
+		<text>•</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_title">
+		<text>RPG Perks Weapon Class: </text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_smg">
+		<text>SMG</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_pistol">
+		<text>Pistol</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_ar">
+		<text>Assault Rifle/LMG</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_sniper">
+		<text>Sniper Rifle</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_shotgun">
+		<text>Shotgun</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_heavy">
+		<text>Heavy Weapon</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_explosive">
+		<text>Explosive</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_melee">
+		<text>Melee</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_misc">
+		<text>N/A</text>
+	</string>
+	
+	
+</string_table>

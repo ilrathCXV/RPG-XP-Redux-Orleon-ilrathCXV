@@ -97,55 +97,6 @@ original_map_chances = {
 	["l11_pripyat"] = 30,
 }
 
-wp_table = {
-	["w_explosive"] = "explosive",
-	["w_misc"] = "misc",
-	["w_melee"] = "melee",
-	["w_smg"] = "smg",
-	["w_pistol"] = "pistol",
-	["w_rifle"] = "rifle",
-	["w_sniper"] = "sniper",
-	["w_shotgun"] = "shotgun",
-	["w_heavy"] = "heavy",
-}
-
-function sortK_of(weapon)
-    if not weapon then return "empty hands" end
-    local kind = ini_sys:r_string(weapon:section(), "kind") or nil
-	if kind == "w_explosive" then
-		local slot = ini_sys:r_string(weapon:section(), "slot")
-		if slot ~= "3" then
-			local class = ini_sys:r_string(weapon:section(), "weapon_class")
-			if class == "heavy_weapon" then
-				kind = "w_heavy"
-			end	
-		end
-	end
-    return wp_table[kind]
-end
-
-function get_weapon_perk_class(sec)
-    if not sec then return end
-    local kind = ini_sys:r_string(sec, "kind") or nil
-	if kind == "w_explosive" then
-		local slot = ini_sys:r_string(sec, "slot")
-		if slot ~= "3" then
-			local class = ini_sys:r_string(sec, "weapon_class")
-			if class == "heavy_weapon" then
-				kind = "w_heavy"
-			end	
-		end
-	end
-    return wp_table[kind]
-end
-
-local function IsValidMelee(obj)
-	if not obj then return false end
-	local o_sec = obj:section()
-	local get_slot = SYS_GetParam(2, o_sec, "animation_slot") or 0
-    return (SYS_GetParam(0, o_sec, "kind") == "w_melee") and (get_slot ~= 13)
-end
-
 -- Local Looting vars
 looting_stash_reduc = { [0] = 0, [1] = -1, [2] = -2, [3] = -2, [4] = -2, [5] = -3 }
 base_task_num = 0
@@ -170,6 +121,65 @@ has_slept = false
 
 -- Battle Runner
 local last_runner_level = 0
+
+wp_table = {
+	["w_explosive"] = "explosive",
+	["w_misc"] = "misc",
+	["w_melee"] = "melee",
+	["w_smg"] = "smg",
+	["w_pistol"] = "pistol",
+	["w_rifle"] = "rifle",
+	["w_sniper"] = "sniper",
+	["w_shotgun"] = "shotgun",
+	["w_heavy"] = "heavy",
+}
+
+function sortK_of(weapon)
+    if not weapon then return "empty hands" end
+	if shotgun_list[weapon:id()] then return "shotgun" end
+	
+    local kind = ini_sys:r_string(weapon:section(), "kind") or nil
+	if kind == "w_explosive" then
+		local slot = ini_sys:r_string(weapon:section(), "slot")
+		if slot ~= "3" then
+			local class = ini_sys:r_string(weapon:section(), "weapon_class")
+			if class == "heavy_weapon" then
+				kind = "w_heavy"
+			end	
+		end
+	end
+	if wp_table[kind] then
+		return wp_table[kind]
+	else
+		return nil
+	end
+end
+
+function get_weapon_perk_class(sec)
+    if not sec then return end
+    local kind = ini_sys:r_string(sec, "kind") or nil
+	if kind == "w_explosive" then
+		local slot = ini_sys:r_string(sec, "slot")
+		if slot ~= "3" then
+			local class = ini_sys:r_string(sec, "weapon_class")
+			if class == "heavy_weapon" then
+				kind = "w_heavy"
+			end	
+		end
+	end
+    if wp_table[kind] then
+		return wp_table[kind]
+	else
+		return nil
+	end
+end
+
+local function IsValidMelee(obj)
+	if not obj then return false end
+	local o_sec = obj:section()
+	local get_slot = SYS_GetParam(2, o_sec, "animation_slot") or 0
+    return (SYS_GetParam(0, o_sec, "kind") == "w_melee") and (get_slot ~= 13)
+end
 
 local function experience_skill_on_update(perk_id, perk_data)
 	if perks[perk_id] then

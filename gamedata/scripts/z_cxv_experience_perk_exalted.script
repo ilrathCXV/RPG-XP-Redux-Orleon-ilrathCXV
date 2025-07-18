@@ -951,13 +951,14 @@ local function experience_skill_on_update(perk_id, perk_data)
 		-- Skip this is part of Sin/Monolith/ISG as they can't do story quests
 		local actor_comm = get_actor_true_community()
 		if blacklist[actor_comm] then return end
+		if lttz_faction_infos[actor_comm] then return end
 		
 		printf("[RPG - Exalted] Saved Faction: %s | Has Given Story Quests?: %s", saved_friendly_faction, has_given_story_quests)
 		if has_alife_info("mortal_sin_zone_hero") and (not has_alife_info("operation_afterglow_info_about_done")) then
 			-- Might not need the Dynamic News triggers, but we'll leave it for now
 			local dNewsIn = dynamic_news_manager.get_dynamic_news()
 			if dNewsIn then
-				dynNewsInst:GossipTaskOA()
+				dNewsIn:GossipTaskOA()
 			end
 			db.actor:give_info_portion("operation_afterglow_info_about_done")
 		end
