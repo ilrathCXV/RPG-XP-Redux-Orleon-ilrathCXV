@@ -182,13 +182,13 @@
         <text>Heavy Gunner</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc">
-        <text>You now deal increased damage with Shotguns, Snipers, and Explosive Weapons (excludes grenades).</text>
+        <text>You now deal increased damage with Shotguns, Snipers, and Heavy Weapons (excludes grenades).</text>
     </string>
 	<string id="st_perk_heavy_gunner_desc_1">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]5% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+2 %c[ui_gray_2]for %c[yellow]Snipers and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]5% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Heavy Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+2 %c[ui_gray_2]for %c[yellow]Snipers and Heavy Weapons\n
 		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]5% %c[ui_gray_2]for %c[yellow]Shotguns\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
@@ -196,8 +196,8 @@
 	<string id="st_perk_heavy_gunner_desc_2">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]10% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+4 %c[ui_gray_2]for %c[yellow]Snipers and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]10% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Heavy Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+4 %c[ui_gray_2]for %c[yellow]Snipers and Heavy Weapons\n
 		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]10% %c[ui_gray_2]for %c[yellow]Shotguns\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
@@ -205,8 +205,8 @@
 	<string id="st_perk_heavy_gunner_desc_3">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]15% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+6 %c[ui_gray_2]for %c[yellow]Snipers and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]15% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Heavy Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+6 %c[ui_gray_2]for %c[yellow]Snipers and Heavy Weapons\n
 		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]15% %c[ui_gray_2]for %c[yellow]Shotguns\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
@@ -214,8 +214,8 @@
 	<string id="st_perk_heavy_gunner_desc_4">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]20% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+8 %c[ui_gray_2]for %c[yellow]Snipers and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]20% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Heavy Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+8 %c[ui_gray_2]for %c[yellow]Snipers and Heavy Weapons\n
 		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]20% %c[ui_gray_2]for %c[yellow]Shotguns\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>
@@ -223,8 +223,8 @@
 	<string id="st_perk_heavy_gunner_desc_5">
         <text>You have taken to the more specialized weapons in the Zone. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]25% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Explosive Weapons\n
-		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+10 %c[ui_gray_2]for %c[yellow]Snipers and Explosive Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase damage to %c[yellow]mutants %c[ui_gray_2]by %c[d_green]25% %c[ui_gray_2]with %c[yellow]Shotguns, Snipers, and Heavy Weapons\n
+		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]+10 %c[ui_gray_2]for %c[yellow]Snipers and Heavy Weapons\n
 		%c[d_blue] - %c[ui_gray_2] Increase AP of ammo used by %c[d_green]25% %c[ui_gray_2]for %c[yellow]Shotguns\n
 		%c[d_red] - %c[ui_gray_2] Does not affect thrown grenades
 		</text>

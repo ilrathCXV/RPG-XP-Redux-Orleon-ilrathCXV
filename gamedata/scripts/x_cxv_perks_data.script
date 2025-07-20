@@ -137,12 +137,16 @@ wp_table = {
 function sortK_of(weapon)
     if not weapon then return "empty hands" end
 	if shotgun_list[weapon:id()] then return "shotgun" end
+	local sec = weapon:section()
+	if not sec then return end
 	
-    local kind = ini_sys:r_string(weapon:section(), "kind") or nil
+    local kind = SYS_GetParam(0, sec, "kind") or nil
+	if not kind then return end
 	if kind == "w_explosive" then
-		local slot = ini_sys:r_string(weapon:section(), "slot")
-		if slot ~= "3" then
-			local class = ini_sys:r_string(weapon:section(), "weapon_class")
+		local slot = SYS_GetParam(2, sec, "slot")
+		if slot ~= 3 then
+			local class = SYS_GetParam(0, sec, "weapon_class")
+			if not class then return end
 			if class == "heavy_weapon" then
 				kind = "w_heavy"
 			end	
@@ -157,11 +161,14 @@ end
 
 function get_weapon_perk_class(sec)
     if not sec then return end
-    local kind = ini_sys:r_string(sec, "kind") or nil
+    local kind = SYS_GetParam(0, sec, "kind") or nil
+	if not kind then return end
+	
 	if kind == "w_explosive" then
-		local slot = ini_sys:r_string(sec, "slot")
-		if slot ~= "3" then
-			local class = ini_sys:r_string(sec, "weapon_class")
+		local slot = SYS_GetParam(2, sec, "slot")
+		if slot ~= 3 then
+			local class = SYS_GetParam(0, sec, "weapon_class") or nil
+			if not class then return end
 			if class == "heavy_weapon" then
 				kind = "w_heavy"
 			end	

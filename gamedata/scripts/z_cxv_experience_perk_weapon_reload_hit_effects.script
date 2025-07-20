@@ -3,6 +3,9 @@ local gunner_damage_multiplier = 0.05
 local gunner_shotgun_ap_factor = 0.05
 local gunner_ap_additions = {[0] = 0, [1] = 0.002, [2] = 0.004, [3] = 0.006, [4] = 0.008, [5] = 0.010 }
 
+local string_find   = string.find
+local string_gsub   = string.gsub
+
 local jamming_bones = {
 	[20] = true, 
 	[21] = true, 
@@ -383,11 +386,16 @@ function perk_damage_effects(victim, shit, bone_id, flags)
 
     local weapon = level.object_by_id(shit.weapon_id)
 	
-    if weapon == nil then 
+	-- This is to get around how most explosive weapons work in engine
+	if weapon and string_find(weapon:section(), "_fake_missile") then
+		weapon = db.actor:active_item()
+	end
+	
+	if weapon == nil then 
 		return 
 	end
 	
-	-- printf("[RPG - Hit Effects] Weapon registered: %s", weapon:section())
+	printf("[RPG - Hit Effects] Weapon registered: %s", weapon and weapon:section())
 	
 	if (not IsWeapon(weapon)) and (not IsGrenade(weapon)) and (not IsMelee(weapon)) then
 		printf("[RPG - Hit Effects] Not legit: W - %s, G - %s, M - %s", IsWeapon(weapon), IsGrenade(weapon), IsMelee(weapon))
@@ -442,9 +450,6 @@ if grok_bo and not cxv_artigrok_bo then
 end
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
-local string_find   = string.find
-local string_gsub   = string.gsub
-
 function find_zone_slayer_ammo(wpn_id,npc)
 	local ammo_list = utils_item.get_ammo(nil, wpn_id)
 	local shells = ammo_list[math.random(1,#ammo_list)]

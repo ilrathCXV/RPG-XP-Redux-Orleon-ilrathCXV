@@ -19,8 +19,11 @@ function ui_item.build_desc_footer(obj, sec, str)
 	str = str or gt(ini_sys:r_string_ex(sec, "description"))
 	if (not str) then return "" end
 	
-	local weapon_class = (obj and get_obj_wpn_class(obj)) or (sec and get_sec_wpn_class(sec))
+	local weapon_class = (sec and get_sec_wpn_class(sec)) or (obj and get_obj_wpn_class(obj))
 	if not weapon_class then
+		return build_footer_base(obj, sec, str)
+	end
+	if weapon_class == "empty hands" then 
 		return build_footer_base(obj, sec, str)
 	end
 	
