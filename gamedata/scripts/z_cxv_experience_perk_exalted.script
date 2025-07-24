@@ -830,7 +830,7 @@ if dynamic_news_manager then
 end
 
 function exalted_true_comm()
-	local true_comm = get_actor_true_community()
+	local true_comm = gameplay_disguise.get_default_comm()
 	if is_dyn_news and saved_friendly_faction and lttz_starting_info[saved_friendly_faction] and (not lttz_starting_info[true_comm]) then
 		printf("[RPG - Exalted] Sending saved friendly faction b/c actor true comm is not in story list", saved_friendly_faction)
 		return saved_friendly_faction
@@ -884,22 +884,39 @@ function give_lostzone_quests()
 		end
 	end
 	
-	-- Recycle DRX availability to the new faction
+	-- Recycle DRX availability to the new faction (disabled due to issues with the misc. questline that has you go to various important NPCs)
 --	xr_effects.drx_sl_cancel_questlines(nil,nil,{})
---	xr_effects.drx_sl_setup_questlines(nil,nil,{saved_friendly_faction})	-- this causes issues with the misc. questline that has you go to various important NPCs
+--	xr_effects.drx_sl_setup_questlines(nil,nil,{saved_friendly_faction})
 	
-	-- Force giving needed info for LTTZ to start properly
-	for i=1, #lttz_starting_info[saved_friendly_faction] do
-		printf("[RPG - Exalted] Info: %s", lttz_starting_info[saved_friendly_faction][i])
-		give_info(lttz_starting_info[saved_friendly_faction][i])
-		printf("[RPG - Exalted] Does player have info (%s)?: %s", lttz_starting_info[saved_friendly_faction][i], has_alife_info(lttz_starting_info[saved_friendly_faction][i]))
-	end
+	-- Force LTTZ starting info so that starting dialogue works (just in case
+	-- Duty is a special case b/c it has you talk to Petrenko then to Voronin
+	
+	give_info(living_legend_info_about_done)
+	
+--	if (saved_friendly_faction == "dolg") then
+		for i=1, #lttz_starting_info[saved_friendly_faction] do
+			local lttz_tbd_info = lttz_starting_info[saved_friendly_faction][i]
+			printf("[RPG - Exalted] Info: %s", lttz_tbd_info)
+			if has_alife_info(lttz_tbd_info) then
+				db.actor:disable_info_portion(lttz_tbd_info)
+			end
+			printf("[RPG - Exalted] Does player have info (%s)?: %s", lttz_tbd_info, has_alife_info(lttz_tbd_info))
+		end
+		printf("[RPG - Exalted] For those reading this, the above info being **false** is correct due to story scripting logic...")
+--	else	
+--		for i=1, #lttz_starting_info[saved_friendly_faction] do
+--			printf("[RPG - Exalted] Info: %s", lttz_starting_info[saved_friendly_faction][i])
+--			give_info(lttz_starting_info[saved_friendly_faction][i])
+--			printf("[RPG - Exalted] Does player have info (%s)?: %s", lttz_starting_info[saved_friendly_faction][i], has_alife_info(lttz_starting_info[saved_friendly_faction][i]))
+--		end
+--	end
 	
 --	dialogs_lostzone.give_task_lttz_ll_find_doctor()
 	
 	printf("[RPG - Exalted] Story quest for faction (%s) have been given...", saved_friendly_faction)
 	
 	-- Might not need the Dynamic News triggers, but we'll leave it for now
+	-- [TODO] Will also look into creating a PDA notification to let the player know as well
 	local dynNewsInst = dynamic_news_manager.get_dynamic_news()
 	if dynNewsInst then
 		dynNewsInst:GossipTaskLL()
