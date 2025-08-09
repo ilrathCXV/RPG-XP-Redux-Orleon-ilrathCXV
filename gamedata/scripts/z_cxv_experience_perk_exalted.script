@@ -869,7 +869,8 @@ function give_lostzone_quests()
 	
 	-- if somehow the faction picked is not in the list, do nothing
 	if not lttz_faction_infos[saved_friendly_faction] then
-		printf("[RPG - Exalted] Saved friendly faction (%s) does not have quest steps - exiting quest script", saved_friendly_faction)
+		printf("[RPG - Exalted] Saved friendly faction (%s) does not have quest steps - exiting quest script and resetting variable", saved_friendly_faction)
+		saved_friendly_faction = nil
 		return
 	end
 	
@@ -952,14 +953,56 @@ function xr_effects.stalker_ceasefire()
 	
 end
 
+local doctor_lttz_fix
+
 function save_state(m_data)
 	m_data.saved_friendly_faction = saved_friendly_faction
 	m_data.has_given_story_quests = has_given_story_quests
+	m_data.doctor_lttz_fix = doctor_lttz_fix
 end
 
 function load_state(m_data)
 	saved_friendly_faction = m_data.saved_friendly_faction or nil
 	has_given_story_quests = m_data.has_given_story_quests or false
+	doctor_lttz_fix = m_data.doctor_lttz_fix or nil
+end
+
+function fix_doctor_lttz_fix()
+	if not saved_friendly_faction then return end
+	for i=1, #lttz_starting_info[saved_friendly_faction] do
+		printf("[RPG - Exalted] Info: %s", lttz_starting_info[saved_friendly_faction][i])
+		give_info(lttz_starting_info[saved_friendly_faction][i])
+		printf("[RPG - Exalted] Does player have info (%s)?: %s", lttz_starting_info[saved_friendly_faction][i], has_alife_info(lttz_starting_info[saved_friendly_faction][i]))
+	end
+	doctor_lttz_fix = true
+end
+
+-- Monkeypatch to ensure player gets their needed quest info to start LTTZ at Doctor correctly
+local give_doc_quest = dialogs_lostzone.give_task_lttz_ll_find_doctor
+function dialogs_lostzone.give_task_lttz_ll_find_doctor()
+	if not saved_friendly_faction then
+		give_doc_quest()
+		return
+	end
+	if saved_friendly_faction then
+		fix_doctor_lttz_fix()
+		give_doc_quest()
+		return
+	end
+end
+
+-- slight bugfix of function found in dialogs_lostzone
+-- if not found, returns false
+-- if found, returns true as long as its stage does not equal nil
+
+-- original found in dialogs_lostzone would return true if stage equaled nil, which means that it is not active (lol)
+function is_task_active(task_id)
+	local tm = task_manager.get_task_manager()
+	local task_info = tm.task_info
+	if not (task_info[task_id]) then
+		return false
+	end
+	return task_info[task_id].stage ~= nil
 end
 
 local function experience_skill_on_update(perk_id, perk_data)
@@ -988,6 +1031,7 @@ local function experience_skill_on_update(perk_id, perk_data)
 				if goodwill > goodwill_exalted and (goodwill > highest_goodwill_amt) then 
 					highest_goodwill_faction = k
 					highest_goodwill_amt = goodwill
+					break
 				end 	
 			end
 			if highest_goodwill_faction then
@@ -1000,6 +1044,14 @@ local function experience_skill_on_update(perk_id, perk_data)
 		if saved_friendly_faction and (not has_given_story_quests) then
 			printf("[RPG - Exalted] Attempting to give Story Quests from this faction: %s", saved_friendly_faction)
 			give_lostzone_quests()
+		end
+		
+		-- fixes for saves that are softlocked at the Doctor
+		if saved_friendly_faction and has_given_story_quests and (not doctor_lttz_fix) then
+			if is_task_active("lttz_ll_find_doctor") then
+				printf("[RPG - Exalted] Save that is softlocked at Doctor; attempting to fix...")
+				fix_doctor_lttz_fix()
+			end
 		end
 	end
 end
