@@ -16,7 +16,7 @@ function xr_effects.inc_faction_goodwill_to_actor(actor, npc, p)
 	local community = p[1]
 	local delta		= p[2]
 	if delta and community then
-		game_relations.change_factions_community_num(community, id, tonumber(delta))
+		game_relations.change_factions_community_num(community, id, (tonumber(delta) * (1 + (samaritan_level * samaritan_pos_mult))) )
 		printdbg("/ Goodwill (main) gained with %s: %s", community, delta)
 	else
 		printe("!Wrong parameters in function 'inc_faction_goodwill_to_actor'")
