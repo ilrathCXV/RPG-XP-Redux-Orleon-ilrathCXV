@@ -1006,7 +1006,7 @@ function is_task_active(task_id)
 end
 
 local function experience_skill_on_update(perk_id, perk_data)
-	if perk_id == "perk_the_exalted" and perk_data["curr_level"] > 0 then
+	if (perk_id == "perk_the_exalted" and perk_data["curr_level"] > 0) or (saved_friendly_faction ~= nil) then
 	
 		-- Skip this is part of Sin/Monolith/ISG as they can't do story quests
 		local actor_comm = get_actor_true_community()

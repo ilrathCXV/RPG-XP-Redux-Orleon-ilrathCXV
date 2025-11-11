@@ -50,27 +50,9 @@ local golden = true	-- will be used to determine if old GBO or re-coded GBO
 local sms = actor_menu.set_msg
 fourth_times_counter = 0
 local fourth_times_grace = 0
+local shit_weapon_id = nil
 
 local play_sound_on_actor = x_cxv_perks_data.play_sound_on_actor
-
-local difficulty_multiplier_player = {
-	[1]  = 1.3,
-	[2]  = 1.05,
-	[3]  = 0.90,		--[3]  = 1.0,
-	[4]  = 0.80,		--[4]  = 1.0,
-}
-
---------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------
-
-function get_object_by_id(id) -- same as _g.script one but without spamming in console
-    if not id then return end
-    if (id == AC_ID) then return db.actor end
-
-    local obj = db.storage[id] and db.storage[id].object or level.object_by_id(id)
-    if not obj then return end
-    return obj
-end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
@@ -252,7 +234,7 @@ function process_perk_effects(victim, weapon, bone_id)
 		end
 	end
 	
-	if (perks["perk_zone_slayer"] > 0) and (weapon_class == "shotgun") then
+	if (perks["perk_zone_slayer"] > 0) then
 		if is_zone_slayer(weapon) then
 			slayer_usage = true
 			if IsMonster(victim) then
@@ -292,25 +274,81 @@ function process_perk_effects(victim, weapon, bone_id)
 	-- On Your Mark: Returns ammo to the mag if landing enough successful shots in a short period of time --
 	--------------------------------------------------------------------------------------------------------	
 	
-	if (perks["perk_fourth_times"] > 0) and (ammo_type_number) and (ammo_list) and (ammo_section) then
+	if (perks["perk_fourth_times"] > 0) and (ammo_section) then
 		if not IsMelee(weapon) then
 				
-			if (pellet_count == 1) then
-				fourth_times_counter = fourth_times_counter + (1 * fourth_mult)
-				fourth_timer = time_g + 60 + fourth_times_timer_add[perks["perk_fourth_times"]]			-- 6 seconds baseline
-			end
-			if (pellet_count > 1) then
-				fourth_times_counter = fourth_times_counter + ((1 / pellet_count) * fourth_mult)
-				fourth_timer = time_g + 60 + fourth_times_timer_add[perks["perk_fourth_times"]]			-- 6 seconds baseline
-			end
+			fourth_times_counter = fourth_times_counter + ((1 / pellet_count) * fourth_mult)
+			fourth_timer = time_g + 60 + fourth_times_timer_add[perks["perk_fourth_times"]]			-- 6 seconds baseline
+			
+			fourth_times_check(weapon, ammo_section)
 			
 			-- printf("[RPG - Hit Effects] On Your Mark stacks: %s of 8", fourth_times_counter)
 			
 		end
 	end
 	
+	
+	return damage_multiplier
+end
+
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+function perk_damage_effects(victim, shit, bone_id, flags)
+	
+	if not victim:alive() then return end
+	
+	if shit.draftsman:id() ~= db.actor:id() then
+		return
+	end
+	
+	if bone_id == 65535 then
+		return
+	end
+	
+	if shit.power >= 50 then return end
+	
+	local isCompanion = victim:has_info("npcx_is_companion")
+	if isCompanion then return end
+	
+	shit_weapon_id = shit.weapon_id
+    local weapon = level.object_by_id(shit_weapon_id)
+	
+	-- This is to get around how most explosive weapons work in engine
+	if weapon and string_find(weapon:section(), "_fake_missile") then
+		weapon = db.actor:active_item()
+	end
+	
+	if weapon == nil then 
+		return 
+	end
+	
+	printf("[RPG - Hit Effects] Weapon registered: %s", weapon and weapon:section())
+	
+	if (not IsWeapon(weapon)) and (not IsGrenade(weapon)) and (not IsMelee(weapon)) then
+		printf("[RPG - Hit Effects] Not legit: W - %s, G - %s, M - %s", IsWeapon(weapon), IsGrenade(weapon), IsMelee(weapon))
+		return
+	end
+	
+	local base_shit = shit.power
+	
+	slayer_usage = false
+	
+	local damage_multiplier = process_perk_effects(victim, weapon, bone_id) or 1
+	
+	shit.power = shit.power * damage_multiplier
+	
+	local damage_bonus = shit.power - base_shit
+	local damage_bonus_news = tonumber(string.format("%.3f", damage_bonus))
+	if damage_bonus_news >= 0.0001 then
+		--printf("///////////   RPG System: Damage increase in progress  //////////////////")
+		--printf('RPG Damage increase - Extra damage to the victim: %s', damage_bonus)
+	end
+end
+
+
+function fourth_times_check(weapon, ammo_section)
+
 	if (fourth_times_counter >= 8) then
-		-- alife_create_item(ammo_section, db.actor, {ammo = perks["perk_fourth_times"]})
 		
 		local ammo_to_load = 0
 		local ammo_counter = perks["perk_fourth_times"]
@@ -361,61 +399,7 @@ function process_perk_effects(victim, weapon, bone_id)
 		fourth_times_counter = 0
 		fourth_timer = 0
 	end
-	
-	return damage_multiplier
-end
 
---------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------
-function perk_damage_effects(victim, shit, bone_id, flags)
-	
-	if not victim:alive() then return end
-	
-	if shit.draftsman:id() ~= db.actor:id() then
-		return
-	end
-	
-	if bone_id == 65535 then
-		return
-	end
-	
-	if shit.power >= 50 then return end
-	
-	local isCompanion = victim:has_info("npcx_is_companion")
-	if isCompanion then return end
-
-    local weapon = level.object_by_id(shit.weapon_id)
-	
-	-- This is to get around how most explosive weapons work in engine
-	if weapon and string_find(weapon:section(), "_fake_missile") then
-		weapon = db.actor:active_item()
-	end
-	
-	if weapon == nil then 
-		return 
-	end
-	
-	printf("[RPG - Hit Effects] Weapon registered: %s", weapon and weapon:section())
-	
-	if (not IsWeapon(weapon)) and (not IsGrenade(weapon)) and (not IsMelee(weapon)) then
-		printf("[RPG - Hit Effects] Not legit: W - %s, G - %s, M - %s", IsWeapon(weapon), IsGrenade(weapon), IsMelee(weapon))
-		return
-	end
-	
-	local base_shit = shit.power
-	
-	slayer_usage = false
-	
-	local damage_multiplier = process_perk_effects(victim, weapon, bone_id) or 1
-	
-	shit.power = shit.power * damage_multiplier
-	
-	local damage_bonus = shit.power - base_shit
-	local damage_bonus_news = tonumber(string.format("%.3f", damage_bonus))
-	if damage_bonus_news >= 0.0001 then
-		--printf("///////////   RPG System: Damage increase in progress  //////////////////")
-		--printf('RPG Damage increase - Extra damage to the victim: %s', damage_bonus)
-	end
 end
 
 if grok_bo and not cxv_artigrok_bo then	
@@ -431,7 +415,7 @@ if grok_bo and not cxv_artigrok_bo then
 			
 			if shit.draftsman:id() == db.actor:id() then
 			
-				local weapon = get_object_by_id(shit.weapon_id)
+				local weapon = level.object_by_id(shit.weapon_id)
 				if not weapon or weapon == nil then
 					-- printf("[RPG - Hit Effects]: No weapon/damage source found")
 					return
@@ -473,6 +457,29 @@ function perk_kill_effects(victim, killer)
     if not killer then return end
     if killer:id() ~= db.actor:id() then return end
 	
+	if (perks["perk_fourth_times"] > 0) then
+		
+		local weapon = level.object_by_id(shit_weapon_id)
+	
+		-- This is to get around how most explosive weapons work in engine
+		if weapon and string_find(weapon:section(), "_fake_missile") then
+			weapon = killer:active_item()
+		end
+		
+		if weapon and IsWeapon(weapon) then 
+--			printf("[RPG - Hit Effects] Weapon registered: %s", weapon and weapon:section())
+			
+			ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
+			ammo_type_number = weapon:get_ammo_type()
+			ammo_section = ammo_list[ammo_type_number+1]
+			
+			fourth_times_counter = fourth_times_counter + 1
+			fourth_timer = time_g + 60 + fourth_times_timer_add[perks["perk_fourth_times"]]			-- 6 seconds baseline
+			
+			fourth_times_check(weapon, ammo_section)
+		end
+	end
+	
 -------------------------------------------------------------------------> Zone Slayer
 	
 	if slayer_usage and (perks["perk_zone_slayer"]  > 0) and (#x_cxv_perks_data.shotgun_list > 0) and IsStalker(victim) then
@@ -482,10 +489,10 @@ function perk_kill_effects(victim, killer)
 -------------------------------------------------------------------------> Vampirism
 	if perks["perk_vampirism"] > 0 then
 		if killer.health < 1 then
-			killer:change_health(0.025 * perks["perk_vampirism"])
+			killer:change_health(0.15 * perks["perk_vampirism"])
 		end
 		if killer.power < 1 then
-			killer:change_power(0.025 * perks["perk_vampirism"])
+			killer:change_power(0.15 * perks["perk_vampirism"])
 		end
 	end
 end

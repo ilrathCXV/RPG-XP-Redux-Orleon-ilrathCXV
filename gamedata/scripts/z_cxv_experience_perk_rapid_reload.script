@@ -23,6 +23,12 @@ local reload_anims = {
 	anm_reload_g = true,
 	anm_reload_w_gl = true,
 	anm_reload_empty_w_gl = true,
+	anm_reload_ammo6 = true,
+	anm_reload_ammo6_variant1 = true,
+	anm_reload_ammo6_variant2 = true,
+	anm_reload_ammo6_variant3 = true,
+	anm_reload_ammo6_variant4 = true,
+	anm_reload_ammo6_variant5 = true,
 	anm_reload_ammo5 = true,
 	anm_reload_ammo5_variant1 = true,
 	anm_reload_ammo5_variant2 = true,
@@ -46,6 +52,12 @@ local reload_anims = {
 	anm_reload_ammo1_variant3 = true,
 	anm_reload_ammo1_variant4 = true,
 	anm_reload_ammo1_variant5 = true,
+	anm_reload_ammo0 = true,
+	anm_reload_ammo0_variant1 = true,
+	anm_reload_ammo0_variant2 = true,
+	anm_reload_ammo0_variant3 = true,
+	anm_reload_ammo0_variant4 = true,
+	anm_reload_ammo0_variant5 = true
 }
 
 function actor_on_hud_animation_play(anim_table,obj)
