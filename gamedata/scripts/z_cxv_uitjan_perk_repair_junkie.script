@@ -1,8 +1,8 @@
 -- Repair Junkie: Grants a chance to refund a repair item
-local repair_junkie_bonus = { [0] = 0, [1] = 0.05, [2] = 0.10, [3] = 0.20 , [4] = 0.40, [5] = 0.750 }
+local repair_junkie_bonus = { [0] = 0, [1] = 0.10, [2] = 0.20, [3] = 0.35 , [4] = 0.50, [5] = 0.650 }
 
 -- Jury Rigging: Starting Rank 3, grants bonus repair item refund chance
-local zone_gunsmith_bonus = { [0] = 0, [1] = 0, [2] = 0, [3] = 0.1 , [4] = 0.3, [5] = 0.6}
+local zone_gunsmith_bonus = { [0] = 0, [1] = 0, [2] = 0, [3] = 0.10 , [4] = 0.30, [5] = 0.60}
 
 local play_sound_on_actor = x_cxv_perks_data.play_sound_on_actor
 

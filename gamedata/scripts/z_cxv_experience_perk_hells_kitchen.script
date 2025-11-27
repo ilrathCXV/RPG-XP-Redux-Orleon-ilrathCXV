@@ -1,4 +1,4 @@
-local cooking_supplies_cost_red = { [0] = 0, [1] = 0.15, [2] = 0.4, [3] = 0.7 }	-- 15/40/70% off each rank
+local cooking_supplies_cost_red = { [0] = 0, [1] = 0.15, [2] = 0.3, [3] = 0.5 }	-- 15/30/50% off each rank
 local cooking_supplies = {
 	["charcoal"] = true,
 	["kerosene"] = true,
@@ -6,7 +6,7 @@ local cooking_supplies = {
 	["explo_balon_gas"] = true,
 }
 
-local cooked_meals_cost_inc = { [0] = 0, [1] = 0.2, [2] = 0.45, [3] = 0.8 }	-- 20/45/80% more for selling cooked food
+local cooked_meals_cost_inc = { [0] = 0, [1] = 0.4, [2] = 0.75, [3] = 1.2 }	-- 40/75/120% more for selling cooked food
 local cooked_meals = {
 	["meat_flesh"] = true,
 	["meat_boar"] = true,
@@ -46,11 +46,11 @@ function hells_kitchen_cost(kind, obj, profile, calculated_cost, ret)
 	if profile.mode == 1 and cooked_meals[sec] then -- when selling
 		printf("Item (%s) old cost: %s", sec, ret.new_cost or calculated_cost)
 		ret.new_cost = math.floor((ret.new_cost or calculated_cost) * (1 + cooked_meals_cost_inc[hells_kitchen_lvl]))
-		printf("Item (%s) new cost: %s", sec, ret.new_cost)
+--		printf("Item (%s) new cost: %s", sec, ret.new_cost)
 	elseif profile.mode == 2 and cooking_supplies[sec] then -- when buying
 		printf("Item (%s) old cost: %s", sec, ret.new_cost or calculated_cost)
 		ret.new_cost = math.ceil((ret.new_cost or calculated_cost) * (1 - cooking_supplies_cost_red[hells_kitchen_lvl]))
-		printf("Item (%s) new cost: %s", sec, ret.new_cost)
+--		printf("Item (%s) new cost: %s", sec, ret.new_cost)
 	end
 	
 	-- needs to update cost table for giving the player XP for buying/selling

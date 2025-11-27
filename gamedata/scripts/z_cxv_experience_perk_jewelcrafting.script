@@ -1,6 +1,6 @@
 if not experience_traits then return end
 
-local jewelcrafter_bonus = {[0] = 0, [1] = 1, [2] = 2, [3] = 3, [4] = 5, [5] = 8}
+local jewelcrafter_bonus = {[0] = 0, [1] = 3, [2] = 5, [3] = 8, [4] = 10, [5] = 15}
 
 experience_traits.UIExperienceTraits.UpdateUpgradeChance = function(self)
 	local tr_manager = experience_traits.get_traits_manager()

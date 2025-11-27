@@ -1054,7 +1054,7 @@
         <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
-		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+3% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+5% %c[ui_gray_2]repair bonus\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
     </string>
@@ -1062,7 +1062,7 @@
         <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
-		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+4% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+6% %c[ui_gray_2]repair bonus\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
     </string>
@@ -1070,7 +1070,7 @@
 		<text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
-		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+5% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+7% %c[ui_gray_2]repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]10% %c[ui_gray_2]chance to not be consumed\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
@@ -1079,7 +1079,7 @@
         <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
-		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+6% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+8% %c[ui_gray_2]repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]30% %c[ui_gray_2]chance to not be consumed\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
@@ -1088,7 +1088,7 @@
         <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
-		%c[d_blue] - %c[ui_gray_2] Scraps will have a %c[d_green]+7% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+9% %c[ui_gray_2]repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]60% %c[ui_gray_2]chance to not be consumed\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
@@ -1135,7 +1135,7 @@
 	<string id="st_perk_zone_slayer_desc_2">
 		<text>Your affinity for certain shotguns has awakened a hidden power within you...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] The following bonuses are applied to %c[yellow]shotguns with an ammo capacity of 2 or less %c[d_green]AND tube-fed pump-action shotguns\n
+		%c[d_blue] - %c[ui_gray_2] The following bonuses are applied to %c[yellow]shotguns with an ammo capacity of 2 or less, %c[d_green]tube-fed pump-action shotguns, and bolt-action/slow-firing shotguns\n
 		%c[d_blue] - %c[ui_gray_2] Any weapon using %c[yellow]any type of shotgun ammo (12-gauge, 20-gauge, 23x75)%c[ui_gray_2] will be counted as a shotgun\n
 		%c[d_blue] - %c[ui_gray_2] Increase damage by an additional %c[d_green]5% against mutants\n
 		%c[d_blue] - %c[ui_gray_2] Stalkers killed by %c[yellow]valid shotguns%c[ui_gray_2] will drop 1 random shotgun shell\n
@@ -1146,7 +1146,7 @@
 	<string id="st_perk_zone_slayer_desc_3">
 		<text>Your affinity for certain shotguns has awakened a hidden power within you...\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] The following bonuses are applied to %c[yellow]shotguns with an ammo capacity of 2 or less, %c[d_green]tube-fed pump-action shotguns,%c[d_cyan] AND any shotgun that reloads one round at a time\n
+		%c[d_blue] - %c[ui_gray_2] The following bonuses are applied to %c[yellow]shotguns with an ammo capacity of 2 or less, %c[d_green]tube-fed pump-action shotguns, bolt-action/slow-firing shotguns,%c[d_cyan] AND any shotgun that reloads one round at a time\n
 		%c[d_blue] - %c[ui_gray_2] Any weapon using %c[yellow]any type of shotgun ammo (12-gauge, 20-gauge, 23x75)%c[ui_gray_2] will be counted as a shotgun\n
 		%c[d_blue] - %c[ui_gray_2] Increase damage by an additional %c[d_green]5% against mutants\n
 		%c[d_blue] - %c[ui_gray_2] Stalkers killed by %c[yellow]valid shotguns%c[ui_gray_2] will drop 1 random shotgun shell\n
@@ -1196,27 +1196,30 @@
         <text>The Zone will now reward you for your exceptional marksmanship.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 1 ammo to your weapon or backpack\n
-		%c[d_blue] - %c[ui_gray_2] Landing a headshot or a critical hit via %c[yellow]Lucky Strike %c[ui_gray_2]or %c[yellow]Deadeye %c[ui_gray_2]will count as %c[d_green]2 hits\n
-		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
-		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 6 seconds will reset the hit counter
+		%c[d_blue] - %c[ui_gray_2] %c[yellow]Landing a headshot%c[ui_gray_2] or a %c[yellow]critical hit via the "Lucky Strike" or "Deadeye" perks%c[ui_gray_2] will count as %c[d_green]2 hits\n
+		%c[d_blue] - %c[ui_gray_2] %c[yellow]Killing an enemy%c[ui_gray_2] will always %c[d_green]add 1 hit to the counter\n
+		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count (kill hits not affected)\n
+		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 8 seconds will reset the hit counter
 		</text>
     </string>
 	<string id="st_perk_fourth_times_desc_2">
         <text>The Zone will now reward you for your exceptional marksmanship.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 2 ammo to your weapon or backpack\n
-		%c[d_blue] - %c[ui_gray_2] Landing a headshot or a critical hit via %c[yellow]Lucky Strike %c[ui_gray_2]or %c[yellow]Deadeye %c[ui_gray_2]will count as %c[d_green]2 hits\n
-		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
-		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 6.5 seconds will reset the hit counter
+		%c[d_blue] - %c[ui_gray_2] %c[yellow]Landing a headshot%c[ui_gray_2] or a %c[yellow]critical hit via the "Lucky Strike" or "Deadeye" perks%c[ui_gray_2] will count as %c[d_green]2 hits\n
+		%c[d_blue] - %c[ui_gray_2] %c[yellow]Killing an enemy%c[ui_gray_2] will always %c[d_green]add 1 hit to the counter\n
+		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count (kill hits not affected)\n
+		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 9 seconds will reset the hit counter
 		</text>
     </string>
 	<string id="st_perk_fourth_times_desc_3">
         <text>The Zone will now reward you for your exceptional marksmanship.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Landing 8 successful hits in a short time %c[d_green]refunds 3 ammo to your weapon or backpack\n
-		%c[d_blue] - %c[ui_gray_2] Landing a headshot or a critical hit via %c[yellow]Lucky Strike %c[ui_gray_2]or %c[yellow]Deadeye %c[ui_gray_2]will count as %c[d_green]2 hits\n
-		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count\n
-		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 7 seconds will reset the hit counter
+		%c[d_blue] - %c[ui_gray_2] %c[yellow]Landing a headshot%c[ui_gray_2] or a %c[yellow]critical hit via the "Lucky Strike" or "Deadeye" perks%c[ui_gray_2] will count as %c[d_green]2 hits\n
+		%c[d_blue] - %c[ui_gray_2] %c[yellow]Killing an enemy%c[ui_gray_2] will always %c[d_green]add 1 hit to the counter\n
+		%c[d_blue] - %c[ui_gray_2] Shotgun hits are divided by their pellet count (kill hits not affected)\n
+		%c[d_red] - %c[ui_gray_2] Swapping weapons or not landing a hit within 10 seconds will reset the hit counter
 		</text>
     </string>
 	
@@ -1466,31 +1469,31 @@
 	<string id="st_perk_jewelcrafter_desc_1">
         <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+1% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+3% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_2">
         <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+2% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+5% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_3">
         <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+3% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+8% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_4">
         <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+5% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+10% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_5">
         <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+8% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+15% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
 		</text>
     </string>
 	
@@ -1544,6 +1547,20 @@
         <text>Your weapon's parts might be damaged, but they won't fail on you.</text>
     </string>
 	<string id="st_perk_battleforged_desc_1">
+        <text>Your weapon's parts might be damaged, but they won't fail on you.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2]Weapon parts%c[yellow] under 50% condition%c[ui_gray_2] will %c[d_green]no longer take damage from firing\n 
+		%c[d_blue] - %c[ui_gray_2]This effectively means that these parts should not fall under their current condition
+		</text>
+    </string>
+	<string id="st_perk_battleforged_desc_2">
+        <text>Your weapon's parts might be damaged, but they won't fail on you.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2]Weapon parts%c[yellow] under 60% condition%c[ui_gray_2] will %c[d_green]no longer take damage from firing\n 
+		%c[d_blue] - %c[ui_gray_2]This effectively means that these parts should not fall under their current condition
+		</text>
+    </string>
+	<string id="st_perk_battleforged_desc_3">
         <text>Your weapon's parts might be damaged, but they won't fail on you.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2]Weapon parts%c[yellow] under 70% condition%c[ui_gray_2] will %c[d_green]no longer take damage from firing\n 
@@ -1685,24 +1702,49 @@
         <text>Knowledge of your culinary skills have made its way through the Zone. Everyone is itching to watch and taste your talent.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[d_orange]15% cheaper\n
-		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[d_cyan]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_orange]20% more profitable
+		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[d_cyan]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_orange]40% more profitable
 		</text>
     </string>
 	<string id="st_perk_hells_kitchen_desc_2">
         <text>Knowledge of your culinary skills have made its way through the Zone. Everyone is itching to watch and taste your talent.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[yellow]40% cheaper\n
-		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[d_cyan]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[yellow]45% more profitable
+		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[yellow]30% cheaper\n
+		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[d_cyan]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[yellow]75% more profitable
 		</text>
     </string>
 	<string id="st_perk_hells_kitchen_desc_3">
         <text>Knowledge of your culinary skills have made its way through the Zone. Everyone is itching to watch and taste your talent.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[d_green]70% cheaper\n
-		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[d_cyan]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_green]80% more profitable
+		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[d_green]50% cheaper\n
+		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[d_cyan]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_green]120% more profitable
 		</text>
     </string>
 	
+	<string id="st_perk_prospector">
+        <text>Prospector</text>
+    </string>
+	<string id="st_perk_prospector_desc">
+        <text>It may still be junk, but you have an eye for picking out the best junk.</text>
+    </string>
+	<string id="st_perk_prospector_desc_1">
+        <text>It may still be junk, but you have an eye for picking out the best junk.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Items that have a sell value greater than 0 but less than 80 will have their sell value %c[d_orange]increased by 1.5x\n
+		</text>
+    </string>
+	<string id="st_perk_prospector_desc_2">
+        <text>It may still be junk, but you have an eye for picking out the best junk.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Items that have a sell value greater than 0 but less than 80 will have their sell value %c[yellow]increased by 3x\n
+		</text>
+    </string>
+	<string id="st_perk_prospector_desc_3">
+        <text>It may still be junk, but you have an eye for picking out the best junk.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Items that have a sell value greater than 0 but less than 80 will have their sell value %c[d_green]increased by 5x\n
+		</text>
+    </string>
+
 	
 	<string id="st_perk_mono_mind">
         <text>Monolithian Mind</text>

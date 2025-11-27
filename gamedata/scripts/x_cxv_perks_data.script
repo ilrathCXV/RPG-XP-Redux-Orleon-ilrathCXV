@@ -39,6 +39,7 @@ perks = {
 	["perk_mutant_slayer"] = 0,
 	["perk_perkifact_power"] = 0,
 	["perk_plus_one"] = 0,
+	["perk_prospector"] = 0,
 	["perk_rapid_reload"] = 0,
 	["perk_repair_junkie"] = 0,
 	["perk_rifleman"] = 0,
@@ -306,6 +307,11 @@ local function experience_skill_on_update(perk_id, perk_data)
 
 end
 
+local weapon_exceptions_rank3 = {
+	["wpn_uboinik"] = true,	-- Shambler (technically reloads one at a time but stuck in the entire animaiton)
+	
+}
+
 local shotgun_ammo_check = {
 	["ammo_12x70_buck"] = true,
 	["ammo_12x76_zhekan"] = true,
@@ -331,6 +337,7 @@ function shotgun_ammo_validity_check(wpn_sec, wpn_id)
 	local ammo_table = utils_item.get_ammo(wpn_sec, wpn_id)
 
 	if ammo_table and ammo_table[1] and shotgun_ammo_check[ammo_table[1]] then
+		printf("Weapon: %s | First Ammo: %s | Ammo in Shotgun Table?: %s", wpn_sec, ammo_table and ammo_table[1], shotgun_ammo_check[ammo_table[1]])
 		return true
 	end
 	
@@ -357,8 +364,22 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 	-- check if tube-fed pump-action/single-round-fed-reloaded shotgun
 	if perks["perk_zone_slayer"] < 2 then return end
 	
+	-- Rank 3 Exceptions
+	local parent_sec = SYS_GetParam(0, wpn_sec, "parent_section") or wpn_sec
+	if weapon_exceptions_rank3[parent_sec] and perks["perk_zone_slayer"] > 2 then
+		shotgun_list[#shotgun_list + 1] = wpn_id
+		return
+	end
+	
 	-- need to use SYS_GetParam so that it can return nil (r_string just crashes if said variable doesn't exist)
 	local tri_state = SYS_GetParam(0, wpn_sec, "tri_state_reload") or "off"
+	local rpm = ini_sys:r_float_ex(wpn_sec, "rpm")	-- not doing SYS_GetParam since this should never fail - if it does, that weapon designer has a serious issue
+	
+	if rpm <= 50 and perks["perk_zone_slayer"] > 1 then	-- bolt-action addition in Rank 2
+		shotgun_list[#shotgun_list + 1] = wpn_id
+		return
+	end
+	
 	if tri_state and tri_state == "on" then
 		
 		-- Rank 3: All shotguns that reload one shell at a time are valid
@@ -367,8 +388,7 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 			return
 		end
 		
-		local rpm = ini_sys:r_float_ex(wpn_sec, "rpm")
-		if rpm and rpm <= 120 then	-- 120 is a generous value
+		if rpm and rpm <= 120 then	-- 120 is a generous value (rough pump-action base RPM upper limit)
 			local fire_mode_list = parse_list(ini_sys,wpn_sec,"fire_modes")
 			if fire_mode_list then
 				for i = 1, #fire_mode_list do

@@ -11,13 +11,6 @@ local wick_inclusions = {
 	"kiparis",
 }
 
-local difficulty_multiplier_enemy = {
-	[1]  = 0.65,
-	[2]  = 0.8,
-	[3]  = 1.0,
-	[4]  = 1.2,
-}
-
 local mutant_list = {
 	[14] = true,
     [108] = true,
@@ -171,7 +164,7 @@ function rpg_damage_reduction(shit, bone_id)
 	
 ------------------------------------------------------------> Thick Skin	
 	if hitter and x_cxv_perks_data.perks["perk_mutant_slayer"] > 0 then
-		if mutant_list[hitter:clsid()] and allowed_hit_types[shit_type] then
+		if IsMonster(hitter) or mutant_list[hitter:clsid()] then		--and allowed_hit_types[shit_type] then
 		
 			local night_mult = 1
 			if x_cxv_perks_data.perks["perk_mutant_slayer"] >= 3 then

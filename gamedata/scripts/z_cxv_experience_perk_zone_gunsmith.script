@@ -57,7 +57,7 @@ item_repair.UIRepair.InitInventory = function(self, n)
 						inf[size_t] = part_bonus
 					
 					elseif (sec == "prt_i_scrap") then
-						local part_bonus = 0.02 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+						local part_bonus = 0.04 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
 						part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
 						part_bonus = clamp(math.floor(part_bonus*100) , 0 , 100)
 				
@@ -105,7 +105,7 @@ item_repair.UIRepair.OnItemSelect = function(self, n)
 			con = (game_achievements.has_achievement("mechanized_warfare")) and (con + 0.02) or con
 			con = clamp(math.floor(con*100)*self.parts_multi , 0 , 100)
 		elseif n == 2 and (sec == "prt_i_scrap") then
-			con = 0.02 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+			con = 0.04 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
 			con = (game_achievements.has_achievement("mechanized_warfare")) and (con + 0.02) or con
 			con = clamp(math.floor(con*100) , 0 , 100)
 		end

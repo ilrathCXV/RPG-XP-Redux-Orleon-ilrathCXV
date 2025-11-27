@@ -1,0 +1,22 @@
+local junk_cost_mult = { [0] = 1, [1] = 1.5, [2] = 3, [3] = 5 }
+
+function prospector_cost_adj(kind, obj, profile, calculated_cost, ret)
+
+	if x_cxv_perks_data.perks["perk_prospector"] < 0 then return end
+
+	local sec = obj:section()
+	local perk_cost_mult = junk_cost_mult[x_cxv_perks_data.perks["perk_prospector"]] or 0
+	local current_cost = ret.new_cost or calculated_cost
+	if profile.mode == 1 and (current_cost > 0 and current_cost <= 80) then -- when selling
+		printf("Item (%s) old cost: %s", sec, current_cost)
+		ret.new_cost = current_cost * perk_cost_mult
+		printf("Item (%s) new cost: %s", sec, ret.new_cost)
+	end
+	
+	-- needs to update cost table for giving the player XP for buying/selling
+	z_cxv_experience_perk_bartering.item_costs[obj:id()] = ret.new_cost or calculated_cost
+end
+
+function on_game_start()
+	RegisterScriptCallback("on_get_item_cost", prospector_cost_adj)
+end

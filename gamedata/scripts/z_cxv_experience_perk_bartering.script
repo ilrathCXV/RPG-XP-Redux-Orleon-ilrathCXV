@@ -1,14 +1,14 @@
 local totalamounttraded = 0
 item_costs = {}
 
-function perk_silver_tongued_cost(kind, obj, profile, calculated_cost, ret)
-	if profile.mode == 1 then -- when selling
-		ret.new_cost = math.floor((ret.new_cost or calculated_cost) * (1 + (x_cxv_perks_data.perks["perk_silver_tongued"] * 0.05)))
-	elseif profile.mode == 2 then -- when buying
-		ret.new_cost = math.ceil((ret.new_cost or calculated_cost) * (1 - (x_cxv_perks_data.perks["perk_silver_tongued"] * 0.05)))
-	end
-	item_costs[obj:id()] = ret.new_cost or calculated_cost
-end
+--	function perk_silver_tongued_cost(kind, obj, profile, calculated_cost, ret)
+--		if profile.mode == 1 then -- when selling
+--			ret.new_cost = math.floor((ret.new_cost or calculated_cost) * (1 + (x_cxv_perks_data.perks["perk_silver_tongued"] * 0.05)))
+--		elseif profile.mode == 2 then -- when buying
+--			ret.new_cost = math.ceil((ret.new_cost or calculated_cost) * (1 - (x_cxv_perks_data.perks["perk_silver_tongued"] * 0.05)))
+--		end
+--		item_costs[obj:id()] = ret.new_cost or calculated_cost
+--	end
 
 function perk_silver_tongued_start()
 	RegisterScriptCallback("actor_on_item_take", actor_on_item_buy)
@@ -51,5 +51,5 @@ end
 function on_game_start()
 	RegisterScriptCallback("ActorMenu_on_trade_started", perk_silver_tongued_start)
 	RegisterScriptCallback("ActorMenu_on_trade_closed", perk_silver_tongued_end)
-	RegisterScriptCallback("on_get_item_cost", perk_silver_tongued_cost)
+--	RegisterScriptCallback("on_get_item_cost", perk_silver_tongued_cost)
 end
