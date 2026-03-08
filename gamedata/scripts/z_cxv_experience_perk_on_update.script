@@ -2,6 +2,8 @@ if perk_based_artefacts then end
 
 local af_lucifer_data = perk_based_artefacts.artefact_props.af_lucifer
 
+local perks = x_cxv_perks_data.perks
+
 local time_elapsed		 = 0
 local saved_time_elapsed = 0
 local old_time       	 = 0
@@ -33,20 +35,20 @@ function perk_effects_over_time()
 	
 	time_elapsed = get_time_elapsed()
 	local effect_factor = max(0, saved_time_elapsed > 0 and time_elapsed > 0 and (time_elapsed - saved_time_elapsed) or 1)
-
+	local actor = db.actor
 -------------------------------------------------------------> Cybermedic
-    if x_cxv_perks_data.perks["perk_cybermedic"] >= 1 then
-		if db.actor.bleeding > 0 then
+    if perks["perk_cybermedic"] >= 1 then
+		if actor.bleeding > 0 then
 			local bleedingCure = 0
-			bleed_table_index = clamp(x_cxv_perks_data.perks["perk_cybermedic"], 1, 3)
-			bleedingCure = round_idp(bandage_base_boost * x_cxv_perks_data.perks["perk_cybermedic"] * effect_factor * actor_bleed_k * bleed_coef_table[bleed_table_index], 4)
+			bleed_table_index = clamp(perks["perk_cybermedic"], 1, 3)
+			bleedingCure = round_idp(bandage_base_boost * perks["perk_cybermedic"] * effect_factor * actor_bleed_k * bleed_coef_table[bleed_table_index], 4)
 			-- printf("Bleeding Cure amt: %s", bleedingCure)
-			db.actor.bleeding = bleedingCure
+			actor.bleeding = bleedingCure
 		end
     end
 -------------------------------------------------------------> Master of the Zone
-	if x_cxv_perks_data.perks["perk_master_zone"] >= 1 then 
-		db.actor:iterate_belt( function(owner, obj)
+	if perks["perk_master_zone"] >= 1 then 
+		actor:iterate_belt( function(owner, obj)
 			if obj:section() == "af_lucifer" then
 				if af_lucifer_data.condition < 0.51 then
 					local condRepair = (0.00015 * effect_factor)
@@ -65,16 +67,12 @@ function perk_effects_over_time()
 				end
 			end
 		end)
+	end	
+	
+-------------------------------------------------------------> Glass Cannon (Rank 3): Max HP now capped at 80% to allow damage boost to always be active
+	if (perks["perk_glass_cannon"] >= 3) and actor.health > 0.80 then
+		actor.health = 0.80
 	end
-
--------------------------------------------------------------> Refreshness
-    if x_cxv_perks_data.perks["perk_iron_resolve"] >= 1 then
-		local conditions = db.actor:cast_Actor():conditions()
-		if conditions then
-			local dizzyRemoval = -0.00375 * x_cxv_perks_data.perks["perk_iron_resolve"] * effect_factor
-			conditions:ChangeAlcohol(dizzyRemoval)
-		end
-    end
 	
 	saved_time_elapsed = time_elapsed
 end

@@ -1,16 +1,19 @@
 local task_ini = ini_file("misc\\task\\task_manager.ltx")
-task_item_list = {}
+task_item_list = {}	-- .count, .chance
+
+item_chance_floor =  0.01 -- 0.005
 
 invalid_kinds = {
-	["i_quest"] = true,
 	["w_pistol"] = false,
 	["w_smg"] = false,
-	["w_rifle"] = true,
 	["w_shotgun"] = false,
-	["w_sniper"] = true,
 	["w_melee"] = false,
+	
+	["i_quest"] = true,
+	["w_rifle"] = true,
+	["w_sniper"] = true,
 	["w_explosive"] = true,
-	["w_heavy"] = true,
+	["w_heavy"] = true
 }
 
 damaged_kinds = {
@@ -22,6 +25,9 @@ damaged_kinds = {
 	["w_shotgun"] = true,
 	["w_melee"] = true,
 	["w_smg"] = true,
+	["w_rifle"] = true,
+	["w_sniper"] = true,
+	["w_heavy"] = true
 }
 
 blacklisted_sections = {
@@ -37,7 +43,7 @@ blacklisted_sections = {
 	["detector_scientific"] = true,
 	["detector_anomaly"] = true,
 	["detector_grizzly"] = true,
-	["device_pda_milspec"] = true,
+	["device_pda_milspec"] = true
 }
 
 function valid_fetch_loot(sec)
@@ -69,8 +75,8 @@ function get_task_items()
 			-- Fetch
 			local fetch_sec = load_var(actor, task_id.."_fetch")
 			if fetch_sec and (not blacklisted_sections[fetch_sec]) and valid_fetch_loot(fetch_sec) then
-				task_item_list[fetch_sec] = (task_item_list[fetch_sec] and task_item_list[fetch_sec] + 1) or 1
-				printf("[RPG] Task Item being added to list: %s (%s)", fetch_sec, task_item_list[fetch_sec])
+				calculate_fetch_finder_data(fetch_sec, true)
+--				printf("[RPG - Fetch Finder] Task Item being added to list: %s", fetch_sec, task_item_list[fetch_sec])
 			end
 	
 			-- Multi fetch
@@ -87,20 +93,20 @@ function check_multifetch_items(task_id, is_adding)
 	local required_items = _M and _M[task_id] and _M[task_id].required_items
 	if required_items then
 		for k,v in pairs(required_items) do
-			if required_items[k].sec and (not blacklisted_sections[required_items[k].sec]) and valid_fetch_loot(required_items[k].sec) then
-				task_item_list[required_items[k].sec] = (is_adding and (task_item_list[required_items[k].sec] and task_item_list[required_items[k].sec] + 1) or 1) or 
-														(task_item_list[required_items[k].sec] and math.max((task_item_list[required_items[k].sec] - 1), 0) or 0)
-				printf("[RPG] Task Item being assesed: %s | Is adding?: %s | Count: %s", required_items[k].sec, is_adding, task_item_list[required_items[k].sec])
+			local sec = required_items[k].sec
+			if sec and (not blacklisted_sections[sec]) and valid_fetch_loot(sec) then
+				calculate_fetch_finder_data(sec, is_adding)
+--				printf("[RPG - Fetch Finder] Task Item being assesed: %s | Is adding?: %s | Count: %s", sec, is_adding, task_item_list[sec] and task_item_list[sec].count or 0)
 			end
 		end
 	end
 	local optional_items = _M and _M[task_id] and _M[task_id].optional_items
 	if optional_items then
 		for k,v in pairs(optional_items) do
-			if optional_items[k].sec and (not blacklisted_sections[optional_items[k].sec]) and valid_fetch_loot(optional_items[k].sec) then
-				task_item_list[optional_items[k].sec] = (is_adding and (task_item_list[optional_items[k].sec] and task_item_list[optional_items[k].sec] + 1) or 1) or 
-														(task_item_list[optional_items[k].sec] and math.max((task_item_list[optional_items[k].sec] - 1), 0) or 0)
-				printf("[RPG] Task Item being assesed: %s | Is adding?: %s | Count: %s", optional_items[k].sec, is_adding, task_item_list[optional_items[k].sec])
+			local sec = optional_items[k].sec
+			if sec and (not blacklisted_sections[sec]) and valid_fetch_loot(sec) then
+				calculate_fetch_finder_data(sec, is_adding)
+--				printf("[RPG - Fetch Finder] Task Item being assesed: %s | Is adding?: %s | Count: %s", sec, is_adding, task_item_list[sec] and task_item_list[sec].count or 0)
 			end
 		end
 	end
@@ -108,12 +114,6 @@ end
 
 OrigGiveTask = task_manager.CRandomTask.give_task
 task_manager.CRandomTask.give_task = function(self,task_id,task_giver_id)
-
---	Remove this b/c WTF does its own thing that will cause these lines to make WTF not work at all...
---	if not task_ini:section_exist(task_id) then
---		printe("!ERROR There is no task [%s] in task ini_file or ini_file is not included!!!", task_id)
---		return
---	end
 	
 	OrigGiveTask(self,task_id,task_giver_id)
 
@@ -122,8 +122,8 @@ task_manager.CRandomTask.give_task = function(self,task_id,task_giver_id)
 	-- Increment task item in list
 	local check_fetch_quest_sec = load_var(db.actor, task_id.."_fetch")
 	if check_fetch_quest_sec and (not blacklisted_sections[check_fetch_quest_sec]) and valid_fetch_loot(check_fetch_quest_sec) then
-		task_item_list[check_fetch_quest_sec] = (task_item_list[check_fetch_quest_sec] and task_item_list[check_fetch_quest_sec] + 1) or 1
-		printf("[RPG] Task Item being added to list: %s (%s)", check_fetch_quest_sec, task_item_list[check_fetch_quest_sec])
+		calculate_fetch_finder_data(check_fetch_quest_sec, true)
+--		printf("[RPG - Fetch Finder] Task Item being added to list: %s", check_fetch_quest_sec)
 	end
 	
 	check_multifetch_items(task_id, true)
@@ -137,8 +137,8 @@ task_manager.CRandomTask.set_task_completed = function(self, task_id)
 		if (x_cxv_perks_data.perks["perk_fetch_finder"] > 0) then
 			local check_fetch_quest_sec = load_var(db.actor, task_id.."_fetch")
 			if check_fetch_quest_sec and task_item_list[check_fetch_quest_sec] then
-				task_item_list[check_fetch_quest_sec] = (task_item_list[check_fetch_quest_sec] and math.max(task_item_list[check_fetch_quest_sec] - 1, 0)) or 0
-				printf("[RPG] Task Item being removed to list: %s (%s)", check_fetch_quest_sec, task_item_list[check_fetch_quest_sec])
+				calculate_fetch_finder_data(check_fetch_quest_sec, false)
+--				printf("[RPG] Task Item being removed to list: %s", check_fetch_quest_sec)
 			end
 			check_multifetch_items(task_id, false)
 		end
@@ -155,8 +155,8 @@ task_manager.CRandomTask.set_task_failed = function(self, task_id)
 		if (x_cxv_perks_data.perks["perk_fetch_finder"] > 0) then
 			local check_fetch_quest_sec = load_var(db.actor, task_id.."_fetch")
 			if check_fetch_quest_sec and task_item_list[check_fetch_quest_sec] then
-				task_item_list[check_fetch_quest_sec] = (task_item_list[check_fetch_quest_sec] and math.max(task_item_list[check_fetch_quest_sec] - 1, 0)) or 0
-				printf("[RPG] Task Item being removed to list: %s (%s)", check_fetch_quest_sec, task_item_list[check_fetch_quest_sec])
+				calculate_fetch_finder_data(check_fetch_quest_sec, false)
+--				printf("[RPG] Task Item being removed to list: %s", check_fetch_quest_sec)
 			end
 			check_multifetch_items(task_id, false)
 		end
@@ -173,8 +173,8 @@ task_manager.CRandomTask.set_task_cancelled = function(self, task_id)
 		if (x_cxv_perks_data.perks["perk_fetch_finder"] > 0) then
 			local check_fetch_quest_sec = load_var(db.actor, task_id.."_fetch")
 			if check_fetch_quest_sec and task_item_list[check_fetch_quest_sec] then
-				task_item_list[check_fetch_quest_sec] = (task_item_list[check_fetch_quest_sec] and math.max(task_item_list[check_fetch_quest_sec] - 1, 0)) or 0
-				printf("[RPG] Task Item being removed to list: %s (%s)", check_fetch_quest_sec, task_item_list[check_fetch_quest_sec])
+				calculate_fetch_finder_data(check_fetch_quest_sec, false)
+--				printf("[RPG - Fetch Finder] Task Item being decremented: %s", check_fetch_quest_sec)
 			end
 			check_multifetch_items(task_id, false)
 		end
@@ -190,13 +190,77 @@ local function experience_skill_on_update(perk_id, perk_data)
 	end
 end
 
--- helper getter functions for looting script - trying to call the list from another script does not return anything but these functions work
-function get_random_sec()
-	return random_key_table(task_item_list)
+-- helper function to select an item for the chance
+function get_fetch_finder_item(chance, is_stash)
+	local possible_items_list = {}
+	for k, v in pairs(task_item_list) do
+		local item_chance = v.chance
+		item_chance = (is_stash and (item_chance * 5)) or item_chance
+--		printf("[RPG - Fetch Finder] Item being checked: %s | Item chance: %s", k, item_chance)
+		if chance <= item_chance then
+			printf("[RPG - Fetch Finder] Item being added to possible loot list: %s | Item chance: %s", k, item_chance)
+			possible_items_list[k] = true
+		end
+	end
+	if not is_empty(possible_items_list) then
+		local task_item = random_key_table(possible_items_list)
+		printf("[RPG - Fetch Finder] Item selected: %s", task_item)
+		return task_item
+	else
+		printf("[RPG - Fetch Finder] No items succeeded chance roll")
+		return nil
+	end
+	
+	return nil
 end
 
-function get_sec_count(sec)
-	return task_item_list[sec] or false
+function get_fetch_finder_data(sec)
+	return (task_item_list[sec] and task_item_list[sec]) or nil
+end
+
+function calculate_fetch_finder_data(sec, is_adding)
+	if task_item_list[sec] and task_item_list[sec].count then
+		if is_adding then
+			task_item_list[sec].count = task_item_list[sec].count + 1
+			calculate_fetch_finder_chance(sec)
+		else
+			task_item_list[sec].count = task_item_list[sec].count - 1
+			if task_item_list[sec].count <= 0 then
+				task_item_list[sec] = nil
+			else
+				calculate_fetch_finder_chance(sec)
+			end
+		end
+	else
+		if is_adding then
+			task_item_list[sec] = {count = 1, chance = 0}
+			calculate_fetch_finder_chance(sec)
+		end
+	end
+end
+
+function calculate_fetch_finder_chance(sec)
+	local count = task_item_list[sec] and task_item_list[sec].count or 0
+	if count <= 0 then
+		printf("[RPG - Fetch Finder] Item (%s) has no count/does not exist in task list - skipping", sec)
+		return
+	end
+	
+	local base_cost = ini_sys:r_float_ex(sec,"cost")
+	local chance = 0.1
+	
+	if count > 1 then
+		chance = chance * (1 + (0.33 * (count - 1)))
+	end
+	if base_cost > 500 then
+		local chance_adj = 1 - ((2.718)^(-(500/base_cost)))
+		chance = math.max( (chance * chance_adj) , item_chance_floor)
+	end
+	
+	printf("[RPG - Fetch Finder] Fetch item cost: %s | Fetch item count: %s | Fetch item final chance: %s", base_cost, count, round_idp(chance, 5))
+	
+	-- REMEMBER TO MULTIPLY CHANCE BY 2 IF IN A STASH IN LOOTING SCRIPT	
+	task_item_list[sec].chance = round_idp(chance, 5)
 end
 
 function on_game_start()
@@ -244,7 +308,7 @@ local location_ranks = {
 	["poselok_ug"] = "veteran",
 	["bunker_a1"] = "veteran",
 	["collaider"] = "veteran",
-	["l11_pripyat"] = "veteran",
+	["l11_pripyat"] = "veteran"
 }
 
 -- Needed for weapon drops for Fetch Finder

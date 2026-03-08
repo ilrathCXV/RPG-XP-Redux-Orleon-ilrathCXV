@@ -1,0 +1,24 @@
+-- (02/26/26) - ilrathCXV: Per u/Jack_Harris, reworked Iron Resolve to increase the dizzy removal potency of using items rather than being a passive effect
+
+function iron_resolve_dizzy_boost(item,string)
+	if not item then return end
+    local sec = item:section()
+	local itemType = SYS_GetParam(0, sec, "kind") or 0
+	
+	if x_cxv_perks_data.perks["perk_iron_resolve"] > 0  then
+        local dizzy_removal_base = SYS_GetParam(2, sec, "eat_alcohol") or 0
+		if dizzy_removal_base >= 0 then return end
+		
+		local conditions = db.actor:cast_Actor():conditions()
+		if conditions then
+			local dizzyRemoval = dizzy_removal_base * (x_cxv_perks_data.perks["perk_iron_resolve"] * 0.5)	-- Essentially increase sobering effect by 50/100/150%
+			conditions:ChangeAlcohol(dizzyRemoval)
+		end
+    end
+end
+
+function on_game_start()
+	RegisterScriptCallback("actor_on_item_use", iron_resolve_dizzy_boost)
+end
+
+

@@ -3,8 +3,14 @@ local gunner_damage_multiplier = 0.05
 local gunner_shotgun_ap_factor = 0.05
 local gunner_ap_additions = {[0] = 0, [1] = 0.002, [2] = 0.004, [3] = 0.006, [4] = 0.008, [5] = 0.010 }
 
+local lucky_strike_chance = {[0] = 0, [1] = 5, [2] = 10, [3] = 15, [4] = 20, [5] = 35 }
+local lucky_strike_mult = {[0] = 1, [1] = 1.2, [2] = 1.4, [3] = 1.65, [4] = 1.9, [5] = 2.2 }
+
 local string_find   = string.find
 local string_gsub   = string.gsub
+
+local check_wick_mode_validity = x_cxv_perks_data.check_wick_mode_validity		-- sec, weapon_class
+local zone_slayer_validity_check = x_cxv_perks_data.zone_slayer_validity_check	-- sec, obj_id
 
 local jamming_bones = {
 	[20] = true, 
@@ -74,6 +80,7 @@ function actor_on_update()
 			fourth_timer = 0
 			play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
 		end
+		
 		update_1000ms_timer = time_g + update_1000ms_timer_interval
 	end
 end
@@ -94,16 +101,32 @@ function is_zone_slayer(wpn)
 	return false
 end
 
+function is_wick_mode(wpn)
+	if #x_cxv_perks_data.wick_list > 0 and wpn then
+		for i = 1, #x_cxv_perks_data.wick_list do
+			if (x_cxv_perks_data.wick_list[i] == wpn:id()) then
+				return true
+			end
+		end
+	end
+	
+	return false
+end
 
 function process_perk_effects(victim, weapon, bone_id)
 	
 	local damage_multiplier = 1
+	
+	local actor = db.actor
 	
 	local criticalChance = 0
 	local criticalMultiplier = 1
 	
     local weapon_class = x_cxv_perks_data.sortK_of(weapon)
 	local head_shot = perk_based_artefacts_bone_mapper.is_critical_bone(victim:clsid(), bone_id)
+	
+	local isVictimStalker = IsStalker(victim)
+	local isVictimMonster = IsMonster(victim)
 	
 	if (string_find(weapon:section(), "_ppsh")) then weapon_class = "smg" end
 	
@@ -113,25 +136,7 @@ function process_perk_effects(victim, weapon, bone_id)
 	local pellet_count
 	local fourth_mult = 1
 	
-	if (perks["perk_fourth_times"] > 0) then
-		ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
-		ammo_type_number = weapon:get_ammo_type()
-		ammo_section = ammo_list[ammo_type_number+1]
-		pellet_count = SYS_GetParam(2, ammo_section, "buck_shot") or 1
-	end
-	
-	-------------------------------------------------------------------
-	-- Lucky Strike + Deadeye: 	Critical damage and chance modifiers --
-	-------------------------------------------------------------------
-
-	if (perks["perk_lucky_strike"] <= 0) and (perks["perk_deadeye"] > 0) then	-- if you have DE but don't have LS...
-		criticalChance = 1							-- Crit Chance is 0.1%
-	elseif (perks["perk_lucky_strike"] > 0) then
-		criticalChance = (perks["perk_lucky_strike"] ^ 2) * 10	-- Crit Chance is (LS^2)%
-	end
-	
 	if head_shot then
-		criticalChance = criticalChance * 1.5
 		fourth_mult = 2
 	end
 	
@@ -139,38 +144,34 @@ function process_perk_effects(victim, weapon, bone_id)
 	-- GLASS CANNON: While lower than 80% health, gain exp. damage bonus the lower your health is --
 	------------------------------------------------------------------------------------------------
 	
-	if (perks["perk_glass_cannon"] > 0) and (db.actor.health < 0.80) then
-		damage_multiplier = damage_multiplier * (2 - db.actor.health)^(glass_cannon_exp[perks["perk_glass_cannon"]])
+	if (perks["perk_glass_cannon"] > 0) then
+		local health = actor.health
+		
+		-- safeguard in case health-capping script doesn't update health in time when a hit comes across
+		if perks["perk_glass_cannon"] >= 3 and health > 0.80 then
+			health = 0.80
+		end
+		
+		damage_multiplier = damage_multiplier * (2 - health)^(glass_cannon_exp[perks["perk_glass_cannon"]])
 	end
 	
-	-------------------------------------------------------------------
-	-- Lucky Strike + Deadeye: 	Critical damage and chance modifiers --
-	-------------------------------------------------------------------
+	--------------------------------------------------------
+	-- Lucky Strike: Critical damage and chance modifiers --
+	--------------------------------------------------------
 	
-	if (math.random(1000) <= criticalChance) then
-		
-		fourth_mult = 2
-		
-		if (perks["perk_lucky_strike"] > 0) and (perks["perk_deadeye"] <= 0) then	-- if you have LS but don't have DE...
-			criticalMultiplier = 1.1					-- Crit Multiplier is 10%
-		elseif (perks["perk_deadeye"] > 0) then
-			criticalMultiplier = 1 + (0.25 * perks["perk_deadeye"])	-- Crit Multiplier is (25  * DE)%
-		end
-	
-		txt = game.translate_string("st_critical_hit_1") .. " " .. criticalMultiplier .. game.translate_string("st_critical_hit_2")
-		sms(2, txt, 5)
-		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 1, criticalMultiplier)
-		damage_multiplier = damage_multiplier * criticalMultiplier
+	if (perks["perk_lucky_strike"] > 0) then
+		criticalChance = lucky_strike_chance[perks["perk_lucky_strike"]]
+		criticalMultiplier = lucky_strike_mult[perks["perk_lucky_strike"]]
 	end
 	
 	-----------------------------------------------------------------------------------------------------------
 	-- Jamming Shot (also works with melees): Shooting an enemy's arms "jams" their weapon (5 sec. cooldown) --
 	-----------------------------------------------------------------------------------------------------------
-	if perks["perk_jamming_shot"] > 0 and IsStalker(victim) and jamming_bones[bone_id] and x_cxv_perks_data.can_jam then
+	if perks["perk_jamming_shot"] > 0 and isVictimStalker and jamming_bones[bone_id] and x_cxv_perks_data.can_jam then
 		local enemy_weapon = victim:active_item()
 		if enemy_weapon and IsWeapon(enemy_weapon) then 
 			x_cxv_perks_data.can_jam = false
-			CreateTimeEvent("can_jam_reset"..victim:id(), db.actor:id(), 5.0, reset_shot_conditions, 0)
+			CreateTimeEvent("can_jam_reset"..victim:id(), AC_ID, 5.0, reset_shot_conditions, 0)
 			enemy_weapon:unload_magazine()
 		end
 	end
@@ -179,7 +180,7 @@ function process_perk_effects(victim, weapon, bone_id)
 	-- Disarming Shot: 30% chance to make an NPC drop their weapon when shot in the hands (condition and ammo will be set correctly) --
 	-- 				   								[[[ 10 sec. cooldown ]]]														 --
 	-----------------------------------------------------------------------------------------------------------------------------------
-	if perks["perk_disarming_shot"] > 0 and IsStalker(victim) and disarming_bones[bone_id] and x_cxv_perks_data.can_disarm  then
+	if perks["perk_disarming_shot"] > 0 and isVictimStalker and disarming_bones[bone_id] and x_cxv_perks_data.can_disarm  then
 		local enemy_weapon = victim:best_weapon()
 		local dropChance = math.random(100) <= 30
 		if dropChance and weapon and enemy_weapon and IsWeapon(enemy_weapon) then
@@ -200,11 +201,11 @@ function process_perk_effects(victim, weapon, bone_id)
 			-- set random amount of ammo in the magazine
 			enemy_weapon:set_ammo_elapsed(get_current_ammo)
 			victim:drop_item(enemy_weapon)
-			CreateTimeEvent("can_disarm_reset"..victim:id(), db.actor:id(), 10.0, reset_shot_conditions, 1)
+			CreateTimeEvent("can_disarm_reset"..victim:id(), AC_ID, 10.0, reset_shot_conditions, 1)
 		end
 	end
 	
-	if IsMonster(victim) then
+	if isVictimMonster then
 		-----------------------------------------------------------
 		-- Gunslinger/Rifleman/Heavy Gunner: 	Damage modifiers --
 		-----------------------------------------------------------
@@ -221,35 +222,36 @@ function process_perk_effects(victim, weapon, bone_id)
 		end
 	end
 	
-	-----------------------------------------------
-	-- Wick Mode/Zone Slayer: 	Damage modifiers --
-	-----------------------------------------------
-	if (perks["perk_wick_mode"] > 0) and IsStalker(victim) then
-		if (weapon_class == "pistol") then
-			damage_multiplier = damage_multiplier * 1.05
-		elseif weapon_class ~= "melee" and weapon_class ~= "explosive" and weapon_class ~= "misc" and weapon_class ~= "heavy" then
-			if SYS_GetParam(2, weapon:section(), "single_handed") == 1 then
-				damage_multiplier = damage_multiplier * 1.05
-			end
+	-----------------------------------
+	-- Wick Mode: 	Damage modifiers --
+	-----------------------------------
+	if (perks["perk_wick_mode"] > 0) and isVictimStalker then
+		if is_wick_mode(weapon) then
+			damage_multiplier = damage_multiplier * 1.10
 		end
 	end
 	
+	---------------------------------------
+	-- Zone Slayer: 	Damage modifiers --
+	---------------------------------------
 	if (perks["perk_zone_slayer"] > 0) then
 		if is_zone_slayer(weapon) then
 			slayer_usage = true
-			if IsMonster(victim) then
-				damage_multiplier = damage_multiplier * 1.05
+			if isVictimMonster then
+				damage_multiplier = damage_multiplier * 1.10
 			end
 		end
 	end	
 	
-	-------------------------------------------------------------
-	-- "The End": 30% more damage with snipers when hip-firing --
-	-------------------------------------------------------------
+	---------------------------------------------------------------------------------------------
+	-- "The End": 30% more damage with snipers when hip-firing + critical dmg/chance additions --
+	---------------------------------------------------------------------------------------------
 	if perks["perk_the_end"] > 0 and weapon_class == "sniper" then
 		if not string_find(weapon:section(), "_gauss") and not string_find(weapon:section(), "_wa2000") then
 			local weapon_rpm = ini_sys:r_u32(weapon:section(), "rpm") or 60
-				if weapon_rpm < 60 and not axr_main.weapon_is_zoomed then
+			if weapon_rpm < 60 and not axr_main.weapon_is_zoomed then
+				criticalChance = criticalChance + 30
+				criticalMultiplier = criticalMultiplier + 0.3
 				damage_multiplier = damage_multiplier * 1.3
 			end
 		end
@@ -259,16 +261,42 @@ function process_perk_effects(victim, weapon, bone_id)
 	-- Keen Eye: 10/20/30% more headshot damage with iron sights or 1x scopes/kits --
 	---------------------------------------------------------------------------------
 	if head_shot and perks["perk_keen_eye"] > 0 and not IsMelee(weapon) then
-		-- local check_zoom_factor = ini_sys:r_u32(weapon:section(), "scope_zoom_factor") or 1
 		
 		local check_zoom_factor = SYS_GetParam(2, weapon:section(), "scope_zoom_factor") or 1
 		
-		-- local has_scope = utils_item.has_attached_scope(weapon) or true
 		printf('[RPG CXV] Keen Eye checking ... Zoom Factor : %s | Is Perk Active?: %s', check_zoom_factor, (check_zoom_factor == 0))
 		if check_zoom_factor == 0 then
 			damage_multiplier = damage_multiplier * (1 + (0.1 * perks["perk_keen_eye"]))
 		end
 	end
+	
+	---------------------------------------------
+	-- Critical chance and damage calculations --
+	---------------------------------------------
+	
+	if (criticalChance > 0) or (perks["perk_fourth_times"] > 0) then
+		ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
+		ammo_type_number = weapon:get_ammo_type()
+		ammo_section = ammo_list[ammo_type_number+1]
+		pellet_count = SYS_GetParam(2, ammo_section, "buck_shot") or 1
+		
+		-- Divide critical chance by the projectile count
+		if pellet_count > 1 then
+			criticalChance = criticalChance / pellet_count	
+		end
+	end
+	
+	if (criticalChance > 0) and (math.random(100) <= criticalChance) then
+		
+		fourth_mult = 2	-- critical hits multiply the "On Your Mark" counter increment
+			
+		txt = game.translate_string("st_critical_hit_1") .. " " .. criticalMultiplier .. game.translate_string("st_critical_hit_2")
+		sms(2, txt, 5)
+		play_sound_on_actor("material\\bullet\\collide\\metall04gr", 1, criticalMultiplier)
+		damage_multiplier = damage_multiplier * criticalMultiplier
+	end
+	
+	
 	
 	--------------------------------------------------------------------------------------------------------
 	-- On Your Mark: Returns ammo to the mag if landing enough successful shots in a short period of time --
@@ -287,7 +315,6 @@ function process_perk_effects(victim, weapon, bone_id)
 		end
 	end
 	
-	
 	return damage_multiplier
 end
 
@@ -297,7 +324,7 @@ function perk_damage_effects(victim, shit, bone_id, flags)
 	
 	if not victim:alive() then return end
 	
-	if shit.draftsman:id() ~= db.actor:id() then
+	if shit.draftsman:id() ~= AC_ID then
 		return
 	end
 	
@@ -305,7 +332,9 @@ function perk_damage_effects(victim, shit, bone_id, flags)
 		return
 	end
 	
-	if shit.power >= 50 then return end
+	slayer_usage = false
+	
+--	if shit.power >= 50 then return end
 	
 	local isCompanion = victim:has_info("npcx_is_companion")
 	if isCompanion then return end
@@ -331,18 +360,17 @@ function perk_damage_effects(victim, shit, bone_id, flags)
 	
 	local base_shit = shit.power
 	
-	slayer_usage = false
-	
 	local damage_multiplier = process_perk_effects(victim, weapon, bone_id) or 1
 	
 	shit.power = shit.power * damage_multiplier
 	
-	local damage_bonus = shit.power - base_shit
-	local damage_bonus_news = tonumber(string.format("%.3f", damage_bonus))
-	if damage_bonus_news >= 0.0001 then
-		--printf("///////////   RPG System: Damage increase in progress  //////////////////")
-		--printf('RPG Damage increase - Extra damage to the victim: %s', damage_bonus)
+	--------------------------------------------------------------------------------
+	-- Vampirism: Grants Life-Steal based on final damage dealt after other perks --
+	--------------------------------------------------------------------------------
+	if (perks["perk_vampirism"] > 0) then
+		db.actor:change_health(shit.power * (perks["perk_vampirism"] * 0.05))
 	end
+
 end
 
 
@@ -428,6 +456,13 @@ if grok_bo and not cxv_artigrok_bo then
 					shit.power = damage_multiplier * shit.power
 					printf("[Reload Hit Effects] New Damage after RPG Bonuses: %s", shit.power)
 				end
+				
+				--------------------------------------------------------------------------------
+				-- Vampirism: Grants Life-Steal based on final damage dealt after other perks --
+				--------------------------------------------------------------------------------
+				if (perks["perk_vampirism"] > 0) then
+					db.actor:change_health(shit.power * (perks["perk_vampirism"] * 0.05))
+				end
 			end
 		end
 	end
@@ -448,7 +483,7 @@ function find_zone_slayer_ammo(wpn_id,npc)
 			shells = arti_ammo_utils.downgrade_ammo(shells, true)
 		end
 		alife_create_item(shells, npc, {ammo = 1})
-		-- printf('[RPG - Looting] Zone Slayer ammo given: %s', shells)
+		printf('[RPG - Looting] Zone Slayer ammo given: %s', shells)
 	end
 	slayer_usage = false
 end
@@ -490,9 +525,6 @@ function perk_kill_effects(victim, killer)
 		if killer.health < 1 then
 			killer:change_health(0.15 * perks["perk_vampirism"])
 		end
-		if killer.power < 1 then
-			killer:change_power(0.15 * perks["perk_vampirism"])
-		end
 	end
 end
 --------------------------------------------------------------------------------------------------------------
@@ -528,14 +560,6 @@ function fourth_times_swap_reset(obj, hud_sec, anm_name, unknown_1, unknown_2)
 		fourth_timer = 0
 	end
 	
-	-- For actor_on_hud_animation_play callback
---	if hide_anims[anim_table.anm_name] and (fourth_times_counter > 0) then
---		play_sound_on_actor("rpg_skills\\garand_ping", 0.45, random_float(0.8, 1.0))
---		printf("On Your Mark resetting... | Counter before reset: %s", fourth_times_counter)
---		fourth_times_counter = 0
---		fourth_timer = 0
---	end
-	
 end
 
 -- 0 == jamming shot | 1 == disarming shot
@@ -564,10 +588,7 @@ function on_game_start()
     RegisterScriptCallback("npc_on_death_callback",         perk_kill_effects)
     RegisterScriptCallback("actor_on_update",         		actor_on_update)
 	
---	RegisterScriptCallback("actor_on_hud_animation_play", 	fourth_times_swap_reset)
 	RegisterScriptCallback("actor_on_hud_animation_end", 	fourth_times_swap_reset)
-	
---	RegisterScriptCallback("actor_on_weapon_reload",         test_reload_callback)
 
 end
 
@@ -583,9 +604,14 @@ if momopate_accurate_stats then
 			return original_weapon_damage(obj, sec)
 		end
 		
+		local section = sec
+		if not section then
+			section = obj:section()
+		end
+		
 		local id = obj and obj:id()
-		local hit_power = utils_item.get_wpn_param(obj, sec, "hit_power", 0)
-		local ammo_list = utils_item.get_ammo(sec, id)
+		local hit_power = utils_item.get_wpn_param(obj, section, "hit_power", 0)
+		local ammo_list = utils_item.get_ammo(section, id)
 		
 		if (momopate_accurate_stats.ammo_affects_dmg == true) then
 			if ammo_list[1] then
@@ -615,9 +641,39 @@ if momopate_accurate_stats then
 		if (perks["perk_rifleman"] > 0) and (weapon_class == "rifle") then
 			hit_power = hit_power * (1 + (gunner_damage_multiplier * perks["perk_rifleman"]))
 		end
-		------------------------------------------------------------> Heavy Weapons
+
 		if (perks["perk_heavy_gunner"] > 0) and ((weapon_class == "heavy") or (weapon_class == "shotgun") or (weapon_class == "sniper")) then
 			hit_power = hit_power * (1 + (gunner_damage_multiplier * perks["perk_heavy_gunner"]))
+		end
+		
+		-----------------------------------
+		-- Wick Mode: 	Damage modifiers --
+		-----------------------------------
+		if (perks["perk_wick_mode"] > 0) then
+			local is_wick_weapon = is_wick_mode(obj)
+			if is_wick_weapon then
+				hit_power = hit_power * 1.10
+			else
+				is_wick_weapon = check_wick_mode_validity(section, weapon_class)
+				if is_wick_weapon then
+					hit_power = hit_power * 1.10
+				end
+			end
+		end
+		
+		---------------------------------------
+		-- Zone Slayer: 	Damage modifiers --
+		---------------------------------------
+		if (perks["perk_zone_slayer"] > 0) then
+			local is_slayer_weapon = is_zone_slayer(obj)
+			if is_slayer_weapon then
+				hit_power = hit_power * 1.10
+			else
+				is_slayer_weapon = zone_slayer_validity_check(section, id)
+				if is_slayer_weapon then
+					hit_power = hit_power * 1.10
+				end
+			end
 		end
 		
 		if (hit_power < 10) then
@@ -637,9 +693,14 @@ function utils_ui.prop_damage(obj,sec)
 		return orig_prop_damage(obj, sec)
 	end
 	
+	local section = sec
+	if not section then
+		section = obj:section()
+	end
+	
 	local id = obj and obj:id()
-	local hit_power = utils_item.get_wpn_param(obj, sec, "hit_power", 0)
-	local ammo_list = utils_item.get_ammo(sec, id)
+	local hit_power = utils_item.get_wpn_param(obj, section, "hit_power", 0)
+	local ammo_list = utils_item.get_ammo(section, id)
 	if ammo_list[1] then
 		local k_hit = ini_sys:r_float_ex(ammo_list[1], "k_hit") or 1
 		hit_power = (hit_power ~= 0) and (k_hit*hit_power) or k_hit
@@ -660,6 +721,37 @@ function utils_ui.prop_damage(obj,sec)
 	if (perks["perk_heavy_gunner"] > 0) and ((weapon_class == "heavy") or (weapon_class == "shotgun") or (weapon_class == "sniper")) then
 		hit_power = hit_power * (1 + (gunner_damage_multiplier * perks["perk_heavy_gunner"]))
 	end
+	
+	-----------------------------------
+	-- Wick Mode: 	Damage modifiers --
+	-----------------------------------
+	if (perks["perk_wick_mode"] > 0) then
+		local is_wick_weapon = is_wick_mode(obj)
+		if is_wick_weapon then
+			hit_power = hit_power * 1.10
+		else
+			is_wick_weapon = check_wick_mode_validity(section, weapon_class)
+			if is_wick_weapon then
+				hit_power = hit_power * 1.10
+			end
+		end
+	end
+	
+	---------------------------------------
+	-- Zone Slayer: 	Damage modifiers --
+	---------------------------------------
+	if (perks["perk_zone_slayer"] > 0) then
+		local is_slayer_weapon = is_zone_slayer(obj)
+		if is_slayer_weapon then
+			hit_power = hit_power * 1.10
+		else
+			is_slayer_weapon = zone_slayer_validity_check(section, id)
+			if is_slayer_weapon then
+				hit_power = hit_power * 1.10
+			end
+		end
+	end
+	
 	
 	return normalize(hit_power, 0, 1.5)
 end

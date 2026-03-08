@@ -5,8 +5,6 @@ local grenade_list =
 	"grenade_rgd5",
 	"grenade_f1",
 	"grenade_gd-05",
-	--"grenade_smoke",
-	--"ied_throwable",
 	"grenade_vog25hattab",
 	"grenade_rgn_impact",
 	"grenade_rgo_impact",
@@ -42,11 +40,11 @@ function xrs_rnd_npc_loadout.on_creation(se_npc)
 	BaseNPCLoadout(se_npc)
 	if x_cxv_perks_data.perks["perk_demo_expert"] > 0 then
 		if IsStalker(npc) then
-			if math_random(100) < math_random(x_cxv_perks_data.perks["perk_demo_expert"] * 10) then
+			if math_random(100) < (x_cxv_perks_data.perks["perk_demo_expert"] * 10) then
 				create_item(grenade_list[math_random(#grenade_list)], se_npc)
 			end
 			if x_cxv_perks_data.perks["perk_demo_expert"] == 3 then
-				if math_random(10000) == 1 then
+				if math_random(1000) == 1 then
 					create_item(explosive_weapon_list[math_random(#explosive_weapon_list)], se_npc)
 				end
 			end

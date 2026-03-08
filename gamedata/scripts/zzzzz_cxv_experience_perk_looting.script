@@ -58,7 +58,9 @@ local function create_item_random_uses(i, box)
 		alife_process_item(i, se_item.id, {ammo = (rand(1, box_size))})
     elseif utils_item.is_degradable(nil, se_item.id) then
 		printf('Degradable')
-		alife_process_item(i, se_item.id, {cond = (rand(50 + (perks["perk_careful_handler"] * 3),100) * 0.01)})
+		local condition = rand(50, 100)
+		condition = math.min((condition + (perks["perk_careful_handler"] * 8) ), 100)
+		alife_process_item(i, se_item.id, {cond = condition})
 	else
 		alife_process_item(i, se_item.id)
 	end
@@ -427,32 +429,39 @@ function looting_enemy(victim)
 		end
 	end
 
------------------------------------------------------------> Fetch Finder: 3% chance to find a task item (6.7% with stashes) & more duplicates means better chances w/ diminishing returns
+-----------------------------------------------------------> Fetch Finder: Chance to find task items - higher value = less chance ... more tasks that need it = better chance
 	if perks["perk_fetch_finder"] > 0 then
-		local random_task_sec = z_cxv_experience_perk_fetch_finder.get_random_sec()
-		local random_sec_count = z_cxv_experience_perk_fetch_finder.get_sec_count(random_task_sec)
-		if random_task_sec and random_sec_count > 0 then
-			local random_ceil = (fetch_finder_count_chances[math.min(random_sec_count, 5)] * ((is_stash and 0.5) or 1)) or 33
-			printf("[RPG] task item val: %s | random chance: %s", random_sec_count, round_idp(1/random_ceil * 100, 2))
-			if rand(1, random_ceil) == 1 then
-				printf("[RPG] Fetch Finder creating item: %s", random_task_sec)
-				local kind = SYS_GetParam(0, random_task_sec, "kind")
-				if kind and damaged_task_kind_list[kind] then
-					local se_item = alife_create_item(random_task_sec, victim)
-					alife_process_item(random_task_sec, se_item.id, {cond = (rand(1, 15 + (perks["perk_careful_handler"] * 3)) * 0.01)})
-				else
-					create_item_random_uses(random_task_sec, victim)
+			
+		local chance = rand()
+		local random_task_sec = z_cxv_experience_perk_fetch_finder.get_fetch_finder_item(chance, is_stash)
+		if random_task_sec then
+			printf("[RPG] Fetch Finder creating item: %s", random_task_sec)
+			local kind = SYS_GetParam(0, random_task_sec, "kind")
+			if kind and damaged_task_kind_list[kind] then
+				local se_item = alife_create_item(random_task_sec, victim)
+				local condition = rand(1,20)
+				if perks["perk_careful_handler"] > 0 then
+					if kind == "i_arty" or kind == "i_arty_junk" or kind == "i_arty_cont" or kind == "i_mutant_belt" then
+						condition = condition + (perks["perk_careful_handler"] * 2)
+					else
+						condition = condition + (perks["perk_careful_handler"] * 8) 
+					end
+					condition = math.min(condition, 100)
 				end
+				alife_process_item(random_task_sec, se_item.id, {cond = (condition * 0.01)})
+			else
+				create_item_random_uses(random_task_sec, victim)
 			end
 		end
+		
 	end
 
 ------------------------------------------------------------> Arte-finder
 	local artyDrop = (perks["perk_artefinder"] > rand(1,100))
 	if artyDrop and not is_stash then
 		-- no need to do "Careful Handler" for arti_min/max
-		local min_cond = (zz_item_artefact and zz_item_artefact.arti_min_eff) or ((perks["perk_careful_handler"] * 3) + 30)
-		local max_cond = (zz_item_artefact and zz_item_artefact.arti_max_eff) or ((perks["perk_careful_handler"] * 3) + 44)
+		local min_cond = (zz_item_artefact and zz_item_artefact.arti_min_eff) or ((perks["perk_careful_handler"] * 2) + 30)
+		local max_cond = (zz_item_artefact and zz_item_artefact.arti_max_eff) or ((perks["perk_careful_handler"] * 2) + 44)
 		local allowed_artefacts = drx_da_main_artefacts.allowed_artefacts
 		looting_proc_arty = true
 		if allowed_artefacts then
@@ -476,7 +485,8 @@ function death_manager.set_weapon_drop_condition(npc,itm)
 	if perks["perk_careful_handler"] > 0 and (npc and itm) then
 		local old_condition = itm:condition()
 --		printf("Changing weapon (%s) condition (%s)", itm:section(), itm:condition())
-		itm:set_condition(old_condition + (perks["perk_careful_handler"] * 3 * 0.01))
+		local new_condition = math.min((old_condition + (perks["perk_careful_handler"] * 8 * 0.01)), 1)
+		itm:set_condition(new_condition)
 --		printf("New weapon (%s) condition (%s)", itm:section(), itm:condition())
 	end 
 end
@@ -491,9 +501,10 @@ function utils_stpk.set_item_data(data, se_obj)
 	end
 	
 	if perks["perk_careful_handler"] > 0 and (data and data.condition) then
-		printf("Changing loot condition (%s)", data.condition)
-		data.condition = data.condition + perks["perk_careful_handler"] * ((is_stash and 6) or 3) * 0.01
-		printf("New loot condition (%s)", data.condition)
+--		printf("Changing loot condition (%s)", data.condition)
+		data.condition = data.condition + perks["perk_careful_handler"] * ((is_stash and 16) or 8) * 0.01
+		data.condition = math.min(data.condition, 1)
+--		printf("New loot condition (%s)", data.condition)
 	end
 	
 	return BaseSetData(data, se_obj)
@@ -516,23 +527,23 @@ function looting_perk_item(section, obj, t)
 	
 	local kind = SYS_GetParam(0, section, "kind")
 	if perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) and (not looting_proc_arty) then
-		local careful_handler_bonus = perks["perk_careful_handler"] * 3 * (is_stash and 2 or 1)
+		local careful_handler_bonus = perks["perk_careful_handler"] * 8
 		if t.cond then
 --			printf("OLD t.cond = %s", t.cond)
-			t.cond = clamp(t.cond + (careful_handler_bonus * 0.01), t.cond, 1)
+			t.cond = math.min(t.cond + (careful_handler_bonus * 0.01), 1)
 --			printf("NEW t.cond = %s", t.cond)
 		end
 		if t.cond_r then
 			for i = 1, #t.cond_r do
 --				printf("OLD t.cond_r[%s] = %s", i, t.cond_r[i])
-				t.cond_r[i] = clamp(t.cond_r[i] + careful_handler_bonus, t.cond_r[i], 100)
+				t.cond_r[i] = math.min(t.cond_r[i] + careful_handler_bonus, 100)
 --				printf("NEW t.cond_r[%s] = %s", i, t.cond_r[i])
 			end
 		end
 		if t.cond_cr then
 			for j = 1, #t.cond_cr do
 --				printf("OLD t.cond_cr[%s] = %s", j, t.cond_cr[j])
-				t.cond_cr[j] = clamp(t.cond_cr[j] + careful_handler_bonus, t.cond_cr[j], 100)
+				t.cond_cr[j] = math.min(t.cond_cr[j] + careful_handler_bonus, 100)
 --				printf("NEW t.cond_cr[%s] = %s", j, t.cond_cr[j])
 			end
 		end
@@ -737,13 +748,12 @@ function xr_box.create_items(obj, section, number, rnd)
 	-- Each item gets its drop chance increased
 	rnd = rnd + (0.005 * perks["perk_scavenger"])
 
-	-- "Fetch Finder" will have a base 3% chance to double the chance of the item if within the fetch list
+	-- "Fetch Finder" will have a base 10% chance to triple the chance of the item if within the fetch list
 	if perks["perk_fetch_finder"] > 0  then
-		local sec_count = z_cxv_experience_perk_fetch_finder.get_sec_count(section)
-		if sec_count then
-			local random_ceil = fetch_finder_count_chances[math.min(sec_count, 5)] or 33
-			if rand(1, random_ceil) then
-				rnd = rnd * 2
+		local sec_data = z_cxv_experience_perk_fetch_finder.get_fetch_finder_data(section)
+		if sec_data and sec_data.chance then
+			if rand() <= sec_data.chance then
+				rnd = rnd * 3
 			end
 		end
 	end
@@ -768,23 +778,23 @@ function box_loot_mod(section, obj, t)
 	local is_ammo = (section and IsItem("ammo",section)) or false
 	
 	if perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) and (not looting_proc_arty) then
-		local careful_handler_bonus = perks["perk_careful_handler"] * 3
+		local careful_handler_bonus = perks["perk_careful_handler"] * 8
 		if t.cond then
 --			printf("OLD t.cond = %s", t.cond)
-			t.cond = clamp(t.cond + (careful_handler_bonus * 0.01), t.cond, 1)
+			t.cond = math.min(t.cond + (careful_handler_bonus * 0.01), 1)
 --			printf("NEW t.cond = %s", t.cond)
 		end
 		if t.cond_r then
 			for i = 1, #t.cond_r do
 --				printf("OLD t.cond_r[%s] = %s", i, t.cond_r[i])
-				t.cond_r[i] = clamp(t.cond_r[i] + careful_handler_bonus, t.cond_r[i], 100)
+				t.cond_r[i] = math.min(t.cond_r[i] + careful_handler_bonus, 100)
 --				printf("NEW t.cond_r[%s] = %s", i, t.cond_r[i])
 			end
 		end
 		if t.cond_cr then
 			for j = 1, #t.cond_cr do
 --				printf("OLD t.cond_cr[%s] = %s", j, t.cond_cr[j])
-				t.cond_cr[j] = clamp(t.cond_cr[j] + careful_handler_bonus, t.cond_cr[j], 100)
+				t.cond_cr[j] = math.min(t.cond_cr[j] + careful_handler_bonus, 100)
 --				printf("NEW t.cond_cr[%s] = %s", j, t.cond_cr[j])
 			end
 		end
@@ -850,85 +860,45 @@ if xr_box then xr_box.alife_create_item = box_loot_mod end
 BasePartsEval = zzzz_arti_jamming_repairs.weapon_eval_parts
 if BasePartsEval then
 
-	good_breakpoint = zzzz_arti_jamming_repairs.good_breakpoint or 60
-	ini_parts = itms_manager.ini_parts
-	get_config = a_arti_jamming_mcm.get_config
-	print_dbg = arti_jamming.print_dbg
-
 	function zzzz_arti_jamming_repairs.weapon_eval_parts(wpn)
-		local careful_handler = perks["perk_careful_handler"]
-		if careful_handler < 1 then
-			BasePartsEval(wpn)
-			return
-		end
-	
-		local sec = ini_sys:r_string_ex(wpn:section(),"parent_section") or wpn:section()
-		local parts = ini_parts:r_string_ex("con_parts_list", sec)
-		parts = str_explode(parts,",")
-		local base_chance = tonumber(get_config("newdropschance")) or 50
-		local adjusted = base_chance * wpn:condition()
-		local parts_data = {}
-		parts_data[sec] = math.ceil(wpn:condition() * 100)
-		for i=1,#parts do
-			local part = parts[i]
-			local final_chance = math.ceil(adjusted)-- * parts_info[part].weight)
-			print_dbg("Part %s has a %s chance to be good.", part, final_chance)
-					
-			if wpn:condition() > 0.9 then
-				print_dbg("Short circuiting")
-				parts_data[part] = math.random(90, 99)
-			elseif math.random(100) < final_chance then
-				parts_data[part] = math.random(good_breakpoint, 99)
-			else
-				parts_data[part] = math.random(1, good_breakpoint - 8)
+		BasePartsEval(wpn)
+		
+		if perks["perk_careful_handler"] < 1 then return end
+		
+		local careful_handler_bonus = perks["perk_careful_handler"] * 8
+		local parts_data = se_load_var( wpn:id(), wpn:name(), "parts")
+		if parts_data then
+			for k,v in pairs(parts_data) do
+--				printf("[RPG - Looting] Wpn Part Cond: %s | Bonus to be applied: %s", v, careful_handler_bonus)
+				parts_data[k] = math.min(v + careful_handler_bonus , 99)
 			end
 			
-			-- patch for "Barrel Condition Based on Gun Tier" mod
-			if barrel_drops_condition_mcm then
-				get_config_barrel = barrel_drops_condition_mcm.get_config
-				if get_config_barrel("enabled") and arti_jamming.is_barrel(part) and wpn:condition() <= 0.9 then
-					local r_type = ini_sys:r_string_ex(sec, "repair_type") or "not_found"
-					parts_data[part] = math.random(get_config_barrel(r_type.."_min"), get_config_barrel(r_type.."_max"))
-					print_dbg("Barrel in %s [%s, %s to %s] set to %s", sec, r_type, get_config_barrel(r_type.."_min"), get_config_barrel(r_type.."_max"), parts_data[part])
-				end
-			end
-			
-			
-			-- printf("Old parts condition - %s", parts_data[part])
-			parts_data[part] = clamp(parts_data[part] + (careful_handler * 3), parts_data[part], 99)
-			-- printf("New parts condition - %s", parts_data[part])
-		end
-		se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
+			se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
+		end		
+
 	end
 end
 
 -- For users of newer versions of WPO
 BaseNewPartsEval = wpo_loot.weapon_eval_parts
 if BaseNewPartsEval then
-
-	ini_drops = ini_file("items\\settings\\wpo_drop_cond.ltx")
-	get_parts_list 		= arti_jamming.get_parts_list
-	print_dbg 			= arti_jamming.print_dbg
 	
 	function wpo_loot.weapon_eval_parts(wpn)
-		local careful_handler = perks["perk_careful_handler"]
-		if careful_handler < 1 then
-			BaseNewPartsEval(wpn)
-			return
-		end
+		BaseNewPartsEval(wpn)
+	
+		if perks["perk_careful_handler"] < 1 then return end
+		local careful_handler_bonus = perks["perk_careful_handler"] * 8
+		local parts_data = se_load_var( wpn:id(), wpn:name(), "parts")
 		
-		local parts = get_parts_list(wpn)
-		local con = math.ceil(wpn:condition()*100)
-		local parts_data = {}
-		local final_chance = 25 + math.ceil(con/2.5)
-		print_dbg("Chance to beat is %s", final_chance)
-		for i,part in pairs(str_explode(parts, ",")) do
-			drop = math.random(100) < final_chance and "above" or "below"
-			coords = ini_drops:r_string_ex("weapon_parts", drop)
-			parts_data[part] = larp.pick(larp.str_to_coords(coords), 10)
-			parts_data[part] = clamp(parts_data[part] + (careful_handler * 3), parts_data[part], 99)
+		if parts_data then
+			for k,v in pairs(parts_data) do
+--				printf("[RPG - Looting] Wpn Part Cond: %s | Bonus to be applied: %s", v, careful_handler_bonus)
+				parts_data[k] = math.min(v + careful_handler_bonus , 99)
+			end
+			
+			se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
 		end
-		se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
+
 	end
 end
 

@@ -1,16 +1,40 @@
 -- Task Amt. Reduction for Rare Stashes is handled in x_cxv_perks_data.script
+-- (02/14/26) Changed "stash will have better chance to be in your location" to "extra chances at stashes"
+
+local local_looting_chance = 35		-- 35%/70%/+1 & 5%/+1 & 40%/+1 & 75%
+local random = math.random
+local SETTINGS = grok_stashes_on_corpses.SETTINGS
 
 if grok_stashes_on_corpses then
 	grok_stash_base = grok_stashes_on_corpses.npc_on_use
 	function grok_stashes_on_corpses.npc_on_use(npc)
-		if x_cxv_perks_data.perks["perk_local_looting"] == 0 then
-			grok_stash_base(npc)
-		else
-			if npc:alive() then return end
-			if grok_stashes_on_corpses._used_corpses[npc:id()] then return end
-			grok_stashes_on_corpses._used_corpses[npc:id()] = true
-			if math.random() > grok_stashes_on_corpses.SETTINGS.chance then return end
-			treasure_manager.create_random_stash(nil, nil, nil, math.random() > (0.75 - (x_cxv_perks_data.perks["perk_local_looting"] * 0.075)))
+		
+		-- needed the whole function as no easy way to check if stash was successfully generated
+		if npc:alive() then return end
+		if (character_community(npc) == "zombied") then return end
+		if grok_stashes_on_corpses._used_corpses[npc:id()] then return end
+		grok_stashes_on_corpses._used_corpses[npc:id()] = true
+		if random() > SETTINGS.chance then return end
+		treasure_manager.create_random_stash(nil, nil, nil, math.random() > 0.75)
+		
+		if x_cxv_perks_data.perks["perk_local_looting"] <= 0 then return end
+		
+		-- Extra chance at a stash being rewarded if a stash has been awarded
+		-- Guaranteed extra stashes based on chance multiples of 100
+		-- Code written so that the it is flexible if chances are edited by myself or users
+		local total_chance = local_looting_chance * x_cxv_perks_data.perks["perk_local_looting"]
+		local extra_rolls = math.floor(total_chance / 100)
+
+		if extra_rolls > 0 then
+			for i = 1, extra_rolls do
+				total_chance = total_chance - 100
+				treasure_manager.create_random_stash(nil, nil, nil, random() > 0.75)
+			end
+		end
+		
+		if total_chance > 0 and random(100) <= total_chance then
+			treasure_manager.create_random_stash(nil, nil, nil, random() > 0.75)
 		end
 	end
 end
+

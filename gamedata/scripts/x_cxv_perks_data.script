@@ -111,8 +111,9 @@ local jump_man_boost = 0.05
 local add_jump = jump.add_jump
 local remove_jump = jump.remove_jump
 
--- Lists for Zone Slayer/Plus One ammo looting
+-- Lists for Zone Slayer/Wick Mode/Plus One ammo looting
 shotgun_list = {}
+wick_list = {}
 weapon_list = {}
 
 -- Well Rested
@@ -210,11 +211,11 @@ local function experience_skill_on_update(perk_id, perk_data)
 				if minCondition == 0 then
 					minCondition = zz_item_artefact.arti_min_eff or 29
 				end
-				zz_item_artefact.arti_min_eff = minCondition + (perks["perk_careful_handler"] * 3)		-- artefinder_bonus[ perks["perk_artefinder"] ]
+				zz_item_artefact.arti_min_eff = minCondition + (perks["perk_careful_handler"] * 2)		
 				if maxCondition == 0 then
 					maxCondition = zz_item_artefact.arti_max_eff or 37
 				end
-				zz_item_artefact.arti_max_eff = maxCondition + (perks["perk_careful_handler"] * 3)		-- artefinder_bonus[ perks["perk_artefinder"] ]
+				zz_item_artefact.arti_max_eff = maxCondition + (perks["perk_careful_handler"] * 2)		
 				printf('Old Arte. Min: %s | New Arte. Min %s | Old Arte. Max: %s | New Arte. Max %s', minCondition, zz_item_artefact.arti_min_eff, maxCondition, zz_item_artefact.arti_max_eff)
 			end
 		end
@@ -327,7 +328,7 @@ local shotgun_ammo_check = {
 	["ammo_12x76_bull"] = true,
 	
 	-- WTF Tasks Compat. (though why are you using this for any sort of combat lol)
-	["ammo_23_igi_eco"] = true,
+	["ammo_23_igi_eco"] = true
 }
 
 -- checks if valid "Zone Slayer" shotguns are actually using shotgun ammo (check first available ammo type)
@@ -347,9 +348,8 @@ end
 function zone_slayer_validity_check(wpn_sec, wpn_id)
 	
 	if not wpn_sec then return end
-	if not wpn_id then return end
 	
-	if perks["perk_zone_slayer"] == 0 then return end
+	if perks["perk_zone_slayer"] < 1 then return end
 	
 	-- if the weapon is not using shotgun ammo, return
 	if shotgun_ammo_validity_check(wpn_sec, wpn_id) == false then return end
@@ -357,8 +357,7 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 	-- check if clip size is small enough (double-/single-barrel or that one bolt-action TOZ)
 	local clip = ini_sys:r_float_ex(wpn_sec, "ammo_mag_size") or 3
 	if clip <= 2 then
-		shotgun_list[#shotgun_list + 1] = wpn_id
-		return
+		return true
 	end
 	
 	-- check if tube-fed pump-action/single-round-fed-reloaded shotgun
@@ -367,8 +366,7 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 	-- Rank 3 Exceptions
 	local parent_sec = SYS_GetParam(0, wpn_sec, "parent_section") or wpn_sec
 	if weapon_exceptions_rank3[parent_sec] and perks["perk_zone_slayer"] > 2 then
-		shotgun_list[#shotgun_list + 1] = wpn_id
-		return
+		return true
 	end
 	
 	-- need to use SYS_GetParam so that it can return nil (r_string just crashes if said variable doesn't exist)
@@ -376,16 +374,14 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 	local rpm = ini_sys:r_float_ex(wpn_sec, "rpm")	-- not doing SYS_GetParam since this should never fail - if it does, that weapon designer has a serious issue
 	
 	if rpm <= 50 and perks["perk_zone_slayer"] > 1 then	-- bolt-action addition in Rank 2
-		shotgun_list[#shotgun_list + 1] = wpn_id
-		return
+		return true
 	end
 	
 	if tri_state and tri_state == "on" then
 		
 		-- Rank 3: All shotguns that reload one shell at a time are valid
 		if perks["perk_zone_slayer"] > 2 then
-			shotgun_list[#shotgun_list + 1] = wpn_id
-			return
+			return true
 		end
 		
 		if rpm and rpm <= 120 then	-- 120 is a generous value (rough pump-action base RPM upper limit)
@@ -393,49 +389,109 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 			if fire_mode_list then
 				for i = 1, #fire_mode_list do
 					if fire_mode_list[i] == "-1" then
-						return	-- completely exit since we found full-auto (pumps shouldn't have full-auto)
+						return false	-- completely exit since we found full-auto (pumps shouldn't have full-auto)
 					end
 				end
 			end
 			
-			-- finally, add to list if valid
-			shotgun_list[#shotgun_list + 1] = wpn_id
-			return
+			-- finally, return true since it is not full-auto
+			return true
 		end
 	end
 	
+	return false
+	
 end
+
+
+local string_find   = string.find
+local wick_inclusions = {
+	"vz61",
+	"kiparis"
+}
+
+function check_wick_mode_validity(sec, class)
+	if not sec then return end
+		
+	if perks["perk_wick_mode"] < 1 then return end
+		
+	local weapon_class = class
+	if not weapon_class then
+		weapon_class = get_weapon_perk_class(sec)
+	end
+	
+	if not weapon_class then return end
+	
+	if weapon_class == "pistol" then return true end
+	
+	if weapon_class ~= "melee" and weapon_class ~= "explosive" and weapon_class ~= "misc" and weapon_class ~= "heavy" then
+		local single_handed = SYS_GetParam(2, sec, "single_handed") or 0
+		if single_handed == 1 then return true end
+	end
+	
+	for i=1,#wick_inclusions do
+		if (string_find(sec, wick_inclusions[i])) then
+			return true
+		end
+	end
+	
+	return false
+	
+end
+
 
 function build_weapon_list()
 
 	weapon_list = {}
 	shotgun_list = {}
+	wick_list = {}
 	
 	if (perks["perk_zone_slayer"] < 1) and (perks["perk_plus_one"] < 1) then return end
 	local w1, w2, w3, w4 = db.actor:item_in_slot(3), db.actor:item_in_slot(2), db.actor:item_in_slot(1), db.actor:item_in_slot(5)
+	local sec_1, sec_2, sec_3, sec_4 = (w1 and w1:section()), (w2 and w2:section()), (w3 and w3:section()), (w4 and w4:section())
 		
-	if (IsWeapon(w1) and (not IsItem("fake_ammo_wpn",w1:section()))) then
+	if w1 and (IsWeapon(w1) and (not IsItem("fake_ammo_wpn",sec_1))) then
 		weapon_list[#weapon_list + 1] = w1:id() 
-		printf('Weapon 1: %s', w1:section())
-		zone_slayer_validity_check(w1:section(), w1:id())
+		printf('Weapon 1: %s', sec_1)
+		if zone_slayer_validity_check(sec_1, w1:id()) then
+			shotgun_list[#shotgun_list + 1] = w1:id()
+		end
+		if check_wick_mode_validity(sec_1) then
+			wick_list[#wick_list + 1] = w1:id()
+		end
 	end
 
-	if (IsWeapon(w2) and (not IsItem("fake_ammo_wpn",w2:section()))) then
+	if w2 and (IsWeapon(w2) and (not IsItem("fake_ammo_wpn",sec_2))) then
 		weapon_list[#weapon_list + 1] = w2:id() 
-		printf('Weapon 2: %s', w2:section())
-		zone_slayer_validity_check(w2:section(), w2:id())
+		printf('Weapon 2: %s', sec_2)
+		if zone_slayer_validity_check(sec_2, w2:id()) then
+			shotgun_list[#shotgun_list + 1] = w2:id()
+		end
+		if check_wick_mode_validity(sec_2) then
+			wick_list[#wick_list + 1] = w2:id()
+		end
 	end
 
-	if (IsWeapon(w3) and (not IsItem("fake_ammo_wpn",w3:section()))) then
+	if w3 and (IsWeapon(w3) and (not IsItem("fake_ammo_wpn",sec_3))) then
 		weapon_list[#weapon_list + 1] = w3:id() 
-		printf('Weapon 3: %s', w3:section())
-		zone_slayer_validity_check(w3:section(), w3:id())
+		printf('Weapon 3: %s', sec_3)
+		if zone_slayer_validity_check(sec_3, w3:id()) then
+			shotgun_list[#shotgun_list + 1] = w3:id()
+		end
+		if check_wick_mode_validity(sec_3) then
+			wick_list[#wick_list + 1] = w3:id()
+		end
 	end
 	
-	if (IsWeapon(w4) and (not IsItem("fake_ammo_wpn",w4:section()))) then
+	if w4 and (IsWeapon(w4) and (not IsItem("fake_ammo_wpn",sec_4))) then
 		weapon_list[#weapon_list + 1] = w4:id() 
-		printf('Weapon 4: %s', w4:section())
-		zone_slayer_validity_check(w4:section(), w4:id())
+		printf('Weapon 4: %s', sec_4)
+		if zone_slayer_validity_check(sec_4, w4:id()) then
+			shotgun_list[#shotgun_list + 1] = w4:id()
+		end
+		if check_wick_mode_validity(sec_4) then
+			wick_list[#wick_list + 1] = w4:id()
+		end
 	end
 end
 
