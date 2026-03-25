@@ -57,18 +57,35 @@ local reload_anims = {
 	anm_reload_ammo0_variant2 = true,
 	anm_reload_ammo0_variant3 = true,
 	anm_reload_ammo0_variant4 = true,
-	anm_reload_ammo0_variant5 = true
+	anm_reload_ammo0_variant5 = true,
+	anm_startzarada = true,
+	anm_rotatetac_start = true
 }
 
+local ignore_animations = {}
+
+local sfind = string.find
+
 function actor_on_hud_animation_play(anim_table,obj)
+	
+	if (not IsWeapon(obj)) then return end
+	if obj:parent() and obj:parent():id() ~= AC_ID then return end
 	
 	local anm_name = anim_table.anm_name	
 	
 	if (x_cxv_perks_data.perks["perk_rapid_reload"] < 1) and (x_cxv_perks_data.perks["perk_zone_slayer"] < 1) and (x_cxv_perks_data.perks["perk_wick_mode"] < 1) then return end
-	if not reload_anims[anm_name] then return end
-
-	if (not IsWeapon(obj)) then return end
-	if obj:parent() and obj:parent():id() ~= AC_ID then return end
+	if not reload_anims[anm_name] then
+		if ignore_animations[anm_name] then return end
+		printf("anm_name: %s", anm_name)
+		if sfind(anm_name, "reload") then
+			reload_anims[anm_name] = true
+		elseif sfind(anm_name, "add_cartridge") then
+			reload_anims[anm_name] = true
+		else
+			ignore_animations[anm_name] = true
+			return
+		end
+	end
 
 	local reload_string = tostring(anm_name)
 	local wpn_sec = obj:section()

@@ -366,41 +366,41 @@
 	<string id="st_perk_careful_handler_desc_1">
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]8% \n
-		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]2%\n
-		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]8%
+		%c[d_blue] - %c[ui_gray_2] Armor, weapons, and mutant pelts you loot will have their condition improved by %c[d_green]8% \n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]8% \n
+		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]8%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_2">
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]16% \n
-		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]4%\n
-		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]16%
+		%c[d_blue] - %c[ui_gray_2] Armor, weapons, and mutant pelts you loot will have their condition improved by %c[d_green]16% \n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]16% \n
+		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]16%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_3">
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]24% \n
-		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]6%\n
-		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]24%
+		%c[d_blue] - %c[ui_gray_2] Armor, weapons, and mutant pelts you loot will have their condition improved by %c[d_green]24% \n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]24% \n
+		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]24%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_4">
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]32% \n
-		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]8%\n
-		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]32%
+		%c[d_blue] - %c[ui_gray_2] Armor, weapons, and mutant pelts you loot will have their condition improved by %c[d_green]32% \n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]32% \n
+		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]32%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_5">
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Armor and weapons you find will have their condition improved by %c[d_green]40% \n
-		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]10%\n
-		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]40%
+		%c[d_blue] - %c[ui_gray_2] Armor, weapons, and mutant pelts you loot will have their condition improved by %c[d_green]40% \n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]40% \n
+		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]40%
 		</text>
     </string>
     
@@ -492,21 +492,24 @@
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]6% chance %c[ui_gray_2]to find or loot more %c[yellow]mostly medium-tier ammo parts OR low-tier ammo parts if otherwise\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]1% chance %c[ui_gray_2]to find double the ammo on looted bodies and breakable containers
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]1% chance %c[ui_gray_2]to find double the ammo on %c[yellow]looted bodies and breakable containers\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2% chance %c[ui_gray_2]to find double the ammo %c[yellow]when looting stashes
 		</text>
 	</string>
 	<string id="st_perk_ammo_finder_desc_4">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]8% chance %c[ui_gray_2]to find or loot more %c[d_green]mostly medium-tier ammo parts OR low-tier/high-tier ammo parts if otherwise\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]3% chance %c[ui_gray_2]to find double the ammo on looted bodies and breakable containers
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]3% chance %c[ui_gray_2]to find double the ammo on %c[yellow]looted bodies and breakable containers\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]6% chance %c[ui_gray_2]to find double the ammo %c[yellow]when looting stashes
 		</text>
     </string>
 	<string id="st_perk_ammo_finder_desc_5">
         <text>Your threatening aura has caused stalkers in the Zone to carry more ammo and ammo supplies in the event that they cross your path.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]10% chance %c[ui_gray_2]to find or loot more %c[d_cyan]mostly medium-tier ammo parts OR high-tier ammo parts if otherwise\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]5% chance %c[ui_gray_2]to find double the ammo on looted bodies and breakable containers
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]5% chance %c[ui_gray_2]to find double the ammo on %c[yellow]looted bodies and breakable containers\n
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]10% chance %c[ui_gray_2]to find double the ammo %c[yellow]when looting stashes
 		</text>
     </string>
 	
@@ -520,7 +523,7 @@
 	<string id="st_perk_medicine_man_desc_1">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]2% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes 
 		</text>
     </string>
 	<string id="st_perk_medicine_man_desc_2">
@@ -532,7 +535,7 @@
 	<string id="st_perk_medicine_man_desc_3">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]6% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes\n 
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]6% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes\n
 		%c[d_blue] - %c[ui_gray_2] If there are no medical items to double on a %c[yellow]successful roll%c[ui_gray_2], you will be given a random medical item instead
 		</text>
     </string>
@@ -546,7 +549,7 @@
 	<string id="st_perk_medicine_man_desc_5">
         <text>Rumors of your strength has caused stalkers to carry extra supplies with them in the field.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]10% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes\n 
+		%c[d_blue] - %c[ui_gray_2] You have a %c[d_green]10% chance %c[ui_gray_2]to find double the amount of medical items when looting stalkers and stashes\n
 		%c[d_blue] - %c[ui_gray_2] If there are no medical items to double on a %c[yellow]successful roll%c[ui_gray_2], you will be given a random medical item instead
 		</text>
     </string>
@@ -561,6 +564,7 @@
 	<string id="st_perk_artefinder_desc_1">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]2%\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]3%
 		</text>
@@ -568,6 +572,7 @@
 	<string id="st_perk_artefinder_desc_2">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]4%\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]2% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]6%
 		</text>
@@ -575,6 +580,7 @@
 	<string id="st_perk_artefinder_desc_3">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]6%\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]9%
 		</text>
@@ -582,6 +588,7 @@
 	<string id="st_perk_artefinder_desc_4">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]8%\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]12%
 		</text>
@@ -589,6 +596,7 @@
 	<string id="st_perk_artefinder_desc_5">
         <text>Artefacts are now the hottest items on the market! Lucky for you, this means that a new avenue of artefact hunting has opened up...\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Looted and created artefacts will have their base condition improved by %c[d_green]10%\n
 		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]5% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Looting mutants has a %c[d_green]1% %c[ui_gray_2]chance of finding an artefact native to your current location\n
 		%c[d_blue] - %c[ui_gray_2] Increase artefact spawn chance by %c[d_green]15%
@@ -1385,7 +1393,7 @@
 	<string id="st_perk_local_looting_desc_3">
         <text>The locals have gone to stashing their loot much more frequently, making finding new and better stashes much easier.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now %c[d_green]AWLAYS receive %c[yellow]a 2nd stash location\n
+		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now %c[d_green]ALWAYS receive %c[yellow]a 2nd stash location\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now have a %c[d_green]5% chance%c[ui_gray_2] to receive %c[d_cyan]a 3rd stash location\n
 		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]5 completed tasks%c[ui_gray_2] instead of 7
 		</text>
@@ -1393,7 +1401,7 @@
 	<string id="st_perk_local_looting_desc_4">
         <text>The locals have gone to stashing their loot much more frequently, making finding new and better stashes much easier.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now %c[d_green]AWLAYS receive %c[yellow]a 2nd stash location\n
+		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now %c[d_green]ALWAYS receive %c[yellow]a 2nd stash location\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now have a %c[d_green]40% chance%c[ui_gray_2] to receive %c[d_cyan]a 3rd stash location\n
 		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]5 completed tasks%c[ui_gray_2] instead of 7
 		</text>
@@ -1401,7 +1409,7 @@
 	<string id="st_perk_local_looting_desc_5">
         <text>The locals have gone to stashing their loot much more frequently, making finding new and better stashes much easier.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now %c[d_green]AWLAYS receive %c[yellow]a 2nd stash location\n
+		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now %c[d_green]ALWAYS receive %c[yellow]a 2nd stash location\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now have a %c[d_green]75% chance%c[ui_gray_2] to receive %c[d_cyan]a 3rd stash location\n
 		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]4 completed tasks%c[ui_gray_2] instead of 7
 		</text>

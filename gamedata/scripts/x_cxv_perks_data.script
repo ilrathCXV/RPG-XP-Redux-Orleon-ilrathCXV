@@ -9,7 +9,6 @@ perks = {
 	["perk_careful_handler"] = 0,
 	["perk_comfort_food"] = 0,
 	["perk_cybermedic"] = 0,
-	["perk_deadeye"] = 0,
 	["perk_demo_expert"] = 0,
 	["perk_disarming_shot"] = 0,
 	["perk_fast_hands"] = 0,
@@ -204,25 +203,23 @@ local function experience_skill_on_update(perk_id, perk_data)
 		end
 	end
 	
-	-- Careful Handler affecting artefact condition
-	if perk_id == "perk_careful_handler" then
+	-- Artefinder affecting artefact map chances + affecting artefact condition
+	if perk_id == "perk_artefinder" then
+	
 		if zz_item_artefact then
 			if zz_item_artefact.cond_t then
 				if minCondition == 0 then
 					minCondition = zz_item_artefact.arti_min_eff or 29
 				end
-				zz_item_artefact.arti_min_eff = minCondition + (perks["perk_careful_handler"] * 2)		
+				zz_item_artefact.arti_min_eff = minCondition + (perks["perk_artefinder"] * 2)		
 				if maxCondition == 0 then
 					maxCondition = zz_item_artefact.arti_max_eff or 37
 				end
-				zz_item_artefact.arti_max_eff = maxCondition + (perks["perk_careful_handler"] * 2)		
+				zz_item_artefact.arti_max_eff = maxCondition + (perks["perk_artefinder"] * 2)		
 				printf('Old Arte. Min: %s | New Arte. Min %s | Old Arte. Max: %s | New Arte. Max %s', minCondition, zz_item_artefact.arti_min_eff, maxCondition, zz_item_artefact.arti_max_eff)
 			end
 		end
-	end
 	
-	-- Artefinder affecting artefact map chances
-	if perk_id == "perk_artefinder" then
 		if drx_da_main_artefacts then
 			if drx_da_main_artefacts.artefacts_map_chances then
 				for k,v in pairs(drx_da_main_artefacts.artefacts_map_chances) do

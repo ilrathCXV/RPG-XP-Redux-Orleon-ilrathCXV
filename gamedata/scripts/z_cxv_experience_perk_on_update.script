@@ -70,11 +70,25 @@ function perk_effects_over_time()
 	end	
 	
 -------------------------------------------------------------> Glass Cannon (Rank 3): Max HP now capped at 80% to allow damage boost to always be active
-	if (perks["perk_glass_cannon"] >= 3) and actor.health > 0.80 then
+	if (perks["perk_glass_cannon"] >= 3) and actor.health > 0.80 then		
 		actor.health = 0.80
 	end
 	
 	saved_time_elapsed = time_elapsed
+end
+
+-- ilrathCXV (03/14/26): Unlocalized "myhealth" (last health value saved by BHS) to always make it read 0.80 if above to avoid limb damage
+if zzz_player_injuries and zzz_player_injuries.actor_on_update then
+	BaseActorOnUpdateBHS = zzz_player_injuries.actor_on_update
+	function zzz_player_injuries.actor_on_update()
+		
+		if (perks["perk_glass_cannon"] >= 3) and zzz_player_injuries.myhealth > 0.80 then
+			zzz_player_injuries.myhealth = 0.80
+		end
+		
+		BaseActorOnUpdateBHS()
+		
+	end
 end
 
 function on_game_start()
