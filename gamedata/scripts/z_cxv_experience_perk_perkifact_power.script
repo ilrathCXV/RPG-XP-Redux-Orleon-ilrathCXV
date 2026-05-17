@@ -1,3 +1,5 @@
+if not perk_based_artefacts then return end
+
 BasePBAProcess = perk_based_artefacts.process_artefacts
 perk_based_artefacts.process_artefacts = function(artefacts_table, ...)
 	if x_cxv_perks_data.perks["perk_perkifact_power"] == 0 then
@@ -12,4 +14,65 @@ perk_based_artefacts.process_artefacts = function(artefacts_table, ...)
 			end
 		end
 	end
+end
+
+-- 03/29/26: List to grant condition to perkifacts on kill, split evenly amongst all perkifacts (minus Knot/Lucifer)
+local update_delay = 0.1	-- seconds
+
+local disallowed_artys = {
+	["af_lucifer"] = true,
+	["af_fire_loop"] = true
+}
+
+local artefact_exceptions = {	-- if using mods that make new perkifacts/change regular artefacts to function like a perkifact
+	["af_death_lamp"] = (perk_based_artefacts.artefact_props and perk_based_artefacts.artefact_props.af_death_lamp) or false,
+}
+
+perkifact_id_table = {}
+perkifact_count = 0
+
+function iter_find_perkifacts(owner, obj)
+	if not obj then return end
+	local obj_id = obj:id()
+	if perkifact_id_table[obj_id] then return end
+	local sec = obj:section()
+	if disallowed_artys[sec] then return end
+	local kind = SYS_GetParam(0, sec, "kind")
+	if artefact_exceptions[sec] or (kind and (kind == "i_arty_junk")) then
+		perkifact_id_table[obj_id] = true
+		perkifact_count = perkifact_count + 1
+	end
+end
+
+function update_perkifact_table()
+	perkifact_count = 0
+	empty_table(perkifact_id_table)
+	db.actor:iterate_belt(iter_find_perkifacts)
+	return true
+end
+
+
+function move_to_belt(item)
+	if not item then return end
+	local sec = item:section()
+	if disallowed_artys[sec] then return end
+	local kind = SYS_GetParam(0, sec, "kind")
+	if not kind then return end
+	if (kind == "i_arty_junk") then
+		CreateTimeEvent("perkifact_update" .. item:id(), "perkifact_update", update_delay, update_perkifact_table)
+	end
+end
+
+function ruck_drop_equipment(item)
+	if not item then return end
+	local item_id = item:id()
+	if perkifact_id_table[item_id] then
+		CreateTimeEvent("perkifact_update" .. item_id, "perkifact_update", update_delay, update_perkifact_table)
+	end
+end
+
+function on_game_start()
+	RegisterScriptCallback("actor_item_to_ruck", ruck_drop_equipment)
+	RegisterScriptCallback("actor_on_item_drop", ruck_drop_equipment)
+	RegisterScriptCallback("actor_item_to_belt", move_to_belt)
 end

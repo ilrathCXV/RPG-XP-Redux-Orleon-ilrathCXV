@@ -1,40 +1,81 @@
 <?xml version="1.0" encoding="windows-1251"?>
-
 <string_table>
 	<string id="ui_mcm_menu_rpg_redux">
 		<text>RPG Redux</text>
 	</string>
 	<string id="ui_mcm_rpg_redux_title">
-		<text>Перковые опции в RPG Redux</text>
+		<text>RPG Redux Опции Навыков</text>
 	</string>
+	
+	<string id="ui_mcm_rpg_redux_exalted_enable_scorcher">
+		<text>Снова включить Выжигатель Мозгов и Чудо-аппарат для «Греха» и «Монолита»?</text>
+	</string>
+	<string id="ui_mcm_rpg_redux_exalted_enable_scorcher_desc">
+		<text>
+			[ДЛЯ НОВЫХ ИГР] Включение этой опции гарантирует, что Выжигатель Мозгов и Чудо-аппарат НЕ будут включены при игре за «Монолит» или «Грех». Это предназначено для игроков, которые хотят пройти цепочку квестов «Живая Легенда», играя за эти группировки.\n
+			\nПри выключении этой опции Выжигатель Мозгов и Чудо-аппарат будут отключены, как это обычно бывает при игре за «Монолит» и «Грех».\n
+			\n%c[d_red]Высока вероятность софтлока в ряде мест — НЕ РЕКОМЕНДУЕТСЯ.
+		</text>
+	</string>
+	
 	<string id="ui_mcm_rpg_redux_wick_slayer_reload">
-		<text>Бонусы за перезарядку в режиме Уика/Охотник?</text>
+		<text>Бонусы перезарядки «Режим Уика»/«Убийца Зоны»?</text>
 	</string>
 	<string id="ui_mcm_rpg_redux_wick_slayer_reload_desc">
 		<text>
-			Включение этого параметра позволит "Режиму Уика" и "Охотнику" увеличить скорость перезарядки соответствующего оружия на 30% в дополнение к их текущим эффектам.\n \n
-			Отключение этого параметра не приведет к получению бонусов за перезарядку этих перков ("Быстрая перезарядка" не будет затронута).
+			Включение этой опции позволит перкам «Режим Уика» и «Убийца Зоны» давать старые 30% бонусы к скорости перезарядки для соответствующего оружия в дополнение к их текущим эффектам.\n
+			\nПри выключении этой опции данные бонусы к перезарядке для этих перков предоставляться не будут (на перк «Быстрая перезарядка» это не повлияет).
 		</text>
 	</string>
-	<string id="st_refund_1">
-		<text>Предмет для ремонта возвращен!</text>
+	
+	<string id="ui_mcm_rpg_redux_perk_sfx_enable">
+		<text>Включить SFX перков?</text>
 	</string>
-		<string id="st_refund_2">
-		<text>Бонусный предмет возвращен!</text>
+	<string id="ui_mcm_rpg_redux_perk_sfx_enable_desc">
+		<text>
+			Включение этой опции позволит перкам с активными или временными эффектами воспроизводить звук, уведомляющий игрока об их текущем состоянии.\n
+			Выключение этой опции отключит все звуковые эффекты перков.\n
+			\nГромкость звуковых эффектов от перков будет зависеть от ваших стандартных настроек «Общей громкости» и «Громкости эффектов».
+		</text>
+	</string>
+	<string id="ui_mcm_rpg_redux_prestige_point_extra_enable">
+		<text>Включить прогрессивные Очки Престижа?</text>
+	</string>
+	<string id="ui_mcm_rpg_redux_prestige_point_extra_enable_desc">
+		<text>
+			Включение этой опции позволит вам получать дополнительные очки навыков каждые несколько уровней в зависимости от вашего уровня Престижа.\n
+			При выключении этой опции вы будете получать стандартное количество очков навыков, независимо от вашего уровня Престижа.\n
+			\nПороги Престижа: \n
+			%c[d_orange]Престиж 1-3: +1 дополнительное очко навыков каждые 4 полученных уровня \n
+			%c[yellow]Престиж 4-7: +1 дополнительное очко навыков каждые 3 полученных уровня \n
+			%c[d_green]Престиж 8-10: +1 дополнительное очко навыков каждые 2 полученных уровня
+		</text>
+	</string>
+	
+	
+	
+	
+	
+	
+	<string id="st_refund_1">
+		<text>Repair item refunded!</text>
+	</string>
+	<string id="st_refund_2">
+		<text>Bonus item refunded!</text>
 	</string>
 	<string id="st_craft_bonus">
-		<text>Скрафчен дополнительный предмет!</text>
+		<text>Extra item crafted!</text>
 	</string>
 	<string id="st_rested_1">
-		<text>Теперь вы хорошо отдохнувший!</text>
+		<text>You are now Well-Rested!</text>
 	</string>
 	<string id="st_rested_2">
-		<text>Вы больше не хорошо отдохнувший!</text>
+		<text>You are no longer Well-Rested!</text>
 	</string>
 	<string id="st_critical_hit_1">
-		<text>Критическое попадание на </text>
+		<text>Critical hit for </text>
 	</string>
 	<string id="st_critical_hit_2">
-		<text>x урона!</text>
+		<text>x damage!</text>
 	</string>
 </string_table>

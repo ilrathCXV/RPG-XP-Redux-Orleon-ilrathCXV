@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+
+	<string id="cxv_wpn_class_tooltip_dot">
+		<text>•</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_title">
+		<text>RPG Perks Оружейный Класс: </text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_smg">
+		<text>Пистолет-Пулемет</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_pistol">
+		<text>Пистолет</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_ar">
+		<text>Штурмовая Винтовка/Пулемет</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_sniper">
+		<text>Снайперская Винтовка</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_shotgun">
+		<text>Дробовик</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_heavy">
+		<text>Тяжелое Оружие</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_explosive">
+		<text>Взрывчатка</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_melee">
+		<text>Ближний Бой</text>
+	</string>
+	<string id="cxv_wpn_class_tooltip_misc">
+		<text>N/A</text>
+	</string>
+	
+	
+</string_table>

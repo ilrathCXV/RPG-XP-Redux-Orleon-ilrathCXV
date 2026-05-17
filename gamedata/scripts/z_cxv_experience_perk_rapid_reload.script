@@ -66,79 +66,187 @@ local ignore_animations = {}
 
 local sfind = string.find
 
-function actor_on_hud_animation_play(anim_table,obj)
-	
-	if (not IsWeapon(obj)) then return end
-	if obj:parent() and obj:parent():id() ~= AC_ID then return end
-	
-	local anm_name = anim_table.anm_name	
-	
-	if (x_cxv_perks_data.perks["perk_rapid_reload"] < 1) and (x_cxv_perks_data.perks["perk_zone_slayer"] < 1) and (x_cxv_perks_data.perks["perk_wick_mode"] < 1) then return end
-	if not reload_anims[anm_name] then
-		if ignore_animations[anm_name] then return end
-		printf("anm_name: %s", anm_name)
-		if sfind(anm_name, "reload") then
-			reload_anims[anm_name] = true
-		elseif sfind(anm_name, "add_cartridge") then
-			reload_anims[anm_name] = true
-		else
-			ignore_animations[anm_name] = true
-			return
-		end
-	end
+if ver_dynamic_reload_speeds then
 
-	local reload_string = tostring(anm_name)
-	local wpn_sec = obj:section()
-	local hud_sec = ini_sys:r_string_ex(wpn_sec,"hud")
-	
-	local reload_val = parse_list(ini_sys,hud_sec,reload_string)
-
-	local animation_speed = anim_table.anm_speed
-	for k, v in pairs(reload_val) do
-		if tonumber(v) then
-			animation_speed = tonumber(v)
-			break
-		end
-	end
-	
-	local zone_slayer_bonus = 0
-	local wick_mode_bonus = 0
-	
-	local wick_slayer_reload = x_cxv_perks_mcm.get_config("wick_slayer_reload") or false
-	
-	if wick_slayer_reload then
-	
-		if x_cxv_perks_data.perks["perk_zone_slayer"] > 0 and #x_cxv_perks_data.shotgun_list > 0 then
-			for i = 1, #x_cxv_perks_data.shotgun_list do
-				if x_cxv_perks_data.shotgun_list[i] then
-					local wpn_id = x_cxv_perks_data.shotgun_list[i]
-					if obj:id() == wpn_id then
-						zone_slayer_bonus = 0.30
-						break
+	ver_dynamic_reload_speeds.add_reload_speed_increase((function(anim_table, obj)
+		if not obj then return false end
+		local zone_slayer_bonus = 0
+		local wick_mode_bonus = 0
+		
+		local wick_slayer_reload = x_cxv_perks_mcm.get_config("wick_slayer_reload") or false
+		
+		if wick_slayer_reload then
+		
+			if x_cxv_perks_data.perks["perk_zone_slayer"] > 0 and #x_cxv_perks_data.shotgun_list > 0 then
+				for i = 1, #x_cxv_perks_data.shotgun_list do
+					if x_cxv_perks_data.shotgun_list[i] then
+						local wpn_id = x_cxv_perks_data.shotgun_list[i]
+						if obj:id() == wpn_id then
+							zone_slayer_bonus = 0.30
+							break
+						end
 					end
 				end
 			end
+			
+			
+			if x_cxv_perks_data.perks["perk_wick_mode"] > 0 and #x_cxv_perks_data.wick_list > 0 then
+				for i = 1, #x_cxv_perks_data.wick_list do
+					if x_cxv_perks_data.wick_list[i] then
+						local wpn_id = x_cxv_perks_data.wick_list[i]
+						if obj:id() == wpn_id then
+							wick_mode_bonus = 0.30
+							break
+						end
+					end
+				end
+			end
+		
+		end
+		
+		local speed = (1 + (reload_bonuses[x_cxv_perks_data.perks["perk_rapid_reload"]] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
+		local cam_anim_bool = not (x_cxv_perks_data.perks["perk_rapid_reload"] >= 3)
+		--printf("cam_anim_bool is %s", cam_anim_bool)
+		if speed ~= 1 then
+			return speed, cam_anim_bool
+		else
+			return
 		end
 		
 		
-		if x_cxv_perks_data.perks["perk_wick_mode"] > 0 then
-			wpn_kind = x_cxv_perks_data.sortK_of(obj)
-			if wpn_kind == "pistol" then
-				wick_mode_bonus = 0.30
-			elseif wpn_kind ~= "melee" and wpn_kind ~= "explosive" and wpn_kind ~= "misc" and wpn_kind ~= "heavy" then
-				if SYS_GetParam(2, obj:section(), "single_handed") == 1 then
-					wick_mode_bonus = 0.30
+		end), 0.1)
+		
+	ver_dynamic_reload_speeds.add_sound_disabler_functor((function()
+		obj = db.actor:active_item()
+		if not obj then 
+			--printf("could not find object!")
+			return false 
+		end
+		local zone_slayer_bonus = 0
+		local wick_mode_bonus = 0
+		
+		local wick_slayer_reload = x_cxv_perks_mcm.get_config("wick_slayer_reload") or false
+		
+		if wick_slayer_reload then
+		
+			if x_cxv_perks_data.perks["perk_zone_slayer"] > 0 and #x_cxv_perks_data.shotgun_list > 0 then
+				for i = 1, #x_cxv_perks_data.shotgun_list do
+					if x_cxv_perks_data.shotgun_list[i] then
+						local wpn_id = x_cxv_perks_data.shotgun_list[i]
+						if obj:id() == wpn_id then
+							zone_slayer_bonus = 0.30
+							break
+						end
+					end
 				end
+			end
+			
+			
+			if x_cxv_perks_data.perks["perk_wick_mode"] > 0 and #x_cxv_perks_data.wick_list > 0 then
+				for i = 1, #x_cxv_perks_data.wick_list do
+					if x_cxv_perks_data.wick_list[i] then
+						local wpn_id = x_cxv_perks_data.wick_list[i]
+						if obj:id() == wpn_id then
+							wick_mode_bonus = 0.30
+							break
+						end
+					end
+				end
+			end
+		
+		end
+		
+		local stop = (1 + (reload_bonuses[x_cxv_perks_data.perks["perk_rapid_reload"]] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
+		--printf("sound_disabler: stop is %s", stop)
+		if stop ~= 1 then
+			return true
+		else
+			return false
+		end
+		
+		
+		end)
+		
+		, 0.1)
+
+else
+	
+	function actor_on_hud_animation_play(anim_table,obj)
+	
+		if (not IsWeapon(obj)) then return end
+		if obj:parent() and obj:parent():id() ~= AC_ID then return end
+		
+		local anm_name = anim_table.anm_name	
+		
+		if (x_cxv_perks_data.perks["perk_rapid_reload"] < 1) and (x_cxv_perks_data.perks["perk_zone_slayer"] < 1) and (x_cxv_perks_data.perks["perk_wick_mode"] < 1) then return end
+		if not reload_anims[anm_name] then
+			if ignore_animations[anm_name] then return end
+	--		printf("anm_name: %s", anm_name)
+			if (anm_name:startswith("anm_reload") or anm_name:startswith("anm_add_cartridge") or anm_name:startswith("anm_open") or anm_name:startswith("anm_close")) and (not anm_name:find("misfire")) then 
+				reload_anims[anm_name] = true
+			else
+				ignore_animations[anm_name] = true
+				return
 			end
 		end
 	
+		local reload_string = tostring(anm_name)
+		local wpn_sec = obj:section()
+		local hud_sec = ini_sys:r_string_ex(wpn_sec,"hud")
+		
+		local reload_val = parse_list(ini_sys,hud_sec,reload_string)
+	
+		local animation_speed = anim_table.anm_speed
+		for k, v in pairs(reload_val) do
+			if tonumber(v) then
+				animation_speed = tonumber(v)
+				break
+			end
+		end
+		
+		local zone_slayer_bonus = 0
+		local wick_mode_bonus = 0
+		
+		local wick_slayer_reload = x_cxv_perks_mcm.get_config("wick_slayer_reload") or false
+		
+		if wick_slayer_reload then
+		
+			if x_cxv_perks_data.perks["perk_zone_slayer"] > 0 and #x_cxv_perks_data.shotgun_list > 0 then
+				for i = 1, #x_cxv_perks_data.shotgun_list do
+					if x_cxv_perks_data.shotgun_list[i] then
+						local wpn_id = x_cxv_perks_data.shotgun_list[i]
+						if obj:id() == wpn_id then
+							zone_slayer_bonus = 0.30
+							break
+						end
+					end
+				end
+			end
+			
+			
+			if x_cxv_perks_data.perks["perk_wick_mode"] > 0 and #x_cxv_perks_data.wick_list > 0 then
+				for i = 1, #x_cxv_perks_data.wick_list do
+					if x_cxv_perks_data.wick_list[i] then
+						local wpn_id = x_cxv_perks_data.wick_list[i]
+						if obj:id() == wpn_id then
+							wick_mode_bonus = 0.30
+							break
+						end
+					end
+				end
+			end
+		
+		end
+		
+		printf("[RPG - Rapid Reload] Non-Ver method used")
+		anim_table.anm_speed = animation_speed * (1 + (reload_bonuses[x_cxv_perks_data.perks["perk_rapid_reload"]] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
+		
 	end
 	
-	anim_table.anm_speed = animation_speed * (1 + (reload_bonuses[x_cxv_perks_data.perks["perk_rapid_reload"]] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
 	
-end
-
-function on_game_start()
-	--[NEW] Reload Speed
-	RegisterScriptCallback("actor_on_hud_animation_play", actor_on_hud_animation_play)
+	function on_game_start()
+		--[NEW] Reload Speed
+		RegisterScriptCallback("actor_on_hud_animation_play", actor_on_hud_animation_play)
+	end
+	
 end

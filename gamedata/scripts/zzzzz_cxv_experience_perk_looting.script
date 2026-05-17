@@ -2,7 +2,6 @@ local was_medicine_found = false
 local perks = x_cxv_perks_data.perks
 damaged_task_kind_list = z_cxv_experience_perk_fetch_finder.damaged_kinds
 
-local fetch_finder_count_chances = {[0] = 1000, [1] = 33, [2] = 25, [3] = 20, [4] = 18, [5] = 16}	-- 0.1%/3.03%/4.0%/5.0%/5.55~%/6.25%
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 local ammo_parts_check = {
@@ -866,9 +865,12 @@ if BasePartsEval then
 		local careful_handler_bonus = perks["perk_careful_handler"] * 8
 		local parts_data = se_load_var( wpn:id(), wpn:name(), "parts")
 		if parts_data then
+			local wpn_sec = SYS_GetParam(0, wpn:section(), "parent_section") or wpn:section()
 			for k,v in pairs(parts_data) do
---				printf("[RPG - Looting] Wpn Part Cond: %s | Bonus to be applied: %s", v, careful_handler_bonus)
-				parts_data[k] = math.min(v + careful_handler_bonus , 99)
+				if k ~= wpn_sec then
+--					printf("[RPG - Looting] Wpn Part Cond: %s | Bonus to be applied: %s", v, careful_handler_bonus)
+					parts_data[k] = math.min(v + careful_handler_bonus , 99)
+				end
 			end
 			
 			se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
@@ -887,11 +889,13 @@ if BaseNewPartsEval then
 		if perks["perk_careful_handler"] < 1 then return end
 		local careful_handler_bonus = perks["perk_careful_handler"] * 8
 		local parts_data = se_load_var( wpn:id(), wpn:name(), "parts")
-		
 		if parts_data then
+			local wpn_sec = SYS_GetParam(0, wpn:section(), "parent_section") or wpn:section()
 			for k,v in pairs(parts_data) do
---				printf("[RPG - Looting] Wpn Part Cond: %s | Bonus to be applied: %s", v, careful_handler_bonus)
-				parts_data[k] = math.min(v + careful_handler_bonus , 99)
+				if k ~= wpn_sec then
+--					printf("[RPG - Looting] Wpn Part Cond: %s | Bonus to be applied: %s", v, careful_handler_bonus)
+					parts_data[k] = math.min(v + careful_handler_bonus , 99)
+				end
 			end
 			
 			se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
@@ -908,21 +912,25 @@ if knifesm then
 	-- Adding mutant loot condition setup
 	local create_part = alife_create_item
 	local function careful_handler_create_part(section, obj, t)
-		local careful_handler_bonus = perks["perk_careful_handler"] * 8 
+		local careful_handler_bonus = perks["perk_careful_handler"] * 8
+		
+		-- starter values based on first knife
+		min_mutant_part_cond = 25
+		max_mutant_part_cond = 40
+		
 		function itr(_, item)
 			if knifesm[item:section()] then
-				if max_mutant_part_cond then
-					if max_mutant_part_cond < knifesm[item:section()].max then
-						max_mutant_part_cond = knifesm[item:section()].max
-						min_mutant_part_cond = knifesm[item:section()].min
-					end
-				else
+				if max_mutant_part_cond < knifesm[item:section()].max then
 					max_mutant_part_cond = knifesm[item:section()].max
+				end
+				if min_mutant_part_cond < knifesm[item:section()].max then
 					min_mutant_part_cond = knifesm[item:section()].min
 				end
 			end
 		end
+		
 		db.actor:iterate_inventory(itr, db.actor)
+		
 		min_mutant_part_cond = math.min((min_mutant_part_cond + careful_handler_bonus), 100)
 		max_mutant_part_cond = math.min((max_mutant_part_cond + careful_handler_bonus), 100)
 		t.cond_r = {min_mutant_part_cond, max_mutant_part_cond}

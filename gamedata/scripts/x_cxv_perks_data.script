@@ -305,9 +305,15 @@ local function experience_skill_on_update(perk_id, perk_data)
 
 end
 
-local weapon_exceptions_rank3 = {
+local slayer_exceptions_rank1 = {
+	["wpn_mp18"] = true,			-- MP-18 - single-shot x54r rifle
+}
+
+local slayer_exceptions_rank2 = {
+}
+
+local slayer_exceptions_rank3 = {
 	["wpn_uboinik"] = true,	-- Shambler (technically reloads one at a time but stuck in the entire animaiton)
-	
 }
 
 local shotgun_ammo_check = {
@@ -348,6 +354,11 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 	
 	if perks["perk_zone_slayer"] < 1 then return end
 	
+	local parent_sec = SYS_GetParam(0, wpn_sec, "parent_section") or wpn_sec
+	
+	-- Rank 1 Exceptions
+	if slayer_exceptions_rank1[parent_sec] then return true end
+	
 	-- if the weapon is not using shotgun ammo, return
 	if shotgun_ammo_validity_check(wpn_sec, wpn_id) == false then return end
 	
@@ -356,13 +367,12 @@ function zone_slayer_validity_check(wpn_sec, wpn_id)
 	if clip <= 2 then
 		return true
 	end
-	
+
 	-- check if tube-fed pump-action/single-round-fed-reloaded shotgun
 	if perks["perk_zone_slayer"] < 2 then return end
 	
 	-- Rank 3 Exceptions
-	local parent_sec = SYS_GetParam(0, wpn_sec, "parent_section") or wpn_sec
-	if weapon_exceptions_rank3[parent_sec] and perks["perk_zone_slayer"] > 2 then
+	if slayer_exceptions_rank3[parent_sec] and perks["perk_zone_slayer"] > 2 then
 		return true
 	end
 	

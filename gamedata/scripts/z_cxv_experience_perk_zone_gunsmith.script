@@ -1,86 +1,351 @@
-base_repair_inventory = item_repair.UIRepair.InitInventory
-item_repair.UIRepair.InitInventory = function(self, n)
-	
-	if (x_cxv_perks_data.perks["perk_zone_gunsmith"] <= 0) then 
-		base_repair_inventory(self,n)
-		
-	else
-		local inv = {}
-		local size_t = 0
-	
-		-- Compatible weapons list to repair
-		if n == 1 then
-			db.actor:iterate_inventory( function(owner, obj)
-				local sec = obj:section()
-				local main_section = ini_sys:r_string_ex(sec,"repair_type") or sec
-				if (self.repair_only and self.repair_only[main_section]) then
-					local con = math.ceil(obj:condition() * 100)
-					if (con and con >= (self.min_condition * 100) and con <= self.max_condition * 100) then
-						size_t = size_t + 1
-						inv[size_t] = obj
-					end
-				end
-			end)
-		
-			self.CC[1]:Reinit(inv)
+if zzzzzz_item_repair_nearby_stashes then
 
-		-- Compatible part list to use
-		elseif n == 2 then
-			local obj_s = self.CC[1]:GetCell_Selected(true)
-			if (not obj_s) then
-				return
-			end
-		
-			local inf = {}
-			local ItemListSec_2 = {} -- to show only one copy of bonus items
-			db.actor:iterate_inventory( function(owner, obj)
-				local sec = obj:section()
-				if (not ItemListSec_2[sec]) and (obj) and (obj:id() ~= obj_s:id()) and (obj:id() ~= self.obj:id()) then
-					ItemListSec_2[sec] = true
-					
-					if (self.parts_match and sec == obj_s:section()) then
-						local part_bonus = obj:condition()
-						part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
-						part_bonus = clamp(math.floor(part_bonus*100)*self.parts_multi , 0 , 100)
-				
-						size_t = size_t + 1
-						inv[size_t] = obj
-						inf[size_t] = part_bonus
-				
-					elseif (self.parts_sections and self.parts_sections[sec]) then
-						local part_bonus = ini_sys:r_float_ex(sec,"repair_part_bonus") or self.part_bonus
-						part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
-						part_bonus = clamp(math.floor(part_bonus*100)*self.parts_multi , 0 , 100)
-				
-						size_t = size_t + 1
-						inv[size_t] = obj
-						inf[size_t] = part_bonus
-					
-					elseif (sec == "prt_i_scrap") then
-						local part_bonus = 0.04 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
-						part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
-						part_bonus = clamp(math.floor(part_bonus*100) , 0 , 100)
-				
-						size_t = size_t + 1
-						inv[size_t] = obj
-						inf[size_t] = part_bonus
+	local default_range = 10
+	
+	-- Cancel out "Craft from Nearby Stashes" script
+	function zzzzzz_item_repair_nearby_stashes.on_game_start()
+		printf("Canceling out Craft from Nearby Stashes monkeypatch to allow patched version with Jury Rigging to work...")
+	end
+	
+	function on_game_start()
+		-- Monkey patch item_repair.UIRepair:InitInventory to include nearby stashes
+		local original_InitInventory = item_repair.UIRepair.InitInventory
+	
+		function item_repair.UIRepair:InitInventory(n)
+			-- Get stash range from MCM
+			local stash_range = ui_mcm and ui_mcm.get("craft_from_stashes/range") or default_range
+	
+			-- n == 1: List items to repair (weapons/armor)
+			if n == 1 then
+				local inv = {}
+				local size_t = 0
+	
+				-- Compatible weapons list to repair from inventory
+				db.actor:iterate_inventory(function(owner, obj)
+					local sec = obj:section()
+					local main_section = ini_sys:r_string_ex(sec, "repair_type") or sec
+					if (self.repair_only and self.repair_only[main_section]) then
+						local con = math.ceil(obj:condition() * 100)
+						if (con and con >= (self.min_condition * 100) and con <= self.max_condition * 100) then
+							size_t = size_t + 1
+							inv[size_t] = obj
+						end
+					end
+				end)
+	
+				-- Also collect from nearby stashes
+				if GetStashesInRange then
+					IterateStashesInRange(function(temp, obj)
+						local sec = obj:section()
+						local main_section = ini_sys:r_string_ex(sec, "repair_type") or sec
+						if (self.repair_only and self.repair_only[main_section]) then
+							local con = math.ceil(obj:condition() * 100)
+							if (con and con >= (self.min_condition * 100) and con <= self.max_condition * 100) then
+								size_t = size_t + 1
+								inv[size_t] = obj
+							end
+						end
+					end, stash_range)
+				end
+	
+				self.CC[1]:Reinit(inv)
+	
+			-- n == 2: List parts/materials to use for repair
+			elseif n == 2 then
+				local obj_s = self.CC[1]:GetCell_Selected(true)
+				if not obj_s then
+					return
+				end
+	
+				local inv = {}
+				local inf = {}
+				local size_t = 0
+				local ItemListSec_2 = {} -- to show only one, lowest condition, copy of bonus items
+	
+				-- Helper function to process repair materials
+				local function process_repair_item(owner, obj)
+					local sec = obj:section()
+					if (obj) and (obj:id() ~= obj_s:id()) and (obj:id() ~= self.obj:id()) then
+						local part_bonus
+						if (self.parts_match and sec == obj_s:section()) then
+							part_bonus = obj:condition()
+							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
+							part_bonus = clamp(math.floor(part_bonus * 100) * self.parts_multi, 0, 100)
+						elseif (self.parts_sections and self.parts_sections[sec]) then
+							part_bonus = ini_sys:r_float_ex(sec, "repair_part_bonus") or self.part_bonus
+							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
+							part_bonus = clamp(math.floor(part_bonus * 100) * self.parts_multi, 0, 100)
+						elseif (x_cxv_perks_data.perks["perk_zone_gunsmith"] > 0) and (sec == "prt_i_scrap") then
+							part_bonus = 0.04 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
+							part_bonus = clamp(math.floor(part_bonus*100) , 0 , 100)
+						end
+	
+						if part_bonus then
+							-- Keep only the lowest condition item of each type
+							if ItemListSec_2[sec] and ItemListSec_2[sec].condition > obj:condition() then
+								local index = ItemListSec_2[sec].index
+								inv[index] = obj
+								inf[index] = part_bonus
+								ItemListSec_2[sec].condition = obj:condition()
+							elseif not ItemListSec_2[sec] then
+								size_t = size_t + 1
+								inv[size_t] = obj
+								inf[size_t] = part_bonus
+								ItemListSec_2[sec] = {
+									index = size_t,
+									condition = obj:condition()
+								}
+							end
+						end
 					end
 				end
-			end)
+	
+				-- Search player inventory
+				db.actor:iterate_inventory(process_repair_item)
+	
+				-- Search nearby stashes
+				if GetStashesInRange then
+					IterateStashesInRange(process_repair_item, stash_range)
+				end
+	
+				self.CC[2]:Reinit(inv, inf)
+	
+				-- Add bonus % text to each material
+				local clr_b = utils_xml.get_color("pda_blue", true)
+				local fnt = GetFontSmall()
+				for idx, ci in pairs(self.CC[2].cell) do
+					if ci:IsShown() then
+						local con100 = ci.flags.info
+						ci:Add_CustomText(("+" .. con100), nil, nil, clr_b, fnt)
+					end
+				end
+			end
+		end
+	
+		-- Monkey patch item_repair.UIRepair:CollectValidItems to count items from nearby stashes
+		-- This fixes the "(0)" count display to include nearby stash items
+		local original_CollectValidItems = item_repair.UIRepair.CollectValidItems
+		function item_repair.UIRepair:CollectValidItems(obj, section)
+			-- Get stash range from MCM
+			local stash_range = ui_mcm and ui_mcm.get("craft_from_stashes/range") or default_range
+	
+			-- Collect valid items
+			empty_table(self.multiUseItemsObj)
+			local parts_id = {}
+			local function search(temp, item)
+				if (item:section() == section) and (not parts_id[item:id()]) then
+					local cnt = IsItem("multiuse", section, nil) and item:get_remaining_uses() or 1
+					local id = item:id()
+					parts_id[id] = cnt
+					self.multiUseItemsObj[#self.multiUseItemsObj + 1] = {
+						[id] = cnt
+					}
+				end
+			end
+	
+			-- Search player inventory
+			db.actor:iterate_inventory(search, nil)
+	
+			-- Search nearby stashes
+			if GetStashesInRange then
+				IterateStashesInRange(search, stash_range)
+			end
+	
+			-- Collect Uses (total count from all sources)
+			self.multiUseItemsUses = 0
+			for _, cnt in pairs(parts_id) do
+				self.multiUseItemsUses = self.multiUseItemsUses + cnt
+			end
+	
+			-- check if item is multiuse and write either uses or condition
+			local uses
+			local color = ""
+			local degrade_factor = item_repair.degrade_factor or 0.2
+			if (IsItem("multiuse", section, nil)) then
+				self.condition = 1
+				self.isMultiUse = true
+				if self.multiUseItemsUses > 3 then
+					color = utils_xml.get_color("d_green")
+				elseif self.multiUseItemsUses > 2 then
+					color = utils_xml.get_color("pda_yellow")
+				elseif self.multiUseItemsUses > 1 then
+					color = utils_xml.get_color("d_orange")
+				else
+					color = utils_xml.get_color("d_red")
+				end
+				uses = self.multiUseItemsUses
+			else
+				self.isMultiUse = false
+				self.condition = obj:condition()
+				if self.condition > degrade_factor * 2 then
+					color = utils_xml.get_color("d_green")
+				elseif self.condition > degrade_factor then
+					color = utils_xml.get_color("pda_yellow")
+				else
+					color = utils_xml.get_color("d_red")
+				end
+				uses = string.format("%s%%", math.ceil(self.condition * 100))
+			end
+	
+			-- Write amount of uses near repair kit name
+			local str = color .. ui_item.get_sec_name(section) .. " (" .. uses .. ")"
+			self.cap_menu:SetText(str)
+	
+			return true
+		end
+	
+		-- Monkey patch item_repair.UIRepair:On_CC_Mouse1 to count individual materials from nearby stashes
+		-- This fixes the "(0)" count when clicking on specific repair materials (tape, rope, camo, hammer, etc.)
+		local original_On_CC_Mouse1 = item_repair.UIRepair.On_CC_Mouse1
+		function item_repair.UIRepair:On_CC_Mouse1(cont, idx, keep_selection)
+			-- Call original function first
+			original_On_CC_Mouse1(self, cont, idx, keep_selection)
+	
+			-- Get stash range from MCM
+			local stash_range = ui_mcm and ui_mcm.get("craft_from_stashes/range") or default_range
+	
+			-- When clicking on bonus parts (cont == 2), update count to include nearby stashes
+			if cont == 2 then
+				local part_obj = self.CC[2]:GetObj(idx)
+				if part_obj then
+					local part_sec = part_obj:section()
+					local parts_id = {}
+					local part_count = 0
+	
+					local function search(temp, item)
+						if (item:section() == part_sec) and (not parts_id[item:id()]) then
+							local cnt = IsItem("multiuse", part_sec, nil) and item:get_remaining_uses() or 1
+							local id = item:id()
+							parts_id[id] = cnt
+							part_count = part_count + cnt
+						end
+					end
+	
+					-- Search player inventory
+					db.actor:iterate_inventory(search, nil)
+	
+					-- Search nearby stashes
+					if GetStashesInRange then
+						IterateStashesInRange(search, stash_range)
+					end
+	
+					-- Subtract 1 if the part is the same as the repair kit being used
+					if (part_sec == self.section) then
+						part_count = part_count - 1
+					end
+	
+					-- Set color based on count
+					local color = ""
+					if part_count > 3 then
+						color = utils_xml.get_color("d_green")
+					elseif part_count > 2 then
+						color = utils_xml.get_color("pda_yellow")
+					elseif part_count > 1 then
+						color = utils_xml.get_color("d_orange")
+					else
+						color = utils_xml.get_color("d_red")
+					end
+	
+					-- Update display with correct count including nearby stashes
+					local name = ui_item.get_sec_name(part_sec)
+					self.text_item[2]:SetText(color .. name .. " (" .. part_count .. ")")
+				end
+			end
+	
+			return true
+		end
+	end
+
+
+
+else
+
+	base_repair_inventory = item_repair.UIRepair.InitInventory
+	item_repair.UIRepair.InitInventory = function(self, n)
 		
-			self.CC[2]:Reinit(inv,inf)
+		if (x_cxv_perks_data.perks["perk_zone_gunsmith"] <= 0) then 
+			base_repair_inventory(self,n)
+			
+		else
+			local inv = {}
+			local size_t = 0
 		
-			local clr_b = utils_xml.get_color("pda_blue",true)
-			local fnt = GetFontSmall()
-			for idx,ci in pairs(self.CC[2].cell) do
-				if ci:IsShown() then
-					local con100 = ci.flags.info
-					local con = ci.flags.info / 100
-					ci:Add_CustomText( ("+"..con100), nil, nil, clr_b, fnt)
+			-- Compatible weapons list to repair
+			if n == 1 then
+				db.actor:iterate_inventory( function(owner, obj)
+					local sec = obj:section()
+					local main_section = ini_sys:r_string_ex(sec,"repair_type") or sec
+					if (self.repair_only and self.repair_only[main_section]) then
+						local con = math.ceil(obj:condition() * 100)
+						if (con and con >= (self.min_condition * 100) and con <= self.max_condition * 100) then
+							size_t = size_t + 1
+							inv[size_t] = obj
+						end
+					end
+				end)
+			
+				self.CC[1]:Reinit(inv)
+	
+			-- Compatible part list to use
+			elseif n == 2 then
+				local obj_s = self.CC[1]:GetCell_Selected(true)
+				if (not obj_s) then
+					return
+				end
+			
+				local inf = {}
+				local ItemListSec_2 = {} -- to show only one copy of bonus items
+				db.actor:iterate_inventory( function(owner, obj)
+					local sec = obj:section()
+					if (not ItemListSec_2[sec]) and (obj) and (obj:id() ~= obj_s:id()) and (obj:id() ~= self.obj:id()) then
+						ItemListSec_2[sec] = true
+						
+						if (self.parts_match and sec == obj_s:section()) then
+							local part_bonus = obj:condition()
+							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
+							part_bonus = clamp(math.floor(part_bonus*100)*self.parts_multi , 0 , 100)
+					
+							size_t = size_t + 1
+							inv[size_t] = obj
+							inf[size_t] = part_bonus
+					
+						elseif (self.parts_sections and self.parts_sections[sec]) then
+							local part_bonus = ini_sys:r_float_ex(sec,"repair_part_bonus") or self.part_bonus
+							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
+							part_bonus = clamp(math.floor(part_bonus*100)*self.parts_multi , 0 , 100)
+					
+							size_t = size_t + 1
+							inv[size_t] = obj
+							inf[size_t] = part_bonus
+						
+						elseif (x_cxv_perks_data.perks["perk_zone_gunsmith"] > 0) and (sec == "prt_i_scrap") then
+							local part_bonus = 0.04 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
+							part_bonus = clamp(math.floor(part_bonus*100) , 0 , 100)
+					
+							size_t = size_t + 1
+							inv[size_t] = obj
+							inf[size_t] = part_bonus
+						end
+					end
+				end)
+			
+				self.CC[2]:Reinit(inv,inf)
+			
+				local clr_b = utils_xml.get_color("pda_blue",true)
+				local fnt = GetFontSmall()
+				for idx,ci in pairs(self.CC[2].cell) do
+					if ci:IsShown() then
+						local con100 = ci.flags.info
+						local con = ci.flags.info / 100
+						ci:Add_CustomText( ("+"..con100), nil, nil, clr_b, fnt)
+					end
 				end
 			end
 		end
 	end
+
 end
 
 base_repair_item_select = item_repair.UIRepair.OnItemSelect

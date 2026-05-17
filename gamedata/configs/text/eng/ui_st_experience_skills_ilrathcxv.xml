@@ -1693,22 +1693,28 @@
 	<string id="st_perk_perkifact_power_desc_1">
         <text>The Zone grows tired of Stalkers using the same artefacts. It has empowered you when using perk-based artefacts.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] When wearing perk-based artefacts (perkifacts), their effects will behave as if you are wearing %c[d_green]one additional copy\n
-		%c[d_blue] - %c[ui_gray_2] For instance, wearing a 1 "Signet" will result in its effects acting as if you are wearing %c[d_green]2 "Signets"
+		%c[d_blue] - %c[ui_gray_2] On kill, repair equipped perk-based artefacts (%c[yellow]perkifacts%c[ui_gray_2]) by 0.75% divided by your total equipped %c[yellow]perkifact%c[ui_gray_2] count\n
+		%c[d_blue] - %c[ui_gray_2] When wearing %c[yellow]perkifacts%c[ui_gray_2], their effects will behave as if you are wearing %c[d_green]one additional copy\n
+		%c[d_blue] - %c[ui_gray_2] For instance, wearing a 1 "Signet" will result in its effects acting as if you are wearing %c[d_green]2 "Signets"\n
+		%c[d_red] - %c[ui_gray_2] Neither the "Knot" or the "Lucifer" will benefit from this perk's effects
 		</text>
     </string>
 	<string id="st_perk_perkifact_power_desc_2">
         <text>The Zone grows tired of Stalkers using the same artefacts. It has empowered you when using perk-based artefacts.\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] On kill, repair equipped perk-based artefacts (%c[yellow]perkifacts%c[ui_gray_2]) by 1.5% divided by your total equipped %c[yellow]perkifact%c[ui_gray_2] count\n
 		%c[d_blue] - %c[ui_gray_2] When wearing perk-based artefacts (perkifacts), their effects will behave as if you are wearing %c[d_green]two additional copies\n
-		%c[d_blue] - %c[ui_gray_2] For instance, wearing a 1 "Signet" will result in its effects acting as if you are wearing %c[d_green]3 "Signets"
+		%c[d_blue] - %c[ui_gray_2] For instance, wearing a 1 "Signet" will result in its effects acting as if you are wearing %c[d_green]3 "Signets"\n
+		%c[d_red] - %c[ui_gray_2] Neither the "Knot" or the "Lucifer" will benefit from this perk's effects
 		</text>
     </string>
 	<string id="st_perk_perkifact_power_desc_3">
         <text>The Zone grows tired of Stalkers using the same artefacts. It has empowered you when using perk-based artefacts.\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] On kill, repair equipped perk-based artefacts (%c[yellow]perkifacts%c[ui_gray_2]) by 2.25% divided by your total equipped %c[yellow]perkifact%c[ui_gray_2] count\n
 		%c[d_blue] - %c[ui_gray_2] When wearing perk-based artefacts (perkifacts), their effects will behave as if you are wearing %c[d_green]three additional copies\n
-		%c[d_blue] - %c[ui_gray_2] For instance, wearing a 1 "Signet" will result in its effects acting as if you are wearing %c[d_green]4 "Signets"
+		%c[d_blue] - %c[ui_gray_2] For instance, wearing a 1 "Signet" will result in its effects acting as if you are wearing %c[d_green]4 "Signets"\n
+		%c[d_red] - %c[ui_gray_2] Neither the "Knot" or the "Lucifer" will benefit from this perk's effects
 		</text>
     </string>
 	

@@ -15,7 +15,7 @@ if grok_stashes_on_corpses then
 		if grok_stashes_on_corpses._used_corpses[npc:id()] then return end
 		grok_stashes_on_corpses._used_corpses[npc:id()] = true
 		if random() > SETTINGS.chance then return end
-		treasure_manager.create_random_stash(nil, nil, nil, math.random() > 0.75)
+		treasure_manager.create_random_stash(nil, nil, nil, random() > 0.75)
 		
 		if x_cxv_perks_data.perks["perk_local_looting"] <= 0 then return end
 		

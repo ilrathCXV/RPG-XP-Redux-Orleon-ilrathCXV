@@ -50,6 +50,7 @@ local glass_cannon_exp = { [1] = 0.85, [2] = 1.1, [3] = 1.35 }
 local string_find = string.find
 
 local golden = true	-- will be used to determine if old GBO or re-coded GBO
+
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -87,6 +88,7 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+
 local slayer_usage = false	-- "Zone Slayer" flag: ammo generation moved here to keep things "tidy" now that it give +5 AP to double-barrel shotguns
 
 function is_zone_slayer(wpn)
@@ -320,6 +322,7 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+
 function perk_damage_effects(victim, shit, bone_id, flags)
 	
 	if not victim:alive() then return end
@@ -441,7 +444,7 @@ if grok_bo and not cxv_artigrok_bo then
 			
 			base_grok_PBA(npc, shit, bone_id, flags)
 			
-			if shit.draftsman:id() == db.actor:id() then
+			if shit.draftsman:id() == AC_ID then
 			
 				local weapon = level.object_by_id(shit.weapon_id)
 				if not weapon or weapon == nil then
@@ -467,8 +470,10 @@ if grok_bo and not cxv_artigrok_bo then
 		end
 	end
 end
+
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+
 function find_zone_slayer_ammo(wpn_id,npc)
 	local ammo_list = utils_item.get_ammo(nil, wpn_id)
 	local shells = ammo_list[math.random(1,#ammo_list)]
@@ -488,9 +493,29 @@ function find_zone_slayer_ammo(wpn_id,npc)
 	slayer_usage = false
 end
 
+local perkifact_repair_base = 0.075
+
+function perkifact_repair()
+	local perkifact_count = z_cxv_experience_perk_perkifact_power.perkifact_count or 0
+	printf("perkifact count: %s", perkifact_count)
+	if perkifact_count == 0 then return end
+	local perkifact_id_table = z_cxv_experience_perk_perkifact_power.perkifact_id_table
+	local repair_amt = round_idp(perkifact_repair_base * perks["perk_perkifact_power"], 4)
+	for k,v in pairs(perkifact_id_table) do
+		local perkifact = level.object_by_id(k)
+		if perkifact then
+			local new_cond = math.min(1, perkifact:condition() + (repair_amt / perkifact_count)) 
+			perkifact:set_condition(new_cond)
+			if (zz_item_artefact.cond_t[k] and new_cond ~= zz_item_artefact.cond_t[k]) then
+				zz_item_artefact.cond_t[k] = new_cond
+			end
+		end
+	end
+end
+
 function perk_kill_effects(victim, killer)
     if not killer then return end
-    if killer:id() ~= db.actor:id() then return end
+    if killer:id() ~= AC_ID then return end
 	
 	if (perks["perk_fourth_times"] > 0) then
 		
@@ -526,7 +551,14 @@ function perk_kill_effects(victim, killer)
 			killer:change_health(0.15 * perks["perk_vampirism"])
 		end
 	end
+	
+-------------------------------------------------------------------------> Perkifact Power
+	if perks["perk_perkifact_power"] > 0 then
+		perkifact_repair()
+	end
+	
 end
+
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
