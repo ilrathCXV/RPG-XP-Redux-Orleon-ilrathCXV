@@ -1,4 +1,4 @@
-local junk_cost_mult = { [0] = 1, [1] = 1.5, [2] = 3, [3] = 5 }
+local junk_cost_mult = { [0] = 1, [1] = 1.5, [2] = 2, [3] = 2.75, [4] = 3.5, [5] = 5 }
 
 function prospector_cost_adj(kind, obj, profile, calculated_cost, ret)
 

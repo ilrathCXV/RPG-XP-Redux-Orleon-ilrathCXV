@@ -57,7 +57,7 @@ function arti_jamming.damage_part(wpn)
 	
 	printf("part_con (%s)", part_con)
 	
-	local damage = math_random(5, 12)
+	local damage = 1
 	cgd.parts[part_to_dmg] = part_con > damage and (part_con - damage) or 1
 
 	print_dbg("%s damaged to %s condition", part_to_dmg, cgd.parts[part_to_dmg])

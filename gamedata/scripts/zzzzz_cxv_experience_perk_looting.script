@@ -257,7 +257,9 @@ scav_tier4 = {
 }
 
 scav_tier5 = {	
-	"lead_box",				-- artefact lead box
+	"detector_simple",				-- artefact lead box
+	"batteries_dead",		-- batteries
+	"sharpening_stones",
 	"sharpening_stones",
 	"cleaning_kit_p",
 	"cleaning_kit_s",
@@ -267,9 +269,10 @@ scav_tier5 = {
 	"glue_e",
 }
 
+-- Now a part of "Prospector"
 function try_spawn_scav(box)
-	-- printf("Scavenger proc!")
-	local scavChance = math.floor((perks["perk_scavenger"] * 7) * rand(1.0,3.0))
+	-- printf("Scavenger/Prospector proc!")
+	local scavChance = math.floor((perks["perk_prospector"] * 7) * rand(1.0,3.0))
     local tbl = {
 		{ 100, scav_tier5},
         { 70, scav_tier4},
@@ -402,7 +405,7 @@ function random_key_from_table(t)
 		printf("k: %s", k)
 		n[#n+1] = k
 	end
-	return #n > 0 and n[math.random(#n)] or nil
+	return #n > 0 and n[rand(#n)] or nil
 end
 
 local looting_proc_arty = true
@@ -420,9 +423,9 @@ function looting_enemy(victim)
 		looting_perks_proc(victim)
 	end
 	
------------------------------------------------------------> Scavenger
-	if perks["perk_scavenger"] > 0 then
-		if rand(1,1000) <= (perks["perk_scavenger"] * 15) then
+-----------------------------------------------------------> Prospector (was Scavenger)
+	if perks["perk_prospector"] > 0 then
+		if rand(1,1000) <= (perks["perk_prospector"] * 15) then
 			try_spawn_scav(victim)
 		end
 	end
@@ -440,7 +443,7 @@ function looting_enemy(victim)
 				local condition = rand(1,20)
 				local is_artefact = (kind == "i_arty" or kind == "i_arty_junk" or kind == "i_arty_cont")
 				if perks["perk_careful_handler"] > 0 and (not is_artefact) then
-					condition = condition + (perks["perk_careful_handler"] * 8) 
+					condition = condition + (perks["perk_careful_handler"] * 10) 
 				end
 				if perks["perk_artefinder"] > 0 and is_artefact then
 					condition = condition + (perks["perk_artefinder"] * 2)
@@ -483,7 +486,7 @@ function death_manager.set_weapon_drop_condition(npc,itm)
 	if perks["perk_careful_handler"] > 0 and (npc and itm) then
 		local old_condition = itm:condition()
 --		printf("Changing weapon (%s) condition (%s)", itm:section(), itm:condition())
-		local new_condition = math.min((old_condition + (perks["perk_careful_handler"] * 8 * 0.01)), 1)
+		local new_condition = math.min((old_condition + (perks["perk_careful_handler"] * 10 * 0.01)), 1)
 		itm:set_condition(new_condition)
 --		printf("New weapon (%s) condition (%s)", itm:section(), itm:condition())
 	end 
@@ -500,7 +503,7 @@ function utils_stpk.set_item_data(data, se_obj)
 	
 	if perks["perk_careful_handler"] > 0 and (data and data.condition) then
 --		printf("Changing loot condition (%s)", data.condition)
-		data.condition = data.condition + perks["perk_careful_handler"] * 8 * 0.01
+		data.condition = data.condition + perks["perk_careful_handler"] * 10 * 0.01
 		data.condition = math.min(data.condition, 1)
 --		printf("New loot condition (%s)", data.condition)
 	end
@@ -553,7 +556,7 @@ function looting_perk_item(section, obj, t)
 		cond_bonus = perks["perk_artefinder"] * 2
 	end
 	if (not is_artefact) and perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) and (not looting_proc_arty) then
-		cond_bonus = perks["perk_careful_handler"] * 8
+		cond_bonus = perks["perk_careful_handler"] * 10
 	end
 	
 	if cond_bonus > 0 then
@@ -567,7 +570,7 @@ function looting_perk_item(section, obj, t)
 	end
 	
 	if (t and t.uses) and perks["perk_careful_handler"] > 0 then
-		local uses_mult = 1 + (perks["perk_careful_handler"] * 0.08)
+		local uses_mult = 1 + (perks["perk_careful_handler"] * 0.1)
 --		printf("t.uses: %s", t.uses)
 		t.uses = math.floor( (t.uses * uses_mult) + 0.5 )
 --		printf("t.uses after: %s", t.uses)
@@ -661,7 +664,7 @@ end
 -------------------------------------------------------------------------------------------------------------------------------
 function monster_on_loot_init(victim, loot_table)
 	if perks["perk_artefinder"] >= 5 then
-		local rng_roll = math.random(1,100) > (perks["perk_artefinder"] - 4)
+		local rng_roll = rand(1,100) > (perks["perk_artefinder"] - 4)
 		if rng_roll then
 			-- printf("[RPG Looting] Artefinder mutant loot: %s", rng_roll)
 			return
@@ -734,7 +737,7 @@ if arti_lootboxes then
 			if money[2] then
 				local min_amt = math.floor(tonumber(money[1])) * mult or 10
 				local max_amt = math.floor(tonumber(money[2])) * mult or 30
-				db.actor:give_money(math.random(min_amt, max_amt))
+				db.actor:give_money(rand(min_amt, max_amt))
 			else
 				local amount = math.floor(tonumber(money[1])) * mult or 10
 				db.actor:give_money(amount)
@@ -749,11 +752,12 @@ end
 ----------------------------------------------------------------------------------------
 -- ilrathCXV (01/10/25): Add small chance to find loot from boxes and crates ( was +2.5% to each item roll, now is a multiplier )
 -- ilrathCXV (03/06/25): Reverting to flat chance, but it will be +0.5% instead
+-- ilrathCXV (05/30/26): Buffed to +0.8% for GAMMA 0.9.5
 local box_loot_proc = false
 BoxCreateItems = xr_box.create_items
 function xr_box.create_items(obj, section, number, rnd)
 	-- Each item gets its drop chance increased
-	rnd = rnd + (0.005 * perks["perk_scavenger"])
+	rnd = rnd + (0.008 * perks["perk_prospector"])
 
 	-- "Fetch Finder" will have a base 10% chance to triple the chance of the item if within the fetch list
 	if perks["perk_fetch_finder"] > 0  then
@@ -790,7 +794,7 @@ function box_loot_mod(section, obj, t)
 		cond_bonus = perks["perk_artefinder"] * 2
 	end
 	if (not is_artefact) and perks["perk_careful_handler"] > 0 and t and (t.cond or t.cond_r or t.cond_cr) and (not looting_proc_arty) then
-		cond_bonus = perks["perk_careful_handler"] * 8
+		cond_bonus = perks["perk_careful_handler"] * 10
 	end
 	
 	if cond_bonus > 0 then
@@ -852,8 +856,47 @@ if xr_box then xr_box.alife_create_item = box_loot_mod end
 --------------------------------------------------------------------------------------------------------------
 ------------------------------------ Careful Handler for Parts on Weapons ------------------------------------
 --------------------------------------------------------------------------------------------------------------
--- For GAMMA users
+-- (5/31/26): "Careful Handler" now only increases condition by 10% (5% if barrel) and for only as many parts as ranks in the perk
+local is_barrel = arti_jamming.is_barrel
+function weapon_part_careful_handler_bonus(wpn)
+	if not wpn then return end
+	
+	local parts_data = se_load_var( wpn:id(), wpn:name(), "parts")
+	if parts_data then
+		local wpn_sec = SYS_GetParam(0, wpn:section(), "parent_section") or wpn:section()
+		local valid_parts_list = {}
+		for k,v in pairs(parts_data) do
+			if k ~= wpn_sec then
+				-- Don't include "perfect" parts
+				if (is_barrel(k) and v < 95) or (v < 90) then
+					valid_parts_list[#valid_parts_list + 1] = k
+				end
+			end
+		end
+		
+		if #valid_parts_list > 0 then
+			local careful_handler_parts_count = math.min( (perks["perk_careful_handler"] or 1) , #valid_parts_list)
+			for i = 1, careful_handler_parts_count do
+				local careful_handler_bonus = 10
+				local rnd_idx = rand(1, #valid_parts_list)
+				local part_sec = valid_parts_list[rnd_idx]
+				printf("Part to receive Careful Handler bonus: %s", part_sec)
+				if is_barrel(part_sec) then
+					careful_handler_bonus = 5
+				end
+--				printf("Part cond before: %s", parts_data[part_sec])
+				parts_data[part_sec] = math.min(parts_data[part_sec] + careful_handler_bonus, 99)
+--				printf("Part cond after: %s", parts_data[part_sec])
+				table.remove(valid_parts_list, rnd_idx)
+			end
+		end
+		
+		se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
+	end
+	
+end
 
+-- For GAMMA users
 BasePartsEval = zzzz_arti_jamming_repairs.weapon_eval_parts
 if BasePartsEval then
 
@@ -862,22 +905,11 @@ if BasePartsEval then
 		
 		if perks["perk_careful_handler"] < 1 then return end
 		
-		local careful_handler_bonus = perks["perk_careful_handler"] * 8
-		local parts_data = se_load_var( wpn:id(), wpn:name(), "parts")
-		if parts_data then
-			local wpn_sec = SYS_GetParam(0, wpn:section(), "parent_section") or wpn:section()
-			for k,v in pairs(parts_data) do
-				if k ~= wpn_sec then
---					printf("[RPG - Looting] Wpn Part Cond: %s | Bonus to be applied: %s", v, careful_handler_bonus)
-					parts_data[k] = math.min(v + careful_handler_bonus , 99)
-				end
-			end
-			
-			se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
-		end		
+		weapon_part_careful_handler_bonus(wpn)
 
 	end
 end
+
 
 -- For users of newer versions of WPO
 BaseNewPartsEval = wpo_loot.weapon_eval_parts
@@ -887,19 +919,8 @@ if BaseNewPartsEval then
 		BaseNewPartsEval(wpn)
 	
 		if perks["perk_careful_handler"] < 1 then return end
-		local careful_handler_bonus = perks["perk_careful_handler"] * 8
-		local parts_data = se_load_var( wpn:id(), wpn:name(), "parts")
-		if parts_data then
-			local wpn_sec = SYS_GetParam(0, wpn:section(), "parent_section") or wpn:section()
-			for k,v in pairs(parts_data) do
-				if k ~= wpn_sec then
---					printf("[RPG - Looting] Wpn Part Cond: %s | Bonus to be applied: %s", v, careful_handler_bonus)
-					parts_data[k] = math.min(v + careful_handler_bonus , 99)
-				end
-			end
-			
-			se_save_var( wpn:id(), wpn:name(), "parts", parts_data )
-		end
+		
+		weapon_part_careful_handler_bonus(wpn)
 
 	end
 end
@@ -912,7 +933,7 @@ if knifesm then
 	-- Adding mutant loot condition setup
 	local create_part = alife_create_item
 	local function careful_handler_create_part(section, obj, t)
-		local careful_handler_bonus = perks["perk_careful_handler"] * 8
+		local careful_handler_bonus = perks["perk_careful_handler"] * 10
 		
 		-- starter values based on first knife
 		min_mutant_part_cond = 25
@@ -931,7 +952,6 @@ if knifesm then
 		
 		db.actor:iterate_inventory(itr, db.actor)
 		
-		min_mutant_part_cond = math.min((min_mutant_part_cond + careful_handler_bonus), 100)
 		max_mutant_part_cond = math.min((max_mutant_part_cond + careful_handler_bonus), 100)
 		t.cond_r = {min_mutant_part_cond, max_mutant_part_cond}
 		t.cond_cr = {min_mutant_part_cond, max_mutant_part_cond}
@@ -952,3 +972,4 @@ function on_game_start()
 	RegisterScriptCallback("actor_item_to_ruck",			midas_touch_money_increase)
 	RegisterScriptCallback("monster_on_loot_init",			monster_on_loot_init)
 end
+

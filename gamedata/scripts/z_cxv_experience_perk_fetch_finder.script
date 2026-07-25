@@ -8,9 +8,9 @@ invalid_kinds = {
 	["w_smg"] = false,
 	["w_shotgun"] = false,
 	["w_melee"] = false,
+	["w_rifle"] = false,
 	
 	["i_quest"] = true,
-	["w_rifle"] = true,
 	["w_sniper"] = true,
 	["w_explosive"] = true,
 	["w_heavy"] = true
@@ -246,7 +246,20 @@ function calculate_fetch_finder_chance(sec)
 		return
 	end
 	
-	local base_cost = ini_sys:r_float_ex(sec,"cost")
+	local base_cost = SYS_GetParam(2, sec, "cost", nil)
+	if base_cost == nil then
+		printf("[RPG - Fetch Finder] Item (%s) has no cost associated - skipping to prevent crash", sec)
+		task_item_list[sec].chance = 0
+		return
+	end
+	
+	-- reduce base cost stat since these items will be damaged
+	local kind = SYS_GetParam(0, sec, "kind", nil)
+	if kind and damaged_kinds[kind] then
+		local dmg_mult = 0.7
+		base_cost = base_cost * dmg_mult
+	end
+	
 	local chance = 0.1
 	
 	if count > 1 then

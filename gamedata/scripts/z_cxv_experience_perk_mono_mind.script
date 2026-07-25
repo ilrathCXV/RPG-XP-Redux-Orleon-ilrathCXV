@@ -1,10 +1,108 @@
 -- The disguise section is in x_cxv_perks_data.script
+function on_game_start()
+	RegisterScriptCallback("actor_on_update", actor_on_update)
 
-local actor_immune_emissions = level_environment.is_actor_immune
-function level_environment.is_actor_immune()
-	if x_cxv_perks_data.perks["perk_mono_mind"] > 0 then
-		return true
+	local actor_immune_emissions = level_environment.is_actor_immune
+	function level_environment.is_actor_immune()
+		if x_cxv_perks_data.perks["perk_mono_mind"] > 0 then
+			return true
+		end
+		
+		return actor_immune_emissions()
+	end
+end
+
+local isUnderground = nil
+function actor_on_update()
+	if (dynamic_emission_cover_mcm and dynamic_emission_cover_mcm.actor_on_update) or
+		(tb_coordinate_based_safe_zones and tb_coordinate_based_safe_zones.actor_on_update) then
+		
+		UnregisterScriptCallback("actor_on_update", actor_on_update)
+		return
 	end
 	
-	return actor_immune_emissions()
+	if isUnderground == nil then
+		isUnderground = level_weather.bLevelUnderground
+	end
+	
+	if (isUnderground ~= nil and (not isUnderground)) then
+		UnregisterScriptCallback("actor_on_update", actor_on_update)
+		return
+	end
+	
+	if x_cxv_perks_data.perks["perk_mono_mind"] > 0 then
+		mono_mind_emission_protection()
+	end
+end
+
+function mono_mind_emission_protection()
+	
+	local surge_state = GetEvent("surge", "state")
+	local psi_storm_state = GetEvent("psi_storm", "state")
+
+	--	printf("surge state: %s | psi storm state: %s", surge_state, psi_storm_state)
+
+	if (surge_state) or (psi_storm_state) then
+		SetEvent("underground", true)
+	end
+	
+	 if not ((surge_state) or (psi_storm_state)) then
+		SetEvent("underground", false)
+	end
+
+end
+
+if dynamic_emission_cover_mcm then
+
+	local BaseDynamicCover = dynamic_emission_cover_mcm.actor_on_update
+	function dynamic_emission_cover_mcm.actor_on_update()
+		
+		if x_cxv_perks_data.perks["perk_mono_mind"] <= 0 then BaseDynamicCover() return end
+		
+		if dynamic_emission_cover_mcm.excluded_maps[level.name()] then return end
+	
+		local surge_state = GetEvent("surge", "state")
+		local psi_storm_state = GetEvent("psi_storm", "state")
+	
+		if dynamic_emission_cover_mcm.debug_mode then
+			surge_state = true
+		end
+	
+	--	printf("surge state: %s | psi storm state: %s", surge_state, psi_storm_state)
+	
+		if (surge_state) or (psi_storm_state) then
+			dynamic_emission_cover_mcm.dynamic_is_safe = true
+			SetEvent("underground", true)
+			dynamic_emission_cover_mcm.hide_hud()
+		end
+		
+		if not ((surge_state) or (psi_storm_state)) then
+			BaseDynamicCover()
+		end
+	end
+	
+end
+
+if tb_coordinate_based_safe_zones then
+
+	local BaseTBSafeZones = tb_coordinate_based_safe_zones.actor_on_update
+	function tb_coordinate_based_safe_zones.actor_on_update()
+	
+		if x_cxv_perks_data.perks["perk_mono_mind"] <= 0 then BaseTBSafeZones() return end
+		
+		local surge_state = GetEvent("surge", "state")
+		local psi_storm_state = GetEvent("psi_storm", "state")
+	
+		--	printf("surge state: %s | psi storm state: %s", surge_state, psi_storm_state)
+	
+		if (surge_state) or (psi_storm_state) then
+			SetEvent("underground", true)
+		end
+		
+		if not ((surge_state) or (psi_storm_state)) then
+			BaseTBSafeZones()
+		end
+		
+	end
+
 end

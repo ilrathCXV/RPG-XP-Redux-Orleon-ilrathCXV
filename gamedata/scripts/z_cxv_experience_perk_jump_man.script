@@ -1,3 +1,0 @@
-function do_nothing()
-	printf("This does nothing now - jump man")
-end

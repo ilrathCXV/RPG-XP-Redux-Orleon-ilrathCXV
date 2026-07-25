@@ -261,7 +261,7 @@
 	<string id="st_perk_berserker_desc_3">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]30% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]35% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
 		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]30%\n
 		%c[d_blue] - %c[ui_gray_2] Increase AP of your melee weapon by %c[d_green]+6
 		</text>
@@ -269,7 +269,7 @@
 	<string id="st_perk_berserker_desc_4">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]40% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]50% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
 		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]50%\n
 		%c[d_blue] - %c[ui_gray_2] Increase AP of your melee weapon by %c[d_green]+8
 		</text>
@@ -277,7 +277,7 @@
 	<string id="st_perk_berserker_desc_5">
         <text>While others honed their marksmanship, you studied the blade in its many shapes and forms. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]50% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
+		%c[d_blue] - %c[ui_gray_2] Receive %c[d_green]70% %c[ui_gray_2]reduced damage when you have a melee weapon in your hand\n
 		%c[d_blue] - %c[ui_gray_2] Melee attack speed is increased by %c[d_green]75%\n
 		%c[d_blue] - %c[ui_gray_2] Increase AP of your melee weapon by %c[d_green]+10
 		</text>
@@ -313,7 +313,7 @@
 		</text>
     </string>
 	
-
+<!-- Now a part of Prospector
     <string id="st_perk_scavenger">
         <text>Scavenger</text>
     </string>
@@ -355,7 +355,7 @@
 		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate increased by +2.5%
 		</text>
     </string>
-	
+-->	
 	
     <string id="st_perk_careful_handler">
         <text>Careful Handler</text>
@@ -366,31 +366,35 @@
 	<string id="st_perk_careful_handler_desc_1">
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Armor, weapons, and mutant pelts you loot will have their condition improved by %c[d_green]8% \n
-		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]8% \n
-		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]8%
+		%c[d_blue] - %c[ui_gray_2] Armors, headgear, and mutant pelts you loot will have their condition improved by %c[d_green]10% \n
+		%c[d_blue] - %c[ui_gray_2] Up to %c[yellow]1 random weapon part on looted weapons%c[ui_gray_2] will have their condition improved by %c[d_green]10%%c[ui_gray_2] (%c[yellow]5% if picked part is a barrel%c[ui_gray_2])\n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]10% \n
+		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]10%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_2">
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Armor, weapons, and mutant pelts you loot will have their condition improved by %c[d_green]16% \n
-		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]16% \n
-		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]16%
+		%c[d_blue] - %c[ui_gray_2] Armors, headgear, and mutant pelts you loot will have their condition improved by %c[d_green]20% \n
+		%c[d_blue] - %c[ui_gray_2] Up to %c[yellow]2 random weapon parts on looted weapons%c[ui_gray_2] will have their condition improved by %c[d_green]10%%c[ui_gray_2] (%c[yellow]5% if picked part is a barrel%c[ui_gray_2])\n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]20% \n
+		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]20%
 		</text>
     </string>
 	<string id="st_perk_careful_handler_desc_3">
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Armor, weapons, and mutant pelts you loot will have their condition improved by %c[d_green]24% \n
-		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]24% \n
-		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]24%
+		%c[d_blue] - %c[ui_gray_2] Armors, headgear, and mutant pelts you loot will have their condition improved by %c[d_green]30% \n
+		%c[d_blue] - %c[ui_gray_2] Up to %c[yellow]3 random weapon parts on looted weapons%c[ui_gray_2] will have their condition improved by %c[d_green]10%%c[ui_gray_2] (%c[yellow]5% if picked part is a barrel%c[ui_gray_2])\n
+		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]30% \n
+		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]30%
 		</text>
     </string>
+<!--
 	<string id="st_perk_careful_handler_desc_4">
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Armor, weapons, and mutant pelts you loot will have their condition improved by %c[d_green]32% \n
+		%c[d_blue] - %c[ui_gray_2] Armors, headgear, and mutant pelts you loot will have their condition improved by %c[d_green]32% \n
 		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]32% \n
 		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]32%
 		</text>
@@ -398,12 +402,12 @@
 	<string id="st_perk_careful_handler_desc_5">
 		<text>As they always say: one man's trash is another man's treasure.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Armor, weapons, and mutant pelts you loot will have their condition improved by %c[d_green]40% \n
+		%c[d_blue] - %c[ui_gray_2] Armors, headgear, and mutant pelts you loot will have their condition improved by %c[d_green]40% \n
 		%c[d_blue] - %c[ui_gray_2] Degradable items looted from stalkers and in stashes will have their condition improved by %c[d_green]40% \n
 		%c[d_blue] - %c[ui_gray_2] Stackable items (not including ammo) looted from stalkers and in stashes will have their stack amount increased by %c[d_green]40%
 		</text>
     </string>
-    
+-->   
 	
 	<string id="st_perk_master_craftsman">
         <text>Master Craftsman</text>
@@ -661,49 +665,6 @@
 		</text>
     </string>
 	
-	<string id="st_perk_spiked">
-        <text>Spiked</text>
-    </string>
-	<string id="st_perk_spiked_desc">
-        <text>When taking damage, your enemy is also hurt for a portion of said damage.</text>
-    </string>
-	<string id="st_perk_spiked_desc_1">
-        <text>Wtih every action comes with it an opposite reaction. However, this reaction is not equal.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Any incoming damage has %c[d_green]5% %c[ui_gray_2]of it reflected back at your attacker\n
-		%c[d_red] - %c[ui_gray_2] Does not reduce incoming damage
-		</text>
-    </string>
-	<string id="st_perk_spiked_desc_2">
-        <text>Wtih every action comes with it an opposite reaction. However, this reaction is not equal.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Any incoming damage has %c[d_green]10% %c[ui_gray_2]of it reflected back at your attacker\n
-		%c[d_red] - %c[ui_gray_2] Does not reduce incoming damage
-		</text>
-    </string>
-	<string id="st_perk_spiked_desc_3">
-        <text>Wtih every action comes with it an opposite reaction. However, this reaction is not equal.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Any incoming damage has %c[d_green]15% %c[ui_gray_2]of it reflected back at your attacker\n
-		%c[d_red] - %c[ui_gray_2] Does not reduce incoming damage
-		</text>
-    </string>
-	<string id="st_perk_spiked_desc_4">
-        <text>Wtih every action comes with it an opposite reaction. However, this reaction is not equal.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Any incoming damage has %c[d_green]20% %c[ui_gray_2]of it reflected back at your attacker\n
-		%c[d_red] - %c[ui_gray_2] Does not reduce incoming damage
-		</text>
-    </string>
-	<string id="st_perk_spiked_desc_5">
-        <text>Wtih every action comes with it an opposite reaction. However, this reaction is not equal.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Any incoming damage has %c[d_green]25% %c[ui_gray_2]of it reflected back at your attacker\n
-		%c[d_red] - %c[ui_gray_2] Does not reduce incoming damage
-		</text>
-    </string>
-	
-	
 	<string id="st_perk_anomaly_defense">
         <text>Anomaly Defense</text>
     </string>
@@ -820,13 +781,15 @@
 	<string id="st_perk_mutant_slayer_desc_1">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]5% %c[ui_gray_2]less damage from %c[yellow]mutants
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]5% %c[ui_gray_2]less damage from %c[yellow]mutants\n
+		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]7.5% %c[ui_gray_2]at night
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_2">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]10% %c[ui_gray_2]less damage from %c[yellow]mutants
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]10% %c[ui_gray_2]less damage from %c[yellow]mutants\n
+		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]15% %c[ui_gray_2]at night
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_3">
@@ -1333,8 +1296,8 @@
         <text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain about %c[d_green]+0.5% dodge chance\n
-		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+6% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 15kg, you gain about %c[d_green]+0.5% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+7.5% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
 		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
 		</text>
@@ -1343,8 +1306,8 @@
         <text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain about %c[d_green]+1% dodge chance\n
-		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+12% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 15kg, you gain about %c[d_green]+1% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+15% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
 		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
 		</text>
@@ -1353,8 +1316,8 @@
 		<text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain about a %c[d_green]+1.5% dodge chance\n
-		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+18% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 15kg, you gain about a %c[d_green]+1.5% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+22.5% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
 		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
 		</text>
@@ -1363,8 +1326,8 @@
         <text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 12kg, you gain about a%c[d_green]+2% dodge chance\n
-		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+24% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 15kg, you gain about a%c[d_green]+2% dodge chance\n
+		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+30% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
 		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
 		</text>
@@ -1380,14 +1343,16 @@
         <text>The locals have gone to stashing their loot much more frequently, making finding new and better stashes much easier.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now have a %c[d_green]35% chance%c[ui_gray_2] to receive %c[yellow]a 2nd stash location\n
-		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]6 completed tasks%c[ui_gray_2] instead of 7
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]6 completed tasks%c[ui_gray_2] instead of 7\n 
+		%c[d_blue] - %c[ui_gray_2] New Rare stashes now have a %c[d_green]slightly improved%c[ui_gray_2] probability of containing more loot
 		</text>
     </string>
 	<string id="st_perk_local_looting_desc_2">
         <text>The locals have gone to stashing their loot much more frequently, making finding new and better stashes much easier.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now have a %c[d_green]70% chance%c[ui_gray_2] to receive %c[yellow]a 2nd stash location\n
-		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]6 completed tasks%c[ui_gray_2] instead of 7
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]6 completed tasks%c[ui_gray_2] instead of 7\n 
+		%c[d_blue] - %c[ui_gray_2] New Rare stashes now have a %c[d_green]slightly improved%c[ui_gray_2] probability of containing more loot
 		</text>
     </string>
 	<string id="st_perk_local_looting_desc_3">
@@ -1395,7 +1360,8 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now %c[d_green]ALWAYS receive %c[yellow]a 2nd stash location\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now have a %c[d_green]5% chance%c[ui_gray_2] to receive %c[d_cyan]a 3rd stash location\n
-		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]5 completed tasks%c[ui_gray_2] instead of 7
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]5 completed tasks%c[ui_gray_2] instead of 7\n 
+		%c[d_blue] - %c[ui_gray_2] New Rare stashes now have an %c[d_green]improved%c[ui_gray_2] probability of containing more loot
 		</text>
     </string>
 	<string id="st_perk_local_looting_desc_4">
@@ -1403,7 +1369,8 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now %c[d_green]ALWAYS receive %c[yellow]a 2nd stash location\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now have a %c[d_green]40% chance%c[ui_gray_2] to receive %c[d_cyan]a 3rd stash location\n
-		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]5 completed tasks%c[ui_gray_2] instead of 7
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]5 completed tasks%c[ui_gray_2] instead of 7\n 
+		%c[d_blue] - %c[ui_gray_2] New Rare stashes now have an %c[d_green]improved%c[ui_gray_2] probability of containing more loot
 		</text>
     </string>
 	<string id="st_perk_local_looting_desc_5">
@@ -1411,10 +1378,11 @@
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now %c[d_green]ALWAYS receive %c[yellow]a 2nd stash location\n
 		%c[d_blue] - %c[ui_gray_2] When a stash location is granted when looting Stalkers, you now have a %c[d_green]75% chance%c[ui_gray_2] to receive %c[d_cyan]a 3rd stash location\n
-		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]4 completed tasks%c[ui_gray_2] instead of 7
+		%c[d_blue] - %c[ui_gray_2] Discovering a rare stash now requires %c[d_green]4 completed tasks%c[ui_gray_2] instead of 7\n 
+		%c[d_blue] - %c[ui_gray_2] New Rare stashes now have a %c[d_green]greatly improved%c[ui_gray_2] probability of containing more loot
 		</text>
     </string>
-	
+<!--	
 	<string id="st_perk_jump_man">
         <text>Jump Man</text>
     </string>
@@ -1443,7 +1411,7 @@
 		%c[d_blue] - %c[ui_gray_2]If fall damage is not ignored, it will be reduced by %c[d_green]50% %c[ui_gray_2]instead
 		</text>
     </string>
-
+-->
 	<string id="st_perk_demo_expert">
         <text>Explosive Personality</text>
     </string>
@@ -1523,7 +1491,8 @@
         <text>"I am The End, I am here to bring you to your ultimate fate."\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] When aiming down sights with %c[yellow]bolt-action sniper-class weapons%c[ui_gray_2], you receive %c[d_green]15% less damage from all sources\n
-		%c[d_blue] - %c[ui_gray_2] When firing from the hip with %c[yellow]bolt-action sniper-class weapons%c[ui_gray_2],you deal %c[d_green]30% more damage against all Stalkers and mutants
+		%c[d_blue] - %c[ui_gray_2] When firing from the hip with %c[yellow]bolt-action sniper-class weapons%c[ui_gray_2], you deal %c[d_green]30% more damage against all Stalkers and mutants\n
+		%c[d_blue] - %c[ui_gray_2] When firing from the hip with %c[yellow]bolt-action sniper-class weapons%c[ui_gray_2], you gain %c[d_green]30% critical hit chance and 30% to your critical hit multiplier
 		</text>
     </string>
 	
@@ -1614,27 +1583,34 @@
         <text>Mountain Climber</text>
     </string>
 	<string id="st_perk_mtn_climber_desc">
-        <text>There may be no mountains, but you sure can climb.</text>
+        <text>There may be no mountains, but you sure can climb (and take a rough landing).</text>
     </string>
 	<string id="st_perk_mtn_climber_desc_1">
-        <text>There may be no mountains, but you sure can climb.\n \n
+        <text>There may be no mountains, but you sure can climb (and take a rough landing).\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Stamina and hunger drain from climbing is %c[d_green]reduced by 20%\n
-		%c[d_blue] - %c[ui_gray_2] Climbing speed is %c[d_green]increased by 10%
+		%c[d_blue] - %c[ui_gray_2] Climbing speed is %c[d_green]increased by 10%\n
+		%c[d_blue] - %c[ui_gray_2] You can now jump %c[d_green]5% higher\n
+		%c[d_blue] - %c[ui_gray_2] Ignore fall damage if total damage is less than %c[d_green]15% of your max HP
 		</text>
     </string>
 	<string id="st_perk_mtn_climber_desc_2">
-        <text>There may be no mountains, but you sure can climb.\n \n
+        <text>There may be no mountains, but you sure can climb (and take a rough landing).\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Stamina and hunger drain from climbing is %c[d_green]reduced by 45%\n
-		%c[d_blue] - %c[ui_gray_2] Climbing speed is %c[d_green]increased by 25%
+		%c[d_blue] - %c[ui_gray_2] Climbing speed is %c[d_green]increased by 25%\n
+		%c[d_blue] - %c[ui_gray_2] You can now jump %c[d_green]10% higher\n
+		%c[d_blue] - %c[ui_gray_2] Ignore fall damage if total damage is less than %c[d_green]30% of your max HP
 		</text>
     </string>
 	<string id="st_perk_mtn_climber_desc_3">
-        <text>There may be no mountains, but you sure can climb.\n \n
+        <text>There may be no mountains, but you sure can climb (and take a rough landing).\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Stamina and hunger drain from climbing is %c[d_green]reduced by 80%\n
-		%c[d_blue] - %c[ui_gray_2] Climbing speed is %c[d_green]increased by 40%
+		%c[d_blue] - %c[ui_gray_2] Climbing speed is %c[d_green]increased by 40%\n
+		%c[d_blue] - %c[ui_gray_2] You can now jump %c[d_green]15% higher\n
+		%c[d_blue] - %c[ui_gray_2] Ignore fall damage if total damage is less than %c[d_green]45% of your max HP\n
+		%c[d_blue] - %c[ui_gray_2] If fall damage is not ignored, it will be reduced by %c[d_green]50% %c[ui_gray_2]instead
 		</text>
     </string>
 	
@@ -1756,18 +1732,40 @@
         <text>It may still be junk, but you have an eye for picking out the best junk.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Items that have a sell value greater than 0 but less than 80 will have their sell value %c[d_green]increased by 1.5x\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]1.5% %c[ui_gray_2]chance of finding %c[d_red]salvage and crafting materials \n
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate increased by +0.8%
 		</text>
     </string>
 	<string id="st_perk_prospector_desc_2">
         <text>It may still be junk, but you have an eye for picking out the best junk.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Items that have a sell value greater than 0 but less than 80 will have their sell value %c[d_green]increased by 3x\n
+		%c[d_blue] - %c[ui_gray_2] Items that have a sell value greater than 0 but less than 80 will have their sell value %c[d_green]increased by 2x\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]3% %c[ui_gray_2]chance of finding %c[d_orange]slightly better salvage and crafting materials \n
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate increased by +1.6%
 		</text>
     </string>
 	<string id="st_perk_prospector_desc_3">
         <text>It may still be junk, but you have an eye for picking out the best junk.\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Items that have a sell value greater than 0 but less than 80 will have their sell value %c[d_green]increased by 2.75x\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]4.5% %c[ui_gray_2]chance of finding %c[yellow]better salvage and crafting materials \n
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate increased by +2.4%
+		</text>
+    </string>
+	<string id="st_perk_prospector_desc_4">
+        <text>It may still be junk, but you have an eye for picking out the best junk.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Items that have a sell value greater than 0 but less than 80 will have their sell value %c[d_green]increased by 3.5x\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]6% %c[ui_gray_2]chance of finding %c[d_green]much better salvage and crafting materials \n
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate increased by +3.2%
+		</text>
+    </string>
+	<string id="st_perk_prospector_desc_5">
+        <text>It may still be junk, but you have an eye for picking out the best junk.\n \n
+		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] Items that have a sell value greater than 0 but less than 80 will have their sell value %c[d_green]increased by 5x\n
+		%c[d_blue] - %c[ui_gray_2] Looting dead bodies and stashes has a %c[d_green]7.5% %c[ui_gray_2]chance of finding %c[d_cyan]better and high-quality salvage and crafting materials \n
+		%c[d_blue] - %c[ui_gray_2] Loot from breakable small metal containers and wooden crates will have its %c[d_green]drop rate increased by +4%
 		</text>
     </string>
 

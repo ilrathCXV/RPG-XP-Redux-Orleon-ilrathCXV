@@ -22,7 +22,7 @@ perks = {
 	["perk_iron_resolve"] = 0,
 	["perk_jamming_shot"] = 0,
 	["perk_jewelcrafter"] = 0,
-	["perk_jump_man"] = 0,
+--	["perk_jump_man"] = 0,
 	["perk_keen_eye"] = 0,
 	["perk_lightweight_dodge"] = 0,
 	["perk_local_looting"] = 0,
@@ -43,7 +43,7 @@ perks = {
 	["perk_repair_junkie"] = 0,
 	["perk_rifleman"] = 0,
 	["perk_samaritan"] = 0,
-	["perk_scavenger"] = 0,
+--	["perk_scavenger"] = 0,
 	["perk_silver_tongued"] = 0,
 	["perk_slow_metabolism"] = 0,
 	["perk_spiked"] = 0,
@@ -98,15 +98,18 @@ original_map_chances = {
 }
 
 -- Local Looting vars
-looting_stash_reduc = { [0] = 0, [1] = -1, [2] = -2, [3] = -2, [4] = -2, [5] = -3 }
+looting_stash_reduc = { [0] = --[[0]] -1, [1] = -1, [2] = -2, [3] = -2, [4] = -2, [5] = -3 }
 base_task_num = 0
+base_rare_max_weight = 0
+looting_max_stash_adder = 100 -- match 50% bonus for having "Rag and Bone" achievement (200)
+ini_treasure = ini_file("items\\settings\\grok_treasure_manager.ltx")
 
 -- Disarming/Jamming Shot
 can_jam = false
 can_disarm = false
 
 -- Jump Man
-local jump_man_boost = 0.05
+local mtn_jump_boost = 0.05
 local add_jump = jump.add_jump
 local remove_jump = jump.remove_jump
 
@@ -249,11 +252,23 @@ local function experience_skill_on_update(perk_id, perk_data)
 	
 	-- Local Looting
 	if perk_id == "perk_local_looting" then
-		if base_task_num == 0 then
-			base_task_num = treasure_manager.stash_rare.task_num or 7
+		if treasure_manager.stash_rare then
+			if treasure_manager.stash_rare.task_num then
+				if base_task_num == 0 then
+					base_task_num = treasure_manager.stash_rare.task_num or 7
+				end
+				treasure_manager.stash_rare.task_num = base_task_num + looting_stash_reduc[ perks[perk_id] ]
+				printf("New Base Rare Stash Task Amt: %s", treasure_manager.stash_rare.task_num)
+			end
+			
+			if treasure_manager.stash_rare.max_weight then
+				if base_rare_max_weight == 0 then
+					base_rare_max_weight = (ini_treasure and ini_treasure:r_float_ex("settings_rare" , "max_weight")) or 2700
+				end
+				treasure_manager.stash_rare.max_weight = base_rare_max_weight + (looting_max_stash_adder * perks[perk_id])
+				printf("New Base Rare Stash Max Loot Weighting: %s", treasure_manager.stash_rare.max_weight)
+			end
 		end
-		treasure_manager.stash_rare.task_num = base_task_num + looting_stash_reduc[ perks[perk_id] ]
-		printf("New Base Rare Stash Task Amt: %s", treasure_manager.stash_rare.task_num)
 	end
 	
 	-- Disarming/Jamming Shot
@@ -264,10 +279,11 @@ local function experience_skill_on_update(perk_id, perk_data)
 		can_disarm = true
 	end
 	
-	-- Jump Man
-	if perk_id == "perk_jump_man" then
-		if perks["perk_jump_man"] > 0 then
-			add_jump("cxv_jump_man", 1 + (jump_man_boost * perks[perk_id]), true)
+	-- Mountain Climber (was Jump Man)
+	-- keeping key name to avoid issues
+	if perk_id == "perk_mtn_climber" then
+		if perks["perk_mtn_climber"] > 0 then
+			add_jump("cxv_jump_man", 1 + (mtn_jump_boost * perks[perk_id]), true)
 		else
 			remove_jump("cxv_jump_man")
 		end
@@ -540,4 +556,125 @@ function on_game_start()
 	RegisterScriptCallback("actor_on_first_update",			build_weapon_list)
 	RegisterScriptCallback("actor_item_to_ruck",			check_weapon_list_ruck)
 	RegisterScriptCallback("actor_item_to_slot",			build_weapon_list)
+end
+
+-- Character Transfer Compat.
+
+if character_transfer_mcm then
+
+	local cfg_write = character_transfer_mcm.cfg_write
+	local cfg_clear_section = character_transfer_mcm.cfg_clear_section
+	local cfg_exists = character_transfer_mcm.cfg_exists
+	local cfg_collect = character_transfer_mcm.cfg_collect
+	local cfg_remove = character_transfer_mcm.cfg_remove
+
+	function export_rpg_skills()
+		if experience_core then
+			cfg_write("experience_framework", "prestige", (experience_core.XP.prestige and experience_core.XP.prestige) or 0)
+			cfg_write("experience_framework", "XP", (experience_core.XP.experience and experience_core.XP.experience) or 0)
+			for id in pairs(experience_core.GetLoadedSkills()) do
+				local data = experience_core.GetSkillData(id)
+				if data and data.curr_level then
+					cfg_write("experience_framework", id, data.curr_level)
+				end
+			end
+		end
+	end
+	
+	function import_rpg_skills()
+		if not cfg_exists("experience_framework", "XP") then return end
+	
+		local prestige_skill_points_addition = zz_cxv_experience_prestige_perk_points_monkeys.prestige_skill_points_addition
+		
+		-- delay to let haru_skills initialize first
+		CreateTimeEvent("char_transfer_experience_framework", "import", 2, function()
+		
+		experience_utils.ResetAllSkills()
+		experience_utils.ResetActorProgress(true, true)
+		
+		local data = cfg_collect("experience_framework")
+		local total_xp = 0
+		local total_prestige = 0
+		local skill_table = {}
+		if data then
+			for k, v in pairs(data) do
+				if k == "XP" then
+					total_exp = tonumber(v)
+				elseif k == "prestige" then
+					total_prestige = tonumber(v)
+				else
+					skill_table[k] = {curr_level = tonumber(v)}
+				end
+				
+				cfg_remove("experience_framework", k)
+			end
+		end
+		
+		local XP = experience_core.XP
+		XP.prestige = total_prestige or 0
+		while total_exp > 0 do
+			local val = experience_utils.GetNextLevelExperience(XP.level)
+			if total_exp >= val then
+				XP.level			= XP.level + 1
+				XP.skillpoints		= XP.skillpoints + experience_options.Get("Main/G_SKILLPOINT_PER_LEVEL") + prestige_skill_points_addition()
+				XP.experience		= XP.experience_cap
+				XP.experience_cap	= XP.experience_cap + experience_utils.GetNextLevelExperience(XP.level)
+				total_exp			= total_exp - val
+			else
+				XP.experience = XP.experience + total_exp
+				break
+			end
+		end
+		
+		for id, v in pairs(skill_table) do
+			if (experience_utils.SkillExist(id) and v.curr_level > 0) then
+				local n = clamp(v.curr_level, 0, experience_core.GetSkillOption(id, "max_level"))
+				for i=1, n do
+					if experience_utils.CanLearnSkill(id) then
+						v.curr_level = i
+						experience_core.SetSkillData(id, v, true)
+						XP.skillpoints = XP.skillpoints - 1
+					else
+						break
+					end
+				end
+			end
+		end
+		
+		return true
+		end)
+	end
+
+
+	BaseExportCharacter = character_transfer_mcm.export_character
+	function character_transfer_mcm.export_character()
+		if not level.present() then return end
+		
+		cfg_clear_section("experience_framework")
+		
+		BaseExportCharacter()
+		
+		if x_cxv_perks_mcm.get_config("transfer_progression_enable") then
+			export_rpg_skills()
+			axr_main.config:save()
+			printf("~ Character Transfer | RPG Export complete!")
+		end
+	end
+	
+	BaseImportCharacter = character_transfer_mcm.import_character
+	function character_transfer_mcm.import_character(key)
+		if key ~= character_transfer_mcm.get_config("import_key") then return end
+		if not character_transfer_mcm.get_config("allow_import") then return end
+		
+		if not cfg_exists("data", "version") then
+			news_manager.send_tip(db.actor, "No character data found to import.", nil, nil, 5000)
+			return
+		end
+		
+		import_rpg_skills()
+		printf("~ Character Transfer | RPG Import complete!")
+		
+		BaseImportCharacter(key)
+	end
+	
 end

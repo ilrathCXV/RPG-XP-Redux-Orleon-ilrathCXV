@@ -1,4 +1,4 @@
-local berserker_resist = {[0] = 0, [1] = 0.10, [2] = 0.20, [3] = 0.30, [4] = 0.40, [5] = 0.50}
+local berserker_resist = {[0] = 0, [1] = 0.10, [2] = 0.20, [3] = 0.35, [4] = 0.50, [5] = 0.70}
 
 local lightweight_dodge_chance = 0
 
@@ -71,10 +71,10 @@ function update_dodge_chance()
 	local outfit_weight = 0
 	local outfit = db.actor:item_in_slot(7)
 	if (outfit) then
-		local outfit_weight_upgraded = floor(outfit:weight()) or 12
-		local outfit_weight_base = floor(ini_sys:r_float_ex(outfit:section(), "inv_weight")) or 12
-		if outfit_weight_upgraded > 12 and outfit_weight_base > 12 then
-			outfit_weight = 12
+		local outfit_weight_upgraded = floor(outfit:weight()) or 15
+		local outfit_weight_base = floor(ini_sys:r_float_ex(outfit:section(), "inv_weight")) or 15
+		if outfit_weight_upgraded > 15 and outfit_weight_base > 15 then
+			outfit_weight = 15
 		elseif outfit_weight_upgraded < outfit_weight_base then
 			outfit_weight = outfit_weight_upgraded
 		else
@@ -82,7 +82,7 @@ function update_dodge_chance()
 		end
 	end
 	
-	lightweight_dodge_chance = ((12 - outfit_weight) * 0.5) * x_cxv_perks_data.perks["perk_lightweight_dodge"]
+	lightweight_dodge_chance = ((15 - outfit_weight) * 0.5) * x_cxv_perks_data.perks["perk_lightweight_dodge"]
 	printf("[RPG - Player When Hit] LW Dodge Chance: %s %",lightweight_dodge_chance)
 end
 	
@@ -150,31 +150,14 @@ function rpg_damage_reduction(shit, bone_id)
 		end
 	end
 
-------------------------------------------------------------> Spiked
-    if hitter and (hitter:id() ~= AC_ID) and (x_cxv_perks_data.perks["perk_spiked"] > 0) and not IsAnomaly(hitter) then
-	
-		local base_power = shit.power
-		local spike = base_power * (x_cxv_perks_data.perks["perk_spiked"] * 0.05)
-		
-		shit.power = spike
-		hitter:hit(shit)
-			
-		-- Make sure to return hit back to normal values for the true damage reduction
-		shit.power = base_power
-		
-		--printf("[RPG - Player When Hit] Spiked %s% damage reflection (no damage reduction)!", (x_cxv_perks_data.perks["perk_spiked"] * 0.05))
-    end
-	
 ------------------------------------------------------------> Thick Skin	
 	if hitter and x_cxv_perks_data.perks["perk_mutant_slayer"] > 0 then
 		if IsMonster(hitter) or mutant_list[hitter:clsid()] then		--and allowed_hit_types[shit_type] then
 		
 			local night_mult = 1
-			if x_cxv_perks_data.perks["perk_mutant_slayer"] >= 3 then
-				local hours = get_time_hours()
-				if hours >= 21 or hours <= 5 then
-					night_mult = 1.50
-				end
+			local hours = get_time_hours()
+			if hours >= 21 or hours <= 5 then
+				night_mult = 1.5
 			end
 			
 			damage_mult = damage_mult * (1 - ((x_cxv_perks_data.perks["perk_mutant_slayer"] * 0.05) * night_mult))
@@ -183,16 +166,16 @@ function rpg_damage_reduction(shit, bone_id)
     end
 	
 ------------------------------------------------------------> Jump Man/Acrobatics
-	if hitter and (hitter:id() == AC_ID) and (x_cxv_perks_data.perks["perk_jump_man"] > 0) and
+	if hitter and (hitter:id() == AC_ID) and (x_cxv_perks_data.perks["perk_mtn_climber"] > 0) and
 	((shit_type == hit.strike) or (shit_type == hit.wound)) then
-		if shit.power < (x_cxv_perks_data.perks["perk_jump_man"] * 0.15) then
-			--printf("[RPG - Player When Hit] Jump Man negating all fall damage!")
+		if shit.power < (x_cxv_perks_data.perks["perk_mtn_climber"] * 0.15) then
+			--printf("[RPG - Player When Hit] Mountain Climber negating all fall damage!")
 			shit.power = 0
 			shit.type = hit.radiation
 			return
-		elseif x_cxv_perks_data.perks["perk_jump_man"] == 3 then	-- take half damage if over threshold at max rank
+		elseif x_cxv_perks_data.perks["perk_mtn_climber"] == 3 then	-- take half damage if over threshold at max rank
 			damage_mult = damage_mult * 0.5
-			--printf("[RPG - Player When Hit] Jump Man negating 50% of the fall damage!")
+			--printf("[RPG - Player When Hit] Mountain Climber negating 50% of the fall damage!")
 		end
 	end
 	

@@ -39,41 +39,51 @@ local aim_anims = {
 	anm_idle2aim = true,
 }
 
-function fast_hands_speed(anim_table,obj)
+function fast_hands_speed(anim_table, obj)
 	
 	local anm_name = anim_table.anm_name
 	local isFirearm = IsWeapon(obj) and (not IsMelee(obj))
 	
 	if (x_cxv_perks_data.perks["perk_fast_hands"] < 1) then return end
-	if (not stow_anims[anm_name]) or (not aim_anims[anm_name] and isFirearm) then
+	
+	-- printf("Anim name: %s", anm_name)
+	if anm_name:find("_sprint") or anm_name:find("_moving") then return end
+	
+	if (not stow_anims[anm_name]) then
 		if anm_name:startswith("anm_show") or anm_name:startswith("anm_hide") or anm_name:startswith("anm_zoom_hide_fast") or anm_name:startswith("anm_zoom_show_fast") then
 			stow_anims[anm_name] = true
 		end
-		if not (isFirearm) or not (zz_handling_as_ergonomics and zz_handling_as_ergonomics.update_ergonomics) then return end
---		printf("Anim name: %s", anm_name)
-		if anm_name:startswith("anm_idle_aim") then
-			aim_anims[anm_name] = true
+	end
+	
+	if (not aim_anims[anm_name] and isFirearm) then
+		if isFirearm and (zz_handling_as_ergonomics and zz_handling_as_ergonomics.update_ergonomics) then
+			if anm_name:startswith("anm_idle_aim") then
+				aim_anims[anm_name] = true
+			end
 		end
 	end
 	
-	local animation_speed = anim_table.anm_speed
+	if stow_anims[anm_name] or (aim_anims[anm_name] and isFirearm) then
 	
-	local swap_string = tostring(anm_name)
-	local item_sec = obj:section()
-	local hud_sec = ini_sys:r_string_ex(item_sec,"hud")
+		local animation_speed = anim_table.anm_speed
+		
+		local swap_string = tostring(anm_name)
+		local item_sec = obj:section()
+		local hud_sec = ini_sys:r_string_ex(item_sec,"hud")
+		
+		local swap_val = parse_list(ini_sys,hud_sec,swap_string)
 	
-	local swap_val = parse_list(ini_sys,hud_sec,swap_string)
-
-	for k, v in pairs(swap_val) do
-		if tonumber(v) then
-			animation_speed = tonumber(v)
-			break
+		for k, v in pairs(swap_val) do
+			if tonumber(v) then
+				animation_speed = tonumber(v)
+				break
+			end
 		end
+		
+		local swap_bonus = 1 + (fast_hands_bonuses[x_cxv_perks_data.perks["perk_fast_hands"]] * 0.01)
+		-- printf("[RPG] Swap Bonus: %s", swap_bonus)
+		anim_table.anm_speed = animation_speed * swap_bonus
 	end
-	
-	local swap_bonus = 1 + (fast_hands_bonuses[x_cxv_perks_data.perks["perk_fast_hands"]] * 0.01)
-	-- printf("[RPG] Swap Bonus: %s", swap_bonus)
-	anim_table.anm_speed = animation_speed * swap_bonus
 	
 end
 
