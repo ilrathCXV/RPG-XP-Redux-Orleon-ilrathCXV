@@ -2,6 +2,7 @@ perks = {
 	["perk_ammo_finder"] = 0,
 	["perk_anomaly_defense"] = 0,
 	["perk_artefinder"] = 0,
+	["perk_banner_of_war"] = 0,
 	["perk_battleforged"] = 0,
 	["perk_battle_runner"] = 0,
 	["perk_berserker"] = 0,
@@ -46,7 +47,7 @@ perks = {
 --	["perk_scavenger"] = 0,
 	["perk_silver_tongued"] = 0,
 	["perk_slow_metabolism"] = 0,
-	["perk_spiked"] = 0,
+--	["perk_spiked"] = 0,
 	["perk_strong_back"] = 0,
 	["perk_surgical_precision"] = 0,
 	["perk_the_exalted"] = 0,
@@ -199,7 +200,7 @@ local function experience_skill_on_update(perk_id, perk_data)
 	
 	-- Battle Runner (refresh outfit speeds)
 	if perk_id == "perk_battle_runner" then
-		if perks[perk_id] > 0 and (last_carbon_level == 0 or last_runner_level ~= perks[perk_id]) then
+		if perks[perk_id] > 0 and (last_runner_level ~= perks[perk_id]) then
 			outfit_speed_mcm.last_outfit = nil
 			outfit_speed_mcm.manage_outfit_speed()
 			last_runner_level = perks[perk_id]

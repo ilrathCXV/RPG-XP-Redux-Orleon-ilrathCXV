@@ -1,17 +1,78 @@
+local thirst_adj = 0.125 -- (1000/8000)
+
+if ish_item_stats then
+	local BaseOverride = ish_item_stats.override_stats_table
+	function ish_item_stats.override_stats_table()
+		BaseOverride()
+		
+		thirst_adj = utils_ui.stats_table["booster"]["eat_thirstiness"] and
+					(utils_ui.stats_table["booster"]["eat_thirstiness"].magnitude and (utils_ui.stats_table["booster"]["eat_thirstiness"].magnitude * (-0.01))) or 0.125
+	end
+end
+
+function get_food_healing(obj, sec)
+	if not obj then return end
+	
+	local section = sec or obj:section()
+	
+	local itemType = SYS_GetParam(0, section, "kind") or 0
+	
+	if x_cxv_perks_data.perks["perk_comfort_food"] > 0 and (itemType == "i_food" or itemType == "i_drink" or itemType == "i_mutant_cooked" or itemType == "i_mutant_raw") then
+		
+		local comfort_healing_mult = 0.1 * x_cxv_perks_data.perks["perk_comfort_food"]
+		
+        local quench = ini_sys:r_float_ex(section, "eat_thirstiness") or 0
+		quench = math.min(quench, 0) * (-1) * thirst_adj	-- thirst works opposite ... negative = better, so we have to flip it
+		local satiety = ini_sys:r_float_ex(section, "eat_satiety") or 0
+		satiety = math.max(satiety, 0)
+		
+		-- printf("Thirst amt: %s (adj: %s) | Satiety amt: %s (adj: %s)", quench, quench * comfort_healing_mult, satiety, satiety * comfort_healing_mult)
+		
+		return (quench + satiety) * comfort_healing_mult
+    end
+	
+	return 0
+end
+
 function comfort_food_healing(item,string)
 	if not item then return end
-    local sec = item:section()
-	local itemType = SYS_GetParam(0, sec, "kind") or 0
-	-- if (itemType ~= "i_food") or (itemType ~= "i_drink") then return end	-- testing
 	
-	if (x_cxv_perks_data.perks["perk_comfort_food"] > 0 and (itemType == "i_food" or itemType == "i_drink")) then
-        local drink = ini_sys:r_float_ex(sec, "eat_thirstiness") or 0
-		drink = drink * (-1)
-		local food = ini_sys:r_float_ex(sec, "eat_satiety") or 0
-		local comfort_healing = ((drink > 0 and drink) or 0) + ((food > 0 and food) or 0)
-		
-		db.actor:change_health(comfort_healing * 0.3)
-    end
+	if x_cxv_perks_data.perks["perk_comfort_food"] < 1 then return end
+	
+    local sec = item:section()
+	local comfort_healing = get_food_healing(item, sec)
+	
+	if comfort_healing > 0 then
+		if x_cxv_perks_data.perks["perk_glass_cannon"] >= 3 then
+			local pre_health = db.actor.health
+			if (pre_health + comfort_healing) > 0.8 then
+				comfort_healing = (-1) * (0.8 - pre_health - comfort_healing)
+			end
+		end
+		db.actor:change_health(comfort_healing)
+	end
+
+end
+
+local c_purple = utils_xml.get_color("d_purple")
+local c_red = utils_xml.get_color("d_red")
+local c_ui_gray_2 = utils_xml.get_color("ui_gray_2")
+local math_ceil = math.ceil
+local gt = game.translate_string
+
+OrigDescHeader = ui_item.build_desc_header
+function ui_item.build_desc_header(obj, sec, str)
+	str_1 = OrigDescHeader(obj, sec, str)
+	
+	if x_cxv_perks_data.perks["perk_comfort_food"] < 1 then return str_1 end
+
+	local comfort_healing = get_food_healing(obj, sec) or 0
+	if comfort_healing <= 0 then return str_1 end
+	
+	str_2 = "\n " .. c_purple .. " •  " .. c_ui_gray_2 .. gt("cxv_comfort_food_tooltip") .. " " ..c_red .. math_ceil(comfort_healing * 100) .. "% HP" .. "\\n"
+
+	str_final = str_1 .. str_2
+	return str_final
 end
 
 function on_game_start()

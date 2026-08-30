@@ -12,6 +12,11 @@ local string_gsub   = string.gsub
 local check_wick_mode_validity = x_cxv_perks_data.check_wick_mode_validity		-- sec, weapon_class
 local zone_slayer_validity_check = x_cxv_perks_data.zone_slayer_validity_check	-- sec, obj_id
 
+banner_of_war = z_cxv_experience_perk_banner_of_war
+store_killed_enemy_paired_patch = banner_of_war and banner_of_war.store_killed_enemy_paired_patch	-- obj
+duty_mutant_kill_roubles = banner_of_war and banner_of_war.duty_mutant_kill_roubles					-- obj
+renegade_stalker_kill_roubles = banner_of_war and banner_of_war.renegade_stalker_kill_roubles		-- obj
+
 local jamming_bones = {
 	[20] = true, 
 	[21] = true, 
@@ -70,6 +75,8 @@ local update_1000ms_timer_interval = 10	-- update every 1 second
 local fourth_timer = 0
 
 local math_floor = math.floor
+local math_min = math.min
+local random = math.random
 
 function actor_on_update()
 	time_g = math_floor(time_global() * 0.01)
@@ -115,7 +122,14 @@ function is_wick_mode(wpn)
 	return false
 end
 
+-- ilrathCXV (8/28/26): This flag will help us to ensure the BASE AP of the round is used
+-- When true, the stat given will be the base stat
+-- When false, all AP enhancements (class-specific perks + Banner of War ISG < 35 bonus) will take effect as normal
+banner_of_war_checking_flag = false
+
 function process_perk_effects(victim, weapon, bone_id)
+	
+	banner_of_war_checking_flag = false
 	
 	local damage_multiplier = 1
 	
@@ -133,9 +147,10 @@ function process_perk_effects(victim, weapon, bone_id)
 	if (string_find(weapon:section(), "_ppsh")) then weapon_class = "smg" end
 	
 	local ammo_type_number
-	local ammo_list
-	local ammo_section
-	local pellet_count
+	local ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
+	local ammo_type_number = weapon:get_ammo_type()
+	local ammo_section = ammo_list[ammo_type_number+1]
+	local pellet_count = (ammo_section and SYS_GetParam(2, ammo_section, "buck_shot")) or 1
 	local fourth_mult = 1
 	
 	if head_shot then
@@ -160,7 +175,6 @@ function process_perk_effects(victim, weapon, bone_id)
 	--------------------------------------------------------
 	-- Lucky Strike: Critical damage and chance modifiers --
 	--------------------------------------------------------
-	
 	if (perks["perk_lucky_strike"] > 0) then
 		criticalChance = lucky_strike_chance[perks["perk_lucky_strike"]]
 		criticalMultiplier = lucky_strike_mult[perks["perk_lucky_strike"]]
@@ -184,7 +198,7 @@ function process_perk_effects(victim, weapon, bone_id)
 	-----------------------------------------------------------------------------------------------------------------------------------
 	if perks["perk_disarming_shot"] > 0 and isVictimStalker and disarming_bones[bone_id] and x_cxv_perks_data.can_disarm  then
 		local enemy_weapon = victim:best_weapon()
-		local dropChance = math.random(100) <= 30
+		local dropChance = random(100) <= 30
 		if dropChance and weapon and enemy_weapon and IsWeapon(enemy_weapon) then
 			-- Credit to Banjaji's Nutcracker Mayhem for weapon condition
 			-- Added bonus that the weapon will have the same ammo in its mag when it is dropped
@@ -266,7 +280,7 @@ function process_perk_effects(victim, weapon, bone_id)
 		
 		local check_zoom_factor = SYS_GetParam(2, weapon:section(), "scope_zoom_factor") or 1
 		
-		printf('[RPG CXV] Keen Eye checking ... Zoom Factor : %s | Is Perk Active?: %s', check_zoom_factor, (check_zoom_factor == 0))
+--		printf('[RPG CXV] Keen Eye checking ... Zoom Factor : %s | Is Perk Active?: %s', check_zoom_factor, (check_zoom_factor == 0))
 		if check_zoom_factor == 0 then
 			damage_multiplier = damage_multiplier * (1 + (0.1 * perks["perk_keen_eye"]))
 		end
@@ -275,20 +289,14 @@ function process_perk_effects(victim, weapon, bone_id)
 	---------------------------------------------
 	-- Critical chance and damage calculations --
 	---------------------------------------------
-	
 	if (criticalChance > 0) or (perks["perk_fourth_times"] > 0) then
-		ammo_list = utils_item.get_ammo(weapon:section(), weapon:id())
-		ammo_type_number = weapon:get_ammo_type()
-		ammo_section = ammo_list[ammo_type_number+1]
-		pellet_count = SYS_GetParam(2, ammo_section, "buck_shot") or 1
-		
 		-- Divide critical chance by the projectile count
 		if pellet_count > 1 then
 			criticalChance = criticalChance / pellet_count	
 		end
 	end
 	
-	if (criticalChance > 0) and (math.random(100) <= criticalChance) then
+	if (criticalChance > 0) and (random(100) <= criticalChance) then
 		
 		fourth_mult = 2	-- critical hits multiply the "On Your Mark" counter increment
 			
@@ -303,7 +311,6 @@ function process_perk_effects(victim, weapon, bone_id)
 	--------------------------------------------------------------------------------------------------------
 	-- On Your Mark: Returns ammo to the mag if landing enough successful shots in a short period of time --
 	--------------------------------------------------------------------------------------------------------	
-	
 	if (perks["perk_fourth_times"] > 0) and (ammo_section) then
 		if not IsMelee(weapon) then
 				
@@ -317,6 +324,21 @@ function process_perk_effects(victim, weapon, bone_id)
 		end
 	end
 	
+	------------------------------------------------------------------------------
+	-- Banner of War: UNISG 5% damage bonus if base AP of the round is above 35 --
+	------------------------------------------------------------------------------
+	if banner_of_war.cached_patch_faction == "isg" then
+--		printf("[RPG - Hit Effects] UNISG - Checking if base AP > 35 for possible damage increase...")
+		banner_of_war_checking_flag = true
+		local k_ap = SYS_GetParam(2, ammo_section, "k_ap") or 0
+		banner_of_war_checking_flag = false
+		k_ap = k_ap * 10	-- GAMMA adjustment
+		if k_ap > 0.35 then
+--			printf("[RPG - Hit Effects] UNISG - Base AP greater than 35 (%s)", k_ap)
+			damage_multiplier = damage_multiplier * 1.05
+		end
+	end
+	
 	return damage_multiplier
 end
 
@@ -325,7 +347,7 @@ end
 
 function perk_damage_effects(victim, shit, bone_id, flags)
 	
-	if not victim:alive() then return end
+	if not (victim.alive and victim:alive()) then return end
 	
 	if shit.draftsman:id() ~= AC_ID then
 		return
@@ -354,7 +376,7 @@ function perk_damage_effects(victim, shit, bone_id, flags)
 		return 
 	end
 	
-	printf("[RPG - Hit Effects] Weapon registered: %s", weapon and weapon:section())
+--	printf("[RPG - Hit Effects] Weapon registered: %s", weapon and weapon:section())
 	
 	if (not IsWeapon(weapon)) and (not IsGrenade(weapon)) and (not IsMelee(weapon)) then
 		printf("[RPG - Hit Effects] Not legit: W - %s, G - %s, M - %s", IsWeapon(weapon), IsGrenade(weapon), IsMelee(weapon))
@@ -440,7 +462,7 @@ if grok_bo and not cxv_artigrok_bo then
 	if not golden then
 		base_grok_PBA = grok_bo.PBA_obh
 		function grok_bo.PBA_obh(npc, shit, bone_id, flags)
-			printf("[TEST] Using old GBO...")
+--			printf("[TEST] Using old GBO...")
 			
 			base_grok_PBA(npc, shit, bone_id, flags)
 			
@@ -455,9 +477,9 @@ if grok_bo and not cxv_artigrok_bo then
 				local damage_multiplier = process_perk_effects(npc, weapon, bone_id) or 1
 				
 				if damage_multiplier > 1 then
-					printf("[Reload Hit Effects] RPG Damage Bonuses in effect: %s% | Base Damage: %s", (damage_multiplier * 100) - 100, shit.power)
+--					printf("[Reload Hit Effects] RPG Damage Bonuses in effect: %s% | Base Damage: %s", (damage_multiplier * 100) - 100, shit.power)
 					shit.power = damage_multiplier * shit.power
-					printf("[Reload Hit Effects] New Damage after RPG Bonuses: %s", shit.power)
+--					printf("[Reload Hit Effects] New Damage after RPG Bonuses: %s", shit.power)
 				end
 				
 				--------------------------------------------------------------------------------
@@ -476,7 +498,7 @@ end
 
 function find_zone_slayer_ammo(wpn_id,npc)
 	local ammo_list = utils_item.get_ammo(nil, wpn_id)
-	local shells = ammo_list[math.random(1,#ammo_list)]
+	local shells = ammo_list[random(1,#ammo_list)]
 	if (shells) then
 		if string_find(shells,"_verybad") then
 			local new_section = string_gsub(shells,"_verybad","")
@@ -488,7 +510,7 @@ function find_zone_slayer_ammo(wpn_id,npc)
 			shells = arti_ammo_utils.downgrade_ammo(shells, true)
 		end
 		alife_create_item(shells, npc, {ammo = 1})
-		printf('[RPG - Looting] Zone Slayer ammo given: %s', shells)
+--		printf('[RPG - Looting] Zone Slayer ammo given: %s', shells)
 	end
 	slayer_usage = false
 end
@@ -497,7 +519,7 @@ local perkifact_repair_base = 0.075
 
 function perkifact_repair()
 	local perkifact_count = z_cxv_experience_perk_perkifact_power.perkifact_count or 0
-	printf("perkifact count: %s", perkifact_count)
+--	printf("perkifact count: %s", perkifact_count)
 	if perkifact_count == 0 then return end
 	local perkifact_id_table = z_cxv_experience_perk_perkifact_power.perkifact_id_table
 	local repair_amt = round_idp(perkifact_repair_base * perks["perk_perkifact_power"], 4)
@@ -542,7 +564,7 @@ function perk_kill_effects(victim, killer)
 	
 -------------------------------------------------------------------------> Zone Slayer
 	if slayer_usage and (perks["perk_zone_slayer"]  > 0) and IsStalker(victim) then -- and (#x_cxv_perks_data.shotgun_list > 0) 
-		find_zone_slayer_ammo(x_cxv_perks_data.shotgun_list[math.random(1,#x_cxv_perks_data.shotgun_list)], victim)
+		find_zone_slayer_ammo(x_cxv_perks_data.shotgun_list[random(1,#x_cxv_perks_data.shotgun_list)], victim)
 	end
 	
 -------------------------------------------------------------------------> Vampirism
@@ -555,6 +577,20 @@ function perk_kill_effects(victim, killer)
 -------------------------------------------------------------------------> Perkifact Power
 	if perks["perk_perkifact_power"] > 0 then
 		perkifact_repair()
+	end
+	
+-------------------------------------------------------------------------> Banner of War (if Renegade/Duty, award RU ... else, cache player outfit patch to enemy ID table)
+	if banner_of_war.cached_patch_faction then
+--		printf("[RPG - Hit Effects] Storing killed enemy patch-pair to table...")
+		store_killed_enemy_paired_patch(victim)
+	
+		if banner_of_war.cached_patch_faction == "renegade" and IsStalker(victim) then
+--			printf("[RPG - Hit Effects] RENEGADE - Stalker killed...")
+			renegade_stalker_kill_roubles(victim)
+		elseif banner_of_war.cached_patch_faction == "dolg" and IsMonster(victim) then
+--			printf("[RPG - Hit Effects] DUTY - Mutant killed...")
+			duty_mutant_kill_roubles(victim)
+		end
 	end
 	
 end
@@ -647,7 +683,7 @@ if momopate_accurate_stats then
 		
 		if (momopate_accurate_stats.ammo_affects_dmg == true) then
 			if ammo_list[1] then
-				local k_hit = ini_sys:r_float_ex(ammo_list[1], "k_hit") or 1
+				local k_hit = SYS_GetParam(2, ammo_list[1], "k_hit") or 1
 				hit_power = (hit_power ~= 0) and (k_hit * hit_power) or k_hit
 				
 				local buck = SYS_GetParam(2, ammo_list[1], "buck_shot") or 1
@@ -784,7 +820,6 @@ function utils_ui.prop_damage(obj,sec)
 		end
 	end
 	
-	
 	return normalize(hit_power, 0, 1.5)
 end
 
@@ -800,9 +835,29 @@ local function modify_ap(ini,sec,stat,def)
 		return find_float(ini,sec,stat,def)
 	end
 	
-	-- Increase AP against Stalkers based on weapon type
+	if banner_of_war_checking_flag then
+		return find_float(ini,sec,stat,def)
+	end
+	
+	if ignore_increase then
+		return find_float(ini,sec,stat,def)
+	end
+	
 	local return_stat = find_float(ini,sec,stat,def)
-	if type(return_stat) == "number" and ap_weapon_class and (not ignore_increase) then
+	if type(return_stat) ~= "number" then return return_stat end
+	
+	-- Banner of War: UNISG increase base AP by +5 if under 35 AP (will never go over 35 AP with addition)
+				-- Note: Due to GAMMA values, the addition will be +0.005 and max will be 0.035 (GAMMA AP values are divided by 10 compared to vanilla)
+	if banner_of_war.cached_patch_faction == "isg" then
+--		printf("[RPG - Hit Effects] UNISG - Checkng if base AP < 35 for AP increase...")
+		if return_stat < 0.035 then
+--			printf("[RPG - Hit Effects] UNISG - Base AP less than 35 (%s)", (return_stat * 1000))
+			return_stat = math_min(0.035, (return_stat + 0.005))
+		end
+	end
+	
+	-- Increase AP against Stalkers based on weapon-class type
+	if ap_weapon_class then
 --		printf("[AP] old stat: %s, ap_weapon_class: %s", return_stat, ap_weapon_class)
 		if (perks["perk_gunslinger"] > 0) and ((ap_weapon_class == "smg") or (ap_weapon_class == "pistol")) then
 			return_stat = return_stat + gunner_ap_additions[perks["perk_gunslinger"]]
@@ -814,7 +869,7 @@ local function modify_ap(ini,sec,stat,def)
 		
 		-- Zone Slayer: shotguns of a mag-size of 2 or less add +5 AP on hits ("Heavy Gunner" will then multiply the new AP if perk is leveled)
 		if (perks["perk_zone_slayer"] > 0) and zone_slayer_increase then 
-			printf("[AP] Zone Slayer adding +5 AP")
+--			printf("[AP] Zone Slayer adding +5 AP")
 			return_stat = return_stat + 0.005
 		end
 
@@ -843,7 +898,7 @@ if grok_bo then
 		function grok_bo.npc_on_before_hit(npc, shit, bone_id, flags)
 			
 			-- Null the class variable to avoid any issues if not the player
-			if shit.draftsman:id() ~= db.actor:id() then
+			if shit.draftsman:id() ~= AC_ID then
 				ignore_increase = true
 				zone_slayer_increase = false
 				return
@@ -863,6 +918,7 @@ if grok_bo then
 			-- Allow the original function to do its work, the AP will be modified based on the weapon class and perk levels
 			baseGrokNPC(npc, shit, bone_id, flags)
 			
+			ignore_increase = true
 			zone_slayer_increase = false
 		end
 	end
@@ -885,7 +941,7 @@ if cxv_artigrok_bo then
 			end
 			
 			-- Null the class variable to avoid any issues if not the player
-			if shit.draftsman:id() ~= db.actor:id() then
+			if shit.draftsman:id() ~= AC_ID then
 				ignore_increase = true	
 				zone_slayer_increase = false
 				return return_data
@@ -908,6 +964,7 @@ if cxv_artigrok_bo then
 		BaseNPCHit = cxv_artigrok_bo.npc_on_before_hit
 		function cxv_artigrok_bo.npc_on_before_hit(npc, shit, bone_id, ...)
 			local npc_hit_data = BaseNPCHit(npc, shit, bone_id, ...)
+			ignore_increase = true
 			zone_slayer_increase = false
 			return npc_hit_data
 		end
@@ -916,15 +973,18 @@ end
 
 if momopate_knife_stats then
 
-	function  momopate_knife_stats.prop_ap(obj, sec)
-		local ammo_sec = SYS_GetParam(0, obj and obj:section() or sec, "ammo_class") or "nil"
-		if ammo_sec ~= "nil" then
-			k_ap = SYS_GetParam(2, ammo_sec, "k_ap") or 0
-			k_ap = k_ap + gunner_ap_additions[perks["perk_berserker"]]
-			return round_idp(k_ap * 1000, 0)
+	-- Stat is shown with "whole number base"
+	BaseMomoKnifeAP = momopate_knife_stats.prop_ap
+	function momopate_knife_stats.prop_ap(obj, sec)
+		local k_ap = BaseMomoKnifeAP(obj, sec)
+		if banner_of_war.cached_patch_faction == "isg" then
+			if k_ap < 35 then
+				k_ap = math_min(35, (k_ap + 5))
+			end
 		end
+		k_ap = k_ap + (gunner_ap_additions[perks["perk_berserker"]] * 1000)
 		
-		return 0
+		return k_ap
 	end
 	
 end

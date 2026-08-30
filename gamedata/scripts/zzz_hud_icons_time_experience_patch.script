@@ -1,0 +1,61 @@
+----------------------------------------------------
+-- HUD Icons Time - Experience Framework patch
+-- Given by ATHI - Andtheherois
+----------------------------------------------------
+
+local installed = false
+
+local function install_patch()
+	if installed then
+		return
+	end
+
+	if not (actor_status and actor_status.UIIndicators and experience_potions) then
+		return
+	end
+
+	local UIIndicators = actor_status.UIIndicators
+	if type(UIIndicators.Update) ~= "function" then
+		return
+	end
+
+	local original_update = UIIndicators.Update
+	function UIIndicators:Update(force)
+		local tg = time_global()
+		local update_allowed = force or not self._tmr or self._tmr < tg
+		original_update(self, force)
+
+		-- xcvb_time is created by HUD Icons Time. Leave vanilla actor_status alone.
+		if not update_allowed or not (self.slot and self.slot[1] and self.slot[1].xcvb_time) then
+			return
+		end
+
+		local visible_index = 0
+		for _, t in spairs(actor_status.indicators, actor_status.func_index) do
+			local value = t.functor and execute_func(unpack(t.functor))
+			local pass = false
+			if t.typ == "state" then
+				pass = value and value <= 4 and value >= 1
+			elseif t.typ == "booster" then
+				pass = value and true or false
+			end
+
+			if pass then
+				visible_index = visible_index + 1
+				local slot = self.slot[visible_index]
+				local time_text = slot and slot.xcvb_time
+				local show_time = t.typ == "booster" and tonumber(value)
+				if time_text and show_time then
+					time_text:Show(true)
+					time_text:SetText(tostring(math.ceil(show_time)))
+				end
+			end
+		end
+	end
+
+	installed = true
+end
+
+function on_game_start()
+	install_patch()
+end

@@ -468,6 +468,20 @@
 	<string id="st_perk_comfort_food_desc_1">
         <text>Your body has learned to survive on the "bread" of the Zone.\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] When eating or drinking, you will receive health equal to %c[d_green]10%%c[ui_gray_2] of their thirst and hunger restore\n
+		%c[d_blue] - %c[ui_gray_2] Health restore will be a combination of both their %c[yellow]positive%c[ui_gray_2] thirst and hunger restore
+		</text>
+    </string>
+	<string id="st_perk_comfort_food_desc_2">
+        <text>Your body has learned to survive on the "bread" of the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] When eating or drinking, you will receive health equal to %c[d_green]20%%c[ui_gray_2] of their thirst and hunger restore\n
+		%c[d_blue] - %c[ui_gray_2] Health restore will be a combination of both their %c[yellow]positive%c[ui_gray_2] thirst and hunger restore
+		</text>
+    </string>
+	<string id="st_perk_comfort_food_desc_3">
+        <text>Your body has learned to survive on the "bread" of the Zone.\n \n
+		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] When eating or drinking, you will receive health equal to %c[d_green]30%%c[ui_gray_2] of their thirst and hunger restore\n
 		%c[d_blue] - %c[ui_gray_2] Health restore will be a combination of both their %c[yellow]positive%c[ui_gray_2] thirst and hunger restore
 		</text>
@@ -1295,41 +1309,41 @@
 	<string id="st_perk_lightweight_dodge_desc_1">
         <text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 15kg, you gain about %c[d_green]+0.5% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 20kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 20kg, you gain about %c[d_green]+0.375% dodge chance\n
 		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+7.5% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
-		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
+		%c[d_red] NOTE: Armor weight rounded down and is based on either base weight OR weight after upgrades (whichever is lighter)
 		</text>
     </string>
 	<string id="st_perk_lightweight_dodge_desc_2">
         <text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 15kg, you gain about %c[d_green]+1% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 20kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 20kg, you gain about %c[d_green]+0.75% dodge chance\n
 		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+15% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
-		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
+		%c[d_red] NOTE: Armor weight rounded down and is based on either base weight OR weight after upgrades (whichever is lighter)
 		</text>
     </string>
 	<string id="st_perk_lightweight_dodge_desc_3">
 		<text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 15kg, you gain about a %c[d_green]+1.5% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 20kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 20kg, you gain about a %c[d_green]+1.125% dodge chance\n
 		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+22.5% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
-		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
+		%c[d_red] NOTE: Armor weight rounded down and is based on either base weight OR weight after upgrades (whichever is lighter)
 		</text>
     </string>
 	<string id="st_perk_lightweight_dodge_desc_4">
         <text>Lightweight armor now allows your reflexes to be much faster.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 12kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
-		%c[d_blue] - %c[ui_gray_2] For every 1kg under 15kg, you gain about a%c[d_green]+2% dodge chance\n
+		%c[d_blue] - %c[ui_gray_2] While wearing an outfit %c[yellow]weighing under 20kg%c[ui_gray_2], you have a chance to %c[d_green]"dodge" incoming %c[yellow]bullet damage\n
+		%c[d_blue] - %c[ui_gray_2] For every 1kg under 20kg, you gain about a%c[d_green]+1.5% dodge chance\n
 		%c[yellow] - %c[ui_gray_2] Wearing no outfit yields about a %c[yellow]+30% dodge chance\n
 		%c[d_green] - %c[ui_gray_2] Dodge chance stacks additively with other dodge bonuses\n
-		%c[d_red] NOTE: Armor weight is based on either base weight or weight after upgrades (whichever is lighter)
+		%c[d_red] NOTE: Armor weight rounded down and is based on either base weight OR weight after upgrades (whichever is lighter)
 		</text>
     </string>
 	
@@ -1784,4 +1798,32 @@
 		%c[d_red] - %c[ui_gray_2] This %c[d_red]does NOT make you immune%c[ui_gray_2] to %c[yellow]Pulse anomalies%c[ui_gray_2] that trigger during psy-storms as they are Shock damage
 		</text>
     </string>
+	
+	<string id="st_perk_banner_of_war">
+        <text>Banner of War</text>
+    </string>
+	<string id="st_perk_banner_of_war_desc">
+        <text>Your banner says a lot about you as a Stalker. In the Zone, your armor declares your banner.</text>
+    </string>
+	<string id="st_perk_banner_of_war_desc_1">
+        <text>Your banner says a lot about you as a Stalker. In the Zone, your armor declares your banner.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You are granted specific bonuses based on the faction patch of your armor (no faction/no armor means "NEUTRAL")\n
+		%c[ui_gray_2] - %c[pda_white] NEUTRAL%c[ui_gray_2]: +10% damage resist against all damage sources\n \n
+		%c[yellow] - %c[pda_white] LONER/FREE STALKER%c[ui_gray_2]: +15% goodwill gains/-15% goodwill losses (stacks with "Good Samaritan" perk)\n \n
+		%c[d_red] - %c[pda_white] DUTY%c[ui_gray_2]: Roubles on every mutant kill (ranges from 10 to 3500 RU based on mutant type killed)\n \n
+		%c[d_green] - %c[pda_white] FREEDOM%c[ui_gray_2]: 8% chance to find psy-resist medical/drug items when looting Stalkers\n \n
+		%c[0,35,50,10] - %c[pda_white] MILITARY%c[ui_gray_2]: 5% chance to dodge incoming bullet damage (stacks with "Lightweight" and "Wick Mode" perks) + 30% more Warsaw ammo found on Stalkers (9x18, 9x21, 7.62x25, 5.45x39, 7.62x39, 9x39, 7.62x54R, 12.7x55, 23x75)\n \n
+		%c[d_orange] - %c[pda_white] ECOLOGIST%c[ui_gray_2]: 15% chance for an extra piece of loot AND 0.1% chance to find a "Bat" artefact when skinning mutants\n \n
+		%c[d_blue] - %c[pda_white] MERCENARY%c[ui_gray_2]: 40% chance to find a random faction patch when looting Stalkers AND +5% more cash from task completions\n \n
+		%c[d_cyan] - %c[pda_white] CLEAR SKY%c[ui_gray_2]: Immunity to radiation when standing in water + slight passive bleed restore (about 6% total bleed heal/sec)\n \n
+		%c[0,50,35,10] - %c[pda_white] BANDIT%c[ui_gray_2]: 8% chance to find jewelry boxes when looting Stalkers and mutants + 5% to find misc. crafting items on Stalkers (stacks with "Prospector" perk)\n \n
+		%c[0,40,50,35] - %c[pda_white] RENEGADES%c[ui_gray_2]: Roubles for every Stalker kill (based on faction difficulty and Stalker rank - ranges from 65 to 1750 RU)\n \n
+		%c[pda_white] - MONOLITH%c[ui_gray_2]: 3% chance to find RPG-7 ammo OR 0.00001% chance to find an RPG-7 when looting Stalkers\n \n
+		%c[0,120,80,5] - %c[pda_white] SIN%c[ui_gray_2]: +15% damage resist against mutants AND +5% damage resist against bullet damage\n \n
+		%c[0,255,65,0] - %c[pda_white] UNISG%c[ui_gray_2]: +5 AP for all ammo under 35 base AP (won't go above 35) AND +5% damage to all ammo types over 35 base AP
+		</text>
+    </string>
+	
+	
 </string_table>

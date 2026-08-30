@@ -1,0 +1,465 @@
+-- Workhorse script to find and cache patch variable on currently equipped armor
+-- "nil" --> perk not invested in
+-- "neutral" --> perk IS invested in outfit does not fit a patch on it
+
+local random = math.random
+local gt = game.translate_string
+local strformat = string.format
+
+cached_patch_faction = nil
+cached_outfit_id = nil
+local last_banner_level = 0
+
+local actor = nil
+local function get_actor()
+	if actor ~= nil then
+		return actor
+	else
+		actor = db.actor
+		return actor
+	end
+end
+
+--[[ reference for factions
+local possible_factions = {
+	["army"] = true,		-- ...actor_when_hit.script + ...perk_looting.script	[DONE - working]
+	["bandit"] = true,		-- ...perk_looting.script 								[DONE - working]
+	["csky"] = true,		-- this script 											[DONE - working]
+	["dolg"] = true,		-- ...weapon_reload_hit_effects.script					[DONE - working]
+	["ecolog"] = true,		-- this script (mutant loot is a script callback) 		[DONE - working]
+	["freedom"] = true,		-- ...perk_looting.script 								[DONE - working]
+	["killer"] = true,		-- ...perk_looting.script 								[DONE - working]
+	["monolith"] = true,	-- ...perk_looting.script 								[DONE - working]
+	["stalker"] = true,		-- ...perk_samaritan.script 							[DONE - working]
+	["renegade"] = true,	-- ...weapon_reload_hit_effects.script					[DONE - working]
+	["greh"] = true,		-- ...actor_when_hit.script 							[DONE]
+	["isg"] = true,			-- ...weapon_reload_hit_effects.script 					[DONE - working]
+	["neutral"] = true,		-- ...actor_when_hit.script 							[DONE - working]
+}
+]]
+
+-- Will cache the ID of the enemy killed and keep memory of what faction patch was worn for looting purposes
+-- On-hit effects will check "cached_patch_faction" variable directly
+-- Add to cache on enemy death in ..._effects.script
+-- Keep on save + load while in the same level - clear on changing level
+-- Clear during "death_manager.create_release_item()" in looting script + "monster_on_loot_init" function in this script
+-- [objID] = "player_patch_faction"
+local death_id_patch_cache = {}
+
+function store_killed_enemy_paired_patch(obj)
+	if not obj then return end
+	if not cached_patch_faction then return end
+	
+	death_id_patch_cache[obj:id()] = cached_patch_faction
+end
+
+function get_killed_enemy_paired_patch(obj)
+	if not obj then return end
+	
+	printf("[RPG - Banner of War] Getting killed enemy paired-patch (%s)...", death_id_patch_cache[obj:id()])
+	
+	return death_id_patch_cache[obj:id()] or ""
+end
+
+function clear_killed_enemy_paired_patch(obj)
+	if not obj then return end
+	
+	printf("[RPG - Banner of War] Clearing killed enemy paired-patch (%s)...", death_id_patch_cache[obj:id()])
+
+	death_id_patch_cache[obj:id()] = nil
+	
+end
+
+-- will be accessed in the looting script
+army_warsaw_rounds_list = {
+	["ammo_23x75_shrapnel"] = true,
+	["ammo_23x75_barrikada"] = true,
+	["ammo_23_eco"] = true,
+	
+	["ammo_9x21_sp10"] = true,
+	["ammo_9x21_sp11"] = true,	-- ArtiGrok/9x21 Xpac mod
+	["ammo_9x21_sp12"] = true,	-- ArtiGrok/9x21 Xpac mod
+	
+	["ammo_vog-25"] = true,
+	
+	["ammo_9x18_fmj"] = true,
+	["ammo_9x18_pmm"] = true,
+	["ammo_9x18_ap"] = true,
+	
+	["ammo_7.62x25_p"] = true,
+	["ammo_7.62x25_ps"] = true,
+	
+	["ammo_5.45x39_fmj"] = true,
+	["ammo_5.45x39_ep"] = true,
+	["ammo_5.45x39_ap"] = true,
+	
+	["ammo_7.62x39_fmj"] = true,
+	["ammo_7.62x39_ap"] = true,
+	
+	["ammo_9x39_pab9"] = true,
+	["ammo_9x39_ap"] = true,
+	
+	["ammo_7.62x54_7h1"] = true,
+	["ammo_7.62x54_7h14"] = true,
+	["ammo_7.62x54_ap"] = true,
+	["ammo_pkm_100"] = true,
+	
+	["ammo_12.7x55_fmj"] = true,
+	["ammo_12.7x55_ap"] = true,
+}
+
+freedom_psy_items = {
+	"drug_psy_blockade",
+	"drug_sleepingpills",
+	"antiemetic",
+	"joint",
+	"marijuana",
+	"bottle_metal"
+}
+
+function freedom_psy_item_section()
+--	printf("[RPG - Banner of War] FREEDOM - Picking random psy item...")
+	return freedom_psy_items[random(#freedom_psy_items)]
+end
+
+-- Credit to PBA
+local duty_mutant_class_amt = {
+
+	-- Tier 1 (max 200 RU)
+--	[clsid.crow] = 10,
+	[clsid.zombie] = 200,
+	[clsid.zombie_s] = 200,
+	[clsid.cat] = 100,
+	[clsid.cat_s] = 100,
+	[clsid.dog_black] = 100,
+	[clsid.dog_red] = 100,
+	[clsid.dog_s] = 100,
+--	[clsid.rat] = 10,
+--	[clsid.rat_s] = 10,
+	[clsid.tushkano] = 10,
+	[clsid.tushkano_s] = 10,
+	["SM_PIRANHA"] = 10,
+	
+	-- Tier 2 (max 500 RU)
+	[clsid.boar] = 500,
+	[clsid.boar_s] = 500,
+	[clsid.flesh] = 300,
+	[clsid.flesh_s] = 300,
+	[clsid.fracture_s] = 500,
+	[clsid.pseudodog_s] = 350,
+	[clsid.snork] = 400,
+	[clsid.snork_s] = 400,
+	["SM_LURKER"] = 500,
+	
+	-- Tier 3 (max 1500 RU)
+	[clsid.bloodsucker] = 1500,
+	[clsid.bloodsucker_s] = 1500,
+	["SM_KARLIK"] = 800,
+	["SM_PSYSUCKER"] = 1500,
+	["SM_VOLK"] = 800,
+	["SM_POLTER_CORP"] = 800,
+	[135] = 800, -- Borya
+	[clsid.poltergeist] = 800,
+	[clsid.poltergeist_s] = 800,
+	[clsid.psy_dog_s] = 1300,
+	
+	-- Tier 4 (max 2000 RU)
+	[clsid.burer] = 2000,
+	[clsid.burer_s] = 2000,
+	[clsid.controller] = 2000,
+	[clsid.controller_s] = 2000,
+	["SM_TARK"] = 2000,
+	
+	-- Tier 5 (max 3500 RU)
+	[clsid.chimera] = 3250,
+	[clsid.chimera_s] = 3250,
+	[clsid.gigant_s] = 3500,
+	[clsid.pseudo_gigant] = 3500,
+	["gigant_jumper"] = 2500,
+	["SM_MEDVED"] = 3500,
+	["SM_MONSTER_BOAR"] = 3500,
+	["SM_VENDIGO"] = 3500,
+	[131] = 8000, -- Bibliotekar (exception cuz who made this stupid thing?!)
+	
+}
+
+-- TODO: Add message showing Roubles gained
+-- Note to self: Ensure to check if object being passed as "stalker" pass "IsStalker()" func
+function duty_mutant_kill_roubles(monster)
+	
+	if not monster then return end
+	local section = monster:section()
+	
+	local rouble_amt = duty_mutant_class_amt[(section == "gigant_jumper" and clsid.pseudo_gigant) or monster:clsid()] 
+	or duty_mutant_class_amt[SYS_GetParam(2, section, "kind", "definitely_not_found_kind")] 
+	or duty_mutant_class_amt[SYS_GetParam(0, section, "kind", 0)]
+	or 200
+	
+--	printf("[RPG - Banner of War] DUTY - Roubles: %s | Mutant section: %s", rouble_amt, section)
+	
+	get_actor():give_money(rouble_amt)
+--	news_manager.send_tip(get_actor(), strformat( gt("cxv_banner_of_war_dolg", rouble_amt) ), nil, "dolg")
+	get_actor():give_game_news(gt("cxv_banner_of_war_dolg_title"), strformat( gt("cxv_banner_of_war_dolg"), rouble_amt ), news_manager.tips_icons["dolg"], 0, 5000, 0)
+
+end
+
+local renegade_stalker_faction_base = {
+	["army"] = 115,	
+	["bandit"] = 80,	
+	["csky"] = 125,	
+	["dolg"] = 100,	
+	["ecolog"] = 80,	
+	["freedom"] = 100,	
+	["killer"] = 125,	
+	["monolith"] = 150,
+	["stalker"] = 100,	
+	["renegade"] = 95,
+	["greh"] = 200,
+	["greh_npc"] = 200,
+	["isg"] = 250,
+	["zombied"] = 65,
+}
+
+local renegade_stalker_rank_mult = {
+	["novice"] = 1,
+	["trainee"] = 1.8,
+	["experienced"] = 2.8,
+	["professional"] = 3.6,
+	["veteran"] = 4.6,
+	["expert"] = 5.2,
+	["master"] = 6.2,
+	["legend"] = 7,
+}
+
+-- TODO: Add message showing Roubles gained
+-- Note to self: Ensure to check if object being passed as "stalker" pass "IsStalker()" func
+local rank_name = ranks.get_obj_rank_name
+function renegade_stalker_kill_roubles(stalker)
+	if not stalker then return end
+	
+	local stalker_faction = stalker:character_community()
+	
+	if (not stalker_faction) then
+		stalker_faction = "stalker"
+	end
+	
+	local stalker_rank = ((stalker.character_rank or stalker.rank) and rank_name(stalker)) or "novice"
+--	printf("[RPG - Banner of War] RENEGADES - Roubles: %s | Faction: %s | Rank: %s", rouble_amt, stalker_faction, stalker_rank)
+	if not renegade_stalker_rank_mult[stalker_rank] then
+		stalker_rank = "experienced"
+	end
+	
+	local rouble_amt = math.ceil((renegade_stalker_faction_base[stalker_faction] or 100) * (renegade_stalker_rank_mult[stalker_rank] or 1))
+	
+	get_actor():give_money(rouble_amt)
+	get_actor():give_game_news(gt("cxv_banner_of_war_renegade_title"), strformat( gt("cxv_banner_of_war_renegade"), rouble_amt ), news_manager.tips_icons["renegade"], 0, 5000, 0)
+
+end
+
+local get_random_enemy_faction = game_relations.get_random_enemy_faction
+local get_random_natural_faction = game_relations.get_random_natural_faction
+
+function killer_patch_generation(obj)
+	if obj then 
+		local stalker_faction
+		
+		-- checking if stash - set it to actor's faction to locate a patch
+		if IsInvbox(obj) then
+			stalker_faction = character_community(get_actor()):sub(7)
+		else
+			stalker_faction = obj:character_community()
+		end
+		
+		if (stalker_faction and stalker_faction == "greh_npc" or stalker_faction == "zombied") or (not stalker_faction) then
+			stalker_faction = "stalker"
+		end
+		
+--		printf("[RPG - Banner of War] MERCENARY - Enemy faction: %s", stalker_faction)
+		
+		-- Get random enemy faction, then try friendly/neutral faction next, then default to Loner
+		local enemy_or_natural = random(2)
+		local random_faction = nil
+		if enemy_or_natural == 1 then	-- enemy
+			random_faction = get_random_enemy_faction(stalker_faction) or "stalker"
+		else							-- natural
+			random_faction = get_random_natural_faction(stalker_faction) or "stalker"
+		end
+		
+--		printf("[RPG - Banner of War] MERCENARY - Random faction for patch: %s", random_faction)
+		
+		local patch_section = random_faction .. "_patch"
+--		printf("[RPG - Banner of War] MERCENARY - Patch Selected: %s", patch_section)
+		if ini_sys:section_exist(patch_section) then
+			return patch_section
+		end
+	end
+	
+	return "stalker_patch"
+end
+
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+
+function cache_outfit_patch_section(obj, sec)
+	if obj and obj:id() == cached_outfit_id then return end
+	
+	cached_patch_faction = "neutral"
+	cached_outfit_id = nil
+	
+	if not obj then
+		printf("[RPG - Banner of War] No outfit given - outfit patch set as Neutral (%s)", cached_patch_faction)
+		return
+	end
+	local section = sec or obj:section()
+	
+	cached_patch_faction = ini_sys:r_string_ex(section,"community") or "neutral"
+	cached_outfit_id = obj:id()
+	
+	printf("[RPG - Banner of War] Outfit cached (%s | %s) - outfit patch set as %s", section, cached_outfit_id, cached_patch_faction)
+	
+end
+
+function actor_item_to_slot(item)
+	if not item then return end
+	if x_cxv_perks_data.perks["perk_banner_of_war"] < 1 then return end
+	if not IsOutfit(item) then return end
+
+	cache_outfit_patch_section(item, item and item:section())
+end
+
+function actor_item_to_ruck(item)
+	if not item then return end
+	if x_cxv_perks_data.perks["perk_banner_of_war"] < 1 then return end
+	if not IsOutfit(item) then return end
+	if not cached_outfit_id == item:id() then return end
+	
+	if get_actor() then
+		local armor = get_actor():item_in_slot(7)
+		cache_outfit_patch_section(armor, armor and armor:section())
+	else
+		cache_outfit_patch_section(nil, nil)
+	end
+end
+
+function actor_on_first_update()
+	if x_cxv_perks_data.perks["perk_banner_of_war"] < 1 then
+		printf("[RPG - Banner of War] Perk not taken - clearing cached outfit faction patch + cached outfit ID")
+		cached_patch_faction = nil
+		cached_outfit_id = nil
+		return
+	end
+	
+	if get_actor() then
+		local armor = get_actor():item_in_slot(7)
+		cache_outfit_patch_section(armor, armor and armor:section())
+	end
+end
+
+function skill_on_update(perk_id, perk_data)
+	if perk_id == "perk_banner_of_war" and perk_data["curr_level"] ~= last_banner_level then
+		printf("[RPG - Banner of War] Perk taken/registered - finding outfit...")
+		last_banner_level = perk_data["curr_level"]
+		if get_actor() then
+			local armor = get_actor():item_in_slot(7)
+			cache_outfit_patch_section(armor, armor and armor:section())
+		end
+	end
+end
+
+-- Save/load of killed enemy ID patch cache table while on same level
+function save_state(mdata)
+	mdata.death_id_patch_cache = death_id_patch_cache
+end
+
+function load_state(mdata)
+	if mdata.death_id_patch_cache then
+		death_id_patch_cache = mdata.death_id_patch_cache
+	else
+		death_id_patch_cache = {}
+	end
+end
+
+-- Clear killed enemy ID patch cache table - all corpses will get cleared (eventually)
+function on_before_level_changing(...)
+	printf("[RPG - Banner of War] Changing level - clearing cached killed enemy paired-patch list...")
+	empty_table(death_id_patch_cache)
+end
+
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+-- Perk functionality that can exist within this own script/doesn't need to interact with other scripts' functions
+
+-- Clear Sky: immunity to in-water radiation + bleed restore (placing it here since this is already an "on update" function)
+local bleed_restore_per_ms = 0.0000123
+local actor_bleed_k = ini_sys:r_float_ex("actor_condition", "bleed_speed_k") or 1
+local balance_modifier = 0.60
+BaseRadWaterUpdate = gameplay_radioactive_water.actor_on_update
+function gameplay_radioactive_water.actor_on_update(_,delta)
+	if cached_patch_faction and cached_patch_faction == "csky" then
+		if get_actor() then
+			get_actor().bleeding = bleed_restore_per_ms * delta * actor_bleed_k * balance_modifier
+		end
+		return
+	end
+	BaseRadWaterUpdate(_,delta)
+end
+
+-- Ecologist: 15% chance for picking a random piece of mutant loot to duplicate + 0.01% chance to loot a "Bat"
+-- Bandit: 5% chance to loot a jewelry box
+-- Will call getter() to keep things uniform across scripts
+function monster_on_loot_init(monster, loot_table)
+	local killed_enemy_paired_patch = get_killed_enemy_paired_patch(monster)
+	if killed_enemy_paired_patch == "ecolog" then
+		if (random(100) <= 15) then
+--			printf("[RPG - Banner of War] ECOLOG - Finding mutant loot to add...")
+			local random_loot_key = random_key_table(loot_table)
+			if random_loot_key then
+--				printf("[RPG - Banner of War] ECOLOG - Loot found to add: %s", random_loot_key)
+				loot_table[random_loot_key].count = loot_table[random_loot_key].count + 1
+			end
+		end
+		if (random(1000) == 1) then	-- 0.01% chance roll
+--			printf("[RPG - Banner of War] ECOLOG - Bat artefact to be added to mutant loot...")
+			if not loot_table["af_bat"] then
+				loot_table["af_bat"] = {count = 0}
+			end
+			
+			loot_table["af_bat"].count = loot_table["af_bat"].count + 1
+		end
+	elseif killed_enemy_paired_patch == "bandit" then
+		if (random(100) <= 8) then
+--			printf("[RPG - Banner of War] BANDIT - Jewelry Box to be added to mutant loot...")
+			if not loot_table["jewelry_box"] then
+				loot_table["jewelry_box"] = {count = 0}
+			end
+			
+			loot_table["jewelry_box"].count = loot_table["jewelry_box"].count + 1
+		end
+	end
+	
+	clear_killed_enemy_paired_patch(monster)
+end
+
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+function on_game_start()
+	if experience_potions then
+		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+	else
+		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+	end
+	
+	RegisterScriptCallback("actor_item_to_slot", actor_item_to_slot)
+	RegisterScriptCallback("actor_item_to_ruck", actor_item_to_ruck)
+	RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
+	
+	RegisterScriptCallback("monster_on_loot_init", monster_on_loot_init)
+	
+	RegisterScriptCallback("save_state",save_state)
+	RegisterScriptCallback("load_state",load_state)
+	RegisterScriptCallback("on_before_level_changing", on_before_level_changing)
+	
+end
+
+

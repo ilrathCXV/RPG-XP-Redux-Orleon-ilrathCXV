@@ -1,9 +1,20 @@
+local math_floor = math.floor
+local rand = math.random
+
 local was_medicine_found = false
 local perks = x_cxv_perks_data.perks
+
 damaged_task_kind_list = z_cxv_experience_perk_fetch_finder.damaged_kinds
+
+banner_of_war = z_cxv_experience_perk_banner_of_war
+get_killed_enemy_paired_patch = banner_of_war and banner_of_war.get_killed_enemy_paired_patch		-- obj
+clear_killed_enemy_paired_patch = banner_of_war and banner_of_war.clear_killed_enemy_paired_patch	-- obj
+killer_patch_generation = banner_of_war and banner_of_war.killer_patch_generation					-- obj
+freedom_psy_item_section = banner_of_war and banner_of_war.freedom_psy_item_section					-- obj
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+
 local ammo_parts_check = {
 	["casing_p"] = true,
 	["casing_s"] = true,
@@ -34,8 +45,6 @@ local ammo_blocklist = {
 	["powder_medusa"] = true,
 }
 
-local rand = math.random
-
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 
@@ -50,13 +59,13 @@ local function create_item_random_uses(i, box)
 		return
 	end
 	if max_uses > 0 then
-		printf('Max uses: %s', max_uses)
+--		printf('Max uses: %s', max_uses)
         alife_process_item(i, se_item.id, {uses = (rand(1, max_uses))})
 	elseif box_size > 0 then
-		printf('Box size: %s', box_size)
+--		printf('Box size: %s', box_size)
 		alife_process_item(i, se_item.id, {ammo = (rand(1, box_size))})
     elseif utils_item.is_degradable(nil, se_item.id) then
-		printf('Degradable')
+--		printf('Degradable')
 		local condition = rand(50, 100)
 		alife_process_item(i, se_item.id, {cond = condition})
 	else
@@ -199,7 +208,7 @@ else
 end
 
 function try_spawn_meds(box)
-	local medChance = math.floor((perks["perk_medicine_man"] * 7) * round_idp(rand(0.5,3.0),2) )
+	local medChance = math_floor((perks["perk_medicine_man"] * 7) * round_idp(rand(0.5,3.0),2) )
 	local tbl = {
 		{ 100, meds_tier5},
 		{ 70, meds_tier4},
@@ -272,7 +281,7 @@ scav_tier5 = {
 -- Now a part of "Prospector"
 function try_spawn_scav(box)
 	-- printf("Scavenger/Prospector proc!")
-	local scavChance = math.floor((perks["perk_prospector"] * 7) * rand(1.0,3.0))
+	local scavChance = math_floor((perks["perk_prospector"] * 7) * rand(1.0,3.0))
     local tbl = {
 		{ 100, scav_tier5},
         { 70, scav_tier4},
@@ -345,7 +354,7 @@ ammo_parts_tier5 = {
 
 function try_spawn_ammo_parts(box)
 	-- printf("Ammo Finder proc!")
-	local a_parts_chance = math.floor((perks["perk_ammo_finder"] * 7) * rand(1.0,3.0))
+	local a_parts_chance = math_floor((perks["perk_ammo_finder"] * 7) * rand(1.0,3.0))
     local tbl = {
 		{ 100, ammo_parts_tier5},
         { 70, ammo_parts_tier4},
@@ -371,20 +380,22 @@ local is_stash = false
 base_death_loot = death_manager.create_release_item
 death_manager.create_release_item = function(npc)
 	if not npc then return end
-	med_man_proc = (perks["perk_medicine_man"] * 2) > rand(1,100)
+	med_man_proc = rand(100) <= (perks["perk_medicine_man"] * 2) 
 	meds_found = false
 	should_proc = true
 	is_stash = false
 	base_death_loot(npc)
 	looting_enemy(npc)
 	should_proc = false
+
+	clear_killed_enemy_paired_patch(npc)
 end
 
 base_stash_loot = treasure_manager.try_spawn_treasure
 treasure_manager.try_spawn_treasure = function(box, ...)
 	local id = box:id()
 	if not treasure_manager.caches[id] then return end
-	med_man_proc = (perks["perk_medicine_man"] * 4) > rand(1,100)	-- double chance for stashes
+	med_man_proc = rand(100) <= (perks["perk_medicine_man"] * 4) 	-- double chance for stashes
 	meds_found = false
 	should_proc = true
 	is_stash = true
@@ -402,7 +413,7 @@ function random_key_from_table(t)
 	end
 	local n = {}
 	for k,v in pairs(t) do
-		printf("k: %s", k)
+--		printf("k: %s", k)
 		n[#n+1] = k
 	end
 	return #n > 0 and n[rand(#n)] or nil
@@ -412,31 +423,66 @@ local looting_proc_arty = true
 function looting_enemy(victim)
 
 	if not victim then printf("[RPG] No NPC/box found... No loot for you!") return end
-
-	ammo_finder_proc = false
 	
 	-- Gather NPC info
 	local npc_id = victim:id() or 0
 	
 	-- ilrathCXV (10/21/24): Consolidate all "iter" functions into one
-	if perks["perk_careful_handler"] > 0 or  perks["perk_medicine_man"] > 0 or perks["perk_ammo_finder"] > 0 then	
+	if perks["perk_careful_handler"] > 0 or perks["perk_medicine_man"] > 0 or perks["perk_ammo_finder"] > 0 or banner_of_war.cached_patch_faction ~= nil then	
 		looting_perks_proc(victim)
+	end
+	
+------------------------------------------------------------> Banner of War (getting player outfit faction patch for looted enemy)
+	local killed_enemy_player_patch = get_killed_enemy_paired_patch(victim)
+	
+----> (Bandit)	
+	if killed_enemy_player_patch == "bandit" and (rand(100) <= 8) then
+--		printf("[RPG - Looting] BANDIT - Jewelry Box to be added...")
+		alife_create_item("jewelry_box", victim)
+	end
+	
+----> (Merc)	
+	if killed_enemy_player_patch == "killer" and (rand(100) <= 40) then
+--		printf("[RPG - Looting] MERCENARY - Random faction patch to be added...")
+		alife_create_item(killer_patch_generation(victim), victim)
+	end
+	
+----> (Freedom)
+	if killed_enemy_player_patch == "freedom" and (rand(100) <= 8) then
+--		printf("[RPG - Looting] FREEDOM - Psy item to be added...")
+		alife_create_item(freedom_psy_item_section(), victim)
+	end
+	
+----> (Monolith)
+	-- Check RPG weapon chance, if not then check RPG ammo chance
+	if killed_enemy_player_patch == "monolith" then
+		-- needs to be this large to facilitate RPG weapon roll
+		local mono_rng_roll = rand(10000000)
+--		printf("[RPG - Looting] MONOLITH - Rolling for destruction... (%s)", math_floor(mono_rng_roll * 0.00001))
+		if (mono_rng_roll == 1) then	-- 0.00001% chance roll
+--			printf("[RPG - Looting] MONOLITH - RPG-7 to be added (you should buy a lottery ticket)...")
+			alife_create_item("wpn_rpg7", victim)
+		elseif (mono_rng_roll <= 300000) then	-- 3% chance roll
+--			printf("[RPG - Looting] MONOLITH - OG-7b/RPG-7 ammo to be added...")
+			alife_create_item("ammo_og-7b", victim)
+		end
 	end
 	
 -----------------------------------------------------------> Prospector (was Scavenger)
 	if perks["perk_prospector"] > 0 then
-		if rand(1,1000) <= (perks["perk_prospector"] * 15) then
+		local banner_bandit_bonus = (killed_enemy_player_patch == "bandit" and 50) or 0	-- 50 == 5% when compared to 1000 RNG roll
+		if rand(1000) <= ((perks["perk_prospector"] * 15) + banner_bandit_bonus) then
 			try_spawn_scav(victim)
 		end
 	end
-
+	
 -----------------------------------------------------------> Fetch Finder: Chance to find task items - higher value = less chance ... more tasks that need it = better chance
 	if perks["perk_fetch_finder"] > 0 then
 			
 		local chance = rand()
 		local random_task_sec = z_cxv_experience_perk_fetch_finder.get_fetch_finder_item(chance, is_stash)
 		if random_task_sec then
-			printf("[RPG] Fetch Finder creating item: %s", random_task_sec)
+--			printf("[RPG] Fetch Finder creating item: %s", random_task_sec)
 			local kind = SYS_GetParam(0, random_task_sec, "kind")
 			if kind and damaged_task_kind_list[kind] then
 				local se_item = alife_create_item(random_task_sec, victim)
@@ -458,7 +504,7 @@ function looting_enemy(victim)
 	end
 
 ------------------------------------------------------------> Arte-finder
-	local artyDrop = (perks["perk_artefinder"] > rand(1,100))
+	local artyDrop = (rand(100) <= perks["perk_artefinder"])
 	if artyDrop then
 		-- no need to do "Careful Handler" for arti_min/max
 		local min_cond = (zz_item_artefact and zz_item_artefact.arti_min_eff) or ((perks["perk_artefinder"] * 2) + 30)
@@ -477,7 +523,6 @@ function looting_enemy(victim)
 	if perks["perk_plus_one"] > 0 and (#x_cxv_perks_data.weapon_list > 0) then
 		find_spare_ammo(x_cxv_perks_data.weapon_list[rand(1,#x_cxv_perks_data.weapon_list)], victim)
 	end
-	
 end
 
 BaseDeathWeaponDrop = death_manager.set_weapon_drop_condition
@@ -540,15 +585,16 @@ function looting_perk_item(section, obj, t)
 		return BaseCreateItem(section, obj, t)
 	end
 	
-	if not section or not obj then
+	if not obj or not section then
 		return BaseCreateItem(section, obj, t)
 	end
 	
-	if not (perks["perk_careful_handler"] > 0 or perks["perk_medicine_man"] > 0 or perks["perk_ammo_finder"] > 0 or perks["perk_artefinder"] > 0) then
+	if not (perks["perk_careful_handler"] > 0 or perks["perk_medicine_man"] > 0 or perks["perk_ammo_finder"] > 0 or perks["perk_artefinder"] > 0 or banner_of_war.cached_patch_faction ~= nil) then
 		return BaseCreateItem(section, obj, t)
 	end
 	
 	local kind = SYS_GetParam(0, section, "kind")
+	local is_ammo = IsItem("ammo",section)
 	local is_artefact = (kind == "i_arty" or kind == "i_arty_junk" or kind == "i_arty_cont")
 	local cond_bonus = 0
 	
@@ -563,16 +609,34 @@ function looting_perk_item(section, obj, t)
 		item_cond_adj(t, cond_bonus)
 	end
 	
-	if (t and t.ammo) and perks["perk_ammo_finder"] > 2 then
-		if (ammo_double_chance[perks["perk_ammo_finder"]] * (is_stash and 2 or 1)) > rand(100) then
-			t.ammo = t.ammo * 2
+	-- If ammo value, then modify it. If not, create a new box with correct adjustments.
+	if is_ammo then
+		if perks["perk_ammo_finder"] > 2 then
+			if rand(100) <= (ammo_double_chance[perks["perk_ammo_finder"]] * (is_stash and 2 or 1))  then
+				if t and t.ammo then
+					t.ammo = t.ammo * 2
+				else
+					BaseCreateItem(section, obj, t)
+				end
+			end
+		end
+		if (get_killed_enemy_paired_patch(obj) == "army") and (banner_of_war.army_warsaw_rounds_list[section]) then
+--			printf("[RPG - Looting] MILITARY - Warsaw ammo (%s) increased...", section)
+			if t and t.ammo then
+				t.ammo = math_floor((t.ammo * 1.30) + 0.5)
+			else
+				local box_size = SYS_GetParam(2, section, "box_size", 0) or 1
+				t_2 = t
+				t_2.ammo = math_floor((box_size * 0.30) + 0.5)
+				BaseCreateItem(section, obj, t_2)
+			end
 		end
 	end
 	
 	if (t and t.uses) and perks["perk_careful_handler"] > 0 then
 		local uses_mult = 1 + (perks["perk_careful_handler"] * 0.1)
 --		printf("t.uses: %s", t.uses)
-		t.uses = math.floor( (t.uses * uses_mult) + 0.5 )
+		t.uses = math_floor( (t.uses * uses_mult) + 0.5 )
 --		printf("t.uses after: %s", t.uses)
 	end
 	
@@ -592,7 +656,7 @@ if death_manager then death_manager.alife_create_item = looting_perk_item end
 function looting_perks_proc(box)
 	
 	
-	if (perks["perk_ammo_finder"] * 2 > rand(1,100)) then
+	if (rand(100) <= perks["perk_ammo_finder"] * 2) then
 		try_spawn_ammo_parts(box)
 	end
 	
@@ -644,7 +708,7 @@ function find_spare_ammo(wpn_id, box)
 	end
 	
 	local box_size = ini_sys:r_float_ex(rounds, "box_size") or 1
-	local amount = (is_stash and (rand(1,100) == 1) and box_size) or 1
+	local amount = (is_stash and (rand(100) == 1) and box_size) or 1
 	
 	if (amount == box_size) then
 		alife_create_item(rounds, box)
@@ -654,9 +718,7 @@ function find_spare_ammo(wpn_id, box)
 		alife_process_item(rounds, se_item.id, {ammo = amount})
 	end
 	
-	
 	-- printf('[RPG - Looting] ||Plus One|| gave %s extra round(s) of type: %s', amount, rounds)
-	
 end
 
 -------------------------------------------------------------------------------------------------------------------------------
@@ -664,13 +726,11 @@ end
 -------------------------------------------------------------------------------------------------------------------------------
 function monster_on_loot_init(victim, loot_table)
 	if perks["perk_artefinder"] >= 5 then
-		local rng_roll = rand(1,100) > (perks["perk_artefinder"] - 4)
-		if rng_roll then
-			-- printf("[RPG Looting] Artefinder mutant loot: %s", rng_roll)
-			return
-		end
-		try_spawn_artefact(loot_table, "mutant")
+		local rng_roll = rand(100) <= (perks["perk_artefinder"] - 4)
 		-- printf("[RPG Looting] Artefinder mutant loot: %s", rng_roll)
+		if rng_roll then
+			try_spawn_artefact(loot_table, "mutant")
+		end
 	end
 end
 
@@ -696,8 +756,16 @@ end
 --------------------------------------------------------------------------------------------------------------
 local GetEcoFactor = game_difficulties.get_eco_factor
 game_difficulties.get_eco_factor = function(key)
-	if (key == "rewards") and (perks["perk_midas_touch"]  > 0) then
-		return GetEcoFactor(key) + (0.05 * perks["perk_midas_touch"] )
+	if (key == "rewards") then
+		local rewards_factor = GetEcoFactor(key)
+		if perks["perk_midas_touch"] > 0 then
+			rewards_factor = rewards_factor + (0.05 * perks["perk_midas_touch"])
+		end
+		if banner_of_war.cached_patch_faction == "killer" then
+--			printf("[RPG - Looting] MERCENARY - +5% cash for task completion...")
+			rewards_factor = rewards_factor + 0.05
+		end
+		return rewards_factor
 	end
 	return GetEcoFactor(key)
 end
@@ -714,11 +782,11 @@ function midas_touch_money_increase(item)------------------> actor_on_item_take(
 				local min_amt = tonumber(money_amount[1]) or 10
 				local max_amt = tonumber(money_amount[2]) or 30
 				local base_amount = rand(min_amt, max_amt)
-				local perk_amount = math.floor((base_amount * perk_mult) + 0.5)
+				local perk_amount = math_floor((base_amount * perk_mult) + 0.5)
 				db.actor:give_money(perk_amount - base_amount)
 			else
 				local base_amount = tonumber(money_amount[1]) or 10
-				local perk_amount = math.floor((base_amount * perk_mult) + 0.5)
+				local perk_amount = math_floor((base_amount * perk_mult) + 0.5)
 				db.actor:give_money(perk_amount - base_amount)
 			end
 		end
@@ -735,11 +803,11 @@ if arti_lootboxes then
             mult = 1 + (0.05 * perks["perk_midas_touch"] )
 			money = arti_lootboxes.str_explode_num(money_range, ",")
 			if money[2] then
-				local min_amt = math.floor(tonumber(money[1])) * mult or 10
-				local max_amt = math.floor(tonumber(money[2])) * mult or 30
+				local min_amt = math_floor(tonumber(money[1])) * mult or 10
+				local max_amt = math_floor(tonumber(money[2])) * mult or 30
 				db.actor:give_money(rand(min_amt, max_amt))
 			else
-				local amount = math.floor(tonumber(money[1])) * mult or 10
+				local amount = math_floor(tonumber(money[1])) * mult or 10
 				db.actor:give_money(amount)
 			end
 			alife_release(obj)
@@ -781,6 +849,10 @@ function box_loot_mod(section, obj, t)
 		return BaseCreateItem(section, obj, t)
 	end
 	
+	if not obj or not section then
+		return BaseCreateItem(section, obj, t)
+	end
+	
 	if not (perks["perk_careful_handler"] > 0 or perks["perk_medicine_man"] > 0 or perks["perk_ammo_finder"] > 0 or perks["perk_plus_one"] > 0 or perks["perk_artefinder"] > 0) then
 		return BaseCreateItem(section, obj, t)
 	end
@@ -801,15 +873,15 @@ function box_loot_mod(section, obj, t)
 		item_cond_adj(t, cond_bonus)
 	end
 	
-	if kind == "i_medical" and ((perks["perk_medicine_man"] * 2) > rand(1,100)) then
+	if kind == "i_medical" and (rand(100) <= (perks["perk_medicine_man"] * 2)) then
 		BaseCreateItem(section, obj, t)
 	end
 	
-	-- Doing the random check here to avoid unnecessary script work if the item doesn't even get to spawn
+	-- If ammo value, then modify it. If not, create a new box with correct adjustments.
 	if is_ammo then
 		-- "Plus One" has a 0.1% chance to change any given ammo drop from a container to an ammo type for a player's currently-equipped weapons
 		if perks["perk_plus_one"] > 0 then
-			if rand(1,1000) == 1 then
+			if rand(1000) == 1 then
 				local wpn_id = x_cxv_perks_data.weapon_list[rand(1,#x_cxv_perks_data.weapon_list)]
 				local ammo_list = utils_item.get_ammo(nil, wpn_id)
 				local rounds = ammo_list[rand(1,#ammo_list)] or nil
@@ -835,7 +907,7 @@ function box_loot_mod(section, obj, t)
 		
 		-- Ammo Finder double chance applies to ammo in boxes
 		if perks["perk_ammo_finder"] > 2 then
-			if ammo_double_chance[perks["perk_ammo_finder"]] > rand(1,100) then
+			if rand(100) <= ammo_double_chance[perks["perk_ammo_finder"]] then
 				-- double the ammo amount dropped
 				if t and t.ammo then
 					t.ammo = t.ammo * 2
@@ -880,7 +952,7 @@ function weapon_part_careful_handler_bonus(wpn)
 				local careful_handler_bonus = 10
 				local rnd_idx = rand(1, #valid_parts_list)
 				local part_sec = valid_parts_list[rnd_idx]
-				printf("Part to receive Careful Handler bonus: %s", part_sec)
+--				printf("Part to receive Careful Handler bonus: %s", part_sec)
 				if is_barrel(part_sec) then
 					careful_handler_bonus = 5
 				end

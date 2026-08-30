@@ -35,5 +35,25 @@
 		<text>N/A</text>
 	</string>
 	
+	<string id="cxv_comfort_food_tooltip">
+        <text>Comfort Food Healing: </text>
+    </string>
+	
+	<string id="cxv_banner_of_war_renegade_title">
+        <text>Renegade Hitlist</text>
+    </string>
+	
+	<string id="cxv_banner_of_war_renegade">
+        <text>Elimination Reward Claimed: +%d RU</text>
+    </string>
+	
+	<string id="cxv_banner_of_war_dolg_title">
+        <text>Duty Hunter Board</text>
+    </string>
+	
+	<string id="cxv_banner_of_war_dolg">
+        <text>Hunting Reward Claimed: +%d RU</text>
+    </string>
+	
 	
 </string_table>
