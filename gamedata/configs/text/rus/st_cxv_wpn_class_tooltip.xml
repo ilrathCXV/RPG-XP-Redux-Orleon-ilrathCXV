@@ -5,7 +5,7 @@
 		<text>•</text>
 	</string>
 	<string id="cxv_wpn_class_tooltip_title">
-		<text>RPG Perks Оружейный Класс: </text>
+		<text>Класс Оружия (RPG-Система): </text>
 	</string>
 	<string id="cxv_wpn_class_tooltip_smg">
 		<text>Пистолет-Пулемет</text>
@@ -35,5 +35,25 @@
 		<text>N/A</text>
 	</string>
 	
+	<string id="cxv_comfort_food_tooltip">
+        <text>Лечение Сытным Перекусом: </text>
+    </string>
 	
+	<string id="cxv_banner_of_war_renegade_title">
+        <text>Расстрельный Список Ренегатов</text>
+    </string>
+	
+	<string id="cxv_banner_of_war_renegade">
+        <text>Награда За Убийство Получена: +%d руб.</text>
+    </string>
+	
+	<string id="cxv_banner_of_war_dolg_title">
+        <text>Охотничья Доска Долга</text>
+    </string>
+	
+	<string id="cxv_banner_of_war_dolg">
+        <text>Охотничья Награда Получена: +%d руб.</text>
+    </string>
+
+
 </string_table>

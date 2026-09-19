@@ -61,6 +61,11 @@ perks = {
 
 local minCondition = 0
 local maxCondition = 0
+
+local grok_regular_fields_chance = 0
+local grok_dynamic_fields_chance = 0
+local grok_per_field_probability = 0
+
 -- local artefinder_bonus = {[0] = 0, [1] = 1, [2] = 3, [3] = 7, [4] = 12, [5] = 18 }
 
 original_map_chances = {
@@ -245,9 +250,20 @@ local function experience_skill_on_update(perk_id, perk_data)
 			end
 		end
 		if grok_artefacts_random_spawner then
-			grok_artefacts_random_spawner.regular_fields_chance = 40 + (perks["perk_artefinder"] * 3)
-			grok_artefacts_random_spawner.dynamic_fields_chance = 22 + (perks["perk_artefinder"] * 3)
-			grok_artefacts_random_spawner.per_field_probability = 35 + (perks["perk_artefinder"] * 3)
+			if grok_dynamic_fields_chance == 0 then
+				grok_dynamic_fields_chance = grok_artefacts_random_spawner.dynamic_fields_chance or 25
+			end
+			grok_artefacts_random_spawner.dynamic_fields_chance = grok_dynamic_fields_chance + (perks["perk_artefinder"] * 3)
+			
+			if grok_regular_fields_chance == 0 then
+				grok_regular_fields_chance = grok_artefacts_random_spawner.regular_fields_chance or 60
+			end
+			grok_artefacts_random_spawner.regular_fields_chance = grok_regular_fields_chance + (perks["perk_artefinder"] * 3)
+			
+			if grok_per_field_probability == 0 then
+				grok_per_field_probability = grok_artefacts_random_spawner.per_field_probability or 40
+			end
+			grok_artefacts_random_spawner.per_field_probability = grok_per_field_probability + (perks["perk_artefinder"] * 3)
 		end
 	end
 	

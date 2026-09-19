@@ -1045,24 +1045,27 @@
 	<string id="st_perk_zone_gunsmith_desc_1">
         <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Bonus repair items will gain %c[d_green]+1% %c[ui_gray_2]to their base repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
-		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+5% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+3% %c[ui_gray_2]repair bonus\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
     </string>
 	<string id="st_perk_zone_gunsmith_desc_2">
         <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Bonus repair items will gain %c[d_green]+2% %c[ui_gray_2]to their base repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
-		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+6% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+4% %c[ui_gray_2]repair bonus\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
     </string>
 	<string id="st_perk_zone_gunsmith_desc_3">
 		<text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Bonus repair items will gain %c[d_green]+3% %c[ui_gray_2]to their base repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
-		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+7% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+5% %c[ui_gray_2]repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]10% %c[ui_gray_2]chance to not be consumed\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
@@ -1070,8 +1073,9 @@
 	<string id="st_perk_zone_gunsmith_desc_4">
         <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Bonus repair items will gain %c[d_green]+4% %c[ui_gray_2]to their base repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
-		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+8% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+6% %c[ui_gray_2]repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]30% %c[ui_gray_2]chance to not be consumed\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>
@@ -1079,8 +1083,9 @@
 	<string id="st_perk_zone_gunsmith_desc_5">
         <text>Experimenting with your repairs has led to learning to use basic scrap as repair material.\n \n
 		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] Bonus repair items will gain %c[d_green]+5% %c[ui_gray_2]to their base repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Can use %c[yellow]Metallic Scraps %c[ui_gray_2]as a bonus item during any repair\n
-		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+9% %c[ui_gray_2]repair bonus\n
+		%c[d_blue] - %c[ui_gray_2] Scraps will have a base %c[d_green]+7% %c[ui_gray_2]repair bonus\n
 		%c[d_blue] - %c[ui_gray_2] Bonus repair items have a %c[d_green]60% %c[ui_gray_2]chance to not be consumed\n
 		%c[d_red] - %c[ui_gray_2] Metallic Scraps CANNOT be used for artefact empowering
 		</text>

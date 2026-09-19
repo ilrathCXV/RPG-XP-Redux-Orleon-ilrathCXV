@@ -297,112 +297,9 @@ function killer_patch_generation(obj)
 	return "stalker_patch"
 end
 
--------------------------------------------------------------------------
--------------------------------------------------------------------------
-
-function cache_outfit_patch_section(obj, sec)
-	if obj and obj:id() == cached_outfit_id then return end
-	
-	cached_patch_faction = "neutral"
-	cached_outfit_id = nil
-	
-	if not obj then
-		printf("[RPG - Banner of War] No outfit given - outfit patch set as Neutral (%s)", cached_patch_faction)
-		return
-	end
-	local section = sec or obj:section()
-	
-	cached_patch_faction = ini_sys:r_string_ex(section,"community") or "neutral"
-	cached_outfit_id = obj:id()
-	
-	printf("[RPG - Banner of War] Outfit cached (%s | %s) - outfit patch set as %s", section, cached_outfit_id, cached_patch_faction)
-	
-end
-
-function actor_item_to_slot(item)
-	if not item then return end
-	if x_cxv_perks_data.perks["perk_banner_of_war"] < 1 then return end
-	if not IsOutfit(item) then return end
-
-	cache_outfit_patch_section(item, item and item:section())
-end
-
-function actor_item_to_ruck(item)
-	if not item then return end
-	if x_cxv_perks_data.perks["perk_banner_of_war"] < 1 then return end
-	if not IsOutfit(item) then return end
-	if not cached_outfit_id == item:id() then return end
-	
-	if get_actor() then
-		local armor = get_actor():item_in_slot(7)
-		cache_outfit_patch_section(armor, armor and armor:section())
-	else
-		cache_outfit_patch_section(nil, nil)
-	end
-end
-
-function actor_on_first_update()
-	if x_cxv_perks_data.perks["perk_banner_of_war"] < 1 then
-		printf("[RPG - Banner of War] Perk not taken - clearing cached outfit faction patch + cached outfit ID")
-		cached_patch_faction = nil
-		cached_outfit_id = nil
-		return
-	end
-	
-	if get_actor() then
-		local armor = get_actor():item_in_slot(7)
-		cache_outfit_patch_section(armor, armor and armor:section())
-	end
-end
-
-function skill_on_update(perk_id, perk_data)
-	if perk_id == "perk_banner_of_war" and perk_data["curr_level"] ~= last_banner_level then
-		printf("[RPG - Banner of War] Perk taken/registered - finding outfit...")
-		last_banner_level = perk_data["curr_level"]
-		if get_actor() then
-			local armor = get_actor():item_in_slot(7)
-			cache_outfit_patch_section(armor, armor and armor:section())
-		end
-	end
-end
-
--- Save/load of killed enemy ID patch cache table while on same level
-function save_state(mdata)
-	mdata.death_id_patch_cache = death_id_patch_cache
-end
-
-function load_state(mdata)
-	if mdata.death_id_patch_cache then
-		death_id_patch_cache = mdata.death_id_patch_cache
-	else
-		death_id_patch_cache = {}
-	end
-end
-
--- Clear killed enemy ID patch cache table - all corpses will get cleared (eventually)
-function on_before_level_changing(...)
-	printf("[RPG - Banner of War] Changing level - clearing cached killed enemy paired-patch list...")
-	empty_table(death_id_patch_cache)
-end
-
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
 -- Perk functionality that can exist within this own script/doesn't need to interact with other scripts' functions
-
--- Clear Sky: immunity to in-water radiation + bleed restore (placing it here since this is already an "on update" function)
-local bleed_restore_per_ms = 0.0000123
-local actor_bleed_k = ini_sys:r_float_ex("actor_condition", "bleed_speed_k") or 1
-local balance_modifier = 0.60
-BaseRadWaterUpdate = gameplay_radioactive_water.actor_on_update
-function gameplay_radioactive_water.actor_on_update(_,delta)
-	if cached_patch_faction and cached_patch_faction == "csky" then
-		if get_actor() then
-			get_actor().bleeding = bleed_restore_per_ms * delta * actor_bleed_k * balance_modifier
-		end
-		return
-	end
-	BaseRadWaterUpdate(_,delta)
-end
 
 -- Ecologist: 15% chance for picking a random piece of mutant loot to duplicate + 0.01% chance to loot a "Bat"
 -- Bandit: 5% chance to loot a jewelry box
@@ -438,6 +335,126 @@ function monster_on_loot_init(monster, loot_table)
 	end
 	
 	clear_killed_enemy_paired_patch(monster)
+end
+
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+
+function cache_outfit_patch_section(obj, sec)
+	if obj and obj:id() == cached_outfit_id then return end
+	
+	cached_patch_faction = "neutral"
+	cached_outfit_id = nil
+	
+	if not obj then
+		printf("[RPG - Banner of War] No outfit given - outfit patch set as Neutral (%s)", cached_patch_faction)
+		return
+	end
+	local section = sec or obj:section()
+	
+	cached_patch_faction = ini_sys:r_string_ex(section,"community") or "neutral"
+	cached_outfit_id = obj:id()
+	
+	printf("[RPG - Banner of War] Outfit cached (%s | %s) - outfit patch set as %s", section, cached_outfit_id, cached_patch_faction)
+	
+end
+
+function actor_item_to_slot(item)
+	if not item then return end
+	if x_cxv_perks_data.perks["perk_banner_of_war"] < 1 then
+		cached_patch_faction = nil
+		cached_outfit_id = nil
+		return
+	end
+	if not IsOutfit(item) then return end
+
+	cache_outfit_patch_section(item, item and item:section())
+end
+
+function actor_item_to_ruck(item)
+	if not item then return end
+	if x_cxv_perks_data.perks["perk_banner_of_war"] < 1 then
+		cached_patch_faction = nil
+		cached_outfit_id = nil
+		return
+	end
+	if not IsOutfit(item) then return end
+	if not cached_outfit_id == item:id() then return end
+	
+	if get_actor() then
+		local armor = get_actor():item_in_slot(7)
+		cache_outfit_patch_section(armor, armor and armor:section())
+	else
+		cache_outfit_patch_section(nil, nil)
+	end
+end
+
+function actor_on_first_update()
+	if x_cxv_perks_data.perks["perk_banner_of_war"] < 1 then
+		printf("[RPG - Banner of War] Perk not taken - clearing cached outfit faction patch + cached outfit ID")
+		cached_patch_faction = nil
+		cached_outfit_id = nil
+		return
+	end
+	
+	if get_actor() then
+		local armor = get_actor():item_in_slot(7)
+		cache_outfit_patch_section(armor, armor and armor:section())
+	end
+end
+
+
+-- Clear Sky: immunity to in-water radiation + bleed restore (placing it here since this is already an "on update" function)
+local bleed_restore_per_ms = 0.0000123
+local actor_bleed_k = ini_sys:r_float_ex("actor_condition", "bleed_speed_k") or 1
+local balance_modifier = 0.60
+BaseRadWaterUpdate = gameplay_radioactive_water.actor_on_update
+function clear_sky_bleed_radio_override(_,delta)
+	if cached_patch_faction and cached_patch_faction == "csky" then
+		if get_actor() then
+			get_actor().bleeding = bleed_restore_per_ms * delta * actor_bleed_k * balance_modifier
+		end
+		return
+	end
+	BaseRadWaterUpdate(_,delta)
+end
+
+
+function skill_on_update(perk_id, perk_data)
+	if perk_id == "perk_banner_of_war" and perk_data["curr_level"] ~= last_banner_level then
+		printf("[RPG - Banner of War] Perk taken/registered - finding outfit...")
+		last_banner_level = perk_data["curr_level"]
+		if perk_data["curr_level"] > 0 then
+			gameplay_radioactive_water.actor_on_update = clear_sky_bleed_radio_override
+			if get_actor() then
+				local armor = get_actor():item_in_slot(7)
+				cache_outfit_patch_section(armor, armor and armor:section())
+			end
+		else
+			cached_patch_faction = nil
+			cached_outfit_id = nil
+			gameplay_radioactive_water.actor_on_update = BaseRadWaterUpdate
+		end
+	end
+end
+
+-- Save/load of killed enemy ID patch cache table while on same level
+function save_state(mdata)
+	mdata.death_id_patch_cache = death_id_patch_cache
+end
+
+function load_state(mdata)
+	if mdata.death_id_patch_cache then
+		death_id_patch_cache = mdata.death_id_patch_cache
+	else
+		death_id_patch_cache = {}
+	end
+end
+
+-- Clear killed enemy ID patch cache table - all corpses will get cleared (eventually)
+function on_before_level_changing(...)
+	printf("[RPG - Banner of War] Changing level - clearing cached killed enemy paired-patch list...")
+	empty_table(death_id_patch_cache)
 end
 
 -----------------------------------------------------------------------------------------------------

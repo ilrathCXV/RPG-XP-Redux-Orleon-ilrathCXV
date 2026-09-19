@@ -70,13 +70,19 @@ if zzzzzz_item_repair_nearby_stashes then
 						if (self.parts_match and sec == obj_s:section()) then
 							part_bonus = obj:condition()
 							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
+							
+							part_bonus = part_bonus + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+							
 							part_bonus = clamp(math.floor(part_bonus * 100) * self.parts_multi, 0, 100)
 						elseif (self.parts_sections and self.parts_sections[sec]) then
 							part_bonus = ini_sys:r_float_ex(sec, "repair_part_bonus") or self.part_bonus
 							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
+							
+							part_bonus = part_bonus + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+							
 							part_bonus = clamp(math.floor(part_bonus * 100) * self.parts_multi, 0, 100)
 						elseif (x_cxv_perks_data.perks["perk_zone_gunsmith"] > 0) and (sec == "prt_i_scrap") then
-							part_bonus = 0.04 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+							part_bonus = 0.02 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
 							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
 							part_bonus = clamp(math.floor(part_bonus*100) , 0 , 100)
 						end
@@ -304,6 +310,9 @@ else
 						if (self.parts_match and sec == obj_s:section()) then
 							local part_bonus = obj:condition()
 							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
+							
+							part_bonus = part_bonus + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+							
 							part_bonus = clamp(math.floor(part_bonus*100)*self.parts_multi , 0 , 100)
 					
 							size_t = size_t + 1
@@ -313,6 +322,9 @@ else
 						elseif (self.parts_sections and self.parts_sections[sec]) then
 							local part_bonus = ini_sys:r_float_ex(sec,"repair_part_bonus") or self.part_bonus
 							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
+							
+							part_bonus = part_bonus + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+							
 							part_bonus = clamp(math.floor(part_bonus*100)*self.parts_multi , 0 , 100)
 					
 							size_t = size_t + 1
@@ -320,7 +332,7 @@ else
 							inf[size_t] = part_bonus
 						
 						elseif (x_cxv_perks_data.perks["perk_zone_gunsmith"] > 0) and (sec == "prt_i_scrap") then
-							local part_bonus = 0.04 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+							local part_bonus = 0.02 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
 							part_bonus = (game_achievements.has_achievement("mechanized_warfare")) and (part_bonus + 0.02) or part_bonus
 							part_bonus = clamp(math.floor(part_bonus*100) , 0 , 100)
 					
@@ -368,9 +380,12 @@ item_repair.UIRepair.OnItemSelect = function(self, n)
 			local is_part_match = (self.parts_match and sec == obj_1:section())
 			con = is_part_match and obj_n:condition() or ini_sys:r_float_ex(sec,"repair_part_bonus") or self.part_bonus
 			con = (game_achievements.has_achievement("mechanized_warfare")) and (con + 0.02) or con
+			
+			con = con + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+			
 			con = clamp(math.floor(con*100)*self.parts_multi , 0 , 100)
 		elseif n == 2 and (sec == "prt_i_scrap") then
-			con = 0.04 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
+			con = 0.02 + (0.01 * x_cxv_perks_data.perks["perk_zone_gunsmith"])
 			con = (game_achievements.has_achievement("mechanized_warfare")) and (con + 0.02) or con
 			con = clamp(math.floor(con*100) , 0 , 100)
 		end

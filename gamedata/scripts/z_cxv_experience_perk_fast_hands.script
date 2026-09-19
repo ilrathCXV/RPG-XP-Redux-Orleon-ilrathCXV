@@ -87,6 +87,14 @@ function fast_hands_speed(anim_table, obj)
 	
 end
 
-function on_game_start()
-	RegisterScriptCallback("actor_on_hud_animation_play", fast_hands_speed)
+if animation_common and animation_common.add_anim_mutator then
+
+	animation_common.add_anim_mutator(fast_hands_speed, 0.00001)
+
+else
+
+	function on_game_start()
+		RegisterScriptCallback("actor_on_hud_animation_play", fast_hands_speed)
+	end
+
 end

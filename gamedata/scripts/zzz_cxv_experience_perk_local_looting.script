@@ -10,7 +10,7 @@ if grok_stashes_on_corpses then
 	function grok_stashes_on_corpses.npc_on_use(npc)
 		
 		-- needed the whole function as no easy way to check if stash was successfully generated
-		if npc:alive() then return end
+		if (npc.alive and npc:alive()) then return end
 		if (character_community(npc) == "zombied") then return end
 		if grok_stashes_on_corpses._used_corpses[npc:id()] then return end
 		grok_stashes_on_corpses._used_corpses[npc:id()] = true
