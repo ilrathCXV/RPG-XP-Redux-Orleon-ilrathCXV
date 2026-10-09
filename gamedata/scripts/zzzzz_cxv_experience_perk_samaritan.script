@@ -37,7 +37,7 @@ function xr_effects.inc_faction_goodwill_to_actor(actor, npc, p)
 	if delta and community then
 		
 		pos_mult = 1 + applied_loner_mult + (samaritan_level * samaritan_pos_mult) 
-		neg_mult = 1 math_max(0, (1 - applied_loner_mult - (samaritan_level * samaritan_neg_mult)))
+		neg_mult = math_max(0, (1 - applied_loner_mult - (samaritan_level * samaritan_neg_mult)))
 		
 		game_relations.change_factions_community_num(community, id, math_floor((tonumber(delta) * pos_mult) + 0.5) )
 		printdbg("/ Goodwill (main) gained with %s: %s", community, math_floor((tonumber(delta) * pos_mult) + 0.5) )

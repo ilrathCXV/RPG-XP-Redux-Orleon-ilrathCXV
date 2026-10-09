@@ -46,7 +46,7 @@ function comfort_food_healing(item,string)
 		if x_cxv_perks_data.perks["perk_glass_cannon"] >= 3 then
 			local pre_health = db.actor.health
 			if (pre_health + comfort_healing) > 0.8 then
-				comfort_healing = (-1) * (0.8 - pre_health - comfort_healing)
+				comfort_healing = math.max(0, 0.8 - pre_health)
 			end
 		end
 		db.actor:change_health(comfort_healing)

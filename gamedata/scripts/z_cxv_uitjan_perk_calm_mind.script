@@ -20,6 +20,7 @@ function arszi_psy.get_psy_health_regeneration() -- happens once per second
 			temp_regen = temp_regen * (1 + (0.2 * x_cxv_perks_data.perks["perk_calm_mind"]))							-- Calm Mind: Multiply psy regen by 20% per rank when near a campfire (doubles psy regen at max rank)
 		end
 		psyregenmult = psyregenmult + (psyregenmult - temp_regen)
+		if psyregenmult > 0 then psyregenmult = 0 end	-- don't let a negative booster turn into regen
 		return psyregenmult
 	else
 		psyregenmult = (1 + (0.2 * x_cxv_perks_data.perks["perk_calm_mind"])) * psyregenmult			-- Calm Mind: 20% of base psy regen per rank (should double base psy regen at max rank)
