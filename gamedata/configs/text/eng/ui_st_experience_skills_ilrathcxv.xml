@@ -20,19 +20,19 @@
 	<string id="st_perk_fast_hands_desc_1">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]15%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]25%
 		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_2">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]30%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]50%
 		</text>
     </string>
 	<string id="st_perk_fast_hands_desc_3">
         <text>You have learned to handle your items more effectively. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]70%
+		%c[d_blue] - %c[ui_gray_2] Increases your stow and draw speed by %c[d_green]75%
 		</text>
     </string>
 <!--
@@ -59,27 +59,25 @@
 	<string id="st_perk_rapid_reload_desc_1">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]10%\n
-		%c[d_red] -  This perk will cause your reload animations to become de-synced with the reload sounds (engine limitation)\n
-		%c[d_red] -  Taking Rank 3 or higher will result in much more noticable sound desync
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]25%\n
+		%c[d_red] -  If not using Verdatim's "Dynamic Reload Speed" mod, this perk will cause de-sync with reload sounds (engine limitation)
 		</text>
     </string>
 	<string id="st_perk_rapid_reload_desc_2">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]20%\n
-		%c[d_red] -  This perk will cause your reload animations to become de-synced with the reload sounds (engine limitation)\n
-		%c[d_red] -  Taking Rank 3 or higher will result in much more noticable sound desync
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]50%\n
+		%c[d_red] -  If not using Verdatim's "Dynamic Reload Speed" mod, this perk will cause de-sync with reload sounds (engine limitation)
 		</text>
     </string>
 	<string id="st_perk_rapid_reload_desc_3">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]35%\n
-		%c[d_red] -  This perk will cause your reload animations to become de-synced with the reload sounds (engine limitation)\n
-		%c[d_red] -  Taking Rank 3 or higher will result in much more noticable sound desync
+		%c[d_blue] - %c[ui_gray_2] Your reload speed is increased by %c[d_green]75%\n
+		%c[d_red] -  If not using Verdatim's "Dynamic Reload Speed" mod, this perk will cause de-sync with reload sounds (engine limitation)
 		</text>
     </string>
+<!--
 	<string id="st_perk_rapid_reload_desc_4">
         <text>Speed is key in the heat of battle. \n \n
 		%c[ui_gray_3]EFFECTS:\n
@@ -96,7 +94,7 @@
 		%c[d_red] -  Taking Rank 3 or higher will result in much more noticable sound desync
 		</text>
     </string>
-	
+-->	
     <string id="st_perk_gunslinger">
         <text>Gunslinger</text>
     </string>
@@ -1822,7 +1820,7 @@
 		%c[d_orange] - %c[pda_white] ECOLOGIST%c[ui_gray_2]: 15% chance for an extra piece of loot AND 0.1% chance to find a "Bat" artefact when skinning mutants\n \n
 		%c[d_blue] - %c[pda_white] MERCENARY%c[ui_gray_2]: 40% chance to find a random faction patch when looting Stalkers AND +5% more cash from task completions\n \n
 		%c[d_cyan] - %c[pda_white] CLEAR SKY%c[ui_gray_2]: Immunity to radiation when standing in water + slight passive bleed restore (about 6% total bleed heal/sec)\n \n
-		%c[0,50,35,10] - %c[pda_white] BANDIT%c[ui_gray_2]: 8% chance to find jewelry boxes when looting Stalkers and mutants + 5% to find misc. crafting items on Stalkers (stacks with "Prospector" perk)\n \n
+		%c[0,50,35,10] - %c[pda_white] BANDIT%c[ui_gray_2]: 8% chance to find jewelery boxes when looting Stalkers and mutants + 5% to find misc. crafting items on Stalkers (stacks with "Prospector" perks)\n \n
 		%c[0,40,50,35] - %c[pda_white] RENEGADES%c[ui_gray_2]: Roubles for every Stalker kill (based on faction difficulty and Stalker rank - ranges from 65 to 1750 RU)\n \n
 		%c[pda_white] - MONOLITH%c[ui_gray_2]: 3% chance to find RPG-7 ammo OR 0.00001% chance to find an RPG-7 when looting Stalkers\n \n
 		%c[0,120,80,5] - %c[pda_white] SIN%c[ui_gray_2]: +15% damage resist against mutants AND +5% damage resist against bullet damage\n \n

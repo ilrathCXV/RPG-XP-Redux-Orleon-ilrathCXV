@@ -1,4 +1,4 @@
-local fast_hands_bonuses = {[0] = 0, [1] = 15, [2] = 30, [3] = 70, [4] = 70, [5] = 70} -- 4 & 5 are failsafes for older saves 
+local fast_hands_bonuses = {[0] = 0, [1] = 25, [2] = 50, [3] = 75 }
 
 local stow_anims = {
 	anm_hide = true,
@@ -80,7 +80,8 @@ function fast_hands_speed(anim_table, obj)
 			end
 		end
 		
-		local swap_bonus = 1 + (fast_hands_bonuses[x_cxv_perks_data.perks["perk_fast_hands"]] * 0.01)
+		local bonus_idx = math.min(x_cxv_perks_data.perks["perk_fast_hands"], 3)
+		local swap_bonus = 1 + (fast_hands_bonuses[bonus_idx] * 0.01)
 		-- printf("[RPG] Swap Bonus: %s", swap_bonus)
 		anim_table.anm_speed = animation_speed * swap_bonus
 	end

@@ -38,6 +38,39 @@ local possible_factions = {
 }
 ]]
 
+-- ilrathCXV (9/27/26): Will now use integers instead of strings for storing killed-enemy patch pairing - to save save-data space
+local list_val_to_faction = {
+	[1] = "neutral",
+	[2] = "stalker",
+	[3] = "bandit",
+	[4] = "dolg",
+	[5] = "csky",
+	[6] = "ecolog",
+	[7] = "freedom",
+	[8] = "killer",
+	[9] = "army",
+	[10] = "monolith",
+	[11] = "renegade",
+	[12] = "greh",
+	[13] = "isg",
+}
+	
+local list_faction_to_val = {
+	["neutral"] = 1,	
+	["stalker"] = 2,	
+	["bandit"] = 3,	
+	["dolg"] = 4,	
+	["csky"] = 5,	
+	["ecolog"] = 6,	
+	["freedom"] = 7,	
+	["killer"] = 8,	
+	["army"] = 9,	
+	["monolith"] = 10,
+	["renegade"] = 11,
+	["greh"] = 12,	
+	["isg"] = 13,	
+}
+
 -- Will cache the ID of the enemy killed and keep memory of what faction patch was worn for looting purposes
 -- On-hit effects will check "cached_patch_faction" variable directly
 -- Add to cache on enemy death in ..._effects.script
@@ -50,15 +83,20 @@ function store_killed_enemy_paired_patch(obj)
 	if not obj then return end
 	if not cached_patch_faction then return end
 	
-	death_id_patch_cache[obj:id()] = cached_patch_faction
+	death_id_patch_cache[obj:id()] = list_faction_to_val[cached_patch_faction]
 end
 
 function get_killed_enemy_paired_patch(obj)
 	if not obj then return end
 	
-	printf("[RPG - Banner of War] Getting killed enemy paired-patch (%s)...", death_id_patch_cache[obj:id()])
+	local saved_paired_value = death_id_patch_cache[obj:id()]
+	if saved_paired_value then
+		saved_paired_value = (list_val_to_faction[saved_paired_value] and list_val_to_faction[saved_paired_value]) or saved_paired_value
+	end
 	
-	return death_id_patch_cache[obj:id()] or ""
+	printf("[RPG - Banner of War] Getting killed enemy paired-patch (%s)...", saved_paired_value)
+	
+	return saved_paired_value or ""
 end
 
 function clear_killed_enemy_paired_patch(obj)
@@ -462,9 +500,9 @@ end
 
 function on_game_start()
 	if experience_potions then
-		RegisterScriptCallback("experience_skill_on_update", experience_skill_on_update)
+		RegisterScriptCallback("experience_skill_on_update", skill_on_update)
 	else
-		RegisterScriptCallback("experience_perk_on_update", experience_skill_on_update)
+		RegisterScriptCallback("experience_perk_on_update", skill_on_update)
 	end
 	
 	RegisterScriptCallback("actor_item_to_slot", actor_item_to_slot)

@@ -7,10 +7,10 @@ local perks = x_cxv_perks_data.perks
 damaged_task_kind_list = z_cxv_experience_perk_fetch_finder.damaged_kinds
 
 banner_of_war = z_cxv_experience_perk_banner_of_war
-get_killed_enemy_paired_patch = banner_of_war and banner_of_war.get_killed_enemy_paired_patch		-- obj
-clear_killed_enemy_paired_patch = banner_of_war and banner_of_war.clear_killed_enemy_paired_patch	-- obj
-killer_patch_generation = banner_of_war and banner_of_war.killer_patch_generation					-- obj
-freedom_psy_item_section = banner_of_war and banner_of_war.freedom_psy_item_section					-- obj
+get_killed_enemy_paired_patch = banner_of_war and banner_of_war.get_killed_enemy_paired_patch		-- params: obj
+clear_killed_enemy_paired_patch = banner_of_war and banner_of_war.clear_killed_enemy_paired_patch	-- params: obj
+killer_patch_generation = banner_of_war and banner_of_war.killer_patch_generation					-- params: obj
+freedom_psy_item_section = banner_of_war and banner_of_war.freedom_psy_item_section					-- params: obj
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------

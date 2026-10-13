@@ -1,4 +1,4 @@
-local reload_bonuses = {[0] = 0, [1] = 10, [2] = 20, [3] = 35, [4] = 50, [5] = 75}
+local reload_bonuses = {[0] = 0, [1] = 25, [2] = 50, [3] = 75}
 
 local reload_anims = {
 	anm_reload = true,
@@ -104,7 +104,8 @@ if ver_dynamic_reload_speeds then
 		
 		end
 		
-		local speed = (1 + (reload_bonuses[x_cxv_perks_data.perks["perk_rapid_reload"]] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
+		local bonus_idx = math.min(x_cxv_perks_data.perks["perk_rapid_reload"], 3)
+		local speed = (1 + (reload_bonuses[bonus_idx] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
 		local cam_anim_bool = not (x_cxv_perks_data.perks["perk_rapid_reload"] >= 3)
 		--printf("cam_anim_bool is %s", cam_anim_bool)
 		if speed ~= 1 then

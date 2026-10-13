@@ -2,7 +2,7 @@ if perk_based_artefacts then end
 
 local af_lucifer_data = perk_based_artefacts.artefact_props.af_lucifer
 
-local perks = x_cxv_perks_data.perks
+local perks_data = x_cxv_perks_data	--.perks
 
 local time_elapsed		 = 0
 local saved_time_elapsed = 0
@@ -27,7 +27,7 @@ end
 --						 Current time-to-heal-for-one-bandage-tick is 2.85s/2.15s/1.175s OR bleed-recovery-per-sec is 0.7%/1.11%/2.03%
 local bandage_base_boost = ini_sys:r_float_ex("bandage", "boost_bleeding_restore") or 0.004	-- Now gets true value of Bandage's boost
 local actor_bleed_k = ini_sys:r_float_ex("actor_condition", "bleed_speed_k") or 1
-local bleed_coef_table = {[0] = 0, [1] = 0.3509, [2] = 0.4651, [3] = 0.851 }
+--local bleed_coef_table = {[0] = 0, [1] = 0.3509, [2] = 0.4651, [3] = 0.851 } -- original math also had mult by the perk level (current tbl has pre-values)
 
 function perk_effects_over_time()
     if time_global() < old_time then return end
@@ -37,17 +37,17 @@ function perk_effects_over_time()
 	local effect_factor = max(0, saved_time_elapsed > 0 and time_elapsed > 0 and (time_elapsed - saved_time_elapsed) or 1)
 	local actor = db.actor
 -------------------------------------------------------------> Cybermedic
-    if perks["perk_cybermedic"] >= 1 then
+    if perks_data.perks["perk_cybermedic"] >= 1 then
 		if actor.bleeding > 0 then
 			local bleedingCure = 0
-			bleed_table_index = clamp(perks["perk_cybermedic"], 1, 3)
-			bleedingCure = round_idp(bandage_base_boost * perks["perk_cybermedic"] * effect_factor * actor_bleed_k * bleed_coef_table[bleed_table_index], 4)
+--			bleed_table_index = clamp(perks_data.perks["perk_cybermedic"], 1, 3)
+			bleedingCure = round_idp(bandage_base_boost * effect_factor * actor_bleed_k * perks_data.perks["perk_cybermedic"], 4)
 			-- printf("Bleeding Cure amt: %s", bleedingCure)
 			actor.bleeding = bleedingCure
 		end
     end
 -------------------------------------------------------------> Master of the Zone
-	if perks["perk_master_zone"] >= 1 then 
+	if perks_data.perks["perk_master_zone"] >= 1 then 
 		actor:iterate_belt( function(owner, obj)
 			if obj:section() == "af_lucifer" then
 				if af_lucifer_data.condition < 0.51 then
@@ -70,7 +70,7 @@ function perk_effects_over_time()
 	end	
 	
 -------------------------------------------------------------> Glass Cannon (Rank 3): Max HP now capped at 80% to allow damage boost to always be active
-	if (perks["perk_glass_cannon"] >= 3) and actor.health > 0.80 then		
+	if (perks_data.perks["perk_glass_cannon"] >= 3) and actor.health > 0.80 then		
 		actor.health = 0.80
 	end
 	
@@ -82,7 +82,7 @@ if zzz_player_injuries and zzz_player_injuries.actor_on_update then
 	BaseActorOnUpdateBHS = zzz_player_injuries.actor_on_update
 	function zzz_player_injuries.actor_on_update()
 		
-		if (perks["perk_glass_cannon"] >= 3) and zzz_player_injuries.myhealth > 0.80 then
+		if (perks_data.perks["perk_glass_cannon"] >= 3) and zzz_player_injuries.myhealth > 0.80 then
 			zzz_player_injuries.myhealth = 0.80
 		end
 		

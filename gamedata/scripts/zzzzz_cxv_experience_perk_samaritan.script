@@ -37,7 +37,7 @@ function xr_effects.inc_faction_goodwill_to_actor(actor, npc, p)
 	if delta and community then
 		
 		pos_mult = 1 + applied_loner_mult + (samaritan_level * samaritan_pos_mult) 
-		neg_mult = 1 math_max(0, (1 - applied_loner_mult - (samaritan_level * samaritan_neg_mult)))
+		neg_mult = math_max(0, (1 - applied_loner_mult - (samaritan_level * samaritan_neg_mult)))
 		
 		game_relations.change_factions_community_num(community, id, math_floor((tonumber(delta) * pos_mult) + 0.5) )
 		printdbg("/ Goodwill (main) gained with %s: %s", community, math_floor((tonumber(delta) * pos_mult) + 0.5) )
@@ -60,9 +60,9 @@ function xr_effects.inc_faction_goodwill_to_actor(actor, npc, p)
 	
 	if is_gain and delta_rnd and delta_rnd_sub then
 		if rnd_enemy and (delta_rnd > 0) and (relation_registry.community_goodwill(rnd_enemy, id) > 0) then
-			game_relations.change_factions_community_num(rnd_enemy, id, ((-1) * math_ceil((delta_rnd_sub * neg_mult) - 0.5)) )
+			game_relations.change_factions_community_num(rnd_enemy, id, ((-1) * math_ceil((delta_rnd * neg_mult) - 0.5)) )
 			pass_enemy = true
-			printdbg("/ Goodwill (side) lost with %s: %s", rnd_enemy, ((-1) * math_ceil((delta_rnd_sub * neg_mult) - 0.5)))
+			printdbg("/ Goodwill (side) lost with %s: %s", rnd_enemy, ((-1) * math_ceil((delta_rnd * neg_mult) - 0.5)))
 		end
 		if rnd_natural and (delta_rnd_sub > 0) and (relation_registry.community_goodwill(rnd_natural, id) > 0) then
 			game_relations.change_factions_community_num(rnd_natural, id, math_floor((delta_rnd_sub * pos_mult) + 0.5) )

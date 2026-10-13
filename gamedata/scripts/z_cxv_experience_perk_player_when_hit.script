@@ -100,7 +100,7 @@ local function is_elemental(hitter_sec, shit_type)
 	if (not hitter_sec) or (not shit_type) then return end
 	
 	return (((shit_type == hit.shock) or (shit_type == hit.burn) or (shit_type == hit.light_burn) or (shit_type == hit.chemical_burn)
-	or string.find(hitter_sec,"field") or string.find(hitter_sec,"zone_mine")) and ((shit_type ~= hit.radiation) or (shit_type ~= hit.telepatic))) or false
+	or string.find(hitter_sec,"field") or string.find(hitter_sec,"zone_mine")) and ((shit_type ~= hit.radiation) and (shit_type ~= hit.telepatic))) or false
 
 end
 

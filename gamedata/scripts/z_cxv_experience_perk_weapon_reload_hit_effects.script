@@ -9,13 +9,13 @@ local lucky_strike_mult = {[0] = 1, [1] = 1.2, [2] = 1.4, [3] = 1.65, [4] = 1.9,
 local string_find   = string.find
 local string_gsub   = string.gsub
 
-local check_wick_mode_validity = x_cxv_perks_data.check_wick_mode_validity		-- sec, weapon_class
-local zone_slayer_validity_check = x_cxv_perks_data.zone_slayer_validity_check	-- sec, obj_id
+local check_wick_mode_validity = x_cxv_perks_data.check_wick_mode_validity		-- params: sec, weapon_class
+local zone_slayer_validity_check = x_cxv_perks_data.zone_slayer_validity_check	-- params: sec, obj_id
 
 banner_of_war = z_cxv_experience_perk_banner_of_war
-store_killed_enemy_paired_patch = banner_of_war and banner_of_war.store_killed_enemy_paired_patch	-- obj
-duty_mutant_kill_roubles = banner_of_war and banner_of_war.duty_mutant_kill_roubles					-- obj
-renegade_stalker_kill_roubles = banner_of_war and banner_of_war.renegade_stalker_kill_roubles		-- obj
+store_killed_enemy_paired_patch = banner_of_war and banner_of_war.store_killed_enemy_paired_patch	-- params: obj
+duty_mutant_kill_roubles = banner_of_war and banner_of_war.duty_mutant_kill_roubles					-- params: obj
+renegade_stalker_kill_roubles = banner_of_war and banner_of_war.renegade_stalker_kill_roubles		-- params: obj
 
 local jamming_bones = {
 	[20] = true, 
@@ -515,7 +515,7 @@ function find_zone_slayer_ammo(wpn_id,npc)
 	slayer_usage = false
 end
 
-local perkifact_repair_base = 0.075
+local perkifact_repair_base = 0.0075
 
 function perkifact_repair()
 	local perkifact_count = z_cxv_experience_perk_perkifact_power.perkifact_count or 0
