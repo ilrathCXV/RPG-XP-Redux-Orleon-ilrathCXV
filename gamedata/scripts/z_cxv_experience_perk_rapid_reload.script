@@ -157,7 +157,8 @@ if ver_dynamic_reload_speeds then
 		
 		end
 		
-		local stop = (1 + (reload_bonuses[x_cxv_perks_data.perks["perk_rapid_reload"]] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
+		local bonus_idx = math.min(x_cxv_perks_data.perks["perk_rapid_reload"], 3)
+		local stop = (1 + (reload_bonuses[bonus_idx] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
 		--printf("sound_disabler: stop is %s", stop)
 		if stop ~= 1 then
 			return true
@@ -240,7 +241,8 @@ else
 		end
 		
 		printf("[RPG - Rapid Reload] Non-Ver method used")
-		anim_table.anm_speed = animation_speed * (1 + (reload_bonuses[x_cxv_perks_data.perks["perk_rapid_reload"]] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
+		local bonus_idx = math.min(x_cxv_perks_data.perks["perk_rapid_reload"], 3)
+		anim_table.anm_speed = animation_speed * (1 + (reload_bonuses[bonus_idx] * 0.01) + zone_slayer_bonus + wick_mode_bonus)
 		
 	end
 	
