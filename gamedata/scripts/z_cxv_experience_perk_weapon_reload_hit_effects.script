@@ -890,7 +890,7 @@ local function modify_ap(ini,sec,stat,def)
 	return return_stat
 end
 
-if grok_bo then
+if grok_bo and (not cxv_artigrok_bo) then
 	grok_bo.ini_sys.r_float_ex = modify_ap 
 	
 	if grok_bo.npc_on_before_hit then

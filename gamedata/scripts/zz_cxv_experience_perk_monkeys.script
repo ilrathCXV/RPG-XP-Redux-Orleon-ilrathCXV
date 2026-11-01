@@ -160,10 +160,30 @@ if ammo_maker then
 end
 
 ---------------------------------------------------------------------------------------------------------------------------------
--- experience_utils.script - Increase XP based on Prestige ----------------------------------------------------------------------
+-- xr_box.script - Slight XP from destroying boxes/crates -----------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------
-local base_XP_gain = experience_utils.IncreaseExperience
-function experience_utils.IncreaseExperience(amount, action_key, ignore_multipliers)
-	local actor_prestige = experience_utils.GetActorPrestige() or 0
-	base_XP_gain(math.floor(amount * (1 + (0.1 * actor_prestige)) + 0.5), action_key, ignore_multipliers)
+--	local BaseBoxSpawnItems = xr_box.ph_item_box.spawn_items
+--	local box_xp_amt = 5
+--	function xr_box.ph_item_box.spawn_items(obj,who,spawn_ini)
+--		BaseBoxSpawnItems(obj,who,spawn_ini)
+--		if who and who.id and who:id() == AC_ID then
+--			experience_utils.IncreaseExperience(box_xp_amt, "disassemble_item")
+--		end
+--	end
+
+---------------------------------------------------------------------------------------------------------------------------------
+-- experience_utils.script / experience_core (pre-2.0) - Increase XP based on Prestige ------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+
+if experience_utils and experience_utils.IncreaseExperience then
+	local base_XP_gain = experience_utils and experience_utils.IncreaseExperience
+	function experience_utils.IncreaseExperience(amount, action_key, ignore_multipliers)
+		local actor_prestige = experience_utils.GetActorPrestige() or 0
+		base_XP_gain(math.floor(amount * (1 + (0.1 * actor_prestige)) + 0.5), action_key, ignore_multipliers)
+	end
+elseif experience_core and experience_core.increase_experience then
+	local base_XP_gain = experience_core.increase_experience
+	function experience_core.increase_experience(experience, multiplier)
+		base_XP_gain(math.floor(experience * (1 + (0.1 * experience_core.XP.prestige_level)) + 0.5), multiplier)
+	end
 end

@@ -4,6 +4,13 @@ if zz_item_cooking_keep_crafting_window_open 	then end
 
 local play_sound_on_actor = x_cxv_perks_data.play_sound_on_actor
 
+function ExtraItemNews()
+	local sms = actor_menu.set_msg
+	local message = game.translate_string("st_craft_bonus")
+	sms(2, message, 5)
+	play_sound_on_actor("grok\\actor_10", 1, random_float(0.85, 1.05))
+end
+
 base_crafting = ui_workshop.UIWorkshopCraft.Craft
 
 ui_workshop.UIWorkshopCraft.Craft = function(self)
@@ -21,8 +28,8 @@ ui_workshop.UIWorkshopCraft.Craft = function(self)
 		end
 	end
 end
-----------------------------------------------------------------------------------------------
---------------------[NEW] Monkeyscript for Survivalist Passive--------------------------------
+------------------------------------------------------------------------------------------
+--------------------[NEW] Monkeyscript for Cooking Passive--------------------------------
 
 base_cooking = item_cooking.UICook.OnCook
 
@@ -40,9 +47,26 @@ item_cooking.UICook.OnCook = function(self)
 	end
 end
 
-function ExtraItemNews()
-	local sms = actor_menu.set_msg
-	local message = game.translate_string("st_craft_bonus")
-	sms(2, message, 5)
-	play_sound_on_actor("grok\\actor_10", 1, random_float(0.85, 1.05))
+if zce_core and zce_core.give then
+	
+	local ignore_items = {
+		["zce_pot"] = true,
+		["zce_pan"] = true,
+		["hfp_empty_bottle"] = true,
+--		[""] = true,	
+	}
+	
+	base_zce_cooking_give = zce_core.give
+	function zce_core.give(sec, n)
+		if ignore_items[sec] then return base_zce_cooking_give(sec, n) end
+		local old_count = n or 1
+		for i = 1, (n or 1) do
+			local chance = math.random(100) * x_cxv_perks_data.perks["perk_master_craftsman"]
+			old_count = (chance >= 80 and old_count + 1) or old_count
+		end
+		if old_count > n then ExtraItemNews() end
+		return base_zce_cooking_give(sec, old_count)
+	end	
+
 end
+

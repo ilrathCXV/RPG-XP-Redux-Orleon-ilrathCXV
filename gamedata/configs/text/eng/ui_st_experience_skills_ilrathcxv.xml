@@ -1470,32 +1470,46 @@
 	<string id="st_perk_jewelcrafter_desc_1">
         <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+3% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+3% %c[ui_gray_2]chance when attempting to upgrade a Trait gem\n
+		%c[d_blue] - %c[ui_gray_2] You can now open jewelry boxes (right-click) to find %c[d_green]up to 3 Trait gems\n
+		%c[yellow] - Users of older versions of Experience Framework WITHOUT Traits will instead receive up to 3 random cash items
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_2">
         <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+5% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+5% %c[ui_gray_2]chance when attempting to upgrade a Trait gem\n
+		%c[d_blue] - %c[ui_gray_2] You can now open jewelry boxes (right-click) to find %c[d_green]up to 4 Trait gems\n
+		%c[yellow] -  Users of older versions of Experience Framework WITHOUT Traits will instead receive up to 4 random cash items
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_3">
         <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+8% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+8% %c[ui_gray_2]chance when attempting to upgrade a Trait gem\n
+		%c[d_blue] - %c[ui_gray_2] You can now open jewelry boxes (right-click) to find %c[d_green]up to 5 Trait gems\n
+		%c[yellow] -  Users of older versions of Experience Framework WITHOUT Traits will instead receive up to 5 random cash items
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_4">
         <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+10% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+10% %c[ui_gray_2]chance when attempting to upgrade a Trait gem\n
+		%c[d_blue] - %c[ui_gray_2] You can now open jewelry boxes (right-click) to find %c[d_green]up to 6 Trait gems\n
+		%c[yellow] -  Users of older versions of Experience Framework WITHOUT Traits will instead receive up to 6 random cash items
 		</text>
     </string>
 	<string id="st_perk_jewelcrafter_desc_5">
         <text>You have honed your jewelcrafting skills, resulting in a higher chance of success when upgrading Trait gems.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+15% %c[ui_gray_2]chance when attempting to upgrade a Trait gem
+		%c[d_blue] - %c[ui_gray_2] You will now gain %c[d_green]+15% %c[ui_gray_2]chance when attempting to upgrade a Trait gem\n
+		%c[d_blue] - %c[ui_gray_2] You can now open jewelry boxes (right-click) to find %c[d_green]up to 7 Trait gems\n
+		%c[yellow] -  Users of older versions of Experience Framework WITHOUT Traits will instead receive up to 7 random cash items
 		</text>
+    </string>
+	
+	<string id="st_perk_jewelcrafting_box_open_tip">
+        <text>[RPG] Open Jewelry Box</text>
     </string>
 	
 	<string id="st_perk_the_end">
@@ -1720,22 +1734,22 @@
 	<string id="st_perk_hells_kitchen_desc_1">
         <text>Knowledge of your culinary skills have made its way through the Zone. Everyone is itching to watch and taste your talent.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[d_green]15% cheaper\n
-		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[yellow]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_green]40% more profitable
+		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel and cooking tools (i.e. pots and pans from Zone Cooking Expanded) is now %c[d_green]15% cheaper\n
+		%c[d_blue] - %c[ui_gray_2] Selling prepared meals and cooked mutant meat (%c[yellow]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_green]40% more profitable
 		</text>
     </string>
 	<string id="st_perk_hells_kitchen_desc_2">
         <text>Knowledge of your culinary skills have made its way through the Zone. Everyone is itching to watch and taste your talent.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[d_green]30% cheaper\n
-		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[yellow]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_green]75% more profitable
+		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel and cooking tools (i.e. pots and pans from Zone Cooking Expanded) is now %c[d_green]30% cheaper\n
+		%c[d_blue] - %c[ui_gray_2] Selling prepared meals and cooked mutant meat (%c[yellow]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_green]75% more profitable
 		</text>
     </string>
 	<string id="st_perk_hells_kitchen_desc_3">
         <text>Knowledge of your culinary skills have made its way through the Zone. Everyone is itching to watch and taste your talent.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel is now %c[d_green]50% cheaper\n
-		%c[d_blue] - %c[ui_gray_2] Selling cooked mutant meat (%c[yellow]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_green]120% more profitable
+		%c[d_blue] - %c[ui_gray_2] Buying cooking fuel and cooking tools (i.e. pots and pans from Zone Cooking Expanded) is now %c[d_green]50% cheaper\n
+		%c[d_blue] - %c[ui_gray_2] Selling prepared meals and cooked mutant meat (%c[yellow]Zone-produced/Stewed/Purified%c[ui_gray_2]) is now %c[d_green]120% more profitable
 		</text>
     </string>
 	
@@ -1820,7 +1834,7 @@
 		%c[d_orange] - %c[pda_white] ECOLOGIST%c[ui_gray_2]: 15% chance for an extra piece of loot AND 0.1% chance to find a "Bat" artefact when skinning mutants\n \n
 		%c[d_blue] - %c[pda_white] MERCENARY%c[ui_gray_2]: 40% chance to find a random faction patch when looting Stalkers AND +5% more cash from task completions\n \n
 		%c[d_cyan] - %c[pda_white] CLEAR SKY%c[ui_gray_2]: Immunity to radiation when standing in water + slight passive bleed restore (about 6% total bleed heal/sec)\n \n
-		%c[0,50,35,10] - %c[pda_white] BANDIT%c[ui_gray_2]: 8% chance to find jewelery boxes when looting Stalkers and mutants + 5% to find misc. crafting items on Stalkers (stacks with "Prospector" perks)\n \n
+		%c[0,50,35,10] - %c[pda_white] BANDIT%c[ui_gray_2]: 8% chance to find jewelry boxes when looting Stalkers and mutants + 5% to find misc. crafting items on Stalkers (stacks with "Prospector" perks)\n \n
 		%c[0,40,50,35] - %c[pda_white] RENEGADES%c[ui_gray_2]: Roubles for every Stalker kill (based on faction difficulty and Stalker rank - ranges from 65 to 1750 RU)\n \n
 		%c[pda_white] - MONOLITH%c[ui_gray_2]: 3% chance to find RPG-7 ammo OR 0.00001% chance to find an RPG-7 when looting Stalkers\n \n
 		%c[0,120,80,5] - %c[pda_white] SIN%c[ui_gray_2]: +15% damage resist against mutants AND +5% damage resist against bullet damage\n \n
