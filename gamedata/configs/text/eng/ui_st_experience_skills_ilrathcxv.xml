@@ -686,7 +686,7 @@
 	<string id="st_perk_anomaly_defense_desc_1">
         <text>Anomalies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]9% %c[ui_gray_2]less damage
+		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]8% %c[ui_gray_2]less damage
 		</text>
     </string>
 	<string id="st_perk_anomaly_defense_desc_2">
@@ -698,7 +698,7 @@
 	<string id="st_perk_anomaly_defense_desc_3">
         <text>Anomalies are starting to become less of a threat. Rather, they are becoming more of a nuisance.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]27% %c[ui_gray_2]less damage
+		%c[d_blue] - %c[ui_gray_2] Anomalies deal %c[d_green]35% %c[ui_gray_2]less damage
 		</text>
     </string>
 <!---
@@ -793,36 +793,36 @@
 	<string id="st_perk_mutant_slayer_desc_1">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]5% %c[ui_gray_2]less damage from %c[yellow]mutants\n
-		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]7.5% %c[ui_gray_2]at night
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]8% %c[ui_gray_2]less damage from %c[yellow]mutants\n
+		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]12% %c[ui_gray_2]at night
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_2">
-        <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
-		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]10% %c[ui_gray_2]less damage from %c[yellow]mutants\n
-		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]15% %c[ui_gray_2]at night
-		</text>
-    </string>
-	<string id="st_perk_mutant_slayer_desc_3">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
 		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]15% %c[ui_gray_2]less damage from %c[yellow]mutants\n
 		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]22.5% %c[ui_gray_2]at night
 		</text>
     </string>
+	<string id="st_perk_mutant_slayer_desc_3">
+        <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
+		%c[ui_gray_3]EFFECTS:\n
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]24% %c[ui_gray_2]less damage from %c[yellow]mutants\n
+		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]36% %c[ui_gray_2]at night
+		</text>
+    </string>
 	<string id="st_perk_mutant_slayer_desc_4">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]20% %c[ui_gray_2]less damage from %c[yellow]mutants\n
-		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]30% %c[ui_gray_2]at night
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]35% %c[ui_gray_2]less damage from %c[yellow]mutants\n
+		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]52.5% %c[ui_gray_2]at night
 		</text>
     </string>
 	<string id="st_perk_mutant_slayer_desc_5">
         <text>Repeated mutant attacks have made your skin thick with calluses.\n \n
 		%c[ui_gray_3]EFFECTS:\n
-		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]25% %c[ui_gray_2]less damage from %c[yellow]mutants\n
-		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]37.5% %c[ui_gray_2]at night
+		%c[d_blue] - %c[ui_gray_2] You now take %c[d_green]45% %c[ui_gray_2]less damage from %c[yellow]mutants\n
+		%c[d_blue] - %c[ui_gray_2] Potency increases to %c[d_green]67.5% %c[ui_gray_2]at night
 		</text>
     </string>
 	

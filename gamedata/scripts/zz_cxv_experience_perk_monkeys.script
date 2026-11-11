@@ -187,3 +187,33 @@ elseif experience_core and experience_core.increase_experience then
 		base_XP_gain(math.floor(experience * (1 + (0.1 * experience_core.XP.prestige_level)) + 0.5), multiplier)
 	end
 end
+
+-------------------------------------------------------------------------------------------------------------------------------
+-- zce_core.script - Increase XP from cooking (factor skill level for additional XP) ------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
+if zce_core and zce_core.add_xp then
+	local zce_cooking_mult = 1.25
+	
+	local base_zce_xp = zce_core.add_xp
+	function zce_core.add_xp(n)
+		local zce_skill_level = zce_core.skill_level() or 1
+		local cooking_exp
+		
+		if experience_utils and experience_options then
+			cooking_exp = experience_options.Get("XP/COOKING_XP")
+			cooking_exp = math.floor(cooking_exp * zce_skill_level * zce_cooking_mult)
+			experience_utils.IncreaseExperience(cooking_exp, "cooking")
+			experience_tasks.GetXPTasks():SendEvent("cooking_foods")
+		elseif experience_core and experience_core.give_actor_experience_by_cooking and experience_core.SETTINGS.COOKING_XP then
+			cooking_exp = experience_core.SETTINGS.COOKING_XP
+			cooking_exp = math.floor(cooking_exp * zce_skill_level * zce_cooking_mult)
+			
+			local ret = {}
+			SendScriptCallback("experience_multiplier_on_before_multiply", "cook", experience_core.G_COOKING_XP_MULT, ret)
+			experience_core.increase_experience(cooking_xp, tonumber(ret.new_mult) or G_COOKING_XP_MULT)
+		end
+		
+		base_zce_xp(n)
+	end
+end

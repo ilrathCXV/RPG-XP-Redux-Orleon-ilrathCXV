@@ -1,4 +1,6 @@
 local berserker_resist = {[0] = 0, [1] = 0.10, [2] = 0.20, [3] = 0.35, [4] = 0.50, [5] = 0.70}
+local m_slayer_thick_resist = {[0] = 0, [1] = 0.08, [2] = 0.15, [3] = 0.24, [4] = 0.35, [5] = 0.45}
+local anomaly_defense_resist = {[0] = 0, [1] = 0.08, [2] = 0.18, [3] = 0.35}
 
 local lightweight_dodge_chance = 0
 
@@ -106,15 +108,27 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
+local flags = { ret_value = true }
 
 local GActor_OnBeforeHitCallback = _G.CActor__BeforeHitCallback
 _G.CActor__BeforeHitCallback = function(actor, shit, bone_id)
-	rpg_damage_reduction(shit, bone_id)
+--	rpg_damage_reduction(shit, bone_id, flags)
+--	if flags and flags.ret_value and flags.ret_value == false then
+--		return false
+--	end
+--	if shit.power == 0 then
+--		return false
+--	end
+--	return GActor_OnBeforeHitCallback(actor, shit, bone_id)
 	
 	return GActor_OnBeforeHitCallback(actor, shit, bone_id)
 end
 
-function rpg_damage_reduction(shit, bone_id)
+function rpg_damage_reduction(shit, bone_id, flags)
+	
+	if not flags then
+		flags = { ret_value = true }
+	end
 	
 	local hitter = shit.draftsman
 	if not hitter then return end
@@ -143,6 +157,7 @@ function rpg_damage_reduction(shit, bone_id)
 --			printf("///////////   RPG System: Damage reduction in progress  //////////////////")
 --			printf("[RPG - Player When Hit] Original Base Hit: %s of type %s", shit.power, shit.type)
 			shit.power = 0
+			flags.ret_value = false
 			shit.type = hit.radiation
 			printf("[RPG - Player When Hit] Dodged hit (dodge chance: %s%)!", dodge_chance * 0.1)
 			return
@@ -187,15 +202,17 @@ function rpg_damage_reduction(shit, bone_id)
 	
 ------------------------------------------------------------> Anomaly Defense
     if x_cxv_perks_data.perks["perk_anomaly_defense"] > 0 and (is_hit_elemental or (IsAnomaly(hitter) and shit.type ~= hit.radiation)) then
-		damage_mult = damage_mult * (1 - (x_cxv_perks_data.perks["perk_anomaly_defense"] * 0.09))
-		--printf("[RPG - Player When Hit] Anomaly Defense %s% damage reduction!", (x_cxv_perks_data.perks["perk_anomaly_defense"] * 0.09))
+		local anomaly_defense_val = anomaly_defense_resist[clamp(x_cxv_perks_data.perks["perk_anomaly_defense"], 0, 3)]
+		damage_mult = damage_mult * (1 - anomaly_defense_val)
+		--printf("[RPG - Player When Hit] Anomaly Defense %s% damage reduction!", anomaly_defense_val)
     end
 
 ------------------------------------------------------------> Berserker
 	if (hitter:id() ~= AC_ID) and (x_cxv_perks_data.perks["perk_berserker"] > 0) then
 		if player_weapon and (weapon_class == "melee") then
-			damage_mult = damage_mult * (1 - (berserker_resist[x_cxv_perks_data.perks["perk_berserker"]]))
-			--printf("[RPG - Player When Hit] Berserker %s% damage reduction!", berserker_resist[x_cxv_perks_data.perks["perk_berserker"]])
+			local berserker_val = berserker_resist[clamp(x_cxv_perks_data.perks["perk_berserker"], 0, 5)]
+			damage_mult = damage_mult * (1 - berserker_val)
+			--printf("[RPG - Player When Hit] Berserker %s% damage reduction!", berserker_val)
 		end
 	end
 	
@@ -209,8 +226,10 @@ function rpg_damage_reduction(shit, bone_id)
 				night_mult = 1.5
 			end
 			
-			damage_mult = damage_mult * (1 - ((x_cxv_perks_data.perks["perk_mutant_slayer"] * 0.05) * night_mult))
-			--printf("[RPG - Player When Hit] Thick Skin %s% damage reduction!", (x_cxv_perks_data.perks["perk_mutant_slayer"] * 0.05 * night_mult))
+			local m_resist_val = m_slayer_thick_resist[clamp(x_cxv_perks_data.perks["perk_mutant_slayer"], 0, 5)] * night_mult
+			
+			damage_mult = damage_mult * (1 - m_resist_val)
+			--printf("[RPG - Player When Hit] Thick Skin %s% damage reduction!", m_resist_val)
 		end
     end
 	
@@ -220,6 +239,7 @@ function rpg_damage_reduction(shit, bone_id)
 		if shit.power < (x_cxv_perks_data.perks["perk_mtn_climber"] * 0.15) then
 			--printf("[RPG - Player When Hit] Mountain Climber negating all fall damage!")
 			shit.power = 0
+			flags.ret_value = false
 			shit.type = hit.radiation
 			return
 		elseif x_cxv_perks_data.perks["perk_mtn_climber"] == 3 then	-- take half damage if over threshold at max rank
