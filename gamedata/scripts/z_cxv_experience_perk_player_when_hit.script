@@ -108,27 +108,15 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
-local flags = { ret_value = true }
 
 local GActor_OnBeforeHitCallback = _G.CActor__BeforeHitCallback
 _G.CActor__BeforeHitCallback = function(actor, shit, bone_id)
---	rpg_damage_reduction(shit, bone_id, flags)
---	if flags and flags.ret_value and flags.ret_value == false then
---		return false
---	end
---	if shit.power == 0 then
---		return false
---	end
---	return GActor_OnBeforeHitCallback(actor, shit, bone_id)
+	rpg_damage_reduction(shit, bone_id)
 	
 	return GActor_OnBeforeHitCallback(actor, shit, bone_id)
 end
 
-function rpg_damage_reduction(shit, bone_id, flags)
-	
-	if not flags then
-		flags = { ret_value = true }
-	end
+function rpg_damage_reduction(shit, bone_id)
 	
 	local hitter = shit.draftsman
 	if not hitter then return end
@@ -157,7 +145,6 @@ function rpg_damage_reduction(shit, bone_id, flags)
 --			printf("///////////   RPG System: Damage reduction in progress  //////////////////")
 --			printf("[RPG - Player When Hit] Original Base Hit: %s of type %s", shit.power, shit.type)
 			shit.power = 0
-			flags.ret_value = false
 			shit.type = hit.radiation
 			printf("[RPG - Player When Hit] Dodged hit (dodge chance: %s%)!", dodge_chance * 0.1)
 			return
@@ -239,7 +226,6 @@ function rpg_damage_reduction(shit, bone_id, flags)
 		if shit.power < (x_cxv_perks_data.perks["perk_mtn_climber"] * 0.15) then
 			--printf("[RPG - Player When Hit] Mountain Climber negating all fall damage!")
 			shit.power = 0
-			flags.ret_value = false
 			shit.type = hit.radiation
 			return
 		elseif x_cxv_perks_data.perks["perk_mtn_climber"] == 3 then	-- take half damage if over threshold at max rank
